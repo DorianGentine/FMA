@@ -15,6 +15,10 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+# gem "activestorage", ">= 5.2.1.1"
+# gem "actionview", ">= 5.2.2.1"
+# gem "railties", ">= 5.2.2.1"
+# gem "activejob", ">= 5.2.1.1"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
