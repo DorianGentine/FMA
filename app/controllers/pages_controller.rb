@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+  skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
     set_collections_formulary
@@ -10,8 +10,6 @@ class PagesController < ApplicationController
       @formulary = @visitor.formulary
     end
   end
-
-
 
   private
 

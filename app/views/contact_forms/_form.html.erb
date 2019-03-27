@@ -1,0 +1,6 @@
+<%= simple_form_for contact, remote: true do |f| %>
+  <div class="footer-newsletter-input">
+    <%= f.input :email, label: false, placeholder:"Entrez votre email", wrapper: false, error: 'Cette adresse email est déjà renseigné' %>
+    <%= f.submit "S'inscrire", class:"footer-newsletter-btn" %>
+  </div>
+<% end %>

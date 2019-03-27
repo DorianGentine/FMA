@@ -115,11 +115,11 @@ class Formulary < ApplicationRecord
     1 => "Non"
   }
 
-  enum is_working: [ "oui", "non"]
-  enum loss_of_autonomy_receipt: [ "file", "no_file"]
-  enum accessibility_with_step: [ "no_step", "with_step"]
-  enum owner_is_include: [ "include", "no_include"]
-  enum has_partner: [ "yes", "no"]
+  # enum is_working: [ "oui", "non"]
+  # enum loss_of_autonomy_receipt: [ "file", "no_file"]
+  # enum accessibility_with_step: [ "no_step", "with_step"]
+  # enum owner_is_include: [ "include", "no_include"]
+  # enum has_partner: [ "yes", "no"]
 
 
 end
