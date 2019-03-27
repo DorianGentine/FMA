@@ -10,21 +10,101 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_050944) do
+ActiveRecord::Schema.define(version: 2019_03_26_081602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "advisors", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_advisors_on_user_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_clients_on_project_id"
+    t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
+  create_table "formularies", force: :cascade do |t|
+    t.bigint "visitor_id"
+    t.bigint "project_id"
+    t.string "last_name"
+    t.string "first_name"
+    t.string "zip_code"
+    t.integer "age"
+    t.integer "is_working"
+    t.integer "loss_of_autonomy_receipt"
+    t.integer "occupation"
+    t.integer "holder_occupation"
+    t.string "lessor"
+    t.integer "accommodation"
+    t.integer "floor"
+    t.integer "accessibility_with_step"
+    t.integer "type_of_pension"
+    t.string "pension"
+    t.string "supplementary"
+    t.integer "loss_of_autonomy"
+    t.integer "occupant"
+    t.integer "owner_is_include"
+    t.integer "has_partner"
+    t.integer "tax_revenue"
+    t.integer "gross_income"
+    t.integer "global_tax_revenue"
+    t.integer "household_income"
+    t.integer "owner_tax_revenue"
+    t.integer "assistant"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_formularies_on_project_id"
+    t.index ["visitor_id"], name: "index_formularies_on_visitor_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.bigint "advisor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advisor_id"], name: "index_projects_on_advisor_id"
+  end
+
   create_table "users", force: :cascade do |t|
+    t.string "last_name"
+    t.string "first_name"
+    t.string "phone"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "visitors", force: :cascade do |t|
+    t.string "user_ip"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_visitors_on_user_id"
+  end
+
+  add_foreign_key "advisors", "users"
+  add_foreign_key "clients", "projects"
+  add_foreign_key "clients", "users"
+  add_foreign_key "formularies", "projects"
+  add_foreign_key "formularies", "visitors"
+  add_foreign_key "projects", "advisors"
+  add_foreign_key "visitors", "users"
 end

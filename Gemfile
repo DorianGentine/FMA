@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.5'
+# ruby '2.4.3'
 
 gem 'bootsnap', require: false
 gem 'devise'
@@ -27,4 +28,8 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
+
+  # helping errors messages
+  gem "better_errors"
+  gem "binding_of_caller"
 end

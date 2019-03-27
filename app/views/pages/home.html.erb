@@ -1,2 +1,44 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="row">
+  <div class="col-md-7 offset-md-3">
+    <%= simple_form_for @formulary do |f| %>
+      <%= f.input :last_name, label:"1- Quel est votre nom ?" %>
+      <%= f.input :first_name, label:"2- Quel est votre prénom ?" %>
+      <%= f.input :zip_code, label:"3- Quel est le code postal de votre ville de résidence ?" %>
+      <%= f.input :age, label:"4- Quel est votre date de naissance ?", collection: @age_choices  %>
+
+      <% if f.object.age.nil? || f.object.age < 2 %>
+        <p>Si l'age est moins de 60 ans ou NIl</p>
+        <%= f.input :is_working, label:"5- Exercez-vous une activité professionnelle ?", collection: @yes_no %>
+      <% else %>
+        <h3>SKIP 5</h3>
+      <% end %>
+      <%= f.input :loss_of_autonomy_receipt, label:"Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à la date d'anniversaire de vos 60 ans ?" %>
+      <%= f.input :occupation, label:"Quel est votre statut d'occupation dans votre logement ?", collection: @occupation_choises  %>
+      <%= f.input :holder_occupation, label:"Quel est le statut d'occupation du titulaire de votre logement votre logement ?", collection:  @holder_occupation_choises  %>
+      <%= f.input :lessor, label:"Quel est le nom du bailleur de votre logement ?", collection: @lessor_names %>
+      <!-- Add condition if autre selected -->
+      <%= f.input :lessor, label:false, placeholder:"Si autre, renseignez le nom"%>
+
+      <%= f.input :accommodation, label:"Quel est la typologie de votre logement ?", collection: @accommodation %>
+      <%= f.input :floor, label:"Résidez vous en rez de chaussée ou en étage ?", collection: @floor_choices %>
+      <%= f.input :accessibility_with_step, label:"La porte d'entrée de votre logement est-elle accessible sans que vous n'ayez de marche à franchir ?" %>
+      <%= f.input :type_of_pension, label:"Concernant votre pension de retraite ou de réversion ?", collection: @type_of_pension  %>
+      <%= f.input :pension, label:"Comment se nomme la caisse de retraite principale vous versant votre pension de retraite ou de réversion à titre principal ?" %>
+
+      <!-- Multip selection and can create more -->
+      <%= f.input :supplementary, label:"Comment se nomme(nt) la ou les caisse(s) de retraite(s) complémentaire(s) vous versant votre pension de retraite complémentaire ou de réversion ?", collection: @supplementary_names %>
+      <%= f.input :loss_of_autonomy, label:"A quel Groupe Iso-Ressource ou GIR appartenez-vous ?", collection: @loss_of_autonomy  %>
+      <%= f.input :occupant, label:"Combien de personne(s) réside(nt) au sein de votre foyer ?", collection: @occupant %>
+      <%= f.input :owner_is_include, label:"Le propriétaire de votre logement y vit-il ?" %>
+      <%= f.input :has_partner, label:"Vivez-vous avec un conjoint, concubin ou partenaire de PACS ?" %>
+      <%= f.input :tax_revenue, label:"Quel est le montant de votre Revenu Fiscal de Référence ?", collection: @tax_revenue  %>
+      <%= f.input :gross_income, label:"Quel est le montant de votre Revenu Brut Global ?", collection: @gross_income  %>
+      <%= f.input :global_tax_revenue, label:"Quel est le montant du Revenu Fiscal de Référence de l'ensemble de votre foyer ?", collection:  @global_tax_revenue %>
+      <%= f.input :household_income, label:"Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?", collection: @household_income %>
+      <%= f.input :owner_tax_revenue, label:"Quel est le montant du Revenu Fiscal de Référence du propriétaire de votre logement ?", collection: @owner_tax_revenue %>
+      <%= f.input :assistant, label:"Avez-vous déjà perçu ou percevez-vous une de ses aides ou actions sociales ?", collection: @assistant  %>
+      <%= f.submit "Envoyer", class:"btn btn-dark" %>
+    <% end %>
+  </div>
+</div>
