@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
     set_collections_formulary
     @visitor = Visitor.find_by(user_ip: request.ip)
-    if @visitor.nil?
+    if @visitor.nil? || @visitor.formulary.nil?
       @formulary = Formulary.new
     else
       @formulary = @visitor.formulary
@@ -16,6 +16,7 @@ class PagesController < ApplicationController
   def set_collections_formulary
     @lessor_names = Formulary::LESSOR_NAMES
     @supplementary_names = Formulary::SUPPLEMENTARY_NAMES
+    @pension_names = Formulary::PENSION_NAMES
     @yes_no = Formulary::YES_NO.map { |choice, index| [index, choice]  }
     @age_choices = Formulary::AGE.map { |choice, index| [index, choice]  }
     @occupation_choises = Formulary::OCCUPATION_CHOICES.map { |choice, index| [index, choice]  }

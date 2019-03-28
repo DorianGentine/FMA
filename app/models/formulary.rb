@@ -7,6 +7,8 @@ class Formulary < ApplicationRecord
   "MAISONS ALFORT HABITAT", "NOVIGERE", "OPALY", "OPH GENTILLY", "OPH L'HAY LES ROSES", "OPH VILLEJUIF", "OPH VITRY", "OPH IVRY",
   "OSICA", "RATP HABITAT", "RESIDENCE LE LOGEMENT DES FONCTIONNAIRES", "SIEMP", "VALOPHIS", "Autre" ]
 
+  PENSION_NAMES = [ "CAMIEG", "CNRACL", "RSI", "CARCDSF", "Autre"]
+
   SUPPLEMENTARY_NAMES = [ "Aucune caisse de retraite complémentaire ne me verse de pension de retraite complémentaire ou de reversion",
   "AG2R", "B2V", "HUMANIS", "IRCANTEC", "KLESIA", "MALAKOFFF MEDERIC", "PROBTP", "AUDIENS", "IRP AUTO", "LOURMEL", "Autre : Libre"]
 
@@ -95,31 +97,173 @@ class Formulary < ApplicationRecord
     5 => "Non"
   }
 
-  # enum age: [ "Strictement inférieur à 55 ans", "De 56 à 60 ans", "De 61 à 75 ans", "Strictement supérieur à 75 ans" ]
-  # enum occupation: [ "Propriétaire occupant", "Occupant à titre gratuit", "Locataire du parc social", "Locataire du parc privé", "Hébergé en famille d'accueil" ], _suffix: true
-  # enum holder_occupation: [ "Propriétaire occupant", "Locataire de parc social", "Locataire du parc privé" ]
-  # enum accommodation: [ "T1, T2 ou T3", "Strictement supérieur au T3" ]
-  # enum floor: [ "Étage", "Rez de chaussée" ]
-  # enum type_of_pension: ["Je perçois à titre principal une pension de retraite ou de réversion de la CNAV", "Je perçois à titre principal une pension de retraite ou de réversion d'un autre organisme que la CNAV", "Je ne perçois aucune pension de retraite ou de réversion à titre principal" ]
-  # enum loss_of_autonomy: ["Strictement supérieur à 4", "Inférieur ou égale à 4", "J'ai disposé d'une évaluation de mon GIR mais je ne le connais plus", "Je ne dispose d'aucun GIR" ]
-  # enum occupant: ["J'habite seul", "Au moins 1 autre personne compose mon foyer" ]
-  # enum tax_revenue: [ "Strictement inférieur à A", "Entre A et B", "Supérieur ou égal à B" ], _suffix: true
-  # enum gross_income: [ "Strictement inférieur à A", "Supérieur ou égal à A" ], _prefix: :gross_income
-  # enum global_tax_revenue: [ "Strictement inférieur à A", "Entre A et B", "Supérieur ou égal à B" ]
-  # enum household_income: [ "Strictement inférieur à A", "Supérieur ou égal à A" ], _prefix: :household_income
-  # enum owner_tax_revenue: [ "Strictement inférieur à A", "Entre A et B", "Supérieur ou égal à B" ], _prefix: :owner_tax_revenue
-  # enum assistant: [" Prêt à taux 0 au cours des 5 dernières années", " Aide pour l'adaptation du logement via l'APA", " PCH", "Dispositif d'action social auprès d'une caisse de retraite principale", " Subvention de l'ANAH au cours des 5 dernières années", "Non" ]
-
   YES_NO = {
     0 => "Oui",
     1 => "Non"
   }
 
-  # enum is_working: [ "oui", "non"]
-  # enum loss_of_autonomy_receipt: [ "file", "no_file"]
-  # enum accessibility_with_step: [ "no_step", "with_step"]
-  # enum owner_is_include: [ "include", "no_include"]
-  # enum has_partner: [ "yes", "no"]
+  # Q-5
+  def allow_is_working?
+    if self.age.present? && self.age > 1
+      return true
+    end
+  end
 
+  # Q-6
+  def allow_loss_of_autonomy_receipt?
+    if self.age.present? && self.age == 2 && self.is_working.present? && self.is_working == 1
+      return true
+    end
+  end
 
+  # Q-8
+  def allow_holder_occupation?
+    if self.occupation.present? && self.occupation == 1
+      return true
+    end
+  end
+
+  # Q-9
+  def allow_lessor?
+    if self.occupation.present? && self.occupation == 2
+      return true
+    elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 1
+      return true
+    end
+  end
+
+  # Q-10
+  def allow_accommodation?
+    if self.occupation.present? && self.occupation == 2
+      return true
+    elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 1
+      return true
+    end
+  end
+
+  # Q-11
+  def allow_floor?
+    if self.occupation.present? && self.occupation == 2
+      return true
+    elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 1
+      return true
+    end
+  end
+
+  # Q12
+  def allow_accessibility_with_step?
+    if self.occupation.present? && self.occupation == 2
+      return true
+    elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 1
+      return true
+    end
+  end
+
+  # Q-13
+  def allow_type_of_pension?
+    if self.age.present? && self.age > 0
+      return true
+    end
+  end
+
+  # Q-14
+  def allow_pension?
+    if self.age.present? && self.age > 0 && self.type_of_pension.present? && self.type_of_pension == 1
+      return true
+    end
+  end
+
+  # Q-15
+  def allow_supplementary?
+    if self.age.present? && self.age > 0
+      return true
+    end
+  end
+
+  # Q-16
+  def allow_loss_of_autonomy?
+    if self.age.present? && self.age > 0
+      return true
+    end
+  end
+
+  # Q-17
+  def allow_occupant?
+    if self.occupation.present? && self.occupation == 0 || self.occupation == 2 || self.occupation == 3
+      return true
+    elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 0
+      return true
+    end
+  end
+
+  # Q-18
+  def allow_owner_is_include?
+    if self.occupation.present? && self.occupation == 1
+      if self.occupant.present? && self.occupant == 1
+        return true
+      elsif self.occupant.present? && self.occupant == 2 && self.holder_occupation.present? && self.holder_occupation == 1
+        return true
+      end
+    elsif self.occupation.present? && self.occupation == 2 && self.holder_occupation.present? && self.holder_occupation == 2 && self.occupant.present? && self.occupant == 1
+      return true
+    end
+  end
+
+  # Q-19
+  def allow_has_partner?
+    if self.type_of_pension.present? && self.type_of_pension == 0 && self.occupant.present? && self.occupant == 1 && self.age.present? && self.age > 1
+      return true
+    end
+  end
+
+  # Q-20
+  def allow_tax_revenue?
+    if self.occupant.present? && self.occupant == 0
+      if self.occupation.present? && self.occupation == 0
+        return true
+      elsif self.occupation.present? && self.occupation == 1 &&  self.holder_occupation.present? && self.holder_occupation == 0
+        return true
+      elsif self.occupation.present? && self.occupation == 3
+        return true
+      end
+    end
+  end
+
+  # Q-21
+  def allow_gross_income?
+    if self.occupant.present? && self.occupant == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.age > 0
+      return true
+    end
+  end
+
+  # Q-22
+  def allow_global_tax_revenue?
+    if self.occupant.present? && self.occupant == 1
+      if self.occupation.present? && self.occupation == 0
+        return true
+      elsif self.occupation.present? && self.occupation == 1 &&  self.holder_occupation.present? && self.holder_occupation == 0
+        return true
+      elsif self.occupation.present? && self.occupation == 3
+        return true
+      end
+    elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 2
+      return true
+    end
+  end
+
+  # Q-23
+  def allow_household_income?
+    if self.occupant.present? && self.occupant == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.age > 0
+      return true
+    end
+  end
+
+  # Q-24
+  def allow_owner_tax_revenue?
+    if self.occupation.present? && self.occupation == 2 && self.holder_occupation.present? && self.holder_occupation == 0 && self.occupant.present? && self.occupant == 1 && self.owner_is_include.present? && self.owner_is_include == 1
+      return true
+    elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 2 && self.owner_is_include.present? && self.owner_is_include == 2
+      return true
+    end
+  end
 end

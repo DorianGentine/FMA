@@ -1,0 +1,172 @@
+<%= simple_form_for formulary, remote: true do |f| %>
+  <div class="row" >
+
+    <div class="offset-md-3 col-md-6">
+
+      <%= f.input :last_name, label:"1- Quel est votre nom ?" %>
+      <%= f.input :first_name, label:"2- Quel est votre prénom ?" %>
+      <%= f.input :zip_code, label:"3- Quel est le code postal de votre ville de résidence ?" %>
+
+      <%= f.input :age, label:"4- Quel est votre date de naissance ?", collection: @age_choices  %>
+
+      <p>5 - condition 4=3 ou 4 </p>
+      <% if f.object.allow_is_working? %>
+        <%= f.input :is_working, label:"Exercez-vous une activité professionnelle ?", collection: @yes_no %>
+      <% end %>
+
+      <p>6 - condition 4=2 & 5=1  </p>
+      <% if f.object.allow_loss_of_autonomy_receipt? %>
+        <%= f.input :loss_of_autonomy_receipt, label:"Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à la date d'anniversaire de vos 60 ans ?", collection: @yes_no %>
+      <% end %>
+
+
+      <p>7 -</p>
+      <%= f.input :occupation, label:"Quel est votre statut d'occupation dans votre logement ?", collection: @occupation_choises  %>
+
+      <p>8 - condition 7=1  </p>
+      <% if f.object.allow_holder_occupation? %>
+        <%= f.input :holder_occupation, label:"Quel est le statut d'occupation du titulaire de votre logement votre logement ?", collection:  @holder_occupation_choises  %>
+      <% end %>
+
+      <p>9 - condition 7=2 || 7=1 & 8=1  </p>
+      <% if f.object.allow_lessor?%>
+        <%= f.input :lessor, label:"Quel est le nom du bailleur de votre logement ?", collection: @lessor_names %>
+        <!-- Add condition if autre selected -->
+        <%= f.input :lessor, label:false, placeholder:"Si autre, renseignez le nom"%>
+      <% end %>
+
+
+      <p>10 - condition 7=2 || 7=1 & 8=1  </p>
+      <% if f.object.allow_accommodation? %>
+        <%= f.input :accommodation, label:"Quel est la typologie de votre logement ?", collection: @accommodation %>
+      <% end %>
+
+      <p>11 - condition 7=2 || 7=1 & 8=1  </p>
+      <% if f.object.allow_floor? %>
+        <%= f.input :floor, label:"Résidez vous en rez de chaussée ou en étage ?", collection: @floor_choices %>
+      <% end %>
+
+      <p>12 - condition 7=2 || 7=1 & 8=1  </p>
+      <% if f.object.allow_accessibility_with_step? %>
+        <%= f.input :accessibility_with_step, label:"La porte d'entrée de votre logement est-elle accessible sans que vous n'ayez de marche à franchir ?", collection: @yes_no %>
+      <% end %>
+
+
+      <p>13 - condition 4=1 || 4=2 || 4=3 </p>
+      <% if f.object.allow_type_of_pension? %>
+        <%= f.input :type_of_pension, label:"Concernant votre pension de retraite ou de réversion ?", collection: @type_of_pension  %>
+      <% end %>
+
+
+
+      <p>14 - condition (4=1 & 13=1) || (4=2 & 13=1) || (4=1 & 13=1) </p>
+      <% if f.object.allow_pension? %>
+        <%= f.input :pension, label:"Comment se nomme la caisse de retraite principale vous versant votre pension de retraite ou de réversion à titre principal ?", collection: @pension_names %>
+        <h3>TODO le autre</h3>
+        <%= f.input :pension, label:false, placeholder:"Si autre, renseignez le nom"%>
+      <% end %>
+
+
+      <!-- Multip selection and can create more -->
+      <p>15 - condition 4=1 || 4=2 || 4=3 </p>
+      <% if f.object.allow_supplementary? %>
+        <%= f.input :supplementary, label:"Comment se nomme(nt) la ou les caisse(s) de retraite(s) complémentaire(s) vous versant votre pension de retraite complémentaire ou de réversion ?", collection: @supplementary_names %>
+        <%= f.input :supplementary, label:false, placeholder:"Si autre, renseignez le nom" %>
+      <% end %>
+
+
+      <p>16 - condition 4=1 || 4=2 || 4=3 </p>
+      <% if f.object.allow_loss_of_autonomy? %>
+        <%= f.input :loss_of_autonomy, label:"A quel Groupe Iso-Ressource ou GIR appartenez-vous ?", collection: @loss_of_autonomy  %>
+      <% end %>
+
+
+
+      <p>17 - condition 7=0 || 7=2 || 7=3 || (7=1 & 8=1)  </p>
+      <% if f.object.allow_occupant? %>
+        <%= f.input :occupant, label:"Combien de personne(s) réside(nt) au sein de votre foyer ?", collection: @occupant %>
+      <% end %>
+
+
+
+      <p>18 - condition (7=1 & 17=1) || (7=1 & 8=1 & 17=2) || (7=2 & 8=2 & 17=1) </p>
+      <% if f.object.allow_owner_is_include? %>
+        <%= f.input :owner_is_include, label:"Le propriétaire de votre logement y vit-il ?", collection: @yes_no %>
+      <% end %>
+
+
+      <p>19 - condition (4=1 & 13=0 & 17=1) || (4=2 & 13=0 & 17=1) || (4=3 & 13=0 & 17=1) </p>
+      <% if f.object.allow_has_partner? %>
+        <%= f.input :has_partner, label:"Vivez-vous avec un conjoint, concubin ou partenaire de PACS ?" %>
+      <% end %>
+
+
+
+      <p>20 - condition (7=0 & 17=0) || (7=1 & 8=0 & 17=0) || (7=3 & 17=0) </p>
+      <% if f.object.allow_tax_revenue? %>
+        <%= f.input :tax_revenue, label:"Quel est le montant de votre Revenu Fiscal de Référence ?", collection: @tax_revenue  %>
+      <% end %>
+
+      <p>21 - condition (4=1 & 13=0 & 17=0) || (4=2 & 13=0 & 17=0) || (4=3 & 13=0 & 17=0) </p>
+      <% if f.object.allow_gross_income? %>
+        <%= f.input :gross_income, label:"Quel est le montant de votre Revenu Brut Global ?", collection: @gross_income  %>
+      <% end %>
+
+
+      <p>22 - condition (7=0 & 17=1) || (7=1 & 8=0 & 17=1) || (7=1 & 8=2) || (7=3 & 17=1) </p>
+      <% if f.object.allow_global_tax_revenue? %>
+        <%= f.input :global_tax_revenue, label:"Quel est le montant du Revenu Fiscal de Référence de l'ensemble de votre foyer ?", collection:  @global_tax_revenue %>
+      <% end %>
+
+
+
+      <p>23 - condition (4=1 & 13=0 & 17=1) || (4=2 & 13=0 & 17=1) || (4=3 & 13=0 & 17=1) </p>
+      <% if f.object.allow_household_income? %>
+        <%= f.input :household_income, label:"Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?", collection: @household_income %>
+      <% end %>
+
+
+      <p>24 - condition (7=2 & 8=0 & 17=1 & 18=1 ) || (7=1 & 8=2 & 18=2) </p>
+      <% if f.object.allow_owner_tax_revenue? %>
+        <%= f.input :owner_tax_revenue, label:"Quel est le montant du Revenu Fiscal de Référence du propriétaire de votre logement ?", collection: @owner_tax_revenue %>
+      <% end %>
+
+
+      <p>25 -</p>
+      <%= f.input :assistant, label:"Avez-vous déjà perçu ou percevez-vous une de ses aides ou actions sociales ?", collection: @assistant  %>
+    </div>
+
+
+    <div class="col-md-3" style=" position: fixed;">
+      <ul>
+        <li style=" color: green ;">4 = <%= f.object.age %></li>
+        <li style=" color: <%= f.object.allow_is_working? ? "green" : "red" %> ;">5 = <%= f.object.is_working %></li>
+        <li style=" color: <%= f.object.allow_loss_of_autonomy_receipt? ? "green" : "red" %> ;">6 = <%= f.object.loss_of_autonomy_receipt %></li>
+        <li style=" color: green ;">7 = <%= f.object.occupation %></li>
+
+        <li style=" color: <%= f.object.allow_holder_occupation? ? "green" : "red" %> ;">8 = <%= f.object.holder_occupation %></li>
+        <li style=" color: <%= f.object.allow_lessor? ? "green" : "red" %> ;">9 = <%= f.object.lessor %></li>
+        <li style=" color: <%= f.object.allow_accommodation? ? "green" : "red" %> ;">10 = <%= f.object.accommodation %></li>
+        <li style=" color: <%= f.object.allow_floor? ? "green" : "red" %> ;">11 = <%= f.object.floor %></li>
+        <li style=" color: <%= f.object.allow_accessibility_with_step? ? "green" : "red" %> ;">12 = <%= f.object.accessibility_with_step %></li>
+        <li style=" color: <%= f.object.allow_type_of_pension? ? "green" : "red" %> ;">13 = <%= f.object.type_of_pension %></li>
+        <li style=" color: <%= f.object.allow_pension? ? "green" : "red" %> ;">14 = <%= f.object.pension %></li>
+        <li style=" color: <%= f.object.allow_supplementary? ? "green" : "red" %> ;">15 = <%= f.object.supplementary %></li>
+        <li style=" color: <%= f.object.allow_loss_of_autonomy? ? "green" : "red" %> ;">16 = <%= f.object.loss_of_autonomy %></li>
+        <li style=" color: <%= f.object.allow_occupant? ? "green" : "red" %> ;">17 = <%= f.object.occupant %></li>
+        <li style=" color: <%= f.object.allow_owner_is_include? ? "green" : "red" %> ;">18 = <%= f.object.owner_is_include %></li>
+        <li style=" color: <%= f.object.allow_has_partner? ? "green" : "red" %> ;">19 = <%= f.object.has_partner %></li>
+        <li style=" color: <%= f.object.allow_tax_revenue? ? "green" : "red" %> ;">20 = <%= f.object.tax_revenue %></li>
+        <li style=" color: <%= f.object.allow_gross_income? ? "green" : "red" %> ;">21 = <%= f.object.gross_income %></li>
+        <li style=" color: <%= f.object.allow_global_tax_revenue? ? "green" : "red" %> ;">22 = <%= f.object.global_tax_revenue %></li>
+        <li style=" color: <%= f.object.allow_household_income? ? "green" : "red" %> ;">23 = <%= f.object.household_income %></li>
+        <li style=" color: <%= f.object.allow_owner_tax_revenue? ? "green" : "red" %>;">24 = <%= f.object.owner_tax_revenue %></li>
+        <li style=" color: green; ">25 = <%= f.object.assistant %></li>
+      </ul>
+
+      <div class="footer-newsletter-btn">
+        <%= link_to "Retour", root_path %>
+      </div>
+    </div>
+  </div>
+<% end %>

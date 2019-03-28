@@ -1,0 +1,22 @@
+function refreshForm(innerHTML) {
+  const newForm = document.getElementById('formulary');
+  newForm.innerHTML = innerHTML;
+}
+
+
+refreshForm('<%= j render "formularies/form", formulary: @formulary %>');
+
+
+const inputs = Array.from(document.getElementsByTagName('input'))
+const selecteds = Array.from(document.getElementsByTagName('select'))
+const form = document.getElementsByTagName('form')[0]
+inputs.forEach((input) => {
+  input.addEventListener('change', function(){
+    form.submit()
+  })
+})
+selecteds.forEach((input) => {
+  input.addEventListener('change', function(){
+    form.submit()
+  })
+})
