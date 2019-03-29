@@ -1,5 +1,5 @@
 class FormulariesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:create, :update]
+  skip_before_action :authenticate_user!, only: [:create, :update, :show]
   def create
     @visitor = Visitor.find_by(user_ip: request.ip)
     if @visitor.nil?
@@ -45,6 +45,11 @@ class FormulariesController < ApplicationController
         format.js
       end
     end
+  end
+
+  def show
+    @formulary = Formulary.find(params[:id])
+    @project = @formulary.project
   end
 
   private

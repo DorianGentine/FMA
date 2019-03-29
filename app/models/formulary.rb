@@ -106,6 +106,8 @@ class Formulary < ApplicationRecord
   def allow_is_working?
     if self.age.present? && self.age > 1
       return true
+    else
+      return false
     end
   end
 
@@ -113,6 +115,8 @@ class Formulary < ApplicationRecord
   def allow_loss_of_autonomy_receipt?
     if self.age.present? && self.age == 2 && self.is_working.present? && self.is_working == 1
       return true
+    else
+      return false
     end
   end
 
@@ -120,6 +124,8 @@ class Formulary < ApplicationRecord
   def allow_holder_occupation?
     if self.occupation.present? && self.occupation == 1
       return true
+    else
+      return false
     end
   end
 
@@ -129,6 +135,8 @@ class Formulary < ApplicationRecord
       return true
     elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 1
       return true
+    else
+      return false
     end
   end
 
@@ -138,6 +146,8 @@ class Formulary < ApplicationRecord
       return true
     elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 1
       return true
+    else
+      return false
     end
   end
 
@@ -147,6 +157,8 @@ class Formulary < ApplicationRecord
       return true
     elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 1
       return true
+    else
+      return false
     end
   end
 
@@ -156,6 +168,8 @@ class Formulary < ApplicationRecord
       return true
     elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 1
       return true
+    else
+      return false
     end
   end
 
@@ -163,6 +177,8 @@ class Formulary < ApplicationRecord
   def allow_type_of_pension?
     if self.age.present? && self.age > 0
       return true
+    else
+      return false
     end
   end
 
@@ -170,6 +186,8 @@ class Formulary < ApplicationRecord
   def allow_pension?
     if self.age.present? && self.age > 0 && self.type_of_pension.present? && self.type_of_pension == 1
       return true
+    else
+      return false
     end
   end
 
@@ -177,6 +195,8 @@ class Formulary < ApplicationRecord
   def allow_supplementary?
     if self.age.present? && self.age > 0
       return true
+    else
+      return false
     end
   end
 
@@ -184,6 +204,8 @@ class Formulary < ApplicationRecord
   def allow_loss_of_autonomy?
     if self.age.present? && self.age > 0
       return true
+    else
+      return false
     end
   end
 
@@ -193,6 +215,8 @@ class Formulary < ApplicationRecord
       return true
     elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 0
       return true
+    else
+      return false
     end
   end
 
@@ -206,6 +230,8 @@ class Formulary < ApplicationRecord
       end
     elsif self.occupation.present? && self.occupation == 2 && self.holder_occupation.present? && self.holder_occupation == 2 && self.occupant.present? && self.occupant == 1
       return true
+    else
+      return false
     end
   end
 
@@ -213,6 +239,8 @@ class Formulary < ApplicationRecord
   def allow_has_partner?
     if self.type_of_pension.present? && self.type_of_pension == 0 && self.occupant.present? && self.occupant == 1 && self.age.present? && self.age > 1
       return true
+    else
+      return false
     end
   end
 
@@ -226,6 +254,8 @@ class Formulary < ApplicationRecord
       elsif self.occupation.present? && self.occupation == 3
         return true
       end
+    else
+      return false
     end
   end
 
@@ -233,6 +263,8 @@ class Formulary < ApplicationRecord
   def allow_gross_income?
     if self.occupant.present? && self.occupant == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.age > 0
       return true
+    else
+      return false
     end
   end
 
@@ -248,6 +280,8 @@ class Formulary < ApplicationRecord
       end
     elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 2
       return true
+    else
+      return false
     end
   end
 
@@ -255,6 +289,8 @@ class Formulary < ApplicationRecord
   def allow_household_income?
     if self.occupant.present? && self.occupant == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.age > 0
       return true
+    else
+      return false
     end
   end
 
@@ -264,6 +300,34 @@ class Formulary < ApplicationRecord
       return true
     elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 2 && self.owner_is_include.present? && self.owner_is_include == 2
       return true
+    else
+      return false
+    end
+  end
+
+
+  def finish_step?(attribute)
+    allow = "allow_" + attribute + "?"
+    if self.send(allow) && self.send(attribute).present?
+      return true
+    elsif self.send(allow) && self.send(attribute).nil?
+      return false
+    else
+      return true
+    end
+  end
+
+  def is_finish?
+    if self.finish_step?("is_working") && self.finish_step?("loss_of_autonomy_receipt") &&
+      self.finish_step?("holder_occupation") && self.finish_step?("lessor") && self.finish_step?("accommodation") &&
+      self.finish_step?("floor") && self.finish_step?("accessibility_with_step") && self.finish_step?("type_of_pension") &&
+      self.finish_step?("pension") && self.finish_step?("supplementary") && self.finish_step?("loss_of_autonomy") &&
+      self.finish_step?("occupant") && self.finish_step?("owner_is_include") && self.finish_step?("has_partner") &&
+      self.finish_step?("tax_revenue") && self.finish_step?("gross_income") && self.finish_step?("global_tax_revenue") &&
+      self.finish_step?("household_income") && self.finish_step?("owner_tax_revenue")
+      return true
+    else
+      return false
     end
   end
 end

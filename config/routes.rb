@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'project_solutions/show'
   devise_for :users
 
   get '/home', to: 'pages#home'
