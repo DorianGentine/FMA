@@ -318,16 +318,20 @@ class Formulary < ApplicationRecord
   end
 
   def is_finish?
-    if self.finish_step?("is_working") && self.finish_step?("loss_of_autonomy_receipt") &&
-      self.finish_step?("holder_occupation") && self.finish_step?("lessor") && self.finish_step?("accommodation") &&
-      self.finish_step?("floor") && self.finish_step?("accessibility_with_step") && self.finish_step?("type_of_pension") &&
-      self.finish_step?("pension") && self.finish_step?("supplementary") && self.finish_step?("loss_of_autonomy") &&
-      self.finish_step?("occupant") && self.finish_step?("owner_is_include") && self.finish_step?("has_partner") &&
-      self.finish_step?("tax_revenue") && self.finish_step?("gross_income") && self.finish_step?("global_tax_revenue") &&
-      self.finish_step?("household_income") && self.finish_step?("owner_tax_revenue")
-      return true
-    else
+    if self.id.nil?
       return false
+    else
+      if self.finish_step?("is_working") && self.finish_step?("loss_of_autonomy_receipt") &&
+        self.finish_step?("holder_occupation") && self.finish_step?("lessor") && self.finish_step?("accommodation") &&
+        self.finish_step?("floor") && self.finish_step?("accessibility_with_step") && self.finish_step?("type_of_pension") &&
+        self.finish_step?("pension") && self.finish_step?("supplementary") && self.finish_step?("loss_of_autonomy") &&
+        self.finish_step?("occupant") && self.finish_step?("owner_is_include") && self.finish_step?("has_partner") &&
+        self.finish_step?("tax_revenue") && self.finish_step?("gross_income") && self.finish_step?("global_tax_revenue") &&
+        self.finish_step?("household_income") && self.finish_step?("owner_tax_revenue")
+        return true
+      else
+        return false
+      end
     end
   end
 end
