@@ -9,7 +9,7 @@
 
       <%= f.input :age, label:"4- Quel est votre date de naissance ?", collection: @age_choices  %>
 
-      <p>5 - condition 4=3 ou 4 </p>
+      <p>5 - condition 4=2 || 4=3 </p>
       <% if f.object.allow_is_working? %>
         <%= f.input :is_working, label:"Exercez-vous une activité professionnelle ?", collection: @yes_no %>
       <% end %>
@@ -32,7 +32,9 @@
       <% if f.object.allow_lessor?%>
         <%= f.input :lessor, label:"Quel est le nom du bailleur de votre logement ?", collection: @lessor_names %>
         <!-- Add condition if autre selected -->
-        <%= f.input :lessor, label:false, placeholder:"Si autre, renseignez le nom"%>
+        <% if f.object.lessor == "Autre" %>
+          <%= f.input :lessor, label:false, placeholder:"Si autre, renseignez le nom"%>
+        <% end %>
       <% end %>
 
 
@@ -62,8 +64,9 @@
       <p>14 - condition (4=1 & 13=1) || (4=2 & 13=1) || (4=1 & 13=1) </p>
       <% if f.object.allow_pension? %>
         <%= f.input :pension, label:"Comment se nomme la caisse de retraite principale vous versant votre pension de retraite ou de réversion à titre principal ?", collection: @pension_names %>
-        <h3>TODO le autre</h3>
-        <%= f.input :pension, label:false, placeholder:"Si autre, renseignez le nom"%>
+        <% if f.object.pension == "Autre" %>
+          <%= f.input :pension, label:false, placeholder:"Si autre, renseignez le nom", input_html: { value: nil }%>
+        <% end %>
       <% end %>
 
 
@@ -71,7 +74,9 @@
       <p>15 - condition 4=1 || 4=2 || 4=3 </p>
       <% if f.object.allow_supplementary? %>
         <%= f.input :supplementary, label:"Comment se nomme(nt) la ou les caisse(s) de retraite(s) complémentaire(s) vous versant votre pension de retraite complémentaire ou de réversion ?", collection: @supplementary_names %>
-        <%= f.input :supplementary, label:false, placeholder:"Si autre, renseignez le nom" %>
+        <% if f.object.supplementary == "Autre : Libre" %>
+          <%= f.input :supplementary, label:false, placeholder:"Si autre, renseignez le nom" %>
+        <% end %>
       <% end %>
 
 
@@ -163,7 +168,9 @@
         <li style=" color: <%= f.object.allow_owner_tax_revenue? ? "green" : "red" %>;">24 = <%= f.object.owner_tax_revenue %></li>
         <li style=" color: green; ">25 = <%= f.object.assistant %></li>
       </ul>
-
+      <div style="display: block;">
+        <%= f.submit "Envoyer", class:"btn btn-dark", id:"send_formulary" %>
+      </div>
       <div class="footer-newsletter-btn">
         <%= link_to "Retour", root_path %>
       </div>

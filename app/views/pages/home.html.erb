@@ -3,17 +3,20 @@
 </div>
 
 <script>
-  const inputs = Array.from(document.getElementsByTagName('input'))
-  const selecteds = Array.from(document.getElementsByTagName('select'))
-  const form = document.getElementsByTagName('form')[0]
+  // js repeat in update.js.erb and create.js.erb => DRY
+
+  let inputs = Array.from(document.getElementsByTagName('input'))
+  let selecteds = Array.from(document.getElementsByTagName('select'))
+  const submit = document.getElementById('send_formulary')
+
   inputs.forEach((input) => {
     input.addEventListener('change', function(){
-      form.submit()
+      submit.click()
     })
   })
   selecteds.forEach((input) => {
     input.addEventListener('change', function(){
-      form.submit()
+      submit.click()
     })
   })
 </script>
