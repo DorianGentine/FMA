@@ -6,6 +6,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :last_name
       t.string :first_name
       t.string :phone
+      t.string :avatar
+      t.boolean :advisor, :default => false
+      t.boolean :client, :default => false
+      t.boolean :admin, :default => false
+
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

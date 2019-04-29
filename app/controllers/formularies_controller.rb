@@ -1,5 +1,7 @@
 class FormulariesController < ApplicationController
+
   skip_before_action :authenticate_user!, only: [:create, :update, :show]
+
   def create
     @visitor = Visitor.find_by(user_ip: request.ip)
     if @visitor.nil?
@@ -17,13 +19,11 @@ class FormulariesController < ApplicationController
       end
     end
 
-    if @formulary.save
-      respond_to do |format|
+    respond_to do |format|
+      if @formulary.save
         format.html { redirect_to home_path }
         format.js
-      end
-    else
-      respond_to do |format|
+      else
         format.html { render '/home' }
         format.js
       end
@@ -33,14 +33,12 @@ class FormulariesController < ApplicationController
   def update
     @formulary = Formulary.find(params[:id])
     # raise
-    set_collections_formulary
-    if @formulary.update(form_params)
-      respond_to do |format|
+    @choices = FormularyChoice.new.set_collections_formulary
+    respond_to do |format|
+      if @formulary.update(form_params)
         format.html { redirect_to home_path }
         format.js
-      end
-    else
-      respond_to do |format|
+      else
         format.html { render '/home' }
         format.js
       end
@@ -48,32 +46,17 @@ class FormulariesController < ApplicationController
   end
 
   def show
+    session[:formulary_id] = params[:id]
     @formulary = Formulary.find(params[:id])
     @project = @formulary.project
+    @solution_ids = SetSolutions.new(@formulary).call
+    @choices = FormularyChoice.new.set_collections_formulary
+
+    @testing_solutions = Solution.all.map { |x| [x.id, TestSolution.new(x).test_solution_form] }.to_h.sort.to_h
+    # raise
   end
 
   private
-
-  def set_collections_formulary
-    @lessor_names = Formulary::LESSOR_NAMES
-    @supplementary_names = Formulary::SUPPLEMENTARY_NAMES
-    @pension_names = Formulary::PENSION_NAMES
-    @yes_no = Formulary::YES_NO.map { |choice, index| [index, choice]  }
-    @age_choices = Formulary::AGE.map { |choice, index| [index, choice]  }
-    @occupation_choises = Formulary::OCCUPATION_CHOICES.map { |choice, index| [index, choice]  }
-    @holder_occupation_choises = Formulary::HOLDER_OCCUPATION_CHOICES.map { |choice, index| [index, choice]  }
-    @accommodation = Formulary::ACCOMMODATION.map { |choice, index| [index, choice]  }
-    @floor_choices = Formulary::FLOOR.map { |choice, index| [index, choice]  }
-    @type_of_pension = Formulary::TYPE_OF_PENSION.map { |choice, index| [index, choice]  }
-    @loss_of_autonomy = Formulary::LOSS_OF_AUTONOMY.map { |choice, index| [index, choice]  }
-    @occupant = Formulary::OCCUPANT.map { |choice, index| [index, choice]  }
-    @tax_revenue = Formulary::TAXE_REVENUE.map { |choice, index| [index, choice]  }
-    @gross_income = Formulary::GROSS_INCOME.map { |choice, index| [index, choice]  }
-    @global_tax_revenue = Formulary::GLOBAL_TAXE_REVENUE.map { |choice, index| [index, choice]  }
-    @household_income = Formulary::HOUSEHOLD_INCOME.map { |choice, index| [index, choice]  }
-    @owner_tax_revenue = Formulary::OWNER_TAXE_REVENUE.map { |choice, index| [index, choice]  }
-    @assistant = Formulary::ASSISTANT.map { |choice, index| [index, choice]  }
-  end
 
   def reset_params
     pf = {
@@ -133,17 +116,5 @@ class FormulariesController < ApplicationController
 
     return pf
   end
-
-
-
-
-
-
-
-
-
-
-
-
 
 end
