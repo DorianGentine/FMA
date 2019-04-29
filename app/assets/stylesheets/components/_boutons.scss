@@ -1,0 +1,25 @@
+// a
+  a{
+    cursor: pointer;
+    font-size: .94rem;
+    font-weight: 400;
+    transition: .3s;
+  }
+  a:hover{
+    color: $blue !important;
+  }
+
+// btn-connexion
+  .btn-connexion{
+    padding: 10px 30px;
+    background-color: $blue;
+    color: white;
+    border-radius: 3px;
+    border: 1px solid $blue;
+    transition: 0.5s;
+  }
+  .btn-connexion:hover{
+    color: $blue;
+    background-color: transparent;
+    border: 1px solid $blue;
+  }
