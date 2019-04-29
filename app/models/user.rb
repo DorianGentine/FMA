@@ -4,8 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
-  has_many :advisors, dependent: :destroy
-  has_many :clients, dependent: :destroy
-  has_many :projects, through: :clients
+
+
+  validates_presence_of :first_name, :message => "Ton prénom doit être rempli"
+  validates_presence_of :last_name, :message => "Ton nom doit être rempli"
+  validates_presence_of :phone, :message => "Ton téléphone doit être rempli"
+  validates_presence_of :email, :message => "Ton email doit être rempli"
+
+
+  has_many :user_projects, dependent: :destroy
+  has_many :projects, through: :user_projects
+
 
 end
