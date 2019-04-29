@@ -1,0 +1,64 @@
+/* Couleurs et fonts principales */
+:root {
+  --primary: #2675e5;
+  --secondary: #182335;
+  --tersary: #6b778e;
+  --quartery: #d8ddf2;
+  --fontprimary: "Helvetica Neue", "sans serif";
+}
+
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Classes générales */
+html {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+body {
+  font-family: var(--fontprimary);
+  line-height: 1.7;
+  margin: 0;
+  color: var(--tersary);
+}
+
+p, h1, h2, h3 {
+  margin: 0;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  line-height: 1.2;
+  color: var(--secondary);
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2.11rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.22rem;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.11rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+i {
+  font-size: 1.4rem;
+  color: var(--primary);
+}

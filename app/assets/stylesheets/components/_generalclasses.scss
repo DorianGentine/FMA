@@ -1,0 +1,291 @@
+// Bordure
+  .bordure-droite{
+    border-right: 1px solid $gray;
+  }
+  .bordure-haut-bas{
+    border-top: 1px solid $gray;
+    border-bottom: 1px solid $gray;
+  }
+
+// Cercle
+  .cercle{
+    border-radius: 100%;
+  }
+
+// Color
+  .black{
+    color: $black !important;
+  }
+  .gray{
+    color: $gray !important;
+  }
+  .gray-background{
+    background-color: $gray !important;
+  }
+  .green{
+    color: $green !important;
+  }
+  .green-background{
+    background-color: $green !important;
+  }
+  .red{
+    color: $red !important;
+  }
+  .red-background{
+    background-color: $red !important;
+  }
+  .red-border{
+    border-color: $red !important;
+  }
+  .white{
+    color: white !important;
+  }
+  .white-background{
+    background-color: white;
+  }
+
+// Cursor
+  .pointer{
+    cursor: pointer;
+  }
+
+// Flex
+  .flex{
+    display: flex;
+  }
+  .space-between{
+    justify-content: space-between;
+  }
+  .space-between-vertical{
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .align-items-center{
+    align-items: center;
+  }
+
+
+// Float
+  .float-left{
+    float: left;
+  }
+
+  .float-right{
+    float: right;
+  }
+
+// Focus
+  input:focus, button:focus, select:focus, textarea:focus {
+    border-color: #4ECCA3 !important;
+    outline: 0 !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(78, 204, 163, 1) !important;
+  }
+
+input, button, select, textarea {
+    font-size: 14px;
+}
+
+
+
+// Grid
+  .grid{
+    display: grid;
+  }
+  .grid-column{
+    grid-auto-flow: column;
+  }
+  .grid-col-span-2{
+    grid-column: span 2;
+  }
+
+// Height
+  .height-unset{
+    height: unset !important;
+  }
+
+// Ligne
+  .ligne-vertical{
+    border: none;
+    width: 1px;
+    height: 100%;
+    background-color: $gray;
+  }
+  .ligne-horizontal{
+    border: none;
+    background-color: $gray;
+    height: 1px;
+    width: 100%
+  }
+
+// Margin
+  .margin-auto{
+    margin: auto;
+  }
+  .no-margin{
+    margin: 0 !important;
+  }
+  .margin-top-60{
+    margin-top: 60px !important
+  }
+  .margin-bottom-30{
+    margin-bottom: 30px !important
+  }
+  .margin-top-30{
+    margin-top: 30px !important
+  }
+  .margin-left-30{
+    margin-left: 30px !important
+  }
+  .margin-right-30{
+    margin-right: 30px !important
+  }
+  .margin-bottom-15{
+    margin-bottom: 15px !important
+  }
+  .margin-top-15{
+    margin-top: 15px !important
+  }
+  .margin-left-15{
+    margin-left: 15px !important
+  }
+  .margin-right-15{
+    margin-right: 15px !important
+  }
+  .margin-right-5{
+    margin-right: 5px !important
+  }
+
+  @media screen and (max-width: 770px){
+    .no-margin-xs{
+      margin: 0 !important;
+    }
+    .margin-bottom-30-xs{
+      margin-bottom: 30px !important
+    }
+    .margin-top-30-xs{
+      margin-top: 30px !important
+    }
+    .margin-top-60-xs{
+      margin-top: 60px !important
+    }
+    .margin-left-30-xs{
+      margin-left: 30px !important
+    }
+    .margin-right-30-xs{
+      margin-right: 30px !important
+    }
+    .margin-bottom-15-xs{
+      margin-bottom: 15px !important
+    }
+    .margin-top-15-xs{
+      margin-top: 15px !important
+    }
+    .margin-left-15-xs{
+      margin-left: 15px !important
+    }
+    .margin-right-15-xs{
+      margin-right: 15px !important
+    }
+  }
+
+// Padding
+  .padding-100{
+    padding: 100px;
+  }
+  .padding-horizontal-100{
+    padding: 0 100px;
+  }
+  .no-padding{
+    padding: unset !important;
+  }
+  @media screen and (max-width: 770px){
+    .no-padding-xs{
+      padding: 0 !important;
+    }
+  }
+
+// Position
+  .relative{
+    position: relative;
+  }
+  .absolute{
+    position: absolute;
+  }
+  .fixed{
+    position: fixed;
+  }
+
+// Text
+  .capitalize{
+    text-transform: capitalize;
+  }
+
+  .uppercase{
+    text-transform: uppercase;
+  }
+
+  .center-text{
+    display: grid;
+    place-items: center center;
+  }
+
+  .text-align-right{
+    text-align: right;
+  }
+
+  .text-align-center{
+    text-align: center;
+  }
+
+  .text-align-justify{
+    text-align: justify;
+  }
+
+  .absolute-center-vertical{ // Parent doit avoir position relative
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .absolute-center-horizontal{ // Parent doit avoir position relative
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .absolute-center{ // Parent doit avoir position relative
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .align-center{ // Parent doit avoir display flex/grid
+    align-self: center;
+  }
+
+
+
+
+.col-lg-3{
+  width: 25% !important;
+}
+@media screen and (max-width: 770px) {
+  .col-xs-12{
+    width: 100% !important;
+  }
+  .col-xs-6{
+    width: 50% !important;
+  }
+  .text-align-center-xs{
+    text-align: center;
+  }
+  .text-align-left-xs{
+    text-align: left;
+  }
+}
+
+input[type="range"]{
+  width: unset;
+}
+
+.input-none > input {
+   display: none;
+}
