@@ -10,7 +10,7 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <% if params[:controller] != "contact_forms" && params[:controller] != "formularies" && params[:controller] != "pages" && params[:action] != "new" %>
+    <% if params[:controller] != "contact_forms" && params[:controller] != "pages" && params[:action] != "new" %>
       <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flashes' %>

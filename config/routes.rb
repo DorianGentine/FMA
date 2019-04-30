@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-
-  get 'project_solutions/show'
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+    }
+  resources :users, only: [:show, :create, :update]
 
   get '/home', to: 'pages#home'
 
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :formularies, only: [ :show ]
+      resources :formularies, only: [ :show, :edit ]
     end
   end
 

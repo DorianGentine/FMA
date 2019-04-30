@@ -1,7 +1,6 @@
 class Api::V1::BaseController < ActionController::API
   # include Pundit
-
-  after_action :verify_authorized, except: :show
+  # after_action :verify_authorized, except: :show
   after_action :verify_policy_scoped, only: :index
 
 

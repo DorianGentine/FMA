@@ -112,7 +112,7 @@
         <%= f.input :tax_revenue, label:"Quel est le montant de votre Revenu Fiscal de Référence ?", collection: @choices[:tax_revenue]  %>
       <% end %>
 
-      <p>21 - condition (4=1 & 13=0 & 17=0) || (4=2 & 13=0 & 17=0) || (4=3 & 13=0 & 17=0) </p>
+      <p>21 - condition (4=1 & 13=0 & 17=0) || (4=2 & 13=0 & 17=0) || (4=3 & 13=0 & 17=0) || (4=1 & 13=0 & 17=1 & 19=2) || (4=2 & 13=0 & 17=1 & 19=2) || (4=3 & 13=0 & 17=1 & 19=1)  </p>
       <% if f.object.allow_gross_income? %>
         <%= f.input :gross_income, label:"Quel est le montant de votre Revenu Brut Global ?", collection: @choices[:gross_income]  %>
       <% end %>
