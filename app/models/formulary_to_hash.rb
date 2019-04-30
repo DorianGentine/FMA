@@ -51,8 +51,6 @@ class FormularyToHash
 
   private
 
-
-
   def generate_form_with_allow_question(form)
     array = []
     Formulary.column_names.each_with_index do |column_name, form_index|

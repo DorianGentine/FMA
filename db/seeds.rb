@@ -862,7 +862,7 @@ p "Bailleur"
     category: nil,
     group: nil,
     name: nil,
-    conditions: "4:1&15:0&16:0&17:0&21:0",
+    conditions: "4:1&15:[Aucune caisse de retraite complémentaire ne me verse de pension de retraite complémentaire ou de reversion]&16:0&17:0&21:0",
     answers: ["Vous pourriez peut-être bénéficier d'une subvention d'aide à l'habitat de votre caisse de retraite complémentaire, XXX.",
               "Pour plus d'informations, vous pouvez :
               - Vous rendre sur le site internet de votre caisse de retraite : XXX

@@ -1,8 +1,4 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
-
-
 
   def new
     formulary_id = session[:formulary_id]
@@ -12,36 +8,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  # POST /resource
   def create
     formulary_id = session[:formulary_id]
-    @user = User.new(params_user)
-    @user.client = true if session[:is_client]
-    if @user.save
-      project = Formulary.find(formulary_id.to_i).project
-      UserProject.create(user: @user, project: project)
-      redirect_to user_path(@user)
-    else
-      render :new
+    project = Formulary.find(formulary_id.to_i).project
+    super do |resource|
+      resource.link_to_project(project) if !project.nil?
     end
   end
-
-
-
-  private
-
-  def params_user
-    params.require(:user).permit(
-      :first_name,
-      :last_name,
-      :phone,
-      :email,
-      :password,
-      :password_confirmation
-    )
-  end
-
-
-
-
 end

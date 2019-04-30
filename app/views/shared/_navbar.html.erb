@@ -31,7 +31,11 @@
 
   <div class="flex align-items-center">
     <a class="margin-right-30">Qui sommes-nous ?</a>
-    <%= link_to "Se connecter", new_user_session_path, class: "nav-link btn-connexion" %>
+    <% if user_signed_in? %>
+      <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class: "nav-link btn-connexion" %>
+    <% else %>
+      <%= link_to "Se connecter", new_user_session_path, class: "nav-link btn-connexion" %>
+    <% end %>
   </div>
 
   <!-- <div class="collapse navbar-collapse col-xs-2" id="navbarSupportedContent">

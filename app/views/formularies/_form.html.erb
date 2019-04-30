@@ -2,7 +2,10 @@
   <div class="row" >
 
     <div class="offset-md-3 col-md-6">
-<p>Call API avec les questions a pauser <strong><%= link_to "ici", edit_api_v1_formulary_path(formulary), target: "_blank" %></strong>  </p>
+      <p>Call API avec les questions a pauser
+        <strong><%= link_to "ici", formulary.id.nil? ? new_api_v1_formulary_path : edit_api_v1_formulary_path(formulary), target: "_blank"%></strong>
+      </p>
+
 
       <%= f.input :last_name, label:"1- Quel est votre nom ?" %>
       <%= f.input :first_name, label:"2- Quel est votre prénom ?" %>

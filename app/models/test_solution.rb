@@ -9,7 +9,7 @@ class TestSolution
   def test_solution_form
     form = Formulary.new()
     answers = []
-    50.times do
+    100.times do
       answers << create_formulary(form)
     end
     return answers.include?(true) ? true : answers.uniq
