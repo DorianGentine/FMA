@@ -11,5 +11,4 @@ class PagesController < ApplicationController
     end
   end
 
-  private
 end

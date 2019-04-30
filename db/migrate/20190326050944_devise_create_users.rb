@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.boolean :advisor, :default => false
       t.boolean :client, :default => false
       t.boolean :admin, :default => false
+      t.boolean :agreed, :default => false
 
 
       ## Database authenticatable

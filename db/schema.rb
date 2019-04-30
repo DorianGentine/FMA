@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
   end
 
   create_table "projects", force: :cascade do |t|
+    t.integer "step"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

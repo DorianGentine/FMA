@@ -1,6 +1,6 @@
 
 <h2>Réponse et analyse</h2>
-
+<%= link_to "Mon compte", user_path(current_user) if current_user.present? %>
 <h3>Call API pour les solutions <a href="http://localhost:3000/api/v1/formularies/<%= @formulary.id %>">-> ici <-</a></h3>
 <div class="row">
   <div class="col-md-5">
