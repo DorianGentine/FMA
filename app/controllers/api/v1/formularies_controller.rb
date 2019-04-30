@@ -18,5 +18,14 @@ class Api::V1::FormulariesController < Api::V1::BaseController
     else
       @formulary = @visitor.formulary
     end
+    @testing = FormularyToHash.new(@formulary).form_json
   end
+
+
+
+
+
+
+
+
 end

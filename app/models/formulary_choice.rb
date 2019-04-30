@@ -126,4 +126,393 @@ class FormularyChoice
   end
 
 
+
+  def last_name
+    return {
+      question: questions[:last_name],
+      type: "text",
+      multiple_answers: false,
+      data: nil,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def first_name
+    return {
+      question: questions[:first_name],
+      type: "text",
+      multiple_answers: false,
+      data: nil,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def zip_code
+    return {
+      question: questions[:zip_code],
+      type: "text",
+      multiple_answers: false,
+      data: nil,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def age
+    return {
+      question: questions[:age],
+      type: "select",
+      multiple_answers: false,
+      data: AGE,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+
+  def is_working
+    return {
+      question: questions[:is_working],
+      type: "select",
+      multiple_answers: false,
+      data: YES_NO,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def loss_of_autonomy_receipt
+    return {
+      question: questions[:loss_of_autonomy_receipt],
+      type: "select",
+      multiple_answers: false,
+      data: YES_NO,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def occupation
+    return {
+      question: questions[:occupation],
+      type: "select",
+      multiple_answers: false,
+      data: OCCUPATION_CHOICES,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def holder_occupation
+    return {
+      question: questions[:holder_occupation],
+      type: "select",
+      multiple_answers: false,
+      data: HOLDER_OCCUPATION_CHOICES,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def lessor
+    return {
+      question: questions[:lessor],
+      type: "select",
+      multiple_answers: false,
+      data: LESSOR_NAMES,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+
+  def accommodation
+    return {
+      question: questions[:accommodation],
+      type: "select",
+      multiple_answers: false,
+      data: ACCOMMODATION,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+
+  def floor
+    return {
+      question: questions[:floor],
+      type: "select",
+      multiple_answers: false,
+      data: FLOOR,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+
+  def accessibility_with_step
+    return {
+      question: questions[:accessibility_with_step],
+      type: "select",
+      multiple_answers: false,
+      data: YES_NO,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+
+  def type_of_pension
+    return {
+      question: questions[:type_of_pension],
+      type: "select",
+      multiple_answers: false,
+      data: TYPE_OF_PENSION,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def pension
+    return {
+      question: questions[:pension],
+      type: "select",
+      multiple_answers: false,
+      data: PENSION_NAMES,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def supplementary
+    return {
+      question: questions[:supplementary],
+      type: "select",
+      multiple_answers: false,
+      data: SUPPLEMENTARY_NAMES,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def loss_of_autonomy
+    return {
+      question: questions[:loss_of_autonomy],
+      type: "select",
+      multiple_answers: false,
+      data: LOSS_OF_AUTONOMY,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def occupant
+    return {
+      question: questions[:occupant],
+      type: "select",
+      multiple_answers: false,
+      data: OCCUPANT,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def owner_is_include
+    return {
+      question: questions[:owner_is_include],
+      type: "select",
+      multiple_answers: false,
+      data: YES_NO,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def has_partner
+    return {
+      question: questions[:has_partner],
+      type: "select",
+      multiple_answers: false,
+      data: YES_NO,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def tax_revenue
+    return {
+      question: questions[:tax_revenue],
+      type: "select",
+      multiple_answers: false,
+      data: TAXE_REVENUE,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def gross_income
+    return {
+      question: questions[:gross_income],
+      type: "select",
+      multiple_answers: false,
+      data: GROSS_INCOME,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def global_tax_revenue
+    return {
+      question: questions[:global_tax_revenue],
+      type: "select",
+      multiple_answers: false,
+      data: GLOBAL_TAXE_REVENUE,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def household_income
+    return {
+      question: questions[:household_income],
+      type: "select",
+      multiple_answers: false,
+      data: HOUSEHOLD_INCOME,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def owner_tax_revenue
+    return {
+      question: questions[:owner_tax_revenue],
+      type: "select",
+      multiple_answers: false,
+      data: OWNER_TAXE_REVENUE,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+  def assistant
+    return {
+      question: questions[:assistant],
+      type: "select",
+      multiple_answers: false,
+      data: ASSISTANT,
+      tooltip: nil,
+      errorLabel: nil,
+      input: true,
+      validate: {
+        required: true
+      }
+    }
+  end
+
+  private
+
+  def questions
+    {
+      last_name: "Quel est votre nom ?",
+      first_name: "Quel est votre prénom ?",
+      zip_code: "Quel est le code postal de votre ville de résidence ?",
+      age: "Quel est votre date de naissance ?",
+      is_working: "Exercez-vous une activité professionnelle ?",
+      loss_of_autonomy_receipt: "Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à la date d'anniversaire de vos 60 ans ?",
+      occupation: "Quel est votre statut d'occupation dans votre logement ?",
+      holder_occupation: "Quel est le statut d'occupation du titulaire de votre logement ?",
+      lessor: "Quel est le nom du bailleur de votre logement ?",
+      accommodation: "Quel est la typologie de votre logement ?",
+      floor: "Résidez vous en rez de chaussée ou en étage ?",
+      accessibility_with_step: "La porte d'entrée de votre logement est-elle accessible sans que vous n'ayez de marche à franchir ?",
+      type_of_pension: "Concernant votre pension de retraite ou de réversion ?",
+      pension: "Comment se nomme la caisse de retraite principale vous versant votre pension de retraite ou de réversion à titre principal ?",
+      supplementary: "Comment se nomme(nt) la ou les caisse(s) de retraite(s) complémentaire(s) vous versant votre pension de retraite complémentaire ou de réversion ?",
+      loss_of_autonomy: "A quel Groupe Iso-Ressource ou GIR appartenez-vous ?",
+      occupant: "Combien de personne(s) réside(nt) au sein de votre foyer ?",
+      owner_is_include: "Le propriétaire de votre logement y vit-il ?",
+      has_partner: "Vivez-vous avec un conjoint, concubin ou partenaire de PACS ?",
+      tax_revenue: "Quel est le montant de votre Revenu Fiscal de Référence ?",
+      gross_income: "Quel est le montant de votre Revenu Brut Global ?",
+      global_tax_revenue: "Quel est le montant du Revenu Fiscal de Référence de l'ensemble de votre foyer ?",
+      household_income: "Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?",
+      owner_tax_revenue: "Quel est le montant du Revenu Fiscal de Référence du propriétaire de votre logement ?",
+      assistant: "Avez-vous déjà perçu ou percevez-vous une de ses aides ou actions sociales ?",
+    }
+  end
+
 end
