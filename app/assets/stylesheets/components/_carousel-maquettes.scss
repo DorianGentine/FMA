@@ -1,0 +1,14 @@
+#carousel_maquettes{
+  .carousel-indicators{
+    position: unset;
+    justify-content: space-between;
+    p{
+      cursor: pointer;
+      transition: 0.5s;
+    }
+    .active{
+      color: $blue;
+      border-bottom: 1px solid $blue;
+    }
+  }
+}

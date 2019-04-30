@@ -2,10 +2,17 @@
   justify-content: space-between;
   width: 100vw;
   top: 0;
-  padding: 30px 100px 0
+  padding: 20px 100px;
+  transition: 0.5s
 }
 
 .navbar-padding{
   width: 100vw;
   padding: 50px;
+}
+
+@media screen and (max-width: 770px){
+  .navbar-lewagon{
+    padding: 20px;
+  }
 }

@@ -4,10 +4,134 @@
 
 <div class="container">
 
+  <!-- Questionnaire -->
+    <div class="row margin-top-60">
+      <div class="col-lg-5 col-xs-12" id="formulary">
+        <%#= render 'formularies/form', formulary: @formulary %>
+      </div>
 
-  <div id="formulary" style="margin: 2%">
-    <%= render 'formularies/form', formulary: @formulary %>
-  </div>
+      <div class="hp_01 col-lg-7 d-none d-sm-block" ></div>
+    </div>
+
+  <!-- Avantages -->
+    <div class="row margin-top-60">
+      <!-- titre avantages -->
+        <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Pourquoi choisir financer mon autonomie ?</h1>
+        <p class="col-lg-8 offset-lg-2 col-xs-12 text-align-center margin-top-30 margin-bottom-60">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <!-- liste avantages -->
+        <div class="col-lg-3 col-xs-12" style="padding: 0 30px;">
+          <div class="avantage margin-top-60 no-margin-xs">
+            <div class="avantage-icon margin-bottom-30">
+              <i class="far fa-comments"></i>
+            </div>
+            <h3>Étude d'éligibilité instantanée</h3>
+            <p class="margin-bottom-15">Lorem ipsum dolor sit amet</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 margin-top-30-xs" style="padding: 0 30px;">
+          <div class="avantage">
+            <div class="avantage-icon margin-bottom-30">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Intelligence artificielle</h3>
+            <p class="margin-bottom-15">Lorem ipsum dolor sit amet</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 margin-top-30-xs" style="padding: 0 30px;">
+          <div class="avantage margin-top-60 no-margin-xs">
+            <div class="avantage-icon margin-bottom-30">
+              <i class="fas fa-stopwatch"></i>
+            </div>
+            <h3>Un service 24h sur 24h</h3>
+            <p class="margin-bottom-15">Lorem ipsum dolor sit amet</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 margin-top-30-xs" style="padding: 0 30px;">
+          <div class="avantage">
+            <div class="avantage-icon margin-bottom-30">
+              <i class="fas fa-phone"></i>
+            </div>
+            <h3>Accompagnement personnalisé</h3>
+            <p class="margin-bottom-15">Lorem ipsum dolor sit amet</p>
+          </div>
+        </div>
+    </div>
+
+  <!-- Process -->
+    <div class="row margin-top-120">
+      <div class="hp_02 col-lg-7 col-xs-12" ></div>
+      <div class="col-lg-5 col-xs-12">
+        <h1>01. Une étude d'éligibilité gratuite.</h1>
+        <p class="margin-bottom-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <a href="">En savoir plus sur l'éligibilité gratuite</a>
+      </div>
+
+      <div class="col-lg-5 col-xs-12 margin-top-60">
+        <h1>02. Un expert à votre écoute.</h1>
+        <p class="margin-bottom-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <a href="">En savoir plus sur l'éligibilité gratuite</a>
+      </div>
+      <div class="hp_03 col-lg-7 margin-top-60 d-none d-sm-block" ></div>
+
+      <div class="hp_04 col-lg-7 margin-top-60 d-none d-sm-block" ></div>
+      <div class="col-lg-5 col-xs-12 margin-top-60">
+        <h1>03. Une information clair sur les financements.</h1>
+        <p class="margin-bottom-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <a href="">En savoir plus sur l'éligibilité gratuite</a>
+      </div>
+    </div>
+
+  <!-- Show maquette -->
+    <div class="row margin-top-120 d-none d-sm-block">
+      <h1 class="col-lg-6 offset-lg-3 text-align-center">Concentrez vous sur l'essentiel avec votre espace personnel.</h1>
+      <p class="col-lg-8 offset-lg-2 text-align-center margin-top-30 margin-bottom-60">Bénéficiez d’un espace sécurisé pour partager vos données avec nos experts. Nous partagerons aussi avec vous un certains nombres de pièces nécessaires.</p>
+    </div>
+
+    <div id="carousel_maquettes" class="carousel slide d-none d-sm-block" data-ride="carousel">
+      <div class="carousel-indicators flex no-margin margin-bottom-30">
+        <p data-target="#carousel_maquettes" data-slide-to="0" class="active text-align-center">Accueil</p>
+        <p data-target="#carousel_maquettes" data-slide-to="1" class="text-align-center">Agenda</p>
+        <p data-target="#carousel_maquettes" data-slide-to="2" class="text-align-center">Prise de rendez-vous</p>
+        <p data-target="#carousel_maquettes" data-slide-to="3" class="text-align-center">Documents de suivi</p>
+        <p data-target="#carousel_maquettes" data-slide-to="4" class="text-align-center">Kit de financement</p>
+        <p data-target="#carousel_maquettes" data-slide-to="5" class="text-align-center">Evaluation du service</p>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="hp_02 d-block w-100"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hp_03 d-block w-100"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hp_04 d-block w-100"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hp_02 d-block w-100"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hp_03 d-block w-100"></div>
+        </div>
+        <div class="carousel-item">
+          <div class="hp_04 d-block w-100"></div>
+        </div>
+      </div>
+
+      <a class="carousel-control-prev" href="#carousel_maquettes" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel_maquettes" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+
+
+    </div>
 
 </div>
 

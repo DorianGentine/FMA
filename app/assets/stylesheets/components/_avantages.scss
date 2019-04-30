@@ -1,0 +1,16 @@
+.avantage{
+  background-color: white;
+  border-radius: 3px;
+  padding: 20px;
+  box-shadow: 0px 50px 100px 0px rgba(42,54,84,0.15);
+}
+
+.avantage-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(167, 193, 240, .2), rgba(167, 193, 240, .0));
+}
