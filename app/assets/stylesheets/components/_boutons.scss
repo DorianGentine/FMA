@@ -6,7 +6,7 @@
     transition: .3s;
   }
   a:hover{
-    color: $blue !important;
+    color: darken($blue, 15%) !important;
   }
 
 // btn-connexion
@@ -22,4 +22,9 @@
     color: $blue;
     background-color: transparent;
     border: 1px solid $blue;
+  }
+  @media screen and (max-width: 770px){
+    .btn-connexion{
+      padding: 5px 10px;
+    }
   }
