@@ -4,8 +4,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :first_name, input_html: { value: "luc" } %>
-    <%= f.input :last_name, input_html: { value: "" } %>
+    <%= f.input :first_name, input_html: { value: f.object.first_name.nil? ? @form.first_name : f.object.first_name } %>
+    <%= f.input :last_name, input_html: { value: f.object.last_name.nil? ? @form.last_name : f.object.last_name }  %>
     <%= f.input :phone %>
     <%= f.input :email,
                 required: true,
