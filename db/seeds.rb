@@ -623,7 +623,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seul mais sans conjoint, concubin ou partenaire de PACS",
     group: "GIR > 4",
     name: nil,
-    conditions: "4:1&13:0&16:0&17:0&19:1&21:0&25:3",
+    conditions: "4:1&13:0&16:0&17:1&19:1&21:0&25:3",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV).
               Elle pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -810,16 +810,16 @@ p "Bailleur"
               "Il semble que votre bailleur social pourrait accepter la réalisation d'un projet d'adaptation de logement sans toutefois le financer (même partiellement). Son acceptation pourrait être soulise à certaines conditions. Attention : le fait que votre logement soit situé en étage et sa faible accessibilité pourraient être des critères de non recevabilité pour votre demande."]
   )
 
-  # solution_58 = Solution.create(
-  #   financer: bailleur,
-  #   background: "Parc social",
-  #   category: "Bailleurs autorisant et finançant potentiellement totalement un projet",
-  #   group: "T1, T2 ou T3 en étage et accessible",
-  #   name: nil,
-  #   conditions: "7:2&9:[KREMLIN BICETRE HABITAT]&10:0&11:1&12:0 /,/ 7:1&8:1&9:[KREMLIN BICETRE HABITAT]&10:0&11:1&12:0",
-  #   answers: ["Nous vous invitons à prendre contact avec votre bailleur social afin de vérifier avec lui les conditions d'une éventuelle aide",
-  #             ""]
-  # )
+  solution_58 = Solution.create(
+    financer: bailleur,
+    background: "Parc social",
+    category: "Bailleurs autorisant et finançant potentiellement totalement un projet",
+    group: "T1, T2 ou T3 en étage et accessible",
+    name: nil,
+    conditions: "7:6&9:[KREMLIN BICETRE HABITAT]&10:0&11:1&12:0 /,/ 7:6&8:1&9:[KREMLIN BICETRE HABITAT]&10:0&11:1&12:0",
+    answers: ["Nous vous invitons à prendre contact avec votre bailleur social afin de vérifier avec lui les conditions d'une éventuelle aide",
+              ""]
+  )
 
 
   solution_59 = Solution.create(
@@ -862,7 +862,7 @@ p "Bailleur"
     category: nil,
     group: nil,
     name: nil,
-    conditions: "4:1&15:0&16:0&17:0&21:0",
+    conditions: "4:1&15:[Aucune caisse de retraite complémentaire ne me verse de pension de retraite complémentaire ou de reversion]&16:0&17:0&21:0",
     answers: ["Vous pourriez peut-être bénéficier d'une subvention d'aide à l'habitat de votre caisse de retraite complémentaire, XXX.",
               "Pour plus d'informations, vous pouvez :
               - Vous rendre sur le site internet de votre caisse de retraite : XXX

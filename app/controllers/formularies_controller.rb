@@ -28,6 +28,7 @@ class FormulariesController < ApplicationController
         format.js
       end
     end
+    authorize @formulary
   end
 
   def update
@@ -43,6 +44,7 @@ class FormulariesController < ApplicationController
         format.js
       end
     end
+    authorize @formulary
   end
 
   def show
@@ -53,7 +55,7 @@ class FormulariesController < ApplicationController
     @choices = FormularyChoice.new.set_collections_formulary
 
     @testing_solutions = Solution.all.map { |x| [x.id, TestSolution.new(x).test_solution_form] }.to_h.sort.to_h
-    # raise
+    authorize @formulary
   end
 
   private

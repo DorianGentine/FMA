@@ -8,6 +8,7 @@ class ContactFormsController < ApplicationController
     else
       @contact = ContactForm.new
     end
+    authorize @contact
   end
 
   def create
@@ -25,6 +26,7 @@ class ContactFormsController < ApplicationController
         format.js
       end
     end
+    authorize @contact
   end
 
   def update
@@ -41,6 +43,7 @@ class ContactFormsController < ApplicationController
         format.js
       end
     end
+    authorize @contact
   end
 
   private

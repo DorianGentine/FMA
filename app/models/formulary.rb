@@ -163,6 +163,8 @@ class Formulary < ApplicationRecord
   def allow_gross_income?
     if self.occupant.present? && self.occupant == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.age > 0
       return true
+    elsif self.has_partner.present? && self.has_partner == 1 && self.occupant.present? && self.occupant == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.age > 0
+      return true
     else
       return false
     end

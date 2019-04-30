@@ -1,0 +1,3 @@
+
+json.formulary(@formulary)
+

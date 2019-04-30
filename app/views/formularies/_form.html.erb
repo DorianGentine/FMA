@@ -2,6 +2,10 @@
   <div class="row" >
 
     <div class="offset-md-3 col-md-6">
+      <p>Call API avec les questions a pauser
+        <strong><%= link_to "ici", formulary.id.nil? ? new_api_v1_formulary_path : edit_api_v1_formulary_path(formulary), target: "_blank"%></strong>
+      </p>
+
 
       <%= f.input :last_name, label:"1- Quel est votre nom ?" %>
       <%= f.input :first_name, label:"2- Quel est votre prénom ?" %>
@@ -112,7 +116,7 @@
         <%= f.input :tax_revenue, label:"Quel est le montant de votre Revenu Fiscal de Référence ?", collection: @choices[:tax_revenue]  %>
       <% end %>
 
-      <p>21 - condition (4=1 & 13=0 & 17=0) || (4=2 & 13=0 & 17=0) || (4=3 & 13=0 & 17=0) </p>
+      <p>21 - condition (4=1 & 13=0 & 17=0) || (4=2 & 13=0 & 17=0) || (4=3 & 13=0 & 17=0) || (4=1 & 13=0 & 17=1 & 19=2) || (4=2 & 13=0 & 17=1 & 19=2) || (4=3 & 13=0 & 17=1 & 19=1)  </p>
       <% if f.object.allow_gross_income? %>
         <%= f.input :gross_income, label:"Quel est le montant de votre Revenu Brut Global ?", collection: @choices[:gross_income]  %>
       <% end %>
