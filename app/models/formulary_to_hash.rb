@@ -36,6 +36,7 @@ class FormularyToHash
     return form_to_hash
   end
 
+
   def form_json
      return {
         questions: generate_form_with_allow_question(@form),
