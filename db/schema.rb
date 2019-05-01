@@ -15,22 +15,6 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "advisors", force: :cascade do |t|
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_advisors_on_user_id"
-  end
-
-  create_table "clients", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_clients_on_project_id"
-    t.index ["user_id"], name: "index_clients_on_user_id"
-  end
-
   create_table "contact_forms", force: :cascade do |t|
     t.string "email"
     t.text "description"
@@ -42,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
 
   create_table "financers", force: :cascade do |t|
     t.string "name"
-    t.string "photo"
+    t.string "logo"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -82,27 +66,19 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
     t.index ["visitor_id"], name: "index_formularies_on_visitor_id"
   end
 
-  create_table "project_solutions", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "solution_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_solutions_on_project_id"
-    t.index ["solution_id"], name: "index_project_solutions_on_solution_id"
-  end
-
   create_table "projects", force: :cascade do |t|
-
     t.integer "step"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["advisor_id"], name: "index_projects_on_advisor_id"
   end
 
   create_table "solutions", force: :cascade do |t|
-    t.string "name"
+    t.string "background"
+    t.string "category"
     t.string "group"
-    t.text "description"
+    t.string "name"
+    t.string "conditions"
+    t.text "answers"
     t.bigint "financer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -120,6 +96,11 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
     t.string "last_name"
     t.string "first_name"
     t.string "phone"
+    t.string "avatar"
+    t.boolean "advisor", default: false
+    t.boolean "client", default: false
+    t.boolean "admin", default: false
+    t.boolean "agreed", default: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -144,15 +125,9 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
     t.index ["user_id"], name: "index_visitors_on_user_id"
   end
 
-  add_foreign_key "advisors", "users"
-  add_foreign_key "clients", "projects"
-  add_foreign_key "clients", "users"
   add_foreign_key "contact_forms", "visitors"
   add_foreign_key "formularies", "projects"
   add_foreign_key "formularies", "visitors"
-  add_foreign_key "project_solutions", "projects"
-  add_foreign_key "project_solutions", "solutions"
-  add_foreign_key "projects", "advisors"
   add_foreign_key "solutions", "financers"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"

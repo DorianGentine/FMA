@@ -11,4 +11,8 @@
       border-bottom: 1px solid $blue;
     }
   }
+
+  .carousel-control-prev, .carousel-control-next{
+    top: 60px;
+  }
 }
