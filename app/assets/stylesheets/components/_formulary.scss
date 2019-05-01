@@ -1,0 +1,23 @@
+#formulary{
+  overflow: scroll;
+  height: 70vh
+}
+
+.message{
+  padding: 5px 10px;
+  border-radius: 3px;
+  max-width: 80%;
+  transition: 0.5s;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.received{
+  background-color: $gray;
+}
+
+.sent{
+  background-color: $blue;
+  margin-left: 20%;
+  text-align: right;
+}
