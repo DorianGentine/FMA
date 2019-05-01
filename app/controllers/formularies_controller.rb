@@ -51,7 +51,7 @@ class FormulariesController < ApplicationController
     session[:formulary_id] = params[:id]
     @formulary = Formulary.find(params[:id])
     @project = @formulary.project
-    @solution_ids = SetSolutions.new(@formulary).call
+    @solutions = SetSolutions.new(@formulary).call
     @choices = FormularyChoice.new.set_collections_formulary
 
     @testing_solutions = Solution.all.map { |x| [x.id, TestSolution.new(x).test_solution_form] }.to_h.sort.to_h
