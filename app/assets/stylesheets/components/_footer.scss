@@ -1,0 +1,12 @@
+footer{
+  padding: 100px 190px 5px;
+}
+
+@media screen and (max-width: 770px){
+  footer{
+    padding: 50px 20px;
+    .btn-blue{
+      width: 100%;
+    }
+  }
+}

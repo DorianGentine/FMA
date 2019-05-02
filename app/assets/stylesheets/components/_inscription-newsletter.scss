@@ -1,0 +1,31 @@
+.inscription-newsletter{
+  position: absolute;
+  right : 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  .input-wth-icon{
+    width: 20%;
+  }
+}
+
+.inscription-newsletter-padding{
+  padding-bottom: 112px;
+}
+
+@media screen and (max-width: 770px){
+  .inscription-newsletter{
+    flex-direction: column;
+    .input-wth-icon{
+      width: 100%;
+    }
+    .btn-gris{
+      width: 100%;
+    }
+  }
+  .inscription-newsletter-padding{
+    padding-bottom: 180px;
+  }
+}

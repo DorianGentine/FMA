@@ -1,6 +1,15 @@
 #formulary{
   overflow: scroll;
-  height: 70vh
+  height: 70vh;
+}
+
+.formulary-border{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 20px;
+  background-image: linear-gradient(to bottom, white, transparent);
 }
 
 .message{
