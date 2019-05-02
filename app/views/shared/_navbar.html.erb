@@ -5,7 +5,7 @@
   <% end %>
 
   <div class="flex align-items-center">
-    <a class="margin-right-30 d-none d-sm-block">Qui sommes-nous ?</a>
+    <%= link_to "Qui sommes-nous ?", equipe_path, class: "margin-right-30 d-none d-sm-block" %>
     <% if user_signed_in? %>
       <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class: "nav-link btn-blue" %>
     <% else %>

@@ -28,6 +28,12 @@
   .blue-background{
     background-color: $blue !important;
   }
+  .dark-blue{
+    color: $dark-blue !important;
+  }
+  .dark-blue-background{
+    background-color: $dark-blue !important;
+  }
   .gray-300{
     color: $gray-300 !important;
   }
@@ -252,6 +258,13 @@ input, button, select, textarea {
     place-items: center center;
   }
 
+  .bold{
+    font-weight: bold;
+  }
+  .thin{
+    font-weight: 100;
+  }
+
   .text-align-right{
     text-align: right;
   }
@@ -285,11 +298,6 @@ input, button, select, textarea {
   }
 
 
-
-
-.col-lg-3{
-  width: 25% !important;
-}
 @media screen and (max-width: 770px) {
   .col-xs-12{
     width: 100% !important;
