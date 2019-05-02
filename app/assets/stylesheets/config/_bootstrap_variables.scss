@@ -16,19 +16,6 @@ $success:    $green;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
-$blue:    #2675E5 !default;
-$cyan:    #fafcff !default;
-$light-gray:    #C8C8C8 !default;
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
-$pink:    #e83e8c !default;
-$red:     #dc3545 !default;
-$orange:  #fd7e14 !default;
-$yellow:  #ffc107 !default;
-$green:   #28a745 !default;
-$teal:    #20c997 !default;
-
-
 
 // Buttons & inputs' radius
 $border-radius:    3px;
@@ -41,7 +28,7 @@ $border-radius-sm: 3px;
 //
 // Style anchor elements.
 
-$link-color:                              $blue !default;
+$link-color:                              $gray !default;
 $link-decoration:                         none !default;
 $link-hover-color:                        $blue;
 $link-hover-decoration:                   none !default;

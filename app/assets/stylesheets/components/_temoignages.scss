@@ -1,0 +1,74 @@
+.temoignages{
+  display: flex;
+  justify-content: space-between;
+}
+
+.temoignage{
+  max-width: 20%;
+  transition: 1s;
+  text-align: center;
+}
+.temoignage:hover{
+  .avatar{
+    width: 150px;
+    height: 150px;
+    margin-top: 0 !important;
+  }
+  .text-temoignage{
+    // height: 60%;
+    opacity: 1;
+    transform: translatey(0px);
+  }
+}
+
+.avatar {
+  background-image: url(/assets/portrait_avem_proche.jpg);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain;
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+  transform: translatey(0px);
+  animation: float 6s ease-in-out infinite;
+  flex-grow: 1;
+  margin: auto;
+  margin-bottom: 10px;
+  transition: 1s;
+}
+
+.text-temoignage{
+  // overflow: hidden;
+  // height: 0;
+  opacity: 0;
+  transform: translatey(-20px);
+  transition: 1s;
+  strong{
+    margin-bottom: 30px;
+  }
+}
+
+@keyframes float {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+    transform: translatey(-20px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    transform: translatey(0px);
+  }
+}
+
+.delay1{
+  animation-delay: 1s;
+}
+.delay2{
+  animation-delay: 2s;
+}

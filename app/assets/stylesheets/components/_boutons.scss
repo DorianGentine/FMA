@@ -9,8 +9,8 @@
     color: darken($blue, 15%) !important;
   }
 
-// btn-connexion
-  .btn-connexion{
+// btn-blue
+  .btn-blue{
     padding: 10px 30px;
     background-color: $blue;
     color: white;
@@ -18,13 +18,31 @@
     border: 1px solid $blue;
     transition: 0.5s;
   }
-  .btn-connexion:hover{
+  .btn-blue:hover{
     color: $blue;
     background-color: transparent;
-    border: 1px solid $blue;
   }
   @media screen and (max-width: 770px){
-    .btn-connexion{
+    .btn-blue{
+      padding: 5px 10px;
+    }
+  }
+
+// btn-gris
+  .btn-gris{
+    padding: 10px 30px;
+    background-color: $gray-100;
+    color: $dark-blue;
+    border-radius: 3px;
+    border: 1px solid $gray-100;
+    transition: 0.5s;
+  }
+  .btn-gris:hover{
+    color: $gray-100;
+    background-color: transparent;
+  }
+  @media screen and (max-width: 770px){
+    .btn-gris{
       padding: 5px 10px;
     }
   }
