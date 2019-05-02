@@ -1,6 +1,6 @@
 class FormulariesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:create, :update, :show, :sort]
-  skip_before_action :verify_authenticity_token, only: [:sort]
+  skip_before_action :verify_authenticity_token, only: [:sort, :update, :create]
   skip_after_action :verify_authorized, only: [:sort]
 
 
@@ -85,27 +85,17 @@ class FormulariesController < ApplicationController
     return upload_alowing_form(pf)
   end
 
+  # pour un seul params exemple floor mais pas pour tout les models
   def upload_alowing_form(pf)
-    f = Formulary.new(pf)
-    pf[:is_working] = f.allow_is_working? ? params[:formulary][:is_working] : nil
-    pf[:loss_of_autonomy_receipt] = f.allow_loss_of_autonomy_receipt? ? params[:formulary][:loss_of_autonomy_receipt] : nil
-    pf[:holder_occupation] = f.allow_holder_occupation? ? params[:formulary][:holder_occupation] : nil
-    pf[:lessor] = f.allow_lessor? ? params[:formulary][:lessor] : nil
-    pf[:accommodation] = f.allow_accommodation? ? params[:formulary][:accommodation] : nil
-    pf[:floor] = f.allow_floor? ? params[:formulary][:floor] : nil
-    pf[:accessibility_with_step] = f.allow_accessibility_with_step? ? params[:formulary][:accessibility_with_step] : nil
-    pf[:type_of_pension] = f.allow_type_of_pension? ? params[:formulary][:type_of_pension] : nil
-    pf[:pension] = f.allow_pension? ? params[:formulary][:pension] : nil
-    pf[:supplementary] = f.allow_supplementary? ? params[:formulary][:supplementary] : nil
-    pf[:loss_of_autonomy] = f.allow_loss_of_autonomy? ? params[:formulary][:loss_of_autonomy] : nil
-    pf[:occupant] = f.allow_occupant? ? params[:formulary][:occupant] : nil
-    pf[:owner_is_include] = f.allow_owner_is_include? ? params[:formulary][:owner_is_include] : nil
-    pf[:has_partner] = f.allow_has_partner? ? params[:formulary][:has_partner] : nil
-    pf[:tax_revenue] = f.allow_tax_revenue? ? params[:formulary][:tax_revenue] : nil
-    pf[:gross_income] = f.allow_gross_income? ? params[:formulary][:gross_income] : nil
-    pf[:global_tax_revenue] = f.allow_global_tax_revenue? ? params[:formulary][:global_tax_revenue] : nil
-    pf[:household_income] = f.allow_household_income? ? params[:formulary][:household_income] : nil
-    pf[:owner_tax_revenue] = f.allow_owner_tax_revenue? ? params[:formulary][:owner_tax_revenue] : nil
+    f = params[:id].nil? ? Formulary.new : Formulary.find(params[:id])
+    index = Formulary.column_names.index(params[:formulary].keys.first)
+    Formulary.column_names.drop(index).each_with_index do |column_name, form_index|
+      allow = "allow_" + column_name + "?"
+      if params[:formulary][column_name].present?
+        pf[column_name] = f.send(allow) ? params[:formulary][column_name] : nil
+      end
+    end
+
     return pf
   end
   # def reset_params
