@@ -8,7 +8,7 @@ class SetSolutions
     solutions = []
     Solution.all.each do |solution|
       if MatchSolution.new(@form, solution).call
-        solutions << solution.id
+        solutions << solution
       end
     end
     return solutions

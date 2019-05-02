@@ -4,28 +4,19 @@
 
 <div class="container">
 
-  <!-- Questionnaire -->
     <div class="row margin-top-60">
-      <div class="col-lg-5 col-xs-12 relative">
+      <div class="col-lg-5 col-xs-12">
         <div class="formulary-border"></div>
-        <div id="formulary">
-          <div class="message received">Bonjour</div>
-          <div class="message received">Je suis Paul</div>
-          <div class="message received">Quel est ton nom ?</div>
-          <div class="message sent">Donatien</div>
-          <div class="message received">Enchanté Donatien :) !</div>
-          <div class="message received">Ensemble nous allons dresser ton profil. Prêt ?</div>
-          <div class="message sent">Oui</div>
-          <div class="message received">Très bien ! Alors : c'est parti !</div>
-          <div class="message received">Pour commencer, quel âge as-tu ?</div>
-          <div class="message sent">26</div>
+        <div id="formulary" data-id="<%= @formulary.id %>">
 
-          <%#= render 'formularies/form', formulary: @formulary %>
+        <button type="submit" id="testBtn" class="btn btn-primary">Submit</button>
         </div>
+        <%#= render 'formularies/form', formulary: @formulary %>
       </div>
 
       <div class="hp_01 col-lg-7 d-none d-sm-block" ></div>
     </div>
+  <!-- Questionnaire -->
 
   <!-- Avantages -->
     <div class="row margin-top-60">

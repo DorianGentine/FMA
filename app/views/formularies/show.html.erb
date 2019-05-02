@@ -34,9 +34,9 @@
   </div>
   <div class="col-md-7">
   <p>Supprimer cette partie, c'est juste pour s'assurer que les formulaires fonctionnent</p>
-    <p>Match: <%= @solution_ids.count %> </p>
-    <% @solution_ids.each do |solution_id| %>
-      <%= Solution.find(solution_id).id %>
+    <p>Match: <%= @solutions.count %> </p>
+    <% @solutions.each do |solution| %>
+      <%= solution.id %>
     <% end %>
     <br>
     <p>Analyse:</p>

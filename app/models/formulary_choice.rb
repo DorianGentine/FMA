@@ -107,7 +107,11 @@ class FormularyChoice
     lessor: LESSOR_NAMES,
     supplementary: SUPPLEMENTARY_NAMES,
     pension: PENSION_NAMES,
-    yes_no: YES_NO.map { |choice, index| [index, choice]  },
+    is_working: YES_NO.map { |choice, index| [index, choice]  },
+    loss_of_autonomy_receipt: YES_NO.map { |choice, index| [index, choice]  },
+    accessibility_with_step: YES_NO.map { |choice, index| [index, choice]  },
+    owner_is_include: YES_NO.map { |choice, index| [index, choice]  },
+    has_partner: YES_NO.map { |choice, index| [index, choice]  },
     age: AGE.map { |choice, index| [index, choice]  },
     occupation: OCCUPATION_CHOICES.map { |choice, index| [index, choice]  },
     holder_occupation: HOLDER_OCCUPATION_CHOICES.map { |choice, index| [index, choice]  },
@@ -130,8 +134,10 @@ class FormularyChoice
   def last_name
     return {
       question: questions[:last_name],
+      column_name: "last_name",
       type: "text",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: nil,
       tooltip: nil,
       errorLabel: nil,
@@ -144,8 +150,10 @@ class FormularyChoice
   def first_name
     return {
       question: questions[:first_name],
+      column_name: "first_name",
       type: "text",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: nil,
       tooltip: nil,
       errorLabel: nil,
@@ -158,8 +166,10 @@ class FormularyChoice
   def zip_code
     return {
       question: questions[:zip_code],
+      column_name: "zip_code",
       type: "text",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: nil,
       tooltip: nil,
       errorLabel: nil,
@@ -172,8 +182,10 @@ class FormularyChoice
   def age
     return {
       question: questions[:age],
+      column_name: "age",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: AGE,
       tooltip: nil,
       errorLabel: nil,
@@ -187,8 +199,10 @@ class FormularyChoice
   def is_working
     return {
       question: questions[:is_working],
+      column_name: "is_working",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
@@ -201,8 +215,10 @@ class FormularyChoice
   def loss_of_autonomy_receipt
     return {
       question: questions[:loss_of_autonomy_receipt],
+      column_name: "loss_of_autonomy_receipt",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
@@ -215,8 +231,10 @@ class FormularyChoice
   def occupation
     return {
       question: questions[:occupation],
+      column_name: "occupation",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: OCCUPATION_CHOICES,
       tooltip: nil,
       errorLabel: nil,
@@ -229,8 +247,10 @@ class FormularyChoice
   def holder_occupation
     return {
       question: questions[:holder_occupation],
+      column_name: "holder_occupation",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: HOLDER_OCCUPATION_CHOICES,
       tooltip: nil,
       errorLabel: nil,
@@ -243,8 +263,10 @@ class FormularyChoice
   def lessor
     return {
       question: questions[:lessor],
+      column_name: "lessor",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: LESSOR_NAMES,
       tooltip: nil,
       errorLabel: nil,
@@ -258,8 +280,10 @@ class FormularyChoice
   def accommodation
     return {
       question: questions[:accommodation],
+      column_name: "accommodation",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: ACCOMMODATION,
       tooltip: nil,
       errorLabel: nil,
@@ -273,8 +297,10 @@ class FormularyChoice
   def floor
     return {
       question: questions[:floor],
+      column_name: "floor",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: FLOOR,
       tooltip: nil,
       errorLabel: nil,
@@ -288,8 +314,10 @@ class FormularyChoice
   def accessibility_with_step
     return {
       question: questions[:accessibility_with_step],
+      column_name: "accessibility_with_step",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
@@ -303,8 +331,10 @@ class FormularyChoice
   def type_of_pension
     return {
       question: questions[:type_of_pension],
+      column_name: "type_of_pension",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: TYPE_OF_PENSION,
       tooltip: nil,
       errorLabel: nil,
@@ -317,8 +347,10 @@ class FormularyChoice
   def pension
     return {
       question: questions[:pension],
+      column_name: "pension",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: PENSION_NAMES,
       tooltip: nil,
       errorLabel: nil,
@@ -331,8 +363,10 @@ class FormularyChoice
   def supplementary
     return {
       question: questions[:supplementary],
+      column_name: "supplementary",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: SUPPLEMENTARY_NAMES,
       tooltip: nil,
       errorLabel: nil,
@@ -345,8 +379,10 @@ class FormularyChoice
   def loss_of_autonomy
     return {
       question: questions[:loss_of_autonomy],
+      column_name: "loss_of_autonomy",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: LOSS_OF_AUTONOMY,
       tooltip: nil,
       errorLabel: nil,
@@ -359,8 +395,10 @@ class FormularyChoice
   def occupant
     return {
       question: questions[:occupant],
+      column_name: "occupant",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: OCCUPANT,
       tooltip: nil,
       errorLabel: nil,
@@ -373,8 +411,10 @@ class FormularyChoice
   def owner_is_include
     return {
       question: questions[:owner_is_include],
+      column_name: "owner_is_include",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
@@ -387,8 +427,10 @@ class FormularyChoice
   def has_partner
     return {
       question: questions[:has_partner],
+      column_name: "has_partner",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
@@ -401,8 +443,10 @@ class FormularyChoice
   def tax_revenue
     return {
       question: questions[:tax_revenue],
+      column_name: "tax_revenue",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: TAXE_REVENUE,
       tooltip: nil,
       errorLabel: nil,
@@ -415,8 +459,10 @@ class FormularyChoice
   def gross_income
     return {
       question: questions[:gross_income],
+      column_name: "gross_income",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: GROSS_INCOME,
       tooltip: nil,
       errorLabel: nil,
@@ -429,8 +475,10 @@ class FormularyChoice
   def global_tax_revenue
     return {
       question: questions[:global_tax_revenue],
+      column_name: "global_tax_revenue",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: GLOBAL_TAXE_REVENUE,
       tooltip: nil,
       errorLabel: nil,
@@ -443,8 +491,10 @@ class FormularyChoice
   def household_income
     return {
       question: questions[:household_income],
+      column_name: "household_income",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: HOUSEHOLD_INCOME,
       tooltip: nil,
       errorLabel: nil,
@@ -457,8 +507,10 @@ class FormularyChoice
   def owner_tax_revenue
     return {
       question: questions[:owner_tax_revenue],
+      column_name: "owner_tax_revenue",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: OWNER_TAXE_REVENUE,
       tooltip: nil,
       errorLabel: nil,
@@ -471,8 +523,10 @@ class FormularyChoice
   def assistant
     return {
       question: questions[:assistant],
+      column_name: "assistant",
       type: "select",
       multiple_answers: false,
+      placeholder: "Choisir quelques",
       data: ASSISTANT,
       tooltip: nil,
       errorLabel: nil,
