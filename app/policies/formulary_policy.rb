@@ -10,4 +10,8 @@ class FormularyPolicy < ApplicationPolicy
   def update?
     true
   end
+
+  def sort?
+    true
+  end
 end

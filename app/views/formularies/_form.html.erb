@@ -15,12 +15,12 @@
 
       <p>5 - condition 4=2 || 4=3 </p>
       <% if f.object.allow_is_working? %>
-        <%= f.input :is_working, label:"Exercez-vous une activité professionnelle ?", collection: @choices[:yes_no] %>
+        <%= f.input :is_working, label:"Exercez-vous une activité professionnelle ?", collection: @choices[:is_working] %>
       <% end %>
 
       <p>6 - condition 4=2 & 5=1  </p>
       <% if f.object.allow_loss_of_autonomy_receipt? %>
-        <%= f.input :loss_of_autonomy_receipt, label:"Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à la date d'anniversaire de vos 60 ans ?", collection: @choices[:yes_no] %>
+        <%= f.input :loss_of_autonomy_receipt, label:"Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à la date d'anniversaire de vos 60 ans ?", collection: @choices[:loss_of_autonomy_receipt] %>
       <% end %>
 
 
@@ -54,7 +54,7 @@
 
       <p>12 - condition 7=2 || 7=1 & 8=1  </p>
       <% if f.object.allow_accessibility_with_step? %>
-        <%= f.input :accessibility_with_step, label:"La porte d'entrée de votre logement est-elle accessible sans que vous n'ayez de marche à franchir ?", collection: @choices[:yes_no] %>
+        <%= f.input :accessibility_with_step, label:"La porte d'entrée de votre logement est-elle accessible sans que vous n'ayez de marche à franchir ?", collection: @choices[:accessibility_with_step] %>
       <% end %>
 
 
@@ -100,13 +100,13 @@
 
       <p>18 - condition (7=1 & 17=1) || (7=1 & 8=1 & 17=2) || (7=2 & 8=2 & 17=1) </p>
       <% if f.object.allow_owner_is_include? %>
-        <%= f.input :owner_is_include, label:"Le propriétaire de votre logement y vit-il ?", collection: @choices[:yes_no] %>
+        <%= f.input :owner_is_include, label:"Le propriétaire de votre logement y vit-il ?", collection: @choices[:owner_is_include] %>
       <% end %>
 
 
       <p>19 - condition (4=1 & 13=0 & 17=1) || (4=2 & 13=0 & 17=1) || (4=3 & 13=0 & 17=1) </p>
       <% if f.object.allow_has_partner? %>
-        <%= f.input :has_partner, label:"Vivez-vous avec un conjoint, concubin ou partenaire de PACS ?", collection: @choices[:yes_no] %>
+        <%= f.input :has_partner, label:"Vivez-vous avec un conjoint, concubin ou partenaire de PACS ?", collection: @choices[:has_partner] %>
       <% end %>
 
 

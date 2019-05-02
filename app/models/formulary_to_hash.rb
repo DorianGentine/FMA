@@ -39,14 +39,7 @@ class FormularyToHash
 
   def form_json
      return {
-        questions: generate_form_with_allow_question(@form),
-        submit: {
-          url: "/update/form",
-          "type": "button",
-          "label": "Submit",
-          "key": "submit",
-          "input": true
-        }
+        questions: generate_form_with_allow_question(@form)
       }
   end
 
@@ -57,17 +50,26 @@ class FormularyToHash
     Formulary.column_names.each_with_index do |column_name, form_index|
       if column_name != "id"  && column_name != "visitor_id" && column_name != "project_id" && column_name != "created_at" && column_name != "updated_at"
         if column_name == "first_name" || column_name == "last_name" || column_name == "zip_code" || column_name == "age" || column_name == "occupation" || column_name == "assistant"
-          hash = { set_up: FormularyChoice.new.send(column_name), answer: form.send(column_name) == "" ? nil : form.send(column_name) }
+          hash = { set_up: FormularyChoice.new.send(column_name), answer: form.send(column_name) == "" ? nil : set_answer(form, column_name) }
         else
           allow = "allow_" + column_name + "?"
           if form.send(allow)
-            hash = { set_up: FormularyChoice.new.send(column_name), answer: form.send(column_name) == "" ? nil : form.send(column_name)}
+            hash = { set_up: FormularyChoice.new.send(column_name), answer: form.send(column_name) == "" || form.send(column_name).nil? ? nil : set_answer(form, column_name)}
           end
         end
         array << hash if !hash.nil?
       end
     end
     return array
+  end
+
+
+  def set_answer(form, column_name)
+    if form.send(column_name).is_a?(String)
+      form.send(column_name)
+    else
+      FormularyChoice.new.set_collections_formulary[column_name.to_sym][form.send(column_name)].first
+    end
   end
 end
 
