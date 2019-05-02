@@ -2,6 +2,12 @@ p "Destroy all financers"
 
 Financer.destroy_all
 
+p "Create Advisor"
+User.create(last_name: "Dupont", first_name: "Luc", phone: "998877866", avatar: nil, advisor: true, client: false, admin: false, email: "advisor@mail.com", password:"password")
+
+p "Create Advisor"
+User.create(last_name: "Admin", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "admin@mail.com", password:"password")
+
 p "Create Financers"
 
   anah = Financer.create(name: "anah", logo: nil, description: "L’Agence Nationale pour l’Amélioration de l’habitat (ANAH) est un établissement public français existant depuis près de 50 ans. Son but est de favoriser la remise en bon état d’habitation le parc privé de logements pour lutter contre les fractures sociales et territoriales.
