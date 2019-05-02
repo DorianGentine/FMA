@@ -1,0 +1,20 @@
+.partenaire{
+  padding: 0 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg{
+    height: 40px;
+    .a{
+      fill: $gray-300;
+      transition: .5s;
+    }
+  }
+}
+
+.partenaire:hover{
+  svg .a{
+    fill: $blue;
+  }
+}

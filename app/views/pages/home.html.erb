@@ -6,8 +6,9 @@
 
     <div class="row margin-top-60">
       <div class="col-lg-5 col-xs-12">
-        <div id="formulary" data-id="<%= @formulary.id %>"></div>
-      </div>
+
+        <div class="formulary-border"></div>
+        <div id="formulary" data-id="<%= @formulary.id %>">
 
       <div class="hp_01 col-lg-7 d-none d-sm-block" >
         <%#= render 'formularies/form', formulary: @formulary %>
@@ -19,12 +20,12 @@
     <div class="row margin-top-60">
       <!-- titre avantages -->
         <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Pourquoi choisir financer mon autonomie ?</h1>
-        <p class="col-lg-8 offset-lg-2 col-xs-12 text-align-center margin-top-30 margin-bottom-60">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="col-lg-8 offset-lg-2 col-xs-12 text-align-center margin-bottom-60">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       <!-- liste avantages -->
         <div class="col-lg-3 col-xs-12" style="padding: 0 30px;">
           <div class="avantage margin-top-60 no-margin-xs">
             <div class="avantage-icon margin-bottom-30">
-              <i class="far fa-comments"></i>
+              <i class="blue far fa-comments"></i>
             </div>
             <h3>Étude d'éligibilité instantanée</h3>
             <p class="margin-bottom-15">Lorem ipsum dolor sit amet</p>
@@ -33,7 +34,7 @@
         <div class="col-lg-3 col-xs-12 margin-top-30-xs" style="padding: 0 30px;">
           <div class="avantage">
             <div class="avantage-icon margin-bottom-30">
-              <i class="fas fa-network-wired"></i>
+              <i class="blue fas fa-network-wired"></i>
             </div>
             <h3>Intelligence artificielle</h3>
             <p class="margin-bottom-15">Lorem ipsum dolor sit amet</p>
@@ -42,7 +43,7 @@
         <div class="col-lg-3 col-xs-12 margin-top-30-xs" style="padding: 0 30px;">
           <div class="avantage margin-top-60 no-margin-xs">
             <div class="avantage-icon margin-bottom-30">
-              <i class="fas fa-stopwatch"></i>
+              <i class="blue fas fa-stopwatch"></i>
             </div>
             <h3>Un service 24h sur 24h</h3>
             <p class="margin-bottom-15">Lorem ipsum dolor sit amet</p>
@@ -51,7 +52,7 @@
         <div class="col-lg-3 col-xs-12 margin-top-30-xs" style="padding: 0 30px;">
           <div class="avantage">
             <div class="avantage-icon margin-bottom-30">
-              <i class="fas fa-phone"></i>
+              <i class="blue fas fa-phone"></i>
             </div>
             <h3>Accompagnement personnalisé</h3>
             <p class="margin-bottom-15">Lorem ipsum dolor sit amet</p>
@@ -66,14 +67,14 @@
         <h1>01. Une étude d'éligibilité gratuite.</h1>
         <p class="margin-bottom-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        <a href="">En savoir plus sur l'éligibilité gratuite</a>
+        <a class="blue" href="">En savoir plus sur l'éligibilité gratuite</a>
       </div>
 
       <div class="col-lg-5 col-xs-12 margin-top-60">
         <h1>02. Un expert à votre écoute.</h1>
         <p class="margin-bottom-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        <a href="">En savoir plus sur l'éligibilité gratuite</a>
+        <a class="blue" href="">En savoir plus sur l'éligibilité gratuite</a>
       </div>
       <div class="hp_03 col-lg-7 margin-top-60 d-none d-sm-block" ></div>
 
@@ -82,14 +83,14 @@
         <h1>03. Une information clair sur les financements.</h1>
         <p class="margin-bottom-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        <a href="">En savoir plus sur l'éligibilité gratuite</a>
+        <a class="blue" href="">En savoir plus sur l'éligibilité gratuite</a>
       </div>
     </div>
 
   <!-- Show maquette -->
     <div class="row margin-top-120 d-none d-sm-block">
       <h1 class="col-lg-6 offset-lg-3 text-align-center">Concentrez vous sur l'essentiel avec votre espace personnel.</h1>
-      <p class="col-lg-8 offset-lg-2 text-align-center margin-top-30 margin-bottom-60">Bénéficiez d’un espace sécurisé pour partager vos données avec nos experts. Nous partagerons aussi avec vous un certains nombres de pièces nécessaires.</p>
+      <p class="col-lg-8 offset-lg-2 text-align-center margin-bottom-60">Bénéficiez d’un espace sécurisé pour partager vos données avec nos experts. Nous partagerons aussi avec vous un certains nombres de pièces nécessaires.</p>
     </div>
 
     <div id="carousel_maquettes" class="carousel slide d-none d-sm-block" data-ride="carousel">
@@ -104,42 +105,138 @@
 
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="hp_02 d-block w-100"></div>
+          <div class="carousel_01 d-block w-100"></div>
         </div>
         <div class="carousel-item">
-          <div class="hp_03 d-block w-100"></div>
+          <div class="carousel_02 d-block w-100"></div>
         </div>
         <div class="carousel-item">
-          <div class="hp_04 d-block w-100"></div>
+          <div class="carousel_03 d-block w-100"></div>
         </div>
         <div class="carousel-item">
-          <div class="hp_02 d-block w-100"></div>
+          <div class="carousel_04 d-block w-100"></div>
         </div>
         <div class="carousel-item">
-          <div class="hp_03 d-block w-100"></div>
+          <div class="carousel_05 d-block w-100"></div>
         </div>
         <div class="carousel-item">
-          <div class="hp_04 d-block w-100"></div>
+          <div class="carousel_06 d-block w-100"></div>
         </div>
       </div>
 
       <a class="carousel-control-prev" href="#carousel_maquettes" role="button" data-slide="prev">
-        <span aria-hidden="true">
-          <i class="fas fa-chevron-left"></i>
-        </span>
-        <span class="sr-only">Previous</span>
+        <%= render "shared/illustrations/arrow_left" %>
       </a>
       <a class="carousel-control-next" href="#carousel_maquettes" role="button" data-slide="next">
-        <span aria-hidden="true">
-          <i class="fas fa-chevron-right"></i>
-        </span>
-        <span class="sr-only">Next</span>
+        <%= render "shared/illustrations/arrow_right" %>
       </a>
 
 
     </div>
 
+  <!-- inscription newsletter -->
+    <div class="margin-top-120 inscription-newsletter-padding">
+      <div class="inscription-newsletter blue-background">
+        <p class="white margin-right-15 no-margin-xs margin-bottom-30-xs">Souscrire à la Newsetter pour plus d'informations</p>
+        <div class="input-wth-icon margin-right-15 no-margin-xs margin-bottom-15-xs">
+          <i class="fas fa-envelope"></i>
+          <input type="text" placeholder="Entrez votre mail" style="width: 100%;">
+        </div>
+        <button class="btn-gris">S'incrire</button>
+      </div>
+    </div>
+
+  <!-- témoignages -->
+    <div class="row margin-top-120">
+      <h1 class="col-lg-6 offset-lg-3 text-align-center">Pourquoi ont-ils fait appel à nous ?</h1>
+      <p class="col-lg-8 offset-lg-2 text-align-center margin-bottom-60">Rejoignez la communauté des bénéficiaires satisfaits !</p>
+    </div>
+
+    <div class="temoignages">
+      <div class="temoignage">
+        <div class="avatar margin-top-60"></div>
+        <div class="text-temoignage">
+          <h4 class="no-margin black">Martin Legrand</h4>
+          <p class="margin-bottom-15">Rénovation intérieur</p>
+          <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
+        </div>
+      </div>
+      <div class="temoignage">
+        <div class="avatar delay1"></div>
+        <div class="text-temoignage">
+          <h4 class="no-margin black">Martin Legrand</h4>
+          <p class="margin-bottom-15">Rénovation intérieur</p>
+          <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
+        </div>
+      </div>
+      <div class="temoignage">
+        <div class="avatar margin-top-30"></div>
+        <div class="text-temoignage">
+          <h4 class="no-margin black">Martin Legrand</h4>
+          <p class="margin-bottom-15">Rénovation intérieur</p>
+          <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
+        </div>
+      </div>
+      <div class="temoignage">
+        <div class="avatar delay2 margin-top-60"></div>
+        <div class="text-temoignage">
+          <h4 class="no-margin black">Martin Legrand</h4>
+          <p class="margin-bottom-15">Rénovation intérieur</p>
+          <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
+        </div>
+      </div>
+      <div class="temoignage">
+        <div class="avatar delay1"></div>
+        <div class="text-temoignage">
+          <h4 class="no-margin black">Martin Legrand</h4>
+          <p class="margin-bottom-15">Rénovation intérieur</p>
+          <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
+        </div>
+      </div>
+
+    </div>
+
+  <!-- partenaires -->
+    <div class="row margin-top-30">
+      <h1 class="col-lg-6 offset-lg-3 text-align-center">Nous travaillons avec des acteurs divers et variés</h1>
+      <p class="col-lg-8 offset-lg-2 text-align-center margin-bottom-60">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+
+    <div class="row">
+      <div class="partenaire col-lg-2">
+        <%= render "shared/illustrations/above" %>
+      </div>
+      <div class="partenaire col-lg-2">
+        <%= render "shared/illustrations/bear" %>
+      </div>
+      <div class="partenaire col-lg-2">
+        <%= render "shared/illustrations/evolve" %>
+      </div>
+      <div class="partenaire col-lg-2">
+        <%= render "shared/illustrations/homely" %>
+      </div>
+      <div class="partenaire col-lg-2">
+        <%= render "shared/illustrations/sunrise" %>
+      </div>
+      <div class="partenaire col-lg-2">
+        <%= render "shared/illustrations/whale" %>
+      </div>
+    </div>
+
+  <!-- CTA -->
+    <div class="margin-top-120 CTA-padding">
+      <div class="inscription-newsletter blue-background">
+        <div class="margin-right-30">
+          <h1 class="white margin-right-30 no-margin">Estimez les aides à votre disposition</h1>
+          <p class="gray-300 margin-bottom-30-xs">Vous utilisez déjà financer mon autonomie ? <a class="gray-300" href="#">Connectez-vous</a></p>
+        </div>
+        <button class="btn-gris">Découvrir</button>
+      </div>
+    </div>
+
 </div>
+
+<%= render "shared/footer" %>
 
 <script>
   // js repeat in update.js.erb and create.js.erb => DRY

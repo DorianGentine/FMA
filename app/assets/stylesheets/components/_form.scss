@@ -1,0 +1,21 @@
+input{
+  border-radius: 3px;
+  border: none;
+  padding: 10px;
+}
+
+.input-wth-icon{
+  position: relative;
+  i{
+    position: absolute;
+    padding: 5px 10px;
+    pointer-events: none;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  input{
+    padding: 10px 10px 10px 40px;
+  }
+}
+
