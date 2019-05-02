@@ -2,6 +2,27 @@ class Formulary < ApplicationRecord
   belongs_to :visitor
   belongs_to :project
 
+
+  # Q-1
+  def allow_last_name?
+    true
+  end
+
+  # Q-2
+  def allow_first_name?
+    true
+  end
+
+  # Q-3
+  def allow_zip_code?
+    true
+  end
+
+  # Q-4
+  def allow_age?
+    true
+  end
+
   # Q-5
   def allow_is_working?
     if self.age.present? && self.age > 1
@@ -18,6 +39,11 @@ class Formulary < ApplicationRecord
     else
       return false
     end
+  end
+
+  # Q-7
+  def allow_occupation?
+    true
   end
 
   # Q-8
@@ -213,6 +239,10 @@ class Formulary < ApplicationRecord
     end
   end
 
+  # Q-25
+  def allow_assistant?
+    true
+  end
 
   def finish_step?(attribute)
     allow = "allow_" + attribute + "?"
