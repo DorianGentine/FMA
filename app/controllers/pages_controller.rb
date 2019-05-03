@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :team ]
+  skip_before_action :authenticate_user!, only: [ :home, :team, :cgu ]
 
   def home
     @choices = FormularyChoice.new.set_collections_formulary
@@ -12,6 +12,10 @@ class PagesController < ApplicationController
   end
 
   def team
+
+  end
+
+  def cgu
 
   end
 
