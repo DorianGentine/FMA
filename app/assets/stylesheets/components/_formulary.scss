@@ -23,14 +23,12 @@
 
 .received{
   background-color: $gray-100;
-  box-shadow: 7px 5px 10px rgba(0,0,0,.15);
   color: $black;
+  box-shadow: 7px 5px 10px rgba(0,0,0,.15);
 }
 
 .sent{
   background-color: $blue;
-  color: white;
   margin-left: 20%;
   text-align: right;
 }
-

@@ -1,18 +1,36 @@
-<h2>Forgot your password?</h2>
+<img class="absolute" style="top: 0; right: 0; width: 50vw;" src="../assets/BG.svg" alt="">
+<%= render "shared/navbar" %>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+<div class="container">
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+  <!-- Questionnaire -->
+  <div class="row">
+    <div class="col-lg-5 col-xs-12">
+
+      <h1 class="no-margin">Résilier mot de passe</h1>
+      <p class="margin-bottom-30">Renseignez votre adresse email de connection, nous vous enverrons un email avec la marche à suivre.</p>
+
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" } %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Confirmer", class: "btn-blue width-100" %>
+        </div>
+      <% end %>
+
+      <p class="margin-top-15">Vous avez un compte ? <%= link_to "Connectez-vous ici", new_session_path(resource_name) %>.</p>
+      <p class="margin-top-15">Vous n'avez pas encore de compte ? <%= link_to "Inscrivez-vous ici", new_registration_path(resource_name) %>.</p>
+
+    </div>
+    <div class="image-connexion col-lg-7 d-none d-sm-block"></div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+
+
+<%#= render "devise/shared/links" %>
