@@ -7,8 +7,13 @@ const insertQuestion = (question) => {
   question_send = `<div class="message received">${question.set_up.position} - ${question.set_up.question}</div>`
 }
 
+const createEditBtn = (data) => {
+  btn = `<button type="button" class="btn btn-light edit float-left" data-position="${data.set_up.position}"><i class="fas fa-pencil-alt"></i></button>`
+}
+
 const insertAnswer = (question) => {
-  answer_send = `<div class="message sent" data-columnName='${question.set_up.column_name}'>${question.answer}</div>`
+  createEditBtn(question)
+  answer_send = `<div class="message sent" data-columnName='${question.set_up.column_name}'>${btn} ${question.answer}</div>`
 }
 
 const createInputAnswer = (question, div) => {
@@ -54,9 +59,6 @@ const createSubmitBtn = (div) => {
   div.appendChild(submit)
 }
 
-const createEditBtn = (data) => {
-  btn = `<button type="button" class="btn btn-light edit" data-position="${data.set_up.position}"><i class="fas fa-pencil-alt"></i></button>`
-}
 
 const createLinkAnalyze = () => {
   const link = `<a class="nav-link btn-connexion" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
@@ -102,9 +104,9 @@ const insertQuestionAnswers = (data) => {
   for ( var i = 0; i < datas.length; i ++){
     if (typeof datas[i].answer != 'string') { break; }
     insertQuestion(datas[i])
-    createEditBtn(datas[i])
+    // createEditBtn(datas[i])
     insertAnswer(datas[i])
-    var to_send = question_send + btn + answer_send
+    var to_send = question_send + answer_send
     form.insertAdjacentHTML("beforeend", to_send);
   }
   if (data.formulary.questions[i]) {
