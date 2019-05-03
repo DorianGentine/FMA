@@ -49,13 +49,9 @@ class FormularyToHash
     array = []
     Formulary.column_names.each_with_index do |column_name, form_index|
       if column_name != "id"  && column_name != "visitor_id" && column_name != "project_id" && column_name != "created_at" && column_name != "updated_at"
-        if column_name == "first_name" || column_name == "last_name" || column_name == "zip_code" || column_name == "age" || column_name == "occupation" || column_name == "assistant"
-          hash = { set_up: FormularyChoice.new.send(column_name), answer: form.send(column_name) == "" ? nil : set_answer(form, column_name) }
-        else
-          allow = "allow_" + column_name + "?"
-          if form.send(allow)
-            hash = { set_up: FormularyChoice.new.send(column_name), answer: form.send(column_name) == "" || form.send(column_name).nil? ? nil : set_answer(form, column_name)}
-          end
+        allow = "allow_" + column_name + "?"
+        if form.send(allow)
+          hash = { set_up: FormularyChoice.new.send(column_name), answer: form.send(column_name) == "" || form.send(column_name).nil? ? nil : set_answer(form, column_name)}
         end
         array << hash if !hash.nil?
       end
@@ -72,13 +68,6 @@ class FormularyToHash
     end
   end
 end
-
-
-
-
-
-
-
 
 
 
