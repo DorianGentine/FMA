@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :projects, only: [:update]
 
   get '/home', to: 'pages#home'
-  get '/qui-sommes-nous', to: 'pages#team'
+  get '/qui-sommes-nous', to: 'pages#team', as: "equipe"
+  get '/cgu_cgv', to: 'pages#cgu', as: "cgu"
 
   resources :formularies, only: [:create, :show, :update] do
     member do

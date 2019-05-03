@@ -6,7 +6,6 @@ import {
   createInputAnswer,
   insertSelectAnswer,
   createSubmitBtn,
-  createEditBtn,
   createLinkAnalyze,
   setFormForFormulary
 } from "./composents";
@@ -43,7 +42,6 @@ const setQuestionsAnswer = (questions, question = null) => {
     if (question) { if (questions[i] === question) { break; }
     } else { if (typeof questions[i].answer != 'string') { break; } }
     insertQuestion(questions[i])
-    createEditBtn(questions[i])
     insertAnswer(questions[i])
   }
   if (questions[i]) {
@@ -56,31 +54,22 @@ const setQuestionsAnswer = (questions, question = null) => {
 }
 
 function fetchFormulary(){
-  const formulary_id = form.dataset.id
-  if (formulary_id) {
-    var url = "/api/v1/formularies/"+ formulary_id +"/edit"
-  } else {
-    var url = "/api/v1/formularies/new"
+  if (form) {
+    const formulary_id = form.dataset.id
+    if (formulary_id) {
+      var url = "/api/v1/formularies/"+ formulary_id +"/edit"
+    } else {
+      var url = "/api/v1/formularies/new"
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(insertQuestionAnswers);
+
   }
-  fetch(url)
-    .then(response => response.json())
-    .then(insertQuestionAnswers);
 }
 
 
 export { fetchFormulary }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
