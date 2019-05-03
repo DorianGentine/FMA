@@ -6,15 +6,15 @@ const insertQuestion = (question) => {
   form.insertAdjacentHTML("beforeend", question_send);
 }
 
-const insertAnswer = (question) => {
-  answer_send = `<div class="message sent" data-columnName='${question.set_up.column_name}'>${question.answer}</div>`
-  form.insertAdjacentHTML("beforeend", answer_send);
-}
 const createEditBtn = (data) => {
   btn = `<button type="button" class="btn btn-light edit" data-position="${data.set_up.position}"><i class="fas fa-pencil-alt"></i></button>`
-  form.insertAdjacentHTML("beforeend", btn);
 }
 
+const insertAnswer = (question) => {
+  createEditBtn(question)
+  answer_send = `<div class="message sent" data-columnName='${question.set_up.column_name}'>${btn} ${question.answer}</div>`
+  form.insertAdjacentHTML("beforeend", answer_send);
+}
 const createLinkAnalyze = () => {
   const link = `<a class="nav-link btn-connexion" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
   form.insertAdjacentHTML("beforeend", link)
@@ -106,16 +106,7 @@ export {
   createInputAnswer,
   insertSelectAnswer,
   createSubmitBtn,
-  createEditBtn,
   createLinkAnalyze,
   setFormForFormulary
 }
-
-
-
-
-
-
-
-
 
