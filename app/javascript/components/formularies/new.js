@@ -124,15 +124,17 @@ const insertQuestionAnswers = (data) => {
 
 
 function fetchFormulary(){
-  const formulary_id = form.dataset.id
-  if (formulary_id) {
-    var url = "http://localhost:3000/api/v1/formularies/"+ formulary_id +"/edit"
-  } else {
-    var url = "http://localhost:3000/api/v1/formularies/new"
+  if(form){
+    const formulary_id = form.dataset.id
+    if (formulary_id) {
+      var url = "http://localhost:3000/api/v1/formularies/"+ formulary_id +"/edit"
+    } else {
+      var url = "http://localhost:3000/api/v1/formularies/new"
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(insertQuestionAnswers);
   }
-  fetch(url)
-    .then(response => response.json())
-    .then(insertQuestionAnswers);
 }
 
 
