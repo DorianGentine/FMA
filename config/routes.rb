@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/home', to: 'pages#home'
   get '/qui-sommes-nous', to: 'pages#team', as: "equipe"
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"
+  get '/rgpd', to: 'pages#rgpd', as: "rgpd"
 
   resources :formularies, only: [:create, :show, :update] do
     member do
