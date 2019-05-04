@@ -58,7 +58,6 @@ const setQuestionsAnswer = (questions, question = null) => {
   }
 }
 
-
 const nextStep = (data) => {
   const questions = data.formulary.questions
   for ( var i = 0; i < questions.length; i ++){

@@ -1,3 +1,8 @@
+
+json.fma_team(@fma_team, :id, :advisor, :admin, :last_name, :first_name, :phone)
+
+json.beneficaire(@user, :id, :client, :last_name, :first_name, :phone)
+
 json.project( @project, :id, :created_at, :updated_at)
 
 json.financers @solutions.count

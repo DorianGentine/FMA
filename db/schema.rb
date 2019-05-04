@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
   end
 
   create_table "user_projects", force: :cascade do |t|
+    t.boolean "client", default: false
     t.bigint "user_id"
     t.bigint "project_id"
     t.index ["project_id"], name: "index_user_projects_on_project_id"
