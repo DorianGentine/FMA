@@ -3,10 +3,10 @@ class CreateFormularies < ActiveRecord::Migration[5.2]
     create_table :formularies do |t|
       t.references :visitor, foreign_key: true
       t.references :project, foreign_key: true
-      t.string :last_name
+      # t.string :last_name
       t.string :first_name
       t.string :zip_code
-      t.integer :age
+      t.string :age
       t.integer :is_working
       t.integer :loss_of_autonomy_receipt
       t.integer :occupation

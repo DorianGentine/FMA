@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :projects, through: :user_projects, dependent: :destroy
 
   def link_to_project(project)
-    UserProject.create(user: self, project: project)
+    UserProject.create(user: self, project: project, client: self.client)
   end
 
   private

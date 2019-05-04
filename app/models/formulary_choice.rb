@@ -130,33 +130,57 @@ class FormularyChoice
   end
 
 
-
-  def last_name
+  def first_intro
     return {
-      question: questions[:last_name],
-      column_name: "last_name",
-      type: "input",
+      question: "Bonjour, nous allons vérfier ensemble si votre projet d'adaptation de <strong>logement est éligible</strong> à des fincancements.",
+      column_name: false,
+      type: false,
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: false,
       data: nil,
+      need_answer: false,
       tooltip: nil,
       errorLabel: nil,
-      position: 1,
+      start_answer: nil,
+      position: 0,
       validate: {
         required: true
       }
     }
   end
+
+
+
+  # def last_name
+  #   return {
+  #     question: questions[:last_name],
+  #     column_name: "last_name",
+  #     type: "input",
+  #     multiple_answers: false,
+  #     placeholder: "votre nom",
+  #     data: nil,
+  #     need_answer: true,
+  #     tooltip: nil,
+  #     errorLabel: nil,
+  #     start_answer: nil,
+  #     position: 1,
+  #     validate: {
+  #       required: true
+  #     }
+  #   }
+  # end
   def first_name
     return {
       question: questions[:first_name],
       column_name: "first_name",
       type: "input",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "votre prénom",
       data: nil,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: "Bonjour Sam, je m'appelle",
       position: 2,
       validate: {
         required: true
@@ -169,10 +193,12 @@ class FormularyChoice
       column_name: "zip_code",
       type: "input",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "ex: 60140",
       data: nil,
+      need_answer: true,
       tooltip: nil,
-      errorLabel: nil,
+      errorLabel: "Inserer uniquement les 5 chiffres de votre code postal",
+      start_answer: "Je réside dans le",
       position: 3,
       validate: {
         required: true
@@ -183,12 +209,14 @@ class FormularyChoice
     return {
       question: questions[:age],
       column_name: "age",
-      type: "select",
+      type: "input",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
-      data: AGE,
+      placeholder: "dd/mm/aaaa",
+      data: nil,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: "Ma date de naissance est le",
       position: 4,
       validate: {
         required: true
@@ -202,10 +230,12 @@ class FormularyChoice
       column_name: "is_working",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "",
       data: YES_NO,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 5,
       validate: {
         required: true
@@ -218,10 +248,12 @@ class FormularyChoice
       column_name: "loss_of_autonomy_receipt",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "",
       data: YES_NO,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 6,
       validate: {
         required: true
@@ -234,10 +266,12 @@ class FormularyChoice
       column_name: "occupation",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: OCCUPATION_CHOICES,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 7,
       validate: {
         required: true
@@ -250,10 +284,12 @@ class FormularyChoice
       column_name: "holder_occupation",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: HOLDER_OCCUPATION_CHOICES,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 8,
       validate: {
         required: true
@@ -266,10 +302,12 @@ class FormularyChoice
       column_name: "lessor",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: LESSOR_NAMES,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 9,
       validate: {
         required: true
@@ -283,10 +321,12 @@ class FormularyChoice
       column_name: "accommodation",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: ACCOMMODATION,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 10,
       validate: {
         required: true
@@ -300,10 +340,12 @@ class FormularyChoice
       column_name: "floor",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: FLOOR,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 11,
       validate: {
         required: true
@@ -317,10 +359,12 @@ class FormularyChoice
       column_name: "accessibility_with_step",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "",
       data: YES_NO,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 12,
       validate: {
         required: true
@@ -334,10 +378,12 @@ class FormularyChoice
       column_name: "type_of_pension",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: TYPE_OF_PENSION,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 13,
       validate: {
         required: true
@@ -350,10 +396,12 @@ class FormularyChoice
       column_name: "pension",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: PENSION_NAMES,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 14,
       validate: {
         required: true
@@ -366,10 +414,12 @@ class FormularyChoice
       column_name: "supplementary",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: SUPPLEMENTARY_NAMES,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 15,
       validate: {
         required: true
@@ -382,10 +432,12 @@ class FormularyChoice
       column_name: "loss_of_autonomy",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: LOSS_OF_AUTONOMY,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 16,
       validate: {
         required: true
@@ -398,10 +450,12 @@ class FormularyChoice
       column_name: "occupant",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: OCCUPANT,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 17,
       validate: {
         required: true
@@ -414,10 +468,12 @@ class FormularyChoice
       column_name: "owner_is_include",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "",
       data: YES_NO,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 18,
       validate: {
         required: true
@@ -430,10 +486,12 @@ class FormularyChoice
       column_name: "has_partner",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "",
       data: YES_NO,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 19,
       validate: {
         required: true
@@ -446,10 +504,12 @@ class FormularyChoice
       column_name: "tax_revenue",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: TAXE_REVENUE,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 20,
       validate: {
         required: true
@@ -462,10 +522,12 @@ class FormularyChoice
       column_name: "gross_income",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: GROSS_INCOME,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 21,
       validate: {
         required: true
@@ -478,10 +540,12 @@ class FormularyChoice
       column_name: "global_tax_revenue",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: GLOBAL_TAXE_REVENUE,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 22,
       validate: {
         required: true
@@ -494,10 +558,12 @@ class FormularyChoice
       column_name: "household_income",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: HOUSEHOLD_INCOME,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 23,
       validate: {
         required: true
@@ -510,10 +576,12 @@ class FormularyChoice
       column_name: "owner_tax_revenue",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: OWNER_TAXE_REVENUE,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 24,
       validate: {
         required: true
@@ -526,10 +594,12 @@ class FormularyChoice
       column_name: "assistant",
       type: "select",
       multiple_answers: false,
-      placeholder: "Choisir quelques",
+      placeholder: "Choisi parmis la liste",
       data: ASSISTANT,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
+      start_answer: nil,
       position: 25,
       validate: {
         required: true
@@ -541,8 +611,8 @@ class FormularyChoice
 
   def questions
     {
-      last_name: "Quel est votre nom ?",
-      first_name: "Quel est votre prénom ?",
+      # last_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
+      first_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
       zip_code: "Quel est le code postal de votre ville de résidence ?",
       age: "Quel est votre date de naissance ?",
       is_working: "Exercez-vous une activité professionnelle ?",

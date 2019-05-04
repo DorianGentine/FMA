@@ -12,7 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     formulary_id = session[:formulary_id]
     project = Formulary.find(formulary_id.to_i).project
     super do |resource|
-      resource.link_to_project(project) if !project.nil?
+      advisor = User.where(advisor: true).first
+      resource.link_to_project(project) unless project.in_relationship?(resource)
+      project.link_to_advisor(advisor) unless project.in_relationship?(advisor)
     end
   end
 end

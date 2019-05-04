@@ -2,11 +2,31 @@ class Formulary < ApplicationRecord
   belongs_to :visitor
   belongs_to :project
 
+  def set_age_group
+    return false if self.his_age.nil?
+    if self.his_age < 55
+      return 0
+    elsif self.his_age.between?(56,60)
+      return 1
+    elsif self.his_age.between?(61,70)
+      return 2
+    elsif self.his_age > 70
+      return 3
+    end
+  end
+
+  def his_age
+    day = self.age.split("/")[0].to_i
+    month = self.age.split("/")[1].to_i
+    year = self.age.split("/")[2].to_i
+    now = Time.now.utc.to_date
+    return now.year - year - ((now.month > month || (now.month == month && now.day >= day)) ? 0 : 1)
+  end
 
   # Q-1
-  def allow_last_name?
-    true
-  end
+  # def allow_last_name?
+  #   true
+  # end
 
   # Q-2
   def allow_first_name?
@@ -25,7 +45,7 @@ class Formulary < ApplicationRecord
 
   # Q-5
   def allow_is_working?
-    if self.age.present? && self.age > 1
+    if self.age.present? && self.set_age_group > 1
       return true
     else
       return false
@@ -34,7 +54,7 @@ class Formulary < ApplicationRecord
 
   # Q-6
   def allow_loss_of_autonomy_receipt?
-    if self.age.present? && self.age == 2 && self.is_working.present? && self.is_working == 1
+    if self.age.present? && self.set_age_group == 2 && self.is_working.present? && self.is_working == 1
       return true
     else
       return false
@@ -101,7 +121,7 @@ class Formulary < ApplicationRecord
 
   # Q-13
   def allow_type_of_pension?
-    if self.age.present? && self.age > 0
+    if self.age.present? && self.set_age_group > 0
       return true
     else
       return false
@@ -110,7 +130,7 @@ class Formulary < ApplicationRecord
 
   # Q-14
   def allow_pension?
-    if self.age.present? && self.age > 0 && self.type_of_pension.present? && self.type_of_pension == 1
+    if self.age.present? && self.set_age_group > 0 && self.type_of_pension.present? && self.type_of_pension == 1
       return true
     else
       return false
@@ -119,7 +139,7 @@ class Formulary < ApplicationRecord
 
   # Q-15
   def allow_supplementary?
-    if self.age.present? && self.age > 0
+    if self.age.present? && self.set_age_group > 0
       return true
     else
       return false
@@ -128,7 +148,7 @@ class Formulary < ApplicationRecord
 
   # Q-16
   def allow_loss_of_autonomy?
-    if self.age.present? && self.age > 0
+    if self.age.present? && self.set_age_group > 0
       return true
     else
       return false
@@ -163,7 +183,7 @@ class Formulary < ApplicationRecord
 
   # Q-19
   def allow_has_partner?
-    if self.type_of_pension.present? && self.type_of_pension == 0 && self.occupant.present? && self.occupant == 1 && self.age.present? && self.age > 0
+    if self.type_of_pension.present? && self.type_of_pension == 0 && self.occupant.present? && self.occupant == 1 && self.age.present? && self.set_age_group > 0
       return true
     else
       return false
@@ -187,9 +207,9 @@ class Formulary < ApplicationRecord
 
   # Q-21
   def allow_gross_income?
-    if self.occupant.present? && self.occupant == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.age > 0
+    if self.occupant.present? && self.occupant == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
       return true
-    elsif self.has_partner.present? && self.has_partner == 1 && self.occupant.present? && self.occupant == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.age > 0
+    elsif self.has_partner.present? && self.has_partner == 1 && self.occupant.present? && self.occupant == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
       return true
     else
       return false
@@ -215,7 +235,7 @@ class Formulary < ApplicationRecord
 
   # Q-23
   def allow_household_income?
-    if self.occupant.present? && self.occupant == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.age > 0
+    if self.occupant.present? && self.occupant == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
       return true
     else
       return false
