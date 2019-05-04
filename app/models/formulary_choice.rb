@@ -135,13 +135,13 @@ class FormularyChoice
     return {
       question: questions[:last_name],
       column_name: "last_name",
-      type: "text",
+      type: "input",
       multiple_answers: false,
       placeholder: "Choisir quelques",
       data: nil,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 1,
       validate: {
         required: true
       }
@@ -151,13 +151,13 @@ class FormularyChoice
     return {
       question: questions[:first_name],
       column_name: "first_name",
-      type: "text",
+      type: "input",
       multiple_answers: false,
       placeholder: "Choisir quelques",
       data: nil,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 2,
       validate: {
         required: true
       }
@@ -167,13 +167,13 @@ class FormularyChoice
     return {
       question: questions[:zip_code],
       column_name: "zip_code",
-      type: "text",
+      type: "input",
       multiple_answers: false,
       placeholder: "Choisir quelques",
       data: nil,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 3,
       validate: {
         required: true
       }
@@ -189,7 +189,7 @@ class FormularyChoice
       data: AGE,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 4,
       validate: {
         required: true
       }
@@ -206,7 +206,7 @@ class FormularyChoice
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 5,
       validate: {
         required: true
       }
@@ -222,7 +222,7 @@ class FormularyChoice
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 6,
       validate: {
         required: true
       }
@@ -238,7 +238,7 @@ class FormularyChoice
       data: OCCUPATION_CHOICES,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 7,
       validate: {
         required: true
       }
@@ -254,7 +254,7 @@ class FormularyChoice
       data: HOLDER_OCCUPATION_CHOICES,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 8,
       validate: {
         required: true
       }
@@ -270,7 +270,7 @@ class FormularyChoice
       data: LESSOR_NAMES,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 9,
       validate: {
         required: true
       }
@@ -287,7 +287,7 @@ class FormularyChoice
       data: ACCOMMODATION,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 10,
       validate: {
         required: true
       }
@@ -304,7 +304,7 @@ class FormularyChoice
       data: FLOOR,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 11,
       validate: {
         required: true
       }
@@ -321,7 +321,7 @@ class FormularyChoice
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 12,
       validate: {
         required: true
       }
@@ -338,7 +338,7 @@ class FormularyChoice
       data: TYPE_OF_PENSION,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 13,
       validate: {
         required: true
       }
@@ -354,7 +354,7 @@ class FormularyChoice
       data: PENSION_NAMES,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 14,
       validate: {
         required: true
       }
@@ -370,7 +370,7 @@ class FormularyChoice
       data: SUPPLEMENTARY_NAMES,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 15,
       validate: {
         required: true
       }
@@ -386,7 +386,7 @@ class FormularyChoice
       data: LOSS_OF_AUTONOMY,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 16,
       validate: {
         required: true
       }
@@ -402,7 +402,7 @@ class FormularyChoice
       data: OCCUPANT,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 17,
       validate: {
         required: true
       }
@@ -418,7 +418,7 @@ class FormularyChoice
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 18,
       validate: {
         required: true
       }
@@ -434,7 +434,7 @@ class FormularyChoice
       data: YES_NO,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 19,
       validate: {
         required: true
       }
@@ -450,7 +450,7 @@ class FormularyChoice
       data: TAXE_REVENUE,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 20,
       validate: {
         required: true
       }
@@ -466,7 +466,7 @@ class FormularyChoice
       data: GROSS_INCOME,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 21,
       validate: {
         required: true
       }
@@ -482,7 +482,7 @@ class FormularyChoice
       data: GLOBAL_TAXE_REVENUE,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 22,
       validate: {
         required: true
       }
@@ -498,7 +498,7 @@ class FormularyChoice
       data: HOUSEHOLD_INCOME,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 23,
       validate: {
         required: true
       }
@@ -514,7 +514,7 @@ class FormularyChoice
       data: OWNER_TAXE_REVENUE,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 24,
       validate: {
         required: true
       }
@@ -530,7 +530,7 @@ class FormularyChoice
       data: ASSISTANT,
       tooltip: nil,
       errorLabel: nil,
-      input: true,
+      position: 25,
       validate: {
         required: true
       }
@@ -570,3 +570,4 @@ class FormularyChoice
   end
 
 end
+
