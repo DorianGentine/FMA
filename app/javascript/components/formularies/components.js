@@ -1,13 +1,13 @@
 let question_send, answer_send, btn
 const form = document.getElementById("formulary")
+
 const insertQuestion = (question) => {
-  console.log(question)
   question_send = `<div class="message received">${question.set_up.position} - ${question.set_up.question}</div>`
   form.insertAdjacentHTML("beforeend", question_send);
 }
 
-const createEditBtn = (data) => {
-  btn = `<button type="button" class="btn btn-light edit" data-position="${data.set_up.position}"><i class="fas fa-pencil-alt"></i></button>`
+const createEditBtn = (question) => {
+  btn = `<button type="button" class="btn btn-light edit" data-position="${question.set_up.position}"><i class="fas fa-pencil-alt"></i></button>`
 }
 
 const insertAnswer = (question) => {
@@ -15,8 +15,8 @@ const insertAnswer = (question) => {
   answer_send = `<div class="message sent" data-columnName='${question.set_up.column_name}'>${btn} ${question.answer}</div>`
   form.insertAdjacentHTML("beforeend", answer_send);
 }
-const createLinkAnalyze = () => {
-  const link = `<a class="nav-link btn-connexion" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
+const createLinkNext = () => {
+  const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
   form.insertAdjacentHTML("beforeend", link)
 }
 
@@ -27,6 +27,7 @@ const createInputAnswer = (question, div) => {
   input.id = `formulary_${question.set_up.column_name}`
   input.name = `formulary[${question.set_up.column_name}]`
   input.type = "text"
+  input.setAttribute( "data-position", question.set_up.position)
   div.appendChild(input)
 }
 
@@ -36,6 +37,7 @@ const insertSelectAnswer = (question, div) => {
   selectList.classList = "form-control select optional"
   selectList.id = `formulary_${question.set_up.column_name}`
   selectList.name = `formulary[${question.set_up.column_name}]`
+  selectList.setAttribute( "data-position", question.set_up.position)
   div.appendChild(selectList)
   var option = document.createElement("option")
   option.text = question.set_up.placeholder
@@ -63,25 +65,22 @@ const createSubmitBtn = (div) => {
   div.appendChild(submit)
 }
 
-
-
-
 const setFormForFormulary = (question) => {
   const div = document.createElement('form')
   if (form.dataset.id) {
     div.classList = "simple_form edit_formulary"
     div.id = `edit_formulary_${form.dataset.id}`
-    div.action = `/formularies/${form.dataset.id}`
+    // div.action = `/formularies/${form.dataset.id}`
   } else {
     div.classList = "simple_form new_formulary"
     div.id = `new_formulary`
-    div.action = `/formularies`
+    // div.action = `/formularies`
   }
 
-  div.noValidate = "novalidate"
-  // div.setAttribute("data-remote", false)
+  // div.noValidate = "novalidate"
+  div.setAttribute("data-remote", true)
   div.acceptCharset = "UTF-8"
-  div.method = "post"
+  // div.method = "post"
   div.style.display = "flex"
   form.appendChild(div)
 
@@ -106,7 +105,7 @@ export {
   createInputAnswer,
   insertSelectAnswer,
   createSubmitBtn,
-  createLinkAnalyze,
+  createLinkNext,
   setFormForFormulary
 }
 

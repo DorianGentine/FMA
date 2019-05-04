@@ -1,14 +1,12 @@
 import { scrollLastMessageIntoView } from "../../components/scroll";
 import {updateFormulary} from "../formularies/edit";
+import {$,jQuery} from 'jquery';
 import {
   insertQuestion,
   insertAnswer,
-  createInputAnswer,
-  insertSelectAnswer,
-  createSubmitBtn,
-  createLinkAnalyze,
+  createLinkNext,
   setFormForFormulary
-} from "./composents";
+} from "./components";
 
 const form = document.getElementById("formulary")
 
@@ -33,8 +31,14 @@ const editAnswer = (questions, question) => {
 const insertQuestionAnswers = (data) => {
   const questions = data.formulary.questions
   setQuestionsAnswer(questions)
-  scrollLastMessageIntoView()
   getEditAnswer(data.formulary.questions)
+  form.addEventListener("submit", function(event){
+    updateFormulary(event, questions)
+  });
+}
+const setNextQuestion = (nex_question) => {
+  const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
+  form.insertAdjacentHTML("beforeend", lastQuestion);
 }
 
 const setQuestionsAnswer = (questions, question = null) => {
@@ -45,17 +49,41 @@ const setQuestionsAnswer = (questions, question = null) => {
     insertAnswer(questions[i])
   }
   if (questions[i]) {
-    const lastQuestion = `<div class="message received">${questions[i].set_up.position} - ${questions[i].set_up.question}</div>`
-    form.insertAdjacentHTML("beforeend", lastQuestion);
-     setFormForFormulary(questions[i])
+    setNextQuestion(questions[i])
+    setFormForFormulary(questions[i])
   } else {
-    createLinkAnalyze()
+    createLinkNext()
   }
 }
 
-function fetchFormulary(){
+
+const nextStep = (data) => {
+  const questions = data.formulary.questions
+  for ( var i = 0; i < questions.length; i ++){
+    if (typeof questions[i].answer != 'string') { break; }
+  }
+  insertAnswer(questions[i-1])
+  if (questions[i]) {
+    setNextQuestion(questions[i])
+    getEditAnswer(data.formulary.questions)
+    setFormForFormulary(questions[i])
+  } else {
+    createLinkNext()
+  }
+}
+
+function fetchFormulary(updated = null, id = null){
   if (form) {
-    const formulary_id = form.dataset.id
+    let formulary_id
+    if (id) {
+      if (form.dataset.id === "") {
+        formulary_id = id; form.setAttribute('data-id', id)
+      } else {
+        formulary_id = form.dataset.id
+      }
+    } else {
+      formulary_id = form.dataset.id
+    }
     if (formulary_id) {
       var url = "/api/v1/formularies/"+ formulary_id +"/edit"
     } else {
@@ -63,8 +91,12 @@ function fetchFormulary(){
     }
     fetch(url)
       .then(response => response.json())
-      .then(insertQuestionAnswers);
-
+      .then((data) => {
+        console.log('data', data)
+        if (updated) { nextStep(data)}
+        else { insertQuestionAnswers(data) }
+        scrollLastMessageIntoView()
+      });
   }
 }
 
