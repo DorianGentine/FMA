@@ -53,12 +53,10 @@ class TestSolution
     if conditions.keys.include?(index) && form.send(allow)
      set_a_condition(index, conditions)
     else
-      if attribute == "is_working" || attribute == "loss_of_autonomy_receipt" || attribute == "accessibility_with_step" || attribute == "owner_is_include" || attribute == "has_partner"
-        @choices[:yes_no].sample.second if form.send(allow)
-      else
-        choice = @choices[:"#{attribute}"].sample
+
+        choice = @choices[:"#{attribute}"]
         (choice.is_a?(String) ? choice : choice.second) if form.send(allow)
-      end
+
       return false if conditions.keys.include?(index)
     end
   end

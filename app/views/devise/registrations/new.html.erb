@@ -6,8 +6,8 @@
   <div class="row">
     <div class="col-lg-5 col-xs-12">
 
-      <h1 class="no-margin">Connectez-vous</h1>
-      <p class="margin-bottom-30">Content de vous revoir. Rentrez vos informations personnels pour accéder à votre espace personnel.</p>
+      <h1 class="no-margin">Inscrivez-vous</h1>
+      <p class="margin-bottom-30">Vous avez un projet en tête. Via votre espace personnel, un conseiller vous accompagne dans chaque étape.</p>
 
       <%= simple_form_for(@user, as: :user, url: registration_path(@user)) do |f| %>
         <%= f.error_notification %>
@@ -37,4 +37,4 @@
 
 
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>
