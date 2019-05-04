@@ -1,25 +1,25 @@
-function refreshForm(innerHTML) {
-  const newForm = document.getElementById('formulary');
-  newForm.innerHTML = innerHTML;
-  refreshInput()
-}
+// function refreshForm(innerHTML) {
+//   const newForm = document.getElementById('formulary');
+//   newForm.innerHTML = innerHTML;
+//   refreshInput()
+// }
 
 
-refreshForm('<%= j render "formularies/form", formulary: @formulary %>');
+// refreshForm('<%= j render "formularies/form", formulary: @formulary %>');
 
-function refreshInput(){
-  let new_inputs = Array.from(document.getElementsByTagName('input'))
-  let new_selecteds = Array.from(document.getElementsByTagName('select'))
-  const submit = document.getElementById('send_formulary')
+// function refreshInput(){
+//   let new_inputs = Array.from(document.getElementsByTagName('input'))
+//   let new_selecteds = Array.from(document.getElementsByTagName('select'))
+//   const submit = document.getElementById('send_formulary')
 
-  new_inputs.forEach((input) => {
-    input.addEventListener('change', function(){
-      submit.click()
-    })
-  })
-  new_selecteds.forEach((input) => {
-    input.addEventListener('change', function(){
-      submit.click()
-    })
-  })
-}
+//   new_inputs.forEach((input) => {
+//     input.addEventListener('change', function(){
+//       submit.click()
+//     })
+//   })
+//   new_selecteds.forEach((input) => {
+//     input.addEventListener('change', function(){
+//       submit.click()
+//     })
+//   })
+// }
