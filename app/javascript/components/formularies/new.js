@@ -1,3 +1,4 @@
+// import { initAutocomplete } from "../../components/init_autocomplete";
 import { scrollLastMessageIntoView } from "../../components/scroll";
 import {updateFormulary} from "../formularies/edit";
 import {
@@ -6,6 +7,7 @@ import {
   createLinkNext,
   setFormForFormulary
 } from "./components";
+
 
 const form = document.getElementById("formulary")
 
@@ -34,6 +36,7 @@ const insertQuestionAnswers = (data) => {
   form.addEventListener("submit", function(event){
     updateFormulary(event, questions)
   });
+
 }
 const setNextQuestion = (nex_question) => {
   const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
@@ -77,14 +80,10 @@ function fetchFormulary(updated = null, id = null){
     if (id) {
       if (form.dataset.id === "") {
         formulary_id = id; form.setAttribute('data-id', id)
-      } else {
-        formulary_id = form.dataset.id
-      }
-    } else {
-      formulary_id = form.dataset.id
-    }
+      } else { formulary_id = form.dataset.id }}
+      else { formulary_id = form.dataset.id }
     if (formulary_id) {
-      var url = "/api/v1/formularies/"+ formulary_id +"/edit"
+      var url = `/api/v1/formularies/${formulary_id}/edit`
     } else {
       var url = "/api/v1/formularies/new"
     }

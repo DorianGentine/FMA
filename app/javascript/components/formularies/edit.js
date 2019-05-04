@@ -28,11 +28,13 @@ function updateFormulary(event, questions){
       url: url,
       type: type,
       data: { params_value: obj }
+
+
+
+
     });
     request.done(function(msg) {
       console.log("done", msg );
-      // AJOUTER ID POUR NEW AVCE msg.id
-      console.log("id", msg.id)
       let id = msg.id
       successUptade(input, questions, form, id)
     });

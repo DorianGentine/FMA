@@ -25,6 +25,10 @@ const createInputAnswer = (question, div) => {
   input.style.width = "70%"
   input.classList = "form-control select optional"
   input.id = `formulary_${question.set_up.column_name}`
+  if (question.set_up.column_name === "zip_code") {
+    input.id = `flat_address`
+    // input.id = `flat_address formulary_${question.set_up.column_name}`
+  }
   input.name = `formulary[${question.set_up.column_name}]`
   input.type = "text"
   input.setAttribute( "data-position", question.set_up.position)
