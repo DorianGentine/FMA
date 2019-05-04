@@ -7,7 +7,7 @@ class FormularyToHash
   def to_hash_forma
     form_to_hash = {
       0=> @form.project_id,
-      1=> @form.last_name,
+      # 1=> @form.last_name,
       2=> @form.first_name,
       3=> @form.zip_code,
       4=> @form.age,
@@ -46,7 +46,7 @@ class FormularyToHash
   private
 
   def generate_form_with_allow_question(form)
-    array = []
+    array = [ set_up: FormularyChoice.new.first_intro, answer: "ok" ]
     Formulary.column_names.each_with_index do |column_name, form_index|
       if column_name != "id"  && column_name != "visitor_id" && column_name != "project_id" && column_name != "created_at" && column_name != "updated_at"
         allow = "allow_" + column_name + "?"

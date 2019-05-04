@@ -5,10 +5,10 @@
 <div class="row">
   <div class="col-md-5">
     <ol>
-      <li><%= @formulary.last_name %></li>
+      <!-- <li><%#= @formulary.last_name %></li> -->
       <li><%= @formulary.first_name %></li>
       <li><%= @formulary.zip_code %></li>
-      <li><%= @choices[:age][@formulary.age][0] %></li>
+      <li><%= @formulary.his_age %> ans</li>
       <li><%= FormularyChoice::YES_NO[@formulary.is_working] %></li>
       <li><%= FormularyChoice::YES_NO[@formulary.loss_of_autonomy_receipt] %></li>
       <li><%= FormularyChoice::OCCUPATION_CHOICES[@formulary.occupation] %></li>

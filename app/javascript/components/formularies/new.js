@@ -39,6 +39,7 @@ const insertQuestionAnswers = (data) => {
 
 }
 const setNextQuestion = (nex_question) => {
+  console.log("nex_question", nex_question.position)
   const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
   form.insertAdjacentHTML("beforeend", lastQuestion);
 }
@@ -48,7 +49,10 @@ const setQuestionsAnswer = (questions, question = null) => {
     if (question) { if (questions[i] === question) { break; }
     } else { if (typeof questions[i].answer != 'string') { break; } }
     insertQuestion(questions[i])
-    insertAnswer(questions[i])
+    if (questions[i].set_up.need_answer) {
+  console.log(questions[i].set_up.need_answer)
+      insertAnswer(questions[i])
+    }
   }
   if (questions[i]) {
     setNextQuestion(questions[i])

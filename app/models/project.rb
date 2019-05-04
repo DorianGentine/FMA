@@ -16,7 +16,6 @@ class Project < ApplicationRecord
     return true if UserProject.where(user: user, project: self).first
   end
 
-
   def is_his_advisor
     user = UserProject.where(project: self, client: false).first.user
     return user
