@@ -4,9 +4,11 @@ function scrollLastMessageIntoView() {
   // if (lastMessage !== undefined) {
   //   lastMessage.scrollIntoView({block: "end", inline: "nearest"});
   // }
-
   const btn = document.getElementById('envoyer')
-  btn.scrollIntoView({block: "end", inline: "nearest"});
+  if (btn) { btn.scrollIntoView({block: "end", inline: "nearest"}); }
+  const link = document.getElementById('send_to_analyze')
+  if (link) { link.scrollIntoView({block: "end", inline: "nearest"}); }
+
 }
 
 export { scrollLastMessageIntoView }

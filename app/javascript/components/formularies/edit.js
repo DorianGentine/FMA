@@ -1,47 +1,52 @@
 
+import { fetchFormulary } from "../formularies/new";
 
-// const form = document.getElementById('formulary')
 
 
-function updateFormulary(form){
-  const sumbit = document.getElementById('testBtn')
-  sumbit.addEventListener('click', (event) => {
-    const inputs = form.querySelectorAll('.collect')
-    const result = {id: parseInt(form.dataset.id, 10) };
-    Array.from(inputs).forEach((input) => {
-      if (parseInt(input.value, 10)) {
-        result[input.dataset.columnname] = parseInt(input.value, 10)
-      } else { result[input.dataset.columnname] = input.value }
+const successUptade = (input, questions, form, id) => {
+  console.log("coucou jai envoyé les données")
+  form.remove()
+  fetchFormulary(true, id)
+}
+
+function updateFormulary(event, questions){
+  const discussion = document.getElementById("formulary")
+  const formulary_id = discussion.dataset.id
+  var form, url, type
+  if (formulary_id) { form = document.getElementById(`edit_formulary_${formulary_id}`); url = `/api/v1/formularies/${formulary_id}`; type = "PATCH"
+  } else { form = document.getElementById('new_formulary'); url = "/api/v1/formularies"; type = "POST" }
+  if (form) {
+    var input
+    console.log("input", form.getElementsByTagName('select'))
+    if (form.getElementsByTagName('select')[0]) {
+      input = form.getElementsByTagName('select')[0]
+    } else { input = form.getElementsByTagName('input')[1] }
+    const obj = {}
+    obj[input.name.replace("formulary[", "").replace("]","")] = input.value
+    // console.log("coucou jenvoie les données", obj)
+    var request = $.ajax({
+      url: url,
+      type: type,
+      data: { params_value: obj }
     });
-    $.ajax({
-      url: `/formularies/${form.dataset.id}/sort`,
-      type: 'PATCH',
-      data: { params_value: result },
-      success: function(){
-        document.location.reload(true)
-      }
+    request.done(function(msg) {
+      console.log("done", msg );
+      // AJOUTER ID POUR NEW AVCE msg.id
+      console.log("id", msg.id)
+      let id = msg.id
+      successUptade(input, questions, form, id)
     });
-  });
+
+    request.fail(function(jqXHR, textStatus) {
+      console.log( "Request failed: " + textStatus );
+    });
+  };
 };
+
 
 export { updateFormulary}
 
-// const getEditAnswer = (questions) => {
-//   const btns = document.querySelectorAll('.edit')
-//   btns.forEach((btn) => {
-//     btn.addEventListener('click', function(){
-//       for (var i = 0; i < questions.length; i++) {
-//         if (questions[i].set_up.position == btn.dataset.position) {
 
-//           editAnswer(questions[i])
-//         }
-//       }
-//     })
-//   })
-// }
 
-// const editAnswer = (question) => {
-//   const form = document.getElementById("formulary")
-//   console.log(form)
-//   console.log(question)
-// }
+
+

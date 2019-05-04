@@ -53,10 +53,8 @@ class TestSolution
     if conditions.keys.include?(index) && form.send(allow)
      set_a_condition(index, conditions)
     else
-
-        choice = @choices[:"#{attribute}"]
-        (choice.is_a?(String) ? choice : choice.second) if form.send(allow)
-
+      choice = @choices[:"#{attribute}"].sample
+      (choice.is_a?(String) ? choice : choice.second) if form.send(allow)
       return false if conditions.keys.include?(index)
     end
   end
