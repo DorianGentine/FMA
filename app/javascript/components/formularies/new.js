@@ -1,6 +1,5 @@
 import { scrollLastMessageIntoView } from "../../components/scroll";
 import {updateFormulary} from "../formularies/edit";
-import {$,jQuery} from 'jquery';
 import {
   insertQuestion,
   insertAnswer,
@@ -102,8 +101,3 @@ function fetchFormulary(updated = null, id = null){
 
 
 export { fetchFormulary }
-
-
-
-
-

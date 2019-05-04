@@ -570,3 +570,4 @@ class FormularyChoice
   end
 
 end
+
