@@ -51,6 +51,7 @@ class FormularyToHash
       if column_name != "id"  && column_name != "visitor_id" && column_name != "project_id" && column_name != "created_at" && column_name != "updated_at"
         allow = "allow_" + column_name + "?"
         if form.send(allow)
+          raise if form.allow_holder_occupation?
           hash = { set_up: FormularyChoice.new.send(column_name), answer: form.send(column_name) == "" || form.send(column_name).nil? ? nil : set_answer(form, column_name)}
         end
         array << hash if !hash.nil?
@@ -68,6 +69,13 @@ class FormularyToHash
     end
   end
 end
+
+
+
+
+
+
+
 
 
 

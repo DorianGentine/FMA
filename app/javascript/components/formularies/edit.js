@@ -3,8 +3,6 @@ import { fetchFormulary } from "../formularies/new";
 
 
 
-
-
 const successUptade = (input, questions, form, id) => {
   console.log("coucou jai envoyé les données")
   form.remove()
