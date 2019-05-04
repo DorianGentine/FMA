@@ -5,5 +5,5 @@ import "../components/dynamicNavbar";
 import { fetchFormulary } from "../components/formularies/new";
 fetchFormulary();
 
-import { updateFormulary } from "../components/formularies/edit";
-updateFormulary;
+// import { initAutocomplete } from "../components/init_autocomplete";
+// initAutocomplete();
