@@ -61,7 +61,6 @@ class Api::V1::FormulariesController < Api::V1::BaseController
         pf[column_name] = nil
       end
     end
-    p "/// pf =====>>> #{pf}"
     return pf
   end
 end

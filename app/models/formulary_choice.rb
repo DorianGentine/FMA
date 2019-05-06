@@ -182,24 +182,24 @@ class FormularyChoice
       need_answer: false
     }
   end
-  def last_name
-    return {
-      question: questions[:last_name],
-      column_name: "last_name",
-      type: "input",
-      multiple_answers: false,
-      placeholder: "votre nom",
-      data: nil,
-      need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
-      start_answer: nil,
-      position: 1,
-      validate: {
-        required: true
-      }
-    }
-  end
+  # def last_name
+  #   return {
+  #     question: questions[:last_name],
+  #     column_name: "last_name",
+  #     type: "input",
+  #     multiple_answers: false,
+  #     placeholder: "votre nom",
+  #     data: nil,
+  #     need_answer: true,
+  #     tooltip: nil,
+  #     errorLabel: nil,
+  #     start_answer: nil,
+  #     position: 1,
+  #     validate: {
+  #       required: true
+  #     }
+  #   }
+  # end
   def first_name
     return {
       question: questions[:first_name],
@@ -686,3 +686,4 @@ class FormularyChoice
   end
 
 end
+

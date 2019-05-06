@@ -100,8 +100,3 @@ function fetchFormulary(updated = null, id = null){
 
 
 export { fetchFormulary }
-
-
-
-
-
