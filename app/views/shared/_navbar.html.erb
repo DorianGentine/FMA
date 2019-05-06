@@ -1,13 +1,12 @@
 <div id="navbar" class="navbar navbar-expand-sm navbar-lewagon fixed" style="z-index: 5;">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= render "shared/logo" %>
-
+    <%= render "shared/illustrations/logo" %>
   <% end %>
 
   <div class="flex align-items-center">
     <%= link_to "Qui sommes-nous ?", equipe_path, class: "margin-right-30 d-none d-sm-block" %>
     <% if user_signed_in? %>
-      <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class: "nav-link btn-blue" %>
+      <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "nav-link btn-blue" %>
     <% else %>
       <%= link_to "Se connecter", new_user_session_path, class: "nav-link btn-blue" %>
     <% end %>

@@ -1,57 +1,90 @@
+<img class="absolute" style="top: 0; right: 0; width: 50vw;" src="../assets/BG.svg" alt="">
+<%= render "shared/navbar" %>
 
-<h2>Réponse et analyse</h2>
-<%= link_to "Mon compte", user_path(current_user) if current_user.present? %>
-<h3>Call API pour les solutions <a href="/api/v1/formularies/<%= @formulary.id %>">-> ici <-</a></h3>
-<div class="row">
-  <div class="col-md-5">
-    <ol>
-      <li><%= @formulary.last_name %></li>
-      <li><%= @formulary.first_name %></li>
-      <li><%= @formulary.zip_code %></li>
-      <li><%= @choices[:age][@formulary.age][0] %></li>
-      <li><%= FormularyChoice::YES_NO[@formulary.is_working] %></li>
-      <li><%= FormularyChoice::YES_NO[@formulary.loss_of_autonomy_receipt] %></li>
-      <li><%= FormularyChoice::OCCUPATION_CHOICES[@formulary.occupation] %></li>
-      <li><%= FormularyChoice::HOLDER_OCCUPATION_CHOICES[@formulary.holder_occupation] %></li>
-      <li><%= @formulary.lessor %></li>
-      <li><%= FormularyChoice::ACCOMMODATION[@formulary.accommodation] %></li>
-      <li><%= FormularyChoice::FLOOR[@formulary.floor] %></li>
-      <li><%= FormularyChoice::YES_NO[@formulary.accessibility_with_step] %></li>
-      <li><%= FormularyChoice::TYPE_OF_PENSION[@formulary.type_of_pension] %></li>
-      <li><%= @formulary.pension %></li>
-      <li><%= @formulary.supplementary %></li>
-      <li><%= FormularyChoice::LOSS_OF_AUTONOMY[@formulary.loss_of_autonomy] %></li>
-      <li><%= FormularyChoice::OCCUPANT[@formulary.occupant] %></li>
-      <li><%= FormularyChoice::YES_NO[@formulary.owner_is_include] %></li>
-      <li><%= FormularyChoice::YES_NO[@formulary.has_partner] %></li>
-      <li><%= FormularyChoice::TAXE_REVENUE[@formulary.tax_revenue] %></li>
-      <li><%= FormularyChoice::GROSS_INCOME[@formulary.gross_income] %></li>
-      <li><%= FormularyChoice::GLOBAL_TAXE_REVENUE[@formulary.global_tax_revenue] %></li>
-      <li><%= FormularyChoice::HOUSEHOLD_INCOME[@formulary.household_income] %></li>
-      <li><%= FormularyChoice::OWNER_TAXE_REVENUE[@formulary.owner_tax_revenue] %></li>
-      <li><%= FormularyChoice::ASSISTANT[@formulary.assistant] %></li>
-    </ol>
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-5 col-xs-12">
+      <h1 class="no-margin">Analyse de vos réponses</h1>
+      <p class="margin-bottom-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun aliqua.</p>
+    </div>
+
   </div>
-  <div class="col-md-7">
-  <p>Supprimer cette partie, c'est juste pour s'assurer que les formulaires fonctionnent</p>
-    <p>Match: <%= @solutions.count %> </p>
-    <% @solutions.each do |solution| %>
-      <%= solution.id %>
-    <% end %>
-    <br>
-    <p>Analyse:</p>
-    <ul>
-      <% @testing_solutions.each do |key, value| %>
-        <% if value != true %>
-          <li><%= key %> <%= value %></li>
 
-        <% end %>
+  <%= link_to "Mon compte", user_path(current_user) if current_user.present? %>
+  <h3>Call API pour les solutions <a href="/api/v1/formularies/<%= @formulary.id %>">-> ici <-</a></h3>
+  <div class="row">
+    <div class="col-md-5">
+      <ol>
+        <li><%= @formulary.first_name %></li>
+        <li><%= @formulary.zip_code %></li>
+        <li><%= @formulary.his_age %> ans</li>
+        <li><%= FormularyChoice::YES_NO[@formulary.is_working] %></li>
+        <li><%= FormularyChoice::YES_NO[@formulary.loss_of_autonomy_receipt] %></li>
+        <li><%= FormularyChoice::OCCUPATION_CHOICES[@formulary.occupation] %></li>
+        <li><%= FormularyChoice::HOLDER_OCCUPATION_CHOICES[@formulary.holder_occupation] %></li>
+        <li><%= @formulary.lessor %></li>
+        <li><%= FormularyChoice::ACCOMMODATION[@formulary.accommodation] %></li>
+        <li><%= FormularyChoice::FLOOR[@formulary.floor] %></li>
+        <li><%= FormularyChoice::YES_NO[@formulary.accessibility_with_step] %></li>
+        <li><%= FormularyChoice::TYPE_OF_PENSION[@formulary.type_of_pension] %></li>
+        <li><%= @formulary.pension %></li>
+        <li><%= @formulary.supplementary %></li>
+        <li><%= FormularyChoice::LOSS_OF_AUTONOMY[@formulary.loss_of_autonomy] %></li>
+        <li><%= FormularyChoice::OCCUPANT[@formulary.occupant] %></li>
+        <li><%= FormularyChoice::YES_NO[@formulary.owner_is_include] %></li>
+        <li><%= FormularyChoice::YES_NO[@formulary.has_partner] %></li>
+        <li><%= FormularyChoice::TAXE_REVENUE[@formulary.tax_revenue] %></li>
+        <li><%= FormularyChoice::GROSS_INCOME[@formulary.gross_income] %></li>
+        <li><%= FormularyChoice::GLOBAL_TAXE_REVENUE[@formulary.global_tax_revenue] %></li>
+        <li><%= FormularyChoice::HOUSEHOLD_INCOME[@formulary.household_income] %></li>
+        <li><%= FormularyChoice::OWNER_TAXE_REVENUE[@formulary.owner_tax_revenue] %></li>
+        <li><%= FormularyChoice::ASSISTANT[@formulary.assistant] %></li>
+      </ol>
+    </div>
+    <div class="col-md-7">
+    <p>Supprimer cette partie, c'est juste pour s'assurer que les formulaires fonctionnent</p>
+      <p>Match: <%= @solutions.count %> </p>
+      <% @solutions.each do |solution| %>
+        <%= solution.id %>
       <% end %>
-    </ul>
+      <br>
+      <p>Analyse:</p>
+      <ul>
+        <% @testing_solutions.each do |key, value| %>
+          <% if value != true %>
+            <li><%= key %> <%= value %></li>
+
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
   </div>
+
+  <div class="footer-newsletter-btn">
+    <%= link_to "Sign up", new_user_registration_path %>
+    <%= link_to "Retour", root_path %>
+  </div>
+
 </div>
 
-<div class="footer-newsletter-btn">
-  <%= link_to "Sign up", new_user_registration_path %>
-  <%= link_to "Retour", root_path %>
-</div>
+<%= render "shared/footer" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

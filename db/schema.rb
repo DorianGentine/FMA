@@ -35,10 +35,9 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
   create_table "formularies", force: :cascade do |t|
     t.bigint "visitor_id"
     t.bigint "project_id"
-    t.string "last_name"
     t.string "first_name"
     t.string "zip_code"
-    t.integer "age"
+    t.string "age"
     t.integer "is_working"
     t.integer "loss_of_autonomy_receipt"
     t.integer "occupation"
@@ -86,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
   end
 
   create_table "user_projects", force: :cascade do |t|
+    t.boolean "client", default: false
     t.bigint "user_id"
     t.bigint "project_id"
     t.index ["project_id"], name: "index_user_projects_on_project_id"

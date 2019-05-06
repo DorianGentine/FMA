@@ -1,3 +1,14 @@
+<!-- CTA -->
+<div class="margin-top-120 CTA-padding">
+  <div class="inscription-newsletter blue-background">
+    <div class="margin-right-30">
+      <h1 class="white margin-right-30 no-margin">Estimez les aides à votre disposition</h1>
+      <p class="gray-300 margin-bottom-30-xs">Vous utilisez déjà financer mon autonomie ? <%= link_to "Connectez-vous", new_user_session_path %></p>
+    </div>
+    <%= link_to "Découvrir", home_path, class: "btn-gris text-align-center" %>
+  </div>
+</div>
+
 <footer>
   <div class="row">
     <div class="col-lg-3 col-xs-12">
@@ -8,8 +19,8 @@
     <div class="col-lg-3 col-xs-12">
       <p class="blue margin-bottom-30 margin-top-60-xs">À propos</p>
       <p class="margin-bottom-15"><%= link_to "Qui sommes-nous ?", equipe_path %></p>
-      <p class="margin-bottom-15"><%= link_to "CGU & CGV" %></p>
-      <p><a href="#">Protection des données</a></p>
+      <p class="margin-bottom-15"><%= link_to "CGU & CGV", cgu_path %></p>
+      <p><%= link_to "Protection des données", rgpd_path %></p>
     </div>
     <div class="col-lg-6 col-xs-12">
       <p class="black margin-bottom-30 margin-top-60-xs">Restez informé de notre actualité</p>
@@ -37,7 +48,7 @@
   </div>
   <hr class="margin-top-120 ligne-horizontal gray-300-background">
   <div class="row">
-    <p class="gray-300 col-lg-5 col-xs-12">Tous droits réservés © 2019 <strong class="blue">Bel'Avie</strong></p>
-    <p class="gray-300 offset-lg-2 col-lg-5 col-xs-12 text-align-right text-align-left-xs">Créé par <a href="https://www.avemcreation.com/" target="_blank">Avem Création</a></p>
+    <p class="gray-300 col-lg-5 col-xs-12">Tous droits réservés © 2019 <a class="blue" href="http://www.bel-avie.com/" target="_blank">Bel'Avie</a></p>
+    <p class="gray-300 offset-lg-2 col-lg-5 col-xs-12 text-align-right text-align-left-xs">Créé par <a class="link-avem" href="https://www.avemcreation.com/" target="_blank">Avem Création</a></p>
   </div>
 </footer>

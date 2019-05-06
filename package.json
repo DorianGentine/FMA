@@ -9,6 +9,7 @@
     "history": "^4.9.0",
     "ikonate": "^1.0.1",
     "jquery": "^3.4.1",
+    "places.js": "^1.16.4",
     "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

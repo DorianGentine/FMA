@@ -1,36 +1,35 @@
 class FormulariesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:create, :update, :show, :sort]
-  skip_before_action :verify_authenticity_token, only: [:sort, :update, :create]
-  skip_after_action :verify_authorized, only: [:sort]
+  # skip_before_action :verify_authenticity_token, only: [:sort, :update, :create]
+
 
 
   def create
-    @visitor = Visitor.find_by(user_ip: request.ip)
-    if @visitor.nil?
-      @new_visitor = Visitor.create!(user_ip: request.ip)
-      @formulary = Formulary.new(form_params)
-      @formulary.visitor = @new_visitor
-      @formulary.project = Project.create!
-    else
-      if @visitor.formulary.nil?
-        @formulary = Formulary.new(form_params)
-        @formulary.visitor = @visitor
-        @formulary.project = Project.create!
-      else
-        @formulary = @visitor.formulary
-      end
-    end
-
-    respond_to do |format|
-      if @formulary.save
-        format.html { redirect_to home_path }
-        format.js
-      else
-        format.html { render '/home' }
-        format.js
-      end
-    end
-    authorize @formulary
+    # @visitor = Visitor.find_by(user_ip: request.ip)
+    # if @visitor.nil?
+    #   @new_visitor = Visitor.create!(user_ip: request.ip)
+    #   @formulary = Formulary.new(form_params)
+    #   @formulary.visitor = @new_visitor
+    #   @formulary.project = Project.create!
+    # else
+    #   if @visitor.formulary.nil?
+    #     @formulary = Formulary.new(form_params)
+    #     @formulary.visitor = @visitor
+    #     @formulary.project = Project.create!
+    #   else
+    #     @formulary = @visitor.formulary
+    #   end
+    # end
+    # respond_to do |format|
+    #   if @formulary.save
+    #     format.html { redirect_to home_path }
+    #     format.js
+    #   else
+    #     format.html { render '/home' }
+    #     format.js
+    #   end
+    # end
+    # authorize @formulary
   end
 
   def update
@@ -48,14 +47,6 @@ class FormulariesController < ApplicationController
     authorize @formulary
   end
 
-  def sort
-    @formulary = Formulary.find(params[:id].to_i)
-    # params[:params_value].permit!
-    p "///// Avant#{FormularyToHash.new(@formulary).to_hash_forma}"
-    @formulary.update(form_api_call_params)
-    p "///// Après #{FormularyToHash.new(@formulary).to_hash_forma}"
-    head :ok
-  end
 
   def show
     session[:formulary_id] = params[:id]
@@ -70,11 +61,6 @@ class FormulariesController < ApplicationController
 
   private
 
-  def form_api_call_params
-    pf = params[:params_value].permit
-    upload_alowing_form(pf)
-  end
-
   def form_params
     pf = params.require(:formulary).permit(:last_name, :first_name, :zip_code, :age,
       :is_working, :loss_of_autonomy_receipt, :occupation, :holder_occupation, :lessor, :accommodation, :floor,
@@ -88,16 +74,20 @@ class FormulariesController < ApplicationController
   # pour un seul params exemple floor mais pas pour tout les models
   def upload_alowing_form(pf)
     f = params[:id].nil? ? Formulary.new : Formulary.find(params[:id])
-    index = Formulary.column_names.index(params[:formulary].keys.first)
-    Formulary.column_names.drop(index).each_with_index do |column_name, form_index|
+    form = Formulary.column_names.reverse.drop(2).reverse
+    index = form.index(params[:formulary].keys.first)
+    form.drop(index).each_with_index do |column_name, form_index|
       allow = "allow_" + column_name + "?"
       if params[:formulary][column_name].present?
         pf[column_name] = f.send(allow) ? params[:formulary][column_name] : nil
+      else
+        pf[column_name] = nil
       end
     end
-
     return pf
   end
+
+
   # def reset_params
   #   pf = {
   #     age: nil,

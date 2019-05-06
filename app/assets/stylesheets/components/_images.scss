@@ -5,7 +5,6 @@
   background-size: contain;
   height: 75vh;
 }
-
 .hp_02{
   background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/v1556856588/hp_02_ouqddc.png);
   background-position: center; /* Center the image */
@@ -13,7 +12,6 @@
   background-size: contain;
   height: 75vh;
 }
-
 .hp_03{
   background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/v1556856588/hp_03_a7sijq.jpg);
   background-position: center; /* Center the image */
@@ -21,13 +19,20 @@
   background-size: contain;
   height: 75vh;
 }
-
 .hp_04{
   background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/v1556856588/hp_04_hrflqp.jpg);
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: contain;
   height: 75vh;
+}
+
+.image-connexion{
+  background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/v1556867008/07_sidebar_kcfbm2.png);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain;
+  height: calc(100vh - 100px);
 }
 
 .qsn-v1{
@@ -84,6 +89,21 @@
   margin: auto;
   height: 200px;
   width: 200px;
+}
+
+.image_404{
+  background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/v1556879788/erreur_404_vvlujv.svg);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain;
+  height: calc(100vh - 100px);
+}
+.image_500{
+  background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/v1556879777/erreur_500_suyszg.svg);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain;
+  height: calc(100vh - 100px);
 }
 
 

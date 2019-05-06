@@ -1,28 +1,54 @@
-<h2>Sign up</h2>
+<img class="absolute" style="top: 0; right: 0; width: 50vw;" src="../assets/BG.svg" alt="">
+<%= render "shared/navbar" %>
 
-<%= simple_form_for(@user, as: :user, url: registration_path(@user)) do |f| %>
-  <%= f.error_notification %>
+<div class="container">
+    <!-- Questionnaire -->
+  <div class="row">
+    <div class="col-lg-5 col-xs-12">
 
-  <div class="form-inputs">
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :phone %>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+      <h1 class="no-margin">Inscrivez-vous</h1>
+      <p class="margin-bottom-30">Vous avez un projet en tête. Via votre espace personnel, un conseiller vous accompagne dans chaque étape.</p>
+
+      <%= simple_form_for(@user, as: :user, url: registration_path(@user)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <div class="row">
+            <div class="col-lg-6">
+              <%= f.input :first_name, label: "Prénom" %>
+            </div>
+            <div class="col-lg-6">
+              <%= f.input :last_name, label: "Nom" %>
+            </div>
+            <div class="col-lg-12">
+              <%= f.input :phone, label: "Téléphone" %>
+            </div>
+            <div class="col-lg-12">
+              <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }%>
+            </div>
+            <div class="col-lg-6">
+              <%= f.input :password, label: "Mot de passe", required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
+            </div>
+            <div class="col-lg-6">
+              <%= f.input :password_confirmation, label: "Confirmation", required: true, input_html: { autocomplete: "new-password" } %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "S'enregistrer", class: "btn-blue width-100" %>
+        </div>
+      <% end %>
+
+      <p class="margin-top-15">Vous avez déjà un compte ? <%= link_to "Connectez-vous ici", new_session_path(resource_name) %>.</p>
+
+
+    </div>
+    <div class="image-connexion col-lg-7 d-none d-sm-block"></div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
+
+<%#= render "devise/shared/links" %>

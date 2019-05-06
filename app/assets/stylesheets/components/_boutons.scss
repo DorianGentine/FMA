@@ -9,8 +9,19 @@
     color: darken($blue, 15%) !important;
   }
 
+  .link-avem{
+    color: #4ECCA3;
+    border-radius: 3px;
+    padding: 3px 6px;
+  }
+  .link-avem:hover{
+    color: white !important;
+    background-color: #4ECCA3;
+  }
+
 // btn-blue
   .btn-blue{
+    cursor: pointer;
     padding: 10px 30px;
     background-color: $blue;
     color: white;
@@ -30,6 +41,7 @@
 
 // btn-gris
   .btn-gris{
+    cursor: pointer;
     padding: 10px 30px;
     background-color: $gray-100;
     color: $dark-blue;
