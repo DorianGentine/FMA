@@ -1,8 +1,10 @@
+<div id="app" data-user_id="<%= @user.id %>" data-project_id="<%= @project.id %>"></div>
+
+
 <h1><%= @user.first_name %></h1>
-<%= @user.phone %>
 
 
 <!-- <h3>Call API pour formulaire <a href="/api/v1/formularies/<#%= @formulary.id %>">-> ici <-</a></h3> -->
 
-
-<%= link_to "ICI", api_v1_user_project_path(@user, @project) %>
+<br><br>
+<%= link_to "Call API", api_v1_user_project_path(@user, @project), class: "btn-blue" %>

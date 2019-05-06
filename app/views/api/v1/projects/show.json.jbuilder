@@ -1,3 +1,5 @@
+json.beneficiaire( @user, :id, :client, :last_name, :first_name, :created_at, :updated_at)
+
 json.project( @project, :id, :created_at, :updated_at)
 
 json.financers @solutions.count
