@@ -1,6 +1,6 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
   before_action :set_visitor, only: [:new, :edit]
-  skip_after_action :verify_authorized, only: [:update, :create]
+  skip_after_action :verify_authorized, only: [:update, :create, :new, :show]
   # skip_before_action :verify_authenticity_token, only: [:update, :create]
 
   def show
