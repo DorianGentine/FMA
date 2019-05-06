@@ -20,11 +20,15 @@ class TestSolution
 
   def create_formulary(form)
     Formulary.column_names.each_with_index do |column_name, form_index|
-      index = form_index - 2
-      if skip_columns?(column_name)
-        if column_name == "occupation" || column_name == "assistant" || column_name == "age"
+      index = form_index - 1
+      if skip_column_to_verif?(column_name)
+        if column_name == "occupation" || column_name == "assistant"
           @array_of_conditions.each do |conditions|
             form.send("#{column_name}=", conditions.keys.include?(index) ? set_a_condition(index, conditions) : @choices[:"#{column_name}"].sample.second )
+          end
+        elsif column_name == "age"
+          @array_of_conditions.each do |conditions|
+            form.send("#{column_name}=", @choices[:test_age].sample.first )
           end
         else
           @array_of_conditions.each do |conditions|
@@ -40,7 +44,7 @@ class TestSolution
     return true
   end
 
-  def skip_columns?(column_name)
+  def skip_column_to_verif?(column_name)
     if column_name != "id" && column_name != "visitor_id" && column_name != "project_id" &&
       column_name != "created_at" && column_name != "updated_at" &&
       column_name != "first_name" && column_name != "zip_code"

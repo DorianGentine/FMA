@@ -2,26 +2,7 @@ class Formulary < ApplicationRecord
   belongs_to :visitor
   belongs_to :project
 
-  def set_age_group
-    return false if self.his_age.nil?
-    if self.his_age < 55
-      return 0
-    elsif self.his_age.between?(56,60)
-      return 1
-    elsif self.his_age.between?(61,70)
-      return 2
-    elsif self.his_age > 70
-      return 3
-    end
-  end
 
-  def his_age
-    day = self.age.split("/")[0].to_i
-    month = self.age.split("/")[1].to_i
-    year = self.age.split("/")[2].to_i
-    now = Time.now.utc.to_date
-    return now.year - year - ((now.month > month || (now.month == month && now.day >= day)) ? 0 : 1)
-  end
 
   # Q-1
   # def allow_last_name?
@@ -139,6 +120,7 @@ class Formulary < ApplicationRecord
 
   # Q-15
   def allow_supplementary?
+    # raise
     if self.age.present? && self.set_age_group > 0
       return true
     else
@@ -291,5 +273,27 @@ class Formulary < ApplicationRecord
         return false
       end
     end
+  end
+
+
+  def set_age_group
+    return false if self.his_age.nil?
+    if self.his_age < 55
+      return 0
+    elsif self.his_age.between?(56,60)
+      return 1
+    elsif self.his_age.between?(61,70)
+      return 2
+    elsif self.his_age > 70
+      return 3
+    end
+  end
+
+  def his_age
+    day = self.age.split("/")[0].to_i
+    month = self.age.split("/")[1].to_i
+    year = self.age.split("/")[2].to_i
+    now = Time.now.utc.to_date
+    return now.year - year - ((now.month > month || (now.month == month && now.day >= day)) ? 0 : 1)
   end
 end

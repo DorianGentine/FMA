@@ -29,17 +29,15 @@ const editAnswer = (questions, question) => {
   setQuestionsAnswer(questions, question)
 }
 
-const insertQuestionAnswers = (data) => {
-  const questions = data.formulary.questions
+const insertQuestionAnswers = (questions) => {
   setQuestionsAnswer(questions)
-  getEditAnswer(data.formulary.questions)
+  getEditAnswer(questions)
   form.addEventListener("submit", function(event){
     updateFormulary(event, questions)
   });
 
 }
 const setNextQuestion = (nex_question) => {
-  console.log("nex_question", nex_question.position)
   const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
   form.insertAdjacentHTML("beforeend", lastQuestion);
 }
@@ -50,7 +48,6 @@ const setQuestionsAnswer = (questions, question = null) => {
     } else { if (typeof questions[i].answer != 'string') { break; } }
     insertQuestion(questions[i])
     if (questions[i].set_up.need_answer) {
-  console.log(questions[i].set_up.need_answer)
       insertAnswer(questions[i])
     }
   }
@@ -62,15 +59,14 @@ const setQuestionsAnswer = (questions, question = null) => {
   }
 }
 
-const nextStep = (data) => {
-  const questions = data.formulary.questions
+const nextStep = (questions) => {
   for ( var i = 0; i < questions.length; i ++){
     if (typeof questions[i].answer != 'string') { break; }
   }
   insertAnswer(questions[i-1])
   if (questions[i]) {
     setNextQuestion(questions[i])
-    getEditAnswer(data.formulary.questions)
+    getEditAnswer(questions)
     setFormForFormulary(questions[i])
   } else {
     createLinkNext()
@@ -94,8 +90,9 @@ function fetchFormulary(updated = null, id = null){
       .then(response => response.json())
       .then((data) => {
         console.log('data', data)
-        if (updated) { nextStep(data)}
-        else { insertQuestionAnswers(data) }
+        const questions = data.formulary
+        if (updated) { nextStep(questions)}
+        else { insertQuestionAnswers(questions) }
         scrollLastMessageIntoView()
       });
   }

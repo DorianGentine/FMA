@@ -19,6 +19,9 @@
   transition: 0.5s;
   margin-bottom: 20px;
   color: white;
+  strong {
+    color: $blue;
+  }
 }
 
 .received{
