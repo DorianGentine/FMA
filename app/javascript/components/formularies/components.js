@@ -12,11 +12,25 @@ const createEditBtn = (question) => {
 
 const insertAnswer = (question) => {
   createEditBtn(question)
-  answer_send = `<div class="message sent" data-columnName='${question.set_up.column_name}'>${btn} ${question.set_up.start_answer} ${question.answer}</div>`
+  const answer = question.answer
+  let total_answer
+  if (answer === "0- Oui") {
+    total_answer = question.set_up.start_answer["oui"]
+  } else if (answer == "1- Non") {
+    total_answer = question.set_up.start_answer["non"]
+  } else if (answer === 1 ) {
+    total_answer = question.set_up.start_answer["1"] + question.answer
+  } else if (answer === 2 ) {
+    total_answer = question.set_up.start_answer["2"] + question.answer
+  } else {
+    total_answer = `${question.set_up.start_answer} ${question.answer}`
+  }
+  answer_send = `<div class="message sent" data-columnName='${question.set_up.column_name}'>${btn} ${total_answer}</div>`
   form.insertAdjacentHTML("beforeend", answer_send);
 }
 const createLinkNext = () => {
-  const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
+  const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/" style="width: 100%;">Voir mon analyse</a>`
+  // const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
   form.insertAdjacentHTML("beforeend", link)
 }
 
@@ -25,10 +39,10 @@ const createInputAnswer = (question, div) => {
   input.style.width = "70%"
   input.classList = "form-control select optional"
   input.id = `formulary_${question.set_up.column_name}`
-  if (question.set_up.column_name === "zip_code") {
-    input.id = `flat_address`
-    // input.id = `flat_address formulary_${question.set_up.column_name}`
-  }
+  // if (question.set_up.column_name === "zip_code") {
+  //   input.id = `flat_address`
+  //   input.id = `flat_address formulary_${question.set_up.column_name}`
+  // }
   input.name = `formulary[${question.set_up.column_name}]`
   input.type = "text"
   input.setAttribute( "data-position", question.set_up.position)

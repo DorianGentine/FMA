@@ -18,6 +18,13 @@ class FormularyChoice
     3 => "3- Strictement supérieur à 75 ans"
   }
 
+  TEST_AGE = {
+    0 => "12/21/1978",
+    1 => "12/21/1960",
+    2 => "12/21/1950",
+    3 => "12/21/1940"
+  }
+
   OCCUPATION_CHOICES = {
     0 => "0- Propriétaire occupant",
     1 => "1- Occupant à titre gratuit",
@@ -88,12 +95,12 @@ class FormularyChoice
   }
 
   ASSISTANT = {
-    0 => "0- Prêt à taux 0 au cours des 5 dernières années",
-    1 => "1- Aide pour l'adaptation du logement via l'APA",
-    2 => "2- PCH",
-    3 => "3- Dispositif d'action social auprès d'une caisse de retraite principale",
-    4 => "4- Subvention de l'ANAH au cours des 5 dernières années",
-    5 => "5- Non"
+    0 => "0- un prêt à taux 0 au cours des 5 dernières années",
+    1 => "1- une aide pour l'adaptation du logement via l'APA",
+    2 => "2- un PCH",
+    3 => "3- un dispositif d'action social auprès d'une caisse de retraite principale",
+    4 => "4- une subvention de l'ANAH au cours des 5 dernières années",
+    5 => "5- Rien"
   }
 
   YES_NO = {
@@ -113,6 +120,7 @@ class FormularyChoice
     owner_is_include: YES_NO.map { |choice, index| [index, choice]  },
     has_partner: YES_NO.map { |choice, index| [index, choice]  },
     age: AGE.map { |choice, index| [index, choice]  },
+    test_age: TEST_AGE.map { |choice, index| [index, choice]  },
     occupation: OCCUPATION_CHOICES.map { |choice, index| [index, choice]  },
     holder_occupation: HOLDER_OCCUPATION_CHOICES.map { |choice, index| [index, choice]  },
     accommodation: ACCOMMODATION.map { |choice, index| [index, choice]  },
@@ -129,46 +137,69 @@ class FormularyChoice
     }
   end
 
+  def set_questions_form
+      {
+      "step_0" => step_0,
+      "step_1" => step_1,
+      "first_name" => first_name,
+      "zip_code" => zip_code,
+      "age" => age,
+      "is_working" => is_working,
+      "loss_of_autonomy_receipt" => loss_of_autonomy_receipt,
+      "occupation" => occupation,
+      "holder_occupation" => holder_occupation,
+      "lessor" => lessor,
+      "accommodation" => accommodation,
+      "floor" => floor,
+      "accessibility_with_step" => accessibility_with_step,
+      "type_of_pension" => type_of_pension,
+      "pension" => pension,
+      "supplementary" => supplementary,
+      "loss_of_autonomy" => loss_of_autonomy,
+      "occupant" => occupant,
+      "owner_is_include" => owner_is_include,
+      "has_partner" => has_partner,
+      "tax_revenue" => tax_revenue,
+      "gross_income" => gross_income,
+      "global_tax_revenue" => global_tax_revenue,
+      "household_income" => household_income,
+      "owner_tax_revenue" => owner_tax_revenue,
+      "assistant" => assistant
+    }
+  end
 
-  def first_intro
+  def step_0
     return {
-      question: "Bonjour, nous allons vérfier ensemble si votre projet d'adaptation de <strong>logement est éligible</strong> à des fincancements.",
-      column_name: false,
-      type: false,
+      question: questions[:step_0],
+      position: 0,
+      need_answer: false
+    }
+  end
+  def step_1
+    return {
+      question: questions[:step_1],
+      position: 0,
+      need_answer: false
+    }
+  end
+  def last_name
+    return {
+      question: questions[:last_name],
+      column_name: "last_name",
+      type: "input",
       multiple_answers: false,
-      placeholder: false,
+      placeholder: "votre nom",
       data: nil,
-      need_answer: false,
+      need_answer: true,
       tooltip: nil,
       errorLabel: nil,
       start_answer: nil,
-      position: 0,
+      position: 1,
       validate: {
         required: true
       }
     }
   end
-
-
-
-  # def last_name
-  #   return {
-  #     question: questions[:last_name],
-  #     column_name: "last_name",
-  #     type: "input",
-  #     multiple_answers: false,
-  #     placeholder: "votre nom",
-  #     data: nil,
-  #     need_answer: true,
-  #     tooltip: nil,
-  #     errorLabel: nil,
-  #     start_answer: nil,
-  #     position: 1,
-  #     validate: {
-  #       required: true
-  #     }
-  #   }
-  # end
   def first_name
     return {
       question: questions[:first_name],
@@ -223,7 +254,6 @@ class FormularyChoice
       }
     }
   end
-
   def is_working
     return {
       question: questions[:is_working],
@@ -235,7 +265,10 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: {
+        oui: "Oui, j'excerce une activité professionnelle",
+        non: "Non, je n'excerce pas d'activité professionnelle"
+      },
       position: 5,
       validate: {
         required: true
@@ -253,7 +286,10 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: {
+        oui: "Oui, je dispose ces justificatifs",
+        non: "Non, je ne dispose pas ces justificatifs"
+      },
       position: 6,
       validate: {
         required: true
@@ -271,7 +307,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Je suis",
       position: 7,
       validate: {
         required: true
@@ -289,7 +325,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Il est",
       position: 8,
       validate: {
         required: true
@@ -307,14 +343,13 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Il s'agit de",
       position: 9,
       validate: {
         required: true
       }
     }
   end
-
   def accommodation
     return {
       question: questions[:accommodation],
@@ -326,14 +361,13 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Il s'agit d'un",
       position: 10,
       validate: {
         required: true
       }
     }
   end
-
   def floor
     return {
       question: questions[:floor],
@@ -345,14 +379,13 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Je réside",
       position: 11,
       validate: {
         required: true
       }
     }
   end
-
   def accessibility_with_step
     return {
       question: questions[:accessibility_with_step],
@@ -364,14 +397,16 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: {
+        oui: "Oui, elle est accessible",
+        non: "Non, je dois franchir une marche"
+      },
       position: 12,
       validate: {
         required: true
       }
     }
   end
-
   def type_of_pension
     return {
       question: questions[:type_of_pension],
@@ -401,7 +436,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Il s'agit de l'organisme",
       position: 14,
       validate: {
         required: true
@@ -419,7 +454,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Il s'agit de l'organisme",
       position: 15,
       validate: {
         required: true
@@ -437,7 +472,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "j'appartiens",
       position: 16,
       validate: {
         required: true
@@ -455,7 +490,10 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: {
+        "1" => "J'habite seul",
+        "2" => "Nous sommes"
+      },
       position: 17,
       validate: {
         required: true
@@ -473,7 +511,10 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: {
+        oui: "Oui, le propriétaire vit dans le logement",
+        non: "Non, le propriétaire ne vit pas dans le logement"
+      },
       position: 18,
       validate: {
         required: true
@@ -491,7 +532,10 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: {
+        oui: "Oui, je vis en couple",
+        non: "Non, je ne vis pas en couple"
+      },
       position: 19,
       validate: {
         required: true
@@ -509,7 +553,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Le montant de mon revenu fiscal est de",
       position: 20,
       validate: {
         required: true
@@ -527,7 +571,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Le montant de mon revenu brut global est de",
       position: 21,
       validate: {
         required: true
@@ -545,7 +589,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Le montant de mon revenu fiscal de référence de l'ensemble de mon foyer est de",
       position: 22,
       validate: {
         required: true
@@ -563,7 +607,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Le montant de mon revenu brut global de votre ménage est de",
       position: 23,
       validate: {
         required: true
@@ -581,7 +625,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Le montant de mon revenu fiscal du propriétaire est de",
       position: 24,
       validate: {
         required: true
@@ -599,7 +643,7 @@ class FormularyChoice
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
-      start_answer: nil,
+      start_answer: "Je perçois",
       position: 25,
       validate: {
         required: true
@@ -611,10 +655,12 @@ class FormularyChoice
 
   def questions
     {
+      step_0: "Bonjour...",
+      step_1: "Vérifions si votre projet d'adaptation de <strong>logement est éligible</strong> à des fincancements.",
       # last_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
       first_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
       zip_code: "Quel est le code postal de votre ville de résidence ?",
-      age: "Quel est votre date de naissance ?",
+      age: "Parfait, quel est votre date de naissance ?",
       is_working: "Exercez-vous une activité professionnelle ?",
       loss_of_autonomy_receipt: "Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à la date d'anniversaire de vos 60 ans ?",
       occupation: "Quel est votre statut d'occupation dans votre logement ?",
