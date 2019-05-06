@@ -12,7 +12,6 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   def new
     formulary = Formulary.new
     @formulary = FormularyToHash.new(formulary).form_json
-    authorize formulary
   end
 
   def create
