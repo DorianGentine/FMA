@@ -1,8 +1,3 @@
-import { initialState } from '../index';
-
-// console.log(urlAPI)
-
-
 export const FETCH_API = 'FETCH_API';
 
 export function fetchAPI(url) {
@@ -10,6 +5,6 @@ export function fetchAPI(url) {
 
   return {
     type: FETCH_API,
-    payload: promise // Will be resolved by redux-promise
+    payload: promise
   };
 }
