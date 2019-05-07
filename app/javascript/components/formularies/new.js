@@ -18,6 +18,7 @@ const getEditAnswer = (questions) => {
       for (var i = 0; i < questions.length; i++) {
         if (questions[i].set_up.position == btn.dataset.position) {
           form.innerHTML = ""
+          document.getElementById('formulary-form').lastChild.remove()
           editAnswer(questions, questions[i])
         }
       }
@@ -32,7 +33,7 @@ const editAnswer = (questions, question) => {
 const insertQuestionAnswers = (questions) => {
   setQuestionsAnswer(questions)
   getEditAnswer(questions)
-  form.addEventListener("submit", function(event){
+  document.getElementById('formulary-form').addEventListener("submit", function(event){
     updateFormulary(event, questions)
   });
 
@@ -93,7 +94,7 @@ function fetchFormulary(updated = null, id = null){
         const questions = data.formulary
         if (updated) { nextStep(questions)}
         else { insertQuestionAnswers(questions) }
-        scrollLastMessageIntoView()
+        scrollLastMessageIntoView(form)
       });
   }
 }

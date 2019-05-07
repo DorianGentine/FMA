@@ -7,7 +7,7 @@ const insertQuestion = (question) => {
 }
 
 const createEditBtn = (question) => {
-  btn = `<button type="button" class="btn btn-light edit" data-position="${question.set_up.position}"><i class="fas fa-pencil-alt"></i></button>`
+  btn = `<button type="button" class="btn btn-light float-left edit" data-position="${question.set_up.position}"><i class="fas fa-pencil-alt"></i></button>`
 }
 
 const insertAnswer = (question) => {
@@ -31,7 +31,7 @@ const insertAnswer = (question) => {
 const createLinkNext = () => {
   const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/" style="width: 100%;">Voir mon analyse</a>`
   // const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
-  form.insertAdjacentHTML("beforeend", link)
+  form.insertAdjacentHTML("afterend", link)
 }
 
 const createInputAnswer = (question, div) => {
@@ -86,11 +86,11 @@ const createSubmitBtn = (div) => {
 const setFormForFormulary = (question) => {
   const div = document.createElement('form')
   if (form.dataset.id) {
-    div.classList = "simple_form edit_formulary"
+    div.classList = "simple_form edit_formulary margin-top-15"
     div.id = `edit_formulary_${form.dataset.id}`
     // div.action = `/formularies/${form.dataset.id}`
   } else {
-    div.classList = "simple_form new_formulary"
+    div.classList = "simple_form new_formulary margin-top-15"
     div.id = `new_formulary`
     // div.action = `/formularies`
   }
@@ -100,7 +100,7 @@ const setFormForFormulary = (question) => {
   div.acceptCharset = "UTF-8"
   // div.method = "post"
   div.style.display = "flex"
-  form.appendChild(div)
+  document.getElementById('formulary-form').appendChild(div)
 
   const input = document.createElement("input")
   input.name = "_method"
