@@ -1,10 +1,11 @@
 
 import { fetchFormulary } from "../formularies/new";
 
-
+const formularyForm = document.getElementById('formulary-form')
 
 const successUptade = (input, questions, form, id) => {
   console.log("coucou jai envoyé les données")
+  console.log("coucou", form)
   form.remove()
   fetchFormulary(true, id)
 }
@@ -19,10 +20,10 @@ function updateFormulary(event, questions){
     } else { form = document.getElementById('new_formulary'); url = "/api/v1/formularies"; type = "POST" }
     if (form) {
       var input
-      console.log("input", form.getElementsByTagName('select'))
-      if (form.getElementsByTagName('select')[0]) {
-        input = form.getElementsByTagName('select')[0]
-      } else { input = form.getElementsByTagName('input')[1] }
+      console.log("input", formularyForm.getElementsByTagName('select'))
+      if (formularyForm.getElementsByTagName('select')[0]) {
+        input = formularyForm.getElementsByTagName('select')[0]
+      } else { input = formularyForm.getElementsByTagName('input')[1] }
       const obj = {}
       obj[input.name.replace("formulary[", "").replace("]","")] = input.value
       // console.log("coucou jenvoie les données", obj)

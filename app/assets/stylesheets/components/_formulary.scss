@@ -1,6 +1,6 @@
 #formulary{
   overflow: scroll;
-  height: 70vh;
+  height: calc( 70vh - 57.5px);
 }
 
 .formulary-border{
