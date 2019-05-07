@@ -1,5 +1,5 @@
 class ContactFormsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :new, :create, :update]
+  # skip_before_action :authenticate_user!, only: [ :new, :create, :update]
 
   def new
     @visitor = Visitor.find_or_create_by(user_ip: request.ip)
@@ -8,7 +8,7 @@ class ContactFormsController < ApplicationController
     else
       @contact = ContactForm.new
     end
-    authorize @contact
+    # authorize @contact
   end
 
   def create
@@ -26,7 +26,7 @@ class ContactFormsController < ApplicationController
         format.js
       end
     end
-    authorize @contact
+    # authorize @contact
   end
 
   def update
@@ -43,7 +43,7 @@ class ContactFormsController < ApplicationController
         format.js
       end
     end
-    authorize @contact
+    # authorize @contact
   end
 
   private
