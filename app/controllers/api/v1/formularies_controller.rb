@@ -1,22 +1,22 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
   before_action :set_visitor, only: [:new, :edit]
   skip_before_action :authenticate_user!, only: [ :update, :create, :new, :edit]
-  skip_after_action :verify_policy_scoped, only: [:update, :create, :new]
+  # skip_after_action :verify_policy_scoped, only: [:update, :create, :new]
 
-  # skip_after_action :verify_authorized, only: [:update, :create, :new, :show]
+  skip_after_action :verify_authorized, only: [:update, :create, :new, :show]
 
 
   def show
     @formulary = Formulary.find(params[:id])
     @solutions = SetSolutions.new(@formulary).call
-    authorize @formulary
+    # authorize @formulary
   end
 
   def new
     formulary = Formulary.new
     @formulary = FormularyToHash.new(formulary).form_json
     render json: @formulary
-    authorize formulary
+    # authorize formulary
   end
 
   def create
