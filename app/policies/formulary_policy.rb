@@ -10,4 +10,13 @@ class FormularyPolicy < ApplicationPolicy
   def update?
     true
   end
+  def new?
+    true
+  end
+  def edit?
+    true
+  end
+  def show?
+    true
+  end
 end
