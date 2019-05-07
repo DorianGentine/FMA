@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :formularies, only: [ :show, :edit, :new, :update, :create]
+      resources :formularies
       resources :users, only: [ :show, :update ] do
         resources :projects, only: [ :index, :show ]
       end

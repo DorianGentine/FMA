@@ -3,7 +3,6 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   after_action :verify_authorized, except: [:update, :create, :new, :show, :edit]
   skip_after_action :verify_policy_scoped, only: [:update, :create, :new, :edit]
 
-
   def show
     @formulary = Formulary.find(params[:id])
     @solutions = SetSolutions.new(@formulary).call
