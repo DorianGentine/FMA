@@ -1,19 +1,19 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
   before_action :set_visitor, only: [:new, :edit]
-  # after_action :verify_authorized, except: [:update, :create, :new, :show, :edit]
-  # skip_after_action :verify_policy_scoped, only: [:update, :create, :new, :edit]
+  after_action :verify_authorized, except: [:update, :create, :new, :show, :edit]
+  skip_after_action :verify_policy_scoped, only: [:update, :create, :new, :edit]
 
   def show
     @formulary = Formulary.find(params[:id])
     @solutions = SetSolutions.new(@formulary).call
-    # authorize @formulary
+    authorize @formulary
   end
 
   def new
     formulary = Formulary.new
     @formulary = FormularyToHash.new(formulary).form_json
     render json: @formulary
-    # authorize formulary
+    authorize formulary
   end
 
   def create
@@ -24,7 +24,7 @@ class Api::V1::FormulariesController < Api::V1::BaseController
     formulary.project = Project.create!
     formulary.save
     render json: formulary
-    # authorize formulary
+    authorize formulary
   end
 
   def update
@@ -32,14 +32,14 @@ class Api::V1::FormulariesController < Api::V1::BaseController
     formulary.update(form_api_call_params.permit!)
     # p "///// Après #{FormularyToHash.new(formulary).to_hash_forma}"
     render json: formulary
-    # authorize formulary
+    authorize formulary
   end
 
   def edit
     formulary = @visitor.formulary
     @formulary = FormularyToHash.new(formulary).form_json
     render json: @formulary
-    # authorize formulary
+    authorize formulary
   end
 
   private
