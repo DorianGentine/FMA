@@ -1,36 +1,8 @@
 class FormulariesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:create, :update, :show, :sort]
+  skip_before_action :authenticate_user!, only: [ :update, :show ]
   # skip_before_action :verify_authenticity_token, only: [:sort, :update, :create]
 
 
-
-  def create
-    # @visitor = Visitor.find_by(user_ip: request.ip)
-    # if @visitor.nil?
-    #   @new_visitor = Visitor.create!(user_ip: request.ip)
-    #   @formulary = Formulary.new(form_params)
-    #   @formulary.visitor = @new_visitor
-    #   @formulary.project = Project.create!
-    # else
-    #   if @visitor.formulary.nil?
-    #     @formulary = Formulary.new(form_params)
-    #     @formulary.visitor = @visitor
-    #     @formulary.project = Project.create!
-    #   else
-    #     @formulary = @visitor.formulary
-    #   end
-    # end
-    # respond_to do |format|
-    #   if @formulary.save
-    #     format.html { redirect_to home_path }
-    #     format.js
-    #   else
-    #     format.html { render '/home' }
-    #     format.js
-    #   end
-    # end
-    # authorize @formulary
-  end
 
   def update
     @formulary = Formulary.find(params[:id])

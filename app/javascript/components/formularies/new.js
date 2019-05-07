@@ -90,9 +90,8 @@ function fetchFormulary(updated = null, id = null){
       .then(response => response.json())
       .then((data) => {
         console.log('data', data)
-        const questions = data.formulary
-        if (updated) { nextStep(questions)}
-        else { insertQuestionAnswers(questions) }
+        if (updated) { nextStep(data)}
+        else { insertQuestionAnswers(data) }
         scrollLastMessageIntoView()
       });
   }

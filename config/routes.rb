@@ -15,11 +15,8 @@ Rails.application.routes.draw do
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"
   get '/rgpd', to: 'pages#rgpd', as: "rgpd"
 
-  resources :formularies, only: [:create, :show, :update] do
-    member do
-      patch :sort
-    end
-  end
+  resources :formularies, only: [:create, :show, :update]
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :formularies, only: [ :show, :edit, :new, :update, :create]

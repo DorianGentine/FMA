@@ -45,17 +45,26 @@ class FormularyToHash
 
   def generate_form_with_allow_question(form)
     array = []
-    FormularyChoice.new.set_questions_form.each do |key, value|
-      allow = "allow_" + key + "?"
-      if form.respond_to? key
-        hash = { set_up: value, answer: set_answer(form, key, allow)} if form.try(allow) && form.send(allow)
-      else
-        hash = { set_up: value, answer: "next" }
+      FormularyChoice.new.set_questions_form.each do |key, value|
+        allow = "allow_" + key + "?"
+        if form.respond_to? key
+          hash = { set_up: value, answer: set_answer(form, key, allow)} if form.try(allow) && form.send(allow)
+        else
+          hash = { set_up: value, answer: "next" }
+        end
+        if key == "zip_code" && !form.verify_zip_code
+          hash = { set_up: value, answer: set_answer(form, key, allow)} if form.try(allow) && form.send(allow)
+          array << hash
+          hash = { set_up: FormularyChoice.new.wrong_zip_code, answer: nil}
+          array << hash
+          return array
+        else
+          array << hash if hash.present?
+        end
       end
-      array << hash if hash.present?
-    end
     return array
   end
+
 
 
   def set_answer(form, column_name, allow)

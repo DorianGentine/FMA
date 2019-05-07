@@ -275,6 +275,13 @@ class Formulary < ApplicationRecord
     end
   end
 
+  def verify_zip_code
+    if self.zip_code.present?
+      self.zip_code.slice(0..1) == "94" ? true : false
+    else
+      true
+    end
+  end
 
   def set_age_group
     return false if self.his_age.nil?
