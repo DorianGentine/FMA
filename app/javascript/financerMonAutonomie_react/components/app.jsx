@@ -10,9 +10,9 @@ import MenuProfil from "../containers/menu_profil"
 import PanneauPrincipal from "../containers/panneau_principal"
 
 class App extends Component {
-  componentWillMount() {
-    this.props.fetchAPI(this.props.urlAPI);
-  }
+  // componentWillMount() {
+  //   this.props.fetchAPI(this.props.urlAPI);
+  // }
 
 
   render () {
@@ -21,8 +21,7 @@ class App extends Component {
       return (
         <div>
           <AppNavbar />
-          <h1>{this.props.api.beneficiaire.first_name}</h1>
-          <Volet />
+          <Volet conseiller={this.props.api.fma_team} />
           <div className="container">
             <MenuProfil />
             <PanneauPrincipal />

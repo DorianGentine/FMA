@@ -80,6 +80,9 @@
   .space-between{
     justify-content: space-between;
   }
+  .space-evenly{
+    justify-content: space-evenly;
+  }
   .space-between-vertical{
     flex-direction: column;
     justify-content: space-between;
@@ -248,7 +251,6 @@ input, button, select, textarea {
   .capitalize{
     text-transform: capitalize;
   }
-
   .uppercase{
     text-transform: uppercase;
   }
@@ -265,14 +267,16 @@ input, button, select, textarea {
     font-weight: 100;
   }
 
+  .font-12{
+    font-size: 12px;
+  }
+
   .text-align-right{
     text-align: right;
   }
-
   .text-align-center{
     text-align: center;
   }
-
   .text-align-justify{
     text-align: justify;
   }

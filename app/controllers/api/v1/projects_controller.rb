@@ -13,6 +13,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     # @fma_team = current_user if @user != current_user
 
     @fma_team = @project.is_his_advisor
+
     @project.formularies.each do |formulary|
       @solutions = SetSolutions.new(formulary).call
     end
