@@ -2,8 +2,6 @@ class Formulary < ApplicationRecord
   belongs_to :visitor
   belongs_to :project
 
-
-
   # Q-1
   # def allow_last_name?
   #   true
