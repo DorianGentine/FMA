@@ -164,7 +164,8 @@ class FormularyChoice
       "global_tax_revenue" => global_tax_revenue,
       "household_income" => household_income,
       "owner_tax_revenue" => owner_tax_revenue,
-      "assistant" => assistant
+      "assistant" => assistant,
+      "form_completed" => form_completed
     }
   end
 
@@ -175,9 +176,26 @@ class FormularyChoice
       need_answer: false
     }
   end
+
+  def wrong_zip_code
+    return {
+      question: "Nous sommes désolé mais nous ne prenons pas encore votre département",
+      position: 0,
+      need_answer: false
+    }
+  end
+
   def step_1
     return {
       question: questions[:step_1],
+      position: 0,
+      need_answer: false
+    }
+  end
+
+  def form_completed
+    return {
+      question: "Merci d'avoir rempli le formulaire, cliquez sur <strong>voir mon analyse</strong> pour avoir un aperçu de vos financeurs",
       position: 0,
       need_answer: false
     }

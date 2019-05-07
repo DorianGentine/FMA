@@ -1,7 +1,7 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
   before_action :set_visitor, only: [:new, :edit]
   skip_after_action :verify_authorized, only: [:update, :create, :new, :show]
-  skip_after_action :verify_policy_scoped, only: [:update, :create, :new]
+  # skip_after_action :verify_policy_scoped, only: [:update, :create, :new]
   skip_before_action :authenticate_user!, only: [ :update, :create, :new, :edit]
 
   def show
@@ -13,11 +13,13 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   def new
     formulary = Formulary.new
     @formulary = FormularyToHash.new(formulary).form_json
+    render json: @formulary
+    authorize formulary
   end
 
   def create
     visitor = Visitor.find_or_create_by(user_ip: request.ip)
-    p "params ===>  #{form_api_call_params.permit!}"
+    # p "params ===>  #{form_api_call_params.permit!}"
     formulary = Formulary.new(form_api_call_params.permit!)
     formulary.visitor = visitor
     formulary.project = Project.create!
@@ -28,13 +30,14 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   def update
     formulary = Formulary.find(params[:id].to_i)
     formulary.update(form_api_call_params.permit!)
-    p "///// Après #{FormularyToHash.new(formulary).to_hash_forma}"
+    # p "///// Après #{FormularyToHash.new(formulary).to_hash_forma}"
     render json: formulary
   end
 
   def edit
     formulary = @visitor.formulary
     @formulary = FormularyToHash.new(formulary).form_json
+    render json: @formulary
     authorize formulary
   end
 
