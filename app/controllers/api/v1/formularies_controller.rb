@@ -1,7 +1,12 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
   before_action :set_visitor, only: [:new, :edit]
-  after_action :verify_authorized, except: [:update, :create, :new, :show, :edit]
-  skip_after_action :verify_policy_scoped, only: [:update, :create, :new, :edit]
+  # after_action :verify_authorized, except: [:update, :create, :new, :show, :edit]
+  # skip_after_action :verify_policy_scoped, only: [:update, :create, :new, :edit]
+
+  def index
+    p "formularies =>> #{@formularies}"
+    @formularies = policy_scope(Formulary)
+  end
 
   def show
     @formulary = Formulary.find(params[:id])
