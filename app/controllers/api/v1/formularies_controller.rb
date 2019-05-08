@@ -10,8 +10,11 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   end
 
   def new
+    p "////////// I'm in new"
     formulary = Formulary.new
+    p "////////// formulary is #{formulary}"
     @formulary = FormularyToHash.new(formulary).form_json
+    p "////////// formulary to hash is #{@formulary}"
     render json: @formulary
     authorize formulary
   end
