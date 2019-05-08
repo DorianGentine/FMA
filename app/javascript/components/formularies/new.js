@@ -93,8 +93,7 @@ function fetchFormulary(updated = null, id = null){
         console.log('data', data)
         if (updated) { nextStep(data)}
         else { insertQuestionAnswers(data) }
-        scrollLastMessageIntoView()
-
+        scrollLastMessageIntoView(form)
       });
   }
 }
