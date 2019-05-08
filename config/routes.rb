@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   match "/422", :to => "http_errors#error_422", :via => :all
   match "/500", :to => "http_errors#error_500", :via => :all
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :users, path: "mon_espace", only: [:show, :update]
 
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"
   get '/rgpd', to: 'pages#rgpd', as: "rgpd"
 
-  resources :formularies, only: [:create, :show, :update]
+  resources :formularies, only: [ :show ]
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -25,6 +24,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :contact_forms, only: [ :create, :update, :edit ]
 

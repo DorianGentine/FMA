@@ -1,7 +1,7 @@
 class FormulariesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :update, :show ]
+  skip_before_action :authenticate_user!, only: [ :show ]
 
-  def update
+  # def update
     # @formulary = Formulary.find(params[:id])
     # @choices = FormularyChoice.new.set_collections_formulary
     # respond_to do |format|
@@ -14,7 +14,7 @@ class FormulariesController < ApplicationController
     #   end
     # end
     # authorize @formulary
-  end
+  # end
 
 
   def show
