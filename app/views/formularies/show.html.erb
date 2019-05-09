@@ -1,12 +1,19 @@
-<img class="absolute" style="top: 0; right: 0; width: 50vw;" src="../assets/BG.svg" alt="">
+<!-- <img class="absolute" style="top: 0; right: 0; width: 50vw;" src="../assets/BG.svg" alt=""> -->
 <%= render "shared/navbar" %>
 
 <div class="container">
 
-  <div class="row">
-    <div class="col-lg-5 col-xs-12">
-      <h1 class="no-margin">Analyse de vos réponses</h1>
-      <p class="margin-bottom-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun aliqua.</p>
+  <div class="row margin-top-120">
+    <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Analyse de vos réponses</h1>
+    <p class="col-lg-8 offset-lg-2 col-xs-12 text-align-center margin-bottom-60">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+    <div class="col-lg-6 avantage" id="financeurs-potentiels" data-formularyid="<%= @formulary.id %>">
+      <h2 class="blue text-align-center">Vos financeurs potentiels</h2>
+      <!-- <div class="margin-top-60">
+        <div class="logo-financeur" style="height: 60px; width: 60px"></div>
+        <h4 class="margin-top-15">La caisse de retraite principale</h4>
+        <p>Vous avez un projet en tête. Via votre espace personnel, un conseiller vous accompagne dans chaque étape. Vous avez un projet en tête. Via votre espace personnel, un conseiller vous accompagne dans chaque étape. Vous avez un projet en tête. Via votre espace personnel, un conseiller vous accompagne dans chaque étape. </p>
+      </div> -->
     </div>
 
   </div>
@@ -70,7 +77,51 @@
 
 <%= render "shared/footer" %>
 
+<!-- <script>
 
+
+  const setSolution = (solution) => {
+    const div = document.createElement('div')
+    div.acceptCharset = "UTF-8"
+    div.classList = "margin-top-60"
+    // div.id = `edit_formulary_${form.dataset.id}`
+
+    const logoFinanceur = document.createElement("div")
+    // div.acceptCharset = "UTF-8"
+    logoFinanceur.classList = "logo-financeur"
+    logoFinanceur.style = "height: 60px; width: 60px"
+
+    const nomFinanceur = document.createElement("h4")
+    // div.acceptCharset = "UTF-8"
+    nomFinanceur.classList = "margin-top-15"
+    nomFinanceur.innerText = solution.financer.name
+
+    const descriptionFinanceur = document.createElement("p")
+    // div.acceptCharset = "UTF-8"
+    descriptionFinanceur.classList = "margin-top-15"
+    descriptionFinanceur.innerText = solution.financer.description
+
+    div.appendChild(logoFinanceur)
+    div.appendChild(nomFinanceur)
+    div.appendChild(descriptionFinanceur)
+
+
+    document.getElementById('financeurs-potentiels').appendChild(div)
+  }
+
+  const getSolutions = async function () {
+    let response = await fetch("/api/v1/formularies/<%= @formulary.id %>")
+    let data = await response.json()
+
+    for (var i = 0; i < data.solutions.length; i++) {
+      setSolution(data.solutions[i])
+    }
+  }
+  getSolutions()
+
+</script>
+
+ -->
 
 
 
