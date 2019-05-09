@@ -1,9 +1,25 @@
 .menu-principal{
   background-color: white;
-  width: 400px;
+  box-sizing: border-box;
+  min-width: 400px;
+  width: 100px;
   min-height: 100vh;
   border-right: 2px solid $gray-200;
   padding: 30px 45px;
+  overflow: hidden;
+  transition: 1s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  > div{
+    min-width: 310px;
+  }
+}
+.menu-principal-hidden{
+  width: 0;
+  height: 100vh;
+  min-width: 0px;
+  padding: 30px 0;
 }
 
 
@@ -48,3 +64,72 @@
     border-radius: 50%;
   }
 }
+
+.etape-text{
+  color: $gray-300;
+  font-size: 16px;
+  strong{
+    font-weight: bold;
+    color: $black;
+  }
+}
+
+.progression-etapes{
+  margin-top: 20px;
+  width: 100%;
+  height: 8px;
+  border-radius: 10px;
+  background-color: $blue-gray;
+  position: relative;
+  .after{
+    content: "";
+    width: calc(2 / 6 * 100%);
+    height: 8px;
+    border-radius: 10px;
+    position: absolute;
+    background-color: $blue;
+  }
+}
+
+.rdv-tel-text{
+  font-size: 12px;
+  color: $gray-300;
+  strong{
+    font-size: 14px;
+    color: $gray;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

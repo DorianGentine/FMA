@@ -2,32 +2,37 @@
 <div id="app"
   data-user="<%= @user.to_json %>"
   data-project="<%= @project.to_json %>"
-  data-fma_team="<%= @fma_team.to_json %>">
+  data-fma_team="<%= @fma_team.to_json %>"
+  data-solutions="<%= @solutions.to_json %>"
+  >
 </div>
 <!-- fin -->
 
-<div class="top-corner-left">
-  <%= link_to "API", api_v1_user_project_path(@user, @project), target: "_blank" %>
 
-  <%= link_to "Form", edit_api_v1_formulary_path(@formulary), target: "_blank"%>
-</div>
+<!-- DELETE -->
+  <div class="top-corner-left">
+    <%= link_to "API", api_v1_user_project_path(@user, @project), target: "_blank" %>
 
-<style>
-  .top-corner-left{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  .top-corner-left a{
-    padding: 5px;
-    border-radius: 3px;
-    border: 1px solid #2675e5;
-    background-color: #2675e5;
-    color: white;
-    cursor: pointer;
-  }
-  .top-corner-left a:hover{
-    color: #2675e5;
-    background-color: transparent;
-  }
-</style>
+    <%= link_to "Form", edit_api_v1_formulary_path(@formulary), target: "_blank"%>
+  </div>
+
+  <style>
+    .top-corner-left{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .top-corner-left a{
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #2675e5;
+      background-color: #2675e5;
+      color: white;
+      cursor: pointer;
+    }
+    .top-corner-left a:hover{
+      color: #2675e5;
+      background-color: transparent;
+    }
+  </style>
+<!-- fin DELETE -->

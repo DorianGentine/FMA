@@ -3,7 +3,7 @@ import React from 'react';
 const AppNavbar = (props) => {
   return (
     <div className="app-navbar">
-      <div className="logo-app"> </div>
+      <a href="/home"><div className="logo-app"></div></a>
       <div className="btn-app-navbar margin-top-60 active">
         <i className="far fa-file-alt"></i>
         <p>Projet</p>

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     # @formulary = @user.projects.first.formularies
     @project = @user.projects.first
     @formulary = Formulary.where(project: @project).first
+    @solutions = SetSolutions.new(@formulary).call
     authorize @user
   end
 end

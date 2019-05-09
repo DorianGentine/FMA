@@ -20,3 +20,34 @@
   flex-direction: column;
   justify-content: flex-end;
 }
+
+// btn-evalutaion
+  .btn-evalutaion{
+    margin: 0 auto;
+    width: fit-content;
+    min-width: 210px !important;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    background-color: $blue-gray;
+    color: $gray-300;
+  }
+
+// blue-gray-btn
+  .blue-gray-btn{
+    cursor: pointer;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: $blue-gray;
+    color: $blue;
+    font-size: 12px;
+    transition: .5s;
+  }
+  .blue-gray-btn:hover{
+    background-color: $blue;
+    color: $white;
+  }
+
+

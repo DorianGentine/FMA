@@ -1,0 +1,19 @@
+.doc-to-send{
+  border-radius: 3px;
+  border: 1px solid $blue-gray;
+  padding: 10px 15px;
+  width: calc(33% - 15px);
+  min-width: 220px;
+  margin: 0 15px 20px 0;
+}
+
+.logo-financeur{
+  border-radius: 50%;
+  background-color: $black;
+  height: 20px;
+  width: 20px;
+  background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/v1557377459/logo_financeurs/vdm-ld_zmkknk.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

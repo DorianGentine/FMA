@@ -21,7 +21,7 @@ p, h1, h2, h3 {
   margin: 0;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   margin: 0;
   line-height: 1.2;
   color: $black;
@@ -40,6 +40,12 @@ h2 {
 
 h3 {
   font-size: 1.11rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+h4 {
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 15px;
 }
