@@ -1,11 +1,13 @@
 class Api::V1::VisitorsController < Api::V1::BaseController
-   before_action :set_visitor, only: [:show]
+  before_action :set_visitor, only: [:show]
+
   def index
     @visitors = policy_scope(Visitor)
   end
 
   def show
-    @formulary = @visitor.formulary.nil? ? Formulary.new : @visitor.formulary
+    formulary = @visitor.formulary.nil? ? Formulary.new : @visitor.formulary
+    @formulary = FormularyToHash.new(formulary).form_json
   end
 
   private
