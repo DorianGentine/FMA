@@ -11,7 +11,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
     render json: @formulary
   end
 
-  def update
+  def update_formulary
     visitor = Visitor.find(params[:id].to_i)
     if visitor.formulary.nil?
       formulary = Formulary.new(form_api_call_params.permit!)
@@ -39,7 +39,8 @@ class Api::V1::VisitorsController < Api::V1::BaseController
   end
 
   def test_upload_alowing_form(pf)
-    f = params[:id].nil? ? Formulary.new : Formulary.find(params[:id])
+    visitor = Visitor.find(params[:id].to_i)
+    f = visitor.formulary.nil? ? Formulary.new : visitor.formulary
     form = Formulary.column_names.reverse.drop(2).reverse
     index = form.index(pf.keys.first)
     form.drop(index).each_with_index do |column_name, form_index|

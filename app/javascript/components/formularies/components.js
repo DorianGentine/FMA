@@ -137,14 +137,17 @@ const setFormForFormulary = (question) => {
   //   div.classList = "simple_form new_formulary margin-top-15"
   //   div.id = `new_formulary`
   // }
+  // div.action = `/api/v1/visitors/${form.dataset.visitor}`
+  div.setAttribute('novalidate', "novalidate");
   div.setAttribute("data-remote", true)
   div.acceptCharset = "UTF-8"
+  // div.method = "post"
   div.style.display = "flex"
   document.getElementById('formulary-form').appendChild(div)
 
   const input = document.createElement("input")
   input.name = "_method"
-  if (form.dataset.id) {input.value = "patch"} else {input.value = "post"}
+  // if (form.dataset.id) {input.value = "patch"} else {input.value = "post"}
   input.type = "hidden"
   div.appendChild(input)
   if (question.set_up.type === "select") {

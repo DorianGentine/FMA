@@ -9,7 +9,7 @@ class VisitorPolicy < ApplicationPolicy
     true
   end
 
-  def update?
+  def update_formulary?
     true
   end
 end
