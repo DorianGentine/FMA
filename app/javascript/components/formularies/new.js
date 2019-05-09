@@ -3,6 +3,7 @@ import { scrollLastMessageIntoView } from "../../components/scroll";
 import {updateFormulary} from "../formularies/edit";
 import {
   insertQuestion,
+  setNextQuestion,
   insertAnswer,
   createLinkNext,
   setFormForFormulary
@@ -18,6 +19,8 @@ const getEditAnswer = (questions) => {
       for (var i = 0; i < questions.length; i++) {
         if (questions[i].set_up.position == btn.dataset.position) {
           form.innerHTML = ""
+          const btn = document.getElementById("send_to_analyze")
+          if (btn) { btn.remove()}
           document.getElementById('formulary-form').lastChild.remove()
           editAnswer(questions, questions[i])
         }
@@ -25,6 +28,8 @@ const getEditAnswer = (questions) => {
     })
   })
 }
+
+
 
 const editAnswer = (questions, question) => {
   setQuestionsAnswer(questions, question)
@@ -38,21 +43,20 @@ const insertQuestionAnswers = (questions) => {
   });
 
 }
-const setNextQuestion = (nex_question) => {
-  const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
-  form.insertAdjacentHTML("beforeend", lastQuestion);
-}
+
 
 const setQuestionsAnswer = (questions, question = null) => {
   for ( var i = 0; i < questions.length; i ++){
-    if (question) { if (questions[i] === question) { break; }
-    } else { if (typeof questions[i].answer != 'string') { break; } }
+    if (question) {
+      if (questions[i] === question) { break; }
+    } else {
+      if (typeof questions[i].answer != 'string' && typeof questions[i].answer != 'number') { break; } }
     insertQuestion(questions[i])
     if (questions[i].set_up.need_answer) {
       insertAnswer(questions[i])
     }
   }
-  if (questions[i]) {
+  if (i != questions.length) {
     setNextQuestion(questions[i])
     setFormForFormulary(questions[i])
   } else {
@@ -62,15 +66,17 @@ const setQuestionsAnswer = (questions, question = null) => {
 
 const nextStep = (questions) => {
   for ( var i = 0; i < questions.length; i ++){
-    if (typeof questions[i].answer != 'string') { break; }
+    if (typeof questions[i].answer != 'string' && typeof questions[i].answer != 'number' ) { break; }
   }
-  insertAnswer(questions[i-1])
-  if (questions[i]) {
+  if (i == questions.length) {
+    insertAnswer(questions[i-2])
+    setNextQuestion(questions[i-1])
+    createLinkNext()
+  } else {
+    insertAnswer(questions[i-1])
     setNextQuestion(questions[i])
     getEditAnswer(questions)
     setFormForFormulary(questions[i])
-  } else {
-    createLinkNext()
   }
 }
 
