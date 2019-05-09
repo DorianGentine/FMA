@@ -52,29 +52,29 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   #   authorize formulary
   # end
 
-  private
+  # private
 
-  def set_visitor
-    @visitor = Visitor.find_by(user_ip: request.ip)
-  end
+  # def set_visitor
+  #   @visitor = Visitor.find_by(user_ip: request.ip)
+  # end
 
-  def form_api_call_params
-    pf = params[:params_value]
-    test_upload_alowing_form(pf)
-  end
+  # def form_api_call_params
+  #   pf = params[:params_value]
+  #   test_upload_alowing_form(pf)
+  # end
 
-  def test_upload_alowing_form(pf)
-    f = params[:id].nil? ? Formulary.new : Formulary.find(params[:id])
-    form = Formulary.column_names.reverse.drop(2).reverse
-    index = form.index(pf.keys.first)
-    form.drop(index).each_with_index do |column_name, form_index|
-      allow = "allow_" + column_name + "?"
-      if pf[column_name].present?
-        pf[column_name] = f.send(allow) ? pf[column_name] : nil
-      else
-        pf[column_name] = nil
-      end
-    end
-    return pf
-  end
+  # def test_upload_alowing_form(pf)
+  #   f = params[:id].nil? ? Formulary.new : Formulary.find(params[:id])
+  #   form = Formulary.column_names.reverse.drop(2).reverse
+  #   index = form.index(pf.keys.first)
+  #   form.drop(index).each_with_index do |column_name, form_index|
+  #     allow = "allow_" + column_name + "?"
+  #     if pf[column_name].present?
+  #       pf[column_name] = f.send(allow) ? pf[column_name] : nil
+  #     else
+  #       pf[column_name] = nil
+  #     end
+  #   end
+  #   return pf
+  # end
 end
