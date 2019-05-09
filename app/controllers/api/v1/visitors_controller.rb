@@ -5,7 +5,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
   end
 
   def show
-
+    @formulary = @visitor.formulary.nil? ? Formulary.new : @visitor.formulary
   end
 
   private
