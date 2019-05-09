@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :formularies
-      resources :visitors, only: [:index, :show]
+      resources :visitors, only: [:index, :show, :update]
       resources :users, only: [ :show, :update ] do
         resources :projects, only: [ :index, :show ]
       end
@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :formularies, only: [ :show ]
+
   resources :contact_forms, only: [ :create, :update, :edit ]
+  resources :visitors, only: [ :create, :update, :edit ]
 
   root to: 'contact_forms#new'
 

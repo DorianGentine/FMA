@@ -12,11 +12,13 @@ const successUptade = (input, questions, form, id) => {
 
 function updateFormulary(event, questions){
   const discussion = document.getElementById("formulary")
+  console.log(discussion)
   if(discussion){
     const formulary_id = discussion.dataset.id
+    const visitor_id = discussion.dataset.visitor
     var form, url, type
-    if (formulary_id) { form = document.getElementById(`edit_formulary_${formulary_id}`); url = `/api/v1/formularies/${formulary_id}`; type = "PATCH"
-    } else { form = document.getElementById('new_formulary'); url = "/api/v1/formularies"; type = "POST" }
+    if (formulary_id) { form = document.getElementById(`edit_formulary_${formulary_id}`);
+    } else { form = document.getElementById('new_formulary') }
     if (form) {
       var input
       if (formularyForm.getElementsByTagName('select')[0]) {
@@ -27,12 +29,12 @@ function updateFormulary(event, questions){
       obj[input.name.replace("formulary[", "").replace("]","")] = input.value
         console.log("obj",obj)
       var request = $.ajax({
-        url: url,
-        type: type,
+        url: `/api/v1/visitors/${visitor_id}`,
+        type: "POST",
         data: { params_value: obj }
       });
       request.done(function(msg) {
-        // console.log("data", msg)
+        console.log("data", msg)
         let id = msg.id
         successUptade(input, questions, form, id)
       });
