@@ -1,1 +1,2 @@
-json.formulary(@formulary)
+
+json.extract! @formulary
