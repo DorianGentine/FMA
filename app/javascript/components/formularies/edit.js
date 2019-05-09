@@ -13,19 +13,16 @@ const successUptade = (input, questions, form, id) => {
 function updateFormulary(event, questions){
   const discussion = document.getElementById("formulary")
   if(discussion){
-  console.log(discussion)
     const formulary_id = discussion.dataset.id
     const visitor_id = discussion.dataset.visitor
     var form, url, type
-    if (formulary_id) { form = document.getElementById(`edit_visitor_${visitor_id}`);
-    } else { form = document.getElementById('new_formulary') }
+    form = document.getElementById(`edit_visitor_${visitor_id}`);
     if (form) {
       var input
       if (formularyForm.getElementsByTagName('select')[0]) {
         input = formularyForm.getElementsByTagName('select')[0]
       } else { input = formularyForm.getElementsByTagName('input')[1] }
       const obj = {}
-      console.log(input.value)
       obj[input.name.replace("formulary[", "").replace("]","")] = input.value
         console.log("obj",obj)
       var request = $.ajax({

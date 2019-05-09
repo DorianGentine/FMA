@@ -129,15 +129,9 @@ const setNextQuestion = (nex_question) => {
 
 const setFormForFormulary = (question) => {
   const div = document.createElement('form')
-  if (form.dataset.id) {
     div.classList = "simple_form edit_visitor margin-top-15"
     div.id = `edit_visitor_${form.dataset.visitor}`
-  }
-  // else {
-  //   div.classList = "simple_form new_formulary margin-top-15"
-  //   div.id = `new_formulary`
-  // }
-  // div.action = `/api/v1/visitors/${form.dataset.visitor}`
+
   div.setAttribute('novalidate', "novalidate");
   div.setAttribute("data-remote", true)
   div.acceptCharset = "UTF-8"
