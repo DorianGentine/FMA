@@ -26,7 +26,6 @@ class Api::V1::FormulariesController < Api::V1::BaseController
 
   def create
     visitor = Visitor.find_or_create_by(user_ip: request.ip)
-    # p "params ===>  #{form_api_call_params.permit!}"
     formulary = Formulary.new(form_api_call_params.permit!)
     formulary.visitor = visitor
     formulary.project = Project.create!
@@ -37,8 +36,9 @@ class Api::V1::FormulariesController < Api::V1::BaseController
 
   def update
     formulary = Formulary.find(params[:id].to_i)
+    p "params ===>  #{form_api_call_params.permit!}"
     formulary.update(form_api_call_params.permit!)
-    # p "///// Après #{FormularyToHash.new(formulary).to_hash_forma}"
+    p "///// Après #{FormularyToHash.new(formulary).to_hash_forma}"
     render json: formulary
     authorize formulary
   end

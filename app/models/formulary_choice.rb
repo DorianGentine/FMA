@@ -242,7 +242,7 @@ class FormularyChoice
       column_name: "zip_code",
       type: "input",
       multiple_answers: false,
-      placeholder: "ex: 60140",
+      placeholder: "ex: 94000",
       data: nil,
       need_answer: true,
       tooltip: nil,
@@ -466,7 +466,7 @@ class FormularyChoice
       question: questions[:supplementary],
       column_name: "supplementary",
       type: "select",
-      multiple_answers: false,
+      multiple_answers: true,
       placeholder: "Choisi parmis la liste",
       data: SUPPLEMENTARY_NAMES,
       need_answer: true,
@@ -501,16 +501,16 @@ class FormularyChoice
     return {
       question: questions[:occupant],
       column_name: "occupant",
-      type: "select",
+      type: "number",
       multiple_answers: false,
-      placeholder: "Choisi parmis la liste",
+      placeholder: "1 = juste vous",
       data: OCCUPANT,
       need_answer: true,
       tooltip: nil,
       errorLabel: nil,
       start_answer: {
         "1" => "J'habite seul",
-        "2" => "Nous sommes"
+        "2" => "Nous sommes "
       },
       position: 17,
       validate: {
@@ -655,7 +655,7 @@ class FormularyChoice
       question: questions[:assistant],
       column_name: "assistant",
       type: "select",
-      multiple_answers: false,
+      multiple_answers: true,
       placeholder: "Choisi parmis la liste",
       data: ASSISTANT,
       need_answer: true,

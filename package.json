@@ -19,7 +19,9 @@
     "redux": "^4.0.1",
     "redux-form": "^8.2.0",
     "redux-logger": "^3.0.6",
-    "redux-promise": "^0.6.0"
+    "redux-promise": "^0.6.0",
+    "select2": "^4.0.7-rc.0",
+    "selectize": "^0.12.6"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.3.1"
