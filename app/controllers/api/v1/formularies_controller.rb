@@ -1,56 +1,56 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
-  before_action :set_visitor, only: [:edit]
+  # before_action :set_visitor, only: [:edit]
   # after_action :verify_authorized, except: [ :index, :update, :create, :new, :show, :edit]
-  skip_after_action :verify_authorized
+  # skip_after_action :verify_authorized
 
-  skip_after_action :verify_policy_scoped, only: [:update, :create, :new, :edit]
+  # skip_after_action :verify_policy_scoped, only: [:update, :create, :new, :edit]
 
   def index
     p "formularies =>> #{@formularies}"
     @formularies = policy_scope(Formulary)
   end
 
-  def show
-    @formulary = Formulary.find(params[:id])
-    @solutions = SetSolutions.new(@formulary).call
-    authorize @formulary
-  end
+  # def show
+  #   @formulary = Formulary.find(params[:id])
+  #   @solutions = SetSolutions.new(@formulary).call
+  #   authorize @formulary
+  # end
 
-  def new
-    p "////////// I'm in new"
-    formulary = Formulary.new
-    p "////////// formulary is #{formulary}"
-    @formulary = FormularyToHash.new(formulary).form_json
-    p "////////// formulary to hash is #{@formulary}"
-    render json: @formulary
-    authorize formulary
-  end
+  # def new
+  #   p "////////// I'm in new"
+  #   formulary = Formulary.new
+  #   p "////////// formulary is #{formulary}"
+  #   @formulary = FormularyToHash.new(formulary).form_json
+  #   p "////////// formulary to hash is #{@formulary}"
+  #   render json: @formulary
+  #   authorize formulary
+  # end
 
-  def create
-    visitor = Visitor.find_or_create_by(user_ip: request.ip)
-    formulary = Formulary.new(form_api_call_params.permit!)
-    formulary.visitor = visitor
-    formulary.project = Project.create!
-    formulary.save
-    render json: formulary
-    authorize formulary
-  end
+  # def create
+  #   visitor = Visitor.find_or_create_by(user_ip: request.ip)
+  #   formulary = Formulary.new(form_api_call_params.permit!)
+  #   formulary.visitor = visitor
+  #   formulary.project = Project.create!
+  #   formulary.save
+  #   render json: formulary
+  #   authorize formulary
+  # end
 
-  def update
-    formulary = Formulary.find(params[:id].to_i)
-    p "params ===>  #{form_api_call_params.permit!}"
-    formulary.update(form_api_call_params.permit!)
-    p "///// Après #{FormularyToHash.new(formulary).to_hash_forma}"
-    render json: formulary
-    authorize formulary
-  end
+  # def update
+  #   formulary = Formulary.find(params[:id].to_i)
+  #   p "params ===>  #{form_api_call_params.permit!}"
+  #   formulary.update(form_api_call_params.permit!)
+  #   p "///// Après #{FormularyToHash.new(formulary).to_hash_forma}"
+  #   render json: formulary
+  #   authorize formulary
+  # end
 
-  def edit
-    formulary = @visitor.formulary
-    @formulary = FormularyToHash.new(formulary).form_json
-    render json: @formulary
-    authorize formulary
-  end
+  # def edit
+  #   formulary = @visitor.formulary
+  #   @formulary = FormularyToHash.new(formulary).form_json
+  #   render json: @formulary
+  #   authorize formulary
+  # end
 
   private
 
