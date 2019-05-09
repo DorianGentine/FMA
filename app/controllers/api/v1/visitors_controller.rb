@@ -8,6 +8,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
   def show
     formulary = @visitor.formulary.nil? ? Formulary.new : @visitor.formulary
     @formulary = FormularyToHash.new(formulary).form_json
+    render json: @formulary
   end
 
   private

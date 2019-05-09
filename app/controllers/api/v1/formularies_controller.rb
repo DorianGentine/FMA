@@ -1,5 +1,5 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
-  before_action :set_visitor, only: [:new, :edit]
+  before_action :set_visitor, only: [:edit]
 
   def index
     p "formularies =>> #{@formularies}"
@@ -13,13 +13,10 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   end
 
   def new
-    p "////////// I'm in new"
-    formulary = Formulary.new
-    p "////////// formulary is #{formulary}"
-    @formulary = FormularyToHash.new(formulary).form_json
-    p "////////// formulary to hash is #{@formulary}"
+    @new_formulary = Formulary.new
+    @formulary = FormularyToHash.new(@new_formulary).form_json
     render json: @formulary
-    authorize formulary
+    authorize @new_formulary
   end
 
   def create
