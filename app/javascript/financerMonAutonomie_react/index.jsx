@@ -20,7 +20,9 @@ if(app){
   const initialState = {
     api: {
       beneficiaire: JSON.parse(app.dataset.user),
-      fma_team: JSON.parse(app.dataset.fma_team)
+      project: JSON.parse(app.dataset.project),
+      fma_team: JSON.parse(app.dataset.fma_team),
+      solutions: JSON.parse(app.dataset.solutions),
     }
   };
 

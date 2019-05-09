@@ -16,13 +16,14 @@ class App extends Component {
 
 
   render () {
+    const api = this.props.api
     // App beneficiaire
-    if(this.props.api.beneficiaire.client){
+    if(api.beneficiaire.client){
       return (
         <div>
           <AppNavbar />
-          <Volet conseiller={this.props.api.fma_team} />
-          <div className="container">
+          <Volet />
+          <div className="app-container container">
             <MenuProfil />
             <PanneauPrincipal />
           </div>
