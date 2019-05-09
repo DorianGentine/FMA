@@ -6,8 +6,26 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   # skip_after_action :verify_policy_scoped, only: [:update, :create, :new, :edit]
 
   def index
+    # @formularies = policy_scope(Formulary)
+    @formularies = [
+      {
+        id: 2,
+        first_name: "Donatien",
+        age: "21/12/1953"
+        },
+        {
+        id: 3,
+        first_name: "Tony",
+        age: "21/12/1953"
+        },
+
+        {
+        id: 5,
+        first_name: "Luc",
+        age: "21/12/1953"
+        }
+    ]
     p "formularies =>> #{@formularies}"
-    @formularies = policy_scope(Formulary)
   end
 
   # def show
