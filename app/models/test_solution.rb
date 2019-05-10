@@ -7,10 +7,9 @@ class TestSolution
   end
 
   def test_solution_form
-    form = Formulary.new()
     answers = []
     100.times do
-      answers << create_formulary(form)
+      answers << create_formulary
     end
     return answers.include?(true) ? true : answers.uniq
   end
@@ -18,7 +17,9 @@ class TestSolution
   private
 
 
-  def create_formulary(form)
+  def create_formulary
+    form = Formulary.new()
+
     Formulary.column_names.each_with_index do |column_name, form_index|
       index = form_index - 1
       if skip_column_to_verif?(column_name)
@@ -29,6 +30,10 @@ class TestSolution
         elsif column_name == "age"
           @array_of_conditions.each do |conditions|
             form.send("#{column_name}=", @choices[:test_age].sample.first )
+          end
+        elsif column_name == "occupant"
+          @array_of_conditions.each do |conditions|
+            form.send("#{column_name}=", rand(1..3) )
           end
         else
           @array_of_conditions.each do |conditions|
