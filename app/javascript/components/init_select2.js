@@ -26,8 +26,8 @@ const setOptions = (question) => {
     const array = new Array
     if (options instanceof Array) {
       options.forEach((option) => {
-        // let isSelected
-        // if (answer.includes(option)) { isSelected = true } else {isSelected = false}
+        let isSelected
+        if (answer && answer.includes(option)) { isSelected = true } else {isSelected = false}
         array.push({text: option, value: option, selected:  isSelected })
       })
     } else {

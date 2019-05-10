@@ -12,4 +12,7 @@ class VisitorPolicy < ApplicationPolicy
   def update_formulary?
     true
   end
+  def analyze?
+    true
+  end
 end

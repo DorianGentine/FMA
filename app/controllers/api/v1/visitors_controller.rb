@@ -1,5 +1,5 @@
 class Api::V1::VisitorsController < Api::V1::BaseController
-  before_action :set_visitor, only: [:show]
+  before_action :set_visitor, only: [:show, :update_formulary, :analyze]
 
   def index
     @visitors = policy_scope(Visitor)
@@ -9,6 +9,12 @@ class Api::V1::VisitorsController < Api::V1::BaseController
     formulary = @visitor.formulary.nil? ? Formulary.new : @visitor.formulary
     @formulary = FormularyToHash.new(formulary).form_json
     render json: @formulary
+  end
+
+  def analyze
+    @formulary = @visitor.formulary
+    p "Formulary is = #{@formulary}"
+    @solutions = SetSolutions.new(@formulary).call
   end
 
   def update_formulary

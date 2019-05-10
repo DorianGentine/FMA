@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :visitors, only: [:index, :show, :update] do
         member do
           patch :update_formulary
+          get :analyze
         end
       end
       resources :users, only: [ :show, :update ] do

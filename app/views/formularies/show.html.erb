@@ -7,7 +7,7 @@
     <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Analyse de vos réponses</h1>
     <p class="col-lg-8 offset-lg-2 col-xs-12 text-align-center margin-bottom-60">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-    <div class="col-lg-6 avantage" id="financeurs-potentiels" data-formularyid="<%= @formulary.id %>">
+    <div class="col-lg-6 avantage" id="financeurs-potentiels" data-formularyid="<%= @formulary.id %>" data-visitorid="<%= @visitor.id %>">
       <h2 class="blue text-align-center">Vos financeurs potentiels</h2>
       <!-- <div class="margin-top-60">
         <div class="logo-financeur" style="height: 60px; width: 60px"></div>
@@ -19,7 +19,7 @@
   </div>
 
   <%= link_to "Mon compte", user_path(current_user) if current_user.present? %>
-  <h3>Call API pour les solutions <a href="/api/v1/formularies/<%= @formulary.id %>">-> ici <-</a></h3>
+  <h3>Call API pour les solutions <a href="<%= analyze_api_v1_visitor_path(@visitor)%>">-> ici <-</a></h3>
   <div class="row">
     <div class="col-md-5">
       <ol>
