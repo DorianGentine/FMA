@@ -17,8 +17,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :formularies
-      resources :visitors, only: [:index, :show, :update] do
+      resources :visitors, only: [:show, :update] do
         member do
           patch :update_formulary
           get :analyze
