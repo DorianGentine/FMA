@@ -2,20 +2,6 @@ import $ from 'jquery';
 import 'select2';
 import 'selectize';
 
-const initSelect2 = () => {
-  $(".select2").select2({
-    placeholder: 'Choissiez ou ajoutez',
-    width: '100%',
-    templateSelection: function (data) {
-      multiSelectionOnChange(data)
-    // Add custom attributes to the <option> tag for the selected option
-    // $(data.element).attr('data-custom-attribute', data.customValue);
-    return data.text;
-  }
-  });
-};
-
-
 const setOptions = (question) => {
   if (question) {
     let options = question.set_up.data
@@ -38,6 +24,20 @@ const setOptions = (question) => {
     return array
   }
 }
+
+
+const initSelect2 = () => {
+  $(".select2").select2({
+    placeholder: 'Choissiez ou ajoutez',
+    width: '100%',
+    templateSelection: function (data) {
+      multiSelectionOnChange(data)
+    // Add custom attributes to the <option> tag for the selected option
+    // $(data.element).attr('data-custom-attribute', data.customValue);
+    return data.text;
+  }
+  });
+};
 
 const initSelectize = (question) => {
   let select = $(".multiple_select2").selectize({
