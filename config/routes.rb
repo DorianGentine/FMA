@@ -14,11 +14,15 @@ Rails.application.routes.draw do
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"
   get '/rgpd', to: 'pages#rgpd', as: "rgpd"
 
-  resources :formularies, only: [ :show ]
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :formularies
+      resources :visitors, only: [:show, :update] do
+        member do
+          patch :update_formulary
+          get :analyze
+        end
+      end
       resources :users, only: [ :show, :update ] do
         resources :projects, only: [ :index, :show ]
       end
@@ -27,7 +31,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
+  resources :formularies, only: [ :show ]
+
   resources :contact_forms, only: [ :create, :update, :edit ]
+  resources :visitors, only: [ :create, :update, :edit ]
 
   root to: 'contact_forms#new'
 

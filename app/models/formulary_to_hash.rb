@@ -50,7 +50,7 @@ class FormularyToHash
         if form.respond_to? key
           hash = { set_up: value, answer: set_answer(form, key, allow)} if form.try(allow) && form.send(allow)
         else
-          hash = { set_up: value, answer: "next" }
+          hash = { set_up: value, answer: "next"}
         end
         if key == "zip_code" && !form.verify_zip_code
           hash = { set_up: value, answer: set_answer(form, key, allow)} if form.try(allow) && form.send(allow)
@@ -69,7 +69,7 @@ class FormularyToHash
 
   def set_answer(form, column_name, allow)
     if form.send(column_name).present?
-      if form.send(column_name).is_a?(String)
+      if form.send(column_name).is_a?(String) || column_name == "occupant"
         form.send(column_name)
       else
         FormularyChoice.new.set_collections_formulary[column_name.to_sym][form.send(column_name)].first

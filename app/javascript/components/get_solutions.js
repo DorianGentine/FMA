@@ -31,8 +31,9 @@ if(financeursPotentielsId){
   }
 
   const getSolutions = async function () {
-    const formularyId = financeursPotentielsId.dataset.formularyid
-    let response = await fetch(`/api/v1/formularies/${formularyId}`)
+    console.log(financeursPotentielsId)
+    const visitorId = financeursPotentielsId.dataset.visitorid
+    let response = await fetch(`/api/v1/visitors/${visitorId}/analyze`)
     let data = await response.json()
 
     for (var i = 0; i < data.solutions.length; i++) {

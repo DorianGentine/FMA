@@ -149,12 +149,12 @@ class Formulary < ApplicationRecord
   # Q-18
   def allow_owner_is_include?
     if self.occupation.present? && self.occupation == 1
-      if self.occupant.present? && self.occupant == 1
+      if self.occupant.present? && self.set_nbr_of_occupants == 1
         return true
-      elsif self.occupant.present? && self.occupant == 2 && self.holder_occupation.present? && self.holder_occupation == 1
+      elsif self.occupant.present? && self.set_nbr_of_occupants == 2 && self.holder_occupation.present? && self.holder_occupation == 1
         return true
       end
-    elsif self.occupation.present? && self.occupation == 2 && self.holder_occupation.present? && self.holder_occupation == 2 && self.occupant.present? && self.occupant == 1
+    elsif self.occupation.present? && self.occupation == 2 && self.holder_occupation.present? && self.holder_occupation == 2 && self.occupant.present? && self.set_nbr_of_occupants == 1
       return true
     else
       return false
@@ -163,7 +163,7 @@ class Formulary < ApplicationRecord
 
   # Q-19
   def allow_has_partner?
-    if self.type_of_pension.present? && self.type_of_pension == 0 && self.occupant.present? && self.occupant == 1 && self.age.present? && self.set_age_group > 0
+    if self.type_of_pension.present? && self.type_of_pension == 0 && self.occupant.present? && self.set_nbr_of_occupants == 1 && self.age.present? && self.set_age_group > 0
       return true
     else
       return false
@@ -172,7 +172,7 @@ class Formulary < ApplicationRecord
 
   # Q-20
   def allow_tax_revenue?
-    if self.occupant.present? && self.occupant == 0
+    if self.occupant.present? && self.set_nbr_of_occupants == 0
       if self.occupation.present? && self.occupation == 0
         return true
       elsif self.occupation.present? && self.occupation == 1 &&  self.holder_occupation.present? && self.holder_occupation == 0
@@ -187,9 +187,9 @@ class Formulary < ApplicationRecord
 
   # Q-21
   def allow_gross_income?
-    if self.occupant.present? && self.occupant == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
+    if self.occupant.present? && self.set_nbr_of_occupants == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
       return true
-    elsif self.has_partner.present? && self.has_partner == 1 && self.occupant.present? && self.occupant == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
+    elsif self.has_partner.present? && self.has_partner == 1 && self.occupant.present? && self.set_nbr_of_occupants == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
       return true
     else
       return false
@@ -198,7 +198,7 @@ class Formulary < ApplicationRecord
 
   # Q-22
   def allow_global_tax_revenue?
-    if self.occupant.present? && self.occupant == 1
+    if self.occupant.present? && self.set_nbr_of_occupants == 1
       if self.occupation.present? && self.occupation == 0
         return true
       elsif self.occupation.present? && self.occupation == 1 &&  self.holder_occupation.present? && self.holder_occupation == 0
@@ -215,7 +215,7 @@ class Formulary < ApplicationRecord
 
   # Q-23
   def allow_household_income?
-    if self.occupant.present? && self.occupant == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
+    if self.occupant.present? && self.set_nbr_of_occupants == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
       return true
     else
       return false
@@ -225,9 +225,9 @@ class Formulary < ApplicationRecord
   # Q-24
   def allow_owner_tax_revenue?
     if self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 0
-      if self.occupant.present? && self.occupant == 1 && self.owner_is_include.present? && self.owner_is_include == 1
+      if self.occupant.present? && self.set_nbr_of_occupants == 1 && self.owner_is_include.present? && self.owner_is_include == 1
         return true
-      elsif self.occupant.present? && self.occupant == 0
+      elsif self.occupant.present? && self.set_nbr_of_occupants == 0
         return true
       else
         return false
@@ -300,5 +300,14 @@ class Formulary < ApplicationRecord
     year = self.age.split("/")[2].to_i
     now = Time.now.utc.to_date
     return now.year - year - ((now.month > month || (now.month == month && now.day >= day)) ? 0 : 1)
+  end
+
+  def set_nbr_of_occupants
+    return false if self.occupant.nil?
+    if self.occupant == 1
+      return 0
+    else
+      return 1
+    end
   end
 end
