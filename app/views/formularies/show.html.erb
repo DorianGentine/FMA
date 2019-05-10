@@ -9,7 +9,7 @@
 
     <div class="col-lg-6 avantage">
       <h2 class="blue text-align-center">Vos financeurs potentiels</h2>
-      <div id="financeurs-potentiels" data-formularyid="<%= @formulary.id %>"></div> <!-- généré en js -->
+      <div id="financeurs-potentiels" data-visitorid="<%= @visitor.id %>"></div> <!-- généré en js -->
       <div class="margin-top-120 margin-bottom-60 text-align-center">
         <%= link_to "Poursuivre avec un conseiller", new_user_registration_path, class: "btn-blue" %>
       </div>
@@ -111,32 +111,32 @@
 
         <% if @formulary.tax_revenue.present? %>
           <p class="bold black">Quel est le montant de votre Revenu Fiscal de Référence ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::TAXE_REVENUE[@formulary.tax_revenue] %></p>
+          <p class="margin-bottom-15"><%= @formulary.tax_revenue %></p>
         <% end %>
 
         <% if @formulary.gross_income.present? %>
           <p class="bold black">Quel est le montant de votre Revenu Brut Global ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::GROSS_INCOME[@formulary.gross_income] %></p>
+          <p class="margin-bottom-15"><%= @formulary.gross_income %></p>
         <% end %>
 
         <% if @formulary.global_tax_revenue.present? %>
           <p class="bold black">Quel est le montant du Revenu Fiscal de Référence de l'ensemble de votre foyer ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::GLOBAL_TAXE_REVENUE[@formulary.global_tax_revenue] %></p>
+          <p class="margin-bottom-15"><%= @formulary.global_tax_revenue %></p>
         <% end %>
 
         <% if @formulary.household_income.present? %>
           <p class="bold black">Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::HOUSEHOLD_INCOME[@formulary.household_income] %></p>
+          <p class="margin-bottom-15"><%= @formulary.household_income %></p>
         <% end %>
 
         <% if @formulary.owner_tax_revenue.present? %>
           <p class="bold black">Quel est le montant du Revenu Fiscal de Référence du propriétaire de votre logement ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::OWNER_TAXE_REVENUE[@formulary.owner_tax_revenue] %></p>
+          <p class="margin-bottom-15"><%= @formulary.owner_tax_revenue %></p>
         <% end %>
 
         <% if @formulary.assistant.present? %>
           <p class="bold black">Avez-vous déjà perçu ou percevez-vous une de ses aides ou actions sociales ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::ASSISTANT[@formulary.assistant] %></p>
+          <p class="margin-bottom-15"><%= @formulary.assistant %></p>
         <% end %>
       <div class="margin-top-120 text-align-center">
         <%= link_to "Refaire une simulation", root_path %>
