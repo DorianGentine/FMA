@@ -15,7 +15,7 @@ if(financeursPotentielsId){
     const nomFinanceur = document.createElement("h4")
     // div.acceptCharset = "UTF-8"
     nomFinanceur.classList = "margin-top-15"
-    nomFinanceur.innerText = solution.financer.name
+    nomFinanceur.innerText = solution.financer.name.toUpperCase()
 
     const descriptionFinanceur = document.createElement("p")
     // div.acceptCharset = "UTF-8"
