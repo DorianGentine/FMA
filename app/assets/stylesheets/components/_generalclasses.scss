@@ -24,6 +24,26 @@
     box-shadow: 0px 3px 50px rgba(24,35,53,.03);
   }
 
+  .dropdown-menu{
+    right: 0;
+    left: unset;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0,0,0,.08);
+    padding: 10px 5px;
+    text-align: right;
+    p, a{
+      border-radius: 3px;
+      width: 100%;
+      padding: 5px 10px;
+      transition: .5s;
+      color: $black;
+    }
+    p:hover, a:hover{
+      // color: $black !important;
+      background-color: $blue-gray;
+    }
+  }
+
 
 // Bordure
   .bordure-droite{
