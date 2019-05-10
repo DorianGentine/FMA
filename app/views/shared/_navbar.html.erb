@@ -6,7 +6,16 @@
   <div class="flex align-items-center">
     <%= link_to "Qui sommes-nous ?", equipe_path, class: "margin-right-30 d-none d-sm-block" %>
     <% if user_signed_in? %>
-      <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "nav-link btn-blue" %>
+      <div class="btn-group pointer" role="group">
+        <div id="drop-navbar" class="dropdown-toggle flex align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <p class="text-align-right">Bonjour, <%= current_user.first_name %> <%= current_user.last_name %></p>
+          <div class="avatar-app" style="height: 35px; width: 35px; font-size: 12px; line-height: 35px; margin: 0 15px;"><%= current_user.first_name[0] %><%= current_user.last_name[0] %></div>
+        </div>
+        <div class="dropdown-menu" aria-labelledby="drop-navbar">
+          <p><%= link_to "Mon compte", user_path(current_user) if current_user.present? %></p>
+          <p><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %></p>
+        </div>
+      </div>
     <% else %>
       <%= link_to "Se connecter", new_user_session_path, class: "nav-link btn-blue" %>
     <% end %>
@@ -16,4 +25,3 @@
 <div class="navbar-padding"></div>
 
 <!-- Link to my account -->
-<%#= link_to "Mon compte", user_path(current_user) if current_user.present? %>

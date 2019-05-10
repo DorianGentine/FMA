@@ -7,70 +7,141 @@
     <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Analyse de vos réponses</h1>
     <p class="col-lg-8 offset-lg-2 col-xs-12 text-align-center margin-bottom-60">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-    <div class="col-lg-6 avantage" id="financeurs-potentiels" data-formularyid="<%= @formulary.id %>" data-visitorid="<%= @visitor.id %>">
+    <div class="col-lg-6 avantage">
       <h2 class="blue text-align-center">Vos financeurs potentiels</h2>
-      <!-- <div class="margin-top-60">
-        <div class="logo-financeur" style="height: 60px; width: 60px"></div>
-        <h4 class="margin-top-15">La caisse de retraite principale</h4>
-        <p>Vous avez un projet en tête. Via votre espace personnel, un conseiller vous accompagne dans chaque étape. Vous avez un projet en tête. Via votre espace personnel, un conseiller vous accompagne dans chaque étape. Vous avez un projet en tête. Via votre espace personnel, un conseiller vous accompagne dans chaque étape. </p>
-      </div> -->
+      <div id="financeurs-potentiels" data-formularyid="<%= @formulary.id %>"></div> <!-- généré en js -->
+      <div class="margin-top-120 margin-bottom-60 text-align-center">
+        <%= link_to "Poursuivre avec un conseiller", new_user_registration_path, class: "btn-blue" %>
+      </div>
     </div>
 
-  </div>
-
-  <%= link_to "Mon compte", user_path(current_user) if current_user.present? %>
-  <h3>Call API pour les solutions <a href="<%= analyze_api_v1_visitor_path(@visitor)%>">-> ici <-</a></h3>
-  <div class="row">
-    <div class="col-md-5">
-      <ol>
-        <li><%= @formulary.first_name %></li>
-        <li><%= @formulary.zip_code %></li>
-        <li><%= @formulary.his_age %> ans</li>
-        <li><%= FormularyChoice::YES_NO[@formulary.is_working] %></li>
-        <li><%= FormularyChoice::YES_NO[@formulary.loss_of_autonomy_receipt] %></li>
-        <li><%= FormularyChoice::OCCUPATION_CHOICES[@formulary.occupation] %></li>
-        <li><%= FormularyChoice::HOLDER_OCCUPATION_CHOICES[@formulary.holder_occupation] %></li>
-        <li><%= @formulary.lessor %></li>
-        <li><%= FormularyChoice::ACCOMMODATION[@formulary.accommodation] %></li>
-        <li><%= FormularyChoice::FLOOR[@formulary.floor] %></li>
-        <li><%= FormularyChoice::YES_NO[@formulary.accessibility_with_step] %></li>
-        <li><%= FormularyChoice::TYPE_OF_PENSION[@formulary.type_of_pension] %></li>
-        <li><%= @formulary.pension %></li>
-        <li><%= @formulary.supplementary %></li>
-        <li><%= FormularyChoice::LOSS_OF_AUTONOMY[@formulary.loss_of_autonomy] %></li>
-        <li><%= FormularyChoice::OCCUPANT[@formulary.occupant] %></li>
-        <li><%= FormularyChoice::YES_NO[@formulary.owner_is_include] %></li>
-        <li><%= FormularyChoice::YES_NO[@formulary.has_partner] %></li>
-        <li><%= FormularyChoice::TAXE_REVENUE[@formulary.tax_revenue] %></li>
-        <li><%= FormularyChoice::GROSS_INCOME[@formulary.gross_income] %></li>
-        <li><%= FormularyChoice::GLOBAL_TAXE_REVENUE[@formulary.global_tax_revenue] %></li>
-        <li><%= FormularyChoice::HOUSEHOLD_INCOME[@formulary.household_income] %></li>
-        <li><%= FormularyChoice::OWNER_TAXE_REVENUE[@formulary.owner_tax_revenue] %></li>
-        <li><%= FormularyChoice::ASSISTANT[@formulary.assistant] %></li>
-      </ol>
-    </div>
-    <div class="col-md-7">
-    <p>Supprimer cette partie, c'est juste pour s'assurer que les formulaires fonctionnent</p>
-      <p>Match: <%= @solutions.count %> </p>
-      <% @solutions.each do |solution| %>
-        <%= solution.id %>
-      <% end %>
-      <br>
-      <p>Analyse:</p>
-      <ul>
-        <% @testing_solutions.each do |key, value| %>
-          <% if value != true %>
-            <li><%= key %> <%= value %></li>
-
-          <% end %>
+    <div class="col-lg-6" style="padding: 20px 0 0 80px">
+      <h2 class="blue margin-bottom-60">Liste de vos réponses</h2>
+      <!-- Answers -->
+        <% if @formulary.first_name.present? %>
+          <p class="bold black">Quel est votre prénom ?</p>
+          <p class="margin-bottom-15"><%= @formulary.first_name %></p>
         <% end %>
-      </ul>
-    </div>
-  </div>
 
-  <div class="footer-newsletter-btn">
-    <%= link_to "Sign up", new_user_registration_path %>
-    <%= link_to "Retour", root_path %>
+        <% if @formulary.zip_code.present? %>
+          <p class="bold black">Quel est le code postale de votre résidence ?</p>
+          <p class="margin-bottom-15"><%= @formulary.zip_code %></p>
+        <% end %>
+
+        <% if @formulary.his_age.present? %>
+          <p class="bold black">Quel âge avez-vous ?</p>
+          <p class="margin-bottom-15"><%= @formulary.his_age %> ans</p>
+        <% end %>
+
+        <% if @formulary.is_working.present? %>
+          <p class="bold black">Travaillez-vous ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.is_working] %></p>
+        <% end %>
+
+        <% if @formulary.loss_of_autonomy_receipt.present? %>
+          <p class="bold black">Disposez-vous de justificatifs prouvant que votre perte d'autonomie est antérieur à vos 60 ans ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.loss_of_autonomy_receipt] %></p>
+        <% end %>
+
+        <% if @formulary.occupation.present? %>
+          <p class="bold black">Quel est votre statut d'occupation dans votre logement ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::OCCUPATION_CHOICES[@formulary.occupation] %></p>
+        <% end %>
+
+        <% if @formulary.holder_occupation.present? %>
+          <p class="bold black">Quel est le statut d'occupation du titulaire de votre logement ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::HOLDER_OCCUPATION_CHOICES[@formulary.holder_occupation] %></p>
+        <% end %>
+
+        <% if @formulary.lessor.present? %>
+          <p class="bold black">Quel est le nom du bailleur de votre logement ?</p>
+          <p class="margin-bottom-15"><%= @formulary.lessor %></p>
+        <% end %>
+
+        <% if @formulary.accommodation.present? %>
+          <p class="bold black">Quel est la typologie de votre logement ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::ACCOMMODATION[@formulary.accommodation] %></p>
+        <% end %>
+
+        <% if @formulary.floor.present? %>
+          <p class="bold black">Résidez vous en rez de chaussée ou en étage ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::FLOOR[@formulary.floor] %></p>
+        <% end %>
+
+        <% if @formulary.accessibility_with_step.present? %>
+          <p class="bold black">La porte d'entrée de votre logement est-elle accessible sans que vous n'ayez de marche à franchir ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.accessibility_with_step] %></p>
+        <% end %>
+
+        <% if @formulary.type_of_pension.present? %>
+          <p class="bold black">Concernant votre pension de retraite ou de réversion ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::TYPE_OF_PENSION[@formulary.type_of_pension] %></p>
+        <% end %>
+
+        <% if @formulary.pension.present? %>
+          <p class="bold black">Comment se nomme la caisse de retraite principale vous versant votre pension de retraite ou de réversion à titre principal ?</p>
+          <p class="margin-bottom-15"><%= @formulary.pension %></p>
+        <% end %>
+
+        <% if @formulary.supplementary.present? %>
+          <p class="bold black">Comment se nomme(nt) la ou les caisse(s) de retraite(s) complémentaire(s) vous versant votre pension de retraite complémentaire ou de réversion ?</p>
+          <p class="margin-bottom-15"><%= @formulary.supplementary %></p>
+        <% end %>
+
+        <% if @formulary.loss_of_autonomy.present? %>
+          <p class="bold black">À quel Groupe Iso-Ressource ou GIR appartenez-vous ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::LOSS_OF_AUTONOMY[@formulary.loss_of_autonomy] %></p>
+        <% end %>
+
+        <% if @formulary.occupant.present? %>
+          <p class="bold black">Combien de personne(s) réside(nt) au sein de votre foyer ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::OCCUPANT[@formulary.occupant] %></p>
+        <% end %>
+
+        <% if @formulary.owner_is_include.present? %>
+          <p class="bold black">Le propriétaire de votre logement y vit-il ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.owner_is_include] %></p>
+        <% end %>
+
+        <% if @formulary.has_partner.present? %>
+          <p class="bold black">Vivez-vous avec un conjoint, concubin ou partenaire de PACS ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.has_partner] %></p>
+        <% end %>
+
+        <% if @formulary.tax_revenue.present? %>
+          <p class="bold black">Quel est le montant de votre Revenu Fiscal de Référence ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::TAXE_REVENUE[@formulary.tax_revenue] %></p>
+        <% end %>
+
+        <% if @formulary.gross_income.present? %>
+          <p class="bold black">Quel est le montant de votre Revenu Brut Global ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::GROSS_INCOME[@formulary.gross_income] %></p>
+        <% end %>
+
+        <% if @formulary.global_tax_revenue.present? %>
+          <p class="bold black">Quel est le montant du Revenu Fiscal de Référence de l'ensemble de votre foyer ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::GLOBAL_TAXE_REVENUE[@formulary.global_tax_revenue] %></p>
+        <% end %>
+
+        <% if @formulary.household_income.present? %>
+          <p class="bold black">Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::HOUSEHOLD_INCOME[@formulary.household_income] %></p>
+        <% end %>
+
+        <% if @formulary.owner_tax_revenue.present? %>
+          <p class="bold black">Quel est le montant du Revenu Fiscal de Référence du propriétaire de votre logement ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::OWNER_TAXE_REVENUE[@formulary.owner_tax_revenue] %></p>
+        <% end %>
+
+        <% if @formulary.assistant.present? %>
+          <p class="bold black">Avez-vous déjà perçu ou percevez-vous une de ses aides ou actions sociales ?</p>
+          <p class="margin-bottom-15"><%= FormularyChoice::ASSISTANT[@formulary.assistant] %></p>
+        <% end %>
+      <div class="margin-top-120 text-align-center">
+        <%= link_to "Refaire une simulation", root_path %>
+      </div>
+    </div>
+
   </div>
 
 </div>
