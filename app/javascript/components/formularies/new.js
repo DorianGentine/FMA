@@ -10,7 +10,7 @@ import {
 } from "./components";
 
 
-const form = document.getElementById("formulary")
+const formulary = document.getElementById("formulary")
 
 const getEditAnswer = (questions) => {
   const btns = document.querySelectorAll('.edit')
@@ -18,10 +18,8 @@ const getEditAnswer = (questions) => {
     btn.addEventListener('click', function(){
       for (var i = 0; i < questions.length; i++) {
         if (questions[i].set_up.position == btn.dataset.position) {
-          form.innerHTML = ""
-          const btn = document.getElementById("send_to_analyze")
-          if (btn) { btn.remove()}
-          document.getElementById('formulary-form').lastChild.remove()
+          formulary.innerHTML = ""
+          removeFormOrLink()
           editAnswer(questions, questions[i])
         }
       }
@@ -29,7 +27,9 @@ const getEditAnswer = (questions) => {
   })
 }
 
-
+const removeFormOrLink = () => {
+  document.getElementById('formulary-form').lastElementChild.remove()
+}
 
 const editAnswer = (questions, question) => {
   setQuestionsAnswer(questions, question)
@@ -38,10 +38,9 @@ const editAnswer = (questions, question) => {
 const insertQuestionAnswers = (questions) => {
   setQuestionsAnswer(questions)
   getEditAnswer(questions)
-  document.getElementById('formulary-form').addEventListener("submit", function(event){
-    updateFormulary(event, questions)
+  document.getElementById('formulary-form').addEventListener("submit", function(){
+    updateFormulary(questions)
   });
-
 }
 
 
@@ -64,47 +63,43 @@ const setQuestionsAnswer = (questions, question = null) => {
   }
 }
 
+const setPackQuestionAnswer = (questions, last_question, question) => {
+  insertAnswer(questions[last_question])
+  setNextQuestion(questions[question])
+  getEditAnswer(questions)
+}
+
+
 const nextStep = (questions) => {
+  removeFormOrLink()
   for ( var i = 0; i < questions.length; i ++){
     if (typeof questions[i].answer != 'string' && typeof questions[i].answer != 'number' ) { break; }
   }
   if (i == questions.length) {
-    insertAnswer(questions[i-2])
-    setNextQuestion(questions[i-1])
+    setPackQuestionAnswer(questions, i-2, i-1)
     createLinkNext()
   } else {
-    insertAnswer(questions[i-1])
-    setNextQuestion(questions[i])
-    getEditAnswer(questions)
+    setPackQuestionAnswer(questions, i-1, i)
     setFormForFormulary(questions[i])
   }
+  scrollLastMessageIntoView(formulary)
 }
 
+
+
 function fetchFormulary(updated = null, id = null){
-  if (form) {
-    let formulary_id
-    if (id) {
-      if (form.dataset.id === "") {
-        formulary_id = id; form.setAttribute('data-id', id)
-      } else { formulary_id = form.dataset.id }}
-    else { formulary_id = form.dataset.id }
-    // if (formulary_id) {
-    //   var url = `/api/v1/formularies/${formulary_id}/edit`
-    // } else {
-    //   var url = "/api/v1/formularies/new"
-    // }
-    var visitor_id = form.dataset.visitor
+  if (formulary) {
+    var visitor_id = formulary.dataset.visitor
     var url = `/api/v1/visitors/${visitor_id}`
     fetch(url)
       .then(response => response.json())
       .then((data) => {
-        console.log('data', data)
-        if (updated) { nextStep(data)}
-        else { insertQuestionAnswers(data) }
-        scrollLastMessageIntoView(form)
+        console.log('get data', data)
+        insertQuestionAnswers(data)
+        scrollLastMessageIntoView(formulary)
       });
   }
 }
 
 
-export { fetchFormulary }
+export { fetchFormulary, nextStep }

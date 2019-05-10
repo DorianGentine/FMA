@@ -36,7 +36,7 @@ const insertQuestion = (question) => {
 }
 
 const createEditBtn = (question) => {
-  btn = `<button type="button" class="btn btn-light float-left edit" data-position="${question.set_up.position}"><i class="fas fa-pencil-alt"></i></button>`
+  btn = `<div class="btn btn-light float-left edit" data-position="${question.set_up.position}"><i class="fas fa-pencil-alt"></i></div>`
 }
 
 const insertAnswer = (question) => {
@@ -46,7 +46,7 @@ const insertAnswer = (question) => {
 }
 const createLinkNext = () => {
   // const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/" style="width: 100%;">Voir mon analyse</a>`
-  const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
+  const link = `<div class="btn-blue"><a class="nav-link btn-connexion white" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a><div>`
   form.insertAdjacentHTML("afterend", link)
 }
 
@@ -129,9 +129,8 @@ const setNextQuestion = (nex_question) => {
 
 const setFormForFormulary = (question) => {
   const div = document.createElement('form')
-    div.classList = "simple_form edit_visitor margin-top-15"
-    div.id = `edit_visitor_${form.dataset.visitor}`
-
+  div.classList = "simple_form edit_visitor margin-top-15"
+  div.id = `edit_visitor_${form.dataset.visitor}`
   div.setAttribute('novalidate', "novalidate");
   div.setAttribute("data-remote", true)
   div.acceptCharset = "UTF-8"

@@ -22,7 +22,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
       formulary = @visitor.formulary
       formulary.update(form_api_call_params.permit!)
     end
-    render json: formulary
+    render json: FormularyToHash.new(formulary).form_json
     authorize @visitor
   end
 

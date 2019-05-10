@@ -31,6 +31,8 @@ class MatchSolution
       value_to_check = @form[key]
       if key == 4
         value_to_check = his_age(value_to_check)
+      elsif key == 17
+        value_to_check = set_nbr_of_occupants(value_to_check)
       end
       break false unless check_verifaction(condition[key], value_to_check)
     end
@@ -64,6 +66,15 @@ class MatchSolution
       return 2
     elsif his_age > 70
       return 3
+    end
+  end
+
+  def set_nbr_of_occupants(number)
+    return false if number.nil?
+    if number == 1
+      return 0
+    else
+      return 1
     end
   end
 
