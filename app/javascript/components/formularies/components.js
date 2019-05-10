@@ -45,8 +45,8 @@ const insertAnswer = (question) => {
   form.insertAdjacentHTML("beforeend", answer_send);
 }
 const createLinkNext = () => {
-  const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/" style="width: 100%;">Voir mon analyse</a>`
-  // const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
+  // const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/" style="width: 100%;">Voir mon analyse</a>`
+  const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a>`
   form.insertAdjacentHTML("afterend", link)
 }
 
@@ -61,11 +61,11 @@ const createInput = (question, div) => {
   //   input.id = `flat_address formulary_${question.set_up.column_name}`
   // }
   input.name = `formulary[${question.set_up.column_name}]`
-  if (question.set_up.type === "text") {
-    input.type = "text"
-  } else {
+  if (question.set_up.type === "number") {
     input.type = "number"
     input.min = "1"
+  } else {
+    input.type = "text"
   }
   input.value = question.answer
   input.setAttribute( "data-position", question.set_up.position)
@@ -129,21 +129,19 @@ const setNextQuestion = (nex_question) => {
 
 const setFormForFormulary = (question) => {
   const div = document.createElement('form')
-  if (form.dataset.id) {
-    div.classList = "simple_form edit_formulary margin-top-15"
-    div.id = `edit_formulary_${form.dataset.id}`
-  } else {
-    div.classList = "simple_form new_formulary margin-top-15"
-    div.id = `new_formulary`
-  }
+    div.classList = "simple_form edit_visitor margin-top-15"
+    div.id = `edit_visitor_${form.dataset.visitor}`
+
+  div.setAttribute('novalidate', "novalidate");
   div.setAttribute("data-remote", true)
   div.acceptCharset = "UTF-8"
+  // div.method = "post"
   div.style.display = "flex"
   document.getElementById('formulary-form').appendChild(div)
 
   const input = document.createElement("input")
   input.name = "_method"
-  if (form.dataset.id) {input.value = "patch"} else {input.value = "post"}
+  // if (form.dataset.id) {input.value = "patch"} else {input.value = "post"}
   input.type = "hidden"
   div.appendChild(input)
   if (question.set_up.type === "select") {

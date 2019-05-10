@@ -20,6 +20,7 @@ class FormulariesController < ApplicationController
   def show
     session[:formulary_id] = params[:id]
     @formulary = Formulary.find(params[:id])
+    @visitor = @formulary.visitor
     @project = @formulary.project
     @solutions = SetSolutions.new(@formulary).call
     @choices = FormularyChoice.new.set_collections_formulary

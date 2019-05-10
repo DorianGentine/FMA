@@ -87,12 +87,14 @@ function fetchFormulary(updated = null, id = null){
       if (form.dataset.id === "") {
         formulary_id = id; form.setAttribute('data-id', id)
       } else { formulary_id = form.dataset.id }}
-      else { formulary_id = form.dataset.id }
-    if (formulary_id) {
-      var url = `/api/v1/formularies/${formulary_id}/edit`
-    } else {
-      var url = "/api/v1/formularies/new"
-    }
+    else { formulary_id = form.dataset.id }
+    // if (formulary_id) {
+    //   var url = `/api/v1/formularies/${formulary_id}/edit`
+    // } else {
+    //   var url = "/api/v1/formularies/new"
+    // }
+    var visitor_id = form.dataset.visitor
+    var url = `/api/v1/visitors/${visitor_id}`
     fetch(url)
       .then(response => response.json())
       .then((data) => {
