@@ -59,7 +59,7 @@ const setQuestionsAnswer = (questions, question = null) => {
     setNextQuestion(questions[i])
     setFormForFormulary(questions[i])
   } else {
-    createLinkNext()
+    createLinkNext(questions[0].formulary_id)
   }
 }
 
@@ -77,7 +77,7 @@ const nextStep = (questions) => {
   }
   if (i == questions.length) {
     setPackQuestionAnswer(questions, i-2, i-1)
-    createLinkNext()
+    createLinkNext(questions[0].formulary_id)
   } else {
     setPackQuestionAnswer(questions, i-1, i)
     setFormForFormulary(questions[i])

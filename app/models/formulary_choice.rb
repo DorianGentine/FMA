@@ -94,14 +94,7 @@ class FormularyChoice
     2 => "2- Supérieur ou égal à B"
   }
 
-  ASSISTANT = {
-    0 => "0- un prêt à taux 0 au cours des 5 dernières années",
-    1 => "1- une aide pour l'adaptation du logement via l'APA",
-    2 => "2- un PCH",
-    3 => "3- un dispositif d'action social auprès d'une caisse de retraite principale",
-    4 => "4- une subvention de l'ANAH au cours des 5 dernières années",
-    5 => "5- Rien"
-  }
+  ASSISTANT = [ "0- un prêt à taux 0 au cours des 5 dernières années", "1- une aide pour l'adaptation du logement via l'APA", "2- un PCH", "3- un dispositif d'action social auprès d'une caisse de retraite principale", "4- une subvention de l'ANAH au cours des 5 dernières années", "5- Rien" ]
 
   YES_NO = {
     0 => "0- Oui",
@@ -133,7 +126,7 @@ class FormularyChoice
     global_tax_revenue: GLOBAL_TAXE_REVENUE.map { |choice, index| [index, choice]  },
     household_income: HOUSEHOLD_INCOME.map { |choice, index| [index, choice]  },
     owner_tax_revenue: OWNER_TAXE_REVENUE.map { |choice, index| [index, choice]  },
-    assistant: ASSISTANT.map { |choice, index| [index, choice]  }
+    assistant: ASSISTANT
     }
   end
 
@@ -200,24 +193,7 @@ class FormularyChoice
       need_answer: false
     }
   end
-  # def last_name
-  #   return {
-  #     question: questions[:last_name],
-  #     column_name: "last_name",
-  #     type: "input",
-  #     multiple_answers: false,
-  #     placeholder: "votre nom",
-  #     data: nil,
-  #     need_answer: true,
-  #     tooltip: nil,
-  #     errorLabel: nil,
-  #     start_answer: nil,
-  #     position: 1,
-  #     validate: {
-  #       required: true
-  #     }
-  #   }
-  # end
+
   def first_name
     return {
       question: questions[:first_name],
@@ -227,13 +203,9 @@ class FormularyChoice
       placeholder: "votre prénom",
       data: nil,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Bonjour Sam, je m'appelle",
-      position: 2,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 2
     }
   end
   def zip_code
@@ -245,13 +217,10 @@ class FormularyChoice
       placeholder: "ex: 94000",
       data: nil,
       need_answer: true,
-      tooltip: nil,
       errorLabel: "Inserer uniquement les 5 chiffres de votre code postal",
       start_answer: "Je réside dans le",
-      position: 3,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 3
     }
   end
   def age
@@ -263,13 +232,9 @@ class FormularyChoice
       placeholder: "dd/mm/aaaa",
       data: nil,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Ma date de naissance est le",
-      position: 4,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 4
     }
   end
   def is_working
@@ -281,16 +246,12 @@ class FormularyChoice
       placeholder: "",
       data: YES_NO,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: {
+        currency: nil,
         oui: "Oui, j'excerce une activité professionnelle",
         non: "Non, je n'excerce pas d'activité professionnelle"
       },
-      position: 5,
-      validate: {
-        required: true
-      }
+      position: 5
     }
   end
   def loss_of_autonomy_receipt
@@ -302,16 +263,12 @@ class FormularyChoice
       placeholder: "",
       data: YES_NO,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: {
+        currency: nil,
         oui: "Oui, je dispose ces justificatifs",
         non: "Non, je ne dispose pas ces justificatifs"
       },
-      position: 6,
-      validate: {
-        required: true
-      }
+      position: 6
     }
   end
   def occupation
@@ -323,13 +280,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: OCCUPATION_CHOICES,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Je suis",
-      position: 7,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 7
     }
   end
   def holder_occupation
@@ -341,13 +294,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: HOLDER_OCCUPATION_CHOICES,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Il est",
-      position: 8,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 8
     }
   end
   def lessor
@@ -359,13 +308,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: LESSOR_NAMES,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Il s'agit de",
-      position: 9,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 9
     }
   end
   def accommodation
@@ -377,13 +322,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: ACCOMMODATION,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Il s'agit d'un",
-      position: 10,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 10
     }
   end
   def floor
@@ -395,13 +336,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: FLOOR,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Je réside",
-      position: 11,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 11
     }
   end
   def accessibility_with_step
@@ -413,16 +350,12 @@ class FormularyChoice
       placeholder: "",
       data: YES_NO,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
+      currency: nil,
       start_answer: {
         oui: "Oui, elle est accessible",
         non: "Non, je dois franchir une marche"
       },
-      position: 12,
-      validate: {
-        required: true
-      }
+      position: 12
     }
   end
   def type_of_pension
@@ -434,13 +367,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: TYPE_OF_PENSION,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: nil,
-      position: 13,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 13
     }
   end
   def pension
@@ -452,13 +381,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: PENSION_NAMES,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Il s'agit de l'organisme",
-      position: 14,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 14
     }
   end
   def supplementary
@@ -470,13 +395,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: SUPPLEMENTARY_NAMES,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Il s'agit de l'organisme",
-      position: 15,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 15
     }
   end
   def loss_of_autonomy
@@ -488,13 +409,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: LOSS_OF_AUTONOMY,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "j'appartiens",
-      position: 16,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 16
     }
   end
   def occupant
@@ -504,18 +421,14 @@ class FormularyChoice
       type: "number",
       multiple_answers: false,
       placeholder: "1 = juste vous",
-      data: OCCUPANT,
+      data: nil,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
+      currency: nil,
       start_answer: {
         "1" => "J'habite seul",
         "2" => "Nous sommes "
       },
-      position: 17,
-      validate: {
-        required: true
-      }
+      position: 17
     }
   end
   def owner_is_include
@@ -527,16 +440,12 @@ class FormularyChoice
       placeholder: "",
       data: YES_NO,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
+      currency: nil,
       start_answer: {
         oui: "Oui, le propriétaire vit dans le logement",
         non: "Non, le propriétaire ne vit pas dans le logement"
       },
-      position: 18,
-      validate: {
-        required: true
-      }
+      position: 18
     }
   end
   def has_partner
@@ -548,106 +457,82 @@ class FormularyChoice
       placeholder: "",
       data: YES_NO,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
+      currency: nil,
       start_answer: {
         oui: "Oui, je vis en couple",
         non: "Non, je ne vis pas en couple"
       },
-      position: 19,
-      validate: {
-        required: true
-      }
+      position: 19
     }
   end
   def tax_revenue
     return {
       question: questions[:tax_revenue],
       column_name: "tax_revenue",
-      type: "select",
+      type: "number",
       multiple_answers: false,
-      placeholder: "Choisi parmis la liste",
-      data: TAXE_REVENUE,
+      placeholder: "Votre revenu en €",
+      data: nil,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
-      start_answer: "Le montant de mon revenu fiscal est de",
-      position: 20,
-      validate: {
-        required: true
-      }
+      start_answer: "Le montant de mon revenu fiscal est de ",
+      currency: true,
+      position: 20
     }
   end
   def gross_income
     return {
       question: questions[:gross_income],
       column_name: "gross_income",
-      type: "select",
+      type: "number",
       multiple_answers: false,
-      placeholder: "Choisi parmis la liste",
-      data: GROSS_INCOME,
+      placeholder: "Votre revenu en €",
+      data: nil,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
-      start_answer: "Le montant de mon revenu brut global est de",
-      position: 21,
-      validate: {
-        required: true
-      }
+      start_answer: "Le montant de mon revenu brut global est de ",
+      currency: true,
+      position: 21
     }
   end
   def global_tax_revenue
     return {
       question: questions[:global_tax_revenue],
       column_name: "global_tax_revenue",
-      type: "select",
+      type: "number",
       multiple_answers: false,
-      placeholder: "Choisi parmis la liste",
-      data: GLOBAL_TAXE_REVENUE,
+      placeholder: "Votre revenu en €",
+      data: nil,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
-      start_answer: "Le montant de mon revenu fiscal de référence de l'ensemble de mon foyer est de",
-      position: 22,
-      validate: {
-        required: true
-      }
+      start_answer: "Le montant de mon revenu fiscal de référence de l'ensemble de mon foyer est de ",
+      currency: true,
+      position: 22
     }
   end
   def household_income
     return {
       question: questions[:household_income],
       column_name: "household_income",
-      type: "select",
+      type: "number",
       multiple_answers: false,
-      placeholder: "Choisi parmis la liste",
-      data: HOUSEHOLD_INCOME,
+      placeholder: "Votre revenu en €",
+      data: nil,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
-      start_answer: "Le montant de mon revenu brut global de votre ménage est de",
-      position: 23,
-      validate: {
-        required: true
-      }
+      start_answer: "Le montant de mon revenu brut global de votre ménage est de ",
+      currency: true,
+      position: 23
     }
   end
   def owner_tax_revenue
     return {
       question: questions[:owner_tax_revenue],
       column_name: "owner_tax_revenue",
-      type: "select",
+      type: "number",
       multiple_answers: false,
-      placeholder: "Choisi parmis la liste",
+      placeholder: "Votre revenu en €",
       data: OWNER_TAXE_REVENUE,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
-      start_answer: "Le montant de mon revenu fiscal du propriétaire est de",
-      position: 24,
-      validate: {
-        required: true
-      }
+      start_answer: "Le montant de mon revenu fiscal du propriétaire est de ",
+      currency: true,
+      position: 24
     }
   end
   def assistant
@@ -659,13 +544,9 @@ class FormularyChoice
       placeholder: "Choisi parmis la liste",
       data: ASSISTANT,
       need_answer: true,
-      tooltip: nil,
-      errorLabel: nil,
       start_answer: "Je perçois",
-      position: 25,
-      validate: {
-        required: true
-      }
+      currency: nil,
+      position: 25
     }
   end
 
@@ -694,8 +575,8 @@ class FormularyChoice
       occupant: "Combien de personne(s) réside(nt) au sein de votre foyer ?",
       owner_is_include: "Le propriétaire de votre logement y vit-il ?",
       has_partner: "Vivez-vous avec un conjoint, concubin ou partenaire de PACS ?",
-      tax_revenue: "Quel est le montant de votre Revenu Fiscal de Référence ?",
-      gross_income: "Quel est le montant de votre Revenu Brut Global ?",
+      tax_revenue: "Quel est le montant de votre Revenu en € Fiscal de Référence ?",
+      gross_income: "Quel est le montant de votre Revenu en € Brut Global ?",
       global_tax_revenue: "Quel est le montant du Revenu Fiscal de Référence de l'ensemble de votre foyer ?",
       household_income: "Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?",
       owner_tax_revenue: "Quel est le montant du Revenu Fiscal de Référence du propriétaire de votre logement ?",
