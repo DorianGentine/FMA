@@ -1,10 +1,6 @@
 class Api::V1::VisitorsController < Api::V1::BaseController
   before_action :set_visitor, only: [:show, :update_formulary, :analyze]
 
-  def index
-    @visitors = policy_scope(Visitor)
-  end
-
   def show
     formulary = @visitor.formulary.nil? ? Formulary.new : @visitor.formulary
     @formulary = FormularyToHash.new(formulary).form_json
@@ -13,23 +9,21 @@ class Api::V1::VisitorsController < Api::V1::BaseController
 
   def analyze
     @formulary = @visitor.formulary
-    p "Formulary is = #{@formulary}"
     @solutions = SetSolutions.new(@formulary).call
   end
 
   def update_formulary
-    visitor = Visitor.find(params[:id].to_i)
-    if visitor.formulary.nil?
+    if @visitor.formulary.nil?
       formulary = Formulary.new(form_api_call_params.permit!)
-      formulary.visitor = visitor
+      formulary.visitor = @visitor
       formulary.project = Project.create!
       formulary.save
     else
-      formulary = visitor.formulary
+      formulary = @visitor.formulary
       formulary.update(form_api_call_params.permit!)
     end
     render json: formulary
-    authorize visitor
+    authorize @visitor
   end
 
   private
