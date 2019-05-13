@@ -14,9 +14,7 @@ function updateFormulary(questions){
     } else { input = formularyForm.getElementsByTagName('input')[1] }
 
     const obj = {}
-    obj[input.name.replace("formulary[", "").replace("]","")] = input.value
-
-
+    obj[input.name] = input.value
     fetch(`/api/v1/visitors/${visitor_id}/update_formulary`, {
       headers: {"Content-Type": "application/json; charset=utf-8"},
       method: "PATCH",

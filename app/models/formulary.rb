@@ -2,10 +2,9 @@ class Formulary < ApplicationRecord
   belongs_to :visitor
   belongs_to :project
 
-  # Q-1
-  # def allow_last_name?
-  #   true
-  # end
+  def first_name=(s)
+    write_attribute(:first_name, s.to_s.capitalize) # The to_s is in case you get nil/non-string
+  end
 
   # Q-2
   def allow_first_name?
@@ -310,4 +309,5 @@ class Formulary < ApplicationRecord
       return 1
     end
   end
+
 end

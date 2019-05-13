@@ -27,7 +27,7 @@ class CreateFormularies < ActiveRecord::Migration[5.2]
       t.integer :global_tax_revenue
       t.integer :household_income
       t.integer :owner_tax_revenue
-      t.integer :assistant
+      t.string :assistant
       t.timestamps
     end
   end

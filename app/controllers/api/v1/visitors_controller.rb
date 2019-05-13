@@ -14,13 +14,13 @@ class Api::V1::VisitorsController < Api::V1::BaseController
 
   def update_formulary
     if @visitor.formulary.nil?
-      formulary = Formulary.new(form_api_call_params.permit!)
+      formulary = Formulary.new(form_params)
       formulary.visitor = @visitor
       formulary.project = Project.create!
       formulary.save
     else
       formulary = @visitor.formulary
-      formulary.update(form_api_call_params.permit!)
+      formulary.update(form_params)
     end
     render json: FormularyToHash.new(formulary).form_json
     authorize @visitor
@@ -33,13 +33,9 @@ class Api::V1::VisitorsController < Api::V1::BaseController
     authorize @visitor  # For Pundit
   end
 
-  def form_api_call_params
-    pf = params[:params_value]
-    test_upload_alowing_form(pf)
-  end
-
-  def test_upload_alowing_form(pf)
+  def form_params
     visitor = Visitor.find(params[:id].to_i)
+    pf = params[:params_value]
     f = visitor.formulary.nil? ? Formulary.new : visitor.formulary
     form = Formulary.column_names.reverse.drop(2).reverse
     index = form.index(pf.keys.first)
@@ -51,7 +47,8 @@ class Api::V1::VisitorsController < Api::V1::BaseController
         pf[column_name] = nil
       end
     end
-    return pf
+    p "#{pf}"
+    return pf.permit!
   end
 
 end

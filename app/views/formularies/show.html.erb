@@ -9,7 +9,7 @@
 
     <div class="col-lg-6 avantage">
       <h2 class="blue text-align-center">Vos financeurs potentiels</h2>
-      <div id="financeurs-potentiels" data-visitorid="<%= @formulary.id %>"></div> <!-- généré en js -->
+      <div id="financeurs-potentiels" data-visitorid="<%= @visitor.id %>"></div> <!-- généré en js -->
       <div class="margin-top-120 margin-bottom-60 text-align-center">
         <%= link_to "Poursuivre avec un conseiller", new_user_registration_path, class: "btn-blue" %>
       </div>
@@ -22,6 +22,7 @@
           <p class="bold black">Quel est votre prénom ?</p>
           <p class="margin-bottom-15"><%= @formulary.first_name %></p>
         <% end %>
+
 
         <% if @formulary.zip_code.present? %>
           <p class="bold black">Quel est le code postale de votre résidence ?</p>
@@ -110,36 +111,37 @@
 
         <% if @formulary.tax_revenue.present? %>
           <p class="bold black">Quel est le montant de votre Revenu Fiscal de Référence ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::TAXE_REVENUE[@formulary.tax_revenue] %></p>
+          <p class="margin-bottom-15"><%= @formulary.tax_revenue %></p>
         <% end %>
 
         <% if @formulary.gross_income.present? %>
           <p class="bold black">Quel est le montant de votre Revenu Brut Global ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::GROSS_INCOME[@formulary.gross_income] %></p>
+          <p class="margin-bottom-15"><%= @formulary.gross_income %></p>
         <% end %>
 
         <% if @formulary.global_tax_revenue.present? %>
           <p class="bold black">Quel est le montant du Revenu Fiscal de Référence de l'ensemble de votre foyer ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::GLOBAL_TAXE_REVENUE[@formulary.global_tax_revenue] %></p>
+          <p class="margin-bottom-15"><%= @formulary.global_tax_revenue %></p>
         <% end %>
 
         <% if @formulary.household_income.present? %>
           <p class="bold black">Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::HOUSEHOLD_INCOME[@formulary.household_income] %></p>
+          <p class="margin-bottom-15"><%= @formulary.household_income %></p>
         <% end %>
 
         <% if @formulary.owner_tax_revenue.present? %>
           <p class="bold black">Quel est le montant du Revenu Fiscal de Référence du propriétaire de votre logement ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::OWNER_TAXE_REVENUE[@formulary.owner_tax_revenue] %></p>
+          <p class="margin-bottom-15"><%= @formulary.owner_tax_revenue %></p>
         <% end %>
 
         <% if @formulary.assistant.present? %>
           <p class="bold black">Avez-vous déjà perçu ou percevez-vous une de ses aides ou actions sociales ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::ASSISTANT[@formulary.assistant] %></p>
+          <p class="margin-bottom-15"><%= @formulary.assistant %></p>
         <% end %>
       <div class="margin-top-120 text-align-center">
         <%= link_to "Refaire une simulation", root_path %>
       </div>
+
     </div>
 
   </div>
@@ -148,51 +150,6 @@
 
 <%= render "shared/footer" %>
 
-<!-- <script>
-
-
-  const setSolution = (solution) => {
-    const div = document.createElement('div')
-    div.acceptCharset = "UTF-8"
-    div.classList = "margin-top-60"
-    // div.id = `edit_formulary_${form.dataset.id}`
-
-    const logoFinanceur = document.createElement("div")
-    // div.acceptCharset = "UTF-8"
-    logoFinanceur.classList = "logo-financeur"
-    logoFinanceur.style = "height: 60px; width: 60px"
-
-    const nomFinanceur = document.createElement("h4")
-    // div.acceptCharset = "UTF-8"
-    nomFinanceur.classList = "margin-top-15"
-    nomFinanceur.innerText = solution.financer.name
-
-    const descriptionFinanceur = document.createElement("p")
-    // div.acceptCharset = "UTF-8"
-    descriptionFinanceur.classList = "margin-top-15"
-    descriptionFinanceur.innerText = solution.financer.description
-
-    div.appendChild(logoFinanceur)
-    div.appendChild(nomFinanceur)
-    div.appendChild(descriptionFinanceur)
-
-
-    document.getElementById('financeurs-potentiels').appendChild(div)
-  }
-
-  const getSolutions = async function () {
-    let response = await fetch("/api/v1/formularies/<%= @formulary.id %>")
-    let data = await response.json()
-
-    for (var i = 0; i < data.solutions.length; i++) {
-      setSolution(data.solutions[i])
-    }
-  }
-  getSolutions()
-
-</script>
-
- -->
 
 
 
