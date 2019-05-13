@@ -51,9 +51,10 @@
   border: 1px solid $gray-300;
   position: relative;
   color: $blue;
-  text-align: center;
   font-size: 38px;
-  line-height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .statut{
     position: absolute;
     top: 0;
