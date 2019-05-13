@@ -8,12 +8,13 @@
 </div>
 <!-- fin -->
 
+  <!-- data-disconnect="<%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>" -->
 
 <!-- DELETE -->
   <div class="top-corner-left">
     <%= link_to "API", api_v1_user_project_path(@user, @project), target: "_blank" %>
 
-    <%= link_to "Form", edit_api_v1_formulary_path(@formulary), target: "_blank"%>
+    <%#= link_to "Form", analyze_api_v1_visitor_path(@visitor), target: "_blank"%>
   </div>
 
   <style>

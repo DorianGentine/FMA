@@ -25,8 +25,8 @@
   }
 
   .dropdown-menu{
-    right: 0;
-    left: unset;
+    right: 0 !important;
+    left: unset !important;
     border: none;
     box-shadow: 0px 1px 5px rgba(0,0,0,.08);
     padding: 10px 5px;
@@ -42,6 +42,10 @@
       // color: $black !important;
       background-color: $blue-gray;
     }
+  }
+  .dropdown-toggle::after{
+    cursor: pointer;
+    margin-left: 0;
   }
 
 
