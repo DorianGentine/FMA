@@ -6,7 +6,10 @@ import "../components/dynamicNavbar";
 
 import "../components/get_solutions";
 
-import { fetchFormulary } from "../components/formularies/new";
+// import { fetchFormulary } from "../components/formularies/new";
+// fetchFormulary();
+
+import { fetchFormulary } from "../components/formularies/chatbot";
 fetchFormulary();
 
 import { currencyFormatDE } from "../components/currency";
