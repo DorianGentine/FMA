@@ -11,6 +11,20 @@
   padding: 50px;
 }
 
+.navbar-avatar{
+  margin: 0 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid $gray-300;
+  position: relative;
+  color: $blue;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 770px){
   .navbar-lewagon{
     padding: 20px;

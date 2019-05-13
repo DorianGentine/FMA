@@ -9,7 +9,7 @@
       <div class="btn-group pointer" role="group">
         <div id="drop-navbar" class="dropdown-toggle flex align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <p class="text-align-right">Bonjour, <%= current_user.first_name %> <%= current_user.last_name %></p>
-          <div class="avatar-app" style="height: 35px; width: 35px; font-size: 12px; line-height: 35px; margin: 0 15px;"><%= current_user.first_name[0] %><%= current_user.last_name[0] %></div>
+          <div class="navbar-avatar"><%= current_user.first_name[0] %><%= current_user.last_name[0] %></div>
         </div>
         <div class="dropdown-menu" aria-labelledby="drop-navbar">
           <p><%= link_to "Mon compte", user_path(current_user) if current_user.present? %></p>

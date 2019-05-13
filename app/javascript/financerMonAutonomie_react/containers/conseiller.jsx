@@ -13,7 +13,7 @@ class Conseiller extends Component {
       <div className="conseiller">
         <div className="avatar-app">
           <div className="statut"></div>
-          {renderInitiale(conseiller.first_name, conseiller.last_name)}
+          {renderInitiale(`${conseiller.first_name} ${conseiller.last_name}`)}
         </div>
         <p className="blue margin-top-30 font-12">votre conseillé est</p>
         <p className="">{conseiller.first_name} {conseiller.last_name}</p>

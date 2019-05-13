@@ -8,12 +8,6 @@ class VosReponses extends Component {
 
   render(){
     const beneficiaire = this.props.beneficiaire
-    const styleAvatar = {
-    height: "35px",
-    width: "35px",
-    fontSize: "12px",
-    lineHeight: "35px",
-  }
 
     const renderBeneficiaires = () => {
       // return beneficiaires.map((beneficiaire, index) => {
@@ -25,7 +19,7 @@ class VosReponses extends Component {
         };
         return (
           <div className="flex space-between margin-bottom-30" key={beneficiaire.id}>
-            <div className="avatar-app margin-right-15" style={styleAvatar}>{renderInitiale(beneficiaire.first_name, beneficiaire.last_name)}</div>
+            <div className="navbar-avatar margin-right-15" style={{ marginLeft: 0 }}>{renderInitiale(`${beneficiaire.first_name} ${beneficiaire.last_name}`)}</div>
             <div className="flex-grow-1">
               <h4 className="font-12 no-margin">Bénéficiaire {numBeneficiaire}:</h4>
               <p className="font-12">{beneficiaire.first_name} {beneficiaire.last_name}</p>
