@@ -7,7 +7,9 @@ import {
 } from "./components";
 
 const formulary = document.getElementById("formulary")
-const visitor_id = formulary.dataset.visitor
+if (formulary) {
+  const visitor_id = formulary.dataset.visitor
+}
 const input = document.getElementById('formulary-form')
 
 const getEditAnswer = (questions) => {
@@ -73,8 +75,9 @@ const updateFormulary = (event) => {
   })
 }
 
-
-input.addEventListener("submit", updateFormulary);
+if (input) {
+  input.addEventListener("submit", updateFormulary);
+}
 
 
 function fetchFormulary(){

@@ -1,20 +1,26 @@
 <!-- html de l'application -->
-<div id="app"
-  data-user="<%= @user.to_json %>"
-  data-project="<%= @project.to_json %>"
-  data-fma_team="<%= @fma_team.to_json %>"
-  data-solutions="<%= @solutions.to_json %>"
-  >
-</div>
-<!-- fin -->
-
-
+<% if @user.is_a_client %>
+  <div id="app"
+    data-user="<%= @user.to_json %>"
+    data-project="<%= @project.to_json %>"
+    data-fma_team="<%= @fma_team.to_json %>"
+    data-solutions="<%= @solutions.to_json %>"
+    >
+  </div>
 <!-- DELETE -->
   <div class="top-corner-left">
     <%= link_to "API", api_v1_user_project_path(@user, @project), target: "_blank" %>
 
     <%= link_to "Form", edit_api_v1_formulary_path(@formulary), target: "_blank"%>
   </div>
+
+<% else %>
+  <%= pluralize(@projects.count, 'Project') %>
+  <%= pluralize(@clients.count, 'Client') %>
+<% end %>
+<!-- fin -->
+
+
 
   <style>
     .top-corner-left{
