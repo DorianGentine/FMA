@@ -35,7 +35,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
 
   def form_params
     visitor = Visitor.find(params[:id].to_i)
-    pf = params[:params_value]
+    pf = { params[:name] => params[:value] }
     f = visitor.formulary.nil? ? Formulary.new : visitor.formulary
     form = Formulary.column_names.reverse.drop(2).reverse
     index = form.index(pf.keys.first)
@@ -47,8 +47,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
         pf[column_name] = nil
       end
     end
-    p "#{pf}"
-    return pf.permit!
+    return pf
   end
 
 end

@@ -41,18 +41,26 @@ const conditionToAnswer = (question) => {
 }
 
 
-const insertQuestion = (question) => {
-  question_send = `<div class="message received">${question.set_up.position} - ${question.set_up.question}</div>`
+const insertQuestion = (question, last = null) => {
+  question_send = `<div class="message received" data-question="${question.set_up.id}">${question.set_up.position} - ${question.set_up.question}</div>`
   form.insertAdjacentHTML("beforeend", question_send);
+  if (last) {
+    setFormForFormulary(question)
+  }
+}
+
+const setNextQuestion = (nex_question) => {
+  // const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
+  // form.insertAdjacentHTML("beforeend", lastQuestion);
 }
 
 const createEditBtn = (question) => {
-  btn = `<div class="btn btn-light float-left edit" data-position="${question.set_up.position}"><i class="fas fa-pencil-alt"></i></div>`
+  btn = `<div class="btn btn-light float-left edit" data-question="${question.set_up.id}"><i class="fas fa-pencil-alt"></i></div>`
 }
 
 const insertAnswer = (question) => {
   createEditBtn(question)
-  answer_send = `<div class="message sent" data-columnName='${question.set_up.column_name}'>${btn} ${conditionToAnswer(question)}</div>`
+  answer_send = `<div class="message sent">${btn} ${conditionToAnswer(question)}</div>`
   form.insertAdjacentHTML("beforeend", answer_send);
 }
 const createLinkNext = (id) => {
@@ -131,11 +139,6 @@ const createSubmitBtn = (div) => {
   submit.name = "commit"
   submit.type = "submit"
   div.appendChild(submit)
-}
-
-const setNextQuestion = (nex_question) => {
-  const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
-  form.insertAdjacentHTML("beforeend", lastQuestion);
 }
 
 const setFormForFormulary = (question) => {
