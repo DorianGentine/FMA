@@ -7,6 +7,8 @@ import KitDeFinancement from "../containers/kit_financement"
 
 class PanneauPrincipal extends Component {
   render(){
+    const selectedMenu = this.props.selectedMenu
+
     return (
       <div className="row">
         <DocumentsSoumettre />

@@ -34,7 +34,7 @@ class VosReponses extends Component {
       <div className="col-lg-6">
         <div className="white-box flex flex-wrap">
           <h4 className="col-lg-12">Vos réponses</h4>
-          <div className="scroll col-lg-12" style={{ height: "145px" }}>
+          <div className="scroll col-lg-12 align-items-center" style={{ height: "145px" }}>
             {renderBeneficiaires()}
           </div>
         </div>

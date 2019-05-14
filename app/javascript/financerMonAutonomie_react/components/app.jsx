@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchAPI } from '../actions';
+// import { fetchAPI } from '../actions';
 
 import AppNavbar from "../containers/app_navbar"
 import Volet from "../containers/volet"
@@ -21,11 +21,15 @@ class App extends Component {
     if(api.beneficiaire.client){
       return (
         <div>
-          <AppNavbar selectedMenu={this.props.match.params.menu} />
-          <Volet selectedMenu={this.props.match.params.menu} />
+          <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
+          <Volet selectedMenu={this.props.match.params.menu_nav}
+              selectedMenuVolet={this.props.match.params.menu_volet}
+           />
           <div className="app-container container">
             <MenuProfil />
-            <PanneauPrincipal />
+            <PanneauPrincipal
+              selectedMenu={this.props.match.params.menu_nav}
+            />
           </div>
         </div>
       );
@@ -48,8 +52,8 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAPI }, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ fetchAPI }, dispatch);
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

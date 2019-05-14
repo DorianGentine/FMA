@@ -24,7 +24,7 @@ if(app){
   const urlAPI = `/api/v1/users/${user.id}/projects/${project.id}`;
 
   const rootUrl = `/mon_espace/${user.id}`
-  const routeUrl = rootUrl + "/:menu"
+  const routeUrl = rootUrl + "/:menu_nav" + "/:menu_volet"
   const rootRedirect = rootUrl + "/projet"
 
   const identityReducer = (state = null) => state;
@@ -44,7 +44,7 @@ if(app){
   const reducers = combineReducers({
     rootUrl: identityReducer,
     urlAPI: identityReducer,
-    menu: identityReducer,
+    // menu: identityReducer,
     api: apiReducer,
   });
 
