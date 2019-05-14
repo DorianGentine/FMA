@@ -20,7 +20,8 @@ if(financeursPotentielsId){
     const descriptionFinanceur = document.createElement("p")
     // div.acceptCharset = "UTF-8"
     descriptionFinanceur.classList = "margin-top-15"
-    descriptionFinanceur.innerText = solution.financer.description
+
+    descriptionFinanceur.innerText = solution.answers
 
     div.appendChild(logoFinanceur)
     div.appendChild(nomFinanceur)
