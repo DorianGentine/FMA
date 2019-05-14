@@ -6,7 +6,7 @@
   import logger from 'redux-logger';
   import reduxPromise from 'redux-promise';
   import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-  import { createHistory as history } from 'history';
+  import { createBrowserHistory as history } from 'history';
 
   // internal modules
   import App from './components/app';
