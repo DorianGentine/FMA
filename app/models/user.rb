@@ -37,6 +37,13 @@ class User < ApplicationRecord
     return clients
   end
 
+  def his_formulary
+    if self.is_a_client
+      project = self.projects.first
+      return formulary = Formulary.where(project: project).first
+    end
+  end
+
   private
 
   def set_as_client
