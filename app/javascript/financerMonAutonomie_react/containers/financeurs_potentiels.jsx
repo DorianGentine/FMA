@@ -39,7 +39,7 @@ class FinanceursPotentiels extends Component {
       <div className="col-lg-6">
         <div className="white-box flex flex-wrap">
           <h4 className="col-lg-9">Financeurs potentiels</h4>
-          <p className="bold font-12 col-lg-2">{solutions.length}</p>
+          <p className="bold font-12 col-lg-2">0{solutions.length}</p>
           <div className="scroll col-lg-12" style={{ height: "145px" }}>
             {renderFinanceurs()}
           </div>
