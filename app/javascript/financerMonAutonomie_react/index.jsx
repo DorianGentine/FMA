@@ -5,6 +5,8 @@
   import { createStore, combineReducers, applyMiddleware } from 'redux';
   import logger from 'redux-logger';
   import reduxPromise from 'redux-promise';
+  import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+  import { createBrowserHistory as history } from 'history';
 
   // internal modules
   import App from './components/app';
@@ -17,16 +19,32 @@
 
 const app = document.getElementById('app')
 if(app){
+  const user = JSON.parse(app.dataset.user)
+  const project = JSON.parse(app.dataset.project)
+  const urlAPI = `/api/v1/users/${user.id}/projects/${project.id}`;
+
+  const rootUrl = `/mon_espace/${user.id}`
+  const routeUrl = rootUrl + "/:menu"
+  const rootRedirect = rootUrl + "/projet"
+
+  const identityReducer = (state = null) => state;
+
   const initialState = {
+    rootUrl: rootUrl,
+    urlAPI: urlAPI,
+    // menu: ['projet', 'compte', 'alertes',],
     api: {
       beneficiaire: JSON.parse(app.dataset.user),
       project: JSON.parse(app.dataset.project),
       fma_team: JSON.parse(app.dataset.fma_team),
       solutions: JSON.parse(app.dataset.solutions),
-    }
+    },
   };
 
   const reducers = combineReducers({
+    rootUrl: identityReducer,
+    urlAPI: identityReducer,
+    menu: identityReducer,
     api: apiReducer,
   });
 
@@ -35,12 +53,14 @@ if(app){
   const store = createStore(reducers, initialState, middlewares);
 
 // render an instance of the component in the DOM
-  const user = JSON.parse(app.dataset.user)
-  const project = JSON.parse(app.dataset.project)
-  const urlAPI = `/api/v1/users/${user.id}/projects/${project.id}`;
   ReactDOM.render(
     <Provider store={store}>
-        <App urlAPI={urlAPI} />
+        <Router history={history}>
+          <Switch>
+            <Route path={routeUrl} component={App} />
+            <Redirect from={rootUrl} to={rootRedirect} />
+          </Switch>
+        </Router>
     </Provider>,
     app
   );

@@ -1,3 +1,5 @@
+import renderInitiale from "../components/render_initiales"
+
 const financeursPotentielsId = document.getElementById('financeurs-potentiels')
 
 if(financeursPotentielsId){
@@ -10,7 +12,12 @@ if(financeursPotentielsId){
     const logoFinanceur = document.createElement("div")
     // div.acceptCharset = "UTF-8"
     logoFinanceur.classList = "logo-financeur"
-    logoFinanceur.style = "height: 60px; width: 60px"
+    logoFinanceur.style = "height: 60px; width: 60px;"
+    if(solution.financer.logo == null){
+      logoFinanceur.innerText = renderInitiale(solution.financer.name)
+    } else {
+      logoFinanceur.style.backgroundImage = `url(${solution.financer.logo})`
+    }
 
     const nomFinanceur = document.createElement("h4")
     // div.acceptCharset = "UTF-8"
@@ -32,7 +39,6 @@ if(financeursPotentielsId){
   }
 
   const getSolutions = async function () {
-    console.log(financeursPotentielsId)
     const visitorId = financeursPotentielsId.dataset.visitorid
     let response = await fetch(`/api/v1/visitors/${visitorId}/analyze`)
     let data = await response.json()

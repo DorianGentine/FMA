@@ -8,7 +8,7 @@ import {
 
 const formulary = document.getElementById("formulary")
 if (formulary) {
-  const visitor_id = formulary.dataset.visitor
+  var visitor_id = formulary.dataset.visitor
 }
 const input = document.getElementById('formulary-form')
 

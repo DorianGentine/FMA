@@ -6,19 +6,17 @@ import renderInitiale from "../../components/render_initiales"
 
 const MenuProfil = (props) => {
   const beneficiaire = props.beneficiaire
-  const styleAvatar = {
-    height: "35px",
-    width: "35px",
-    fontSize: "12px",
-    lineHeight: "35px",
-    margin: "0 15px",
-  }
 
   return (
-    <div className="margin-bottom-30 row justify-content-end align-items-center">
-      <p className="text-align-right">Bonjour, {beneficiaire.first_name} {beneficiaire.last_name}</p>
-      <div className="avatar-app" style={styleAvatar}>{renderInitiale(beneficiaire.first_name, beneficiaire.last_name)}</div>
-      <div className="icon-arrow-down"></div>
+    <div className="relative" role="group">
+      <div id="drop-navbar" className="dropdown-toggle margin-bottom-30 flex justify-content-end align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p className="pointer text-align-right">Bonjour, {beneficiaire.first_name} {beneficiaire.last_name}</p>
+        <div className="pointer navbar-avatar">{renderInitiale(`${beneficiaire.first_name} ${beneficiaire.last_name}`)}</div>
+      </div>
+      <div className="dropdown-menu" aria-labelledby="drop-navbar">
+        <p><a href="#">Mon compte</a></p>
+        <p><a href="/users/sign_out" rel="nofollow" data-method="delete">Se déconnecter</a></p>
+      </div>
     </div>
   );
 };
