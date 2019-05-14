@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_29_105803) do
+ActiveRecord::Schema.define(version: 2019_05_14_105600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["visitor_id"], name: "index_contact_forms_on_visitor_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "title"
+    t.string "file"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_documents_on_project_id"
   end
 
   create_table "financers", force: :cascade do |t|
@@ -58,7 +67,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
     t.integer "global_tax_revenue"
     t.integer "household_income"
     t.integer "owner_tax_revenue"
-    t.integer "assistant"
+    t.string "assistant"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_formularies_on_project_id"
@@ -126,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
   end
 
   add_foreign_key "contact_forms", "visitors"
+  add_foreign_key "documents", "projects"
   add_foreign_key "formularies", "projects"
   add_foreign_key "formularies", "visitors"
   add_foreign_key "solutions", "financers"

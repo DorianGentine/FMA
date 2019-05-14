@@ -5,6 +5,8 @@ class Project < ApplicationRecord
 
   has_many :formularies, dependent: :destroy
 
+  has_many :documents, dependent: :destroy
+
   enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evalution"]
 
 

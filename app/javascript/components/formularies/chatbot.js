@@ -34,6 +34,17 @@ const setQuestionAnswer = (question) => {
   }
 }
 
+const onClickHint = () => {
+  let hints = document.querySelectorAll('.hintClick')
+  hints.forEach((hint) => {
+    hint.addEventListener('click', function(event){
+      var message = hint.parentNode.lastElementChild
+      if (message.style.display === 'none') {
+        message.style.display = "block"
+      } else { message.style.display = "none" }
+    })
+  })
+}
 
 const nextStep = (questions, updated = null, question = null) => {
   const asked = document.querySelector(".received:last-child")
@@ -45,6 +56,9 @@ const nextStep = (questions, updated = null, question = null) => {
     if (updated && asked != undefined && questions[i].set_up.id === parseInt(asked.dataset.question, 10)){
       input.lastElementChild.remove()
       insertAnswer(questions[i])
+      if (questions[i].set_up.column_name === "assistant") {
+        insertQuestion(questions[questions.length-1])
+      }
     } else if (asked == undefined ) {
       setQuestionAnswer(questions[i])
     }
@@ -55,6 +69,7 @@ const nextStep = (questions, updated = null, question = null) => {
     insertQuestion(questions[i], true)
   }
   scrollLastMessageIntoView(formulary)
+  onClickHint()
   getEditAnswer(questions)
 }
 
