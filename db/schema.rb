@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_105803) do
     t.integer "global_tax_revenue"
     t.integer "household_income"
     t.integer "owner_tax_revenue"
-    t.string "assistant"
+    t.integer "assistant"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_formularies_on_project_id"
