@@ -1,5 +1,7 @@
 import { initSelect2, initSelectize } from '../../components/init_select2';
 
+import { currencyFormatDE } from "../../components/currency";
+
 
 
 let question_send, answer_send, btn
@@ -11,42 +13,59 @@ const conditionToAnswer = (question) => {
   let total_answer
   if (answer == "0- Oui") {
     total_answer = question.set_up.start_answer["oui"]
-  } else if (answer == "1- Non") {
+  }
+  else if (answer == "1- Non") {
     total_answer = question.set_up.start_answer["non"]
-  } else if ( question.set_up.column_name != "occupant" && answer == 1 ) {
+  }
+  else if ( question.set_up.column_name != "occupant" && answer == 1 ) {
     total_answer = question.set_up.start_answer["1"] + answer
-  } else if (answer == 2 ) {
+  }
+  else if (answer == 2 ) {
     total_answer = question.set_up.start_answer["2"] + answer
-  }  else if (question.set_up.column_name == "occupant" ) {
+  }
+  else if (question.set_up.column_name == "occupant" ) {
     if (answer == 1) {
       total_answer = question.set_up.start_answer["1"]
     } else {
       total_answer = question.set_up.start_answer["2"] + answer + " dans le foyer"
     }
-  } else {
+  }
+  else if (question.set_up.currency ){
+    console.log(question)
+    total_answer = question.set_up.start_answer + currencyFormatDE(answer)
+  }
+  else {
     total_answer = `${question.set_up.start_answer} ${answer}`
   }
   return total_answer
 }
 
 
-const insertQuestion = (question) => {
-  question_send = `<div class="message received">${question.set_up.position} - ${question.set_up.question}</div>`
+const insertQuestion = (question, last = null) => {
+  question_send = `<div class="message received" data-question="${question.set_up.id}">${question.set_up.position} - ${question.set_up.question}</div>`
   form.insertAdjacentHTML("beforeend", question_send);
+  if (last) {
+    setFormForFormulary(question)
+  }
+}
+
+const setNextQuestion = (nex_question) => {
+  // const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
+  // form.insertAdjacentHTML("beforeend", lastQuestion);
 }
 
 const createEditBtn = (question) => {
-  btn = `<div class="btn btn-light float-left edit" data-position="${question.set_up.position}"><i class="fas fa-pencil-alt"></i></div>`
+  btn = `<div class="btn btn-light float-left edit" data-question="${question.set_up.id}"><i class="fas fa-pencil-alt"></i></div>`
 }
 
 const insertAnswer = (question) => {
   createEditBtn(question)
-  answer_send = `<div class="message sent" data-columnName='${question.set_up.column_name}'>${btn} ${conditionToAnswer(question)}</div>`
+  answer_send = `<div class="message sent">${btn} ${conditionToAnswer(question)}</div>`
   form.insertAdjacentHTML("beforeend", answer_send);
 }
-const createLinkNext = () => {
+const createLinkNext = (id) => {
   // const link = `<a class="nav-link btn-connexion" id="send_to_analyze" title="Voir mon analyse" href="/" style="width: 100%;">Voir mon analyse</a>`
-  const link = `<div class="btn-blue"><a class="nav-link btn-connexion white" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${form.dataset.id}" style="width: 100%;">Voir mon analyse</a><div>`
+  const link = `<div class="btn-blue"><a class="nav-link btn-connexion white" id="send_to_analyze" title="Voir mon analyse" href="/formularies/${id}" style="width: 100%;">Voir mon analyse</a><div>`
   form.insertAdjacentHTML("afterend", link)
 }
 
@@ -60,7 +79,7 @@ const createInput = (question, div) => {
   //   input.id = `flat_address`
   //   input.id = `flat_address formulary_${question.set_up.column_name}`
   // }
-  input.name = `formulary[${question.set_up.column_name}]`
+  input.name = `${question.set_up.column_name}`
   if (question.set_up.type === "number") {
     input.type = "number"
     input.min = "1"
@@ -81,7 +100,7 @@ const createMultiInput = (question, div) => {
   input.classList.add("multiple_select2")
   input.type = "text"
   input.multiple = "multiple"
-  input.name = `formulary[${question.set_up.column_name}]`
+  input.name = `${question.set_up.column_name}`
   input.setAttribute( "data-position", question.set_up.position)
   div.appendChild(input)
   initSelectize(question)
@@ -93,7 +112,7 @@ const insertSelectAnswer = (question, div) => {
   selectList.style.width = "70%"
   selectList.classList = "form-control select optional"
   selectList.id = `formulary_${question.set_up.column_name}`
-  selectList.name = `formulary[${question.set_up.column_name}]`
+  selectList.name = `${question.set_up.column_name}`
   selectList.setAttribute( "data-position", question.set_up.position)
   div.appendChild(selectList)
   var option = document.createElement("option")
@@ -120,11 +139,6 @@ const createSubmitBtn = (div) => {
   submit.name = "commit"
   submit.type = "submit"
   div.appendChild(submit)
-}
-
-const setNextQuestion = (nex_question) => {
-  const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
-  form.insertAdjacentHTML("beforeend", lastQuestion);
 }
 
 const setFormForFormulary = (question) => {

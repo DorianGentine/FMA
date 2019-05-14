@@ -1,6 +1,7 @@
 class MatchSolution
 
   def initialize(form, solution)
+    @formulaire = form
     @form = FormularyToHash.new(form).to_hash_forma
     @solution = solution
     @array_of_conditions = @solution.set_conditions
@@ -18,6 +19,7 @@ class MatchSolution
       matching(condition).is_a?(Array) ? matching = true : matching = false
       is_a_match << matching
     end
+
     if is_a_match.include?(true)
       return true
     else
@@ -33,6 +35,10 @@ class MatchSolution
         value_to_check = his_age(value_to_check)
       elsif key == 17
         value_to_check = set_nbr_of_occupants(value_to_check)
+      elsif key == 20 || key == 22 || key == 24
+        value_to_check = set_tax_fiscal(@form, key)
+      elsif key == 21 || key == 23
+        value_to_check = set_tax_brut(@form, key)
       end
       break false unless check_verifaction(condition[key], value_to_check)
     end
@@ -75,6 +81,27 @@ class MatchSolution
       return 0
     else
       return 1
+    end
+  end
+
+  def set_tax_fiscal(form, key)
+    range = RevenuAnalyze.new(@formulaire).analyze_for_fiscal_de_reference
+    if form[key] < range[:a]
+      return 0
+    elsif form[key] > range[:b]
+      return 2
+    else
+      return 1
+    end
+  end
+
+  def set_tax_brut(form, key)
+    # TODO en fonction réponse ADRIEN
+    ranges = RevenuAnalyze.new(@formulaire).analyze_brut_global
+    ranges.each do |range|
+      if form[key].between?(range[:a], range[:b])
+        return 0
+      end
     end
   end
 

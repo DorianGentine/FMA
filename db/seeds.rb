@@ -25,7 +25,7 @@ p "Create Financers"
   credit = Financer.create(name: "crédit d'impôt", logo: nil, description: "Vous pourriez bénéficier du crédit d'impot 'Aide aux personnes'. Il soutient les travaux d'adaptation du logement et peut couvrir les dépenses relatives à des équipements de types sanitaire, de sécurité ou d'accessibilité. Ouvert à tous, il vise les personnes imposables ou non. Le crédit d'impot en excédent éventuel est restitué au-delà de 8 euros. Si la mise en équipement concernant 1 personne, le montant du crédit d'impot est plafonné à 5000 euros et 10 000 lorsqu'il s'agit de 2 personnes. Une majoration de 400 euros est appliquée par personne à charge supplémentaire.")
 
 p "Created"
-
+  @assistants = FormularyChoice.new.set_collections_formulary[:assistant]
 p "Create Solutions"
   p "ANAH"
   solution_1 = Solution.create(
@@ -34,7 +34,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu très modeste",
     name: "Propriétaire occupant éligible",
-    conditions: "7:0&17:0&20:0&25:[1,2,3,5]",
+    conditions: "7:0&17:0&20:0&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -48,7 +48,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu très modeste",
     name: "Locataire du parc privé éligible",
-    conditions: "7:3&17:0&20:0&25:[1,2,3,5]",
+    conditions: "7:3&17:0&20:0&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -62,7 +62,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu très modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible",
-    conditions: "7:1&8:0&17:0&20:0&24:0&25:[1,2,3,5]",
+    conditions: "7:1&8:0&17:0&20:0&24:0&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -76,7 +76,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu modeste",
     name: "Propriétaire occupant éligible",
-    conditions: "7:0&17:0&20:1&25:[1,2,3,5]",
+    conditions: "7:0&17:0&20:1&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -90,7 +90,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu modeste",
     name: "Locataire du parc privé éligible",
-    conditions: "7:3&17:0&20:1&25:[1,2,3,5]",
+    conditions: "7:3&17:0&20:1&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -104,7 +104,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible",
-    conditions: "7:1&8:0&17:0&20:1&24:1&25:[1,2,3,5]",
+    conditions: "7:1&8:0&17:0&20:1&24:1&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -118,7 +118,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu très modeste",
     name: "Propriétaire occupant éligible",
-    conditions: "7:0&17:1&22:0&25:[1,2,3,5]",
+    conditions: "7:0&17:1&22:0&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -132,7 +132,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu très modeste",
     name: "Locataire du parc privé éligible",
-    conditions: "7:3&17:1&22:0&25:[1,2,3,5]",
+    conditions: "7:3&17:1&22:0&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -146,7 +146,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu très modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible et vivrait dans le même logement",
-    conditions: "7:1&8:0&17:1&18:0&22:0&25:[1,2,3,5]",
+    conditions: "7:1&8:0&17:1&18:0&22:0&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -160,7 +160,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu très modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible et ne vivrait pas dans le même logement",
-    conditions: "7:1&8:0&17:1&18:1&22:0&24:0&25:[1,2,3,5]",
+    conditions: "7:1&8:0&17:1&18:1&22:0&24:0&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -174,7 +174,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu modeste",
     name: "Propriétaire occupant éligible",
-    conditions: "7:0&17:1&22:1&25:[1,2,3,5]",
+    conditions: "7:0&17:1&22:1&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -188,7 +188,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu modeste",
     name: "Locataire du parc privé éligible",
-    conditions: "7:3&17:1&22:1&25:[1,2,3,5]",
+    conditions: "7:3&17:1&22:1&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -202,7 +202,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible et vivrait dans le même logement",
-    conditions: "7:1&8:0&17:1&18:0&22:1&25:[1,2,3,5]",
+    conditions: "7:1&8:0&17:1&18:0&22:1&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -216,7 +216,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible et ne vivrait pas dans le même logement",
-    conditions: "7:1&8:0&17:1&18:1&22:1&24:1&25:[1,2,3,5]",
+    conditions: "7:1&8:0&17:1&18:1&22:1&24:1&25:[" + @assistants[1]+","+@assistants[2]+","+@assistants[3]+","+@assistants[5]+ "]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/ --> regarder le tableau de l'Ile de France). Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -230,7 +230,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu très modeste",
     name: "Propriétaire occupant éligible",
-    conditions: "7:0&17:0&20:0&25:4",
+    conditions: "7:0&17:0&20:0&25:"+@assistants[4] ,
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -245,7 +245,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu très modeste",
     name: "Locataire du parc privé éligible",
-    conditions: "7:3&17:0&20:0&25:4",
+    conditions: "7:3&17:0&20:0&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -260,7 +260,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu très modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible",
-    conditions: "7:1&8:0&17:0&20:0&24:0&25:4",
+    conditions: "7:1&8:0&17:0&20:0&24:0&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -275,7 +275,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu modeste",
     name: "Propriétaire occupant éligible",
-    conditions: "7:0&17:0&20:1&25:4",
+    conditions: "7:0&17:0&20:1&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -290,7 +290,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu modeste",
     name: "Locataire du parc privé éligible",
-    conditions: "7:3&17:0&20:1&25:4",
+    conditions: "7:3&17:0&20:1&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -305,7 +305,7 @@ p "Create Solutions"
     category: "Personne vivant seul",
     group: "Revenu modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible",
-    conditions: "7:1&8:0&17:0&20:1&24:1&25:4",
+    conditions: "7:1&8:0&17:0&20:1&24:1&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -320,7 +320,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu très modeste",
     name: "Propriétaire occupant éligible",
-    conditions: "7:0&17:1&22:0&25:4",
+    conditions: "7:0&17:1&22:0&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -335,7 +335,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu très modeste",
     name: "Locataire du parc privé éligible",
-    conditions: "7:3&17:1&22:0&25:4",
+    conditions: "7:3&17:1&22:0&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -350,7 +350,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu très modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible et vivrait dans le même logement",
-    conditions: "7:1&8:0&17:1&18:0&22:0&25:4",
+    conditions: "7:1&8:0&17:1&18:0&22:0&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -365,7 +365,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu très modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible et ne vivrait pas dans le même logement",
-    conditions: "7:1&8:0&17:1&18:1&22:0&24:0&25:4",
+    conditions: "7:1&8:0&17:1&18:1&22:0&24:0&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
@@ -380,7 +380,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu modeste",
     name: "Propriétaire occupant éligible",
-    conditions: "7:0&17:1&22:1&25:4",
+    conditions: "7:0&17:1&22:1&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -395,7 +395,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu modeste",
     name: "Locataire du parc privé éligible",
-    conditions: "7:3&17:1&22:1&25:4",
+    conditions: "7:3&17:1&22:1&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -410,7 +410,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible et vivrait dans le même logement",
-    conditions: "7:1&8:0&17:1&18:0&22:1&25:4",
+    conditions: "7:1&8:0&17:1&18:0&22:1&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -425,7 +425,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seule",
     group: "Revenu modeste",
     name: "Occupant à titre gratuit dont le titulaire du logement serait propriétaire  éligible et ne vivrait pas dans le même logement",
-    conditions: "7:1&8:0&17:1&18:1&22:1&24:1&25:4",
+    conditions: "7:1&8:0&17:1&18:1&22:1&24:1&25:"+@assistants[4],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources. Dès lors qu'une des conditions ci-dessous est respectée (et donc que l'ANAH est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiquer par la personne au plafond correspondant.",
               "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Habitat (ANAH).
               Elle pourrait correspondre à 35 % du montant des devis relatifs, dans le limite de 7 000 euros.
@@ -442,7 +442,7 @@ p "Create Solutions"
     category: "Personne vivant seule",
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&17:0&21:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV).
               Elle pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -456,7 +456,7 @@ p "Create Solutions"
     category: "Personne vivant seule",
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV). Cela peut toutefois dépendre du Groupe Iso-Ressource auquel vous appartenez. Nous vous invitons à le rechercher pour vérifier que votre GIR est bien supérieur à 4.
               Si tel est le cas, la subvention pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -470,7 +470,7 @@ p "Create Solutions"
     category: "Personne vivant seule",
     group: "GIR non évalué",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:3&17:0&21:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:3&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV). Cela va toutefois dépendre de l'évaluation qu'un agent mandaté de la CNAV fera de votre Groupe Iso-Ressource (GIR).
               Si votre GIR est supérieur à 4, la subvention pourrait effectivement correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -484,7 +484,7 @@ p "Create Solutions"
     category: "Personne vivant avec un conjoint, concubin ou partenaire de PACS",
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:0&17:1&19:0&23:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:0&17:1&19:0&23:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV).
               Elle pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -498,7 +498,7 @@ p "Create Solutions"
     category: "Personne vivant avec un conjoint, concubin ou partenaire de PACS",
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:2&17:1&19:0&23:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:2&17:1&19:0&23:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV). Cela peut toutefois dépendre du Groupe Iso-Ressource auquel vous appartenez. Nous vous invitons à le rechercher pour vérifier que votre GIR est bien supérieur à 4.
               Si tel est le cas, la subvention pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -512,7 +512,7 @@ p "Create Solutions"
     category: "Personne vivant avec un conjoint, concubin ou partenaire de PACS",
     group: "GIR non évalué",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:3&17:1&19:0&23:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:3&17:1&19:0&23:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV). Cela va toutefois dépendre de l'évaluation qu'un agent mandaté de la CNAV fera de votre Groupe Iso-Ressource (GIR).
               Si votre GIR est supérieur à 4, la subvention pourrait effectivement correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -526,7 +526,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seul mais sans conjoint, concubin ou partenaire de PACS",
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:0&17:1&19:1&21:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:0&17:1&19:1&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV).
               Elle pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -541,7 +541,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seul mais sans conjoint, concubin ou partenaire de PACS",
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:2&17:1&19:1&21:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:2&17:1&19:1&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV). Cela peut toutefois dépendre du Groupe Iso-Ressource auquel vous appartenez. Nous vous invitons à le rechercher pour vérifier que votre GIR est bien supérieur à 4.
               Si tel est le cas, la subvention pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -555,7 +555,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seul mais sans conjoint, concubin ou partenaire de PACS",
     group: "GIR non évalué",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:3&17:1&19:1&21:0&23:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:3&17:1&19:1&21:0&23:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV). Cela va toutefois dépendre de l'évaluation qu'un agent mandaté de la CNAV fera de votre Groupe Iso-Ressource (GIR).
               Si votre GIR est supérieur à 4, la subvention pourrait effectivement correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -569,7 +569,7 @@ p "Create Solutions"
     category: "Personne vivant seule",
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:0&17:0&21:0&25:3",
+    conditions: "4:[1,2,3]&13:0&16:0&17:0&21:0&25:"+@assistants[3],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV).
                 Elle pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -584,7 +584,7 @@ p "Create Solutions"
     category: "Personne vivant seule",
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:3",
+    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:"+@assistants[3],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV). Cela peut toutefois dépendre du Groupe Iso-Ressource auquel vous appartenez. Nous vous invitons à le rechercher pour vérifier que votre GIR est bien supérieur à 4.
               Si tel est le cas, la subvention pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -599,7 +599,7 @@ p "Create Solutions"
     category: "Personne vivant avec un conjoint, concubin ou partenaire de PACS",
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:0&17:1&19:0&23:0&25:3",
+    conditions: "4:[1,2,3]&13:0&16:0&17:1&19:0&23:0&25:"+@assistants[3],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV).
               Elle pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -614,7 +614,7 @@ p "Create Solutions"
     category: "Personne vivant avec un conjoint, concubin ou partenaire de PACS",
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:1&13:0&16:2&17:1&19:0&23:0&25:3",
+    conditions: "4:1&13:0&16:2&17:1&19:0&23:0&25:"+@assistants[3],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV). Cela peut toutefois dépendre du Groupe Iso-Ressource auquel vous appartenez. Nous vous invitons à le rechercher pour vérifier que votre GIR est bien supérieur à 4.
               Si tel est le cas, la subvention pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -629,7 +629,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seul mais sans conjoint, concubin ou partenaire de PACS",
     group: "GIR > 4",
     name: nil,
-    conditions: "4:1&13:0&16:0&17:1&19:1&21:0&25:3",
+    conditions: "4:1&13:0&16:0&17:1&19:1&21:0&25:"+@assistants[3],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV).
               Elle pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -644,7 +644,7 @@ p "Create Solutions"
     category: "Personne ne vivant pas seul mais sans conjoint, concubin ou partenaire de PACS",
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:1&13:0&16:2&17:1&19:1&21:0&25:3",
+    conditions: "4:1&13:0&16:2&17:1&19:1&21:0&25:"+@assistants[3],
     answers: ["Les XXX ci dessus doivent être remplacés par les valeurs correspondantes du tableau des ressources (https://www.partenairesactionsociale.fr/files/live/sites/ppas/files/base%20documentaire/Actualités/2018-26_du_20_11_2018_avec_annexes.pdf --> partie 3.2 de la parge 2 ET tableau annexe 2). Dès lors qu'une des conditions ci-dessous est respectée (et donc que la CNAV est un financeur 'sélectionnable'), il suffit de croiser le nombre de personne dans le foyer indiqué par la personne au plafond correspondant et pourcentage de prise en charge financière.",
               "Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV). Cela peut toutefois dépendre du Groupe Iso-Ressource auquel vous appartenez. Nous vous invitons à le rechercher pour vérifier que votre GIR est bien supérieur à 4.
               Si tel est le cas, la subvention pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.
@@ -661,7 +661,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:0&17:0&21:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:0&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Pour plus d'informations, vous pouvez :
               - Vous rendre sur le site internet de votre caisse de retraite : XXX
               - Contacter téléphoniquement votre caisse de retraite au XXX",
@@ -673,7 +673,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Pour plus d'informations, vous pouvez :
               - Vous rendre sur le site internet de votre caisse de retraite : XXX
               - Contacter téléphoniquement votre caisse de retraite au XXX",
@@ -685,7 +685,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR non évalué",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:3&17:0&21:0&25:[0,4,5]",
+    conditions: "4:[1,2,3]&13:0&16:3&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Pour plus d'informations, vous pouvez :
               - Vous rendre sur le site internet de votre caisse de retraite : XXX
               - Contacter téléphoniquement votre caisse de retraite au XXX",
@@ -697,7 +697,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:0&17:0&21:0&25:3",
+    conditions: "4:[1,2,3]&13:0&16:0&17:0&21:0&25:"+@assistants[3],
     answers: ["Pour plus d'informations, vous pouvez :
               - Vous rendre sur le site internet de votre caisse de retraite : XXX
               - Contacter téléphoniquement votre caisse de retraite au XXX",
@@ -710,7 +710,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:3",
+    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:"+@assistants[3],
     answers: ["Pour plus d'informations, vous pouvez :
               - Vous rendre sur le site internet de votre caisse de retraite : XXX
               - Contacter téléphoniquement votre caisse de retraite au XXX",
@@ -881,7 +881,7 @@ p "Bailleur"
     category: nil,
     group: "GIR < ou = 4",
     name: nil,
-    conditions: "4:[2,3]&16:1&25:[0,3,4,5]",
+    conditions: "4:[2,3]&16:1&25:["+@assistants[0]+","+@assistants[3]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Vous pourriez peut-être bénéficier d'une aide du Conseil départemental du Val de Marne afin d'adapter votre logement.
               Afin de vérifier les conditions d'aide éventuelle, nous vous conseillons de contacter votre référent médico-social en appeler le service APA au 01 56 72 71 71."]
   )
@@ -891,7 +891,7 @@ p "Bailleur"
     category: nil,
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[2,3]&16:2&25:[0,3,4,5]",
+    conditions: "4:[2,3]&16:2&25:["+@assistants[0]+","+@assistants[3]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Vous pourriez peut-être bénéficier d'une aide du Conseil départemental du Val de Marne afin d'adapter votre logement. Cela peut toutefois dépendre du Groupe Iso-Ressource (GIR) auquel vous appartenez.
 Nous vous invitons à le rechercher pour vérifier que votre GIR est bien inférieur ou égal à 4.
 
@@ -903,7 +903,7 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
     category: nil,
     group: "GIR non évalué",
     name: nil,
-    conditions: "4:[2,3]&16:3&25:[0,3,4,5]",
+    conditions: "4:[2,3]&16:3&25:["+@assistants[0]+","+@assistants[3]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Vous pourriez peut-être bénéficier d'une aide du Conseil départemental du Val de Marne afin d'adapter votre logement. Cela dépendrait toutefois de votre éligibilité à l'Allocation Personnalisée Autonomie (APA) et de l'évaluation qu'un référent médico-social du Conseil départemental ferait de votre Groupe Iso-Ressource (GIR).
         Nous vous conseillons de prendre contact avec le service APA du Conseil départemental du Val de Marne au 01 56 72 71 71."]
   )
@@ -914,7 +914,7 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
     category: nil,
     group: "GIR < ou = 4",
     name: nil,
-    conditions: "4:[2,3]&16:1&25:1",
+    conditions: "4:[2,3]&16:1&25:"+@assistants[1],
     answers: ["Vous pourriez peut-être bénéficier d'une aide du Conseil départemental du Val de Marne afin d'adapter votre logement.
 
           Il apparait que vous avez déjà perçu une aide pour l'adaptation de votre logement, via l'Allocation Personalisée d'Autonomie (APA). Nous vous conseillons de vérifier notamment les critères de renouvellement qui peuvent être conditionnés à une somme plafond attribuable sur une période délimitée.
@@ -928,7 +928,7 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
     category: nil,
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[2,3]&16:3&25:1",
+    conditions: "4:[2,3]&16:3&25:"+@assistants[1],
     answers: ["Vous pourriez peut-être bénéficier d'une aide du Conseil départemental du Val de Marne afin d'adapter votre logement. Cela peut toutefois dépendre du Groupe Iso-Ressource (GIR) auquel vous appartenez.
       Nous vous invitons à le rechercher pour vérifier que votre GIR est bien inférieur ou égal à 4.
 
@@ -943,7 +943,7 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
     category: nil,
     group: "Personne âgée jusqu'à 60 ans (compris)",
     name: nil,
-    conditions: "4:[0,1]&25:[0,4,5]",
+    conditions: "4:[0,1]&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Vous pourriez peut-être bénéficier d'une aide du Conseil départemental du Val de Marne afin d'adapter votre logement.
 
             Afin de vérifier les conditions d'aide éventuelle, nous vous conseillons de contacter la MDPH au 01 43 99 79 00."]
@@ -954,7 +954,7 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
     category: nil,
     group: "Personne âgée de 60 ans (non compris) et exerçant une activité professionnelle",
     name: nil,
-    conditions: "4:[2,3]&5:0&25:[0,4,6]",
+    conditions: "4:[2,3]&5:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Vous pourriez peut-être bénéficier d'une aide du Conseil départemental du Val de Marne afin d'adapter votre logement. Cela pourrait être possible tant que vous exercez une activité professionnelle.
 
     Afin de vérifier les conditions d'aide éventuelle, nous vous conseillons de contacter la MDPH au 01 43 99 79 00."]
@@ -966,7 +966,7 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
     category: nil,
     group: "Personne âgée de 60 ans (non compris) et n'exerçant pas d'activité professionnelle",
     name: nil,
-    conditions: "4:2&5:1&6:0&25:[0,4,5]",
+    conditions: "4:2&5:1&6:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]",
     answers: ["Vous pourriez peut-être bénéficier d'une aide du Conseil départemental du Val de Marne afin d'adapter votre logement. Cela pourrait être possible jusqu'à vos 75 ans et si vous êtes effectivement en mesure de présenter des preuves que votre handicap est lié à des évènements antérieurs à l'anniversaire de vos 60 ans.
 
           Afin de vérifier les conditions d'aide éventuelle, nous vous conseillons de contacter la MDPH au 01 43 99 79 00."]
@@ -979,7 +979,7 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
     category: nil,
     group: nil,
     name: nil,
-    conditions: "25:2",
+    conditions: "25:"+@assistants[2],
     answers: ["Vous pourriez peut-être bénéficier d'une aide du Conseil départemental du Val de Marne afin d'adapter votre logement.
 
             Il apparait que vous avez déjà perçu une aide pour l'adaptation de votre logement, via la Prestation de Compensation du Handicap (PCH). Nous vous conseillons de vérifier notamment les critères de renouvellement qui peuvent être conditionnés à une somme plafond attribuable sur une période délimitée.
@@ -1004,39 +1004,6 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
 
             Si la mise en équipement concernant 1 personne, le montant du crédit d'impot est plafonné à 5000 euros et 10 000 lorsqu'il s'agit de 2 personnes. Une majoration de 400 euros est appliquée par personne à charge supplémentaire."]
   )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

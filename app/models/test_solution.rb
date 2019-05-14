@@ -23,9 +23,13 @@ class TestSolution
     Formulary.column_names.each_with_index do |column_name, form_index|
       index = form_index - 1
       if skip_column_to_verif?(column_name)
-        if column_name == "occupation" || column_name == "assistant"
+        if column_name == "occupation"
           @array_of_conditions.each do |conditions|
             form.send("#{column_name}=", conditions.keys.include?(index) ? set_a_condition(index, conditions) : @choices[:"#{column_name}"].sample.second )
+          end
+        elsif column_name == "assistant"
+          @array_of_conditions.each do |conditions|
+            form.send("#{column_name}=", conditions.keys.include?(index) ? set_a_condition(index, conditions) : @choices[:"#{column_name}"][rand(@choices[:"#{column_name}"].count)] )
           end
         elsif column_name == "age"
           @array_of_conditions.each do |conditions|
