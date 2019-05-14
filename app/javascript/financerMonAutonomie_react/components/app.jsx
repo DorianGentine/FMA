@@ -21,8 +21,8 @@ class App extends Component {
     if(api.beneficiaire.client){
       return (
         <div>
-          <AppNavbar />
-          <Volet />
+          <AppNavbar selectedMenu={this.props.match.params.menu} />
+          <Volet selectedMenu={this.props.match.params.menu} />
           <div className="app-container container">
             <MenuProfil />
             <PanneauPrincipal />
@@ -43,6 +43,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
+    urlAPI: state.urlAPI,
     api: state.api,
   };
 }

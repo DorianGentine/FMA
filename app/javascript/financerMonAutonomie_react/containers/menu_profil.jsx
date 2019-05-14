@@ -15,7 +15,7 @@ const MenuProfil = (props) => {
       </div>
       <div className="dropdown-menu" aria-labelledby="drop-navbar">
         <p><a href="#">Mon compte</a></p>
-        <p><a href="/users/sign_out">Se déconnecter</a></p>
+        <p><a href="/users/sign_out" rel="nofollow" data-method="delete">Se déconnecter</a></p>
       </div>
     </div>
   );

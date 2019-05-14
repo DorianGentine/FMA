@@ -5,7 +5,14 @@ Rails.application.routes.draw do
   match "/500", :to => "http_errors#error_500", :via => :all
 
 
-  resources :users, path: "mon_espace", only: [:show, :update]
+  resources :users, path: "mon_espace", only: [:show, :update] do
+    member do
+      get '/projet', to: 'users#show'
+      get '/compte', to: 'users#show'
+      get '/alertes', to: 'users#show'
+    end
+
+  end
 
   resources :projects, only: [:update]
 
@@ -13,6 +20,8 @@ Rails.application.routes.draw do
   get '/qui-sommes-nous', to: 'pages#team', as: "equipe"
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"
   get '/rgpd', to: 'pages#rgpd', as: "rgpd"
+
+
 
 
   namespace :api, defaults: { format: :json } do
