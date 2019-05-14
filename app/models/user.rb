@@ -11,11 +11,30 @@ class User < ApplicationRecord
 
   before_create :set_as_client
 
+
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects, dependent: :destroy
 
   def link_to_project(project)
     UserProject.create(user: self, project: project, client: self.client)
+  end
+
+  mount_uploader :avatar, PhotoUploader
+
+  def is_a_client
+    unless self.advisor || self.admin
+      return true
+    end
+  end
+
+  def clients
+    projects = UserProject.where(user: self, client: false)
+    clients = []
+    projects.each do |user_project|
+      clients << user_project.project.his_client
+    end
+
+    return clients
   end
 
   private

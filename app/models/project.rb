@@ -20,4 +20,9 @@ class Project < ApplicationRecord
     user = UserProject.where(project: self, client: false).first.user
     return user
   end
+
+  def his_client
+    user = UserProject.where(project: self, client: true).first.user
+    return user
+  end
 end
