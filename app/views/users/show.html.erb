@@ -2,10 +2,8 @@
 
 <% if @user.is_a_client %>
   <div id="app"
-    data-user="<%= @user.to_json %>"
-    data-project="<%= @project.to_json %>"
-    data-fma_team="<%= @fma_team.to_json %>"
-    data-solutions="<%= @solutions.to_json %>"
+    data-userid="<%= @user.id %>"
+    data-projectid="<%= @project.id %>"
     >
   </div>
 

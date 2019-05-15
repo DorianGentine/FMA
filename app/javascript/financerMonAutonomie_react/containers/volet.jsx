@@ -3,11 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Conseiller from "../containers/conseiller"
-import Etapes from "../containers/etapes"
-import RdvTel from "../containers/rdv_tel"
-import ApercuProjet from "../components/apercu_projet"
-import Evaluation from "../containers/evaluation"
+import VoletProjet from "./Volet/volet_projet"
 
 class Volet extends Component {
   render(){
@@ -22,39 +18,39 @@ class Volet extends Component {
 
     if(selectedMenu.toLowerCase() == "projet"){
       return (
-        <div className="menu-principal space-between">
-          <Conseiller />
-          <Etapes />
-          <RdvTel />
-          <ApercuProjet />
-          <Evaluation />
+        <div style={{height: "100vh", minWidth: "400px",}} >
+          <VoletProjet />
         </div>
       );
     }else if(selectedMenu.toLowerCase() == "compte"){
       return (
-        <div className="menu-principal">
-          <h2 className="text-align-center margin-bottom-60">Réglages du compte</h2>
-          <Link className={`volet-item-menu ${active("compte/identite")}`} to={`${rootCompte}/identite`}>
-            Identité
-          </Link>
-          <Link className={`volet-item-menu ${active("compte/email")}`} to={`${rootCompte}/email`}>
-            Email
-          </Link>
-          <Link className={`volet-item-menu ${active("compte/mdp")}`} to={`${rootCompte}/mdp`}>
-            Mot de passe
-          </Link>
-          <Link className={`volet-item-menu ${active("compte/telephone")}`} to={`${rootCompte}/telephone`}>
-            Téléphone
-          </Link>
-          <Link className={`volet-item-menu ${active("compte/suppression")}`} to={`${rootCompte}/suppression`}>
-            Suppression du compte
-          </Link>
+        <div style={{height: "100vh", minWidth: "400px",}} >
+          <div className="menu-principal">
+            <h2 className="text-align-center margin-bottom-60">Réglages du compte</h2>
+            <Link className={`volet-item-menu ${active("compte/identite")}`} to={`${rootCompte}/identite`}>
+              Identité
+            </Link>
+            <Link className={`volet-item-menu ${active("compte/email")}`} to={`${rootCompte}/email`}>
+              Email
+            </Link>
+            <Link className={`volet-item-menu ${active("compte/mdp")}`} to={`${rootCompte}/mdp`}>
+              Mot de passe
+            </Link>
+            <Link className={`volet-item-menu ${active("compte/telephone")}`} to={`${rootCompte}/telephone`}>
+              Téléphone
+            </Link>
+            <Link className={`volet-item-menu ${active("compte/suppression")}`} to={`${rootCompte}/suppression`}>
+              Suppression du compte
+            </Link>
+          </div>
         </div>
       );
     }else if(selectedMenu.toLowerCase() == "alertes"){
       return (
-        <div className="menu-principal">
-          <h2 className="text-align-center">{selectedMenu}</h2>
+        <div style={{height: "100vh", minWidth: "400px",}} >
+          <div className="menu-principal">
+            <h2 className="text-align-center">{selectedMenu}</h2>
+          </div>
         </div>
       );
     }
