@@ -8,14 +8,14 @@ Rails.application.routes.draw do
 
   resources :users, path: "mon_espace", only: [:show, :update] do
     member do
-      get '/projet/1', to: 'users#show'
+      get '/projet', to: 'users#show'
       get '/compte', to: 'users#show'
         get '/compte/identite', to: 'users#show'
         get '/compte/email', to: 'users#show'
         get '/compte/mdp', to: 'users#show'
         get '/compte/telephone', to: 'users#show'
         get '/compte/suppression', to: 'users#show'
-      get '/alertes/1', to: 'users#show'
+      get '/alertes', to: 'users#show'
     end
 
   end

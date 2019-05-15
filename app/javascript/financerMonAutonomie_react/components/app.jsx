@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-// import { fetchAPI } from '../actions';
+import { fetchAPI } from '../actions';
 
 import AppNavbar from "../containers/app_navbar"
 import Volet from "../containers/volet"
@@ -10,15 +10,24 @@ import MenuProfil from "../containers/menu_profil"
 import PanneauPrincipal from "../containers/panneau_principal"
 
 class App extends Component {
-  // componentWillMount() {
-  //   this.props.fetchAPI(this.props.urlAPI);
-  // }
+
+  componentWillMount() {
+    this.props.fetchAPI(this.props.urlAPI);
+  }
 
 
   render () {
     const api = this.props.api
+    if(api.beneficiaire == undefined){
+      return(
+        <div className="align-items-center justify-content-center" style={{backgroundColor: "#ecf0f1",}}>
+          <h1 className="no-margin">LOADING</h1>
+          <img style={{height: "50px",}} src="https://media2.giphy.com/media/jAYUbVXgESSti/giphy.gif?cid=790b76115cdbb4a9722f685249ba06d7&rid=giphy.gif" alt=""/>
+        </div>
+      );
+
     // App beneficiaire
-    if(api.beneficiaire.client){
+    }else if(api.beneficiaire.client){
       return (
         <div>
           <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
@@ -52,8 +61,8 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchAPI }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -8,6 +8,8 @@
   import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
   import { createBrowserHistory as history } from 'history';
 
+  import { fetchAPI } from './actions';
+
   // internal modules
   import App from './components/app';
   // import '../assets/stylesheets/messagerie.scss';
@@ -19,34 +21,26 @@
 
 const app = document.getElementById('app')
 if(app){
-  const user = JSON.parse(app.dataset.user)
-  const project = JSON.parse(app.dataset.project)
-  const urlAPI = `/api/v1/users/${user.id}/projects/${project.id}`;
+  const user_id = app.dataset.userid
+  const project_id = app.dataset.projectid
+  const urlAPI = `/api/v1/users/${user_id}/projects/${project_id}`;
 
-  const rootUrl = `/mon_espace/${user.id}`
-  const routeUrl = rootUrl + "/:menu_nav" + "/:menu_volet"
-  const rootRedirect = rootUrl + "/projet/1"
+  const rootUrl = `/mon_espace/${user_id}`
 
   const identityReducer = (state = null) => state;
 
   const initialState = {
     rootUrl: rootUrl,
     urlAPI: urlAPI,
-    // menu: ['projet', 'compte', 'alertes',],
-    api: {
-      beneficiaire: JSON.parse(app.dataset.user),
-      project: JSON.parse(app.dataset.project),
-      fma_team: JSON.parse(app.dataset.fma_team),
-      solutions: JSON.parse(app.dataset.solutions),
-    },
+    api: {},
   };
 
   const reducers = combineReducers({
     rootUrl: identityReducer,
     urlAPI: identityReducer,
-    // menu: identityReducer,
     api: apiReducer,
   });
+
 
   // Middlewares
   const middlewares = applyMiddleware(reduxPromise, logger);
@@ -57,8 +51,10 @@ if(app){
     <Provider store={store}>
         <Router history={history}>
           <Switch>
-            <Route path={routeUrl} component={App} />
-            <Redirect from={rootUrl} to={rootRedirect} />
+            <Route path={`${rootUrl}/:menu_nav`} component={App} />
+            <Route path={`${rootUrl}/compte/:menu_volet`} component={App} />
+            <Redirect from={rootUrl} to={`${rootUrl}/projet`} />
+            <Redirect from={`${rootUrl}/compte`} to={`${rootUrl}/compte/identite`} />
           </Switch>
         </Router>
     </Provider>,
