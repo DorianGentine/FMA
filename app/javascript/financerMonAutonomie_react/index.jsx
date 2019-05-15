@@ -25,7 +25,7 @@ if(app){
 
   const rootUrl = `/mon_espace/${user.id}`
   const routeUrl = rootUrl + "/:menu_nav" + "/:menu_volet"
-  const rootRedirect = rootUrl + "/projet"
+  const rootRedirect = rootUrl + "/projet/1"
 
   const identityReducer = (state = null) => state;
 
