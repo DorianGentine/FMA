@@ -4,6 +4,10 @@ json.beneficiaire(@user, :id, :client, :last_name, :first_name, :phone)
 
 json.project( @project, :id, :created_at, :updated_at)
 
+json.documents @project.documents do |document|
+  json.extract! document, :id, :file
+end
+
 json.financers @solutions.count
 
 # json.formularies @project.formularies, :id, :last_name, :first_name, :zip_code, :age,
