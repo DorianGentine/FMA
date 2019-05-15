@@ -21,7 +21,7 @@ class FinanceursPotentiels extends Component {
     const renderFinanceurs = () => {
       return solutions.map((solution, index) => {
         return (
-          <div className="flex space-between margin-bottom-30" key={solution.id}>
+          <div className="flex space-between align-items-center margin-bottom-30" key={solution.id}>
             <div id={`logo_financer${solution.financer_id}`} className="logo-financeur margin-right-15" style={{ height: "35px", width: "35px"}}>
               {renderLogo(solution.financer_id)}
             </div>

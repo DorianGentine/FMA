@@ -17,15 +17,15 @@ class AppNavbar extends Component {
       <div className="app-navbar">
         <a href="/home"><div className="logo-app"></div></a>
 
-        <Link className={`btn-app-navbar margin-top-60 ${active("projet")}`} to={`${this.props.rootUrl}/projet`}>
+        <Link className={`btn-app-navbar margin-top-60 ${active("projet")}`} to={`${this.props.rootUrl}/projet/1`}>
           <i className="far fa-file-alt"></i>
           <p>Projet</p>
         </Link>
-        <Link className={`btn-app-navbar margin-top-30 ${active("compte")}`} to={`${this.props.rootUrl}/compte`}>
+        <Link className={`btn-app-navbar margin-top-30 ${active("compte")}`} to={`${this.props.rootUrl}/compte/identite`}>
           <i className="far fa-user"></i>
           <p>Compte</p>
         </Link>
-        <Link className={`btn-app-navbar margin-top-30 ${active("alertes")}`} to={`${this.props.rootUrl}/alertes`}>
+        <Link className={`btn-app-navbar margin-top-30 ${active("alertes")}`} to={`${this.props.rootUrl}/alertes/1`}>
           <i className="far fa-bell"></i>
           <p>Alertes</p>
         </Link>
