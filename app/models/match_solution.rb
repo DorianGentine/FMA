@@ -97,11 +97,11 @@ class MatchSolution
 
   def set_tax_brut(form, key)
     # TODO en fonction réponse ADRIEN
-    ranges = RevenuAnalyze.new(@formulaire).analyze_brut_global
-    ranges.each do |range|
-      if form[key].between?(range[:a], range[:b])
-        return 0
-      end
+    limit = RevenuAnalyze.new(@formulaire).analyze_brut_global
+    if form[key] < limit[:a]
+      return 0
+    else
+      return 1
     end
   end
 
