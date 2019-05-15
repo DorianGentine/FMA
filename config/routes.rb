@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'documents/create'
   match "/404", :to => "http_errors#error_404", :via => :all
   match "/422", :to => "http_errors#error_422", :via => :all
   match "/500", :to => "http_errors#error_500", :via => :all
@@ -33,12 +34,18 @@ Rails.application.routes.draw do
         end
       end
       resources :users, only: [ :show, :update ] do
-        resources :projects, only: [ :index, :show ]
+        resources :projects, only: [ :index, :show ] do
+          resources :documents, only: [ :create ]
+        end
       end
     end
   end
 
+
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
+
+
 
   resources :formularies, only: [ :show ]
 

@@ -4,7 +4,7 @@ import { currencyFormatDE } from "../../components/currency";
 
 
 
-let question_send, answer_send, btn
+let question_send, answer_send, btn, hint
 const form = document.getElementById("formulary")
 
 
@@ -40,9 +40,30 @@ const conditionToAnswer = (question) => {
   return total_answer
 }
 
+const questionMark = () => {
+  return '<i class="far fa-question-circle hintClick"></i>'
+}
+
+const insertHint = (question) => {
+  hint = `<div class="message hint-message" style="display:none">${question.set_up.hint}</>`
+}
 
 const insertQuestion = (question, last = null) => {
-  question_send = `<div class="message received" data-question="${question.set_up.id}">${question.set_up.position} - ${question.set_up.question}</div>`
+  if (question.set_up.hint) {
+    insertHint(question)
+    question_send = `
+      <div class="message received" data-question="${question.set_up.id}">
+        ${question.set_up.position} - ${question.set_up.question} ${questionMark()}
+        ${hint}
+      </div>
+      `
+  } else {
+    question_send = `
+    <div class="message received" data-question="${question.set_up.id}">
+      ${question.set_up.position} - ${question.set_up.question}
+    </div>`
+  }
+
   form.insertAdjacentHTML("beforeend", question_send);
   if (last) {
     setFormForFormulary(question)
