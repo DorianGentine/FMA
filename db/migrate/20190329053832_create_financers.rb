@@ -4,6 +4,7 @@ class CreateFinancers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :logo
       t.text :description
+      t.text :answer
 
       t.timestamps
     end

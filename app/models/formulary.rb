@@ -11,9 +11,10 @@ class Formulary < ApplicationRecord
     true
   end
 
+
   # Q-3
   def allow_zip_code?
-    true
+      true
   end
 
   # Q-4
@@ -307,6 +308,12 @@ class Formulary < ApplicationRecord
       return 0
     else
       return 1
+    end
+  end
+
+  def dont_ask_again?(column_name)
+    if self.project.present?
+      false
     end
   end
 

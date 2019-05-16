@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_105600) do
+ActiveRecord::Schema.define(version: 2019_05_16_040750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acteurs", force: :cascade do |t|
+    t.string "name"
+    t.string "web"
+    t.string "phone"
+    t.string "logo"
+    t.bigint "financer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["financer_id"], name: "index_acteurs_on_financer_id"
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.text "content"
+    t.bigint "solution_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["solution_id"], name: "index_answers_on_solution_id"
+  end
 
   create_table "contact_forms", force: :cascade do |t|
     t.string "email"
@@ -37,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_105600) do
     t.string "name"
     t.string "logo"
     t.text "description"
+    t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,7 +106,6 @@ ActiveRecord::Schema.define(version: 2019_05_14_105600) do
     t.string "group"
     t.string "name"
     t.string "conditions"
-    t.text "answers"
     t.bigint "financer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -134,6 +153,8 @@ ActiveRecord::Schema.define(version: 2019_05_14_105600) do
     t.index ["user_id"], name: "index_visitors_on_user_id"
   end
 
+  add_foreign_key "acteurs", "financers"
+  add_foreign_key "answers", "solutions"
   add_foreign_key "contact_forms", "visitors"
   add_foreign_key "documents", "projects"
   add_foreign_key "formularies", "projects"

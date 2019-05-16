@@ -1,16 +1,5 @@
 class FormularyChoice
 
-
-  LESSOR_NAMES = ["BATIGERE", "CDC HABITAT", "COOPERER POUR HABITER", "DOMNIS", "FRANCE HABITATION", "FOYER SOLEIL", "I3F", "ICADE IPM",
-  "ICADE IPM", "IN'LI QWACIO", "KREMLIN BICETRE HABITAT", "LA SEMISE", "LOGIAS", "LOGIAL OPH",
-  "MAISONS ALFORT HABITAT", "NOVIGERE", "OPALY", "OPH GENTILLY", "OPH L'HAY LES ROSES", "OPH VILLEJUIF", "OPH VITRY", "OPH IVRY",
-  "OSICA", "RATP HABITAT", "RESIDENCE LE LOGEMENT DES FONCTIONNAIRES", "SIEMP", "VALOPHIS", "Autre" ]
-
-  PENSION_NAMES = [ "CAMIEG", "CNRACL", "RSI", "CARCDSF", "Autre"]
-
-  SUPPLEMENTARY_NAMES = [ "Aucune caisse de retraite complémentaire ne me verse de pension de retraite complémentaire ou de reversion",
-  "AG2R", "B2V", "HUMANIS", "IRCANTEC", "KLESIA", "MALAKOFFF MEDERIC", "PROBTP", "AUDIENS", "IRP AUTO", "LOURMEL", "Autre : Libre"]
-
   AGE = {
     0 => "0- Strictement inférieur à 55 ans",
     1 => "1- De 56 à 60 ans",
@@ -104,9 +93,9 @@ class FormularyChoice
 
   def set_collections_formulary
     {
-    lessor: LESSOR_NAMES,
-    supplementary: SUPPLEMENTARY_NAMES,
-    pension: PENSION_NAMES,
+    lessor: Acteur.list_of("BAILLEUR").map { |choice| choice.name  },
+    supplementary: Acteur.list_of("CAISSE DE RETRAITE COMPLÉMENTAIRE").map { |choice| choice.name  },
+    pension: Acteur.list_of("CAISSE DE RETRAITE PRINCIPALE").map { |choice| choice.name  },
     is_working: YES_NO.map { |choice, index| [index, choice]  },
     loss_of_autonomy_receipt: YES_NO.map { |choice, index| [index, choice]  },
     accessibility_with_step: YES_NO.map { |choice, index| [index, choice]  },
@@ -314,7 +303,7 @@ class FormularyChoice
       multiple_answers: false,
       hint: false,
       placeholder: "Choisi parmis la liste",
-      data: LESSOR_NAMES,
+      data: Acteur.list_of("BAILLEUR").map { |choice| choice.name  },
       need_answer: true,
       start_answer: "Il s'agit de",
       currency: nil,
@@ -394,7 +383,7 @@ class FormularyChoice
       multiple_answers: false,
       hint: false,
       placeholder: "Choisi parmis la liste",
-      data: PENSION_NAMES,
+      data: Acteur.list_of("CAISSE DE RETRAITE PRINCIPALE").map { |choice| choice.name  },
       need_answer: true,
       start_answer: "Il s'agit de l'organisme",
       currency: nil,
@@ -409,7 +398,7 @@ class FormularyChoice
       multiple_answers: true,
       hint: false,
       placeholder: "Choisi parmis la liste",
-      data: SUPPLEMENTARY_NAMES,
+      data: Acteur.list_of("CAISSE DE RETRAITE COMPLÉMENTAIRE").map { |choice| choice.name  },
       need_answer: true,
       start_answer: "Il s'agit de l'organisme",
       currency: nil,

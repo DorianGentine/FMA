@@ -1,22 +1,25 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
   before_action :authenticate_user!
+  before_action :set_project, only: [:show, :update]
 
 
   def show
-    @user = User.find(params[:user_id])
-    @project = Project.find(params[:id])
-    # @fma_team = current_user if @user != current_user
-
-    @fma_team = @project.is_his_advisor
-
-    @project.formularies.each do |formulary|
-      @solutions = SetSolutions.new(formulary).call
-    end
-
-    # CHANGE POLICY FOR PROJECT
-    authorize @user
+    # TOCHANGE FOR ALL
+    @formulary = @project.formularies.first
+    @formulary_setted = FormularyToHash.new(@formulary).form_json
+    render json: @formulary_setted
   end
 
+
+
+  def update
+
+  end
+
+  def set_project
+    @project = Project.find(params[:id])
+    authorize @project
+  end
 end
 
 

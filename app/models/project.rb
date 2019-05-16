@@ -7,6 +7,8 @@ class Project < ApplicationRecord
 
   has_many :documents, dependent: :destroy
 
+  before_create :fill_step
+
   enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evalution"]
 
 
@@ -26,5 +28,17 @@ class Project < ApplicationRecord
   def his_client
     user = UserProject.where(project: self, client: true).first.user
     return user
+  end
+
+  def fill_step
+    if self.step.nil?
+      self.step = "validation_data"
+    end
+  end
+
+  def solutions
+     self.formularies.each do |formulary|
+      return SetSolutions.new(formulary).call
+    end
   end
 end
