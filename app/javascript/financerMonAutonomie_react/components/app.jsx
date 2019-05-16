@@ -38,6 +38,7 @@ class App extends Component {
             <MenuProfil />
             <PanneauPrincipal
               selectedMenu={this.props.match.params.menu_nav}
+              selectedMenuVolet={this.props.match.params.menu_volet}
             />
           </div>
         </div>

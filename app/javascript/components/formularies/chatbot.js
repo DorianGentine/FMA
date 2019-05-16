@@ -3,7 +3,8 @@ import {
   insertQuestion,
   setNextQuestion,
   insertAnswer,
-  createLinkNext
+  createLinkNext,
+  setFormForFormulary
 } from "./components";
 
 const formulary = document.getElementById("formulary")
@@ -66,7 +67,11 @@ const nextStep = (questions, updated = null, question = null) => {
   if (i == questions.length) {
     createLinkNext(questions[0].formulary_id)
   } else {
-    insertQuestion(questions[i], true)
+    setFormForFormulary(questions[i])
+    setTimeout(function(){
+      insertQuestion(questions[i], true);
+      scrollLastMessageIntoView(formulary)
+    }, 1000)
   }
   scrollLastMessageIntoView(formulary)
   onClickHint()

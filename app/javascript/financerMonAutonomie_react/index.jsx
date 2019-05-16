@@ -51,8 +51,8 @@ if(app){
     <Provider store={store}>
         <Router history={history}>
           <Switch>
+            <Route path={`${rootUrl}/:menu_nav/:menu_volet`} component={App} />
             <Route path={`${rootUrl}/:menu_nav`} component={App} />
-            <Route path={`${rootUrl}/compte/:menu_volet`} component={App} />
             <Redirect from={rootUrl} to={`${rootUrl}/projet`} />
             <Redirect from={`${rootUrl}/compte`} to={`${rootUrl}/compte/identite`} />
           </Switch>

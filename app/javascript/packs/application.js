@@ -6,6 +6,8 @@ import "../components/dynamicNavbar";
 
 import "../components/get_solutions";
 
+import initSelectFma from "../components/select_fma";
+
 // import { fetchFormulary } from "../components/formularies/new";
 // fetchFormulary();
 
