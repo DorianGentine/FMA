@@ -1,10 +1,13 @@
-class Api::V1::FormulariesController < Api::V1::BaseController
+class Api::V1::UsersController < Api::V1::BaseController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :update]
 
   def show
-    # @formulary = @user.projects.first.formulary
-    @project = @user.projects.first
+    if @user.client
+      @project = @user.projects.first
+      @advisor = @project.is_his_advisor
+      @solutions = @project.solutions
+    end
   end
 
   def update
@@ -17,4 +20,5 @@ class Api::V1::FormulariesController < Api::V1::BaseController
     @user = User.find(params[:id])
     authorize @user
   end
+
 end

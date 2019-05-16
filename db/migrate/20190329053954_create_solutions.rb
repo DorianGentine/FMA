@@ -6,7 +6,6 @@ class CreateSolutions < ActiveRecord::Migration[5.2]
       t.string :group
       t.string :name
       t.string :conditions
-      t.text :answers
       t.references :financer, foreign_key: true
       t.timestamps
     end

@@ -1,8 +1,6 @@
 class Solution < ApplicationRecord
   belongs_to :financer
-
-  has_many :project_solutuions, dependent: :destroy
-  has_many :projects, through: :project_solutuions
+  has_many :answers
 
 
   def set_conditions(arr_sep='&', key_sep=':')

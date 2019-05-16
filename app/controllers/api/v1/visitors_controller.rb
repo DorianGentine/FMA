@@ -16,7 +16,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
     if @visitor.formulary.nil?
       formulary = Formulary.new(form_params)
       formulary.visitor = @visitor
-      formulary.project = Project.create!
+      formulary.project = Project.create(step: "validation_data")
       formulary.save
     else
       formulary = @visitor.formulary

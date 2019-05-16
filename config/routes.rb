@@ -38,8 +38,11 @@ Rails.application.routes.draw do
           get :analyze
         end
       end
+      resources :projects, only: [ :show, :update ] do
+        resources :formularies, only: [ :update, :create, :edit ]
+      end
       resources :users, only: [ :show, :update ] do
-        resources :projects, only: [ :index, :show ] do
+        resources :projects, only: [ :index ] do
           resources :documents, only: [ :create ]
         end
       end
