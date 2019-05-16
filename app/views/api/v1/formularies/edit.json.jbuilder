@@ -1,1 +1,1 @@
-edit
+json.extract! @formulary_setted
