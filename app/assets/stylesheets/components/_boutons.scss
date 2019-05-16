@@ -61,5 +61,40 @@
 
 // btn-light
   .btn-light{
-    padding: 0 0.75rem;
+    cursor: pointer;
+    bottom: 0;
+    left: 0;
+    background-color: $gray-200;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    color: $blue;
+    font-size: 14px;
+    height: 26px;
+    width: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-light::after{
+    content: "\f303";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  }
+  .btn-light:hover{
+    color: $blue
+  }
+
+// btn-submit-form
+  .btn-submit-form{
+    right: 30px;
+    top: 50%;
+    transform: translatey(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    padding: 10px;
+    background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/v1557996651/icons/arrow_submit_mcnctt.svg);
+    background-position: center;
+    background-repeat: no-repeat;
   }

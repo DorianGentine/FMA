@@ -2,6 +2,7 @@ import { initSelect2, initSelectize } from '../../components/init_select2';
 
 import { currencyFormatDE } from "../../components/currency";
 
+import initSelectFma from "../select_fma";
 
 
 let question_send, answer_send, btn, hint
@@ -66,7 +67,7 @@ const insertQuestion = (question, last = null) => {
 
   form.insertAdjacentHTML("beforeend", question_send);
   if (last) {
-    setFormForFormulary(question)
+    // setFormForFormulary(question)
   }
 }
 
@@ -76,12 +77,12 @@ const setNextQuestion = (nex_question) => {
 }
 
 const createEditBtn = (question) => {
-  btn = `<div class="btn btn-light float-left edit" data-question="${question.set_up.id}"><i class="fas fa-pencil-alt"></i></div>`
+  btn = `<div class=" absolute btn btn-light edit" data-question="${question.set_up.id}"></div>`
 }
 
 const insertAnswer = (question) => {
   createEditBtn(question)
-  answer_send = `<div class="message sent">${btn} ${conditionToAnswer(question)}</div>`
+  answer_send = `<div class="message sent relative">${btn} ${conditionToAnswer(question)}</div>`
   form.insertAdjacentHTML("beforeend", answer_send);
 }
 const createLinkNext = (id) => {
@@ -92,8 +93,8 @@ const createLinkNext = (id) => {
 
 const createInput = (question, div) => {
   const input = document.createElement("input")
-  input.style.width = "70%"
-  input.classList = "form-control select optional"
+  input.style.width = "calc(100% - 40px)"
+  input.classList = "form-control select optional border-0"
   input.id = `formulary_${question.set_up.column_name}`
   input.placeholder  = `${question.set_up.placeholder}`
   // if (question.set_up.column_name === "zip_code") {
@@ -116,8 +117,8 @@ const createInput = (question, div) => {
 
 const createMultiInput = (question, div) => {
   const input = document.createElement("input")
-  input.style.width = "70%"
-  input.classList = "form-control select optional"
+  input.style.width = "calc(100% - 40px)"
+  input.classList = "form-control select optional border-0"
   input.classList.add("multiple_select2")
   input.type = "text"
   input.multiple = "multiple"
@@ -129,13 +130,17 @@ const createMultiInput = (question, div) => {
 
 
 const insertSelectAnswer = (question, div) => {
+  const selectFma = document.createElement("div")
+  selectFma.classList = "select-fma"
+  div.appendChild(selectFma)
+
   const selectList = document.createElement("select")
-  selectList.style.width = "70%"
-  selectList.classList = "form-control select optional"
+  // selectList.style.width = "calc(100% - 40px)"
+  selectList.classList = "form-control select optional border-0"
   selectList.id = `formulary_${question.set_up.column_name}`
   selectList.name = `${question.set_up.column_name}`
   selectList.setAttribute( "data-position", question.set_up.position)
-  div.appendChild(selectList)
+  selectFma.appendChild(selectList)
   var option = document.createElement("option")
   option.text = question.set_up.placeholder
   selectList.add(option)
@@ -150,13 +155,14 @@ const insertSelectAnswer = (question, div) => {
     } else { }
     selectList.add(option)
   }
+
+  initSelectFma()
 }
 
 const createSubmitBtn = (div) => {
-  const submit = document.createElement("input")
-  submit.style.width = "30%"
+  const submit = document.createElement("button")
   submit.id = "envoyer"
-  submit.classList = "btn btn-primary"
+  submit.classList = "btn btn-primary btn-submit-form absolute"
   submit.name = "commit"
   submit.type = "submit"
   div.appendChild(submit)
@@ -164,13 +170,13 @@ const createSubmitBtn = (div) => {
 
 const setFormForFormulary = (question) => {
   const div = document.createElement('form')
-  div.classList = "simple_form edit_visitor margin-top-15"
+  div.classList = "simple_form edit_visitor margin-top-15 relative white-box"
   div.id = `edit_visitor_${form.dataset.visitor}`
   div.setAttribute('novalidate', "novalidate");
   div.setAttribute("data-remote", true)
   div.acceptCharset = "UTF-8"
   // div.method = "post"
-  div.style.display = "flex"
+  // div.style.display = "flex"
   document.getElementById('formulary-form').appendChild(div)
 
   const input = document.createElement("input")
