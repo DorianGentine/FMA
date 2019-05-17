@@ -28,7 +28,7 @@ const setOptions = (question) => {
 
 const initSelect2 = () => {
   $(".select2").select2({
-    placeholder: 'Choissiez ou ajoutez',
+    placeholder: 'Choisissez ou ajoutez',
     width: '100%',
     templateSelection: function (data) {
       multiSelectionOnChange(data)
@@ -42,7 +42,7 @@ const initSelect2 = () => {
 const initSelectize = (question) => {
   let select = $(".multiple_select2").selectize({
     plugins: ['remove_button'],
-    placeholder: 'Choissiez ou ajoutez',
+    placeholder: 'Choisissez ou ajoutez',
     delimiter: ', ',
     persist: false,
     options: setOptions(question),

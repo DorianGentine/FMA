@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 const ApercuProjet = (props) => {
   const project = props.project
-  const solutions = props.solutions
+  const financers = props.financers
 
-  const mydate = new Date(project.created_at);
+  const mydate = new Date(project.date_de_creation);
   const month = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"][mydate.getMonth()];
   const dateInscription = mydate.getDate() + ' ' + month + ' ' + mydate.getFullYear();
 
@@ -20,7 +20,7 @@ const ApercuProjet = (props) => {
         <p className="col-lg-6 font-14">Date d'inscription</p>
         <p className="col-lg-6 font-14 text-align-right blue bold">{dateInscription}</p>
         <p className="col-lg-6 font-14">Financeurs</p>
-        <p className="col-lg-6 font-14 bold text-align-right black">+ {solutions.length}</p>
+        <p className="col-lg-6 font-14 bold text-align-right black">+ {financers.length}</p>
       </div>
     </div>
   );
@@ -29,7 +29,7 @@ const ApercuProjet = (props) => {
 function mapStateToProps(state) {
   return {
     project: state.api.project,
-    solutions: state.api.solutions,
+    financers: state.api.financers,
   };
 }
 

@@ -206,6 +206,9 @@
   .margin-auto{
     margin: auto;
   }
+  .margin-left-auto{
+    margin-left: auto;
+  }
   .no-margin{
     margin: 0 !important;
   }
@@ -381,6 +384,10 @@
   .width-100{
     width: 100%;
   }
+  .width-fit-content{
+    width: fit-content;
+  }
+
 
 
 @media screen and (max-width: 770px) {

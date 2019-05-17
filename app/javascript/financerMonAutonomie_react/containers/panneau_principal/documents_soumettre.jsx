@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import RenderDocs from "../containers/render_docs"
+import RenderDocs from "../../containers/render_docs"
 
 class DocumentsSoumettre extends Component {
   render(){
