@@ -18,6 +18,7 @@ class App extends Component {
 
   render () {
     const api = this.props.api
+    console.log("api", api)
     if(api.beneficiaire == undefined){
       return(
         <div className="align-items-center justify-content-center" style={{backgroundColor: "#ecf0f1",}}>
@@ -27,7 +28,7 @@ class App extends Component {
       );
 
     // App beneficiaire
-    }else if(api.beneficiaire.client){
+    }else if(api.beneficiaire){
       return (
         <div>
           <AppNavbar selectedMenu={this.props.match.params.menu_nav} />

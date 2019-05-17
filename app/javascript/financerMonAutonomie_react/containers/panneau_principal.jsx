@@ -1,23 +1,43 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import DocumentsSoumettre from "../containers/documents_soumettre"
-import FinanceursPotentiels from "../containers/financeurs_potentiels"
-import VosReponses from "../containers/vos_reponses"
-import KitDeFinancement from "../containers/kit_financement"
+import PanneauPrincipalProjet from "./panneau_principal/panneau_principal_projet"
 
 class PanneauPrincipal extends Component {
   render(){
     const selectedMenu = this.props.selectedMenu
 
-    return (
-      <div className="row">
-        <DocumentsSoumettre />
-        <FinanceursPotentiels />
-        <VosReponses />
-        <KitDeFinancement />
-      </div>
-    );
+    if(selectedMenu.toLowerCase() == "projet"){
+      return (
+        <div className="container_panneau_principal">
+          <PanneauPrincipalProjet />
+        </div>
+      );
+    }else if(selectedMenu.toLowerCase() == "compte"){
+      return (
+        <div>
+          <h1>{selectedMenu}</h1>
+        </div>
+      );
+    }else if(selectedMenu.toLowerCase() == "alertes"){
+      return (
+        <div>
+          <h1>{selectedMenu}</h1>
+        </div>
+      );
+    }
   }
 };
 
-export default PanneauPrincipal;
+function mapStateToProps(state) {
+  return {
+    project: state.api.project,
+  };
+}
+
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ fetchAPI }, dispatch);
+// }
+
+export default connect(mapStateToProps, null)(PanneauPrincipal);

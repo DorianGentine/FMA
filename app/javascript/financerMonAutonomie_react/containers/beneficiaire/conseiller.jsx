@@ -29,7 +29,7 @@ class Conseiller extends Component {
 
 function mapStateToProps(state) {
   return {
-    conseiller: state.api.fma_team,
+    conseiller: state.api.conseiller,
   };
 }
 

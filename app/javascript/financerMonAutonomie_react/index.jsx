@@ -7,6 +7,7 @@
   import reduxPromise from 'redux-promise';
   import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
   import { createBrowserHistory as history } from 'history';
+  import { reducer as formReducer } from 'redux-form';
 
   import { fetchAPI } from './actions';
 
@@ -16,6 +17,7 @@
 
   // State and reducers
   import apiReducer from './reducers/api_reducer';
+  import formResultsReducer from './reducers/form_results_reducer';
 
   // const identityReducer = (state = null) => state;
 
@@ -23,7 +25,9 @@ const app = document.getElementById('app')
 if(app){
   const user_id = app.dataset.userid
   const project_id = app.dataset.projectid
-  const urlAPI = `/api/v1/users/${user_id}/projects/${project_id}`;
+  const formulary_id = app.dataset.formularyid
+  const urlAPI = `/api/v1/users/${user_id}`;
+  const urlForm = `/api/v1/projects/${project_id}/formularies/${formulary_id}/edit`;
 
   const rootUrl = `/mon_espace/${user_id}`
 
@@ -32,13 +36,18 @@ if(app){
   const initialState = {
     rootUrl: rootUrl,
     urlAPI: urlAPI,
+    urlForm: urlForm,
     api: {},
+    formResults: [],
+    form: formReducer,
   };
 
   const reducers = combineReducers({
     rootUrl: identityReducer,
     urlAPI: identityReducer,
+    urlForm: identityReducer,
     api: apiReducer,
+    formResults: formResultsReducer,
   });
 
 

@@ -111,6 +111,7 @@ const createInput = (question, div) => {
   input.value = question.answer
   input.setAttribute( "data-position", question.set_up.position)
   div.appendChild(input)
+  setTimeout(() => {input.focus()}, 100)
 }
 
 
@@ -118,7 +119,7 @@ const createInput = (question, div) => {
 const createMultiInput = (question, div) => {
   const input = document.createElement("input")
   input.style.width = "calc(100% - 40px)"
-  input.classList = "form-control select optional border-0"
+  input.classList = "flex"
   input.classList.add("multiple_select2")
   input.type = "text"
   input.multiple = "multiple"
@@ -157,6 +158,7 @@ const insertSelectAnswer = (question, div) => {
   }
 
   initSelectFma()
+  setTimeout(() => {selectFma.focus()}, 100)
 }
 
 const createSubmitBtn = (div) => {

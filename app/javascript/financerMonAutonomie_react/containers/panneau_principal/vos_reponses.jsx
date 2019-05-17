@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import renderInitiale from "../../components/render_initiales"
+import renderInitiale from "../../../components/render_initiales"
 
 class VosReponses extends Component {
 

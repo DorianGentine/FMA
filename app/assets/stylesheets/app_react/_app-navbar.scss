@@ -8,6 +8,7 @@
   height: 100vh;
   position: fixed;
   top: 0;
+  transition: 1s;
   .active{
     color: $blue;
     width: 100%;
