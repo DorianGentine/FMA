@@ -13,7 +13,12 @@ class FormularyChoice
     2 => "12/12/1950",
     3 => "12/12/1940"
   }
-
+  TEST_TAXE = {
+    0 => 1234,
+    1 => 2076,
+    2 => 890,
+    3 => 3009
+  }
   OCCUPATION_CHOICES = {
     0 => "0- Propriétaire occupant",
     1 => "1- Occupant à titre gratuit",
@@ -93,29 +98,30 @@ class FormularyChoice
 
   def set_collections_formulary
     {
-    lessor: Acteur.list_of("BAILLEUR").map { |choice| choice.name  },
-    supplementary: Acteur.list_of("CAISSE DE RETRAITE COMPLÉMENTAIRE").map { |choice| choice.name  },
-    pension: Acteur.list_of("CAISSE DE RETRAITE PRINCIPALE").map { |choice| choice.name  },
-    is_working: YES_NO.map { |choice, index| [index, choice]  },
-    loss_of_autonomy_receipt: YES_NO.map { |choice, index| [index, choice]  },
-    accessibility_with_step: YES_NO.map { |choice, index| [index, choice]  },
-    owner_is_include: YES_NO.map { |choice, index| [index, choice]  },
-    has_partner: YES_NO.map { |choice, index| [index, choice]  },
-    age: AGE.map { |choice, index| [index, choice]  },
-    test_age: TEST_AGE.map { |choice, index| [index, choice]  },
-    occupation: OCCUPATION_CHOICES.map { |choice, index| [index, choice]  },
-    holder_occupation: HOLDER_OCCUPATION_CHOICES.map { |choice, index| [index, choice]  },
-    accommodation: ACCOMMODATION.map { |choice, index| [index, choice]  },
-    floor: FLOOR.map { |choice, index| [index, choice]  },
-    type_of_pension: TYPE_OF_PENSION.map { |choice, index| [index, choice]  },
-    loss_of_autonomy: LOSS_OF_AUTONOMY.map { |choice, index| [index, choice]  },
-    occupant: OCCUPANT.map { |choice, index| [index, choice]  },
-    tax_revenue: TAXE_REVENUE.map { |choice, index| [index, choice]  },
-    gross_income: GROSS_INCOME.map { |choice, index| [index, choice]  },
-    global_tax_revenue: GLOBAL_TAXE_REVENUE.map { |choice, index| [index, choice]  },
-    household_income: HOUSEHOLD_INCOME.map { |choice, index| [index, choice]  },
-    owner_tax_revenue: OWNER_TAXE_REVENUE.map { |choice, index| [index, choice]  },
-    assistant: ASSISTANT
+      age: AGE.map { |choice, index| [index, choice]  },
+      test_age: TEST_AGE.map { |choice, index| [index, choice]  },
+      is_working: YES_NO.map { |choice, index| [index, choice]  },
+      loss_of_autonomy_receipt: YES_NO.map { |choice, index| [index, choice]  },
+      occupation: OCCUPATION_CHOICES.map { |choice, index| [index, choice]  },
+      holder_occupation: HOLDER_OCCUPATION_CHOICES.map { |choice, index| [index, choice]  },
+      lessor: Acteur.list_of("BAILLEUR").map { |choice| choice.name  },
+      accommodation: ACCOMMODATION.map { |choice, index| [index, choice]  },
+      floor: FLOOR.map { |choice, index| [index, choice]  },
+      accessibility_with_step: YES_NO.map { |choice, index| [index, choice]  },
+      type_of_pension: TYPE_OF_PENSION.map { |choice, index| [index, choice]  },
+      pension: Acteur.list_of("CAISSE DE RETRAITE PRINCIPALE").map { |choice| choice.name  },
+      supplementary: Acteur.list_of("CAISSE DE RETRAITE COMPLÉMENTAIRE").map { |choice| choice.name  },
+      loss_of_autonomy: LOSS_OF_AUTONOMY.map { |choice, index| [index, choice]  },
+      occupant: OCCUPANT.map { |choice, index| [index, choice]  },
+      owner_is_include: YES_NO.map { |choice, index| [index, choice]  },
+      has_partner: YES_NO.map { |choice, index| [index, choice]  },
+      test_taxe: TEST_TAXE.map { |choice, index| [index, choice]  },
+      tax_revenue: TAXE_REVENUE.map { |choice, index| [index, choice]  },
+      gross_income: GROSS_INCOME.map { |choice, index| [index, choice]  },
+      global_tax_revenue: GLOBAL_TAXE_REVENUE.map { |choice, index| [index, choice]  },
+      household_income: HOUSEHOLD_INCOME.map { |choice, index| [index, choice]  },
+      owner_tax_revenue: OWNER_TAXE_REVENUE.map { |choice, index| [index, choice]  },
+      assistant: ASSISTANT
     }
   end
 

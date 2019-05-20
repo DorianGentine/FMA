@@ -86,6 +86,7 @@ class MatchSolution
 
   def set_tax_fiscal(form, key)
     range = RevenuAnalyze.new(@formulaire).analyze_for_fiscal_de_reference
+     p"//////: #{range}"
     if form[key] < range[:a]
       return 0
     elsif form[key] > range[:b]

@@ -85,6 +85,8 @@ GEM
       railties (>= 3.2, < 6.1)
     erubi (1.8.0)
     execjs (2.7.0)
+    faker (1.9.3)
+      i18n (>= 0.7)
     ffi (1.10.0)
     font-awesome-sass (5.6.1)
       sassc (>= 1.11)
@@ -95,6 +97,8 @@ GEM
       domain_name (~> 0.5)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    intercom-rails (0.4.0)
+      activesupport (> 3.0)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -242,8 +246,10 @@ DEPENDENCIES
   cloudinary (~> 1.9.1)
   devise
   dotenv-rails
+  faker
   font-awesome-sass (~> 5.6.1)
   geocoder
+  intercom-rails
   jbuilder (~> 2.0)
   letter_opener
   listen (~> 3.0.5)

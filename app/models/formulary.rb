@@ -1,5 +1,5 @@
 class Formulary < ApplicationRecord
-  belongs_to :visitor
+  belongs_to :visitor, optional: true
   belongs_to :project
 
   def first_name=(s)
@@ -271,6 +271,35 @@ class Formulary < ApplicationRecord
         return false
       end
     end
+  end
+
+  def set_a_new_form(first_name)
+    self.first_name = first_name
+    self.zip_code = "94000"
+    age_values = FormularyChoice::TEST_AGE.values
+    hash_choices = FormularyChoice.new.set_collections_formulary
+    self.age = age_values[rand(0...age_values.count)]
+    self.is_working = hash_choices[:is_working][rand(0...hash_choices[:is_working].count)].second if self.allow_is_working?
+    self.loss_of_autonomy_receipt = hash_choices[:loss_of_autonomy_receipt][rand(0...hash_choices[:loss_of_autonomy_receipt].count)].second if self.allow_loss_of_autonomy_receipt?
+    self.occupation = hash_choices[:occupation][rand(0...hash_choices[:occupation].count)].second if self.allow_occupation?
+    self.holder_occupation = hash_choices[:holder_occupation][rand(0...hash_choices[:holder_occupation].count)].second  if self.allow_holder_occupation?
+    self.lessor = hash_choices[:lessor][rand(0...hash_choices[:lessor].count)]  if self.allow_lessor?
+    self.accommodation = hash_choices[:accommodation][rand(0...hash_choices[:accommodation].count)].second  if self.allow_accommodation?
+    self.floor = hash_choices[:floor][rand(0...hash_choices[:floor].count)].second  if self.allow_floor?
+    self.accessibility_with_step = hash_choices[:accessibility_with_step][rand(0...hash_choices[:accessibility_with_step].count)].second  if self.allow_accessibility_with_step?
+    self.type_of_pension = hash_choices[:type_of_pension][rand(0...hash_choices[:type_of_pension].count)].second  if self.allow_type_of_pension?
+    self.pension = hash_choices[:pension][rand(0...hash_choices[:pension].count)]  if self.allow_pension?
+    self.supplementary = hash_choices[:supplementary][rand(0...hash_choices[:supplementary].count)]  if self.allow_supplementary?
+    self.loss_of_autonomy = hash_choices[:loss_of_autonomy][rand(0...hash_choices[:loss_of_autonomy].count)].second  if self.allow_loss_of_autonomy?
+    self.occupant = rand(1..5) if self.allow_occupant?
+    self.owner_is_include = hash_choices[:owner_is_include][rand(0...hash_choices[:owner_is_include].count)].second  if self.allow_owner_is_include?
+    self.has_partner = hash_choices[:has_partner][rand(0...hash_choices[:has_partner].count)].second  if self.allow_has_partner?
+    self.tax_revenue = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_tax_revenue?
+    self.gross_income = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_gross_income?
+    self.global_tax_revenue = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_global_tax_revenue?
+    self.household_income = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_household_income?
+    self.owner_tax_revenue = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_owner_tax_revenue?
+    self.assistant = hash_choices[:assistant][rand(0...hash_choices[:assistant].count)]  if self.allow_assistant?
   end
 
   def verify_zip_code
