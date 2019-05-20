@@ -1,12 +1,14 @@
+require 'faker'
+
 p "Destroy all financers"
 
 Financer.destroy_all
 
 p "Create Advisor"
 
-User.create(last_name: "Dupont", first_name: "Luc", phone: "998877866", avatar: "https://res.cloudinary.com/financermonautonomie/image/upload/v1556856590/portrait_avem_proche_b7j24g.jpg", advisor: true, client: false, admin: false, email: "advisor@mail.com", password:"password")
+advisor = User.create(last_name: "Dupont", first_name: "Luc", phone: "998877866", avatar: "https://res.cloudinary.com/financermonautonomie/image/upload/v1556856590/portrait_avem_proche_b7j24g.jpg", advisor: true, client: false, admin: false, email: "advisor@mail.com", password:"password")
 
-p "Create Advisor"
+p "Create Admin"
 
 User.create(last_name: "Admin", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "admin@mail.com", password:"password")
 
@@ -1116,15 +1118,27 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
 
 p "Solutions Created"
 
+p "create formulary"
 
+  form = Formulary.new
+  form.set_a_new_form(Faker::Name.first_name)
+  form.visitor = Visitor.create(user_ip: "::1")
+  form.project = Project.create()
+  form.save
+  project = form.project
 
+  form2 = Formulary.new
+  form2.set_a_new_form(Faker::Name.first_name)
+  form2.project = project
+  form2.save
 
+p "Formulary created"
 
+p "Create a Beneficaire"
 
-
-
-
-
+  bene = User.create(first_name: form.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test@gmail.com", password: "password")
+  UserProject.create(user: bene, project: project, client: true)
+  UserProject.create(user: advisor, project: project)
 
 
 

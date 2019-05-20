@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home, :team, :cgu, :rgpd ]
+  skip_after_action :intercom_rails_auto_include
 
   def home
     @choices = FormularyChoice.new.set_collections_formulary
