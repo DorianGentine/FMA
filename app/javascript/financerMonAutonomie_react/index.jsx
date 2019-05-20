@@ -39,7 +39,6 @@ if(app){
     urlForm: urlForm,
     api: {},
     formResults: [],
-    form: formReducer,
   };
 
   const reducers = combineReducers({
@@ -48,6 +47,7 @@ if(app){
     urlForm: identityReducer,
     api: apiReducer,
     formResults: formResultsReducer,
+    form: formReducer,
   });
 
 
