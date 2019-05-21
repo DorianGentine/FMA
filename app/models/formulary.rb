@@ -2,6 +2,7 @@ class Formulary < ApplicationRecord
   belongs_to :visitor, optional: true
   belongs_to :project
 
+  before_create :set_primary
   def first_name=(s)
     write_attribute(:first_name, s.to_s.capitalize) # The to_s is in case you get nil/non-string
   end
@@ -10,16 +11,24 @@ class Formulary < ApplicationRecord
   def allow_first_name?
     true
   end
-
+  def ask_again_first_name?
+    !self.primary ? true : false
+  end
 
   # Q-3
   def allow_zip_code?
       true
   end
+  def ask_again_zip_code?
+    !self.primary ? false : true
+  end
 
   # Q-4
   def allow_age?
     true
+  end
+  def ask_again_age?
+    !self.primary ? true : false
   end
 
   # Q-5
@@ -30,6 +39,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
+  def ask_again_is_working?
+    !self.primary ? true : false
+  end
 
   # Q-6
   def allow_loss_of_autonomy_receipt?
@@ -39,12 +51,16 @@ class Formulary < ApplicationRecord
       return false
     end
   end
-
+  def ask_again_loss_of_autonomy_receipt?
+    !self.primary ? true : false
+  end
   # Q-7
   def allow_occupation?
     true
   end
-
+  def ask_again_occupation?
+    !self.primary ? true : false
+  end
   # Q-8
   def allow_holder_occupation?
     if self.occupation.present? && self.occupation == 1
@@ -52,6 +68,9 @@ class Formulary < ApplicationRecord
     else
       return false
     end
+  end
+  def ask_again_holder_occupation?
+    !self.primary ? false : true
   end
 
   # Q-9
@@ -64,6 +83,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
+  def ask_again_lessor?
+    !self.primary ? false : true
+  end
 
   # Q-10
   def allow_accommodation?
@@ -74,6 +96,9 @@ class Formulary < ApplicationRecord
     else
       return false
     end
+  end
+  def ask_again_accommodation?
+    !self.primary ? false : true
   end
 
   # Q-11
@@ -86,6 +111,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
+  def ask_again_floor?
+    !self.primary ? false : true
+  end
 
   # Q12
   def allow_accessibility_with_step?
@@ -97,6 +125,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
+  def ask_again_accessibility_with_step?
+    !self.primary ? false : true
+  end
 
   # Q-13
   def allow_type_of_pension?
@@ -105,6 +136,9 @@ class Formulary < ApplicationRecord
     else
       return false
     end
+  end
+  def ask_again_type_of_pension?
+    !self.primary ? true : false
   end
 
   # Q-14
@@ -115,7 +149,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
-
+  def ask_again_pension?
+    !self.primary ? true : false
+  end
   # Q-15
   def allow_supplementary?
     # raise
@@ -124,6 +160,9 @@ class Formulary < ApplicationRecord
     else
       return false
     end
+  end
+  def ask_again_supplementary?
+    !self.primary ? true : false
   end
 
   # Q-16
@@ -134,7 +173,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
-
+  def ask_again_loss_of_autonomy?
+    !self.primary ? true : false
+  end
   # Q-17
   def allow_occupant?
     if self.occupation.present? && self.occupation == 0 || self.occupation == 2 || self.occupation == 3
@@ -144,6 +185,9 @@ class Formulary < ApplicationRecord
     else
       return false
     end
+  end
+  def ask_again_occupant?
+    !self.primary ? false : true
   end
 
   # Q-18
@@ -160,7 +204,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
-
+  def ask_again_owner_is_include
+    !self.primary ? false : true
+  end
   # Q-19
   def allow_has_partner?
     if self.type_of_pension.present? && self.type_of_pension == 0 && self.occupant.present? && self.set_nbr_of_occupants == 1 && self.age.present? && self.set_age_group > 0
@@ -169,7 +215,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
-
+  def ask_again_has_partner?
+    !self.primary ? false : true
+  end
   # Q-20
   def allow_tax_revenue?
     if self.occupant.present? && self.set_nbr_of_occupants == 0
@@ -184,7 +232,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
-
+  def ask_again_tax_revenue?
+    !self.primary ? false : true
+  end
   # Q-21
   def allow_gross_income?
     if self.occupant.present? && self.set_nbr_of_occupants == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
@@ -195,7 +245,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
-
+  def ask_again_gross_income?
+    !self.primary ? true : false
+  end
   # Q-22
   def allow_global_tax_revenue?
     if self.occupant.present? && self.set_nbr_of_occupants == 1
@@ -212,6 +264,9 @@ class Formulary < ApplicationRecord
       return false
     end
   end
+  def ask_again_global_tax_revenue?
+    !self.primary ? false : true
+  end
 
   # Q-23
   def allow_household_income?
@@ -220,6 +275,9 @@ class Formulary < ApplicationRecord
     else
       return false
     end
+  end
+  def ask_again_household_income?
+    !self.primary ? true : false
   end
 
   # Q-24
@@ -238,10 +296,15 @@ class Formulary < ApplicationRecord
       return false
     end
   end
-
+  def ask_again_owner_tax_revenue?
+    !self.primary ? false : true
+  end
   # Q-25
   def allow_assistant?
     true
+  end
+  def ask_again_assistant?
+    !self.primary ? true : false
   end
 
   def finish_step?(attribute)
@@ -273,33 +336,77 @@ class Formulary < ApplicationRecord
     end
   end
 
+
+
   def set_a_new_form(first_name)
     self.first_name = first_name
     self.zip_code = "94000"
     age_values = FormularyChoice::TEST_AGE.values
     hash_choices = FormularyChoice.new.set_collections_formulary
     self.age = age_values[rand(0...age_values.count)]
-    self.is_working = hash_choices[:is_working][rand(0...hash_choices[:is_working].count)].second if self.allow_is_working?
-    self.loss_of_autonomy_receipt = hash_choices[:loss_of_autonomy_receipt][rand(0...hash_choices[:loss_of_autonomy_receipt].count)].second if self.allow_loss_of_autonomy_receipt?
-    self.occupation = hash_choices[:occupation][rand(0...hash_choices[:occupation].count)].second if self.allow_occupation?
-    self.holder_occupation = hash_choices[:holder_occupation][rand(0...hash_choices[:holder_occupation].count)].second  if self.allow_holder_occupation?
-    self.lessor = hash_choices[:lessor][rand(0...hash_choices[:lessor].count)]  if self.allow_lessor?
-    self.accommodation = hash_choices[:accommodation][rand(0...hash_choices[:accommodation].count)].second  if self.allow_accommodation?
-    self.floor = hash_choices[:floor][rand(0...hash_choices[:floor].count)].second  if self.allow_floor?
-    self.accessibility_with_step = hash_choices[:accessibility_with_step][rand(0...hash_choices[:accessibility_with_step].count)].second  if self.allow_accessibility_with_step?
-    self.type_of_pension = hash_choices[:type_of_pension][rand(0...hash_choices[:type_of_pension].count)].second  if self.allow_type_of_pension?
-    self.pension = hash_choices[:pension][rand(0...hash_choices[:pension].count)]  if self.allow_pension?
-    self.supplementary = hash_choices[:supplementary][rand(0...hash_choices[:supplementary].count)]  if self.allow_supplementary?
-    self.loss_of_autonomy = hash_choices[:loss_of_autonomy][rand(0...hash_choices[:loss_of_autonomy].count)].second  if self.allow_loss_of_autonomy?
-    self.occupant = rand(1..5) if self.allow_occupant?
-    self.owner_is_include = hash_choices[:owner_is_include][rand(0...hash_choices[:owner_is_include].count)].second  if self.allow_owner_is_include?
-    self.has_partner = hash_choices[:has_partner][rand(0...hash_choices[:has_partner].count)].second  if self.allow_has_partner?
-    self.tax_revenue = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_tax_revenue?
-    self.gross_income = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_gross_income?
-    self.global_tax_revenue = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_global_tax_revenue?
-    self.household_income = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_household_income?
-    self.owner_tax_revenue = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first  if self.allow_owner_tax_revenue?
-    self.assistant = hash_choices[:assistant][rand(0...hash_choices[:assistant].count)]  if self.allow_assistant?
+    if self.allow_is_working?
+      self.is_working = hash_choices[:is_working][rand(0...hash_choices[:is_working].count)].second
+    end
+    if self.allow_loss_of_autonomy_receipt?
+      self.loss_of_autonomy_receipt = hash_choices[:loss_of_autonomy_receipt][rand(0...hash_choices[:loss_of_autonomy_receipt].count)].second
+    end
+    if self.allow_occupation?
+      self.occupation = hash_choices[:occupation][rand(0...hash_choices[:occupation].count)].second
+    end
+    if self.allow_holder_occupation?
+      self.holder_occupation = hash_choices[:holder_occupation][rand(0...hash_choices[:holder_occupation].count)].second
+    end
+    if self.allow_lessor?
+      self.lessor = hash_choices[:lessor][rand(0...hash_choices[:lessor].count)]
+    end
+    if self.allow_accommodation?
+      self.accommodation = hash_choices[:accommodation][rand(0...hash_choices[:accommodation].count)].second
+    end
+    if self.allow_floor?
+      self.floor = hash_choices[:floor][rand(0...hash_choices[:floor].count)].second
+    end
+    if self.allow_accessibility_with_step?
+      self.accessibility_with_step = hash_choices[:accessibility_with_step][rand(0...hash_choices[:accessibility_with_step].count)].second
+    end
+    if self.allow_type_of_pension?
+      self.type_of_pension = hash_choices[:type_of_pension][rand(0...hash_choices[:type_of_pension].count)].second
+    end
+    if self.allow_pension?
+      self.pension = hash_choices[:pension][rand(0...hash_choices[:pension].count)]
+    end
+    if self.allow_supplementary?
+      self.supplementary = hash_choices[:supplementary][rand(0...hash_choices[:supplementary].count)]
+    end
+    if self.allow_loss_of_autonomy?
+      self.loss_of_autonomy = hash_choices[:loss_of_autonomy][rand(0...hash_choices[:loss_of_autonomy].count)].second
+    end
+    if self.allow_occupant?
+      self.occupant = rand(1..5)
+    end
+    if self.allow_owner_is_include?
+      self.owner_is_include = hash_choices[:owner_is_include][rand(0...hash_choices[:owner_is_include].count)].second
+    end
+    if self.allow_has_partner?
+      self.has_partner = hash_choices[:has_partner][rand(0...hash_choices[:has_partner].count)].second
+    end
+    if self.allow_tax_revenue?
+      self.tax_revenue = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first
+    end
+    if self.allow_gross_income?
+      self.gross_income = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first
+    end
+    if self.allow_global_tax_revenue?
+      self.global_tax_revenue = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first
+    end
+    if self.allow_household_income?
+      self.household_income = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first
+    end
+    if self.allow_owner_tax_revenue?
+      self.owner_tax_revenue = hash_choices[:test_taxe][rand(0...hash_choices[:test_taxe].count)].first
+    end
+    if self.allow_assistant?
+      self.assistant = hash_choices[:assistant][rand(0...hash_choices[:assistant].count)]
+    end
   end
 
   def verify_zip_code
@@ -343,6 +450,15 @@ class Formulary < ApplicationRecord
   def dont_ask_again?(column_name)
     if self.project.present?
       false
+    end
+  end
+
+  private
+
+  def set_primary
+    project = self.project
+    if project.nil? || Formulary.where(project: project, primary: true).count < 1
+      self.primary = true
     end
   end
 

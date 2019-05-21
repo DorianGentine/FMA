@@ -56,7 +56,7 @@ class TestSolution
   def skip_column_to_verif?(column_name)
     if column_name != "id" && column_name != "visitor_id" && column_name != "project_id" &&
       column_name != "created_at" && column_name != "updated_at" &&
-      column_name != "first_name" && column_name != "zip_code"
+      column_name != "first_name" && column_name != "zip_code" && column_name != "primary"
       return true
     end
   end

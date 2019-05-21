@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_040750) do
   end
 
   create_table "formularies", force: :cascade do |t|
+    t.boolean "primary", default: false
     t.bigint "visitor_id"
     t.bigint "project_id"
     t.string "first_name"
