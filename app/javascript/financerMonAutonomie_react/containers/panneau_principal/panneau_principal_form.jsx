@@ -37,27 +37,14 @@ class PanneauPrincipalProjet extends Component {
   renderField(field) {
     return (
       <div className="form-group">
-         <label>{field.label}</label>
-         <input
-         className="form-control"
-         type={field.type}
-         {...field.input}
-         />
+        <label className="font-14 black">{field.label}</label>
+        <input className="margin-bottom-15 no-padding form-control"
+          type={field.type}
+          {...field.input}
+          // placeholder={field.placeholder}
+        />
       </div>
-      )
-
-
-
-    // return (
-    //   <div className="form-group">
-    //     <label className="font-14 black">{field.label}</label>
-    //     <input className="margin-bottom-15 no-padding form-control"
-    //       type={field.type}
-    //       {...field.input}
-    //       placeholder={field.placeholder}
-    //     />
-    //   </div>
-    // );
+    );
   }
 
 
@@ -81,7 +68,6 @@ class PanneauPrincipalProjet extends Component {
             type={result.set_up.type}
             component={this.renderField}
             placeholder={result.answer}
-            id="tasoeur"
           >
           </Field>
         )
@@ -134,20 +120,13 @@ class PanneauPrincipalProjet extends Component {
       }
     }
 
-        // {renderForm(this.props.formResults)}
 
     return (
       <div className="col-lg-12">
         <div className="white-box">
           <h4 className="no-margin margin-bottom-60">Bénéficiaire 1 <strong className="font-weight-normal blue font-12 margin-left-30">Vérification des réponses pour le bénéficiaire n°1</strong></h4>
           <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-             <Field
-               label="first_name"
-               name="first_name"
-               type="text"
-               component={this.renderField}
-               />
-
+            {renderForm(this.props.formResults)}
             <button type="submit" disabled={this.props.pristine || this.props.submitting} className="btn-blue margin-top-60 margin-bottom-60 margin-left-auto width-fit-content">Confirmez les réponses pour le bénéficiaire 1</button>
           </form>
         </div>
