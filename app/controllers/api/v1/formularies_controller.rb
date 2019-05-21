@@ -16,8 +16,11 @@ class Api::V1::FormulariesController < Api::V1::BaseController
 
   def update
     # ADD params
+    p "///params are #{params}"
     formulary = Formulary.find(params[:id])
+    p "///Formulary is #{formulary}"
     formulary.update(params)
+    render json: formulary
   end
 
   def set_project
