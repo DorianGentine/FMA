@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { reduxForm, Field, initialize } from 'redux-form';
+import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
+import Multiselect from 'react-widgets/lib/Multiselect'
 
 import { fetchFORM, fetchPostForm } from '../../actions';
+
+import initSelectFma from "../../../components/select_fma";
+import { initSelectize } from "../../../components/init_select2";
+
+import 'react-widgets/dist/css/react-widgets.css'
 
 class PanneauPrincipalProjet extends Component {
   componentWillMount() {
@@ -12,6 +18,7 @@ class PanneauPrincipalProjet extends Component {
 
   componentDidMount() {
     setTimeout( () => {this.handleInitialize()}, 1000);
+    setTimeout( () => {initSelectFma()}, 1000);
   }
 
   handleInitialize() {
@@ -21,7 +28,6 @@ class PanneauPrincipalProjet extends Component {
 
     for ( let i in formResults) {
       if( formResults[i].set_up.need_answer ){
-
         initData[formResults[i].set_up.column_name] = formResults[i].answer;
       }
     }
@@ -41,11 +47,11 @@ class PanneauPrincipalProjet extends Component {
         <input className="margin-bottom-15 no-padding form-control"
           type={field.type}
           {...field.input}
-          // placeholder={field.placeholder}
         />
       </div>
     );
   }
+
 
 
   render(){
@@ -59,6 +65,23 @@ class PanneauPrincipalProjet extends Component {
       return options
     }
 
+    const renderMultiselect = ({ input, data, valueField, textField }) => {
+      let datas = []
+      for ( let i in data) {
+        datas.push(data[i].props.value);
+      }
+      console.log(datas)
+      return(
+        <Multiselect {...input}
+        onBlur={() => input.onBlur()}
+        value={input.value || []} // requires value to be an array
+        data={datas}
+        valueField={valueField}
+        textField={textField}
+        />
+      )
+    }
+
     const renderInput = (result) => {
       if(result.set_up.type == "input" || result.set_up.type == "number"){
         return(
@@ -67,7 +90,6 @@ class PanneauPrincipalProjet extends Component {
             name={result.set_up.column_name}
             type={result.set_up.type}
             component={this.renderField}
-            placeholder={result.answer}
           >
           </Field>
         )
@@ -81,26 +103,28 @@ class PanneauPrincipalProjet extends Component {
                 name={result.set_up.column_name}
                 type={result.set_up.type}
                 component={result.set_up.type}
-                value={result.answer}
+                // value={result.answer}
               >
                 {renderOptions(result.set_up.data)}
               </Field>
             </div>
           )
-        }else{
+        }else{ // Multiple select
           return(
             <div className="form-group">
-              <label className="font-14 black">MULTI {result.set_up.question}</label>
+              <label className="font-14 black">{result.set_up.question}</label>
               <Field
                 className="margin-bottom-15 no-padding form-control"
                 name={result.set_up.column_name}
-                type={result.set_up.type}
-                component={result.set_up.type}
-                placeholder={result.answer}
+                component={renderMultiselect}
+                data={renderOptions(result.set_up.data)}
               >
-                {renderOptions(result.set_up.data, result.answer)}
               </Field>
             </div>
+              // <Field
+                // name="hobbies"
+                // component={renderMultiselect}
+                // data={[ 'Guitar', 'Cycling', 'Hiking' ]}/>
           )
         }
       }
