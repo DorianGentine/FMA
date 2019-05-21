@@ -3,7 +3,7 @@ class TestSolution
   def initialize(solution)
     @solution = solution
     @array_of_conditions = @solution.set_conditions
-    @choices = FormularyChoice.new.set_collections_formulary
+    @choices = FormularyChatbot.new.set_collections_formulary
   end
 
   def test_solution_form

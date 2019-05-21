@@ -3,7 +3,7 @@ class FormulariesController < ApplicationController
 
   # def update
   #   @formulary = Formulary.find(params[:id])
-  #   @choices = FormularyChoice.new.set_collections_formulary
+  #   @choices = FormularyChatbot.new.set_collections_formulary
   #   respond_to do |format|
   #     if @formulary.update(form_params)
   #       format.html { redirect_to home_path }
@@ -22,8 +22,8 @@ class FormulariesController < ApplicationController
     @formulary = Formulary.find(params[:id])
     @visitor = @formulary.visitor
     # @project = @formulary.project
-    # @solutions = SetSolutions.new(@formulary).call
-    # @choices = FormularyChoice.new.set_collections_formulary
+    # @solutions = SetSolutions.new.call(@formulary)
+    # @choices = FormularyChatbot.new.set_collections_formulary
 
     # @testing_solutions = Solution.all.map { |x| [x.id, TestSolution.new(x).test_solution_form] }.to_h.sort.to_h
     authorize @formulary

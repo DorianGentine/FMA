@@ -41,33 +41,51 @@ class FormularyToHash
      generate_form_with_allow_question(@form)
   end
 
+  def form_json_for_espace
+    array = []
+    generate_form_with_allow_question(@form, false).each do |question|
+      column = question[:set_up][:column_name]
+      ask_again = "ask_again_" + column + "?"
+      if !@form.primary
+        array << question if @form.send(ask_again)
+      else
+        array << question
+      end
+    end
+    return array
+  end
+
   private
 
-  def generate_form_with_allow_question(form)
+  def generate_form_with_allow_question(form, chatbot)
     array = []
-      FormularyChoice.new.set_questions_form.each do |key, value|
-        allow = "allow_" + key + "?"
-        if form.respond_to? key
-          hash = { set_up: value, answer: set_answer(form, key, allow)} if form.try(allow) && form.send(allow)
-        else
-          hash = { set_up: value, answer: "next", formulary_id: form.id}
+    questions_to_ask = FormularyChatbot.new.set_questions_form(chatbot)
+      questions_to_ask.each do |key, value|
+        if questions_to_ask[key][:question].present?
+          allow = "allow_" + key + "?"
+          if form.respond_to? key
+            hash = { set_up: value, answer: set_answer(form, key)} if form.try(allow) && form.send(allow)
+          else
+            hash = { set_up: value, answer: "next", formulary_id: form.id}
+          end
+          if key == "zip_code" && !form.verify_zip_code
+            hash = { set_up: value, answer: set_answer(form, key)} if form.try(allow) && form.send(allow)
+            array << hash
+            hash = { set_up: FormularyChatbot.new.wrong_zip_code, answer: nil}
+            array << hash
+            return array
+          else
+            array << hash if hash.present?
+          end
         end
-        if key == "zip_code" && !form.verify_zip_code
-          hash = { set_up: value, answer: set_answer(form, key, allow)} if form.try(allow) && form.send(allow)
-          array << hash
-          hash = { set_up: FormularyChoice.new.wrong_zip_code, answer: nil}
-          array << hash
-          return array
-        else
-          array << hash if hash.present?
+
         end
-      end
     return array
   end
 
 
 
-  def set_answer(form, column_name, allow)
+  def set_answer(form, column_name)
     if form.send(column_name).present?
       if authorize_answer_form?(form, column_name)
         form.send(column_name)

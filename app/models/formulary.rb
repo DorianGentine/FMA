@@ -3,6 +3,7 @@ class Formulary < ApplicationRecord
   belongs_to :project
 
   before_create :set_primary
+  before_save :add_answer_from_primary_form
   def first_name=(s)
     write_attribute(:first_name, s.to_s.capitalize) # The to_s is in case you get nil/non-string
   end
@@ -17,10 +18,10 @@ class Formulary < ApplicationRecord
 
   # Q-3
   def allow_zip_code?
-      true
+    true
   end
   def ask_again_zip_code?
-    !self.primary ? false : true
+    false
   end
 
   # Q-4
@@ -204,7 +205,7 @@ class Formulary < ApplicationRecord
       return false
     end
   end
-  def ask_again_owner_is_include
+  def ask_again_owner_is_include?
     !self.primary ? false : true
   end
   # Q-19
@@ -342,7 +343,7 @@ class Formulary < ApplicationRecord
     self.first_name = first_name
     self.zip_code = "94000"
     age_values = FormularyChoice::TEST_AGE.values
-    hash_choices = FormularyChoice.new.set_collections_formulary
+    hash_choices = FormularyChatbot.new.set_collections_formulary
     self.age = age_values[rand(0...age_values.count)]
     if self.allow_is_working?
       self.is_working = hash_choices[:is_working][rand(0...hash_choices[:is_working].count)].second
@@ -454,6 +455,20 @@ class Formulary < ApplicationRecord
   end
 
   private
+
+  def add_answer_from_primary_form
+    project = self.project
+    first_formulary = Formulary.where(project: project, primary: true)
+    if first_formulary.present? && !self.primary
+      first_formulary = first_formulary.first
+      Formulary.column_names.each do |column_name|
+        ask_again = "ask_again_" + column_name + "?"
+        if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && !self.send(ask_again)
+          self[column_name] = first_formulary[column_name]
+        end
+      end
+    end
+  end
 
   def set_primary
     project = self.project

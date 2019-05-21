@@ -4,7 +4,7 @@ class Api::V1::FormulariesController < Api::V1::BaseController
 
   def edit
     formulary = Formulary.find(params[:id])
-    @formulary_setted = FormularyToHash.new(formulary).form_json
+    @formulary_setted = FormularyToHash.new(formulary).form_json_for_espace
 
     render json: @formulary_setted
   end
@@ -26,6 +26,7 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   end
 
   private
+
   def params_formulary
     formulary = {
       first_name: params[:first_name],
