@@ -37,8 +37,6 @@ class Project < ApplicationRecord
   end
 
   def solutions
-     self.formularies.each do |formulary|
-      return SetSolutions.new(formulary).call
-    end
+    return SetSolutions.new.call_for(self)
   end
 end
