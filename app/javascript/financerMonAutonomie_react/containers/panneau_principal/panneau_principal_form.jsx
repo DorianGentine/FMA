@@ -7,11 +7,8 @@ import { fetchFORM } from '../../actions';
 
 class PanneauPrincipalProjet extends Component {
   componentWillMount() {
-    this.props.fetchFORM(this.props.urlForm);
-  }
-
-  componentDidMount() {
-    setTimeout( () => {this.handleInitialize()}, 10);
+    this.props.fetchFORM(this.props.urlForm)
+    .then(this.handleInitialize())
   }
 
   handleInitialize() {
