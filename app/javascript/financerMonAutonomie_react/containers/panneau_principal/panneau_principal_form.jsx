@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 import Multiselect from 'react-widgets/lib/Multiselect'
 
-import { fetchFORM, fetchPostForm } from '../../actions';
+import { fetchFORM, fetchPostForm, validateStep } from '../../actions';
 
 import initSelectFma from "../../../components/select_fma";
 import { initSelectize } from "../../../components/init_select2";
@@ -18,7 +18,6 @@ class PanneauPrincipalProjet extends Component {
 
   componentDidMount() {
     setTimeout( () => {this.handleInitialize()}, 1000);
-    setTimeout( () => {initSelectFma()}, 1000);
   }
 
   handleInitialize() {
@@ -37,14 +36,14 @@ class PanneauPrincipalProjet extends Component {
 
   onSubmit = (values) => {
     console.log('values are', values)
-    this.props.fetchPostForm(`/api/v1/projects/1/formularies/1`, values)
+    this.props.fetchPostForm(`/api/v1/projects/${1}/formularies/${1}`, values)
   }
 
   renderField(field) {
     return (
       <div className="form-group">
         <label className="font-14 black">{field.label}</label>
-        <input className="margin-bottom-15 no-padding form-control"
+        <input className="margin-bottom-15 form-control"
           type={field.type}
           {...field.input}
         />
@@ -70,11 +69,20 @@ class PanneauPrincipalProjet extends Component {
       for ( let i in data) {
         datas.push(data[i].props.value);
       }
-      console.log(datas)
+
+      let splitValue = []
+      if(typeof input.value == "string"){
+        splitValue = input.value.split('", "')
+        splitValue[0] = splitValue[0].substr(2)
+        splitValue[splitValue.length - 1] = splitValue[splitValue.length -1].slice(0, -2);
+      }else{
+        splitValue = input.value
+      }
+
       return(
         <Multiselect {...input}
         onBlur={() => input.onBlur()}
-        value={input.value || []} // requires value to be an array
+        value={splitValue || []} // requires value to be an array
         data={datas}
         valueField={valueField}
         textField={textField}
@@ -121,10 +129,6 @@ class PanneauPrincipalProjet extends Component {
               >
               </Field>
             </div>
-              // <Field
-                // name="hobbies"
-                // component={renderMultiselect}
-                // data={[ 'Guitar', 'Cycling', 'Hiking' ]}/>
           )
         }
       }
@@ -153,8 +157,10 @@ class PanneauPrincipalProjet extends Component {
             {renderForm(this.props.formResults)}
             <button type="submit" disabled={this.props.pristine || this.props.submitting} className="btn-blue margin-top-60 margin-bottom-60 margin-left-auto width-fit-content">Confirmez les réponses pour le bénéficiaire 1</button>
           </form>
+          <h2 onClick={() => {this.props.validateStep(`/api/v1/projects/${1}/next_setp`)}}>Je valide mes réponses et je passe à la prochaine étape</h2>
         </div>
       </div>
+          // <h2 onClick={() => {this.props.validateStep(`/api/v1/projects/${1}/next_setp`)}}>Je valide mes réponses et je passe à la prochaine étape</h2>
     )
   }
 }
@@ -167,16 +173,13 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchFORM }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchFORM, fetchPostForm, validateStep }, dispatch);
+}
 
 export default reduxForm({ form: 'validationForm' })(
-connect(mapStateToProps, { fetchFORM, fetchPostForm })(PanneauPrincipalProjet)
+connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalProjet)
 );
-
-
-// , keepDirtyOnReinitialize: true, enableReinitialize: true, updateUnregisteredFields: true,
 
 
 

@@ -1,6 +1,7 @@
 export const FETCH_API = 'FETCH_API';
 export const FETCH_FORM = 'FETCH_FORM';
 export const POST_FORM = 'POST_FORM';
+export const VALIDATE_STEP = 'VALIDATE_STEP';
 
 export function fetchAPI(url) {
   const promise = fetch(url).then(r => r.json());
@@ -24,13 +25,26 @@ export function fetchFORM(url) {
 export function fetchPostForm(url, body) {
   const request = fetch(url,
     {
-    method: "PATCH",
-    headers: { 'Content-Type': 'application/json'},
-    body: JSON.stringify(body)
+      method: "PATCH",
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
     }).then(response => response.json())
   console.log('send request', request)
   return {
     type: POST_FORM,
+    payload: request
+  };
+}
+
+export function validateStep(url) {
+  const request = fetch(url,
+    {
+      method: "PATCH",
+    }).then(response => response.json())
+
+  console.log('send request', request)
+  return {
+    type: VALIDATE_STEP,
     payload: request
   };
 }
