@@ -338,7 +338,6 @@ class Formulary < ApplicationRecord
   end
 
 
-
   def set_a_new_form(first_name)
     self.first_name = first_name
     self.zip_code = "94000"
