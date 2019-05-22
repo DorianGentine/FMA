@@ -39,6 +39,9 @@ Rails.application.routes.draw do
         end
       end
       resources :projects, only: [ :show, :update ] do
+        member do
+          patch :next_setp
+        end
         resources :formularies, only: [ :update, :create, :edit ]
       end
       resources :users, only: [ :show, :update ] do
