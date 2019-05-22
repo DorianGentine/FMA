@@ -16,7 +16,7 @@ class ProjectPolicy < ApplicationPolicy
     # record.users.include?(user)
   end
 
-  def update_next_setps
+  def next_setp?
     true
   end
 end
