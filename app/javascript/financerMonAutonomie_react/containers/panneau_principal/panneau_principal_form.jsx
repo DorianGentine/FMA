@@ -3,8 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 import Multiselect from 'react-widgets/lib/Multiselect'
+import DropdownList from 'react-widgets/lib/DropdownList'
 
-import { fetchFORM, fetchPostForm, validateStep } from '../../actions';
+import { fetchFORM, fetchPostForm, validateStep, changeBeneficiaireForm } from '../../actions';
 
 import initSelectFma from "../../../components/select_fma";
 import { initSelectize } from "../../../components/init_select2";
@@ -13,11 +14,15 @@ import 'react-widgets/dist/css/react-widgets.css'
 
 class PanneauPrincipalProjet extends Component {
   componentWillMount() {
-    this.props.fetchFORM(this.props.urlForm);
+    if(this.props.formulary_id !== this.props.formulary_ids[0])
+      this.props.changeBeneficiaireForm(this.props.formulary_ids[0])
   }
 
-  componentDidMount() {
-    setTimeout( () => {this.handleInitialize()}, 1000);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.formulary_id !== this.props.formulary_id) {
+      this.props.fetchFORM(`/api/v1/formularies/${nextProps.formulary_id}/edit`)
+      .then( setTimeout( () => {this.handleInitialize()}, 100) )
+    }
   }
 
   handleInitialize() {
@@ -35,8 +40,8 @@ class PanneauPrincipalProjet extends Component {
   }
 
   onSubmit = (values) => {
-    console.log('values are', values)
-    this.props.fetchPostForm(`/api/v1/projects/${1}/formularies/${1}`, values)
+    console.log("this.props.formulary_id", this.props.formulary_id)
+    this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values)
   }
 
   renderField(field) {
@@ -51,10 +56,15 @@ class PanneauPrincipalProjet extends Component {
     );
   }
 
+  handleClickBenef = (event) => {
+    this.props.changeBeneficiaireForm(event)
+  }
+
 
 
   render(){
-    const etape = this.props.project.etape
+    // console.log("formulary_id", this.props.formulary_id)
+    // console.log("formulary_ids", this.props.formulary_ids)
 
     const renderOptions = (data) => {
       let options = []
@@ -90,6 +100,21 @@ class PanneauPrincipalProjet extends Component {
       )
     }
 
+    const renderDropdownList = ({ input, data, valueField, textField }) => {
+      let datas = []
+      for ( let i in data) {
+        datas.push(data[i].props.value);
+      }
+
+      return(
+        <DropdownList {...input}
+          data={datas}
+          valueField={valueField}
+          textField={textField}
+          onChange={input.onChange} />
+      )
+    }
+
     const renderInput = (result) => {
       if(result.set_up.type == "input" || result.set_up.type == "number"){
         return(
@@ -109,12 +134,10 @@ class PanneauPrincipalProjet extends Component {
               <Field
                 className="margin-bottom-15 no-padding form-control"
                 name={result.set_up.column_name}
-                type={result.set_up.type}
-                component={result.set_up.type}
-                // value={result.answer}
-              >
-                {renderOptions(result.set_up.data)}
-              </Field>
+                component={renderDropdownList}
+                data={renderOptions(result.set_up.data)}
+                valueField="value"
+                textField="color"/>
             </div>
           )
         }else{ // Multiple select
@@ -148,33 +171,58 @@ class PanneauPrincipalProjet extends Component {
       }
     }
 
+    const renderBeneficiaires = () => {
+      return this.props.formulary_ids.map((formulary_id, index) => {
+        console.log("index", index)
+        // console.log("index", index++)
+        // console.log("this.props.formulary_id", this.props.formulary_id)
+        return (
+          <h4
+            className={`no-margin btn-select-onglet ${formulary_id == this.props.formulary_id ? 'active' : null}`}
+            data-benef-index={formulary_id}
+            onClick={() => {this.handleClickBenef(event)} }
+            key={formulary_id}>
+              Bénéficiaire {index+1}
+          </h4>
+        )
+      })
+    }
+
 
     return (
       <div className="col-lg-12">
+        <div className="flex">
+          {renderBeneficiaires()}
+          <h4
+            className="no-margin btn-select-onglet"
+            data-benef-index="add"
+            onClick={() => {this.handleClickBenef(event)} }>
+              +
+          </h4>
+        </div>
         <div className="white-box">
-          <h4 className="no-margin margin-bottom-60">Bénéficiaire 1 <strong className="font-weight-normal blue font-12 margin-left-30">Vérification des réponses pour le bénéficiaire n°1</strong></h4>
           <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
             {renderForm(this.props.formResults)}
             <button type="submit" disabled={this.props.pristine || this.props.submitting} className="btn-blue margin-top-60 margin-bottom-60 margin-left-auto width-fit-content">Confirmez les réponses pour le bénéficiaire 1</button>
           </form>
-          <h2 onClick={() => {this.props.validateStep(`/api/v1/projects/${1}/next_setp`)}}>Je valide mes réponses et je passe à la prochaine étape</h2>
+          <h2 className="blue text-align-right pointer" onClick={() => {this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`)}}>Je valide mes réponses et je passe à la prochaine étape <i className="fas fa-arrow-right"></i></h2>
         </div>
       </div>
-          // <h2 onClick={() => {this.props.validateStep(`/api/v1/projects/${1}/next_setp`)}}>Je valide mes réponses et je passe à la prochaine étape</h2>
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
-    project: state.api.project,
-    urlForm: state.urlForm,
+    formulary_id: state.formulary_id,
+    formulary_ids: state.api.project.formulary_ids,
     formResults: state.formResults,
+    project_id: state.project_id,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchFORM, fetchPostForm, validateStep }, dispatch);
+  return bindActionCreators({ fetchFORM, fetchPostForm, validateStep, changeBeneficiaireForm }, dispatch);
 }
 
 export default reduxForm({ form: 'validationForm' })(

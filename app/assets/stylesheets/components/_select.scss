@@ -95,3 +95,29 @@
   .selectize-dropdown{
     border: 0 !important;
   }
+
+// react-widget
+  input.rw-input-reset:focus {
+      box-shadow: none !important;
+  }
+
+  li.rw-multiselect-tag {
+    color: white;
+    background-color: $blue;
+    border: none;
+  }
+  .rw-list-option.rw-state-focus {
+    border: none;
+  }
+  .rw-list .rw-list-option:hover, .rw-list .rw-list-option:hover.rw-state-focus {
+    background-color: $blue;
+    color: white;
+    border-radius: 3px;
+    border: none;
+  }
+  .rw-list .rw-list-option.rw-state-selected, .rw-list-option.rw-state-selected:hover{
+    background-color: $gray-300 !important;
+    border-color: $gray-300 !important;
+    border-radius: 3px;
+  }
+

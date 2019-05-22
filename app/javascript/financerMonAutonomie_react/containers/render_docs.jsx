@@ -9,9 +9,6 @@ class RenderDocs extends Component {
     const project = this.props.project
 
     const sendImageToController = (formPayLoad) => {
-
-      console.log("couocu")
-
       fetch(`/api/v1/users/${beneficiaire.id}/projects/${project.id}/documents`, {
         credentials: 'same-origin',
         headers: {},

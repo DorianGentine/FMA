@@ -18,8 +18,7 @@
   // State and reducers
   import apiReducer from './reducers/api_reducer';
   import formResultsReducer from './reducers/form_results_reducer';
-
-  // const identityReducer = (state = null) => state;
+  import selectedBeneficiaireReducer from './reducers/selected_beneficiaire_reducer';
 
 const app = document.getElementById('app')
 if(app){
@@ -27,27 +26,28 @@ if(app){
   const project_id = app.dataset.projectid
   const formulary_id = app.dataset.formularyid
   const urlAPI = `/api/v1/users/${user_id}`;
-  const urlForm = `/api/v1/projects/${project_id}/formularies/${formulary_id}/edit`;
 
   const rootUrl = `/mon_espace/${user_id}`
 
   const identityReducer = (state = null) => state;
 
   const initialState = {
+    api: {},
+    formulary_id: {},
+    formResults: [],
+    project_id: project_id,
     rootUrl: rootUrl,
     urlAPI: urlAPI,
-    urlForm: urlForm,
-    api: {},
-    formResults: [],
   };
 
   const reducers = combineReducers({
+    api: apiReducer,
+    form: formReducer,
+    formResults: formResultsReducer,
+    formulary_id: selectedBeneficiaireReducer,
+    project_id: identityReducer,
     rootUrl: identityReducer,
     urlAPI: identityReducer,
-    urlForm: identityReducer,
-    api: apiReducer,
-    formResults: formResultsReducer,
-    form: formReducer,
   });
 
 

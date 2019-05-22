@@ -12,7 +12,6 @@ import PanneauPrincipalForm from "./panneau_principal_form"
 class PanneauPrincipalProjet extends Component {
   render(){
     const etape = this.props.project.etape
-    // console.log("urlForm", this.props.urlForm )
 
     if(etape.toLowerCase() == "validation_data"){
       return (
