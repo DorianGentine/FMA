@@ -4,12 +4,15 @@ class ProjectPolicy < ApplicationPolicy
       scope
     end
   end
-
+  def new?
+    true
+  end
   def show?
     record.users.include?(user)
   end
   def create?
-    record.users.include?(user)
+    true
+    # record.users.include?(user)
   end
   def update?
     true

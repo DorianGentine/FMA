@@ -3,13 +3,15 @@ class PagesController < ApplicationController
   skip_after_action :intercom_rails_auto_include
 
   def home
-    @choices = FormularyChatbot.new.set_collections_formulary
+    @choices = FormularyChoice.new.set_collections_formulary
     @visitor = Visitor.find_by(user_ip: request.ip)
     if @visitor.nil? || @visitor.formulary.nil?
       @formulary = Formulary.new
     else
       @formulary = @visitor.formulary
     end
+
+    FormularyToHash.new(@formulary).form_json
   end
 
   def team

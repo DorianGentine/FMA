@@ -38,7 +38,7 @@ class FormularyToHash
 
 
   def form_json
-     generate_form_with_allow_question(@form)
+     generate_form_with_allow_question(@form, true)
   end
 
   def form_json_for_espace

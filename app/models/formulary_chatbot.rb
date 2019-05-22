@@ -163,7 +163,7 @@ class FormularyChatbot
   end
   def holder_occupation(chatbot)
     return {
-      question: chatbot ? questions_chatbot[:holr_occupation] : questions[:holr_occupation],
+      question: chatbot ? questions_chatbot[:holder_occupation] : questions[:holder_occupation],
       column_name: "holder_occupation",
       type: "select",
       multiple_answers: false,
@@ -484,7 +484,7 @@ class FormularyChatbot
       }
   end
 
-  def question_chatbot
+  def questions_chatbot
       return {
         step_0: "Bonjour...",
         form_completed: "Merci d'avoir rempli le formulaire, cliquez sur <strong>voir mon analyse</strong> pour avoir un aperçu de vos financeurs",
