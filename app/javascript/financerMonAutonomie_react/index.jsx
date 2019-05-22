@@ -18,13 +18,13 @@
   // State and reducers
   import apiReducer from './reducers/api_reducer';
   import formResultsReducer from './reducers/form_results_reducer';
-  import selectedBeneficiaireReducer from './reducers/selected_beneficiaire_reducer';
+  import formularyIdReducer from './reducers/formulary_id_reducer';
+  import projectIdReducer from './reducers/project_id_reducer';
 
 const app = document.getElementById('app')
 if(app){
   const user_id = app.dataset.userid
   const project_id = app.dataset.projectid
-  const formulary_id = app.dataset.formularyid
   const urlAPI = `/api/v1/users/${user_id}`;
 
   const rootUrl = `/mon_espace/${user_id}`
@@ -44,8 +44,8 @@ if(app){
     api: apiReducer,
     form: formReducer,
     formResults: formResultsReducer,
-    formulary_id: selectedBeneficiaireReducer,
-    project_id: identityReducer,
+    formulary_id: formularyIdReducer,
+    project_id: projectIdReducer,
     rootUrl: identityReducer,
     urlAPI: identityReducer,
   });

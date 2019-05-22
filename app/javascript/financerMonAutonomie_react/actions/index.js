@@ -29,6 +29,20 @@ export function fetchPostForm(url, body) {
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(body)
     }).then(response => response.json())
+    .then( () => {
+        const btnValidation = document.getElementById('btn-validation-infos')
+        const textBasic = btnValidation.innerText
+        const colorBasic = btnValidation.style.backgroundColor
+        btnValidation.innerText = "Vos informations ont bien été enregistrées"
+        btnValidation.style.backgroundColor = "#1EDD88"
+        btnValidation.style.borderColor = "#1EDD88"
+        setTimeout(()=>{
+        btnValidation.innerText = textBasic
+        btnValidation.style.backgroundColor = colorBasic
+        btnValidation.style.borderColor = colorBasic
+        }, 3000)
+      }
+    )
 
   return {
     type: POST_FORM,

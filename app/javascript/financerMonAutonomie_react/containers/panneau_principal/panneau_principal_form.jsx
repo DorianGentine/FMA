@@ -19,9 +19,12 @@ class PanneauPrincipalProjet extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.formulary_id !== this.props.formulary_id) {
+    if(nextProps.formulary_id === "add" && nextProps.formulary_id !== this.props.formulary_id){
+      this.props.fetchFORM(`/api/v1/projects/${this.props.project_id}/formularies/new`)
+      .then( setTimeout( () => {this.handleInitialize()}, 500) )
+    }else if (nextProps.formulary_id !== this.props.formulary_id) {
       this.props.fetchFORM(`/api/v1/formularies/${nextProps.formulary_id}/edit`)
-      .then( setTimeout( () => {this.handleInitialize()}, 100) )
+      .then( setTimeout( () => {this.handleInitialize()}, 500) )
     }
   }
 
@@ -40,8 +43,11 @@ class PanneauPrincipalProjet extends Component {
   }
 
   onSubmit = (values) => {
-    console.log("this.props.formulary_id", this.props.formulary_id)
-    this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values)
+    if(this.props.formulary_id === "add"){
+      this.props.fetchPostForm(`api/v1/projects/${this.props.project_id}/formularies`, values)
+    }else{
+      this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values)
+    }
   }
 
   renderField(field) {
@@ -63,8 +69,6 @@ class PanneauPrincipalProjet extends Component {
 
 
   render(){
-    // console.log("formulary_id", this.props.formulary_id)
-    // console.log("formulary_ids", this.props.formulary_ids)
 
     const renderOptions = (data) => {
       let options = []
@@ -83,8 +87,10 @@ class PanneauPrincipalProjet extends Component {
       let splitValue = []
       if(typeof input.value == "string"){
         splitValue = input.value.split('", "')
-        splitValue[0] = splitValue[0].substr(2)
-        splitValue[splitValue.length - 1] = splitValue[splitValue.length -1].slice(0, -2);
+        // if(splitValue > 1){
+          splitValue[0] = splitValue[0].substr(2)
+          splitValue[splitValue.length - 1] = splitValue[splitValue.length -1].slice(0, -2);
+        // }
       }else{
         splitValue = input.value
       }
@@ -173,9 +179,6 @@ class PanneauPrincipalProjet extends Component {
 
     const renderBeneficiaires = () => {
       return this.props.formulary_ids.map((formulary_id, index) => {
-        console.log("index", index)
-        // console.log("index", index++)
-        // console.log("this.props.formulary_id", this.props.formulary_id)
         return (
           <h4
             className={`no-margin btn-select-onglet ${formulary_id == this.props.formulary_id ? 'active' : null}`}
@@ -194,7 +197,7 @@ class PanneauPrincipalProjet extends Component {
         <div className="flex">
           {renderBeneficiaires()}
           <h4
-            className="no-margin btn-select-onglet"
+            className={`no-margin btn-select-onglet ${"add" == this.props.formulary_id ? 'active' : null}`}
             data-benef-index="add"
             onClick={() => {this.handleClickBenef(event)} }>
               +
@@ -203,9 +206,20 @@ class PanneauPrincipalProjet extends Component {
         <div className="white-box">
           <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
             {renderForm(this.props.formResults)}
-            <button type="submit" disabled={this.props.pristine || this.props.submitting} className="btn-blue margin-top-60 margin-bottom-60 margin-left-auto width-fit-content">Confirmez les réponses pour le bénéficiaire 1</button>
+            <button
+              id="btn-validation-infos"
+              type="submit"
+              disabled={this.props.pristine || this.props.submitting}
+              className="btn-blue margin-top-60 margin-bottom-60 margin-left-auto width-fit-content">
+                Confirmez les réponses pour ce bénéficiaire
+            </button>
           </form>
-          <h2 className="blue text-align-right pointer" onClick={() => {this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`)}}>Je valide mes réponses et je passe à la prochaine étape <i className="fas fa-arrow-right"></i></h2>
+          <h2
+            className="blue text-align-right pointer"
+            onClick={() => {this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`)}}>
+              Je valide mes réponses et je passe à la prochaine étape
+              <i className="fas fa-arrow-right"></i>
+          </h2>
         </div>
       </div>
     )
