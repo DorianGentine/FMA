@@ -38,11 +38,12 @@ Rails.application.routes.draw do
         end
       end
       resources :documents, only: [ :update ]
-      resources :formularies, only: [ :update, :create, :edit ]
+      resources :formularies, only: [ :update, :edit ]
       resources :projects, only: [ :show, :update ] do
         member do
           patch :next_setp
         end
+        resources :formularies, only: [ :new, :create ]
       end
       resources :users, only: [ :show, :update ] do
         resources :projects, only: [ :index ]
