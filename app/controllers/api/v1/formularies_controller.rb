@@ -1,26 +1,27 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
   before_action :authenticate_user!
-  before_action :set_project, only: [:update, :create, :edit]
+  before_action :set_project, only: [:update, :edit]
 
   def edit
-    formulary = Formulary.find(params[:id])
-    @formulary_setted = FormularyToHash.new(formulary).form_json_for_espace
+    @formulary_setted = FormularyToHash.new(@formulary).form_json_for_espace
     render json: @formulary_setted
   end
 
   def create
-    # ADD params
+    @project = Project.find(params[:project_id])
     formulary = Formulary.new(params)
+    # todo
+    authorize @project
   end
 
   def update
-    formulary = Formulary.find(params[:id])
-    formulary.update(params_formulary)
-    render json: formulary
+    @formulary.update(params_formulary)
+    render json: @formulary
   end
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @formulary = Formulary.find(params[:id])
+    @project = @formulary.project
     authorize @project
   end
 

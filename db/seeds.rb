@@ -27,6 +27,9 @@ p "Create Financers"
   pch = Financer.create(name: "pch", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905259/financers/apa_h51rcq.png", description: "Le Conseil départemental du Val de Marne met en place des services adaptés pour l'accompagnement, notamment à domicile, des personnes présentant une situation de handicap.
   C'est notamment via la Maison Départementale des Personnes Handicapapées qui distribue la Prestation de Compensation du handicap. Cete dernière permet de couvrir certaines dépenses relatives à la compensation de la perte d'autonomie, dont celles ayant attrait à l'adaptation du logement.")
   credit = Financer.create(name: "crédit d'impôt", logo: nil, description: "Vous pourriez bénéficier du crédit d'impot 'Aide aux personnes'. Il soutient les travaux d'adaptation du logement et peut couvrir les dépenses relatives à des équipements de types sanitaire, de sécurité ou d'accessibilité. Ouvert à tous, il vise les personnes imposables ou non. Le crédit d'impot en excédent éventuel est restitué au-delà de 8 euros. Si la mise en équipement concernant 1 personne, le montant du crédit d'impot est plafonné à 5000 euros et 10 000 lorsqu'il s'agit de 2 personnes. Une majoration de 400 euros est appliquée par personne à charge supplémentaire.")
+  securité_social = Financer.create(name: "Sécurité Sociale", logo: nil, description: "Vous pourriez bénéficier d'une participation de la sécurité sociale pour l'acquisition de matériels médicaux, ou compensant la perte d'autonomie.
+La prise en charge sera conditionnée à une prescription médicale et ne pourra se faire que sur une liste de matériel que votre médecin traitant connaît normalement.
+Le montant de la participation dépendra de votre taux de prise en charge.")
 
 
 p "Create Acteurs"
@@ -81,6 +84,18 @@ p "Created"
   @assistants = FormularyChoice.new.set_collections_formulary[:assistant]
 
 p "Create Solutions"
+  solution_0 = Solution.create(
+    financer: securité_social,
+    background: nil,
+    category: nil,
+    group: nil,
+    name: nil,
+    conditions: "4:[0,1,2,3]"
+  )
+  Answer.create(solution: solution_0, content: "Vous pourriez bénéficier d'une participation de la sécurité sociale pour l'acquisition de matériels médicaux, ou compensant la perte d'autonomie.
+  La prise en charge sera conditionnée à une prescription médicale et ne pourra se faire que sur une liste de matériel que votre médecin traitant connaît normalement.
+  Le montant de la participation dépendra de votre taux de prise en charge.")
+
   p "ANAH"
 
   solution_1 = Solution.create(
@@ -1139,7 +1154,6 @@ p "Create a Beneficaire"
   bene = User.create(first_name: form.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test@gmail.com", password: "password")
   UserProject.create(user: bene, project: project, client: true)
   UserProject.create(user: advisor, project: project)
-
 
 
 

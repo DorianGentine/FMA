@@ -8,7 +8,7 @@ class MatchSolution
   end
 
   def call
-    return match_with_all_conditions
+    match_with_all_conditions
   end
 
   private
@@ -16,7 +16,7 @@ class MatchSolution
   def match_with_all_conditions
     is_a_match = []
     @array_of_conditions.each do |condition|
-      matching(condition).is_a?(Array) ? matching = true : matching = false
+      matching = matching(condition).is_a?(Array) ? true : false
       is_a_match << matching
     end
 
