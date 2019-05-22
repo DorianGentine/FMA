@@ -39,4 +39,20 @@ class Project < ApplicationRecord
   def solutions
     return SetSolutions.new.call_for(self)
   end
+
+  def change_next_step
+    if self.validation_data?
+      self.documentation!
+    elsif self.documentation?
+      self.meeting!
+    elsif self.meeting?
+      self.call!
+    elsif self.call?
+      self.progression!
+    elsif self.progression?
+      self.evalution!
+    end
+  end
+
 end
+
