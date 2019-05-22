@@ -2,6 +2,8 @@ class Formulary < ApplicationRecord
   belongs_to :visitor, optional: true
   belongs_to :project
 
+  default_scope {order(created_at: :asc)}
+
   before_create :set_primary
   before_save :add_answer_from_primary_form
   def first_name=(s)

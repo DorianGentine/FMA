@@ -7,6 +7,7 @@ import PanneauPrincipalProjet from "./panneau_principal/panneau_principal_projet
 class PanneauPrincipal extends Component {
   render(){
     const selectedMenu = this.props.selectedMenu
+    const selectedMenuVolet = this.props.selectedMenuVolet
 
     if(selectedMenu.toLowerCase() == "projet"){
       return (
@@ -15,11 +16,41 @@ class PanneauPrincipal extends Component {
         </div>
       );
     }else if(selectedMenu.toLowerCase() == "compte"){
-      return (
-        <div>
-          <h1>{selectedMenu}</h1>
-        </div>
-      );
+      if (selectedMenuVolet.toLowerCase() == "identite") {
+        return (
+          <div>
+            <h1>{selectedMenuVolet}</h1>
+          </div>
+        );
+      }
+      if (selectedMenuVolet.toLowerCase() == "email") {
+        return (
+          <div>
+            <h1>{selectedMenuVolet}</h1>
+          </div>
+        );
+      }
+      if (selectedMenuVolet.toLowerCase() == "mdp") {
+        return (
+          <div>
+            <h1>{selectedMenuVolet}</h1>
+          </div>
+        );
+      }
+      if (selectedMenuVolet.toLowerCase() == "telephone") {
+        return (
+          <div>
+            <h1>{selectedMenuVolet}</h1>
+          </div>
+        );
+      }
+      if (selectedMenuVolet.toLowerCase() == "suppression") {
+        return (
+          <div>
+            <h1>{selectedMenuVolet}</h1>
+          </div>
+        );
+      }
     }else if(selectedMenu.toLowerCase() == "alertes"){
       return (
         <div>
