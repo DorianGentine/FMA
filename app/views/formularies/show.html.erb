@@ -147,7 +147,14 @@
   </div>
 
 </div>
+<ul>
+ <% @testing_solutions.each do |key, value| %>
+    <% if value != true %>
+      <li><%= key %> <%= value %></li>
+    <% end %>
+<% end %>
 
+  </ul>
 <%= render "shared/footer" %>
 
 

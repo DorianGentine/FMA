@@ -37,6 +37,12 @@ class User < ApplicationRecord
     return clients
   end
 
+  def project
+    if self.is_a_client
+      return self.projects.first
+    end
+  end
+
   def his_formulary
     if self.is_a_client
       project = self.projects.first
@@ -51,4 +57,6 @@ class User < ApplicationRecord
       self.client = true
     end
   end
+
+
 end

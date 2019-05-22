@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, path: "mon_espace", only: [:show, :update] do
     member do
+      get :conseiller
       get '/projet', to: 'users#show'
       get '/compte', to: 'users#show'
         get '/compte/identite', to: 'users#show'

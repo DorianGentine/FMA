@@ -226,7 +226,7 @@ class FormularyChatbot
 
   def accessibility_with_step(chatbot)
     return {
-      question: chatbot ? questions_chatbot[:accesbility_with_step] : questions[:accesbility_with_step],
+      question: chatbot ? questions_chatbot[:accessibility_with_step] : questions[:accessibility_with_step],
       column_name: "accessibility_with_step",
       type: "select",
       multiple_answers: false,

@@ -24,18 +24,25 @@ if(financeursPotentielsId){
     nomFinanceur.classList = "margin-top-15"
     nomFinanceur.innerText = solution.financer.name.toUpperCase()
 
-    const descriptionFinanceur = document.createElement("p")
-    // div.acceptCharset = "UTF-8"
-    descriptionFinanceur.classList = "margin-top-15"
-
-    descriptionFinanceur.innerText = solution.answers
-
     div.appendChild(logoFinanceur)
     div.appendChild(nomFinanceur)
-    div.appendChild(descriptionFinanceur)
 
+    if (solution.financer.answer) {
+      addAndswer(div, solution.financer.answer)
+    }
+
+    solution.answers.forEach((answer) => {
+      addAndswer(div, answer.content)
+    })
 
     financeursPotentielsId.appendChild(div)
+  }
+
+  const addAndswer = (div, answer) => {
+    const descriptionFinanceur = document.createElement("p")
+    descriptionFinanceur.classList = "margin-top-15"
+    descriptionFinanceur.innerText = answer
+    div.appendChild(descriptionFinanceur)
   }
 
   const getSolutions = async function () {

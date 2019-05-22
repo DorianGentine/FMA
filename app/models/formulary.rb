@@ -58,12 +58,14 @@ class Formulary < ApplicationRecord
     true
   end
   # Q-7
+
   def allow_occupation?
     true
   end
   def ask_again_occupation?
     true
   end
+
   # Q-8
   def allow_holder_occupation?
     if self.occupation.present? && self.occupation == 1

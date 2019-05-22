@@ -10,8 +10,6 @@ class PagesController < ApplicationController
     else
       @formulary = @visitor.formulary
     end
-
-    FormularyToHash.new(@formulary).form_json
   end
 
   def team

@@ -3,7 +3,7 @@ class TestSolution
   def initialize(solution)
     @solution = solution
     @array_of_conditions = @solution.set_conditions
-    @choices = FormularyChatbot.new.set_collections_formulary
+    @choices = FormularyChoice.new.set_collections_formulary
   end
 
   def test_solution_form
@@ -19,7 +19,6 @@ class TestSolution
 
   def create_formulary
     form = Formulary.new()
-
     Formulary.column_names.each_with_index do |column_name, form_index|
       index = form_index - 1
       if skip_column_to_verif?(column_name)
@@ -41,10 +40,13 @@ class TestSolution
           end
         else
           @array_of_conditions.each do |conditions|
+            # raise if column_name == "is_working" && form.set_age_group == 2
             if verify_condition(form, conditions, column_name, index) != false
               form.send("#{column_name}=", verify_condition(form, conditions, column_name, index) )
             else
-              return "WRONG #{index}- #{column_name}"
+    raise if column_name == "loss_of_autonomy_receipt" && form.set_age_group == 2 && form.is_working == 1
+
+              return "#{@solution.id} WRONG #{index}- #{column_name}"
             end
           end
         end
@@ -64,12 +66,32 @@ class TestSolution
   def verify_condition(form, conditions, attribute, index)
     allow = "allow_" + attribute + "?"
     if conditions.keys.include?(index) && form.send(allow)
-     set_a_condition(index, conditions)
+      set_a_condition(index, conditions)
     else
-      choice = @choices[:"#{attribute}"].sample
-      (choice.is_a?(String) ? choice : choice.second) if form.send(allow)
-      return false if conditions.keys.include?(index)
+        choice = @choices[:"#{attribute}"].sample
+      if conditions.keys.include?(index)
+        return false
+      elsif form.send(allow)
+        choice.is_a?(String) ? choice : choice.second
+      else
+        nil
+      end
     end
+
+
+
+
+
+
+
+
+    # if conditions.keys.include?(index) && form.send(allow)
+    #  set_a_condition(index, conditions)
+    # else
+    #   choice = @choices[:"#{attribute}"].sample
+    #   (choice.is_a?(String) ? choice : choice.second) if form.send(allow)
+    #   return false if conditions.keys.include?(index)
+    # end
   end
 
   def set_a_condition(index, conditions)

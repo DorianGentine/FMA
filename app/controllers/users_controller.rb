@@ -13,4 +13,10 @@ class UsersController < ApplicationController
     end
     authorize @user
   end
+
+  def conseiller
+    @user = User.find(params[:id])
+    authorize @user
+  end
+
 end
