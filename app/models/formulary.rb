@@ -13,7 +13,7 @@ class Formulary < ApplicationRecord
     true
   end
   def ask_again_first_name?
-    !self.primary ? true : false
+    true
   end
 
   # Q-3
@@ -29,7 +29,7 @@ class Formulary < ApplicationRecord
     true
   end
   def ask_again_age?
-    !self.primary ? true : false
+    true
   end
 
   # Q-5
@@ -41,7 +41,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_is_working?
-    !self.primary ? true : false
+    true
   end
 
   # Q-6
@@ -53,14 +53,14 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_loss_of_autonomy_receipt?
-    !self.primary ? true : false
+    true
   end
   # Q-7
   def allow_occupation?
     true
   end
   def ask_again_occupation?
-    !self.primary ? true : false
+    true
   end
   # Q-8
   def allow_holder_occupation?
@@ -71,7 +71,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_holder_occupation?
-    !self.primary ? false : true
+    false
   end
 
   # Q-9
@@ -85,7 +85,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_lessor?
-    !self.primary ? false : true
+    false
   end
 
   # Q-10
@@ -99,7 +99,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_accommodation?
-    !self.primary ? false : true
+    false
   end
 
   # Q-11
@@ -113,7 +113,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_floor?
-    !self.primary ? false : true
+    false
   end
 
   # Q12
@@ -127,7 +127,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_accessibility_with_step?
-    !self.primary ? false : true
+    false
   end
 
   # Q-13
@@ -139,7 +139,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_type_of_pension?
-    !self.primary ? true : false
+    true
   end
 
   # Q-14
@@ -151,7 +151,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_pension?
-    !self.primary ? true : false
+    true
   end
   # Q-15
   def allow_supplementary?
@@ -163,7 +163,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_supplementary?
-    !self.primary ? true : false
+    true
   end
 
   # Q-16
@@ -175,7 +175,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_loss_of_autonomy?
-    !self.primary ? true : false
+    true
   end
   # Q-17
   def allow_occupant?
@@ -188,7 +188,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_occupant?
-    !self.primary ? false : true
+    false
   end
 
   # Q-18
@@ -206,7 +206,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_owner_is_include?
-    !self.primary ? false : true
+    false
   end
   # Q-19
   def allow_has_partner?
@@ -217,7 +217,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_has_partner?
-    !self.primary ? false : true
+    false
   end
   # Q-20
   def allow_tax_revenue?
@@ -234,7 +234,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_tax_revenue?
-    !self.primary ? false : true
+    false
   end
   # Q-21
   def allow_gross_income?
@@ -247,7 +247,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_gross_income?
-    !self.primary ? true : false
+    true
   end
   # Q-22
   def allow_global_tax_revenue?
@@ -266,7 +266,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_global_tax_revenue?
-    !self.primary ? false : true
+    false
   end
 
   # Q-23
@@ -278,7 +278,7 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_household_income?
-    !self.primary ? true : false
+    true
   end
 
   # Q-24
@@ -298,14 +298,14 @@ class Formulary < ApplicationRecord
     end
   end
   def ask_again_owner_tax_revenue?
-    !self.primary ? false : true
+    false
   end
   # Q-25
   def allow_assistant?
     true
   end
   def ask_again_assistant?
-    !self.primary ? true : false
+    true
   end
 
   def finish_step?(attribute)
@@ -342,7 +342,7 @@ class Formulary < ApplicationRecord
     self.first_name = first_name
     self.zip_code = "94000"
     age_values = FormularyChoice::TEST_AGE.values
-    hash_choices = FormularyChatbot.new.set_collections_formulary
+    hash_choices = FormularyChoice.new.set_collections_formulary
     self.age = age_values[rand(0...age_values.count)]
     if self.allow_is_working?
       self.is_working = hash_choices[:is_working][rand(0...hash_choices[:is_working].count)].second
@@ -462,8 +462,10 @@ class Formulary < ApplicationRecord
       first_formulary = first_formulary.first
       Formulary.column_names.each do |column_name|
         ask_again = "ask_again_" + column_name + "?"
-        if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && !self.send(ask_again)
-          self[column_name] = first_formulary[column_name]
+        if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id"
+          if !self.send(ask_again)
+            self[column_name] = first_formulary[column_name]
+          end
         end
       end
     end

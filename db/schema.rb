@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2019_05_16_040750) do
 
   create_table "documents", force: :cascade do |t|
     t.string "title"
+    t.string "description"
+    t.string "notice"
     t.string "file"
     t.bigint "project_id"
     t.datetime "created_at", null: false

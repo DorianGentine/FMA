@@ -3,7 +3,7 @@ class SetSolutions
   def call(form)
     solutions = []
     Solution.all.each do |solution|
-      if MatchSolution.new(form, solution).call
+      if form.is_finish? && MatchSolution.new(form, solution).call
         solutions << solution
       end
     end
@@ -11,11 +11,15 @@ class SetSolutions
   end
 
   def call_for(project)
-    form = Formulary.where(project: project).first
+    forms = Formulary.where(project: project)
     solutions = []
-    Solution.all.each do |solution|
-      if MatchSolution.new(form, solution).call
-        solutions << solution
+    forms.each do |form|
+      Solution.all.each do |solution|
+        if form.is_finish? && MatchSolution.new(form, solution).call
+          if solutions.exclude?(solution)
+            solutions << solution
+          end
+        end
       end
     end
     return solutions
