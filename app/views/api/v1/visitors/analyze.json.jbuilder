@@ -6,7 +6,7 @@ json.formulary(@formulary, :id, :first_name, :zip_code, :age,
 
 
 json.solutions @solutions do |solution|
-  json.financer solution.financer, :id, :name, :logo, :description
+  json.financer solution.financer, :id, :name, :logo, :description, :answer
   json.extract! solution, :id, :background, :category, :group, :name, :financer_id
   json.answers solution.answers do |answer|
     json.extract! answer, :content

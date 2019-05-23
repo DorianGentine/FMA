@@ -1,16 +1,5 @@
 require 'faker'
 
-p "Destroy all financers"
-
-Financer.destroy_all
-
-p "Create Advisor"
-
-advisor = User.create(last_name: "Dupont", first_name: "Luc", phone: "998877866", avatar: "https://res.cloudinary.com/financermonautonomie/image/upload/v1556856590/portrait_avem_proche_b7j24g.jpg", advisor: true, client: false, admin: false, email: "advisor@mail.com", password:"password")
-
-p "Create Admin"
-
-User.create(last_name: "Admin", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "admin@mail.com", password:"password")
 
 p "Create Financers"
 
@@ -28,8 +17,8 @@ p "Create Financers"
   C'est notamment via la Maison Départementale des Personnes Handicapapées qui distribue la Prestation de Compensation du handicap. Cete dernière permet de couvrir certaines dépenses relatives à la compensation de la perte d'autonomie, dont celles ayant attrait à l'adaptation du logement.")
   credit = Financer.create(name: "crédit d'impôt", logo: nil, description: "Vous pourriez bénéficier du crédit d'impot 'Aide aux personnes'. Il soutient les travaux d'adaptation du logement et peut couvrir les dépenses relatives à des équipements de types sanitaire, de sécurité ou d'accessibilité. Ouvert à tous, il vise les personnes imposables ou non. Le crédit d'impot en excédent éventuel est restitué au-delà de 8 euros. Si la mise en équipement concernant 1 personne, le montant du crédit d'impot est plafonné à 5000 euros et 10 000 lorsqu'il s'agit de 2 personnes. Une majoration de 400 euros est appliquée par personne à charge supplémentaire.")
   securité_social = Financer.create(name: "Sécurité Sociale", logo: nil, description: "Vous pourriez bénéficier d'une participation de la sécurité sociale pour l'acquisition de matériels médicaux, ou compensant la perte d'autonomie.
-La prise en charge sera conditionnée à une prescription médicale et ne pourra se faire que sur une liste de matériel que votre médecin traitant connaît normalement.
-Le montant de la participation dépendra de votre taux de prise en charge.")
+    La prise en charge sera conditionnée à une prescription médicale et ne pourra se faire que sur une liste de matériel que votre médecin traitant connaît normalement.
+    Le montant de la participation dépendra de votre taux de prise en charge.")
 
 
 p "Create Acteurs"
@@ -1133,6 +1122,14 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
 
 p "Solutions Created"
 
+p "Create Advisor"
+
+  advisor = User.create(last_name: "Dupont", first_name: "Luc", phone: "998877866", avatar: "https://res.cloudinary.com/financermonautonomie/image/upload/v1556856590/portrait_avem_proche_b7j24g.jpg", advisor: true, client: false, admin: false, email: "advisor@mail.com", password:"password")
+
+p "Create Admin"
+
+  User.create(last_name: "Admin", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "admin@mail.com", password:"password")
+
 p "create formulary"
 
   form = Formulary.new
@@ -1155,6 +1152,27 @@ p "Create a Beneficaire"
   UserProject.create(user: bene, project: project, client: true)
   UserProject.create(user: advisor, project: project)
 
+p "create formulary"
+
+  form_3 = Formulary.new
+  form_3.set_a_new_form(Faker::Name.first_name)
+  form_3.visitor = Visitor.create(user_ip: "::2")
+  form_3.project = Project.create()
+  form_3.save
+  project2 = form_3.project
+
+  form_4 = Formulary.new
+  form_4.set_a_new_form(Faker::Name.first_name)
+  form_4.project = project2
+  form_4.save
+
+p "Formulary created"
+
+p "Create a Beneficaire"
+
+  bene2 = User.create(first_name: form_3.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test2@gmail.com", password: "password")
+  UserProject.create(user: bene2, project: project2, client: true)
+  UserProject.create(user: advisor, project: project2)
 
 
 

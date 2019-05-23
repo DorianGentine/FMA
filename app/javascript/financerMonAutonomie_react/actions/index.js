@@ -22,10 +22,10 @@ export function fetchFORM(url) {
   };
 }
 
-export function fetchPostForm(url, body) {
+export function fetchPostForm(url, body, method) {
   const request = fetch(url,
     {
-      method: "PATCH",
+      method: method,
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(body)
     }).then(response => response.json())

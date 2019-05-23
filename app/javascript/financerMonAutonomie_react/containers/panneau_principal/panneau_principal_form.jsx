@@ -44,9 +44,9 @@ class PanneauPrincipalProjet extends Component {
 
   onSubmit = (values) => {
     if(this.props.formulary_id === "add"){
-      this.props.fetchPostForm(`api/v1/projects/${this.props.project_id}/formularies`, values)
+      this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
     }else{
-      this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values)
+      this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
     }
   }
 

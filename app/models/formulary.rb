@@ -58,12 +58,14 @@ class Formulary < ApplicationRecord
     true
   end
   # Q-7
+
   def allow_occupation?
     true
   end
   def ask_again_occupation?
     true
   end
+
   # Q-8
   def allow_holder_occupation?
     if self.occupation.present? && self.occupation == 1
@@ -325,7 +327,7 @@ class Formulary < ApplicationRecord
     if self.id.nil?
       return false
     else
-      if self.finish_step?("is_working") && self.finish_step?("loss_of_autonomy_receipt") &&
+      if self.age.present? && self.finish_step?("is_working") && self.finish_step?("loss_of_autonomy_receipt") &&
         self.finish_step?("holder_occupation") && self.finish_step?("lessor") && self.finish_step?("accommodation") &&
         self.finish_step?("floor") && self.finish_step?("accessibility_with_step") && self.finish_step?("type_of_pension") &&
         self.finish_step?("pension") && self.finish_step?("supplementary") && self.finish_step?("loss_of_autonomy") &&

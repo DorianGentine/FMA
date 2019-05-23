@@ -16,6 +16,7 @@ class Api::V1::FormulariesController < Api::V1::BaseController
 
   def create
     @formulary = Formulary.new(params_formulary)
+    @formulary.project = @project
     @formulary.save
     render json: @formulary
   end
