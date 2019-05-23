@@ -4,9 +4,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
 
 
   def show
-    if @project.documentation?
-      DocumentAsked.new(@project).call
-    end
+
   end
 
   def next_setp

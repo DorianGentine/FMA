@@ -5,7 +5,7 @@ import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-
 import Multiselect from 'react-widgets/lib/Multiselect'
 import DropdownList from 'react-widgets/lib/DropdownList'
 
-import { fetchFORM, fetchPostForm, validateStep, changeBeneficiaireForm } from '../../actions';
+import { fetchAPI, fetchFORM, fetchPostForm, validateStep, changeBeneficiaireForm } from '../../actions';
 
 import initSelectFma from "../../../components/select_fma";
 import { initSelectize } from "../../../components/init_select2";
@@ -216,9 +216,12 @@ class PanneauPrincipalProjet extends Component {
           </form>
           <h2
             className="blue text-align-right pointer"
-            onClick={() => {this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`)}}>
-              Je valide mes réponses et je passe à la prochaine étape
-              <i className="fas fa-arrow-right"></i>
+            onClick={() => {
+              this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
+                () => { this.props.fetchAPI(this.props.urlAPI) }
+              )
+            }}>
+              Je valide mes réponses et je passe à la prochaine étape <i className="fas fa-arrow-right"></i>
           </h2>
         </div>
       </div>
@@ -232,11 +235,12 @@ function mapStateToProps(state) {
     formulary_ids: state.api.project.formulary_ids,
     formResults: state.formResults,
     project_id: state.project_id,
+    urlAPI: state.urlAPI
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchFORM, fetchPostForm, validateStep, changeBeneficiaireForm }, dispatch);
+  return bindActionCreators({ fetchAPI, fetchFORM, fetchPostForm, validateStep, changeBeneficiaireForm }, dispatch);
 }
 
 export default reduxForm({ form: 'validationForm' })(
