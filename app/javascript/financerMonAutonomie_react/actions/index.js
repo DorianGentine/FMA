@@ -31,15 +31,11 @@ export function fetchPostForm(url, body, method) {
     }).then(response => response.json())
     .then( () => {
         const btnValidation = document.getElementById('btn-validation-infos')
-        const textBasic = btnValidation.innerText
-        const colorBasic = btnValidation.style.backgroundColor
-        btnValidation.innerText = "Vos informations ont bien été enregistrées"
-        btnValidation.style.backgroundColor = "#1EDD88"
-        btnValidation.style.borderColor = "#1EDD88"
+        btnValidation.style.display = "block"
+        btnValidation.style.opacity = 1
         setTimeout(()=>{
-        btnValidation.innerText = textBasic
-        btnValidation.style.backgroundColor = colorBasic
-        btnValidation.style.borderColor = colorBasic
+        btnValidation.style.opacity = 0
+        btnValidation.style.display = "none"
         }, 3000)
       }
     )
@@ -76,3 +72,5 @@ export function changeBeneficiaireForm(event) {
     payload: beneficiaireActif
   };
 }
+
+

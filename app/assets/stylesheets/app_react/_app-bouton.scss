@@ -66,6 +66,20 @@
     background-color: white;
   }
 
+// btn-validation-infos
+  #btn-validation-infos {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    display: none;
+    border: none;
+    background-color: $green;
+    padding: 10px 30px;
+    color: white;
+    border-radius: 3px;
+    opacity: 0;
+    transition: .5s;
+  }
 
 
 

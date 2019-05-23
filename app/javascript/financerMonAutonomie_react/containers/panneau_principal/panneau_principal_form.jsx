@@ -5,7 +5,13 @@ import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-
 import Multiselect from 'react-widgets/lib/Multiselect'
 import DropdownList from 'react-widgets/lib/DropdownList'
 
-import { fetchAPI, fetchFORM, fetchPostForm, validateStep, changeBeneficiaireForm } from '../../actions';
+import {
+  fetchAPI,
+  fetchFORM,
+  fetchPostForm,
+  validateStep,
+  changeBeneficiaireForm,
+} from '../../actions';
 
 import initSelectFma from "../../../components/select_fma";
 import { initSelectize } from "../../../components/init_select2";
@@ -45,21 +51,22 @@ class PanneauPrincipalProjet extends Component {
   onSubmit = (values) => {
     if(this.props.formulary_id === "add"){
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
+      .then(()=>{
+        const formularyIdNewUser = this.props.formulary_ids[this.props.formulary_ids.length-1]
+        this.props.changeBeneficiaireForm(formularyIdNewUser)
+        this.props.fetchFORM(`/api/v1/formularies/${formularyIdNewUser}/edit`)
+        .then( setTimeout( () => {this.handleInitialize()}, 500) )
+        console.log(formularyIdNewUser)
+      })
+      console.log("values", values)
     }else{
+      // console.log("COUCOu2", this.props.formulary_id)
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
+      .then(()=>{
+        this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
+        .then( setTimeout( () => {this.handleInitialize()}, 500) )
+      })
     }
-  }
-
-  renderField(field) {
-    return (
-      <div className="form-group">
-        <label className="font-14 black">{field.label}</label>
-        <input className="margin-bottom-15 form-control"
-          type={field.type}
-          {...field.input}
-        />
-      </div>
-    );
   }
 
   handleClickBenef = (event) => {
@@ -67,8 +74,8 @@ class PanneauPrincipalProjet extends Component {
   }
 
 
-
   render(){
+    const submitButton = document.getElementById('btn-validation-infos')
 
     const renderOptions = (data) => {
       let options = []
@@ -85,7 +92,9 @@ class PanneauPrincipalProjet extends Component {
       }
 
       let splitValue = []
-      if(typeof input.value == "string"){
+      if(input.value == ""){
+        splitValue = splitValue
+      }else if(typeof input.value == "string"){
         splitValue = input.value.split('", "')
         // if(splitValue > 1){
           splitValue[0] = splitValue[0].substr(2)
@@ -97,8 +106,11 @@ class PanneauPrincipalProjet extends Component {
 
       return(
         <Multiselect {...input}
-        onBlur={() => input.onBlur()}
-        value={splitValue || []} // requires value to be an array
+        onBlur={() => {
+          input.onBlur();
+          submitButton.click();
+        }}
+        value={splitValue} // requires value to be an array
         data={datas}
         valueField={valueField}
         textField={textField}
@@ -117,18 +129,38 @@ class PanneauPrincipalProjet extends Component {
           data={datas}
           valueField={valueField}
           textField={textField}
-          onChange={input.onChange} />
+          onChange={input.onChange}
+          onBlur={event => {
+            input.onBlur(event);
+            submitButton.click();
+          }} />
       )
     }
+
+    const renderField = ({ input, label, type }) => (
+      <div className="form-group">
+        <label className="font-14 black">{label}</label>
+        <div>
+          <input {...input}
+            className="margin-bottom-15 form-control"
+            type={type}
+            onBlur={event => {
+              input.onBlur(event);
+              submitButton.click();
+            }}
+          />
+        </div>
+      </div>
+    )
 
     const renderInput = (result) => {
       if(result.set_up.type == "input" || result.set_up.type == "number"){
         return(
           <Field
-            label={result.set_up.question}
             name={result.set_up.column_name}
             type={result.set_up.type}
-            component={this.renderField}
+            component={renderField}
+            label={result.set_up.question}
           >
           </Field>
         )
@@ -209,13 +241,12 @@ class PanneauPrincipalProjet extends Component {
             <button
               id="btn-validation-infos"
               type="submit"
-              disabled={this.props.pristine || this.props.submitting}
-              className="btn-blue margin-top-60 margin-bottom-60 margin-left-auto width-fit-content">
-                Confirmez les réponses pour ce bénéficiaire
+              disabled={this.props.pristine || this.props.submitting}>
+                Vos informations ont bien été enregistrées
             </button>
           </form>
           <h2
-            className="blue text-align-right pointer"
+            className="width-fit-content btn-blue margin-top-60 margin-bottom-30 margin-left-auto"
             onClick={() => {
               this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
                 () => { this.props.fetchAPI(this.props.urlAPI) }
@@ -240,10 +271,16 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAPI, fetchFORM, fetchPostForm, validateStep, changeBeneficiaireForm }, dispatch);
+  return bindActionCreators({
+    fetchAPI,
+    fetchFORM,
+    fetchPostForm,
+    validateStep,
+    changeBeneficiaireForm,
+  }, dispatch);
 }
 
-export default reduxForm({ form: 'validationForm' })(
+export default reduxForm({ form: 'validationForm', })(
 connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalProjet)
 );
 

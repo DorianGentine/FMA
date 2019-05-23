@@ -23,8 +23,8 @@
 
 const app = document.getElementById('app')
 if(app){
+  // const project_id = app.dataset.projectid
   const user_id = app.dataset.userid
-  const project_id = app.dataset.projectid
   const urlAPI = `/api/v1/users/${user_id}`;
 
   const rootUrl = `/mon_espace/${user_id}`
@@ -35,7 +35,7 @@ if(app){
     api: {},
     formulary_id: {},
     formResults: [],
-    project_id: project_id,
+    project_id: {},
     rootUrl: rootUrl,
     urlAPI: urlAPI,
   };
