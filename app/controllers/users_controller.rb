@@ -12,6 +12,10 @@ class UsersController < ApplicationController
       @clients = @user.clients
     end
 
+    if @project.documentation?
+      DocumentAsked.new(@project).call
+    end
+
     authorize @user
   end
 

@@ -50,11 +50,12 @@ export function fetchPostForm(url, body, method) {
   };
 }
 
-export function validateStep(url) {
+export function validateStep(url, callback) {
   const request = fetch(url,
     {
       method: "PATCH",
     }).then(response => response.json())
+    .then(callback)
 
   return {
     type: VALIDATE_STEP,
