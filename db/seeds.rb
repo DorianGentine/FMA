@@ -73,17 +73,6 @@ p "Created"
   @assistants = FormularyChoice.new.set_collections_formulary[:assistant]
 
 p "Create Solutions"
-  solution_0 = Solution.create(
-    financer: securité_social,
-    background: nil,
-    category: nil,
-    group: nil,
-    name: nil,
-    conditions: "4:[0,1,2,3]"
-  )
-  Answer.create(solution: solution_0, content: "Vous pourriez bénéficier d'une participation de la sécurité sociale pour l'acquisition de matériels médicaux, ou compensant la perte d'autonomie.
-  La prise en charge sera conditionnée à une prescription médicale et ne pourra se faire que sur une liste de matériel que votre médecin traitant connaît normalement.
-  Le montant de la participation dépendra de votre taux de prise en charge.")
 
   p "ANAH"
 
@@ -1118,6 +1107,17 @@ Egalement, afin de vérifier les conditions d'aide éventuelle, nous vous consei
             Si la mise en équipement concernant 1 personne, le montant du crédit d'impot est plafonné à 5000 euros et 10 000 lorsqu'il s'agit de 2 personnes. Une majoration de 400 euros est appliquée par personne à charge supplémentaire.")
 
 
+  solution_73 = Solution.create(
+    financer: securité_social,
+    background: nil,
+    category: nil,
+    group: nil,
+    name: nil,
+    conditions: "4:[0,1,2,3]"
+  )
+  Answer.create(solution: solution_73, content: "Vous pourriez bénéficier d'une participation de la sécurité sociale pour l'acquisition de matériels médicaux, ou compensant la perte d'autonomie.
+  La prise en charge sera conditionnée à une prescription médicale et ne pourra se faire que sur une liste de matériel que votre médecin traitant connaît normalement.
+  Le montant de la participation dépendra de votre taux de prise en charge.")
 
 
 p "Solutions Created"

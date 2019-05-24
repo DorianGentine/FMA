@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       @projects = @user.projects
       @clients = @user.clients
     end
+
     authorize @user
   end
 

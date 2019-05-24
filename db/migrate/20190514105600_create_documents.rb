@@ -5,6 +5,7 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       t.string :description
       t.string :notice
       t.string :file
+      t.string :solution_ids
       t.references :project, foreign_key: true
       t.timestamps
     end
