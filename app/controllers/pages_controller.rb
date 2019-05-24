@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :team, :cgu, :rgpd ]
+  skip_before_action :authenticate_user!, only: [ :home, :team, :cgu, :rgpd, :update_calendly ]
   skip_after_action :intercom_rails_auto_include
 
   def home
@@ -11,6 +11,17 @@ class PagesController < ApplicationController
       @formulary = @visitor.formulary
     end
   end
+
+  def calendly
+    p "CALENDLY I'm In GET"
+    return "ok post", 200
+  end
+
+  def update_calendly
+    p "CALENDLY I'm In POST"
+    return "ok post", 200
+  end
+
 
   def team
 

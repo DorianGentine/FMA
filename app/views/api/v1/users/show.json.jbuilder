@@ -13,6 +13,7 @@ end
 json.beneficiaire @user, :first_name, :last_name, :avatar
 
 json.financers @solutions do |solution|
+  json.id solution.id
   json.extract! solution.financer, :name, :logo, :description, :answer
   json.answers solution.answers do |answer|
     json.extract! answer, :content
