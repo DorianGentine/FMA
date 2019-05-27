@@ -15,7 +15,6 @@ class SetSolutions
     solutions = []
     forms.each do |form|
       Solution.all.each do |solution|
-        # raise if form.id == 5
         if form.is_finish? && MatchSolution.new(form, solution).call
           if solutions.exclude?(solution)
             solutions << solution

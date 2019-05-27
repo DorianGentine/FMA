@@ -9,8 +9,7 @@ class RevenuAnalyze
   end
 
   def analyze_brut_global
-    answer = @form.has_partner == "1- Non" ? false : true
-    revenu_brut_global(answer)
+    revenu_brut_global
   end
 
   private
@@ -32,8 +31,8 @@ class RevenuAnalyze
     end
   end
 
-  def revenu_brut_global(has_partner)
-    if has_partner
+  def revenu_brut_global
+    if @form.has_partner != "1- Non"
       return {a: 2136}
     else
       return {a: 1424}
