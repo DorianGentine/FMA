@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_040750) do
     t.string "description"
     t.string "notice"
     t.string "file"
+    t.string "solution_ids"
     t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

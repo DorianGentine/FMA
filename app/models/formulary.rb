@@ -9,7 +9,9 @@ class Formulary < ApplicationRecord
   def first_name=(s)
     write_attribute(:first_name, s.to_s.capitalize) # The to_s is in case you get nil/non-string
   end
-
+  def solutions
+    return SetSolutions.new.call(self)
+  end
   # Q-2
   def allow_first_name?
     true
