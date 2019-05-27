@@ -9,7 +9,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
 
   def analyze
     @formulary = @visitor.formulary
-    @solutions = SetSolutions.new.call(@formulary)
+    @solutions = @formulary.solutions
   end
 
   def update_formulary

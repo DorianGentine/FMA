@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       @project = @user.projects.first
       @fma_team = @project.is_his_advisor
       @formulary = @user.his_formulary
-      @solutions = SetSolutions.new.call_for(@project)
+      @solutions = @project.solutions
     else
       @projects = @user.projects
       @clients = @user.clients
