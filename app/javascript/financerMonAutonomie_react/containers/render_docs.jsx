@@ -3,7 +3,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone'
 
+import { fetchProjet } from '../actions';
+
 class RenderDocs extends Component {
+  componentWillMount() {
+    this.props.fetchProjet(`/api/v1/projects/${1}`);
+  }
+
   render(){
     const beneficiaire = this.props.beneficiaire
     const project = this.props.project
@@ -41,74 +47,49 @@ class RenderDocs extends Component {
     }
 
     const renderDocs = () => {
-      // return this.props.messages.map((message, index) => {
-        return (
-          <div className="doc-to-send">
-            <div className="icon-eye float-right"></div>
-            <h4 className="font-14 no-margin">Fiche de paie 2019</h4>
-            <p className="black font-12">4 financeurs trouvés</p>
-            <div className="flex space-between align-items-center">
-              <p className="gray-300 font-12">Aucun document</p>
-              <Dropzone onDrop={readFile}>
-                {({getRootProps, getInputProps}) => (
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <button className="blue-gray-btn">Soumettre</button>
-                  </div>
-                )}
-              </Dropzone>
+      if(this.props.project.documents != undefined){
+        const documents = this.props.project.documents
+        return documents.map((doc, index) => {
+          return (
+            <div className="doc-to-send" key={index}>
+              <div className="icon-eye float-right"></div>
+              <h4 className="font-14 no-margin">{doc.title}</h4>
+              <p className="black font-12">{doc.description}</p>
+              <div className="flex space-between align-items-center">
+                <p className="gray-300 font-12">Aucun document</p>
+                <Dropzone onDrop={readFile}>
+                  {({getRootProps, getInputProps}) => (
+                    <div {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      <button className="blue-gray-btn">Soumettre</button>
+                    </div>
+                  )}
+                </Dropzone>
 
+              </div>
             </div>
-          </div>
-        );
-      // });
+          );
+        });
+      }
     };
 
     return(
       <div className="scroll col-lg-12 flex-wrap flex" style={{ height: "155px" }}>
         {renderDocs()}
-        <div className="doc-to-send">
-          <div className="icon-eye float-right"></div>
-          <h4 className="font-14 no-margin">Fiche de paie 2019</h4>
-          <p className="black font-12">4 financeurs trouvés</p>
-          <div className="flex space-between align-items-center">
-            <p className="gray-300 font-12">Aucun document</p>
-            <button className="blue-gray-btn">Soumettre</button>
-          </div>
-        </div>
-        <div className="doc-to-send">
-          <div className="icon-eye float-right"></div>
-          <h4 className="font-14 no-margin">Fiche de paie 2019</h4>
-          <p className="black font-12">4 financeurs trouvés</p>
-          <div className="flex space-between align-items-center">
-            <p className="gray-300 font-12">Aucun document</p>
-            <button className="blue-gray-btn">Soumettre</button>
-          </div>
-        </div>
-        <div className="doc-to-send">
-          <div className="icon-eye float-right"></div>
-          <h4 className="font-14 no-margin">Fiche de paie 2019</h4>
-          <p className="black font-12">4 financeurs trouvés</p>
-          <div className="flex space-between align-items-center">
-            <p className="gray-300 font-12">Aucun document</p>
-            <button className="blue-gray-btn">Soumettre</button>
-          </div>
-        </div>
       </div>
     )
   }
 }
 
-
 function mapStateToProps(state) {
   return {
     beneficiaire: state.api.beneficiaire,
-    project: state.api.project,
+    project: state.project,
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchProjet }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(RenderDocs);
+export default connect(mapStateToProps, mapDispatchToProps)(RenderDocs);

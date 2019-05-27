@@ -20,6 +20,7 @@
   import formResultsReducer from './reducers/form_results_reducer';
   import formularyIdReducer from './reducers/formulary_id_reducer';
   import projectIdReducer from './reducers/project_id_reducer';
+  import projectReducer from './reducers/project_reducer';
 
 const app = document.getElementById('app')
 if(app){
@@ -35,6 +36,7 @@ if(app){
     api: {},
     formulary_id: {},
     formResults: [],
+    project: {},
     project_id: {},
     rootUrl: rootUrl,
     urlAPI: urlAPI,
@@ -45,6 +47,7 @@ if(app){
     form: formReducer,
     formResults: formResultsReducer,
     formulary_id: formularyIdReducer,
+    project: projectReducer,
     project_id: projectIdReducer,
     rootUrl: identityReducer,
     urlAPI: identityReducer,

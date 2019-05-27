@@ -1,10 +1,7 @@
 <!-- html de l'application -->
 
 <% if @user.is_a_client %>
-  <div id="app" data-userid="<%= @user.id %>"> </div>
-
-    <!-- data-projectid="<%= @project.id %>"
-    data-formularyid="<%= @formulary.id %>" -->
+  <div id="app" data-userid="<%= @user.id %>"></div>
 <!-- fin -->
 
 
@@ -12,25 +9,3 @@
   <%= pluralize(@projects.count, 'Project') %>
   <%= pluralize(@clients.count, 'Client') %>
 <% end %>
-<!-- fin -->
-
-  <style>
-    .top-corner-left{
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-    .top-corner-left a{
-      padding: 5px;
-      border-radius: 3px;
-      border: 1px solid #2675e5;
-      background-color: #2675e5;
-      color: white;
-      cursor: pointer;
-    }
-    .top-corner-left a:hover{
-      color: #2675e5;
-      background-color: transparent;
-    }
-  </style>
-<!-- fin DELETE -->

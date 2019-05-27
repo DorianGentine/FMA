@@ -3,12 +3,22 @@ export const FETCH_FORM = 'FETCH_FORM';
 export const POST_FORM = 'POST_FORM';
 export const VALIDATE_STEP = 'VALIDATE_STEP';
 export const CHANGE_BENEFICIAIRE = 'CHANGE_BENEFICIAIRE';
+export const FETCH_PROJET = 'FETCH_PROJET';
 
 export function fetchAPI(url) {
   const promise = fetch(url).then(r => r.json());
 
   return {
     type: FETCH_API,
+    payload: promise
+  };
+}
+
+export function fetchProjet(url) {
+  const promise = fetch(url).then(r => r.json());
+
+  return {
+    type: FETCH_PROJET,
     payload: promise
   };
 }
