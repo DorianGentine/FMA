@@ -51,14 +51,14 @@ class PanneauPrincipalProjet extends Component {
   onSubmit = (values) => {
     if(this.props.formulary_id === "add"){
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
-      .then(()=>{
-        const formularyIdNewUser = this.props.formulary_ids[this.props.formulary_ids.length-1]
-        this.props.changeBeneficiaireForm(formularyIdNewUser)
-        this.props.fetchFORM(`/api/v1/formularies/${formularyIdNewUser}/edit`)
-        .then( setTimeout( () => {this.handleInitialize()}, 500) )
-        console.log(formularyIdNewUser)
+      .then( ()=>{
+        this.props.fetchAPI(this.props.urlAPI)
+        setTimeout( () => {
+          const formularyIdNewUser = this.props.formulary_ids[this.props.formulary_ids.length-1]
+          this.props.changeBeneficiaireForm(formularyIdNewUser)
+        }, 500)
+        // .then( setTimeout( () => {this.handleInitialize()}, 500) )
       })
-      console.log("values", values)
     }else{
       // console.log("COUCOu2", this.props.formulary_id)
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
