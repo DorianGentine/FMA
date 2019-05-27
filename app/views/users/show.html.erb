@@ -1,24 +1,12 @@
 <!-- html de l'application -->
 
 <% if @user.is_a_client %>
-  <div id="app"
-    data-userid="<%= @user.id %>"
-    data-projectid="<%= @project.id %>"
-    data-formularyid="<%= @formulary.id %>"
-    >
-  </div>
+  <div id="app" data-userid="<%= @user.id %>"> </div>
 
+    <!-- data-projectid="<%= @project.id %>"
+    data-formularyid="<%= @formulary.id %>" -->
 <!-- fin -->
 
-  <!-- data-disconnect="<%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>" -->
-
-
-<!-- DELETE -->
-  <div class="top-corner-left">
-    <!-- <#%= link_to "API", api_v1_user_project_path(@user, @project), target: "_blank" %> -->
-
-    <%#= link_to "Form", analyze_api_v1_visitor_path(@visitor), target: "_blank"%>
-  </div>
 
 <% else %>
   <%= pluralize(@projects.count, 'Project') %>
