@@ -40,6 +40,7 @@ if(app){
     project_id: {},
     rootUrl: rootUrl,
     urlAPI: urlAPI,
+    user_id: user_id,
   };
 
   const reducers = combineReducers({
@@ -51,6 +52,7 @@ if(app){
     project_id: projectIdReducer,
     rootUrl: identityReducer,
     urlAPI: identityReducer,
+    user_id: identityReducer,
   });
 
 
