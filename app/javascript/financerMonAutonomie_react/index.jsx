@@ -19,6 +19,7 @@
   import apiReducer from './reducers/api_reducer';
   import formResultsReducer from './reducers/form_results_reducer';
   import formularyIdReducer from './reducers/formulary_id_reducer';
+  import modalOpenedReducer from './reducers/modal_opened_reducer';
   import projectIdReducer from './reducers/project_id_reducer';
   import projectReducer from './reducers/project_reducer';
 
@@ -36,6 +37,7 @@ if(app){
     api: {},
     formulary_id: {},
     formResults: [],
+    modal_opened: false,
     project: {},
     project_id: {},
     rootUrl: rootUrl,
@@ -48,6 +50,7 @@ if(app){
     form: formReducer,
     formResults: formResultsReducer,
     formulary_id: formularyIdReducer,
+    modal_opened: modalOpenedReducer,
     project: projectReducer,
     project_id: projectIdReducer,
     rootUrl: identityReducer,

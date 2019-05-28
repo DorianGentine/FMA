@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import VoletProjet from "./Volet/volet_projet"
 import VoletCompte from "./Volet/volet_compte"
@@ -9,20 +11,20 @@ class Volet extends Component {
 
     if(selectedMenu.toLowerCase() == "projet"){
       return (
-        <div style={{height: "100vh", minWidth: "400px",}} >
+        <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
           <VoletProjet />
         </div>
       );
     }else if(selectedMenu.toLowerCase() == "compte"){
       return (
-        <div style={{height: "100vh", minWidth: "400px",}} >
+        <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
           <VoletCompte selectedMenuVolet={this.props.selectedMenuVolet} />
         </div>
       );
     }else if(selectedMenu.toLowerCase() == "alertes"){
       return (
-        <div style={{height: "100vh", minWidth: "400px",}} >
-          <div className="menu-principal">
+        <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
+          <div>
             <h2 className="text-align-center">{selectedMenu}</h2>
           </div>
         </div>
@@ -31,4 +33,14 @@ class Volet extends Component {
   }
 };
 
-export default Volet;
+function mapStateToProps(state) {
+  return {
+    modal_opened: state.modal_opened,
+  };
+}
+
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ fetchAPI }, dispatch);
+// }
+
+export default connect(mapStateToProps, null)(Volet);

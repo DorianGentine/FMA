@@ -9,7 +9,7 @@ import Evaluation from "../beneficiaire/evaluation"
 class VoletProjet extends Component {
   render(){
     return(
-      <div className="menu-principal space-between">
+      <div className="space-between">
         <Conseiller />
         <Etapes />
         <RdvTel />
