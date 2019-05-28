@@ -7,15 +7,16 @@ import { fetchProjet } from '../actions';
 
 class RenderDocs extends Component {
   componentWillMount() {
-    this.props.fetchProjet(`/api/v1/projects/${1}`);
+    this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`);
   }
 
   render(){
-    const beneficiaire = this.props.beneficiaire
     const project = this.props.project
+    console.log(this.props.user_id)
+    console.log(this.props.project_id)
 
     const sendImageToController = (formPayLoad) => {
-      fetch(`/api/v1/users/${beneficiaire.id}/projects/${project.id}/documents`, {
+      fetch(`/api/v1/users/${this.props.user_id}/projects/${this.props.project_id}/documents`, {
         credentials: 'same-origin',
         headers: {},
         method: 'POST',
@@ -83,8 +84,9 @@ class RenderDocs extends Component {
 
 function mapStateToProps(state) {
   return {
-    beneficiaire: state.api.beneficiaire,
+    user_id: state.user_id,
     project: state.project,
+    project_id: state.project_id,
   };
 }
 

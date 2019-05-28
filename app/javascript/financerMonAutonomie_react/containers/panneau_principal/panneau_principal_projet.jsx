@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+// import { reduxForm, Field } from 'redux-form';
 
 import DocumentsSoumettre from "./documents_soumettre"
 import FinanceursPotentiels from "./financeurs_potentiels"
@@ -25,7 +25,9 @@ class PanneauPrincipalProjet extends Component {
           <DocumentsSoumettre />
           <FinanceursPotentiels />
           <VosReponses />
-          <KitDeFinancement />
+          { etape === "progression" || etape === "evaluation" ?
+            <KitDeFinancement /> : ""
+          }
         </div>
       );
     }

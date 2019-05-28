@@ -42,6 +42,9 @@ class App extends Component {
               selectedMenuVolet={this.props.match.params.menu_volet}
             />
           </div>
+          <div style={{height: "100vh", minWidth: "400px",}} >
+            <div className="modal-cote"></div>
+          </div>
         </div>
       );
 
