@@ -42,8 +42,8 @@ class App extends Component {
               selectedMenuVolet={this.props.match.params.menu_volet}
             />
           </div>
-          <div style={{height: "100vh", minWidth: "400px",}} >
-            <div className="modal-cote"></div>
+          <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
+            <div></div>
           </div>
         </div>
       );
@@ -63,6 +63,7 @@ function mapStateToProps(state) {
   return {
     urlAPI: state.urlAPI,
     api: state.api,
+    modal_opened: state.modal_opened,
   };
 }
 

@@ -15,7 +15,7 @@ class VoletCompte extends Component {
     }
 
     return(
-      <div className="menu-principal">
+      <div>
         <h2 className="text-align-center margin-bottom-60">Réglages du compte</h2>
         <Link className={`volet-item-menu ${active("compte/identite")}`} to={`${rootCompte}/identite`}>
           Identité

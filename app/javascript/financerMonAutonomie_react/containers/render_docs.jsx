@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone'
 
-import { fetchProjet } from '../actions';
+import { fetchProjet, showDocument } from '../actions';
 
 class RenderDocs extends Component {
   componentWillMount() {
@@ -12,8 +12,11 @@ class RenderDocs extends Component {
 
   render(){
     const project = this.props.project
-    console.log(this.props.user_id)
-    console.log(this.props.project_id)
+
+    const handleClick = () => {
+      console.log("SALUT")
+      this.props.showDocument()
+    }
 
     const sendImageToController = (formPayLoad) => {
       fetch(`/api/v1/users/${this.props.user_id}/projects/${this.props.project_id}/documents`, {
@@ -53,7 +56,7 @@ class RenderDocs extends Component {
         return documents.map((doc, index) => {
           return (
             <div className="doc-to-send" key={index}>
-              <div className="icon-eye float-right"></div>
+              <div className="icon-eye float-right" onClick={handleClick}></div>
               <h4 className="font-14 no-margin">{doc.title}</h4>
               <p className="black font-12">{doc.description}</p>
               <div className="flex space-between align-items-center">
@@ -91,7 +94,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchProjet }, dispatch);
+  return bindActionCreators({ fetchProjet, showDocument }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RenderDocs);

@@ -4,6 +4,7 @@ export const POST_FORM = 'POST_FORM';
 export const VALIDATE_STEP = 'VALIDATE_STEP';
 export const CHANGE_BENEFICIAIRE = 'CHANGE_BENEFICIAIRE';
 export const FETCH_PROJET = 'FETCH_PROJET';
+export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
 
 export function fetchAPI(url) {
   const promise = fetch(url).then(r => r.json());
@@ -82,5 +83,14 @@ export function changeBeneficiaireForm(event) {
     payload: beneficiaireActif
   };
 }
+
+export function showDocument(event) {
+
+  return {
+    type: SHOW_DOCUMENT,
+    payload: ""
+  };
+}
+
 
 
