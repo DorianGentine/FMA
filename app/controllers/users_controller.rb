@@ -11,11 +11,6 @@ class UsersController < ApplicationController
       @projects = @user.projects
       @clients = @user.clients
     end
-
-    if @project.documentation?
-      DocumentAsked.new(@project).call
-    end
-
     authorize @user
   end
 
