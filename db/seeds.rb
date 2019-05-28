@@ -52,10 +52,10 @@ p "Create Acteurs"
   Acteur.create(financer: bailleur, name: "VALOPHIS", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
 
   Acteur.create(financer: caisse_sup, name: "Aucune")
-  Acteur.create(financer: caisse_sup, name: "AG2R", web: "https://www.ag2rlamondiale.fr/", logo:"https://res.cloudinary.com/financermonautonomie/image/upload/v1557909722/financers/AG2R_zpsdqe.png")
+  # Acteur.create(financer: caisse_sup, name: "AG2R", web: "https://www.ag2rlamondiale.fr/", logo:"https://res.cloudinary.com/financermonautonomie/image/upload/v1557909722/financers/AG2R_zpsdqe.png")
   Acteur.create(financer: caisse_sup, name: "B2V", web: "https://www.b2v.fr/", logo:"https://res.cloudinary.com/financermonautonomie/image/upload/v1557909829/financers/B2V_em2htq.jpg")
   Acteur.create(financer: caisse_sup, name: "HUMANIS", web: "https://humanis.com/", logo:"https://res.cloudinary.com/financermonautonomie/image/upload/v1557909826/financers/HUMANIS_h0ithz.png")
-  Acteur.create(financer: caisse_sup, name: "IRCANTEC", web: "https://www.ircantec.retraites.fr/", logo:"https://res.cloudinary.com/financermonautonomie/image/upload/v1557909818/financers/IRCANTEC_jyahmx.png")
+  # Acteur.create(financer: caisse_sup, name: "IRCANTEC", web: "https://www.ircantec.retraites.fr/", logo:"https://res.cloudinary.com/financermonautonomie/image/upload/v1557909818/financers/IRCANTEC_jyahmx.png")
   Acteur.create(financer: caisse_sup, name: "KLESIA", web: "https://www.klesia.fr/", logo:"")
   Acteur.create(financer: caisse_sup, name: "MALAKOFFF MEDERIC", web: "http://www.malakoffmederic.com/", logo:"")
   Acteur.create(financer: caisse_sup, name: "PROBTP", web: "https://www.probtp.com/", logo:"")
@@ -67,6 +67,8 @@ p "Create Acteurs"
   Acteur.create(financer: caisse, name: "CNRACL", web:"https://www.cnracl.retraites.fr/", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557909347/financers/CNRACL_torcxo.jpg")
   Acteur.create(financer: caisse, name: "RSI", web:"https://www.secu-independants.fr/", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557909283/financers/RSI_xkgrmq.jpg")
   Acteur.create(financer: caisse, name: "CARCDSF", web:"http://www.carcdsf.fr/", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557909278/financers/CARCDSF_jicb86.png")
+  Acteur.create(financer: caisse, name: "CIPAV", web:"https://www.lacipav.fr/", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557909278/financers/CARCDSF_jicb86.png")
+  Acteur.create(financer: caisse, name: "CNAV", web:"https://www.lassuranceretraite.fr/portail-info/accueil", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557909278/financers/CARCDSF_jicb86.png")
 
 p "Created"
 

@@ -41,9 +41,9 @@ class Project < ApplicationRecord
   end
 
   def change_next_step
-    p "Project step => #{self.step}"
     if self.validation_data?
       self.documentation!
+      DocumentAsked.new(self).call
     elsif self.documentation?
       self.meeting!
     elsif self.meeting?

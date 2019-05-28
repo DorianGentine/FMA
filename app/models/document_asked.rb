@@ -7,18 +7,26 @@ class DocumentAsked
   end
 
   def call
-    if scan_each_conditions != false
-      if !Document.where(project: @project, title: type_document_1[:title]).present?
-        Document.create(project: @project, title: type_document_1[:title], description: type_document_1[:description], notice: type_document_1[:notice], solution_ids: scan_each_conditions)
+    @project.documents.destroy_all
+    documents.each do |document|
+
+      if scan_each_conditions(document) != false
+        if Document.where(project: @project, description: document[:description]).count < 1
+          Document.create(project: @project, title: document[:title], description: document[:description], notice: document[:notice], solution_ids: scan_each_conditions(document))
+        end
       end
     end
   end
 
   private
 
-  def scan_each_conditions
+  def documents
+    return [ type_document_1, type_document_2, type_document_3, type_document_4]
+  end
+
+  def scan_each_conditions(type_document)
     array_solution_id = []
-    type_document_1[:conditions].each do |condition|
+    type_document[:conditions].each do |condition|
       if scan_document_by_solution(condition) != false
         scan_document_by_solution(condition).each { |e| array_solution_id << e }
       end
@@ -72,11 +80,65 @@ class DocumentAsked
         },
         {
          condition_solutions: "61",
-         condition_answers: "16:[IRCANTEC,  AG2R, IRP AUTO, HUMANIS]",
+         condition_answers: "16:[IRCANTEC,AG2R,IRP AUTO,HUMANIS]",
+        },
+        {
+         condition_solutions: "44,45,46,47,48",
+         condition_answers: "14:[CIPAV,CAMIEG,CARCDSF,CNRACL,RSI,CNAV]",
+        }
+      ]
+    }
+  end
+
+  def type_document_2
+    {
+      title: "Avis situation déclarative impot revenu",
+      description: "Dernier avis de situation déclarative à l'impôt sur le revenu du propriétaire du logement",
+      notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1558508261/exemple_documents_a_demander/Avis_situation_declarative_impot_revenu_dfgfoq.pdf",
+      conditions: [
+        {
+         condition_solutions: "3,6,9,10,13,14,17,20,23,24,27,28",
+         condition_answers: nil,
+        }
+      ]
+    }
+  end
+
+  def type_document_3
+    {
+      title: "Taxes foncieres",
+      description: "Dernier avis de taxe foncière",
+      notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1558508262/exemple_documents_a_demander/Taxes_foncieres_riykb9.pdf",
+      conditions: [
+        {
+         condition_solutions: "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28",
+         condition_answers: nil,
+        }
+      ]
+    }
+  end
+
+  def type_document_4
+    {
+      title: "Decision president conseil departemental",
+      description: "Justificatif de la perte d'autonomie",
+      notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1558508261/exemple_documents_a_demander/Decision_president_conseil_departemental_zvnwo6.pdf",
+      conditions: [
+        {
+         condition_solutions: "1,4,7,11,15,18,21,25,60,3,6,9,10,13,14,17,20,23,24,27,28",
+         condition_answers: nil,
         },
         {
          condition_solutions: nil,
-         condition_answers: "15:[CAMIEG]",
+         condition_answers: "7:3,9:[BATIGERE,CDC HABITAT,COOPERER POUR HABITER,DOMNIS,FOYER SOLEIL,FRANCE HABITATION,LA SEMISE,OPH L'HAY LES ROSES,LOGIAL OPH,MAISONS ALFORT HABITAT,OPALY,OPH IVRY,OPH VILLEJUIF,OSICA,RATP HABITAT,RESIDENCE LE LOGEMENT DES FONCTIONNAIRES,SIEMP, CRETEIL HABITAT,I3F,INLI QWACIO]",
+        },
+        {
+         condition_solutions: "61",
+         condition_answers: "16:[AG2R,IRP AUTO,HUMANIS,B2V]",
+        },
+        {
+         condition_solutions: "44,45,46,47,48",
+         condition_answers: "14:[CIPAV,CAMIEG,CARCDSF,CNRACL,RSI]",
         }
       ]
     }
