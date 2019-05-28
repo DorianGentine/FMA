@@ -1,4 +1,4 @@
 
 json.documents @project.documents do |document|
-  json.extract! document, :title, :description, :file, :notice, :solution_ids
+  json.extract! document, :id, :title, :description, :file, :notice, :solution_ids
 end
