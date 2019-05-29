@@ -14,39 +14,40 @@ class RenderDocs extends Component {
     const project = this.props.project
 
     const handleClick = () => {
-      console.log("SALUT")
       this.props.showDocument()
     }
 
-    const sendImageToController = (formPayLoad) => {
-      fetch(`/api/v1/users/${this.props.user_id}/projects/${this.props.project_id}/documents`, {
+    const sendImageToController = (formPayLoad, idDoc) => {
+      fetch(`/api/v1/documents/${idDoc}`, {
         credentials: 'same-origin',
         headers: {},
-        method: 'POST',
+        method: 'PATCH',
         body: formPayLoad
       })
 
       // might be a good idea to put error handling here
 
       .then(response => response.json())
-      .then(imageFromController => {
+      // .then(imageFromController => {
         // optionally, you can set the state of the component to contain the image
         // object itself that was returned from the rails controller, completing
         // the post cycle
-        this.setState({uploads: this.state.uploads.concat(imageFromController)})
-      })
+        // this.setState({uploads: this.state.uploads.concat(imageFromController)})
+      // })
     }
 
-    const readFile = (files) => {
+    const readFile = (files, idDoc) => {
       // logic validation for existence of file(s);
       // we index at 0 here since the JSX could give us multiple files or single
       // file; either way, we get an array and we only need the first element
       // in the case of single file upload
 
       if (files && files[0]) {
+        document.getElementById('document_name').innerText = `${files[0].name.substr(0, 15)}...`
+
         let formPayLoad = new FormData();
         formPayLoad.append('uploaded_image', files[0]);
-        sendImageToController(formPayLoad)
+        sendImageToController(formPayLoad, idDoc)
       }
     }
 
@@ -54,14 +55,15 @@ class RenderDocs extends Component {
       if(this.props.project.documents != undefined){
         const documents = this.props.project.documents
         return documents.map((doc, index) => {
+          const idDoc = doc.id
           return (
             <div className="doc-to-send" key={index}>
               <div className="icon-eye float-right" onClick={handleClick}></div>
               <h4 className="font-14 no-margin">{doc.title}</h4>
               <p className="black font-12">{doc.description}</p>
               <div className="flex space-between align-items-center">
-                <p className="gray-300 font-12">Aucun document</p>
-                <Dropzone onDrop={readFile}>
+                <p className="gray-300 font-12" id="document_name">{idDoc}</p>
+                <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles, idDoc)}}>
                   {({getRootProps, getInputProps}) => (
                     <div {...getRootProps()}>
                       <input {...getInputProps()} />
