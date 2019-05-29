@@ -47,6 +47,7 @@ class FormularyToHash
       column = question[:set_up][:column_name]
       ask_again = "ask_again_" + column + "?"
       if !@form.primary
+        # raise if column_name == "is_working"
         array << question if @form.send(ask_again)
       else
         array << question

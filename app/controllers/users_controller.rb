@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   def show
+
+
     @user = User.find(params[:id])
     if @user.is_a_client
       @project = @user.projects.first
@@ -11,6 +13,9 @@ class UsersController < ApplicationController
       @projects = @user.projects
       @clients = @user.clients
     end
+
+
+    DocumentAsked.new(@project).call
     authorize @user
   end
 
