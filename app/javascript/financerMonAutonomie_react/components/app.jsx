@@ -8,6 +8,7 @@ import AppNavbar from "../containers/app_navbar"
 import Volet from "../containers/volet"
 import MenuProfil from "../containers/menu_profil"
 import PanneauPrincipal from "../containers/panneau_principal"
+import ModalCote from "../containers/modal_cote"
 
 class App extends Component {
 
@@ -43,7 +44,7 @@ class App extends Component {
             />
           </div>
           <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
-            <div></div>
+            <div><ModalCote /></div>
           </div>
         </div>
       );

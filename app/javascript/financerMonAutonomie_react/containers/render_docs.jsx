@@ -13,8 +13,8 @@ class RenderDocs extends Component {
   render(){
     const project = this.props.project
 
-    const handleClick = () => {
-      this.props.showDocument()
+    const handleClick = (doc) => {
+      this.props.showDocument(doc)
     }
 
     const sendImageToController = (formPayLoad, idDoc) => {
@@ -58,7 +58,7 @@ class RenderDocs extends Component {
           const idDoc = doc.id
           return (
             <div className="doc-to-send" key={index}>
-              <div className="icon-eye float-right" onClick={handleClick}></div>
+              <div className="icon-eye float-right" onClick={()=>{handleClick(doc)}}></div>
               <h4 className="font-14 no-margin">{doc.title}</h4>
               <p className="black font-12">{doc.description}</p>
               <div className="flex space-between align-items-center">

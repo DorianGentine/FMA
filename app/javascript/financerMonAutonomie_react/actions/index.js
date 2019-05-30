@@ -5,6 +5,7 @@ export const VALIDATE_STEP = 'VALIDATE_STEP';
 export const CHANGE_BENEFICIAIRE = 'CHANGE_BENEFICIAIRE';
 export const FETCH_PROJET = 'FETCH_PROJET';
 export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 export function fetchAPI(url) {
   const promise = fetch(url).then(r => r.json());
@@ -84,11 +85,22 @@ export function changeBeneficiaireForm(event) {
   };
 }
 
-export function showDocument(event) {
+export function showDocument(doc) {
+  const documentSelected = {
+    modalActive: "showDoc",
+    doc: doc,
+  }
 
   return {
     type: SHOW_DOCUMENT,
-    payload: ""
+    payload: documentSelected
+  };
+}
+
+export function closeModal() {
+  return {
+    type: CLOSE_MODAL,
+    payload: null
   };
 }
 
