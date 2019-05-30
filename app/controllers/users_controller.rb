@@ -13,9 +13,6 @@ class UsersController < ApplicationController
       @projects = @user.projects
       @clients = @user.clients
     end
-
-
-    DocumentAsked.new(@project).call
     authorize @user
   end
 
