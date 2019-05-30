@@ -58,16 +58,17 @@ class DocumentAsked
   def set_solution_ids_and_formulary_ids(document)
     hash = {}
     document[:conditions].each do |condition|
-      # raise if !scan_each_conditions_by_formulary(condition).nil?
       if !scan_each_conditions_by_formulary(condition).nil? && !scan_each_conditions_by_project(condition).nil?
-        hash[:solution_ids] = scan_each_conditions_by_project(condition)
-        hash[:formulary_ids] = scan_each_conditions_by_formulary(condition)
+        hash[:solution_ids] = hash[:solution_ids].nil? ? scan_each_conditions_by_project(condition) : hash[:solution_ids] + ", " + scan_each_conditions_by_project(condition)
+        hash[:formulary_ids] = hash[:formulary_ids].nil? ? scan_each_conditions_by_formulary(condition) : hash[:formulary_ids] + ", " + scan_each_conditions_by_formulary(condition)
       elsif !scan_each_conditions_by_formulary(condition).nil? && scan_each_conditions_by_project(condition).nil?
-        hash[:formulary_ids] = scan_each_conditions_by_formulary(condition)
+        hash[:formulary_ids] = hash[:formulary_ids].nil? ? scan_each_conditions_by_formulary(condition) : hash[:formulary_ids] + ", " + scan_each_conditions_by_formulary(condition)
       elsif scan_each_conditions_by_formulary(condition).nil? && !scan_each_conditions_by_project(condition).nil?
-        hash[:solution_ids] = scan_each_conditions_by_project(condition)
+        hash[:solution_ids] = hash[:solution_ids].nil? ? scan_each_conditions_by_project(condition) : hash[:solution_ids] + ", " + scan_each_conditions_by_project(condition)
       end
     end
+    hash[:solution_ids] = hash[:formulary_ids].present? ? hash[:solution_ids].split(', ').uniq.join(', ') : nil
+    hash[:formulary_ids] = hash[:formulary_ids].present? ? hash[:formulary_ids].split(', ').uniq.join(', ') : nil
     return hash
   end
 
@@ -111,13 +112,11 @@ class DocumentAsked
     # raise if condition_needed ==  "7:1&8:1&9:[BATIGERE,CDC HABITAT,COOPERER POUR HABITER,DOMNIS,FOYER SOLEIL,FRANCE HABITATION,LA SEMISE,OPH L'HAY LES ROSES,LOGIAL OPH,MAISONS ALFORT HABITAT,OPALY,OPH IVRY,OPH VILLEJUIF,OSICA,RATP HABITAT,RESIDENCE LE LOGEMENT DES FONCTIONNAIRES,SIEMP, CRETEIL HABITAT,I3F,INLI QWACIO]"
         if json_form[key].present?
           if json_form[key] == value || value.to_s.include?(json_form[key].to_s)
-            p "////////////////////// Form ID => #{form.id}"
             formulary_id << form.id
           end
         end
       end
     end
-
     return formulary_id.count > 0 ? formulary_id : false
   end
 
