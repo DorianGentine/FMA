@@ -58,6 +58,7 @@ class DocumentAsked
   def set_solution_ids_and_formulary_ids(document)
     hash = {}
     document[:conditions].each do |condition|
+      # raise if !scan_each_conditions_by_formulary(condition).nil?
       if !scan_each_conditions_by_formulary(condition).nil? && !scan_each_conditions_by_project(condition).nil?
         hash[:solution_ids] = scan_each_conditions_by_project(condition)
         hash[:formulary_ids] = scan_each_conditions_by_formulary(condition)
@@ -79,7 +80,7 @@ class DocumentAsked
 
   def scan_each_conditions_by_formulary(condition)
     if scan_document_by_answer(condition) != false && scan_document_by_answer(condition).count > 0
-      return scan_document_by_answer(condition).to_s.gsub("[", "").gsub("]", "")
+      return scan_document_by_answer(condition).uniq.to_s.gsub("[", "").gsub("]", "")
     end
   end
 
@@ -107,13 +108,16 @@ class DocumentAsked
     @formularies.each do |form|
       json_form = FormularyToHash.new(form).to_hash_forma
       condition_needed.each do |key, value|
+    # raise if condition_needed ==  "7:1&8:1&9:[BATIGERE,CDC HABITAT,COOPERER POUR HABITER,DOMNIS,FOYER SOLEIL,FRANCE HABITATION,LA SEMISE,OPH L'HAY LES ROSES,LOGIAL OPH,MAISONS ALFORT HABITAT,OPALY,OPH IVRY,OPH VILLEJUIF,OSICA,RATP HABITAT,RESIDENCE LE LOGEMENT DES FONCTIONNAIRES,SIEMP, CRETEIL HABITAT,I3F,INLI QWACIO]"
         if json_form[key].present?
           if json_form[key] == value || value.to_s.include?(json_form[key].to_s)
+            p "////////////////////// Form ID => #{form.id}"
             formulary_id << form.id
           end
         end
       end
     end
+
     return formulary_id.count > 0 ? formulary_id : false
   end
 
@@ -197,8 +201,8 @@ class DocumentAsked
          condition_answers: "7:1&8:1&9:[BATIGERE,CDC HABITAT,COOPERER POUR HABITER,DOMNIS,FOYER SOLEIL,FRANCE HABITATION,LA SEMISE,OPH L'HAY LES ROSES,LOGIAL OPH,MAISONS ALFORT HABITAT,OPALY,OPH IVRY,OPH VILLEJUIF,OSICA,RATP HABITAT,RESIDENCE LE LOGEMENT DES FONCTIONNAIRES,SIEMP, CRETEIL HABITAT,I3F,INLI QWACIO]",
         },
         {
-         condition_solutions: "61",
          # condition_solutions: nil,
+         condition_solutions: "61",
          condition_answers: "15:[AG2R,IRP AUTO,HUMANIS,B2V]",
         },
         {
