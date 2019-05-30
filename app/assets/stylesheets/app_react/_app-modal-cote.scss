@@ -32,3 +32,10 @@
     padding: 30px 0;
   }
 }
+
+.image-document{
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain;
+  height: 75vh;
+}

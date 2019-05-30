@@ -20,6 +20,7 @@
   import formResultsReducer from './reducers/form_results_reducer';
   import formularyIdReducer from './reducers/formulary_id_reducer';
   import modalOpenedReducer from './reducers/modal_opened_reducer';
+  import modalSelectedReducer from './reducers/modal_selected_reducer';
   import projectIdReducer from './reducers/project_id_reducer';
   import projectReducer from './reducers/project_reducer';
 
@@ -38,6 +39,7 @@ if(app){
     formulary_id: {},
     formResults: [],
     modal_opened: false,
+    modal_selected: null,
     project: {},
     project_id: {},
     rootUrl: rootUrl,
@@ -51,6 +53,7 @@ if(app){
     formResults: formResultsReducer,
     formulary_id: formularyIdReducer,
     modal_opened: modalOpenedReducer,
+    modal_selected: modalSelectedReducer,
     project: projectReducer,
     project_id: projectIdReducer,
     rootUrl: identityReducer,
