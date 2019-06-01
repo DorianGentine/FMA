@@ -17,7 +17,8 @@ class ModalDocument extends Component {
           <h2>{`${doc.title.substr(0,25)}...`}</h2>
           <p className="pointer black" onClick={this.props.closeModal}>X</p>
         </div>
-        <Document file={doc.notice} />
+        <Document
+          file={doc.notice} />
       </div>
         // <div
         //   className="image-document"
