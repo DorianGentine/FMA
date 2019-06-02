@@ -14,6 +14,9 @@ class UserPolicy < ApplicationPolicy
   def conseiller?
     true
   end
+  def calendly?
+    true
+  end
   def create?
     true
   end
