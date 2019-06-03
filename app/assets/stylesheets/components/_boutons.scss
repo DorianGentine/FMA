@@ -50,12 +50,13 @@
     transition: 0.5s;
   }
   .btn-gris:hover{
-    color: $gray-100;
+    color: $gray-100 !important;
     background-color: transparent;
   }
   @media screen and (max-width: 770px){
     .btn-gris{
       padding: 5px 10px;
+      width: 100%;
     }
   }
 

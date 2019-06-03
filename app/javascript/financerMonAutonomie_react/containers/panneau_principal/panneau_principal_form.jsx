@@ -266,7 +266,7 @@ function mapStateToProps(state) {
     formulary_ids: state.api.project.formulary_ids,
     formResults: state.formResults,
     project_id: state.project_id,
-    urlAPI: state.urlAPI
+    urlAPI: state.urlAPI,
   };
 }
 

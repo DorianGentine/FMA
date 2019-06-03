@@ -9,14 +9,14 @@ Rails.application.routes.draw do
     member do
       get :conseiller
       # test
-
+      get '/calendly', to: 'users#calendly'
       get '/projet', to: 'users#show'
       get '/compte', to: 'users#show'
-        get '/compte/identite', to: 'users#show'
-        get '/compte/email', to: 'users#show'
-        get '/compte/mdp', to: 'users#show'
-        get '/compte/telephone', to: 'users#show'
-        get '/compte/suppression', to: 'users#show'
+      get '/compte/identite', to: 'users#show'
+      get '/compte/email', to: 'users#show'
+      get '/compte/mdp', to: 'users#show'
+      get '/compte/telephone', to: 'users#show'
+      get '/compte/suppression', to: 'users#show'
       get '/alertes', to: 'users#show'
     end
 
@@ -24,8 +24,6 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:update]
 
-  get '/calendly', to: "pages#calendly"
-  post '/calendly', to: "pages#update_calendly"
   get '/home', to: 'pages#home'
   get '/qui-sommes-nous', to: 'pages#team', as: "equipe"
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"

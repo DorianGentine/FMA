@@ -4,6 +4,7 @@
   <% end %>
 
   <div class="flex align-items-center">
+    <%= link_to "Accueil", home_path, class: "margin-right-30 d-none d-sm-block" %>
     <%= link_to "Qui sommes-nous ?", equipe_path, class: "margin-right-30 d-none d-sm-block" %>
     <% if user_signed_in? %>
       <div class="btn-group pointer" role="group">
