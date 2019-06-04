@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   before_create :set_as_client
 
+  acts_as_token_authenticatable
 
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects, dependent: :destroy
