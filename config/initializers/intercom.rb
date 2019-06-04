@@ -1,7 +1,7 @@
 IntercomRails.config do |config|
   # == Intercom app_id
   #
-  config.app_id = ENV["INTERCOM_APP_ID"] || "o3isqeb1"
+  config.app_id = ENV["INTERCOM_APP_ID"] || "uts7rmd6"
 
   # == Intercom session_duration
   #
@@ -10,7 +10,7 @@ IntercomRails.config do |config|
   # This is required to enable Identity Verification, you can find it on your Setup
   # guide in the "Identity Verification" step.
   #
-  config.api_secret = ENV['INTERCOM_KEY']
+  # config.api_secret = "..."
 
   # == Enabled Environments
   # Which environments is auto inclusion of the Javascript enabled for
@@ -27,7 +27,7 @@ IntercomRails.config do |config|
   # == Include for logged out Users
   # If set to true, include the Intercom messenger on all pages, regardless of whether
   # The user model class (set below) is present.
-  config.include_for_logged_out_users = true
+  # config.include_for_logged_out_users = true
 
   # == User model class
   # The class which defines your user model
@@ -39,7 +39,7 @@ IntercomRails.config do |config|
   # non-signed up users as an an array.
   # Any attribute contained in config.user.lead_attributes can be used
   # as custom attribute in the application.
-  # config.user.lead_attributes = %w(ref_data utm_source)
+  config.user.lead_attributes = %w(ref_data utm_source)
 
   # == Exclude users
   # A Proc that given a user returns true if the user should be excluded
@@ -52,12 +52,10 @@ IntercomRails.config do |config|
   # You can provide either a method name which will be sent to the current
   # user object, or a Proc which will be passed the current user.
   #
-  # config.user.custom_data = {
-  #   :plan => Proc.new { |current_user| current_user.plan.name },
-  #   :favorite_color => :favorite_color
-
-  # }
-
+  config.user.custom_data = {
+    :telephone => Proc.new { |current_user| current_user.phone },
+    :conseiller => Proc.new { |current_user| current_user.phone }
+  }
 
   # == Current company method/variable
   # The method/variable that contains the current company for the current user,

@@ -27,6 +27,10 @@ class User < ApplicationRecord
     end
   end
 
+  def name
+    p "#{self.first_name} #{self.last_name}"
+  end
+
   def clients
     projects = UserProject.where(user: self, client: false)
     clients = []
