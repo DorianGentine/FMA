@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   before_create :set_as_client
 
+  acts_as_token_authenticatable
 
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects, dependent: :destroy
@@ -25,6 +26,10 @@ class User < ApplicationRecord
     unless self.advisor || self.admin
       return true
     end
+  end
+
+  def name
+    p "#{self.first_name} #{self.last_name}"
   end
 
   def clients

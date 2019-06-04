@@ -49,3 +49,5 @@ gem "intercom-rails"
 
 # faker for seed
 gem 'faker'
+
+gem 'simple_token_authentication'

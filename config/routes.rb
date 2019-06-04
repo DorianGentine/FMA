@@ -9,14 +9,14 @@ Rails.application.routes.draw do
     member do
       get :conseiller
       # test
-      get '/calendly', to: 'users#calendly'
+      get '/calendly', to: "users#calendly"
       get '/projet', to: 'users#show'
       get '/compte', to: 'users#show'
-      get '/compte/identite', to: 'users#show'
-      get '/compte/email', to: 'users#show'
-      get '/compte/mdp', to: 'users#show'
-      get '/compte/telephone', to: 'users#show'
-      get '/compte/suppression', to: 'users#show'
+        get '/compte/identite', to: 'users#show'
+        get '/compte/email', to: 'users#show'
+        get '/compte/mdp', to: 'users#show'
+        get '/compte/telephone', to: 'users#show'
+        get '/compte/suppression', to: 'users#show'
       get '/alertes', to: 'users#show'
     end
 
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      get '/calendly', to: "calendlies#show"
       resources :visitors, only: [:show, :update] do
         member do
           patch :update_formulary
