@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import RenderDocs from "../../containers/render_docs"
+import RenderDocs from "./render_docs"
 import ValidationModal from "../beneficiaire/validation_modal"
 
 class DocumentsSoumettre extends Component {
