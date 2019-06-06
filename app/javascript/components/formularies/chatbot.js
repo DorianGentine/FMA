@@ -81,18 +81,20 @@ const nextStep = (questions, updated = null, question = null) => {
 
 
 const updateFormulary = (event) => {
-  const obj = {
-    name: event.srcElement[1].name,
-    value: event.srcElement[1].value,
+  if(event.srcElement[1].value != ""){
+    const obj = {
+      name: event.srcElement[1].name,
+      value: event.srcElement[1].value,
+    }
+    fetch(`/api/v1/visitors/${visitor_id}/update_formulary`, {
+      headers: {"Content-Type": "application/json; charset=utf-8"},
+      method: "PATCH",
+      body: JSON.stringify(obj)
+    }).then(response => response.json()).then((data) => {
+      console.log('updated data', data)
+      nextStep(data, true)
+    })
   }
-  fetch(`/api/v1/visitors/${visitor_id}/update_formulary`, {
-    headers: {"Content-Type": "application/json; charset=utf-8"},
-    method: "PATCH",
-    body: JSON.stringify(obj)
-  }).then(response => response.json()).then((data) => {
-    console.log('updated data', data)
-    nextStep(data, true)
-  })
 }
 
 if (input) {

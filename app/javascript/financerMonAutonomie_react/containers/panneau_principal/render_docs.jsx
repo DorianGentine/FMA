@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone'
 
-import { fetchProjet, showDocument, validateStep, fetchAPI } from '../actions';
+import { fetchProjet, showDocument, validateStep, fetchAPI } from '../../actions';
 
 class RenderDocs extends Component {
   componentWillMount() {
@@ -12,30 +12,36 @@ class RenderDocs extends Component {
 
   render(){
     const project = this.props.project
+    const project_id = this.props.project_id
     const documents = project.documents
     const etape = this.props.etape
+
+    const fetchAPI = () => {
+      this.props.fetchAPI(this.props.urlAPI)
+    }
+
+    const validateStep = (url, callback) => {
+      this.props.validateStep(url, callback)
+    }
 
     const handleClick = (doc) => {
       this.props.showDocument(doc)
     }
 
-    const checkFiles = () => {
-      let documentsCompleted = 0
+    let documentsCompleted = 0
+    if(documents){
       for (var i = documents.length - 1; i >= 0; i--) {
         if(documents[i].file.url != null){
           documentsCompleted = documentsCompleted + 1
         }
       }
-      console.log("documentsCompleted", documentsCompleted)
-      console.log("documents.length", documents.length)
-      console.log("etape", etape)
+    }
+
+    const checkFiles = () => {
+
       if (documentsCompleted === documents.length && etape === "documentation") {
-        console.log("Congratulatiuons you're here")
-        this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
-          () => {
-            this.props.fetchAPI(this.props.urlAPI)
-          }
-        )
+        console.log("fetchAPI", fetchAPI)
+        validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchAPI() )
       }
     }
 
@@ -48,11 +54,9 @@ class RenderDocs extends Component {
       })
       .then(response => response.json())
       .then(() => {
-        console.log("YEAH")
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
-      }).then(() => {
-        console.log("YEAHBIS")
-        setTimeout(() => {checkFiles()}, 1000)
+      }).then(()=> {
+        checkFiles()
       })
     }
 
@@ -60,11 +64,16 @@ class RenderDocs extends Component {
 
     const readFile = (files, idDoc, randomId) => {
       if (files && files[0]) {
+        // compte le nombre de docs complété après envoi
+        // MAIS PAS BON car si user rajoute le même qu'avant, renvoie
+        // un mauvais chiffre
+        documentsCompleted = documentsCompleted + 1
+
         let newDocName = ""
-        if (files[0].name.length < 15){
+        if (files[0].name.length < 14){
           newDocName = files[0].name
         }else{
-          newDocName = `${files[0].name.substr(0, 15)}...`
+          newDocName = `${files[0].name.substr(0, 14)}...`
         }
         document.getElementById(`document_name${randomId}`).innerText = newDocName
 
@@ -80,21 +89,22 @@ class RenderDocs extends Component {
 
     const renderDocs = () => {
       if(documents != undefined){
-        // checkFiles()
         return documents.map((doc, index) => {
           const idDoc = doc.id
+
           const randomId = Math.floor((Math.random() * 100) + 1);
           let docName = "Aucun document"
           if(doc.file.url != null){
             docName = doc.file.url.substr(doc.file.url.lastIndexOf("/") + 1)
-            if (docName.length > 15){
-              docName = `${docName.substr(0, 15)}...`
+            if (docName.length > 14){
+              docName = `${docName.substr(0, 14)}...`
             }
           }
+
           return (
             <div className="doc-to-send" key={index}>
               <div className="icon-eye float-right" onClick={()=>{handleClick(doc)}}></div>
-              <h4 className="font-14 no-margin">{doc.title}</h4>
+              <h4 className="font-14 no-margin" onClick={()=>{console.log("documents_post", documents[0].file)}}>{doc.title}</h4>
               <p className="black font-12">{doc.description}</p>
               <div className="flex space-between align-items-center">
                 <p className="gray-300 font-12" id={`document_name${randomId}`}>{docName}</p>
