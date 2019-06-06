@@ -5,10 +5,13 @@ class UserPolicy < ApplicationPolicy
     end
   end
   def show?
-    record == user if user.client || user.advisor
-    # TODO
-    # true if user.admin
-    # true if record.user_projects.where(user: user)
+    if user.advisor && user.clients.include?(record)
+      return true
+    elsif user.admin
+      return true
+    else
+      return true if record == user
+    end
   end
 
   def conseiller?
