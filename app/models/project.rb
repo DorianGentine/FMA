@@ -10,7 +10,7 @@ class Project < ApplicationRecord
   before_create :fill_step
 
   enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evalution"]
-
+  # enum progress: ["new", "current", "archive"]
 
   def link_to_advisor(user)
     UserProject.create(user: user, project: self)
