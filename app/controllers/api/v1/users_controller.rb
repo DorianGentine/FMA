@@ -7,7 +7,11 @@ class Api::V1::UsersController < Api::V1::BaseController
       @project = @user.projects.first
       @advisor = @project.is_his_advisor
       @solutions = @project.solutions
+    elsif @user.advisor
+      @url = "https://calendly.com/event_types/user/me"
+      @clients = @user.clients
     end
+    @statut = @user.client ? "client" : @user.admin ? "admin" : "conseiller"
   end
 
   def update

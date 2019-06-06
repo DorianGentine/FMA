@@ -14,15 +14,5 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def conseiller
-    @user = User.find(params[:id])
-    authorize @user
-  end
-
-  def calendly
-    @user = User.find(params[:id])
-    authorize @user
-  end
-
 
 end
