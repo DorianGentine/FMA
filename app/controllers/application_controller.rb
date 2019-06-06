@@ -17,8 +17,7 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource_or_scope)
-      conseiller_user_path(resource_or_scope)
-      user_path(resource_or_scope) || super
+    user_path(resource_or_scope) || super
   end
   def after_sign_up_path_for(resource)
     user_path(resource_or_scope) || super

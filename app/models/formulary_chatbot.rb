@@ -5,6 +5,9 @@ class FormularyChatbot
       "step_0" => step_0(chatbot).merge({id: 1}),
       "step_1" => step_1(chatbot).merge({id: 2}),
       "first_name" => first_name(chatbot).merge({id: 3}),
+      "step_2" => step_2(chatbot).merge({id: 2}),
+      "step_3" => step_3(chatbot).merge({id: 2}),
+      "step_4" => step_4(chatbot).merge({id: 2}),
       "zip_code" => zip_code(chatbot).merge({id: 4}),
       "age" => age(chatbot).merge({id: 5}),
       "is_working" => is_working(chatbot).merge({id: 6}),
@@ -32,6 +35,7 @@ class FormularyChatbot
     }
   end
 
+
   def step_0(chatbot)
     return {
       question: chatbot ? questions_chatbot[:step_0] : questions[:step_0],
@@ -42,7 +46,7 @@ class FormularyChatbot
 
   def wrong_zip_code
     return {
-      question: "Nous sommes désolé mais nous ne prenons pas encore votre département",
+      question: "Notre service n'est pas encore disponible dans votre Département. Nous y travaillons activement. A bientôt",
       position: 0,
       need_answer: false
     }
@@ -56,6 +60,28 @@ class FormularyChatbot
     }
   end
 
+  def step_2(chatbot)
+    return {
+      question: chatbot ? questions_chatbot[:step_2] : questions[:step_2],
+      position: 0,
+      need_answer: false
+    }
+  end
+
+  def step_3(chatbot)
+    return {
+      question: chatbot ? questions_chatbot[:step_3] : questions[:step_3],
+      position: 0,
+      need_answer: false
+    }
+  end
+  def step_4(chatbot)
+    return {
+      question: chatbot ? questions_chatbot[:step_4] : questions[:step_4],
+      position: 0,
+      need_answer: false
+    }
+  end
   def form_completed(chatbot)
     return {
       question: chatbot ? questions_chatbot[:form_completed] : questions[:form_completed],
@@ -95,6 +121,7 @@ class FormularyChatbot
       position: 3
     }
   end
+
   def age(chatbot)
     return {
       question: chatbot ? questions_chatbot[:age] : questions[:age],
@@ -487,11 +514,14 @@ class FormularyChatbot
   def questions_chatbot
       return {
         step_0: "Bonjour...",
-        form_completed: "Merci d'avoir rempli le formulaire, cliquez sur <strong>voir mon analyse</strong> pour avoir un aperçu de vos financeurs",
-        step_1: "Vérifions si votre projet d'adaptation de <strong>logement est éligible</strong> à des fincancements.",
+        # form_completed: "Merci d'avoir rempli le formulaire, cliquez sur <strong>voir mon analyse</strong> pour avoir un aperçu de vos financeurs",
+        step_1: "Vérifions si votre projet d'adaptation de <strong>logement serait éligible</strong> à des financents.",
         # last_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
         first_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
-        zip_code: "Quel est le code postal de votre ville de résidence ?",
+        step_2: "Je vous propose de me donner 5 à 10 minutes pour que je puisse comprendre votre situation.",
+        step_3: "A tout moment, vous pourrez modifier vos réponses en cliquant sur l'icône  <strong><i class='fas fa-pencil-alt'></i></strong>  en bas à gauche de votre message.",
+        step_4: "Des informations complémentaires vous seront parfois proposées si vous cliquez sur le symbôle  <strong> <i class='far fa-question-circle hintClick'></i></strong> .",
+        zip_code: "Quel est le code postal de votre lieu de résidence s'il vous plait ?",
         age: "Parfait, quel est votre date de naissance ?",
         is_working: "Exercez-vous une activité professionnelle ?",
         loss_of_autonomy_receipt: "Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à la date d'anniversaire de vos 60 ans ?",
