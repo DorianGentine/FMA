@@ -116,7 +116,7 @@ class FormularyChatbot
       data: nil,
       need_answer: true,
       errorLabel: "Inserer uniquement les 5 chiffres de votre code postal",
-      start_answer: "Je réside dans le",
+      start_answer: "Je réside à",
       currency: nil,
       position: 3
     }
@@ -482,6 +482,9 @@ class FormularyChatbot
       return {
         step_0: nil,
         step_1: nil,
+        step_2: nil,
+        step_3: nil,
+        step_4: nil,
         form_completed: nil,
         # last_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
         first_name: "Quel est votre prénom ?",
@@ -514,7 +517,6 @@ class FormularyChatbot
   def questions_chatbot
       return {
         step_0: "Bonjour...",
-        # form_completed: "Merci d'avoir rempli le formulaire, cliquez sur <strong>voir mon analyse</strong> pour avoir un aperçu de vos financeurs",
         step_1: "Vérifions si votre projet d'adaptation de <strong>logement serait éligible</strong> à des financents.",
         # last_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
         first_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
@@ -522,28 +524,29 @@ class FormularyChatbot
         step_3: "A tout moment, vous pourrez modifier vos réponses en cliquant sur l'icône  <strong><i class='fas fa-pencil-alt'></i></strong>  en bas à gauche de votre message.",
         step_4: "Des informations complémentaires vous seront parfois proposées si vous cliquez sur le symbôle  <strong> <i class='far fa-question-circle hintClick'></i></strong> .",
         zip_code: "Quel est le code postal de votre lieu de résidence s'il vous plait ?",
-        age: "Parfait, quel est votre date de naissance ?",
-        is_working: "Exercez-vous une activité professionnelle ?",
-        loss_of_autonomy_receipt: "Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à la date d'anniversaire de vos 60 ans ?",
-        occupation: "Quel est votre statut d'occupation dans votre logement ?",
-        holder_occupation: "Quel est le statut d'occupation du titulaire de votre logement ?",
+        age: "Quel est votre date de naissance ?",
+        is_working: "Exercez vous une activité professionnelle ?",
+        loss_of_autonomy_receipt: "Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à vos 60 ans ?",
+        occupation: "Dans votre logement, vous êtes …",
+        holder_occupation: "Le titulaire de votre lieu d'habitation est …",
         lessor: "Quel est le nom du bailleur de votre logement ?",
         accommodation: "Quel est la typologie de votre logement ?",
-        floor: "Résidez vous en rez de chaussée ou en étage ?",
+        floor: "Résidez-vous en rez de chaussée (RDC) ou en étage ?",
         accessibility_with_step: "La porte d'entrée de votre logement est-elle accessible sans que vous n'ayez de marche à franchir ?",
-        type_of_pension: "Concernant votre pension de retraite ou de réversion ?",
+        type_of_pension: "Concernant votre pension de retraite ou de réversion …",
         pension: "Comment se nomme la caisse de retraite principale vous versant votre pension de retraite ou de réversion à titre principal ?",
         supplementary: "Comment se nomme(nt) la ou les caisse(s) de retraite(s) complémentaire(s) vous versant votre pension de retraite complémentaire ou de réversion ?",
         loss_of_autonomy: "A quel Groupe Iso-Ressource ou GIR appartenez-vous ?",
         occupant: "Combien de personne(s) réside(nt) au sein de votre foyer ?",
         owner_is_include: "Le propriétaire de votre logement y vit-il ?",
         has_partner: "Vivez-vous avec un conjoint, concubin ou partenaire de PACS ?",
-        tax_revenue: "Quel est le montant de votre Revenu en € Fiscal de Référence ?",
-        gross_income: "Quel est le montant de votre Revenu en € Brut Global ?",
-        global_tax_revenue: "Quel est le montant du Revenu Fiscal de Référence de l'ensemble de votre foyer ?",
-        household_income: "Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?",
-        owner_tax_revenue: "Quel est le montant du Revenu Fiscal de Référence du propriétaire de votre logement ?",
+        tax_revenue: "Quel est le montant <strong>annuel</strong> de votre Revenu Fiscal de Référence ?",
+        gross_income: "Quel est le montant <strong>annuel</strong> de votre Revenu Brut Global ?",
+        global_tax_revenue: "Quel est le montant <strong>annuel</strong> du Revenu Fiscal de Référence de l'ensemble de votre foyer ?",
+        household_income: "Quel est le montant <strong>annuel</strong> de votre Revenu Brut Global (incluant votre conjoint, concubin ou partenaire de PACS) ?",
+        owner_tax_revenue: "Quel est le montant <strong>annuel</strong> du Revenu Fiscal de Référence du propriétaire de votre logement ?",
         assistant: "Avez-vous déjà perçu ou percevez-vous une de ses aides ou actions sociales ?",
+        form_completed: "Merci d'avoir rempli le formulaire, cliquez sur <strong>voir mon analyse</strong> pour avoir un aperçu de vos financeurs"
       }
 
   end

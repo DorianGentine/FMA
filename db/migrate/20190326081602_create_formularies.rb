@@ -4,6 +4,9 @@ class CreateFormularies < ActiveRecord::Migration[5.2]
       t.boolean :primary, :default => false
       t.references :visitor, foreign_key: true
       t.references :project, foreign_key: true
+      t.string :address
+      t.float :latitude
+      t.float :longitude
       t.string :first_name
       t.string :zip_code
       t.string :age
