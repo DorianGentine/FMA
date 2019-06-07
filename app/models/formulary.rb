@@ -5,7 +5,7 @@ class Formulary < ApplicationRecord
   default_scope {order(created_at: :asc)}
 
   before_create :set_primary
-  before_save :add_answer_from_primary_form, :add_city
+  before_save :add_answer_from_primary_form, :check_zip_change
 
   geocoded_by :zip_code
   after_validation :geocode
@@ -21,6 +21,13 @@ class Formulary < ApplicationRecord
       self.address = city
     else
       self.address = city
+    end
+  end
+
+  def check_zip_change
+    if self.old_zip_code != self.zip_code
+      self.add_city
+      self.old_zip_code = self.zip_code
     end
   end
 
@@ -483,7 +490,7 @@ class Formulary < ApplicationRecord
       first_formulary = first_formulary.first
       Formulary.column_names.each do |column_name|
         ask_again = "ask_again_" + column_name + "?"
-        if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && column_name != "address" && column_name != "latitude" && column_name != "longitude"
+        if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && column_name != "old_zip_code" && column_name != "address" && column_name != "latitude" && column_name != "longitude"
           if !self.send(ask_again)
             self[column_name] = first_formulary[column_name]
           end

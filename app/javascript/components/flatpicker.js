@@ -8,7 +8,7 @@ const flatpicker = () => {
   flatpickr(".datepicker", {
     "locale": French,
     dateFormat: "d/m/Y",
-    defaultDate: "12/12/1953"
+    // defaultDate: "12/12/1953"
   })
 }
 
