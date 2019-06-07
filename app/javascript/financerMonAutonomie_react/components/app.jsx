@@ -20,7 +20,7 @@ class App extends Component {
   render () {
     const api = this.props.api
     console.log("api", api)
-    if(api.beneficiaire == undefined){
+    if(api.statut == undefined){
       return(
         <div className="align-items-center justify-content-center" style={{backgroundColor: "#ecf0f1",}}>
           <h1 className="no-margin">LOADING</h1>
@@ -29,7 +29,7 @@ class App extends Component {
       );
 
     // App beneficiaire
-    }else if(api.beneficiaire){
+    }else if(api.statut === "client"){
       return (
         <div>
           <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
@@ -50,12 +50,29 @@ class App extends Component {
       );
 
       // App conseiller
-    } else if(true){
+    }else if(api.statut === "conseiller"){
+      if(this.props.match.params.menu_nav === "projet"){
+        this.props.match.params.menu_nav = "bureau"
+      }
+
       return (
         <div>
-          <h1>CE N'EST PAS UN BENEFICIAIRE</h1>
+          <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
+          <Volet selectedMenu={this.props.match.params.menu_nav}
+              selectedMenuVolet={this.props.match.params.menu_volet}
+           />
+          <div className="app-container container">
+            <MenuProfil />
+            <PanneauPrincipal
+              selectedMenu={this.props.match.params.menu_nav}
+              selectedMenuVolet={this.props.match.params.menu_volet}
+            />
+          </div>
         </div>
       );
+          // <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
+          //   <div><ModalCote /></div>
+          // </div>
     }
   }
 };
