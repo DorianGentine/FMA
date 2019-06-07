@@ -6,12 +6,14 @@ import PanneauPrincipalProjet from "./panneau_principal/panneau_principal_projet
 
 class PanneauPrincipal extends Component {
   render(){
+    // const statut = this.props.api.statut
+
     const selectedMenu = this.props.selectedMenu
     const selectedMenuVolet = this.props.selectedMenuVolet
 
     if(selectedMenu.toLowerCase() == "projet"){
       return (
-        <div className="container_panneau_principal">
+        <div>
           <PanneauPrincipalProjet />
         </div>
       );
@@ -57,13 +59,19 @@ class PanneauPrincipal extends Component {
           <h1>{selectedMenu}</h1>
         </div>
       );
+    }else if(selectedMenu.toLowerCase() == "bureau"){
+      return (
+        <div>
+          <PanneauPrincipalProjet />
+        </div>
+      );
     }
   }
 };
 
 function mapStateToProps(state) {
   return {
-    project: state.api.project,
+    // api: state.api,
   };
 }
 

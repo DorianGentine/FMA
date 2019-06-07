@@ -11,23 +11,39 @@ import PanneauPrincipalForm from "./panneau_principal_form"
 
 class PanneauPrincipalProjet extends Component {
   render(){
-    const etape = this.props.project.etape
+    const statut = this.props.api.statut
 
-    if(etape.toLowerCase() == "validation_data"){
+    if(statut === "client"){
+      const etape = this.props.api.project.etape
+
+    // App beneficiaire
+      if(etape.toLowerCase() == "validation_data"){
+        return (
+          <div className="row">
+            <PanneauPrincipalForm />
+          </div>
+        );
+      }else{
+        return (
+          <div className="row">
+            <DocumentsSoumettre />
+            <FinanceursPotentiels />
+            <VosReponses />
+            { etape === "progression" || etape === "evaluation" ?
+              <KitDeFinancement /> : null
+            }
+          </div>
+        );
+      }
+
+  // App conseiller
+    }else if(statut === "conseiller"){
       return (
         <div className="row">
-          <PanneauPrincipalForm />
-        </div>
-      );
-    }else{
-      return (
-        <div className="row">
-          <DocumentsSoumettre />
+          <KitDeFinancement appelsProgrammes={true} />
           <FinanceursPotentiels />
           <VosReponses />
-          { etape === "progression" || etape === "evaluation" ?
-            <KitDeFinancement /> : ""
-          }
+          <KitDeFinancement />
         </div>
       );
     }
@@ -36,7 +52,7 @@ class PanneauPrincipalProjet extends Component {
 
 function mapStateToProps(state) {
   return {
-    project: state.api.project,
+    api: state.api,
   };
 }
 
