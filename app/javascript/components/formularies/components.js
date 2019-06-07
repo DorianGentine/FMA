@@ -1,4 +1,5 @@
 import { initSelect2, initSelectize } from '../../components/init_select2';
+import { flatpicker } from '../../components/flatpicker';
 
 import { currencyFormatDE } from "../../components/currency";
 
@@ -54,14 +55,14 @@ const insertQuestion = (question, last = null) => {
     insertHint(question)
     question_send = `
       <div class="message received" data-question="${question.set_up.id}">
-        ${question.set_up.position} - ${question.set_up.question} ${questionMark()}
+        ${question.set_up.question} ${questionMark()}
         ${hint}
       </div>
       `
   } else {
     question_send = `
     <div class="message received" data-question="${question.set_up.id}">
-      ${question.set_up.position} - ${question.set_up.question}
+      ${question.set_up.question}
     </div>`
   }
 
@@ -95,12 +96,11 @@ const createInput = (question, div) => {
   const input = document.createElement("input")
   input.style.width = "calc(100% - 40px)"
   input.classList = "form-control select optional border-0"
+  if (question.set_up.column_name === "age") {
+    input.classList.add("datepicker")
+  }
   input.id = `formulary_${question.set_up.column_name}`
   input.placeholder  = `${question.set_up.placeholder}`
-  // if (question.set_up.column_name === "zip_code") {
-  //   input.id = `flat_address`
-  //   input.id = `flat_address formulary_${question.set_up.column_name}`
-  // }
   input.name = `${question.set_up.column_name}`
   if (question.set_up.type === "number") {
     input.type = "number"
@@ -108,10 +108,19 @@ const createInput = (question, div) => {
   } else {
     input.type = "text"
   }
-  input.value = question.answer
+  if (question.answer ) {
+    if (question.set_up.column_name === "zip_code") {
+      input.value = question.answer.split(', ')[1]
+    } else {
+      input.value = question.answer
+    }
+  }
   input.setAttribute( "data-position", question.set_up.position)
   div.appendChild(input)
-  setTimeout(() => {input.focus()}, 100)
+  // if (question.set_up.column_name != "age") {
+    setTimeout(() => {input.focus()}, 100)
+  // }
+  flatpicker(question)
 }
 
 

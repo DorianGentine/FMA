@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(version: 2019_06_04_075155) do
     t.boolean "primary", default: false
     t.bigint "visitor_id"
     t.bigint "project_id"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.string "first_name"
     t.string "zip_code"
     t.string "age"
