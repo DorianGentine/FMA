@@ -1,7 +1,6 @@
 json.user @user, :first_name, :last_name, :avatar
 json.statut @statut
 
-
 if @user.client
   json.conseiller @advisor, :first_name, :last_name, :avatar, :phone
 
