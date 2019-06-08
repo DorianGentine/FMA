@@ -34,7 +34,7 @@ class MatchSolution
       if key == 4
         value_to_check = his_age(value_to_check)
       elsif key == 10
-        raise
+        value_to_check = check_accommodation(value_to_check)
       elsif key == 17
         value_to_check = set_nbr_of_occupants(value_to_check)
       elsif key == 20 || key == 22 || key == 24
@@ -48,11 +48,16 @@ class MatchSolution
 
 
   def check_verifaction(value, form_value)
+    # raise if value == [1, 2, 3] && form_value == 2
     if value.kind_of?(Array)
-      value.include?(form_value) ? true : false
+      return value.include?(form_value) ? true : false
     else
-      form_value == value ? true : false
+      return form_value == value ? true : false
     end
+  end
+
+  def check_accommodation(value)
+    return value < 4 ? 0 : 1
   end
 
   def his_age(age)
@@ -63,6 +68,7 @@ class MatchSolution
     his_age = now.year - year - ((now.month > month || (now.month == month && now.day >= day)) ? 0 : 1)
     set_age_group(his_age)
   end
+
 
   def set_age_group(his_age)
     return false if his_age.nil?
@@ -100,11 +106,7 @@ class MatchSolution
   def set_tax_brut(form, key)
     # TODO en fonction réponse ADRIEN
     limit = RevenuAnalyze.new(@formulaire).analyze_brut_global
-    if form[key] < limit[:a]
-      return 0
-    else
-      return 1
-    end
+    return form[key] < limit[:a] ? 0 : 1
   end
 
 end

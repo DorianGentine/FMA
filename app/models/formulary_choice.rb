@@ -91,7 +91,7 @@ class FormularyChoice
   }
 
   ASSISTANT = [
-    "0- Prêt à taux 0  (PTZ) au cours des 5 dernière années",
+    "0- Prêt à taux 0 (PTZ) au cours des 5 dernière années",
     "1- Aide pour l'adaptation du logement via l'Allocation Personnalisé à l'Autonomie (APA)",
     "2- Prestation de Compensation du Handicap (PCH)",
     "3- Aide d'une caisse de retraite principale",

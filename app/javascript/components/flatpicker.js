@@ -14,11 +14,13 @@ const flatpicker = () => {
 }
 
 const setFmaColor = () => {
-  document.querySelector(".flatpickr-weekdays").style.backgroundColor = "#2675e5"
-  document.querySelector(".flatpickr-weekday").style.backgroundColor = "#2675e5"
-  document.querySelectorAll(".flatpickr-weekday").forEach((selected)=> selected.style.backgroundColor = "#2675e5")
-  document.querySelector(".flatpickr-month").style.backgroundColor = "#2675e5"
-  document.querySelector(".flatpickr-monthDropdown-months").style.backgroundColor = "#2675e5"
+  if (document.querySelector(".datepicker")) {
+    document.querySelector(".flatpickr-weekdays").style.backgroundColor = "#2675e5"
+    document.querySelector(".flatpickr-weekday").style.backgroundColor = "#2675e5"
+    document.querySelectorAll(".flatpickr-weekday").forEach((selected)=> selected.style.backgroundColor = "#2675e5")
+    document.querySelector(".flatpickr-month").style.backgroundColor = "#2675e5"
+    document.querySelector(".flatpickr-monthDropdown-months").style.backgroundColor = "#2675e5"
+  }
 }
 
 export { flatpicker };

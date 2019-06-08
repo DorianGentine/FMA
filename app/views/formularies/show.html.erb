@@ -31,7 +31,7 @@
 
         <% if @formulary.his_age.present? %>
           <p class="bold black">Quel âge avez-vous ?</p>
-          <p class="margin-bottom-15"><%= @formulary.his_age %> ans</p>
+          <p class="margin-bottom-15"><%= @formulary.his_age %> ans - <%= @formulary.set_age_group %></p>
         <% end %>
 
         <% if @formulary.is_working.present? %>
@@ -61,7 +61,7 @@
 
         <% if @formulary.accommodation.present? %>
           <p class="bold black">Quel est la typologie de votre logement ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::ACCOMMODATION[@formulary.accommodation] %></p>
+          <p class="margin-bottom-15"><%= FormularyChoice::ACCOMMODATION[@formulary.accommodation] %> -  <%= @formulary.type_accommodation %></p>
         <% end %>
 
         <% if @formulary.floor.present? %>
@@ -96,7 +96,7 @@
 
         <% if @formulary.occupant.present? %>
           <p class="bold black">Combien de personne(s) réside(nt) au sein de votre foyer ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::OCCUPANT[@formulary.occupant] %></p>
+          <p class="margin-bottom-15"><%= @formulary.occupant %> - <%= @formulary.set_nbr_of_occupants %> </p>
         <% end %>
 
         <% if @formulary.owner_is_include.present? %>
@@ -126,7 +126,10 @@
 
         <% if @formulary.household_income.present? %>
           <p class="bold black">Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?</p>
-          <p class="margin-bottom-15"><%= @formulary.household_income %></p>
+          <% limit = RevenuAnalyze.new(@formulary).analyze_brut_global %>
+
+
+          <p class="margin-bottom-15"><%= @formulary.household_income %> - <%= @formulary.household_income < limit[:a] ? 0 : 1 %></p>
         <% end %>
 
         <% if @formulary.owner_tax_revenue.present? %>
@@ -145,17 +148,13 @@
     </div>
 
   </div>
-  <!-- Début de widget en ligne Calendly -->
-<!-- <div class="calendly-inline-widget" data-url="https://calendly.com/donatien-rolland/rdv-telephonique" style="min-width:320px;height:580px;"></div> -->
-<!-- Fin de widget en ligne Calendly -->
-<!-- </div> -->
+
 
  <%# @testing_solutions.each do |key, value| %>
     <%# if value != true %>
       <!-- <li><%#= key %> <%#= value %></li> -->
     <%# end %>
 <%# end %>
-
 
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
 <%= render "shared/footer" %>

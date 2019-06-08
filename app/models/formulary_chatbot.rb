@@ -398,7 +398,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Mon revenu fiscal de référence est de",
+      start_answer: "Mon revenu fiscal de référence est de ",
       currency: true,
       position: 20
     }
@@ -413,7 +413,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Mon revenu brut global est de",
+      start_answer: "Mon revenu brut global est de ",
       currency: true,
       position: 21
     }
@@ -428,7 +428,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Mon revenu fiscal de référence est de",
+      start_answer: "Mon revenu fiscal de référence est de ",
       currency: true,
       position: 22
     }
@@ -443,7 +443,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Mon revenu brut global est de",
+      start_answer: "Mon revenu brut global est de ",
       currency: true,
       position: 23
     }
@@ -458,7 +458,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Mon revenu fiscal de référence est de",
+      start_answer: "Mon revenu fiscal de référence est de ",
       currency: true,
       position: 24
     }
