@@ -2,6 +2,7 @@ import { initSelect2, initSelectize } from '../../components/init_select2';
 import { flatpicker } from '../../components/flatpicker';
 
 import { currencyFormatDE } from "../../components/currency";
+import { onClickHint } from "./chatbot";
 
 import initSelectFma from "../select_fma";
 
@@ -29,13 +30,42 @@ const conditionToAnswer = (question) => {
     if (answer == 1) {
       total_answer = question.set_up.start_answer["1"]
     } else {
-      total_answer = question.set_up.start_answer["2"] + answer + " dans le foyer"
+      total_answer = question.set_up.start_answer["2"] + answer + " dans le logement"
     }
   }
   else if (question.set_up.currency ){
-    console.log(question)
     total_answer = question.set_up.start_answer + currencyFormatDE(answer)
   }
+  else if (question.set_up.column_name == "supplementary") {
+    if (answer.split(", ").length > 1) {
+      total_answer = question.set_up.start_answer["more"] + answer
+    } else {total_answer = question.set_up.start_answer["one"] + answer}
+  }
+  else if (question.set_up.start_answer == null) {
+    total_answer = ` ${answer}`
+  }
+  else if (question.set_up.column_name == "loss_of_autonomy") {
+    if (answer == "0- Supérieur à 4" || answer == "1- Inférieur ou égale à 4") {
+      total_answer = `${question.set_up.start_answer} ${answer}`
+    } else {
+      total_answer = `${answer}`
+    }
+  }
+  else if (question.set_up.column_name == "assistant") {
+    if (answer == "5- Non") {
+      total_answer = `${question.set_up.start_answer["none"]} ${answer}`
+    }
+    else if (answer.split(", ").length > 1) {
+      let answers = ""
+      answer.split(", ").forEach((a) => {
+        answers = answers + "<li>"+ a +"</li>"
+      })
+      total_answer = `${question.set_up.start_answer["more"]} <ul> ${answers} </ul>`
+    } else {
+      total_answer = `${question.set_up.start_answer["one"]} ${answer}`
+    }
+  }
+
   else {
     total_answer = `${question.set_up.start_answer} ${answer}`
   }
@@ -46,15 +76,19 @@ const questionMark = () => {
   return '<i class="far fa-question-circle hintClick"></i>'
 }
 
+
+
+
+
 const insertHint = (question) => {
-  hint = `<div class="message hint-message" style="display:none">${question.set_up.hint}</>`
+  hint = `<div class="message hint-message" style="display:none"><em>${question.set_up.hint}</em></>`
 }
 
 const insertQuestion = (question, last = null) => {
   if (question.set_up.hint) {
     insertHint(question)
     question_send = `
-      <div class="message received" data-question="${question.set_up.id}">
+      <div class="message received" data-question="${question.set_up.id}" id="hint_${question.set_up.id}">
         ${question.set_up.question} ${questionMark()}
         ${hint}
       </div>
@@ -67,10 +101,12 @@ const insertQuestion = (question, last = null) => {
   }
 
   form.insertAdjacentHTML("beforeend", question_send);
-  if (last) {
-    // setFormForFormulary(question)
+  if (question.set_up.hint) {
+    document.getElementById(`hint_${question.set_up.id}`).onclick = onClickHint;
   }
 }
+
+
 
 const setNextQuestion = (nex_question) => {
   // const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
@@ -117,10 +153,10 @@ const createInput = (question, div) => {
   }
   input.setAttribute( "data-position", question.set_up.position)
   div.appendChild(input)
-  // if (question.set_up.column_name != "age") {
+  if (question.set_up.column_name != "age") {
     setTimeout(() => {input.focus()}, 100)
-  // }
-  flatpicker(question)
+  }
+  flatpicker()
 }
 
 
@@ -143,9 +179,7 @@ const insertSelectAnswer = (question, div) => {
   const selectFma = document.createElement("div")
   selectFma.classList = "select-fma"
   div.appendChild(selectFma)
-
   const selectList = document.createElement("select")
-  // selectList.style.width = "calc(100% - 40px)"
   selectList.classList = "form-control select optional border-0"
   selectList.id = `formulary_${question.set_up.column_name}`
   selectList.name = `${question.set_up.column_name}`

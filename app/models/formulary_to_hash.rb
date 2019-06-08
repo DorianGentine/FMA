@@ -91,6 +91,8 @@ class FormularyToHash
       if authorize_answer_form?(form, column_name)
         if column_name == "zip_code"
           form.address + ", " + form.zip_code
+        elsif column_name == "age"
+          "#{form.age}, j'ai #{form.his_age} ans"
         else
           form.send(column_name)
         end
