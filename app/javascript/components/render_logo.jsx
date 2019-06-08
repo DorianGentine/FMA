@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import renderInitiale from "./render_initiales"
 
 export default function renderLogo(financer){
-  if(financer.logo != null || financer.avatar.url != null){
+  if(financer.logo != null || financer.avatar && financer.avatar.url != null){
     let url = ""
     if(financer.logo){
       url = financer.logo

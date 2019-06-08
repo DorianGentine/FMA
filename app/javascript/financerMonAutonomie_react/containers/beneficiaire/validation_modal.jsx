@@ -15,9 +15,11 @@ class ValidationModal extends Component {
 
     let textTitre = ""
     let textPrincipal = ""
+    let style = {}
     if(etape === "documentation"){
       textTitre = "Bienvenue sur votre dashboard"
       textPrincipal = `Commencez par envoyer les documents demandés ici !`
+      style = { top: "32px" }
     }else if(etape === "meeting"){
       textTitre = "Félicitations !"
       textPrincipal = `Nous avons bien reçu tous vos documents.
@@ -27,7 +29,7 @@ class ValidationModal extends Component {
     }
 
     return(
-      <div className="validation_modal">
+      <div className="validation_modal" style={style}>
         <div className="validation_modal-point"></div>
         <div className="validation_modal-text" id={`tip_${etape}`}>
           <div className="flex">

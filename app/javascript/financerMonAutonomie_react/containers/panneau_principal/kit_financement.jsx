@@ -50,8 +50,25 @@ class KitDeFinancement extends Component {
                 <p className="col-lg-3 font-12">Michel de Fremont</p>
                 <p className="col-lg-3 font-12">4 Financeurs</p>
                 <p className="col-lg-2 font-12">0630208894</p>
-                <p className="col-lg-1 font-12">coche</p>
-                <p className="col-lg-1 font-12 text-align-right">...</p>
+                <div className="col-lg-1">
+                  <label className="switch">
+                    <input type="checkbox" />
+                    <span className="slider round"></span>
+                  </label>
+                </div>
+                <div className="relative col-lg-1 text-align-right" role="group">
+                  <div
+                    id={`drop-call${"michou"}`}
+                    className="pointer font-12"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">...
+                  </div>
+                  <div className="dropdown-menu drop-menu-call" aria-labelledby={`drop-call${"michou"}`}>
+                    <a href="#">Voir&nbsp;le&nbsp;profil</a>
+                    <a href="#">Envoyer&nbsp;un&nbsp;message</a>
+                  </div>
+                </div>
               </div>
             );
           // });
