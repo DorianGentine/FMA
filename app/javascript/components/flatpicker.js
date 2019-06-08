@@ -10,8 +10,15 @@ const flatpicker = () => {
     dateFormat: "d/m/Y",
     // defaultDate: "12/12/1953"
   })
+  setFmaColor()
 }
 
-
+const setFmaColor = () => {
+  document.querySelector(".flatpickr-weekdays").style.backgroundColor = "#2675e5"
+  document.querySelector(".flatpickr-weekday").style.backgroundColor = "#2675e5"
+  document.querySelectorAll(".flatpickr-weekday").forEach((selected)=> selected.style.backgroundColor = "#2675e5")
+  document.querySelector(".flatpickr-month").style.backgroundColor = "#2675e5"
+  document.querySelector(".flatpickr-monthDropdown-months").style.backgroundColor = "#2675e5"
+}
 
 export { flatpicker };

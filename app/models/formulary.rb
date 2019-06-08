@@ -98,6 +98,7 @@ class Formulary < ApplicationRecord
       return false
     end
   end
+
   def ask_again_holder_occupation?
     false
   end
@@ -469,6 +470,16 @@ class Formulary < ApplicationRecord
   def set_nbr_of_occupants
     return false if self.occupant.nil?
     if self.occupant == 1
+      return 0
+    else
+      return 1
+    end
+  end
+
+  def type_accommodation
+    acco = self.accommodation
+    choice1 = ["T1", "T2", "T3"]
+    if choice1.include?(acco)
       return 0
     else
       return 1

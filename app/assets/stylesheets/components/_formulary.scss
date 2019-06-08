@@ -13,6 +13,7 @@
 }
 
 .message{
+  display: inline-block;
   padding: 15px 30px;
   max-width: 80%;
   transition: 0.5s;
@@ -22,7 +23,9 @@
     color: $blue;
   }
 }
-
+.hintClick {
+  color: $blue;
+}
 .received{
   background-color: $gray-100;
   color: $black;
@@ -32,6 +35,7 @@
 }
 
 .sent{
+  float: right;
   background-color: $blue;
   margin-left: 20%;
   text-align: right;
@@ -39,7 +43,7 @@
   animation: apparition-sent .7s ease-in-out;
 }
 .hint-message {
-  color: $blue;
+  color: $gray;
 }
 
 @keyframes apparition-sent {

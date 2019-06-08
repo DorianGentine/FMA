@@ -35,16 +35,13 @@ const setQuestionAnswer = (question) => {
   }
 }
 
-const onClickHint = () => {
-  let hints = document.querySelectorAll('.hintClick')
-  hints.forEach((hint) => {
-    hint.addEventListener('click', function(event){
-      var message = hint.parentNode.lastElementChild
-      if (message.style.display === 'none') {
-        message.style.display = "block"
-      } else { message.style.display = "none" }
-    })
-  })
+const onClickHint = ({target}) => {
+  console.log("okaaaa")
+  var message = target.parentNode.lastElementChild
+  if (message.style.display === 'none') {
+    message.style.display = "block"
+  } else { message.style.display = "none" }
+  scrollLastMessageIntoView(formulary)
 }
 
 const nextStep = (questions, updated = null, question = null) => {
@@ -74,8 +71,8 @@ const nextStep = (questions, updated = null, question = null) => {
     }, 1000)
   }
   scrollLastMessageIntoView(formulary)
-  onClickHint()
   getEditAnswer(questions)
+  // setTimeout(() => { onClickHint()}, 2000)
 }
 
 
@@ -113,4 +110,4 @@ function fetchFormulary(){
   }
 }
 
-export { fetchFormulary }
+export { fetchFormulary, onClickHint }

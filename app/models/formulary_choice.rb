@@ -33,13 +33,15 @@ class FormularyChoice
     2 => "2- Locataire du parc privé"
   }
   ACCOMMODATION = {
-    0 => "0- T1, T2 ou T3",
-    1 => "1- Strictement supérieur au T3"
+    0 => "T1",
+    1 => "T2",
+    2 => "T3",
+    3 => "> T3"
   }
 
   FLOOR = {
-    0 => "0- Étage",
-    1 => "1- Rez de chaussée"
+    0 => "Étage",
+    1 => "Rez de chaussée"
   }
 
   TYPE_OF_PENSION = {
@@ -49,10 +51,10 @@ class FormularyChoice
   }
 
   LOSS_OF_AUTONOMY = {
-    0 => "0- Strictement supérieur à 4",
+    0 => "0- Supérieur à 4",
     1 => "1- Inférieur ou égale à 4",
-    2 => "2- J'ai disposé d'une évaluation de mon GIR mais je ne le connais plus",
-    3 => "3- Je ne dispose d'aucun GIR"
+    2 => "2- Je ne connais plus mon GIR",
+    3 => "3- Je ne dispose pas de GIR"
   }
 
   OCCUPANT = {
@@ -88,7 +90,14 @@ class FormularyChoice
     2 => "2- Supérieur ou égal à B"
   }
 
-  ASSISTANT = [ "0- un prêt à taux 0 au cours des 5 dernières années", "1- une aide pour l'adaptation du logement via l'APA", "2- un PCH", "3- un dispositif d'action social auprès d'une caisse de retraite principale", "4- une subvention de l'ANAH au cours des 5 dernières années", "5- Rien" ]
+  ASSISTANT = [
+    "0- Prêt à taux 0  (PTZ) au cours des 5 dernière années",
+    "1- Aide pour l'adaptation du logement via l'Allocation Personnalisé à l'Autonomie (APA)",
+    "2- Prestation de Compensation du Handicap (PCH)",
+    "3- Aide d'une caisse de retraite principale",
+    "4- Subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH) au cours des 5 dernière années",
+    "5- Non"
+  ]
 
   YES_NO = {
     0 => "0- Oui",

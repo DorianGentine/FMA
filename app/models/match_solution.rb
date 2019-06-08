@@ -33,6 +33,8 @@ class MatchSolution
       value_to_check = @form[key]
       if key == 4
         value_to_check = his_age(value_to_check)
+      elsif key == 10
+        raise
       elsif key == 17
         value_to_check = set_nbr_of_occupants(value_to_check)
       elsif key == 20 || key == 22 || key == 24

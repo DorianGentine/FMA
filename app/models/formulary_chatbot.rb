@@ -132,7 +132,7 @@ class FormularyChatbot
       placeholder: "dd/mm/aaaa",
       data: nil,
       need_answer: true,
-      start_answer: "Ma date de naissance est le",
+      start_answer: "Je suis né le",
       currency: nil,
       position: 4
     }
@@ -149,8 +149,8 @@ class FormularyChatbot
       need_answer: true,
       start_answer: {
         currency: nil,
-        oui: "Oui, j'excerce une activité professionnelle",
-        non: "Non, je n'excerce pas d'activité professionnelle"
+        oui: "J'exerce une activité professionnelle.",
+        non: "Je n'exerce pas d'activité professionnelle."
       },
       position: 5
     }
@@ -167,8 +167,8 @@ class FormularyChatbot
       need_answer: true,
       start_answer: {
         currency: nil,
-        oui: "Oui, je dispose ces justificatifs",
-        non: "Non, je ne dispose pas ces justificatifs"
+        oui: "Oui, je dispose de ces justificatifs",
+        non: "Non, je ne dispose d'aucun justificatif"
       },
       position: 6
     }
@@ -230,7 +230,7 @@ class FormularyChatbot
       placeholder: "Choisir parmi la liste",
       data: FormularyChoice::ACCOMMODATION,
       need_answer: true,
-      start_answer: "Il s'agit d'un",
+      start_answer: "J'habite dans un logement de type",
       currency: nil,
       position: 10
     }
@@ -245,7 +245,7 @@ class FormularyChatbot
       placeholder: "Choisir parmi la liste",
       data: FormularyChoice::FLOOR,
       need_answer: true,
-      start_answer: "Je réside",
+      start_answer: "Je suis en",
       currency: nil,
       position: 11
     }
@@ -263,8 +263,8 @@ class FormularyChatbot
       need_answer: true,
       currency: nil,
       start_answer: {
-        oui: "Oui, elle est accessible",
-        non: "Non, je dois franchir une marche"
+        oui: "Elle est accessible",
+        non: "Je dois franchir une ou plusieurs marche(s)"
       },
       position: 12
     }
@@ -311,7 +311,10 @@ class FormularyChatbot
       placeholder: "Choisir parmi la liste",
       data: Acteur.list_of("CAISSE DE RETRAITE COMPLÉMENTAIRE").map { |choice| choice.name  },
       need_answer: true,
-      start_answer: "Il s'agit de l'organisme",
+      start_answer: {
+        one: "Il s'agit de l'organisme ",
+        more: "Il s'agit des organismes "
+      },
       currency: nil,
       position: 15
     }
@@ -326,7 +329,7 @@ class FormularyChatbot
       placeholder: "Choisir parmi la liste",
       data: FormularyChoice::LOSS_OF_AUTONOMY,
       need_answer: true,
-      start_answer: "j'appartiens",
+      start_answer: "Mon GIR est",
       currency: nil,
       position: 16
     }
@@ -343,7 +346,7 @@ class FormularyChatbot
       need_answer: true,
       currency: nil,
       start_answer: {
-        "1" => "J'habite seul",
+        "1" => "J'habite seul.",
         "2" => "Nous sommes "
       },
       position: 17
@@ -361,8 +364,8 @@ class FormularyChatbot
       need_answer: true,
       currency: nil,
       start_answer: {
-        oui: "Oui, le propriétaire vit dans le logement",
-        non: "Non, le propriétaire ne vit pas dans le logement"
+        oui: "Oui, le propriétaire du logement y vit.",
+        non: "Non, il n'y vit pas."
       },
       position: 18
     }
@@ -379,8 +382,8 @@ class FormularyChatbot
       need_answer: true,
       currency: nil,
       start_answer: {
-        oui: "Oui, je vis en couple",
-        non: "Non, je ne vis pas en couple"
+        oui: "Je vis avec un conjoint, concubin ou partenaire de PACS.",
+        non: "Je n'occupe pas maritalement mon logement."
       },
       position: 19
     }
@@ -395,7 +398,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Le montant de mon revenu fiscal est de ",
+      start_answer: "Mon revenu fiscal de référence est de",
       currency: true,
       position: 20
     }
@@ -410,7 +413,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Le montant de mon revenu brut global est de ",
+      start_answer: "Mon revenu brut global est de",
       currency: true,
       position: 21
     }
@@ -425,7 +428,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Le montant de mon revenu fiscal de référence de l'ensemble de mon foyer est de ",
+      start_answer: "Mon revenu fiscal de référence est de",
       currency: true,
       position: 22
     }
@@ -440,7 +443,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Le montant de mon revenu brut global de votre ménage est de ",
+      start_answer: "Mon revenu brut global est de",
       currency: true,
       position: 23
     }
@@ -455,7 +458,7 @@ class FormularyChatbot
       placeholder: "Votre revenu en €",
       data: nil,
       need_answer: true,
-      start_answer: "Le montant de mon revenu fiscal du propriétaire est de ",
+      start_answer: "Mon revenu fiscal de référence est de",
       currency: true,
       position: 24
     }
@@ -470,7 +473,11 @@ class FormularyChatbot
       placeholder: "Choisir parmi la liste",
       data: FormularyChoice::ASSISTANT,
       need_answer: true,
-      start_answer: "Je perçois",
+      start_answer: {
+        one: "J'ai perçu l'aide suivante :",
+        more: "J'ai perçu les aides suivantes :",
+        none: "Je n'ai perçu aucune aide ou action sociale."
+      },
       currency: nil,
       position: 25
     }
