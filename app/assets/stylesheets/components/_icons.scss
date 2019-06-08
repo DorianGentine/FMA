@@ -77,5 +77,53 @@
 .icon-eye:hover{
   background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/co_rgb:2675e5,e_colorize:100,f_png,h_50,w_50/v1557384905/icons/eye_yskktm.svg);
 }
+.icon-live{
+  border: 1px solid $black;
+  border-radius: 3px;
+  font-size: 9px;
+  color: $black;
+  padding: 0.5px 1.8px .5px 11.6px;
+  position: relative;
+}
+.icon-live:before{
+  content: "";
+  background-color: red;
+  padding: 4px;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1.8px;
+  opacity: 1;
+  animation: blinker 2s step-start infinite;
+}
+.icon-live:after{
+  content: "LIVE"
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

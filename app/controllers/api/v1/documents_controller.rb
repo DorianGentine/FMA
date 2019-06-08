@@ -11,7 +11,7 @@ class Api::V1::DocumentsController < Api::V1::BaseController
     project = document.project
     document.file = params["uploaded_image"]
     if document.save
-      render json: document
+      render json: project
     end
     authorize project
   end

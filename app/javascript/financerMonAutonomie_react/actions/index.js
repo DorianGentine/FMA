@@ -27,7 +27,7 @@ export function fetchProjet(url) {
   //   .then(r => r.json());
   // }
   // console.log("promise", promise)
-
+  console.log('coucou2')
   return {
     type: FETCH_PROJET,
     payload: promise

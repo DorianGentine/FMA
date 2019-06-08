@@ -79,7 +79,7 @@ const MonActualite = (props) => {
   return (
     <div className="margin-top-30 flex-grow-1">
       <div className="flex black align-items-center margin-bottom-30">
-        <div className="icon-align-left margin-right-15"></div>
+        <div className="icon-live margin-right-15"></div>
         Mon actualité
       </div>
       {renderActus()}

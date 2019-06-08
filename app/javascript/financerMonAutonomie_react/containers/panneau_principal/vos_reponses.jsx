@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import renderLogo from "../../../components/render_logo"
+import renderInitiale from "../../../components/render_initiales"
 
 class VosReponses extends Component {
 
@@ -14,17 +15,11 @@ class VosReponses extends Component {
 
       const renderUsers = () => {
         // return users.map((user, index) => {
-          let numUser = 0
-          if(false){
-            numUser = index
-          }else{
-            numUser = 1
-          };
           return (
             <div className="flex space-between margin-bottom-30" key={user.id}>
-              <div className="navbar-avatar margin-right-15" style={{ marginLeft: 0 }}>{renderInitiale(`${user.first_name} ${user.last_name}`)}</div>
+              <div className="margin-right-15" style={{ marginLeft: 0 }}>{renderLogo(user)}</div>
               <div className="flex-grow-1">
-                <h4 className="font-12 no-margin">Bénéficiaire {numUser}:</h4>
+                <h4 className="font-12 no-margin">Bénéficiaire {1}:</h4>
                 <p className="font-12">{user.first_name} {user.last_name}</p>
               </div>
               <button className="blue-gray-btn">Voir les réponses</button>
@@ -52,7 +47,7 @@ class VosReponses extends Component {
         return clients.map((client, index) => {
           return (
               // <div className="navbar-avatar" style={{ marginLeft: 0 }}></div>
-            <div className="flex space-between margin-bottom-30" key={`${client.first_name}${client.last_name}`}>
+            <div className="flex space-between margin-bottom-15" key={`${client.first_name}${client.last_name}`}>
               {renderLogo(client)}
               <div className="flex-grow-1">
                 <h4 className="font-12 no-margin">{client.first_name} {client.last_name}</h4>
@@ -67,8 +62,9 @@ class VosReponses extends Component {
       return (
         <div className="col-lg-6">
           <div className="white-box flex flex-wrap align-items-center">
-            <h4 className="padding-horizontal-15 no-margin">Vos réponses</h4>
-            <p className="bold font-12 padding-horizontal-15">{`${clients.length} en cours`}</p>
+            <h4 className="padding-horizontal-15 no-margin">Élaboration de kit</h4>
+            <p className="blue font-12 padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${clients.length} en cours`}</p>
+            <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
             <div className="scroll col-lg-12 align-items-center margin-top-15" style={{ height: "145px" }}>
               {renderClients()}
             </div>

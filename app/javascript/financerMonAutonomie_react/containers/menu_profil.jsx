@@ -15,8 +15,8 @@ const MenuProfil = (props) => {
         <div className="pointer navbar-avatar">{renderInitiale(`${user.first_name} ${user.last_name}`)}</div>
       </div>
       <div className="dropdown-menu" aria-labelledby="drop-navbar">
-        <p><Link to={`${props.rootUrl}/compte/identite`}>Mon compte</Link></p>
-        <p><a href="/users/sign_out" rel="nofollow" data-method="delete">Se déconnecter</a></p>
+        <Link to={`${props.rootUrl}/compte/identite`}>Mon compte</Link>
+        <a href="/users/sign_out" rel="nofollow" data-method="delete">Se déconnecter</a>
       </div>
     </div>
   );

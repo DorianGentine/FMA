@@ -45,7 +45,7 @@ class FinanceursPotentiels extends Component {
       const renderRessources = () => {
         // return ressources.map((financer, index) => {
           return (
-            <div className="flex space-between align-items-center margin-bottom-30">
+            <div className="flex space-between align-items-center margin-bottom-15">
               <div className="icon-doc margin-right-15"></div>
               <div className="flex-grow-1">
                 <h4 className="font-12 no-margin">{"La caisse de retraite"}</h4>
@@ -61,7 +61,7 @@ class FinanceursPotentiels extends Component {
         <div className="col-lg-6">
           <div className="white-box flex flex-wrap align-items-center">
             <h4 className="padding-horizontal-15 no-margin">Les ressources</h4>
-            <p className="bold font-12 padding-horizontal-15">{`${2000} ressources`}</p>
+            <p className="blue font-12 padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${2000} ressources`}</p>
             <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
             <div className="scroll col-lg-12 margin-top-15" style={{ height: "145px" }}>
               {renderRessources()}

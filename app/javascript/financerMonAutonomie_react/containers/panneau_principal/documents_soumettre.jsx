@@ -10,12 +10,12 @@ class DocumentsSoumettre extends Component {
     const etape = this.props.etape
     return (
       <div className="col-lg-12 relative">
+        {etape === "documentation" ? <ValidationModal /> : null}
         <div className="white-box flex flex-wrap">
           <h4 className="col-lg-4">Documents à soumettre</h4>
           <p className="blue font-12 col-lg-4">Format PDF, PNG ou JPG</p>
           <RenderDocs />
         </div>
-        {etape === "documentation" ? <ValidationModal /> : null}
       </div>
     );
   }
