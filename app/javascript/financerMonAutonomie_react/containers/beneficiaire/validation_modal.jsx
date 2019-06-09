@@ -5,9 +5,12 @@ import { connect } from 'react-redux';
 class ValidationModal extends Component {
   render(){
     const etape = this.props.etape
-    console.log(etape)
 
     const closeLilModal = () => {
+      fetch(`/api/v1/projects/${this.props.project_id}/display_hint`,
+      {
+        method: "PATCH",
+      })
       const modal = document.getElementById(`tip_${etape}`)
       const point = document.getElementById(`point_${etape}`)
       modal.classList.add('hidden')
@@ -53,6 +56,7 @@ class ValidationModal extends Component {
 function mapStateToProps(state) {
   return {
     etape: state.api.project.etape,
+    project_id: state.project_id,
   };
 }
 
