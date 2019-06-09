@@ -66,12 +66,12 @@ class FormularyToHash
         if questions_to_ask[key][:question].present?
           allow = "allow_" + key + "?"
           if form.respond_to? key
-            hash = { set_up: value, answer: set_answer(form, key)} if form.try(allow) && form.send(allow)
+            hash = { set_up: value, answer: chatbot ? set_answer_for_chatbot(form, key) : set_answer_for_espace(form, key)} if form.try(allow) && form.send(allow)
           else
             hash = { set_up: value, answer: "next", formulary_id: form.id}
           end
           if key == "zip_code" && !form.verify_zip_code
-            hash = { set_up: value, answer: set_answer(form, key)} if form.try(allow) && form.send(allow)
+            hash = { set_up: value, answer: chatbot ? set_answer_for_chatbot(form, key) : set_answer_for_espace(form, key)} if form.try(allow) && form.send(allow)
             array << hash
             hash = { set_up: FormularyChatbot.new.wrong_zip_code, answer: nil}
             array << hash
@@ -86,8 +86,19 @@ class FormularyToHash
   end
 
 
+  def set_answer_for_espace(form, column_name)
+    if form.send(column_name).present?
+      if authorize_answer_form?(form, column_name)
+        form.send(column_name)
+      else
+        FormularyChoice.new.set_collections_formulary[column_name.to_sym][form.send(column_name)].first
+      end
+    else
+      return nil
+    end
+  end
 
-  def set_answer(form, column_name)
+  def set_answer_for_chatbot(form, column_name)
     if form.send(column_name).present?
       if authorize_answer_form?(form, column_name)
         if column_name == "zip_code"
