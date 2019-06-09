@@ -5,6 +5,7 @@ import { French } from "flatpickr/dist/l10n/fr.js"
 
 
 const flatpicker = () => {
+  console.log("YEs? ")
   flatpickr(".datepicker", {
     "locale": French,
     dateFormat: "d/m/Y",
@@ -14,6 +15,7 @@ const flatpicker = () => {
 }
 
 const setFmaColor = () => {
+  console.log("YEs? ")
   if (document.querySelector(".datepicker")) {
     document.querySelector(".flatpickr-weekdays").style.backgroundColor = "#2675e5"
     document.querySelector(".flatpickr-weekday").style.backgroundColor = "#2675e5"
