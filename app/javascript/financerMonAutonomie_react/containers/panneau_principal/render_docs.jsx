@@ -5,16 +5,19 @@ import Dropzone from 'react-dropzone'
 
 import { fetchProjet, showDocument, validateStep, fetchAPI } from '../../actions';
 
+import DocumentsSoumettre from "./documents_soumettre"
+
 class RenderDocs extends Component {
   componentWillMount() {
     this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`);
   }
 
-  render(){
-    const project = this.props.project
-    const project_id = this.props.project_id
-    const documents = project.documents
+
+  componentWillReceiveProps(nextProps) {
+    const documents = this.props.project.documents
+    const nextDocuments = nextProps.project.documents
     const etape = this.props.etape
+    const project_id = this.props.project_id
 
     const fetchAPI = () => {
       this.props.fetchAPI(this.props.urlAPI)
@@ -24,26 +27,38 @@ class RenderDocs extends Component {
       this.props.validateStep(url, callback)
     }
 
+    const checkFiles = () => {
+      let documentsCompleted = 0
+      for (var i = nextDocuments.length - 1; i >= 0; i--) {
+        if(nextDocuments[i].file.url != null){
+          documentsCompleted = documentsCompleted + 1
+        }
+      }
+
+      if (documentsCompleted === documents.length && etape === "documentation") {
+        validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchAPI() )
+        // DocumentsSoumettre.forceUpdate()
+      }
+    }
+
+    if(documents != undefined && documents != nextProps.project.documents){
+      checkFiles()
+    }
+  }
+
+
+  render(){
+    const project = this.props.project
+    const project_id = this.props.project_id
+    const documents = project.documents
+    const etape = this.props.etape
+
+
     const handleClick = (doc) => {
       this.props.showDocument(doc)
     }
 
-    let documentsCompleted = 0
-    if(documents){
-      for (var i = documents.length - 1; i >= 0; i--) {
-        if(documents[i].file.url != null){
-          documentsCompleted = documentsCompleted + 1
-        }
-      }
-    }
 
-    const checkFiles = () => {
-
-      if (documentsCompleted === documents.length && etape === "documentation") {
-        console.log("fetchAPI", fetchAPI)
-        validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchAPI() )
-      }
-    }
 
     const sendImageToController = (formPayLoad, idDoc) => {
       fetch(`/api/v1/documents/${idDoc}`, {
@@ -55,9 +70,10 @@ class RenderDocs extends Component {
       .then(response => response.json())
       .then(() => {
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
-      }).then(()=> {
-        checkFiles()
       })
+      // .then(()=> {
+        // checkFiles()
+      // })
     }
 
 
@@ -67,7 +83,7 @@ class RenderDocs extends Component {
         // compte le nombre de docs complété après envoi
         // MAIS PAS BON car si user rajoute le même qu'avant, renvoie
         // un mauvais chiffre
-        documentsCompleted = documentsCompleted + 1
+        // documentsCompleted = documentsCompleted + 1
 
         let newDocName = ""
         if (files[0].name.length < 14){

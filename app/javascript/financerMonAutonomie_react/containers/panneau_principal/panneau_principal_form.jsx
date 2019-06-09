@@ -57,10 +57,8 @@ class PanneauPrincipalProjet extends Component {
           const formularyIdNewUser = this.props.formulary_ids[this.props.formulary_ids.length-1]
           this.props.changeBeneficiaireForm(formularyIdNewUser)
         }, 500)
-        // .then( setTimeout( () => {this.handleInitialize()}, 500) )
       })
     }else{
-      // console.log("COUCOu2", this.props.formulary_id)
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
       .then(()=>{
         this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
