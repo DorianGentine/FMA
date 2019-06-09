@@ -44,6 +44,7 @@ class FormularyToHash
   def form_json_for_espace
     array = []
     generate_form_with_allow_question(@form, false).each do |question|
+      p "question is #{question}"
       column = question[:set_up][:column_name]
       ask_again = "ask_again_" + column + "?"
       if !@form.primary

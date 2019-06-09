@@ -7,6 +7,19 @@ import { displayCalendly } from "../../actions"
 import ValidationModal from "./validation_modal"
 
 class RdvTel extends Component {
+  // componentWillReceiveProps(nextProps) {
+  //   const statut = this.props.api.statut
+
+  //   if(statut === "client"){
+  //     const etape = this.props.api.project.etape
+
+  //     if(etape != nextProps.api.project.etape){
+  //       RdvTel.forceUpdate()
+  //     }
+  //   }
+
+  // }
+
   render(){
     const statut = this.props.api.statut
 
