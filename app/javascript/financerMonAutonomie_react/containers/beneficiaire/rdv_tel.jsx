@@ -28,7 +28,7 @@ class RdvTel extends Component {
 
         return (
           <div className="relative">
-            <div className="margin-top-30 blue-gray-box" onClick={ etape === "meeting" ? ()=>{handleCalendly()} : "" }>
+            <div className="margin-top-30 blue-gray-box" onClick={ etape === "meeting" ? ()=>{handleCalendly()} : ()=>{} }>
               <div className="icon-calendar"></div>
               <p className="rdv-tel-text">Accédez à votre calendrier <br/><strong>{rdvText}</strong></p>
               <div className="icon-arrow"></div>

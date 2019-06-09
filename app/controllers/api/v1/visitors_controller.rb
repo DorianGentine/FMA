@@ -21,6 +21,9 @@ class Api::V1::VisitorsController < Api::V1::BaseController
     else
       formulary = @visitor.formulary
       formulary.update(form_params)
+      if !formulary.project.validation_data?
+        formulary.project.validation_data!
+      end
     end
     render json: FormularyToHash.new(formulary).form_json
     authorize @visitor
