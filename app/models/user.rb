@@ -38,7 +38,6 @@ class User < ApplicationRecord
     projects.each do |user_project|
       clients << user_project.project.his_client
     end
-
     return clients
   end
 

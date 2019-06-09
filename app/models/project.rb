@@ -1,5 +1,8 @@
 class Project < ApplicationRecord
 
+  has_many :notifications, dependent: :destroy
+  has_many :notes, dependent: :destroy
+
   has_many :user_projects, dependent: :destroy
   has_many :users, through: :user_projects
 
@@ -8,6 +11,7 @@ class Project < ApplicationRecord
   has_many :documents, dependent: :destroy
 
   before_create :fill_step
+
 
   enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evalution"]
   # enum progress: ["new", "current", "archive"]
@@ -43,17 +47,24 @@ class Project < ApplicationRecord
   def change_next_step
     if self.validation_data?
       self.documentation!
+      Notification.create(title:"a valdié ses formulaires", date:Time.now, project: self)
       DocumentAsked.new(self).call
     elsif self.documentation?
       self.meeting!
+      Notification.create(title:"a envoyé les documents", date:Time.now, project: self)
     elsif self.meeting?
       self.call!
+      Notification.create(title:"a confirmé le rdv", date:Time.now, project: self)
     elsif self.call?
       self.progression!
+      Notification.create(title:"a été appelé", date:Time.now, project: self)
     elsif self.progression?
       self.evalution!
+      Notification.create(title:"a obtenu son kit", date:Time.now, project: self)
     end
   end
+
+
 
 end
 
