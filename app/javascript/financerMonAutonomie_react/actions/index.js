@@ -20,14 +20,6 @@ export function fetchAPI(url) {
 export function fetchProjet(url) {
   const promise = fetch(url)
   .then(r => r.json())
-  // .then(callback);
-
-  // if(callback != undefined){
-  // }else{
-  //   promise = fetch(url)
-  //   .then(r => r.json());
-  // }
-  // console.log("promise", promise)
 
   return {
     type: FETCH_PROJET,

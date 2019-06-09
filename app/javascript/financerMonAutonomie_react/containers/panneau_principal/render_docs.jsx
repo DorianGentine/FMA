@@ -3,24 +3,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone'
 
-import { fetchProjet, showDocument, validateStep, fetchAPI } from '../../actions';
+import { fetchProjet, showDocument, validateStep } from '../../actions';
 
-import DocumentsSoumettre from "./documents_soumettre"
+
 
 class RenderDocs extends Component {
-  componentWillMount() {
-    this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`);
-  }
-
-
   componentWillReceiveProps(nextProps) {
     const documents = this.props.project.documents
     const nextDocuments = nextProps.project.documents
     const etape = this.props.etape
     const project_id = this.props.project_id
 
-    const fetchAPI = () => {
-      this.props.fetchAPI(this.props.urlAPI)
+    const fetchProjet = () => {
+      this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
     }
 
     const validateStep = (url, callback) => {
@@ -35,8 +30,11 @@ class RenderDocs extends Component {
         }
       }
 
+      console.log("etape", etape)
+      console.log("documentsCompleted", documentsCompleted)
+
       if (documentsCompleted === documents.length && etape === "documentation") {
-        validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchAPI() )
+        validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchProjet() )
         // DocumentsSoumettre.forceUpdate()
       }
     }
@@ -60,7 +58,7 @@ class RenderDocs extends Component {
 
 
 
-    const sendImageToController = (formPayLoad, idDoc) => {
+    const sendImageToController = (formPayLoad, idDoc, randomId) => {
       fetch(`/api/v1/documents/${idDoc}`, {
         credentials: 'same-origin',
         headers: {},
@@ -70,6 +68,7 @@ class RenderDocs extends Component {
       .then(response => response.json())
       .then(() => {
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
+        document.getElementById(`btn-doc${randomId}`).innerText = "Mettre à jour"
       })
       // .then(()=> {
         // checkFiles()
@@ -94,11 +93,10 @@ class RenderDocs extends Component {
         document.getElementById(`document_name${randomId}`).innerText = newDocName
 
         document.getElementById(`btn-doc${randomId}`).innerText = "Chargement..."
-        setTimeout( ()=>{document.getElementById(`btn-doc${randomId}`).innerText = "Mettre à jour"}, 1000)
 
         let formPayLoad = new FormData();
         formPayLoad.append('uploaded_image', files[0]);
-        sendImageToController(formPayLoad, idDoc)
+        sendImageToController(formPayLoad, idDoc, randomId)
       }
     }
 
@@ -111,7 +109,10 @@ class RenderDocs extends Component {
           const randomId = Math.floor((Math.random() * 100) + 1);
           let docName = "Aucun document"
           if(doc.file.url != null){
-            docName = doc.file.url.substr(doc.file.url.lastIndexOf("/") + 1)
+            const positionSlash = doc.file.url.lastIndexOf("/")
+            const positionUnderScore = doc.file.url.lastIndexOf("_-")
+            const docExtension = doc.file.url.substr(doc.file.url.lastIndexOf("."))
+            docName = doc.file.url.substr(positionSlash + 1, positionUnderScore - positionSlash - 1) + docExtension
             if (docName.length > 14){
               docName = `${docName.substr(0, 14)}...`
             }
@@ -152,14 +153,13 @@ function mapStateToProps(state) {
   return {
     user_id: state.user_id,
     project: state.project,
-    etape: state.api.project.etape,
+    etape: state.project.project.etape,
     project_id: state.project_id,
-    urlAPI: state.urlAPI,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchProjet, showDocument, validateStep, fetchAPI }, dispatch);
+  return bindActionCreators({ fetchProjet, showDocument, validateStep }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RenderDocs);

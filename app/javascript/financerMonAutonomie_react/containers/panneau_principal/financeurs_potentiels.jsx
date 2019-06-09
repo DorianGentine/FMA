@@ -10,7 +10,7 @@ class FinanceursPotentiels extends Component {
     const statut = this.props.api.statut
 
     if(statut === "client"){
-      const financers = this.props.api.financers
+      const financers = this.props.project.financers
 
       const renderFinanceurs = () => {
         return financers.map((financer, index) => {
@@ -76,6 +76,7 @@ class FinanceursPotentiels extends Component {
 function mapStateToProps(state) {
   return {
     api: state.api,
+    project: state.project,
   };
 }
 

@@ -4,10 +4,14 @@ import { connect } from 'react-redux';
 
 class ValidationModal extends Component {
   render(){
-    const etape = this.props.etape
-    console.log(etape)
+    const etape = this.props.project.etape
+    const hint = this.props.project.hint
 
     const closeLilModal = () => {
+      fetch(`/api/v1/projects/${this.props.project_id}/display_hint`,
+      {
+        method: "PATCH",
+      })
       const modal = document.getElementById(`tip_${etape}`)
       const point = document.getElementById(`point_${etape}`)
       modal.classList.add('hidden')
@@ -37,8 +41,8 @@ class ValidationModal extends Component {
 
     return(
       <div className="validation_modal" style={style}>
-        <div className="validation_modal-point" id={`point_${etape}`} onClick={toggleLilModal}></div>
-        <div className="validation_modal-text" id={`tip_${etape}`}>
+        <div className={`validation_modal-point ${ hint ? "" : "hidden"}`} id={`point_${etape}`} onClick={toggleLilModal}></div>
+        <div className={`validation_modal-text ${ hint ? "" : "hidden"}`} id={`tip_${etape}`}>
           <div className="flex">
             <p className="white flex-grow-1 margin-right-15 bold">{textTitre}</p>
             <i className="fas fa-times white text-align-right align-center" onClick={closeLilModal}></i>
@@ -52,7 +56,8 @@ class ValidationModal extends Component {
 
 function mapStateToProps(state) {
   return {
-    etape: state.api.project.etape,
+    project: state.project.project,
+    project_id: state.project_id,
   };
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchAPI } from '../actions';
+import { fetchAPI, fetchProjet } from '../actions';
 
 import AppNavbar from "../containers/app_navbar"
 import Volet from "../containers/volet"
@@ -13,14 +13,31 @@ import ModalCote from "../containers/modal_cote"
 class App extends Component {
 
   componentWillMount() {
-    this.props.fetchAPI(this.props.urlAPI);
+    this.props.fetchAPI(this.props.urlAPI)
+    const b = () => {this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)}
+
+    const projetFetch = setInterval(()=>{a(this.props.project_id, b)}, 100)
+
+    function a(project_id, b){
+      if(project_id){
+        clearInterval(projetFetch)
+        b()
+      }
+    }
   }
 
 
   render () {
+
+    // if(this.props.project_id != null){
+    //   console.log("coucou")
+    //   this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
+    // }
+
     const api = this.props.api
-    console.log("api", api)
-    if(api.statut == undefined){
+    const project = this.props.project
+
+    if(api.statut == undefined || project == null){
       return(
         <div className="align-items-center justify-content-center" style={{backgroundColor: "#ecf0f1",}}>
           <h1 className="no-margin">LOADING</h1>
@@ -82,11 +99,13 @@ function mapStateToProps(state) {
     urlAPI: state.urlAPI,
     api: state.api,
     modal_opened: state.modal_opened,
+    project_id: state.project_id,
+    project: state.project,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAPI }, dispatch);
+  return bindActionCreators({ fetchAPI, fetchProjet }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

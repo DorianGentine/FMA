@@ -19,7 +19,7 @@ class VoletProjet extends Component {
         {statut === "client" ? <RdvTel /> : <ApercuProjet />}
         {statut === "client" ? <ApercuProjet /> : <RdvTel />}
         {statut === "client" ? <Evaluation /> : null}
-        {statut === "conseiller" ? <MonActualite /> : null}
+        {statut === "client" ? null : <MonActualite />}
       </div>
     )
   }

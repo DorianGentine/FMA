@@ -25,7 +25,7 @@ class RdvTel extends Component {
 
     // App beneficiaire
       if(statut === "client"){
-        const etape = this.props.api.project.etape
+        const etape = this.props.project.project.etape
         let rdvText = ""
         if(etape === "validation_data" || etape === "documentation"){
           rdvText = "Fixez votre RDV à l'étape 3"
@@ -67,6 +67,7 @@ class RdvTel extends Component {
 function mapStateToProps(state) {
   return {
     api: state.api,
+    project: state.project,
     stateCalendly: state.stateCalendly,
   };
 }
