@@ -8,6 +8,7 @@ import FinanceursPotentiels from "./financeurs_potentiels"
 import VosReponses from "./vos_reponses"
 import KitDeFinancement from "./kit_financement"
 import PanneauPrincipalForm from "./panneau_principal_form"
+import WidgetCalendly from "./widget_calendly"
 
 class PanneauPrincipalProjet extends Component {
   render(){
@@ -23,9 +24,9 @@ class PanneauPrincipalProjet extends Component {
             <PanneauPrincipalForm />
           </div>
         );
-      }else{
+      }else if(!this.props.stateCalendly){
         return (
-          <div className="row">
+          <div className="row panneau_projet">
             <DocumentsSoumettre />
             <FinanceursPotentiels />
             <VosReponses />
@@ -34,6 +35,8 @@ class PanneauPrincipalProjet extends Component {
             }
           </div>
         );
+      }else{
+        return <WidgetCalendly />
       }
 
   // App conseiller
@@ -53,6 +56,7 @@ class PanneauPrincipalProjet extends Component {
 function mapStateToProps(state) {
   return {
     api: state.api,
+    stateCalendly: state.stateCalendly,
   };
 }
 

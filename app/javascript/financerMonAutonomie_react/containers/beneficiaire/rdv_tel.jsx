@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { displayCalendly } from "../../actions"
+
 import ValidationModal from "./validation_modal"
 
 class RdvTel extends Component {
@@ -20,11 +22,17 @@ class RdvTel extends Component {
           rdvText = "TODO: Insérer date RDV"
         }
 
+        const handleCalendly = () => {
+          this.props.displayCalendly(this.props.stateCalendly)
+        }
+
         return (
-          <div className="margin-top-30 blue-gray-box relative">
-            <div className="icon-calendar"></div>
-            <p className="rdv-tel-text">Accédez à votre calendrier <br/><strong>{rdvText}</strong></p>
-            <div className="icon-arrow"></div>
+          <div className="relative">
+            <div className="margin-top-30 blue-gray-box" onClick={ etape === "meeting" ? ()=>{handleCalendly()} : "" }>
+              <div className="icon-calendar"></div>
+              <p className="rdv-tel-text">Accédez à votre calendrier <br/><strong>{rdvText}</strong></p>
+              <div className="icon-arrow"></div>
+            </div>
             {etape === "meeting" ? <ValidationModal /> : null}
           </div>
         );
@@ -46,11 +54,12 @@ class RdvTel extends Component {
 function mapStateToProps(state) {
   return {
     api: state.api,
+    stateCalendly: state.stateCalendly,
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ validateStep, fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ displayCalendly }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(RdvTel);
+export default connect(mapStateToProps, mapDispatchToProps)(RdvTel);

@@ -6,6 +6,7 @@ export const CHANGE_BENEFICIAIRE = 'CHANGE_BENEFICIAIRE';
 export const FETCH_PROJET = 'FETCH_PROJET';
 export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const DISPLAY_CALENDLY = 'DISPLAY_CALENDLY';
 
 export function fetchAPI(url) {
   const promise = fetch(url).then(r => r.json());
@@ -27,7 +28,7 @@ export function fetchProjet(url) {
   //   .then(r => r.json());
   // }
   // console.log("promise", promise)
-  console.log('coucou2')
+
   return {
     type: FETCH_PROJET,
     payload: promise
@@ -110,6 +111,20 @@ export function closeModal() {
   return {
     type: CLOSE_MODAL,
     payload: null
+  };
+}
+
+export function displayCalendly(stateCalendly) {
+  let toggleCalendly
+  if(stateCalendly === true){
+    toggleCalendly = false
+  }else{
+    toggleCalendly = true
+  }
+
+  return {
+    type: DISPLAY_CALENDLY,
+    payload: toggleCalendly
   };
 }
 
