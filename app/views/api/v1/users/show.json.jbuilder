@@ -22,6 +22,11 @@ if @user.client
   end
 elsif @user.advisor
   json.agenda @url
+  json.notifications @user.notifications.order(:date) do |notification|
+    json.user notification.project.his_client.first_name
+    json.title notification.title
+    json.time distance_of_time_in_words(notification.date, Time.now)
+  end
 
   json.clients @clients do |client|
     json.extract! client, :id, :avatar, :last_name, :first_name, :phone

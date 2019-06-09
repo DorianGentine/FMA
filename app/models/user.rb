@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects, dependent: :destroy
+  has_many :notifications, through: :projects, dependent: :destroy
 
   def link_to_project(project)
     UserProject.create(user: self, project: project, client: self.client)
@@ -33,9 +34,9 @@ class User < ApplicationRecord
   end
 
   def clients
-    projects = UserProject.where(user: self, client: false)
+    user_projects = UserProject.where(user: self, client: false)
     clients = []
-    projects.each do |user_project|
+    user_projects.each do |user_project|
       clients << user_project.project.his_client
     end
     return clients
