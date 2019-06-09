@@ -133,7 +133,7 @@ const createInput = (question, div) => {
   input.style.width = "calc(100% - 40px)"
   input.classList = "form-control select optional border-0"
   if (question.set_up.column_name === "age") {
-    input.classList.add("datepicker")
+    // input.classList.add("datepicker")
   }
   input.id = `formulary_${question.set_up.column_name}`
   input.placeholder  = `${question.set_up.placeholder}`
