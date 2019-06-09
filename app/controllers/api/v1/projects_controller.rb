@@ -1,10 +1,17 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
   before_action :authenticate_user!
-  before_action :set_project, only: [:show, :next_setp]
+  before_action :set_project, only: [:show, :next_setp, :display_hint]
 
 
   def show
 
+  end
+
+  def display_hint
+    if @project.hint
+      @project.hint = false
+      @project.save
+    end
   end
 
   def next_setp
