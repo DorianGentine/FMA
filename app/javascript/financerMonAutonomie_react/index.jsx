@@ -23,6 +23,7 @@
   import modalSelectedReducer from './reducers/modal_selected_reducer';
   import projectIdReducer from './reducers/project_id_reducer';
   import projectReducer from './reducers/project_reducer';
+  import stateCalendlyReducer from './reducers/state_calendly_reducer';
 
 const app = document.getElementById('app')
 if(app){
@@ -43,6 +44,7 @@ if(app){
     project: {},
     project_id: {},
     rootUrl: rootUrl,
+    stateCalendly: false,
     urlAPI: urlAPI,
     user_id: user_id,
   };
@@ -57,6 +59,7 @@ if(app){
     project: projectReducer,
     project_id: projectIdReducer,
     rootUrl: identityReducer,
+    stateCalendly: stateCalendlyReducer,
     urlAPI: identityReducer,
     user_id: identityReducer,
   });

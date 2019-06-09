@@ -2,3 +2,11 @@
   padding: 30px 60px;
 }
 
+.panneau_projet {
+  opacity: 1;
+  transition: .5s;
+}
+.panneau_projet_hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}

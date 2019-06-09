@@ -9,8 +9,15 @@ class ValidationModal extends Component {
 
     const closeLilModal = () => {
       const modal = document.getElementById(`tip_${etape}`)
-      modal.style.opacity = 0
-      setTimeout( () => {modal.style.display = "none"}, 600 )
+      const point = document.getElementById(`point_${etape}`)
+      modal.classList.add('hidden')
+      point.classList.add('hidden')
+    }
+    const toggleLilModal = () => {
+      const modal = document.getElementById(`tip_${etape}`)
+      const point = document.getElementById(`point_${etape}`)
+      modal.classList.toggle('hidden')
+      point.classList.toggle('hidden')
     }
 
     let textTitre = ""
@@ -30,7 +37,7 @@ class ValidationModal extends Component {
 
     return(
       <div className="validation_modal" style={style}>
-        <div className="validation_modal-point"></div>
+        <div className="validation_modal-point" id={`point_${etape}`} onClick={toggleLilModal}></div>
         <div className="validation_modal-text" id={`tip_${etape}`}>
           <div className="flex">
             <p className="white flex-grow-1 margin-right-15 bold">{textTitre}</p>
