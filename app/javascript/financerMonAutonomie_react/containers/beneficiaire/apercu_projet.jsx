@@ -1,35 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-const ApercuProjet = (props) => {
-  const statut = props.api.statut
+import { fetchProjet } from '../../actions';
 
-  // App client
-    if(statut === "client"){
-      const project = props.api.project
-      const financers = props.api.financers
+class ApercuProjet extends Component {
+  // componentWillMount() {
+  //   this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`);
+  // }
 
-      const mydate = new Date(project.date_de_creation);
-      const month = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"][mydate.getMonth()];
-      const dateInscription = mydate.getDate() + ' ' + month + ' ' + mydate.getFullYear();
+  render(){
+    const statut = this.props.api.statut
 
-      return (
-        <div className="margin-top-30">
-          <div className="flex black align-items-center">
-            <div className="icon-align-left margin-right-15"></div>
-            Détails du projet
+    // App client
+      if(statut === "client"){
+        const project = this.props.project
+        const financers = project.financers
+        // console.log("project", project)
+
+        const mydate = new Date(project.project.date_de_creation);
+        const month = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"][mydate.getMonth()];
+        const dateInscription = mydate.getDate() + ' ' + month + ' ' + mydate.getFullYear();
+
+        return (
+          <div className="margin-top-30">
+            <div className="flex black align-items-center">
+              <div className="icon-align-left margin-right-15"></div>
+              Détails du projet
+            </div>
+            <div className="row margin-top-30">
+              <p className="col-lg-6 font-14">Date d'inscription</p>
+              <p className="col-lg-6 font-14 text-align-right blue bold">{dateInscription}</p>
+              <p className="col-lg-6 font-14">Financeurs</p>
+              <p className="col-lg-6 font-14 bold text-align-right black">+ {financers.length}</p>
+            </div>
           </div>
-          <div className="row margin-top-30">
-            <p className="col-lg-6 font-14">Date d'inscription</p>
-            <p className="col-lg-6 font-14 text-align-right blue bold">{dateInscription}</p>
-            <p className="col-lg-6 font-14">Financeurs</p>
-            <p className="col-lg-6 font-14 bold text-align-right black">+ {financers.length}</p>
-          </div>
-        </div>
-      );
+        );
 
-  // App conseiller
+    // App conseiller
     }else if(statut === "conseiller"){
       return (
         <div className="margin-top-30">
@@ -46,16 +54,19 @@ const ApercuProjet = (props) => {
         </div>
       );
     }
+  }
 };
 
 function mapStateToProps(state) {
   return {
     api: state.api,
+    project: state.project,
+    project_id: state.project_id
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchProjet }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(ApercuProjet);
+export default connect(mapStateToProps, mapDispatchToProps)(ApercuProjet);

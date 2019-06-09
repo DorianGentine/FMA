@@ -15,7 +15,7 @@ class PanneauPrincipalProjet extends Component {
     const statut = this.props.api.statut
 
     if(statut === "client"){
-      const etape = this.props.api.project.etape
+      const etape = this.props.project.project.etape
 
     // App beneficiaire
       if(etape.toLowerCase() == "validation_data"){
@@ -56,6 +56,7 @@ class PanneauPrincipalProjet extends Component {
 function mapStateToProps(state) {
   return {
     api: state.api,
+    project: state.project,
     stateCalendly: state.stateCalendly,
   };
 }

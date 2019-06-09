@@ -23,7 +23,7 @@ class DocumentsSoumettre extends Component {
 
 function mapStateToProps(state) {
   return {
-    etape: state.api.project.etape,
+    etape: state.project.project.etape,
   };
 }
 

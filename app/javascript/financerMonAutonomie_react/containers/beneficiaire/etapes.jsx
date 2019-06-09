@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class Etapes extends Component {
   render(){
-    const etape = this.props.project.etape
+    const etape = this.props.project.project.etape
     let numEtape;
     let nomEtape;
     const calculEtape = () => {
@@ -65,7 +65,7 @@ class Etapes extends Component {
 
 function mapStateToProps(state) {
   return {
-    project: state.api.project,
+    project: state.project,
   };
 }
 

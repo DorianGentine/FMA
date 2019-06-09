@@ -3,24 +3,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone'
 
-import { fetchProjet, showDocument, validateStep, fetchAPI } from '../../actions';
+import { fetchProjet, showDocument, validateStep } from '../../actions';
 
-import DocumentsSoumettre from "./documents_soumettre"
+
 
 class RenderDocs extends Component {
-  componentWillMount() {
-    this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`);
-  }
-
-
   componentWillReceiveProps(nextProps) {
     const documents = this.props.project.documents
     const nextDocuments = nextProps.project.documents
     const etape = this.props.etape
     const project_id = this.props.project_id
 
-    const fetchAPI = () => {
-      this.props.fetchAPI(this.props.urlAPI)
+    const fetchProjet = () => {
+      this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
     }
 
     const validateStep = (url, callback) => {
@@ -35,8 +30,11 @@ class RenderDocs extends Component {
         }
       }
 
+      console.log("etape", etape)
+      console.log("documentsCompleted", documentsCompleted)
+
       if (documentsCompleted === documents.length && etape === "documentation") {
-        validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchAPI() )
+        validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchProjet() )
         // DocumentsSoumettre.forceUpdate()
       }
     }
@@ -155,14 +153,13 @@ function mapStateToProps(state) {
   return {
     user_id: state.user_id,
     project: state.project,
-    etape: state.api.project.etape,
+    etape: state.project.project.etape,
     project_id: state.project_id,
-    urlAPI: state.urlAPI,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchProjet, showDocument, validateStep, fetchAPI }, dispatch);
+  return bindActionCreators({ fetchProjet, showDocument, validateStep }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RenderDocs);

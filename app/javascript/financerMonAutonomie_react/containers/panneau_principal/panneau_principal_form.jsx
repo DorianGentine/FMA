@@ -8,6 +8,7 @@ import DropdownList from 'react-widgets/lib/DropdownList'
 import {
   fetchAPI,
   fetchFORM,
+  fetchProjet,
   fetchPostForm,
   validateStep,
   changeBeneficiaireForm,
@@ -74,6 +75,7 @@ class PanneauPrincipalProjet extends Component {
 
   render(){
     const submitButton = document.getElementById('btn-validation-infos')
+    const etape = this.props.project.project.etape
 
     const renderOptions = (data) => {
       let options = []
@@ -245,11 +247,11 @@ class PanneauPrincipalProjet extends Component {
           </form>
           <h2
             className="width-fit-content btn-blue margin-top-60 margin-bottom-30 margin-left-auto"
-            onClick={() => {
+            onClick={ etape === "validation_data" ? () => {
               this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
-                () => { this.props.fetchAPI(this.props.urlAPI) }
+                () => { this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`) }
               )
-            }}>
+            } : ()=>{} }>
               Je valide mes réponses et je passe à la prochaine étape <i className="fas fa-arrow-right"></i>
           </h2>
         </div>
@@ -261,9 +263,10 @@ class PanneauPrincipalProjet extends Component {
 function mapStateToProps(state) {
   return {
     formulary_id: state.formulary_id,
-    formulary_ids: state.api.project.formulary_ids,
+    formulary_ids: state.project.project.formulary_ids,
     formResults: state.formResults,
     project_id: state.project_id,
+    project: state.project,
     urlAPI: state.urlAPI,
   };
 }
@@ -272,6 +275,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     fetchAPI,
     fetchFORM,
+    fetchProjet,
     fetchPostForm,
     validateStep,
     changeBeneficiaireForm,
