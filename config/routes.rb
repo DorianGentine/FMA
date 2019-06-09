@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       resources :projects, only: [ :show, :update ] do
         member do
           patch :next_setp
+          patch :display_hint
         end
         resources :formularies, only: [ :new, :create ]
       end
