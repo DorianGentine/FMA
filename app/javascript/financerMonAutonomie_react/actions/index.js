@@ -1,5 +1,6 @@
 export const FETCH_API = 'FETCH_API';
 export const FETCH_FORM = 'FETCH_FORM';
+export const POST_COMPTE = 'POST_COMPTE';
 export const POST_FORM = 'POST_FORM';
 export const VALIDATE_STEP = 'VALIDATE_STEP';
 export const CHANGE_BENEFICIAIRE = 'CHANGE_BENEFICIAIRE';
@@ -36,13 +37,14 @@ export function fetchFORM(url) {
   };
 }
 
-export function fetchPostCompte(url, body) {
+export function fetchPostCompte(url, body, method) {
   const request = fetch(url,
      {
-      method: "PATCH",
+      method: method,
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(body)
     }).then(response => response.json())
+
   return {
     type: POST_COMPTE,
     payload: request
