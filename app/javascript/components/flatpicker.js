@@ -7,8 +7,8 @@ import { French } from "flatpickr/dist/l10n/fr.js"
 const flatpicker = () => {
   console.log("YEs? ")
   flatpickr(".datepicker", {
-    "locale": French,
-    dateFormat: "d/m/Y",
+    // "locale": French,
+    // dateFormat: "d/m/Y",
     // defaultDate: "12/12/1953"
   })
   setFmaColor()
