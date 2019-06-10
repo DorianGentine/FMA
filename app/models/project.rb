@@ -62,6 +62,8 @@ class Project < ApplicationRecord
       self.evalution!
       Notification.create(title:"a obtenu son kit", date:Time.now, project: self)
     end
+    self.hint = true
+    self.save
   end
 
 
