@@ -47,7 +47,7 @@ class ApercuProjet extends Component {
           </div>
           <div className="row margin-top-30">
             <p className="col-lg-6 font-14">Clients</p>
-            <p className="col-lg-6 font-14 text-align-right black bold">{`${props.api.clients.length} en cours`}</p>
+            <p className="col-lg-6 font-14 text-align-right black bold">{`${this.props.api.clients.length} en cours`}</p>
             <p className="col-lg-8 font-14">Demandes spécifiques</p>
             <p className="col-lg-4 font-14 text-align-right black bold">{`${"X"} en cours`}</p>
           </div>

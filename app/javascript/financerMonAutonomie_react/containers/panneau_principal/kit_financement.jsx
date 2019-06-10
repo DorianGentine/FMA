@@ -26,7 +26,7 @@ class KitDeFinancement extends Component {
             <h4 className="col-lg-6">Découvrez votre kit de financement</h4>
             <p className="bold col-lg-1">2</p>
             <a className="col-lg-5 text-align-right font-12" href="#">Tout télécharger</a>
-            <div className="bordure-bas flex width-100" style={{margin: "0 15px"}}>
+            <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
               <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Catégorie</p>
               <p className="col-lg-4 font-12">Nom du fichier</p>
               <p className="col-lg-3 font-12">Financeurs éligibles</p>
@@ -80,7 +80,7 @@ class KitDeFinancement extends Component {
               <h4 className="padding-horizontal-15 no-margin">Appels programmés</h4>
               <p className="blue padding-horizontal-15">{`${3} appels aujourd'hui`}</p>
               <p className="padding-horizontal-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
-              <div className="bordure-bas flex width-100" style={{margin: "0 15px"}}>
+              <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
                 <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Heure</p>
                 <p className="col-lg-3 font-12">Nom</p>
                 <p className="col-lg-3 font-12">Financeurs éligibles</p>
@@ -114,7 +114,7 @@ class KitDeFinancement extends Component {
               <h4 className="padding-horizontal-15 no-margin">Liste des financeurs</h4>
               <p className="bold padding-horizontal-15">{`${10}`}</p>
               <a className="padding-horizontal-15 text-align-right font-12 flex-grow-1" href="#">Rechercher un financeur</a>
-              <div className="bordure-bas flex width-100" style={{margin: "0 15px"}}>
+              <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
                 <p className="col-lg-3 font-12" style={{paddingLeft: 0}}>Nom</p>
                 <p className="col-lg-9 font-12" style={{paddingRight: 0}}>Description</p>
               </div>

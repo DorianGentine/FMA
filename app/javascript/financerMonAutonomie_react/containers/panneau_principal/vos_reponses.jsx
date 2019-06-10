@@ -47,14 +47,14 @@ class VosReponses extends Component {
         return clients.map((client, index) => {
           return (
               // <div className="navbar-avatar" style={{ marginLeft: 0 }}></div>
-            <div className="flex space-between margin-bottom-15" key={`${client.first_name}${client.last_name}`}>
+            <div className="flex space-between margin-bottom-15" key={`${client.client}`}>
               {renderLogo(client)}
               <div className="flex-grow-1">
                 <h4 className="font-12 no-margin">{client.first_name} {client.last_name}</h4>
-                <p className="font-12">{`${client.financers.length} financeurs | `}</p>
               </div>
               <button className="blue-gray-btn">Compléter</button>
             </div>
+                // <p className="font-12">{`${client.financers.length} financeurs | `}</p>
           );
         });
       };
