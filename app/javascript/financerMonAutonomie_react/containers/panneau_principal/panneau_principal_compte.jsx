@@ -91,13 +91,6 @@ class PanneauPrincipalCompte extends Component {
                     type="date"
                     component={renderField}
                   />
-                  <Field
-                    label="Sexe"
-                    name={"gender"}
-                    type="text"
-                    component={renderField}
-                    hint="(Nous ne communiquons pas ces informations. Elles ne sont utilisées que pour mieux vous connaître et/ou vous fournir des baromètres plus pertinents)."
-                  />
                   <button
                     className="float-right btn-blue"
                     type="submit"
@@ -108,6 +101,13 @@ class PanneauPrincipalCompte extends Component {
               </div>
             </div>
           </div>
+                  // <Field
+                  //   label="Sexe"
+                  //   name={"gender"}
+                  //   type="text"
+                  //   component={renderField}
+                  //   hint="(Nous ne communiquons pas ces informations. Elles ne sont utilisées que pour mieux vous connaître et/ou vous fournir des baromètres plus pertinents)."
+                  // />
         )
       }
       case "email": {
@@ -124,9 +124,9 @@ class PanneauPrincipalCompte extends Component {
                     component={renderField}
                   />
                   <Field
-                    label="Confirmer Email"
-                    name={"mail-confirmation"}
-                    type="email"
+                    label="Mot de passe actuel"
+                    name={"password"}
+                    type="password"
                     component={renderField}
                   />
                   <button
