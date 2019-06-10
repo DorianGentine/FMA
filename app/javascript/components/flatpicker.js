@@ -1,7 +1,7 @@
 import flatpickr from "flatpickr"
 import "flatpickr/dist/flatpickr.min.css" // Note this is important!
-require("flatpickr/dist/themes/material_blue.css");
-import { French } from "flatpickr/dist/l10n/fr.js"
+// require("flatpickr/dist/themes/material_blue.css");
+// import { French } from "flatpickr/dist/l10n/fr.js"
 
 
 const flatpicker = () => {
