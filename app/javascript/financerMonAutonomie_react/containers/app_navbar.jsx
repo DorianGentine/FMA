@@ -66,7 +66,7 @@ class AppNavbar extends Component {
               <i className="far fa-user"></i>
               <p>Demandes</p>
             </Link>
-            <Link className={`btn-app-navbar margin-top-30 ${active("compte")}`} to={`${this.props.rootUrl}/compte`}>
+            <Link className={`btn-app-navbar margin-top-30 ${active("compte")}`} to={`${this.props.rootUrl}/compte/identite`}>
               <i className="far fa-user"></i>
               <p>Compte</p>
             </Link>

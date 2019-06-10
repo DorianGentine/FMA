@@ -36,6 +36,20 @@ export function fetchFORM(url) {
   };
 }
 
+export function fetchPostCompte(url, body) {
+  const request = fetch(url,
+     {
+      method: "PATCH",
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    }).then(response => response.json())
+  return {
+    type: POST_COMPTE,
+    payload: request
+  };
+}
+
+
 export function fetchPostForm(url, body, method) {
   const request = fetch(url,
     {
