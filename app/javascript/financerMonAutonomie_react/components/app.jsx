@@ -37,7 +37,7 @@ class App extends Component {
     const api = this.props.api
     const project = this.props.project
 
-    if(api.statut == undefined || project == null){
+    if(api.statut == undefined || api.statut === "client" && project == null){
       return(
         <div className="align-items-center justify-content-center" style={{backgroundColor: "#ecf0f1",}}>
           <h1 className="no-margin">LOADING</h1>

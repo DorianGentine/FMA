@@ -19,7 +19,7 @@ import { initSelectize } from "../../../components/init_select2";
 
 import 'react-widgets/dist/css/react-widgets.css'
 
-class PanneauPrincipalProjet extends Component {
+class PanneauPrincipalForm extends Component {
   componentWillMount() {
     if(this.props.formulary_id !== this.props.formulary_ids[0])
       this.props.changeBeneficiaireForm(this.props.formulary_ids[0])
@@ -283,7 +283,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default reduxForm({ form: 'validationForm', })(
-connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalProjet)
+connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalForm)
 );
 
 

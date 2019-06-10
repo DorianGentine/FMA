@@ -3,13 +3,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import PanneauPrincipalProjet from "./panneau_principal/panneau_principal_projet"
+import PanneauPrincipalCompte from "./panneau_principal/panneau_principal_compte"
 
 class PanneauPrincipal extends Component {
   render(){
-    // const statut = this.props.api.statut
 
     const selectedMenu = this.props.selectedMenu
-    const selectedMenuVolet = this.props.selectedMenuVolet
+    // const selectedMenuVolet = this.props.selectedMenuVolet
 
     if(selectedMenu.toLowerCase() == "projet"){
       return (
@@ -18,41 +18,7 @@ class PanneauPrincipal extends Component {
         </div>
       );
     }else if(selectedMenu.toLowerCase() == "compte"){
-      if (selectedMenuVolet.toLowerCase() == "identite") {
-        return (
-          <div>
-            <h1>{selectedMenuVolet}</h1>
-          </div>
-        );
-      }
-      if (selectedMenuVolet.toLowerCase() == "email") {
-        return (
-          <div>
-            <h1>{selectedMenuVolet}</h1>
-          </div>
-        );
-      }
-      if (selectedMenuVolet.toLowerCase() == "mdp") {
-        return (
-          <div>
-            <h1>{selectedMenuVolet}</h1>
-          </div>
-        );
-      }
-      if (selectedMenuVolet.toLowerCase() == "telephone") {
-        return (
-          <div>
-            <h1>{selectedMenuVolet}</h1>
-          </div>
-        );
-      }
-      if (selectedMenuVolet.toLowerCase() == "suppression") {
-        return (
-          <div>
-            <h1>{selectedMenuVolet}</h1>
-          </div>
-        );
-      }
+      return <PanneauPrincipalCompte selectedMenuVolet={this.props.selectedMenuVolet} />
     }else if(selectedMenu.toLowerCase() == "alertes"){
       return (
         <div>
