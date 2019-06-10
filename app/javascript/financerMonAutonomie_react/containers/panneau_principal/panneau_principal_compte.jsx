@@ -8,7 +8,7 @@ import { fetchPostCompte } from '../../actions'
 class PanneauPrincipalCompte extends Component {
 
   onSubmit = (values) => {
-    this.props.fetchPostCompte(`/mon_espace/${this.props.user_id}`, values, "PATCH")
+    this.props.fetchPostCompte(`/api/v1/users/${this.props.user_id}`, values, "PATCH")
   }
 
   onSubmitPassword = (values) => {

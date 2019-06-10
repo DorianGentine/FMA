@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user
 
   def show
     @user = User.find(params[:id])
@@ -16,16 +15,4 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def update
-    p "user is => #{@user}"
-    p "params is => #{params}"
-  end
-
-  private
-
-
-  def set_user
-    @user = User.find(params[:id])
-    authorize @user
-  end
 end
