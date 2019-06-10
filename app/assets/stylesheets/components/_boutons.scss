@@ -67,7 +67,7 @@
     left: 0;
     background-color: $gray-200;
     border: none;
-    border-radius: 15px;
+    border-radius: 20px;
     padding: 5px;
     color: $blue;
     font-size: 14px;
@@ -84,6 +84,17 @@
   }
   .btn-light:hover{
     color: $blue
+  }
+  .btn-light-compte.btn-light{
+    top: 0;
+    left: unset;
+    right: 0;
+    background-color: $blue;
+    height: 35px;
+    width: 35px;
+  }
+  .btn-light-compte.btn-light::after{
+    color: $blue-gray;
   }
 
 // btn-submit-form

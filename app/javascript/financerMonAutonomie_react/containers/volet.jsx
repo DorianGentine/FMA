@@ -9,7 +9,9 @@ class Volet extends Component {
   render(){
     const selectedMenu = this.props.selectedMenu
 
-    if(selectedMenu.toLowerCase() == "projet" || selectedMenu.toLowerCase() == "bureau"){
+    if(selectedMenu.toLowerCase() == "projet"
+      || selectedMenu.toLowerCase() == "bureau"
+      || selectedMenu.toLowerCase() == "clients"){
       return (
         <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
           <VoletProjet />
@@ -22,14 +24,6 @@ class Volet extends Component {
         </div>
       );
     }else if(selectedMenu.toLowerCase() == "alertes" && this.props.api.statut === "client"){
-      return (
-        <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
-          <div>
-            <h2 className="text-align-center">{selectedMenu}</h2>
-          </div>
-        </div>
-      );
-    }else if(selectedMenu.toLowerCase() == "clients"){
       return (
         <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
           <div>

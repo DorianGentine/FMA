@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
+import Dropzone from 'react-dropzone'
+
+import renderLogo from "../../../components/render_logo"
 
 import { fetchPostCompte } from '../../actions'
 
@@ -13,7 +16,7 @@ class PanneauPrincipalCompte extends Component {
     let method = "PATCH"
     if(kind === "classic"){
       console.log("Classic")
-      url = `/mon_espace/${this.props.user_id}`
+      url = `/api/v1/users/${this.props.user_id}`
     }else if(kind === "password"){
       console.log("password")
       url = `/mon_espace/${this.props.user_id}`
@@ -50,9 +53,30 @@ class PanneauPrincipalCompte extends Component {
 
     switch(selectedMenuVolet){
       case "identite": {
+        const user = this.props.api.user
+
+        const sendImageToController = (formPayLoad) => {
+          fetch(`/api/v1/users/${this.props.user_id}`, {
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json'},
+            method: 'PATCH',
+            body: formPayLoad
+          })
+          .then(response => response.json())
+        }
+
+        const readFile = (files) => {
+          if (files && files[0]) {
+            console.log(files[0])
+            let formPayLoad = new FormData();
+            formPayLoad.append('uploaded_image', files[0]);
+            sendImageToController(formPayLoad)
+          }
+        }
+
         return(
           <div className="row">
-            <div className="col-lg-7">
+            <div className="col-lg-8">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Identité</h4>
                 <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
@@ -77,11 +101,19 @@ class PanneauPrincipalCompte extends Component {
                 </form>
               </div>
             </div>
-            <div className="col-lg-5">
-              <div className="white-box flex flex-wrap">
+            <div className="col-lg-4">
+              <div className="white-box flex flex-wrap" style={{height: "calc(100% - 20px)"}}>
                 <h4 className="col-lg-12">Ma photo</h4>
                 <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
-                  <div className="navbar-avatar photo-compte">LD</div>
+                  <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles)}}>
+                    {({getRootProps, getInputProps}) => (
+                      <div className="photo-compte relative pointer" {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        {renderLogo(user)}
+                        <div className="btn-light btn-light-compte absolute"></div>
+                      </div>
+                    )}
+                  </Dropzone>
                 </form>
               </div>
             </div>
@@ -217,7 +249,17 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
                 <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "delete")})}>
-                  <button className="col-lg-12" type="submit">Supprimer mon compte</button>
+                  <button
+                    className="black btn no-padding"
+                    type="submit"
+                    style={{
+                      fontSize: "1rem",
+                      fontWeight: "700",
+                      border: "none",
+                      textDecoration: "underline",
+                    }}>
+                    Supprimer mon compte
+                  </button>
                 </form>
               </div>
             </div>
@@ -230,6 +272,7 @@ class PanneauPrincipalCompte extends Component {
 
 function mapStateToProps(state) {
   return {
+    api: state.api,
     user_id: state.user_id,
   };
 }

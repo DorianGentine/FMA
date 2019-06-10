@@ -68,6 +68,22 @@ class PanneauPrincipalForm extends Component {
     }
   }
 
+  renderField = ({ input, label, type }) => (
+    <div className="form-group">
+      <label className="font-14 black">{label}</label>
+      <div>
+        <input {...input}
+          className="margin-bottom-15 form-control"
+          type={type}
+          onBlur={event => {
+            input.onBlur(event);
+            submitButton.click();
+          }}
+        />
+      </div>
+    </div>
+  )
+
   handleClickBenef = (event) => {
     this.props.changeBeneficiaireForm(event)
   }
@@ -137,21 +153,6 @@ class PanneauPrincipalForm extends Component {
       )
     }
 
-    const renderField = ({ input, label, type }) => (
-      <div className="form-group">
-        <label className="font-14 black">{label}</label>
-        <div>
-          <input {...input}
-            className="margin-bottom-15 form-control"
-            type={type}
-            onBlur={event => {
-              input.onBlur(event);
-              submitButton.click();
-            }}
-          />
-        </div>
-      </div>
-    )
 
     const renderInput = (result) => {
       if(result.set_up.type == "input" || result.set_up.type == "number"){
@@ -159,7 +160,7 @@ class PanneauPrincipalForm extends Component {
           <Field
             name={result.set_up.column_name}
             type={result.set_up.type}
-            component={renderField}
+            component={this.renderField}
             label={result.set_up.question}
           >
           </Field>

@@ -24,8 +24,18 @@
   justify-content: center;
   align-items: center;
 }
-.navbar-avatar.photo-compte{
-  background-color: green;
+.navbar-avatar:focus .photo-compte:focus {
+  outline: none;
+}
+.photo-compte{
+  width: fit-content;
+  margin: auto;
+}
+.photo-compte > .navbar-avatar{
+  height: 140px !important;
+  width: 140px !important;
+  margin: auto !important;
+  font-size: 50px;
 }
 
 @media screen and (max-width: 770px){
