@@ -51,7 +51,7 @@ class User < ApplicationRecord
   def his_formulary
     if self.is_a_client
       project = self.projects.first
-      return formulary = Formulary.where(project: project).first
+      return formulary = Formulary.where(project: project, primary: true).first
     end
   end
 

@@ -160,7 +160,7 @@ const createMultiInput = (question, div) => {
   const input = document.createElement("input")
   input.style.width = "calc(100% - 40px)"
   input.classList = "flex"
-  input.classList.add("multiple_select2 dropup")
+  input.classList.add("multiple_select2")
   input.type = "text"
   input.multiple = "multiple"
   input.name = `${question.set_up.column_name}`
