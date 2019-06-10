@@ -2,11 +2,30 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
+
 import { fetchPostCompte } from '../../actions'
+
 class PanneauPrincipalCompte extends Component {
+
   onSubmit = (values) => {
-    this.props.fetchPostCompte(`/api/v1/users/${this.props.user_id}`, values)
+    this.props.fetchPostCompte(`/api/v1/users/${this.props.user_id}`, values, "PATCH")
   }
+
+  onSubmitPassword = (values) => {
+    console.log("coucouPassword")
+    this.props.fetchPostCompte(`/mon_espace/${this.props.user_id}`, values, "PATCH")
+  }
+
+  onSubmitEmail = (values) => {
+    console.log("coucouEmail")
+    this.props.fetchPostCompte(`/mon_espace/${this.props.user_id}`, values, "PATCH")
+  }
+
+  onSubmitDelete = (values) => {
+    console.log("coucouDelete")
+    this.props.fetchPostCompte(`/mon_espace/${this.props.user_id}`, values, "DELETE")
+  }
+
   render(){
     const selectedMenuVolet = this.props.selectedMenuVolet
 
@@ -59,7 +78,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-5">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Ma photo</h4>
-                <form className="col-lg-12" onSubmit={()=>{}}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmit)}>
                   <Field
                     label="Nom"
                     name={"last_name"}
@@ -84,7 +103,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Informations générales</h4>
-                <form className="col-lg-12" onSubmit={()=>{}}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmit)}>
                   <Field
                     label="Date de naissance"
                     name={"birthdate"}
@@ -116,7 +135,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Email</h4>
-                <form className="col-lg-12" onSubmit={()=>{}}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmitEmail)}>
                   <Field
                     label="Email"
                     name={"mail"}
@@ -147,7 +166,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Mot de passe</h4>
-                <form className="col-lg-12" onSubmit={()=>{}}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmitPassword)}>
                   <Field
                     label="Ancien mot de passe"
                     name={"password"}
@@ -185,7 +204,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Téléphone</h4>
-                <form className="col-lg-12" onSubmit={()=>{}}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmit)}>
                   <Field
                     label="Numéro de téléphone"
                     name={"phone"}
@@ -212,8 +231,8 @@ class PanneauPrincipalCompte extends Component {
           <div className="row">
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
-                <form className="col-lg-12" onSubmit={()=>{}}>
-                  <h4 className="col-lg-12" type="submit">Supprimer mon compte</h4>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmitDelete)}>
+                  <button className="col-lg-12" type="submit">Supprimer mon compte</button>
                 </form>
               </div>
             </div>
