@@ -5,7 +5,7 @@ import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-
 import { fetchPostCompte } from '../../actions'
 class PanneauPrincipalCompte extends Component {
   onSubmit = (values) => {
-    this.props.fetchPostCompte(`/mon_espace/${this.props.user_id}`, values)
+    this.props.fetchPostCompte(`/api/v1/users/${this.props.user_id}`, values)
   }
   render(){
     const selectedMenuVolet = this.props.selectedMenuVolet
