@@ -7,23 +7,25 @@ import { fetchPostCompte } from '../../actions'
 
 class PanneauPrincipalCompte extends Component {
 
-  onSubmit = (values) => {
-    this.props.fetchPostCompte(`/api/v1/users/${this.props.user_id}`, values, "PATCH")
-  }
 
-  onSubmitPassword = (values) => {
-    console.log("coucouPassword")
-    this.props.fetchPostCompte(`/mon_espace/${this.props.user_id}`, values, "PATCH")
-  }
-
-  onSubmitEmail = (values) => {
-    console.log("coucouEmail")
-    this.props.fetchPostCompte(`/mon_espace/${this.props.user_id}`, values, "PATCH")
-  }
-
-  onSubmitDelete = (values) => {
-    console.log("coucouDelete")
-    this.props.fetchPostCompte(`/mon_espace/${this.props.user_id}`, values, "DELETE")
+  onSubmit = (values, kind) => {
+    let url = ""
+    let method = "PATCH"
+    if(kind === "classic"){
+      console.log("Classic")
+      url = `/mon_espace/${this.props.user_id}`
+    }else if(kind === "password"){
+      console.log("password")
+      url = `/mon_espace/${this.props.user_id}`
+    }else if(kind === "email"){
+      console.log("mail")
+      url = `/mon_espace/${this.props.user_id}`
+    }else if(kind === "delete"){
+      console.log("delete")
+      url = `/mon_espace/${this.props.user_id}`
+      method = "DELETE"
+    }
+    this.props.fetchPostCompte(url, values, method)
   }
 
   render(){
@@ -53,7 +55,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-7">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Identité</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
                   <Field
                     label="Nom"
                     name={"last_name"}
@@ -78,32 +80,15 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-5">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Ma photo</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                  <Field
-                    label="Nom"
-                    name={"last_name"}
-                    type="text"
-                    component={renderField}
-                  />
-                  <Field
-                    label="Prénom"
-                    name={"first_name"}
-                    type="text"
-                    component={renderField}
-                  />
-                  <button
-                    className="float-right btn-blue"
-                    type="submit"
-                    disabled={this.props.pristine || this.props.submitting}>
-                      Enregistrer
-                  </button>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
+                  <div className="navbar-avatar photo-compte">LD</div>
                 </form>
               </div>
             </div>
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Informations générales</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
                   <Field
                     label="Date de naissance"
                     name={"birthdate"}
@@ -135,7 +120,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Email</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmitEmail)}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "email")})}>
                   <Field
                     label="Email"
                     name={"mail"}
@@ -166,7 +151,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Mot de passe</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmitPassword)}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "password")})}>
                   <Field
                     label="Ancien mot de passe"
                     name={"password"}
@@ -204,7 +189,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Téléphone</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
                   <Field
                     label="Numéro de téléphone"
                     name={"phone"}
@@ -231,7 +216,7 @@ class PanneauPrincipalCompte extends Component {
           <div className="row">
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmitDelete)}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "delete")})}>
                   <button className="col-lg-12" type="submit">Supprimer mon compte</button>
                 </form>
               </div>
