@@ -71,6 +71,9 @@
   .bordure-bas{
     border-bottom: 1px solid $gray-200;
   }
+  .bordure-bas-300{
+    border-bottom: 1px solid $gray-300;
+  }
   .gray-300-border{
     border: 1px solid $gray-300;
   }
@@ -92,6 +95,9 @@
   }
   .blue-background{
     background-color: $blue !important;
+  }
+  .blue-gray-background{
+    background-color: $blue-gray !important;
   }
   .dark-blue{
     color: $dark-blue !important;
@@ -399,6 +405,9 @@
   }
   .width-fit-content{
     width: fit-content;
+  }
+  .w-33{
+    width: 33.3333%;
   }
 
 

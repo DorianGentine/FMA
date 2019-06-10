@@ -16,23 +16,20 @@ class App extends Component {
     this.props.fetchAPI(this.props.urlAPI)
     const b = () => {this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)}
 
-    const projetFetch = setInterval(()=>{a(this.props.project_id, b)}, 100)
+    const projetFetch = setInterval(()=>{a(this.props, b)}, 100)
 
-    function a(project_id, b){
-      if(project_id){
+    function a(props, b){
+      if(props.project_id){
         clearInterval(projetFetch)
         b()
+      }else if(props.api.statut === "conseiller"){
+        clearInterval(projetFetch)
       }
     }
   }
 
 
   render () {
-
-    // if(this.props.project_id != null){
-    //   console.log("coucou")
-    //   this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
-    // }
 
     const api = this.props.api
     const project = this.props.project
@@ -54,7 +51,7 @@ class App extends Component {
               selectedMenuVolet={this.props.match.params.menu_volet}
            />
           <div className="app-container container">
-            <MenuProfil selectedMenu={this.props.match.params.menu_nav} />
+            <MenuProfil />
             <PanneauPrincipal
               selectedMenu={this.props.match.params.menu_nav}
               selectedMenuVolet={this.props.match.params.menu_volet}
@@ -79,7 +76,7 @@ class App extends Component {
               selectedMenuVolet={this.props.match.params.menu_volet}
            />
           <div className="app-container container">
-            <MenuProfil />
+            <MenuProfil selectedMenu={this.props.match.params.menu_nav} />
             <PanneauPrincipal
               selectedMenu={this.props.match.params.menu_nav}
               selectedMenuVolet={this.props.match.params.menu_volet}
