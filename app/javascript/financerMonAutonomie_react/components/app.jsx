@@ -54,7 +54,7 @@ class App extends Component {
               selectedMenuVolet={this.props.match.params.menu_volet}
            />
           <div className="app-container container">
-            <MenuProfil />
+            <MenuProfil selectedMenu={this.props.match.params.menu_nav} />
             <PanneauPrincipal
               selectedMenu={this.props.match.params.menu_nav}
               selectedMenuVolet={this.props.match.params.menu_volet}

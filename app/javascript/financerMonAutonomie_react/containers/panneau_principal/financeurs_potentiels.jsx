@@ -14,8 +14,9 @@ class FinanceursPotentiels extends Component {
 
       const renderFinanceurs = () => {
         return financers.map((financer, index) => {
+          const randomId = Math.floor((Math.random() * 100) + 1);
           return (
-            <div className="flex space-between align-items-center margin-bottom-30" key={financer.name}>
+            <div className="flex space-between align-items-center margin-bottom-30" key={`${financer.name}${randomId}`}>
               {renderLogo(financer)}
               <div className="flex-grow-1">
                 <h4 className="font-12 no-margin">{financer.name}</h4>

@@ -9,9 +9,10 @@ import { fetchProjet, showDocument, validateStep } from '../../actions';
 
 class RenderDocs extends Component {
   componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps)
     const documents = this.props.project.documents
     const nextDocuments = nextProps.project.documents
-    const etape = this.props.etape
+    const etape = nextProps.etape
     const project_id = this.props.project_id
 
     const fetchProjet = () => {
@@ -31,11 +32,9 @@ class RenderDocs extends Component {
       }
 
       console.log("etape", etape)
-      console.log("documentsCompleted", documentsCompleted)
 
       if (documentsCompleted === documents.length && etape === "documentation") {
         validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchProjet() )
-        // DocumentsSoumettre.forceUpdate()
       }
     }
 
@@ -79,10 +78,6 @@ class RenderDocs extends Component {
 
     const readFile = (files, idDoc, randomId) => {
       if (files && files[0]) {
-        // compte le nombre de docs complété après envoi
-        // MAIS PAS BON car si user rajoute le même qu'avant, renvoie
-        // un mauvais chiffre
-        // documentsCompleted = documentsCompleted + 1
 
         let newDocName = ""
         if (files[0].name.length < 14){

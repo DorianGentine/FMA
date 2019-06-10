@@ -11,7 +11,6 @@ export default function renderLogo(financer){
     }
     return(
       <div
-        // id={`logo_financer${financer.name.split(" ")[0].toLowerCase()}`}
         className="logo-financeur margin-right-15"
         style={{ height: "35px", width: "35px", backgroundImage: `url(${url})`}}
         >
@@ -26,7 +25,6 @@ export default function renderLogo(financer){
     }
     return(
       <div
-        // id={`logo_financer${financer.name.split(" ")[0].toLowerCase()}`}
         className={`${financer.name ? "logo-financeur" : "navbar-avatar no-margin" } margin-right-15`}
         style={{ height: "35px", width: "35px"}}
         >{renderInitiale(`${name}`)}
