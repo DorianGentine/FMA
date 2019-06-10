@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   match "/422", :to => "http_errors#error_422", :via => :all
   match "/500", :to => "http_errors#error_500", :via => :all
 
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    passwords: "users/passwords"
+  }
+
 
   resources :users, path: "mon_espace", only: [:show, :update] do
     member do
@@ -56,14 +61,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
-
-
-  devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    passwords: "users/passwords"
-  }
-
 
   resources :formularies, only: [ :show ]
 

@@ -1,7 +1,8 @@
 class Users::PasswordsController < Devise::PasswordsController
+  acts_as_token_authentication_handler_for User, except: [ :show ]
+
   def update
     user = User.with_reset_password_token(params[:reset_password_token])
-
     if user&.update(password_params)
       render json: user, status: :ok
     else
