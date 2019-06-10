@@ -2,7 +2,12 @@ class Api::V1::VisitorsController < Api::V1::BaseController
   before_action :set_visitor, only: [:show, :update_formulary, :analyze]
 
   def show
-    formulary = @visitor.formulary.nil? ? Formulary.new : @visitor.formulary
+    user = current_user.nil? ? @visitor : current_user
+    if current_user.nil? || !current_user.client
+      formulary = @visitor.formulary.nil? ? Formulary.new : @visitor.formulary
+    else
+      formulary = current_user.his_formulary
+    end
     @formulary = FormularyToHash.new(formulary).form_json
     render json: @formulary
   end
