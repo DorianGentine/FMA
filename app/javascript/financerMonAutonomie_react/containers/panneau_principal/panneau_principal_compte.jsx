@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
-
+import { fetchPostCompte } from '../../actions'
 class PanneauPrincipalCompte extends Component {
+  onSubmit = (values) => {
+    this.props.fetchPostCompte(`/mon_espace/${this.props.user_id}`, values)
+  }
   render(){
     const selectedMenuVolet = this.props.selectedMenuVolet
 
@@ -31,7 +34,7 @@ class PanneauPrincipalCompte extends Component {
             <div className="col-lg-7">
               <div className="white-box flex flex-wrap">
                 <h4 className="col-lg-12">Identité</h4>
-                <form className="col-lg-12" onSubmit={()=>{}}>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit(this.onSubmit)}>
                   <Field
                     label="Nom"
                     name={"last_name"}
@@ -221,18 +224,18 @@ class PanneauPrincipalCompte extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     formulary_id: state.formulary_id,
-//   };
-// }
+function mapStateToProps(state) {
+  return {
+    user_id: state.user_id,
+  };
+}
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({
-//     fetchAPI,
-//   }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    fetchPostCompte,
+  }, dispatch);
+}
 
 export default reduxForm({ form: 'validationForm', })(
-connect(null, null)(PanneauPrincipalCompte)
+connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalCompte)
 );
