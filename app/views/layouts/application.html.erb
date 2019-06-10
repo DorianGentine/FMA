@@ -8,8 +8,8 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
-    <!-- <link rel="stylesheet" href="node_modules/select2/dist/css/select2.css"> -->
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <link rel="stylesheet" href="node_modules/select2/dist/css/select2.css">
+    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
     <% if params[:controller] != "contact_forms" && params[:controller] == "pages" && params[:action] != "new" %>
