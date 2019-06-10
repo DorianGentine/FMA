@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import PanneauPrincipalProjet from "./panneau_principal/panneau_principal_projet"
 import PanneauPrincipalCompte from "./panneau_principal/panneau_principal_compte"
+import PanneauPrincipalClients from "./panneau_principal/panneau_principal_clients"
 
 class PanneauPrincipal extends Component {
   render(){
@@ -11,12 +12,8 @@ class PanneauPrincipal extends Component {
     const selectedMenu = this.props.selectedMenu
     // const selectedMenuVolet = this.props.selectedMenuVolet
 
-    if(selectedMenu.toLowerCase() == "projet"){
-      return (
-        <div>
-          <PanneauPrincipalProjet />
-        </div>
-      );
+    if(selectedMenu.toLowerCase() == "projet" || selectedMenu.toLowerCase() == "bureau"){
+      return <PanneauPrincipalProjet />
     }else if(selectedMenu.toLowerCase() == "compte"){
       return <PanneauPrincipalCompte selectedMenuVolet={this.props.selectedMenuVolet} />
     }else if(selectedMenu.toLowerCase() == "alertes"){
@@ -25,14 +22,8 @@ class PanneauPrincipal extends Component {
           <h1>{selectedMenu}</h1>
         </div>
       );
-    }else if(selectedMenu.toLowerCase() == "bureau"){
-      return <PanneauPrincipalProjet />
     }else if(selectedMenu.toLowerCase() == "clients"){
-      return (
-        <div>
-          <h1>{selectedMenu}</h1>
-        </div>
-      );
+      return <PanneauPrincipalClients />
     }else if(selectedMenu.toLowerCase() == "demandes"){
       return (
         <div>

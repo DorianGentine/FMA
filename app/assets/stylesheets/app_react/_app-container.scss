@@ -10,3 +10,25 @@
   opacity: 0;
   transform: translateY(20px);
 }
+
+.titre-filtre{
+  font-size: 14px;
+  color: $black;
+  padding-bottom: 15px;
+  transition: .5s;
+  span{
+    padding: 3px 7px;
+    border-radius: 10px;
+    background-color: $gray-300;
+    font-size: 12px;
+  }
+}
+.active.titre-filtre{
+  font-weight: bold;
+  padding-bottom: 12px;
+  border-bottom: 3px solid $blue;
+  span{
+    background-color: $blue;
+    color: white;
+  }
+}
