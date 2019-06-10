@@ -1,7 +1,7 @@
 IntercomRails.config do |config|
   # == Intercom app_id
   #
-  config.app_id = ENV["INTERCOM_APP_ID"] || "uts7rmd6"
+  config.app_id = ENV["INTERCOM_APP_ID"] || "pfhokn92"
 
   # == Intercom session_duration
   #
@@ -39,7 +39,7 @@ IntercomRails.config do |config|
   # non-signed up users as an an array.
   # Any attribute contained in config.user.lead_attributes can be used
   # as custom attribute in the application.
-  config.user.lead_attributes = %w(ref_data utm_source)
+  # config.user.lead_attributes = %w(ref_data utm_source)
 
   # == Exclude users
   # A Proc that given a user returns true if the user should be excluded
@@ -52,10 +52,10 @@ IntercomRails.config do |config|
   # You can provide either a method name which will be sent to the current
   # user object, or a Proc which will be passed the current user.
   #
-  config.user.custom_data = {
-    :telephone => Proc.new { |current_user| current_user.phone },
-    :conseiller => Proc.new { |current_user| current_user.phone }
-  }
+  # config.user.custom_data = {
+  #   :plan => Proc.new { |current_user| current_user.plan.name },
+  #   :favorite_color => :favorite_color
+  # }
 
   # == Current company method/variable
   # The method/variable that contains the current company for the current user,

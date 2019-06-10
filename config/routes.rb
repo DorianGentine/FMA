@@ -47,9 +47,12 @@ Rails.application.routes.draw do
           get :analyze
         end
       end
+      resources :ressources, only: [ :index ]
       resources :documents, only: [ :update ]
       resources :formularies, only: [ :update, :edit ]
+      resources :notes, only: [ :update ]
       resources :projects, only: [ :show, :update ] do
+        resources :notes, only: [ :create ]
         member do
           patch :next_setp
           patch :display_hint
