@@ -108,11 +108,6 @@ const insertQuestion = (question, last = null) => {
 
 
 
-const setNextQuestion = (nex_question) => {
-  // const lastQuestion = `<div class="message received">${nex_question.set_up.position} - ${nex_question.set_up.question}</div>`
-  // form.insertAdjacentHTML("beforeend", lastQuestion);
-}
-
 const createEditBtn = (question) => {
   btn = `<div class=" absolute btn btn-light edit" data-question="${question.set_up.id}"></div>`
 }
@@ -165,7 +160,7 @@ const createMultiInput = (question, div) => {
   const input = document.createElement("input")
   input.style.width = "calc(100% - 40px)"
   input.classList = "flex"
-  input.classList.add("multiple_select2")
+  input.classList.add("multiple_select2 dropup")
   input.type = "text"
   input.multiple = "multiple"
   input.name = `${question.set_up.column_name}`
@@ -243,7 +238,6 @@ const setFormForFormulary = (question) => {
 
 export {
   insertQuestion,
-  setNextQuestion,
   insertAnswer,
   createLinkNext,
   setFormForFormulary
