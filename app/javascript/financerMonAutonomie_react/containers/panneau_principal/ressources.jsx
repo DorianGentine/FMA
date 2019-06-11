@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchRessources } from '../../actions'
+import { fetchRessources, showRessource } from '../../actions'
 
 class Ressources extends Component {
   componentWillMount(){
@@ -21,15 +21,22 @@ class Ressources extends Component {
               <h4 className="font-12 no-margin">{"La caisse de retraite"}</h4>
               <p className="font-12">{"Description de la ressource"}</p>
             </div>
-            <button className="blue-gray-btn">Accéder</button>
+            <button className="blue-gray-btn" onClick={()=>{this.props.showRessource(ressource)}}>Accéder</button>
           </div>
         );
       });
     };
 
     return (
-      <div>
-        {ressources != null ? renderRessources() : null }
+      <div className="col-lg-6">
+        <div className="white-box flex flex-wrap align-items-center">
+          <h4 className="padding-horizontal-15 no-margin">Les ressources</h4>
+          <p className="blue font-12 padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${ressources ? ressources.length : 0} ressources`}</p>
+          <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
+          <div className="scroll col-lg-12 margin-top-15" style={{ height: "145px" }}>
+            {ressources != null ? renderRessources() : <h2>Chargement...</h2> }
+          </div>
+        </div>
       </div>
     )
   }
@@ -42,7 +49,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchRessources }, dispatch);
+  return bindActionCreators({ fetchRessources, showRessource }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ressources);

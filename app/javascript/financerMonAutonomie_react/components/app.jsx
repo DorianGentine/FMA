@@ -37,7 +37,7 @@ class App extends Component {
     if(api.statut == undefined || api.statut === "client" && project == null){
       return(
         <div className="align-items-center justify-content-center" style={{backgroundColor: "#ecf0f1",}}>
-          <h1 className="no-margin">LOADING</h1>
+          <h1 className="no-margin">CHARGEMENT</h1>
           <img style={{height: "50px",}} src="https://media2.giphy.com/media/jAYUbVXgESSti/giphy.gif?cid=790b76115cdbb4a9722f685249ba06d7&rid=giphy.gif" alt=""/>
         </div>
       );
@@ -82,11 +82,11 @@ class App extends Component {
               selectedMenuVolet={this.props.match.params.menu_volet}
             />
           </div>
+          <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
+            <div><ModalCote /></div>
+          </div>
         </div>
       );
-          // <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
-          //   <div><ModalCote /></div>
-          // </div>
     }
   }
 };
