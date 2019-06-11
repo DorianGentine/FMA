@@ -8,7 +8,7 @@ class Api::V1::CalendlyController < Api::V1::BaseController
     if @project.save
       render :show
     else
-      "//// Error setting => #{@project..errors.full_messages}"
+      "//// Error setting => #{@project.errors.full_messages}"
     end
     authorize @project
   end
