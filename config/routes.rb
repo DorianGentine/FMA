@@ -71,4 +71,9 @@ Rails.application.routes.draw do
 
   root to: 'contact_forms#new'
 
+  constraints subdomain: "calendly.com", defaults: { format: :json } do
+      post '/api/v1/hooks' => 'calendly#create', as: :create
+  end
 end
+
+
