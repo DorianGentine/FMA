@@ -116,7 +116,7 @@ class RenderDocs extends Component {
           return (
             <div className="doc-to-send" key={index}>
               <div className="icon-eye float-right" onClick={()=>{handleClick(doc)}}></div>
-              <h4 className="font-14 no-margin" onClick={()=>{console.log("documents_post", documents[0].file)}}>{doc.title}</h4>
+              <h4 className="font-14 no-margin">{doc.title}</h4>
               <p className="black font-12">{doc.description}</p>
               <div className="flex space-between align-items-center">
                 <p className="gray-300 font-12" id={`document_name${randomId}`}>{docName}</p>

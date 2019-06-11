@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import Ressources from './ressources';
 
+import { showFinancer } from '../../actions'
+
 import renderLogo from "../../../components/render_logo"
 
 class FinanceursPotentiels extends Component {
@@ -24,7 +26,7 @@ class FinanceursPotentiels extends Component {
                 <h4 className="font-12 no-margin">{financer.name}</h4>
                 <p className="font-12">{financer.description ? `${financer.description.substring(0,30)}...` : ""}</p>
               </div>
-              <button className="blue-gray-btn">Infos</button>
+              <button className="blue-gray-btn" onClick={()=>{this.props.showFinancer(financer)}}>Infos</button>
             </div>
           );
         });
@@ -45,18 +47,7 @@ class FinanceursPotentiels extends Component {
 
     }else if(statut === "conseiller"){
 
-      return (
-        <div className="col-lg-6">
-          <div className="white-box flex flex-wrap align-items-center">
-            <h4 className="padding-horizontal-15 no-margin">Les ressources</h4>
-            <p className="blue font-12 padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${2000} ressources`}</p>
-            <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
-            <div className="scroll col-lg-12 margin-top-15" style={{ height: "145px" }}>
-              <Ressources />
-            </div>
-          </div>
-        </div>
-      );
+      return <Ressources />
     }
   }
 };
@@ -68,8 +59,8 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ showFinancer }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(FinanceursPotentiels);
+export default connect(mapStateToProps, mapDispatchToProps)(FinanceursPotentiels);

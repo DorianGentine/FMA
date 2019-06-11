@@ -1,12 +1,27 @@
-import { SHOW_DOCUMENT, CLOSE_MODAL } from '../actions';
+import {
+  SHOW_DOCUMENT,
+  SHOW_FINANCER,
+  SHOW_REPONSES,
+  SHOW_RESSOURCE,
+  CLOSE_MODAL,
+} from '../actions';
 
 export default function(state = null, action) {
   switch (action.type) {
     case SHOW_DOCUMENT: {
       return action.payload;
     }
-    case CLOSE_MODAL: {
+    case SHOW_FINANCER: {
       return action.payload;
+    }
+    case SHOW_REPONSES: {
+      return action.payload;
+    }
+    case SHOW_RESSOURCE: {
+      return action.payload;
+    }
+    case CLOSE_MODAL: {
+      return null;
     }
     default: {
       return state;

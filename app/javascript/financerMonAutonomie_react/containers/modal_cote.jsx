@@ -3,6 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ModalDocument from './modal_cote/modal_document';
+import ModalFinancer from './modal_cote/modal_financer';
+import ModalRessource from './modal_cote/modal_ressource';
+import ModalReponses from './modal_cote/modal_reponses';
 
 class ModalCote extends Component {
   render(){
@@ -11,6 +14,12 @@ class ModalCote extends Component {
       return null
     }else if(modalSelected.modalActive === "showDoc"){
       return (<ModalDocument />)
+    }else if(modalSelected.modalActive === "showFinancer"){
+      return (<ModalFinancer />)
+    }else if(modalSelected.modalActive === "showRessource"){
+      return (<ModalRessource />)
+    }else if(modalSelected.modalActive === "showReponses"){
+      return (<ModalReponses />)
     }else{
       return null
     }

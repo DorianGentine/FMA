@@ -15,6 +15,11 @@
     box-shadow: 0px 0px 0px transparent;
     border: 1px solid rgba(43,55,85,.06);
   }
+  .blue-gray-box.vertical {
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px 40px;
+  }
 
   .white-box{
     border-radius: 3px;

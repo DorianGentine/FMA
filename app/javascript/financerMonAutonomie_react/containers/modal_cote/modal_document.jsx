@@ -13,7 +13,7 @@ class ModalDocument extends Component {
     console.log("docnotice", doc.notice)
     return(
       <div>
-        <div className="flex space-between">
+        <div className="flex space-between margin-bottom-30">
           <h2>{`${doc.title.substr(0,25)}...`}</h2>
           <p className="pointer black" onClick={this.props.closeModal}>X</p>
         </div>
