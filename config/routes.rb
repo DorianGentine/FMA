@@ -40,7 +40,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      get '/calendly', to: "calendlies#show"
       resources :visitors, only: [:show, :update] do
         member do
           patch :update_formulary
@@ -59,9 +58,7 @@ Rails.application.routes.draw do
         end
         resources :formularies, only: [ :new, :create ]
       end
-      resources :users, only: [ :show, :update ] do
-        resources :projects, only: [ :index ]
-      end
+      resources :users, only: [ :show, :update, :index ]
     end
   end
 

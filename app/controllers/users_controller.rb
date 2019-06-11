@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       @solutions = @project.solutions
     else
       @projects = @user.projects
-      @clients = @user.clients
+      @clients = @user.his_clients
     end
     authorize @user
   end
