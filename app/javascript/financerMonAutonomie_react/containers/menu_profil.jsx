@@ -16,8 +16,8 @@ const MenuProfil = (props) => {
     return(
       <div className="col-lg-6 row align-items-end">
         <div className="padding-horizontal-15 titre-filtre active">Tous <span>XX</span></div>
-        <div className="padding-horizontal-15 titre-filtre">Tous <span>XX</span></div>
-        <div className="padding-horizontal-15 titre-filtre">Tous <span>XX</span></div>
+        <div className="padding-horizontal-15 titre-filtre">En cours <span>XX</span></div>
+        <div className="padding-horizontal-15 titre-filtre">Archivés <span>XX</span></div>
       </div>
     )
   }

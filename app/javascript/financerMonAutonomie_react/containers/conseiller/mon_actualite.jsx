@@ -3,77 +3,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 const MonActualite = (props) => {
+  const actus = props.api.notifications
   const renderActus = () => {
-    // return actus.map((actu, index) => {
+    return actus.slice(0).reverse().map((actu, index) => {
+      const randomId = Math.floor((Math.random() * 100) + 1);
       return(
-        <div className="row scroll" style={{ maxHeight: "calc(100vh - 560px)"}}>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-
-
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
-          <p className="col-lg-8 font-12 black">Patrick vient de s'inscrire. <span className="gray">1h</span></p>
-          <a className="col-lg-4 font-12 text-align-right blue bold">Voir</a>
+        <div className="row scroll" style={{ maxHeight: "calc(100vh - 560px)"}} key={randomId}>
+          <p className="col-lg-11 font-12 black"><span className="bold">{actu.user} </span>{actu.title} <span className="gray">{actu.time}</span></p>
+          <a className="col-lg-1 font-12 text-align-right blue bold">Voir</a>
         </div>
       )
-    // })
+    })
   }
 
   return (

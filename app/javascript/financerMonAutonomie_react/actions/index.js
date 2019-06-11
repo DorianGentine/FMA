@@ -1,5 +1,6 @@
 export const FETCH_API = 'FETCH_API';
 export const FETCH_FORM = 'FETCH_FORM';
+export const FETCH_RESSOURCES = 'FETCH_RESSOURCES';
 export const POST_COMPTE = 'POST_COMPTE';
 export const POST_FORM = 'POST_FORM';
 export const VALIDATE_STEP = 'VALIDATE_STEP';
@@ -51,7 +52,6 @@ export function fetchPostCompte(url, body, method) {
   };
 }
 
-
 export function fetchPostForm(url, body, method) {
   const request = fetch(url,
     {
@@ -75,6 +75,16 @@ export function fetchPostForm(url, body, method) {
     payload: request
   };
 }
+
+export function fetchRessources(url) {
+  const promise = fetch(url).then(r => r.json());
+
+  return {
+    type: FETCH_RESSOURCES,
+    payload: promise
+  };
+}
+
 
 export function validateStep(url, callback) {
   const request = fetch(url,
