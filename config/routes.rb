@@ -46,6 +46,7 @@ Rails.application.routes.draw do
           get :analyze
         end
       end
+      resources :financers, only: [ :index, :show ]
       resources :ressources, only: [ :index ]
       resources :documents, only: [ :update ]
       resources :formularies, only: [ :update, :edit ]
