@@ -1,11 +1,14 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      if user.advisor
+        user.his_clients
+      end
     end
   end
+
   def show?
-    if user.advisor && user.clients.include?(record)
+    if user.advisor && user.his_clients.include?(record)
       return true
     elsif user.admin
       return true

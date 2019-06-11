@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   before_create :set_as_client
 
+  scope :clients, -> { User.where(client: true) }
+
   acts_as_token_authenticatable
 
   has_many :user_projects, dependent: :destroy
@@ -33,7 +35,7 @@ class User < ApplicationRecord
     p "#{self.first_name} #{self.last_name}"
   end
 
-  def clients
+  def his_clients
     user_projects = UserProject.where(user: self, client: false)
     clients = []
     user_projects.each do |user_project|
