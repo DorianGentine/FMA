@@ -32,7 +32,7 @@ class RdvTel extends Component {
         }else if(etape === "meeting"){
           rdvText = "Fixez votre rendez-vous ici"
         }else if(etape === "call"){
-          rdvText = "TODO: Insérer date RDV"
+          rdvText = this.props.project.project.rdv == null
         }
 
         const handleCalendly = () => {

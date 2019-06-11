@@ -14,7 +14,7 @@ class WidgetCalendly extends Component {
       <div>
         <div
           className="calendly-inline-widget"
-          data-url="https://calendly.com/donatien-rolland/rdv-telephonique"
+          data-url="https://calendly.com/adrienfma/1er-rdv-telephonique"
           style={{ minWidth: "100%", height: "calc(100vh - 110px" }}>
         </div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
