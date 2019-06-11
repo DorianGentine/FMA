@@ -15,14 +15,6 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     end
   end
 
-  def update_calendly
-    @project = Project.find(1)
-    p "//////////////// params => #{params}"
-    p "//////////////// params payload=> #{params["payload"]}"
-    p "//////////////// params invitee => #{params["payload"]["invitee"]}"
-    authorize @project
-  end
-
   def next_setp
     @project.change_next_step
     @formulary = @project.formularies.first

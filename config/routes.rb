@@ -53,7 +53,6 @@ Rails.application.routes.draw do
       resources :notes, only: [ :update ]
       resources :projects, only: [ :show, :update ] do
         post '/update_calendly', to: 'calendly#update_calendly', as: "update_calendly"
-        post :update_calendly
         resources :notes, only: [ :create ]
         member do
           patch :next_setp
