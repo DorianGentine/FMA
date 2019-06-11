@@ -1,6 +1,6 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
-  skip_before_action :authenticate_user!, only: [ :update_calendly]
-  before_action :authenticate_user!
+
+  before_action :authenticate_user!, except: :update_calendly
   before_action :set_project, only: [:show, :next_setp, :display_hint]
 
 
