@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   get '/qui-sommes-nous', to: 'pages#team', as: "equipe"
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"
   get '/rgpd', to: 'pages#rgpd', as: "rgpd"
-
+  get '/invitee_created', to: 'pages#invitee_created', as: 'invitee_created'
+  post '/update_calendly', to: 'pages#update_calendly', as: 'update_calendly'
 
 
   namespace :api, defaults: { format: :json } do
