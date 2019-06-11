@@ -82,30 +82,30 @@
   border-radius: 3px;
   font-size: 9px;
   color: $black;
-  padding: 0.5px 1.8px .5px 11.6px;
-  position: relative;
+  padding: 0.5px 1.8px;
+  // position: relative;
 }
-.icon-live:before{
-  content: "";
-  background-color: red;
-  padding: 4px;
-  border-radius: 5px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 1.8px;
-  opacity: 1;
-  animation: blinker 2s step-start infinite;
-}
+// .icon-live:before{
+//   content: "";
+//   background-color: red;
+//   padding: 4px;
+//   border-radius: 5px;
+//   position: absolute;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   left: 1.8px;
+//   opacity: 1;
+//   animation: blinker 2s step-start infinite;
+// }
 .icon-live:after{
   content: "LIVE"
 }
 
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
+// @keyframes blinker {
+//   50% {
+//     opacity: 0;
+//   }
+// }
 
 
 

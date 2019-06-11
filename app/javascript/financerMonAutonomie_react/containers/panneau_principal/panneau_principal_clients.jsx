@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import CardClient from './card_client';
+
 class PanneauPrincipalClients extends Component {
 
   render(){
@@ -9,24 +11,8 @@ class PanneauPrincipalClients extends Component {
 
     const renderClients = () => {
       return clients.map((client, index) => {
-        return(
-          <div className="col-lg-3 col-xs-12 col-sm-4">
-            <div className="white-box">
-              <div className="row">
-                <div className="col-lg-6">avatar</div>
-                <div className="col-lg-6">...</div>
-                <div className="col-lg-12">Erwan Guillou</div>
-                <div className="col-lg-12 margin-bottom-30">RDV à fixer</div>
-                <div className="col-lg-6">Financeurs:</div>
-                <div className="col-lg-6 text-align-right">{4}</div>
-                <div className="col-lg-6">Date:</div>
-                <div className="col-lg-6 text-align-right">{client.inscription}</div>
-                <div className="col-lg-6">Étape:</div>
-                <div className="col-lg-6 text-align-right">{`${1}/5`}</div>
-              </div>
-            </div>
-          </div>
-        )
+        const randomId = Math.floor((Math.random() * 100) + 1);
+        return <CardClient client={client} key={randomId}/>
       })
     }
 

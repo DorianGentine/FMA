@@ -113,7 +113,10 @@ class KitDeFinancement extends Component {
             <div className="white-box flex flex-wrap align-items-center">
               <h4 className="padding-horizontal-15 no-margin">Liste des financeurs</h4>
               <p className="bold padding-horizontal-15">{`${10}`}</p>
-              <a className="padding-horizontal-15 text-align-right font-12 flex-grow-1" href="#">Rechercher un financeur</a>
+              <div className="input-wth-icon search-app margin-left-auto">
+                <i className="fas fa-search"></i>
+                <input type="text" placeholder="Rechercher une ressource" style={{width: "100%"}} />
+              </div>
               <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
                 <p className="col-lg-3 font-12" style={{paddingLeft: 0}}>Nom</p>
                 <p className="col-lg-9 font-12" style={{paddingRight: 0}}>Description</p>
