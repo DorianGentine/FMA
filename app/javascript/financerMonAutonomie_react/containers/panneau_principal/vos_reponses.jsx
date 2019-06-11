@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { showReponses } from '../../actions'
+
 import renderLogo from "../../../components/render_logo"
 import renderInitiale from "../../../components/render_initiales"
 
@@ -11,21 +13,21 @@ class VosReponses extends Component {
     const statut = this.props.api.statut
 
     if(statut === "client"){
-      const user = this.props.api.user
+      const users = this.props.project.formularies
 
       const renderUsers = () => {
-        // return users.map((user, index) => {
+        return users.map((user, index) => {
           return (
             <div className="flex space-between margin-bottom-30" key={user.id}>
               <div className="margin-right-15" style={{ marginLeft: 0 }}>{renderLogo(user)}</div>
               <div className="flex-grow-1">
-                <h4 className="font-12 no-margin">Bénéficiaire {1}:</h4>
-                <p className="font-12">{user.first_name} {user.last_name}</p>
+                <h4 className="font-12 no-margin">Bénéficiaire {index + 1}:</h4>
+                <p className="font-12">{user.first_name}</p>
               </div>
-              <button className="blue-gray-btn">Voir les réponses</button>
+              <button className="blue-gray-btn" onClick={()=>{this.props.showReponses(user, index)}}>Voir les réponses</button>
             </div>
           );
-        // });
+        });
       };
 
       return (
@@ -78,11 +80,12 @@ class VosReponses extends Component {
 function mapStateToProps(state) {
   return {
     api: state.api,
+    project: state.project,
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ showReponses }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(VosReponses);
+export default connect(mapStateToProps, mapDispatchToProps)(VosReponses);

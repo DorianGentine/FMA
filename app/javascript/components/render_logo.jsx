@@ -21,7 +21,7 @@ export default function renderLogo(financer){
     if(financer.name){
       name = financer.name
     }else if(financer.first_name){
-      name = `${financer.first_name} ${financer.last_name}`
+      name = `${financer.first_name}${financer.last_name ? ` ${financer.last_name}` : ""}`
     }
     return(
       <div

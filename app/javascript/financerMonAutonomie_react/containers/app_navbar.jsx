@@ -59,11 +59,11 @@ class AppNavbar extends Component {
               <p>Bureau</p>
             </Link>
             <Link className={`btn-app-navbar margin-top-30 ${active("clients")}`} to={`${this.props.rootUrl}/clients`}>
-              <i className="far fa-user"></i>
+              <i className="far fa-folder"></i>
               <p>Clients</p>
             </Link>
             <Link className={`btn-app-navbar margin-top-30 ${active("demandes")}`} to={`${this.props.rootUrl}/demandes`}>
-              <i className="far fa-user"></i>
+              <i className="fas fa-question"></i>
               <p>Demandes</p>
             </Link>
             <Link className={`btn-app-navbar margin-top-30 ${active("compte")}`} to={`${this.props.rootUrl}/compte/identite`}>
@@ -75,7 +75,7 @@ class AppNavbar extends Component {
               <p>Alertes</p>
             </Link>
             <Link className={`btn-app-navbar margin-top-30 ${active("a_propos")}`} to={`${this.props.rootUrl}/a_propos`}>
-              <i className="far fa-user"></i>
+              <i className="fas fa-info-circle"></i>
               <p>A propos</p>
             </Link>
 

@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { fetchClients } from '../../actions';
+
 import CardClient from './card_client';
 
 class PanneauPrincipalClients extends Component {
+  componentWillMount(){
+    this.props.fetchClients("/api/v1/users")
+  }
 
   render(){
-    const clients = this.props.api.clients
+    const clients = this.props.clients
 
     const renderClients = () => {
-      return clients.map((client, index) => {
-        const randomId = Math.floor((Math.random() * 100) + 1);
-        return <CardClient client={client} key={randomId}/>
+      return clients.clients.map((client, index) => {
+        return <CardClient client={client} key={client.id}/>
       })
     }
 
@@ -27,11 +31,15 @@ class PanneauPrincipalClients extends Component {
         </div>
         <div className="margin-top-30 margin-bottom-30 flex align-items-center">
           <hr className="ligne-horizontal"/>
-          <div className="font-14 black blue-gray-background flex-grow-1 text-align-center" style={{ width: "100%" }}>Etape 1 : Confirmation des réponses</div>
+          <div
+            className="font-14 black blue-gray-background flex-grow-1 text-align-center"
+            style={{ width: "100%" }}>
+            Etape 1 : Confirmation des réponses
+          </div>
           <hr className="ligne-horizontal"/>
         </div>
         <div className="row">
-          {renderClients()}
+          {clients != null ? renderClients() : <h2>Chargement...</h2>}
         </div>
       </div>
     )
@@ -40,12 +48,12 @@ class PanneauPrincipalClients extends Component {
 
 function mapStateToProps(state) {
   return {
-    api: state.api,
+    clients: state.clients,
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchFORM }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchClients }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(PanneauPrincipalClients);
+export default connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalClients);
