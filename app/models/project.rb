@@ -61,6 +61,7 @@ class Project < ApplicationRecord
     elsif self.call?
       self.progression!
       Notification.create(title:"a été appelé", date:Time.now, project: self)
+      SuggestionKit.new(self).call
     elsif self.progression?
       self.evalution!
       Notification.create(title:"a obtenu son kit", date:Time.now, project: self)

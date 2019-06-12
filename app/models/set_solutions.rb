@@ -24,4 +24,25 @@ class SetSolutions
     end
     return solutions
   end
+
+  def financers(project)
+    solutions = call_for(project)
+    financers = solutions.map { |s| s.financer.name }
+    return financers.uniq
+  end
+
+  def acteurs(project)
+    forms = Formulary.where(project: project)
+    acteurs =  []
+    forms.each do |form|
+      if form.lessor.present?
+        acteurs << form.lessor
+      elsif form.pension.present?
+        acteurs << form.pension
+      elsif form.supplementary.present?
+        acteurs << form.supplementary
+      end
+    end
+    return acteurs.uniq
+  end
 end

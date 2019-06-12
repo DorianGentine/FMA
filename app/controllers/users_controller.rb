@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     #   @projects = @user.projects
     #   @clients = @user.his_clients
     # end
-    authorize @user
+    authorize @current_user
   end
 
 end
