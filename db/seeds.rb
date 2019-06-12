@@ -1225,49 +1225,49 @@ p "Create Admin"
 
   User.create(last_name: "Admin", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "admin@mail.com", password:"password")
 
-p "create formulary"
+# p "create formulary"
 
-  form = Formulary.new
-  form.set_a_new_form(Faker::Name.first_name)
-  form.visitor = Visitor.create(user_ip: "::1")
-  form.project = Project.create()
-  form.save
-  project = form.project
+#   form = Formulary.new
+#   form.set_a_new_form(Faker::Name.first_name)
+#   form.visitor = Visitor.create(user_ip: "::1")
+#   form.project = Project.create()
+#   form.save
+#   project = form.project
 
-  form2 = Formulary.new
-  form2.set_a_new_form(Faker::Name.first_name)
-  form2.project = project
-  form2.save
+#   form2 = Formulary.new
+#   form2.set_a_new_form(Faker::Name.first_name)
+#   form2.project = project
+#   form2.save
 
-p "Formulary created"
+# p "Formulary created"
 
-p "Create a Beneficaire"
+# p "Create a Beneficaire"
 
-  bene = User.create(first_name: form.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test@mail.com", password: "password")
-  UserProject.create(user: bene, project: project, client: true)
-  UserProject.create(user: advisor, project: project)
+#   bene = User.create(first_name: form.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test@mail.com", password: "password")
+#   UserProject.create(user: bene, project: project, client: true)
+#   UserProject.create(user: advisor, project: project)
 
-p "create formulary"
+# p "create formulary"
 
-  form_3 = Formulary.new
-  form_3.set_a_new_form(Faker::Name.first_name)
-  form_3.visitor = Visitor.create(user_ip: "::2")
-  form_3.project = Project.create()
-  form_3.save
-  project2 = form_3.project
+#   form_3 = Formulary.new
+#   form_3.set_a_new_form(Faker::Name.first_name)
+#   form_3.visitor = Visitor.create(user_ip: "::2")
+#   form_3.project = Project.create()
+#   form_3.save
+#   project2 = form_3.project
 
-  form_4 = Formulary.new
-  form_4.set_a_new_form(Faker::Name.first_name)
-  form_4.project = project2
-  form_4.save
+#   form_4 = Formulary.new
+#   form_4.set_a_new_form(Faker::Name.first_name)
+#   form_4.project = project2
+#   form_4.save
 
-p "Formulary created"
+# p "Formulary created"
 
-p "Create a Beneficaire"
+# p "Create a Beneficaire"
 
-  bene2 = User.create(first_name: form_3.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test2@gmail.com", password: "password")
-  UserProject.create(user: bene2, project: project2, client: true)
-  UserProject.create(user: advisor, project: project2)
+#   bene2 = User.create(first_name: form_3.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test2@gmail.com", password: "password")
+#   UserProject.create(user: bene2, project: project2, client: true)
+#   UserProject.create(user: advisor, project: project2)
 
 
 
