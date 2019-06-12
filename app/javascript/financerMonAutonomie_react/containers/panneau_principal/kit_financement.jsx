@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import Financers from './financers'
+import AppelsProgrammes from './appels_programmes'
+
 class KitDeFinancement extends Component {
   render(){
     const statut = this.props.api.statut
@@ -42,91 +45,11 @@ class KitDeFinancement extends Component {
     // App conseiller
       // Appels programmés
       }else if(statut === "conseiller" && this.props.appelsProgrammes){
-        const renderCalls = () => {
-          // return this.props.messages.map((message, index) => {
-            return (
-              <div className="flex margin-top-15">
-                <p className="col-lg-2 font-12 blue bold" style={{paddingLeft: 0}}>9H <span className="gray-300">aujourd'hui</span></p>
-                <p className="col-lg-3 font-12">Michel de Fremont</p>
-                <p className="col-lg-3 font-12">4 Financeurs</p>
-                <p className="col-lg-2 font-12">0630208894</p>
-                <div className="col-lg-1">
-                  <label className="switch">
-                    <input type="checkbox" />
-                    <span className="slider round"></span>
-                  </label>
-                </div>
-                <div className="relative col-lg-1 text-align-right" role="group">
-                  <div
-                    id={`drop-call${"michou"}`}
-                    className="pointer font-12"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false">...
-                  </div>
-                  <div className="dropdown-menu drop-menu-call" aria-labelledby={`drop-call${"michou"}`}>
-                    <a href="#">Voir&nbsp;le&nbsp;profil</a>
-                    <a href="#">Envoyer&nbsp;un&nbsp;message</a>
-                  </div>
-                </div>
-              </div>
-            );
-          // });
-        };
-
-        return (
-          <div className="col-lg-12">
-            <div className="white-box flex flex-wrap align-items-center">
-              <h4 className="padding-horizontal-15 no-margin">Appels programmés</h4>
-              <p className="blue padding-horizontal-15">{`${3} appels aujourd'hui`}</p>
-              <p className="padding-horizontal-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
-              <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
-                <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Heure</p>
-                <p className="col-lg-3 font-12">Nom</p>
-                <p className="col-lg-3 font-12">Financeurs éligibles</p>
-                <p className="col-lg-2 font-12">Tél</p>
-                <p className="col-lg-2 font-12" style={{paddingRight: 0}}>Appelé</p>
-              </div>
-              <div className="scroll col-lg-12" style={{ height: "120px" }}>
-                {renderCalls()}
-              </div>
-            </div>
-          </div>
-        );
+        return <AppelsProgrammes />
 
       // Liste des financeurs
       }else if(statut === "conseiller" && !this.props.appelsProgrammes){
-        const renderFinanceurs = () => {
-          // return this.props.messages.map((message, index) => {
-            return (
-              <div className="flex margin-top-15">
-                <p className="col-lg-3 font-12 black" style={{paddingLeft: 0}}>Caisse retraite</p>
-                <p className="col-lg-7 font-12 black">Description</p>
-                <p className="col-lg-2 font-12 blue-gray-btn center-text">Accéder</p>
-              </div>
-            );
-          // });
-        };
-
-        return (
-          <div className="col-lg-12">
-            <div className="white-box flex flex-wrap align-items-center">
-              <h4 className="padding-horizontal-15 no-margin">Liste des financeurs</h4>
-              <p className="bold padding-horizontal-15">{`${10}`}</p>
-              <div className="input-wth-icon search-app margin-left-auto">
-                <i className="fas fa-search"></i>
-                <input type="text" placeholder="Rechercher une ressource" style={{width: "100%"}} />
-              </div>
-              <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
-                <p className="col-lg-3 font-12" style={{paddingLeft: 0}}>Nom</p>
-                <p className="col-lg-9 font-12" style={{paddingRight: 0}}>Description</p>
-              </div>
-              <div className="scroll col-lg-12" style={{ height: "80px" }}>
-                {renderFinanceurs()}
-              </div>
-            </div>
-          </div>
-        );
+        return <Financers />
       }
   }
 };

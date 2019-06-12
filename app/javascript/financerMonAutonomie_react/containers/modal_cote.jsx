@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import ModalClient from './modal_cote/modal_client';
 import ModalDocument from './modal_cote/modal_document';
 import ModalFinancer from './modal_cote/modal_financer';
 import ModalRessource from './modal_cote/modal_ressource';
@@ -12,6 +13,8 @@ class ModalCote extends Component {
     const modalSelected = this.props.modal_selected
     if(modalSelected == null){
       return null
+    }else if(modalSelected.modalActive === "showClient"){
+      return (<ModalClient />)
     }else if(modalSelected.modalActive === "showDoc"){
       return (<ModalDocument />)
     }else if(modalSelected.modalActive === "showFinancer"){

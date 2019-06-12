@@ -72,7 +72,7 @@ class CardClient extends Component {
                 <i className="fas fa-phone margin-right-5"></i>
                 Appeler
               </a>
-              <a href={client.url} className="font-12 gray flex align-items-center">
+              <a href={`${client.url}/projet`} className="font-12 gray flex align-items-center">
                 <i className="far fa-user margin-right-5"></i>
                 Voir profil
               </a>

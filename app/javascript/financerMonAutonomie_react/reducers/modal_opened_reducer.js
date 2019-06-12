@@ -1,4 +1,5 @@
 import {
+  SHOW_CLIENT,
   SHOW_DOCUMENT,
   SHOW_FINANCER,
   SHOW_REPONSES,
@@ -8,6 +9,9 @@ import {
 
 export default function(state = null, action) {
   switch (action.type) {
+    case SHOW_CLIENT: {
+      return true;
+    }
     case SHOW_DOCUMENT: {
       return true;
     }
