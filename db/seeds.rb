@@ -1243,7 +1243,7 @@ p "Formulary created"
 
 p "Create a Beneficaire"
 
-  bene = User.create(first_name: form.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test@gmail.com", password: "password")
+  bene = User.create(first_name: form.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test@mail.com", password: "password")
   UserProject.create(user: bene, project: project, client: true)
   UserProject.create(user: advisor, project: project)
 
