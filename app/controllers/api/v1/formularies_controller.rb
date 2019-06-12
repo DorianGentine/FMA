@@ -4,7 +4,9 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   before_action :set_project, only: [:new, :create]
 
   def show
-
+    @form = []
+    FormularyToHash.new(@formulary).questions_answers.each { |e| e.present? ? @form << e : ""  }
+    render json: @form
   end
 
   def edit
