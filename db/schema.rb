@@ -149,6 +149,9 @@ ActiveRecord::Schema.define(version: 2019_06_11_233152) do
   end
 
   create_table "ressources", force: :cascade do |t|
+    t.string "solution_ids"
+    t.string "financer"
+    t.string "acteur"
     t.string "model_1"
     t.string "model_2"
     t.string "notice"
