@@ -36,6 +36,18 @@ class FormularyToHash
     return form_to_hash
   end
 
+  def questions_answers
+    array = []
+    Formulary.column_names.each do |column_name|
+      if @form.send(column_name).present?
+        set = {
+          question: FormularyChatbot.new().questions["#{column_name}"],
+          answer: @form.send(column_name)
+        }
+        array << set
+      end
+    end
+  end
 
   def form_json
      generate_form_with_allow_question(@form, true)

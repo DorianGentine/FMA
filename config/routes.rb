@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       resources :financers, only: [ :index, :show ]
       resources :ressources, only: [ :index ]
       resources :documents, only: [ :update ]
-      resources :formularies, only: [ :update, :edit ]
+      resources :formularies, only: [ :update, :edit, :show ]
       resources :notes, only: [ :update ]
       resources :projects, only: [ :show, :update ] do
         post '/update_calendly', to: 'calendly#update_calendly', as: "update_calendly"

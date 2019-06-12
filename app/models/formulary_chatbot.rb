@@ -483,8 +483,6 @@ class FormularyChatbot
     }
   end
 
-  private
-
   def questions
       return {
         step_0: nil,
@@ -520,6 +518,8 @@ class FormularyChatbot
         assistant: "Avez-vous déjà perçu ou percevez-vous une de ses aides ou actions sociales ?",
       }
   end
+
+  private
 
   def questions_chatbot
       return {

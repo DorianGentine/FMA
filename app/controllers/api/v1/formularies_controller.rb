@@ -1,7 +1,11 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
   before_action :authenticate_user!
-  before_action :set_formulary, only: [:update, :edit]
+  before_action :set_formulary, only: [:update, :edit, :show]
   before_action :set_project, only: [:new, :create]
+
+  def show
+
+  end
 
   def edit
     @formulary_setted = FormularyToHash.new(@formulary).form_json_for_espace
@@ -31,7 +35,6 @@ class Api::V1::FormulariesController < Api::V1::BaseController
 
   def set_project
     @project = Project.find(params[:project_id])
-
     authorize @project
   end
 
