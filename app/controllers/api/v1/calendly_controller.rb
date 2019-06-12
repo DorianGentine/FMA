@@ -8,8 +8,9 @@ class Api::V1::CalendlyController < Api::V1::BaseController
     if @project.save
       render json:@project
     else
-      "//// Error setting date => #{params["payload"]["event"]}"
-      "//// Error setting project => #{@project.errors.full_messages}"
+      p "//// Error setting date => #{params["payload"]["event"]}"
+
+      p "//// Error setting project => #{@project.errors.full_messages}"
     end
     authorize @project
   end
