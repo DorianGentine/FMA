@@ -119,13 +119,16 @@ class PanneauPrincipalCompte extends Component {
             </div>
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
-                <h4 className="col-lg-12">Informations générales</h4>
+                <h4 className="col-lg-12">Téléphone</h4>
                 <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
                   <Field
-                    label="Date de naissance"
-                    name={"birthdate"}
-                    type="date"
+                    label="Numéro de téléphone"
+                    name={"phone"}
+                    type="tel"
                     component={this.renderField}
+                    hint="
+                    Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
+                    // Recevez vos notifications de message par SMS.
                   />
                   <button
                     className="float-right btn-blue"
@@ -137,6 +140,25 @@ class PanneauPrincipalCompte extends Component {
               </div>
             </div>
           </div>
+            // <div className="col-lg-12">
+            //   <div className="white-box flex flex-wrap">
+            //     <h4 className="col-lg-12">Informations générales</h4>
+            //     <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
+            //       <Field
+            //         label="Date de naissance"
+            //         name={"birthdate"}
+            //        type="date"
+            //         component={this.renderField}
+            //      />
+            //      <button
+            //        className="float-right btn-blue"
+            //         type="submit"
+            //         disabled={this.props.pristine || this.props.submitting}>
+            //           Enregistrer
+            //       </button>
+            //     </form>
+            //   </div>
+            // </div>
                   // <Field
                   //   label="Sexe"
                   //   name={"gender"}
@@ -151,7 +173,7 @@ class PanneauPrincipalCompte extends Component {
           <div className="row">
             <div className="col-lg-12">
               <div className="white-box flex flex-wrap">
-                <h4 className="col-lg-12">Email</h4>
+                <h4 className="col-lg-12">Modification de votre email</h4>
                 <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "email")})}>
                   <Field
                     label="Email"
@@ -162,6 +184,38 @@ class PanneauPrincipalCompte extends Component {
                   <Field
                     label="Mot de passe actuel"
                     name={"password"}
+                    type="password"
+                    component={this.renderField}
+                  />
+                  <button
+                    className="float-right btn-blue"
+                    type="submit"
+                    disabled={this.props.pristine || this.props.submitting}>
+                      Enregistrer
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div className="col-lg-12">
+              <div className="white-box flex flex-wrap">
+                <h4 className="col-lg-12">Modification de votre mot de passe</h4>
+                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "password")})}>
+                  <Field
+                    label="Ancien mot de passe"
+                    name={"password"}
+                    type="password"
+                    component={this.renderField}
+                  />
+                  <Field
+                    label="Nouveau"
+                    name={"new-password"}
+                    type="password"
+                    component={this.renderField}
+                    hint="6 caractères minimum"
+                  />
+                  <Field
+                    label="Confirmation"
+                    name={"new-password-confirm"}
                     type="password"
                     component={this.renderField}
                   />

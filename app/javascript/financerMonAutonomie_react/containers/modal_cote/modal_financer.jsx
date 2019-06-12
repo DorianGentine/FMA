@@ -8,6 +8,7 @@ import renderLogo from "../../../components/render_logo"
 
 class ModalFinancer extends Component {
   render(){
+    const statut = this.props.statut
     const financer = this.props.modal_selected.financer
 
     const changeText = () => {
@@ -43,46 +44,83 @@ class ModalFinancer extends Component {
       })
     }
 
-    return(
-      <div>
-        <div className="flex space-between black margin-bottom-30">
-          <h2>Vos financeurs potentiels</h2>
-          <i className="far fa-times-circle pointer" onClick={this.props.closeModal}></i>
+    if(statut === "client"){
+      return(
+        <div>
+          <div className="flex space-between black margin-bottom-30">
+            <h2>Vos financeurs potentiels</h2>
+            <i className="far fa-times-circle pointer" onClick={this.props.closeModal}></i>
+          </div>
+          <div className="blue-gray-box align-text-center vertical margin-bottom-30 margin-top-30">
+            <div style={{marginRight: "-15px"}}>{renderLogo(financer)}</div>
+            <h4 className="black">{financer.name}</h4>
+            <p className="blue">Conseil en solutions</p>
+          </div>
+          <p className="black">Description de l'organisme</p>
+          <p>{financer.description.substr(0, 60)}
+            <span
+              className="collapse"
+              id="collapseDescription">
+              {financer.description.substr(60)}
+            </span>
+            <span
+              className="blue pointer"
+              data-toggle="collapse"
+              data-target="#collapseDescription"
+              aria-expanded="false"
+              aria-controls="collapseDescription"
+              onClick={()=>{changeText()}}>
+               ... Voir plus
+            </span>
+          </p>
+          <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
+          <p className="black">Analyse de votre situation</p>
+          {renderAnswers(financer.answers)}
+          <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
         </div>
-        <div className="blue-gray-box align-text-center vertical margin-bottom-30 margin-top-30">
-          <div style={{marginRight: "-15px"}}>{renderLogo(financer)}</div>
-          <h4 className="black">{financer.name}</h4>
-          <p className="blue">Conseil en solutions</p>
+      )
+
+
+    }else if(statut === "conseiller"){
+      return(
+        <div>
+          <div className="flex space-between black margin-bottom-30">
+            <h2>Vos financeurs potentiels</h2>
+            <i className="far fa-times-circle pointer" onClick={this.props.closeModal}></i>
+          </div>
+          <div className="blue-gray-box align-text-center vertical margin-bottom-30 margin-top-30">
+            <div style={{marginRight: "-15px"}}>{renderLogo(financer)}</div>
+            <h4 className="black">{financer.name}</h4>
+            <p className="blue">Conseil en solutions</p>
+          </div>
+          <p className="black">Description de l'organisme</p>
+          <p>{financer.description.substr(0, 60)}
+            <span
+              className="collapse"
+              id="collapseDescription">
+              {financer.description.substr(60)}
+            </span>
+            <span
+              className="blue pointer"
+              data-toggle="collapse"
+              data-target="#collapseDescription"
+              aria-expanded="false"
+              aria-controls="collapseDescription"
+              onClick={()=>{changeText()}}>
+               ... Voir plus
+            </span>
+          </p>
+          <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
         </div>
-        <p className="black">Description de l'organisme</p>
-        <p>{financer.description.substr(0, 60)}
-          <span
-            className="collapse"
-            id="collapseDescription">
-            {financer.description.substr(60)}
-          </span>
-          <span
-            className="blue pointer"
-            data-toggle="collapse"
-            data-target="#collapseDescription"
-            aria-expanded="false"
-            aria-controls="collapseDescription"
-            onClick={()=>{changeText()}}>
-             ... Voir plus
-          </span>
-        </p>
-        <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
-        <p className="black">Analyse de votre situation</p>
-        {renderAnswers(financer.answers)}
-        <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
-      </div>
-    )
+      )
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
     modal_selected: state.modal_selected,
+    statut: state.api.statut,
   };
 }
 

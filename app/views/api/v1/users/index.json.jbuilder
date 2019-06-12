@@ -10,7 +10,11 @@ json.clients @users do |user|
   json.phone user.phone
   json.created_at user.created_at
   json.étape user.project.step
+  json.rdv user.project.appointment
   json.financeurs user.project.solutions.count
+  json.kits user.project.kits do |kit|
+    json.id json.id
+  end
   json.url "/mon_espcae/#{user.id}"
 end
 

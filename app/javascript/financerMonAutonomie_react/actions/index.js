@@ -3,11 +3,13 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const DISPLAY_CALENDLY = 'DISPLAY_CALENDLY';
 export const FETCH_API = 'FETCH_API';
 export const FETCH_CLIENTS = 'FETCH_CLIENTS';
+export const FETCH_FINANCERS = 'FETCH_FINANCERS';
 export const FETCH_FORM = 'FETCH_FORM';
 export const FETCH_PROJET = 'FETCH_PROJET';
 export const FETCH_RESSOURCES = 'FETCH_RESSOURCES';
 export const POST_COMPTE = 'POST_COMPTE';
 export const POST_FORM = 'POST_FORM';
+export const SHOW_CLIENT = 'SHOW_CLIENT';
 export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
 export const SHOW_FINANCER = 'SHOW_FINANCER';
 export const SHOW_REPONSES = 'SHOW_REPONSES';
@@ -63,6 +65,15 @@ export function fetchClients(url) {
 
   return {
     type: FETCH_CLIENTS,
+    payload: promise
+  };
+}
+
+export function fetchFinancers(url) {
+  const promise = fetch(url).then(r => r.json());
+
+  return {
+    type: FETCH_FINANCERS,
     payload: promise
   };
 }
@@ -154,6 +165,18 @@ export function showFinancer(financer) {
   return {
     type: SHOW_FINANCER,
     payload: financerSelected
+  };
+}
+
+export function showClient(client) {
+  const clientSelected = {
+    modalActive: "showClient",
+    client: client,
+  }
+
+  return {
+    type: SHOW_CLIENT,
+    payload: clientSelected
   };
 }
 

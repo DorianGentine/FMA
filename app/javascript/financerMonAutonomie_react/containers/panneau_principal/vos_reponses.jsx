@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import ClientsAdvisor from './clients_advisor';
+
 import { showReponses } from '../../actions'
 
 import renderLogo from "../../../components/render_logo"
@@ -43,36 +45,7 @@ class VosReponses extends Component {
 
 
     }else if(statut === "conseiller"){
-      const clients = this.props.api.clients
-
-      const renderClients = () => {
-        return clients.map((client, index) => {
-          return (
-              // <div className="navbar-avatar" style={{ marginLeft: 0 }}></div>
-            <div className="flex space-between margin-bottom-15" key={`${client.client}`}>
-              {renderLogo(client)}
-              <div className="flex-grow-1">
-                <h4 className="font-12 no-margin">{client.first_name} {client.last_name}</h4>
-              </div>
-              <button className="blue-gray-btn">Compléter</button>
-            </div>
-                // <p className="font-12">{`${client.financers.length} financeurs | `}</p>
-          );
-        });
-      };
-
-      return (
-        <div className="col-lg-6">
-          <div className="white-box flex flex-wrap align-items-center">
-            <h4 className="padding-horizontal-15 no-margin">Élaboration de kit</h4>
-            <p className="blue font-12 padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${clients.length} en cours`}</p>
-            <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
-            <div className="scroll col-lg-12 align-items-center margin-top-15" style={{ height: "145px" }}>
-              {renderClients()}
-            </div>
-          </div>
-        </div>
-      );
+      return <ClientsAdvisor />
     }
   }
 };

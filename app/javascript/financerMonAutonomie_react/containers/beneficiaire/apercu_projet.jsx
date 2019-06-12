@@ -5,9 +5,6 @@ import { connect } from 'react-redux';
 import { fetchProjet } from '../../actions';
 
 class ApercuProjet extends Component {
-  // componentWillMount() {
-  //   this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`);
-  // }
 
   render(){
     const statut = this.props.api.statut
@@ -16,7 +13,6 @@ class ApercuProjet extends Component {
       if(statut === "client"){
         const project = this.props.project
         const financers = project.financers
-        // console.log("project", project)
 
         const mydate = new Date(project.project.date_de_creation);
         const month = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"][mydate.getMonth()];

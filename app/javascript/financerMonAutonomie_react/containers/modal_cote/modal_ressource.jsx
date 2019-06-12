@@ -24,12 +24,13 @@ class ModalRessource extends Component {
           <button className="btn font-12 border flex-grow-1" style={{padding: "3px"}}>Télécharger</button>
         </div>
         <hr className="ligne-horizontal gray-200-background"/>
-        <p className="black">Demande spécifique</p>
-        <button className="btn black gray-200-background font-12 w-100">Créer une demande spécifique</button>
-        <hr className="ligne-horizontal gray-200-background"/>
         <p className="black">Description</p>
         <p>Bonjour je viens de formuler une demande spécifique concernant le dossier de. Bonjour je viens de formuler une demande spécifique concernant le dossier de......</p>
+        <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
       </div>
+        // <hr className="ligne-horizontal gray-200-background"/>
+        // <p className="black">Demande spécifique</p>
+        // <button className="btn black gray-200-background font-12 w-100">Créer une demande spécifique</button>
     )
   }
 }

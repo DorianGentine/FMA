@@ -18,6 +18,7 @@
   // State and reducers
   import apiReducer from './reducers/api_reducer';
   import clientsReducer from './reducers/clients_reducer';
+  import financersReducer from './reducers/financers_reducer';
   import formResultsReducer from './reducers/form_results_reducer';
   import formularyIdReducer from './reducers/formulary_id_reducer';
   import modalOpenedReducer from './reducers/modal_opened_reducer';
@@ -40,6 +41,7 @@ if(app){
   const initialState = {
     api: {},
     clients: null,
+    financers: null,
     formulary_id: {},
     formResults: [],
     modal_opened: false,
@@ -56,6 +58,7 @@ if(app){
   const reducers = combineReducers({
     api: apiReducer,
     clients: clientsReducer,
+    financers: financersReducer,
     form: formReducer,
     formResults: formResultsReducer,
     formulary_id: formularyIdReducer,
