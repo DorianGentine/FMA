@@ -14,7 +14,7 @@ class Project < ApplicationRecord
   has_many :documents, dependent: :destroy
 
   before_create :fill_step
-
+  before_save :going_to_call, :clean_appointment
 
   enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evalution"]
   # enum progress: ["new", "current", "archive"]
@@ -70,7 +70,16 @@ class Project < ApplicationRecord
     self.save
   end
 
-
-
+  private
+  def clean_appointment
+    if self.documentation?
+      self.appointment = nil
+    end
+  end
+  def going_to_call
+    if self.meeting?
+      self.call! if self.appointment
+    end
+  end
 end
 
