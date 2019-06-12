@@ -88,6 +88,7 @@ export function fetchFORM(url) {
 }
 
 export function fetchPostCompte(url, body, method) {
+  console.log("body", body)
   const request = fetch(url,
      {
       method: method,

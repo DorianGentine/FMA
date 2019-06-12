@@ -15,7 +15,7 @@ class Ressources extends Component {
     const renderRessources = () => {
       return ressources.map((ressource, index) => {
         return (
-          <div className="flex space-between align-items-center margin-bottom-15" key={ressource.id}>
+          <div className="flex space-between align-items-center margin-bottom-15" key={index}>
             <div className="icon-doc margin-right-15"></div>
             <div className="flex-grow-1">
               <h4 className="font-12 no-margin">{ressource.notice.substr(ressource.notice.lastIndexOf('/') + 1)}</h4>
@@ -28,12 +28,12 @@ class Ressources extends Component {
     };
 
     return (
-      <div className="col-lg-6">
+      <div className="col-lg-12">
         <div className="white-box flex flex-wrap align-items-center">
-          <h4 className="padding-horizontal-15 no-margin">Les ressources</h4>
-          <p className="blue font-12 padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${ressources ? ressources.length : 0} ressources`}</p>
+          <h4 className="padding-horizontal-15 no-margin">Liste des ressources</h4>
+          <p className="bold padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${ressources ? ressources.length : 0} ressources`}</p>
           <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
-          <div className="scroll col-lg-12 margin-top-15" style={{ height: "145px" }}>
+          <div className="scroll col-lg-12 margin-top-15" style={{ height: "80px" }}>
             {ressources != null ? renderRessources() : <h2>Chargement...</h2> }
           </div>
         </div>

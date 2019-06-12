@@ -13,7 +13,8 @@ json.clients @users do |user|
   json.rdv user.project.appointment
   json.financeurs user.project.solutions.count
   json.kits user.project.kits do |kit|
-    json.id json.id
+    json.id kit.id
+    json.ressource kit.ressource.id
   end
   json.url "/mon_espcae/#{user.id}"
 end
