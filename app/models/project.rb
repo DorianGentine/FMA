@@ -3,6 +3,9 @@ class Project < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :notes, dependent: :destroy
 
+  has_many :kits, dependent: :destroy
+  has_many :ressources, through: :kits
+
   has_many :user_projects, dependent: :destroy
   has_many :users, through: :user_projects
 
