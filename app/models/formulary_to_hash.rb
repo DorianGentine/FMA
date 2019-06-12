@@ -37,14 +37,16 @@ class FormularyToHash
   end
 
   def questions_answers
-    array = []
-    Formulary.column_names.each do |column_name|
-      if @form.send(column_name).present?
-        set = {
-          question: FormularyChatbot.new().questions["#{column_name}"],
-          answer: @form.send(column_name)
-        }
-        array << set
+    Formulary.column_names.map do |column_name|
+      question = FormularyChatbot.new().questions[column_name.to_sym]
+      if question.present?
+        answer = set_answer_for_espace(@form, column_name)
+        if answer.present?
+          set = {
+            question: question,
+            answer: answer
+          }
+        end
       end
     end
   end
