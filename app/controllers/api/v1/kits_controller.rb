@@ -5,7 +5,7 @@ class Api::V1::KitsController < Api::V1::BaseController
     @project = Project.find(params[:project_id])
     kit = Kit.new(project: @project, ressource: params[:ressource_id] )
     if kit.save
-      render :json @project
+      render json: @project
     end
     authorize @project
   end
