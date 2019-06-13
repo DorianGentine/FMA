@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { displayCalendly } from "../../actions"
 
 import ValidationModal from "./validation_modal"
+import { renderDate } from "../../../components/render_date"
 
 class RdvTel extends Component {
   // componentWillReceiveProps(nextProps) {
@@ -27,12 +28,14 @@ class RdvTel extends Component {
       if(statut === "client"){
         const etape = this.props.project.project.etape
         let rdvText = ""
+        let rdvTitre = "Accédez à votre calendrier"
         if(etape === "validation_data" || etape === "documentation"){
           rdvText = "Fixez votre RDV à l'étape 3"
         }else if(etape === "meeting"){
           rdvText = "Fixez votre rendez-vous ici"
         }else if(etape === "call"){
-          rdvText = this.props.project.project.rdv == null
+          rdvTitre = "Votre rendez-vous aura lieu"
+          rdvText = renderDate(this.props.project.project.rdv, "ddd_mmm_hhhh")
         }
 
         const handleCalendly = () => {
@@ -43,7 +46,7 @@ class RdvTel extends Component {
           <div className="relative">
             <div className="margin-top-30 blue-gray-box" onClick={ etape === "meeting" ? ()=>{handleCalendly()} : ()=>{} }>
               <div className="icon-calendar"></div>
-              <p className="rdv-tel-text">Accédez à votre calendrier <br/><strong>{rdvText}</strong></p>
+              <p className="rdv-tel-text">{rdvTitre} <br/><strong>{rdvText}</strong></p>
               <div className="icon-arrow"></div>
             </div>
             {etape === "meeting" ? <ValidationModal /> : null}
