@@ -41,8 +41,8 @@ Rails.application.routes.draw do
 
 
   namespace :api, defaults: { format: :json } do
-    post '/update_calendly', to: 'calendly#update_calendly', as: "update_calendly"
     namespace :v1 do
+    post '/update_calendly', to: 'calendly#update_calendly', as: "update_calendly"
       resources :visitors, only: [:show, :update] do
         member do
           patch :update_formulary

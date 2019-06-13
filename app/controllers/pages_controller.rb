@@ -24,6 +24,9 @@ class PagesController < ApplicationController
 
   end
   def prise_de_rdv
+    p " params send => #{params}"
+    p "/////answer_1 #{params["answer_1"]}"
+    p "/////event_start_time  #{params["event_start_time"]}"
     if current_user
       @user = current_user
     else
