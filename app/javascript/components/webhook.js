@@ -6,6 +6,7 @@ function createWebhook(){
         method: 'POST',
         headers: {
           'X-TOKEN': 'GFNBFHEAABRPXUMMAVMGXLNXESCAJWY7',
+          'X-User-Token': 'x6zVZxxieS2uGkrLAzqs',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
