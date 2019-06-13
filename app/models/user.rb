@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates_presence_of :email, :message => "Ton email doit être rempli"
 
   before_create :set_as_client
+  after_create :send_welcome_email
 
   scope :clients, -> { User.where(client: true) }
 
@@ -26,6 +27,7 @@ class User < ApplicationRecord
   end
 
   mount_uploader :avatar, PhotoUploader
+
 
   def is_a_client
     unless self.advisor || self.admin
@@ -67,5 +69,8 @@ class User < ApplicationRecord
     end
   end
 
+  def send_welcome_email
+    UserMailer.with(user: self).welcome.deliver_now
+  end
 
 end
