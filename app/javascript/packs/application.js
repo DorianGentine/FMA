@@ -15,6 +15,9 @@ fetchFormulary();
 import { currencyFormatDE } from "../components/currency";
 currencyFormatDE()
 
+import { createWebhook } from "../components/webhook"
+createWebhook()
+
 import { initSelect2, initSelectize } from '../components/init_select2';
 initSelect2();
 initSelectize();
