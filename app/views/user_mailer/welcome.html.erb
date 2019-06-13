@@ -1,5 +1,256 @@
-<h1>User#welcome</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Message court</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href='http://fonts.googleapis.com/css?family=Helvetica:400,600' rel='stylesheet' type='text/css'>
+  <style type="text/css"></style>
+</head>
 
-<p>
-  <%= @user.first_name %>, find me in app/views/user_mailer/welcome.html.erb
-</p>
+
+<!-- Début -->
+<!-- Background color -->
+<body style="margin: 0; padding: 0; background-color:#F5F9FF;">
+  <center>
+    <table style="width: 80%; margin: auto;">
+
+<!-- Logo header -->
+
+<table align="center"; bgcolor="#F5F9FF" border="0" cellpadding="0" cellspacing="0" class="wrapper" class="container">
+  <tbody>
+    <tr>
+      <td>
+        <table  align="center" width="600" border="0" cellpadding="0" cellspacing="0">
+
+          <tr>
+            <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="center" valign="top">
+              <table width="600" cellpadding="0" cellspacing="0" border="0" class="container">
+                <tr>
+                  <td align="center" valign="top">
+                    <a href="https://thetalentist.herokuapp.com/">
+                      <img src="https://res.cloudinary.com/dftixsglp/image/upload/v1557211344/Logo_1.svg" width="150" border="0" alt="Avem creation">
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<!-- Body mail -->
+
+<table style="border-radius: 1px;" align="center"; bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" class="wrapper" class="container">
+  <tbody>
+
+    <tr>
+      <td height="70" style="font-size:70px; line-height:70px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>
+        <table  align="center" width="600" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Bonjour <%= "#{@user.first_name} #{@user.last_name}" %>,<br>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="15" style="font-size:15px; line-height:15px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+<!-- Message du mail -->
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Bienvenue sur la plateforme <span style="background-color: #F5F9FF; padding:0px 2px 0px 2px;">Financer mon autonomie!</span> Votre inscription a bien été prise en compte, vous pouvez dès à présent accèder à votre espace personnel.
+            </td>
+          </tr>
+
+          <tr>
+            <td height="15" style="font-size:15px; line-height:15px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Pour vous aider dans l'élaboration de votre projet de financement, <span style="font-weight: bold;">un conseiller vous accompagnera</span> dans l'ensemble de votre parcours sur notre plateforme.
+            </td>
+          </tr>
+
+          <tr>
+            <td height="20" style="font-size:20px; line-height:20px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+<!-- Lien du mail -->
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #000; line-height: 22px;">
+              <%= link_to projet_user_url(@user), {  target: "_blank", style: "color:#2675E5; text-decoration:underline;"} do %>
+              <p style="margin:0">Rendez-vous sur votre espace personnel</p>
+                <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="20" style="font-size:20px; line-height:20px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Merci de votre confiance,<br>
+              L'équipe de Financer mon autonomie.
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td height="70" style="font-size:70px; line-height:70px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<!-- Footer mail -->
+
+<table align="center"; bgcolor="#2675E5" border="0" cellpadding="0" cellspacing="0" class="wrapper" class="container">
+  <tbody>
+    <tr>
+      <td>
+        <table  align="center" width="600" border="0" cellpadding="0" cellspacing="0">
+
+          <tr>
+            <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+<!-- Logo footer -->
+
+          <tr>
+            <td align="center" valign="top">
+              <table width="600" cellpadding="0" cellspacing="0" border="0" class="container">
+                <tr>
+                  <td align="center" valign="top">
+                      <a href="https://thetalentist.herokuapp.com/">
+                        <img src="https://res.cloudinary.com/dftixsglp/image/upload/v1557212051/FMA_white.svg" width="107" border="0" alt="Avem creation">
+                      </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="20" style="font-size:20px; line-height:20px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+<!-- Message footer -->
+
+          <tr>
+            <td align="center" valign="top" style="letter-spacing:.05em; padding:0px 20px 0px 20px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: center; font-size: 14px; color: #D8DDF2; line-height: 18px;">
+              Nous transformons des décisions complexes en situations agréables grâce à notre expertise humaine et une technologie intuitive.
+            </td>
+          </tr>
+
+          <tr>
+            <td height="10" style="font-size:10px; line-height:10px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="center" valign="top" style="letter-spacing:.05em; padding:0px 20px 0px 20px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: center; font-size: 14px; color: #D8DDF2; line-height: 18px;">
+              FMA, 8 rue de la Porte, 97370 Sucy-en-Brie, France
+            </td>
+          </tr>
+
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+<!-- Réseaux sociaux footer -->
+
+          <tr>
+            <td align="center" valign="top" style="font-size:30px; line-height:30px; vertical-align: top; text-align: -webkit-center; display: table-cell;">
+              <a href="#" style="font-size:10px; text-decoration: none; padding:0px 10px 0px 10px;">
+                <img src="https://res.cloudinary.com/dftixsglp/image/upload/v1552640497/facebook-5.png" width="10" border="0" alt="Facebook">
+              </a>
+              <a href="#" style="font-size:10px; text-decoration: none; padding:0px 10px 0px 10px;">
+                <img src="https://res.cloudinary.com/dftixsglp/image/upload/v1552640496/linkedin-06.png" width="18" border="0" alt="Linkedin">
+              </a>
+              <a href="#" style="font-size:10px; text-decoration: none; padding:0px 10px 0px 10px;">
+                <img src="https://res.cloudinary.com/dftixsglp/image/upload/v1552640496/instagram-06.png" width="17" border="0" alt="Instagram">
+              </a>
+              <a href="#" style="font-size:10px; text-decoration: none; padding:0px 10px 0px 10px;">
+                <img src="https://res.cloudinary.com/dftixsglp/image/upload/v1552640494/youtube-06.png" width="24" border="0" alt="Youtube">
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+<!-- Mentions footer -->
+
+          <tr>
+            <td align="center" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: center; font-size: 12px; color: #D8DDF2; line-height: 14px;">
+              <a href="#" style="color: #D8DDF2; text-align: center; text-decoration: none;" target="_blank">
+                      CGU & CGV &nbsp;|&nbsp;
+              </a>
+              <a href="#" style="color: #D8DDF2; text-align: center; text-decoration: none;" target="_blank">
+                      Protection des données &nbsp;|&nbsp;
+              </a>
+              <a href="#" style="color: #D8DDF2; text-align: center; text-decoration: none;" target="_blank">
+                      Contact
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="70" style="font-size:70px; line-height:70px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Espace fin de footer -->
+
+<table>
+  <tbody>
+
+  <tr>
+    <td height="10" style="font-size:10px; line-height:10px;" class="mobileOn">&nbsp;</td>
+  </tr>
+
+  </tbody>
+</table>
+
+<!-- Fin -->
+
+    </table>
+  </center>
+</body>
+</html>
+
+
+
+
+
