@@ -2,21 +2,37 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { closeModal } from '../../actions';
+import { closeModal, fetchModalReponses } from '../../actions';
 
 import renderLogo from "../../../components/render_logo"
 
 class ModalReponses extends Component {
+  componentWillMount(){
+    const user = this.props.modal_selected.user
+    this.props.fetchModalReponses(`/api/v1/formularies/${user.id}`)
+  }
+
+  componentWillReceiveProps(nextProps){
+    const user = nextProps.modal_selected.user
+    if(this.props.modal_selected.user != user){
+      this.props.fetchModalReponses(`/api/v1/formularies/${user.id}`)
+    }
+  }
+
   render(){
     const user = this.props.modal_selected.user
     const index = this.props.modal_selected.index
+    const reponses = this.props.modal_reponses
 
-    const changeText = () => {
-      if(event.target.innerHTML === "... Voir plus"){
-        event.target.innerHTML = "<br/>Réduire"
-      }else{
-        event.target.innerHTML = "... Voir plus"
-      }
+    const renderReponses = () => {
+      return reponses.map((reponse, index) => {
+        return(
+          <div className="margin-bottom-15" key={index}>
+            <p className="black">{reponse.question}</p>
+            <p>{reponse.answer}</p>
+          </div>
+        )
+      })
     }
 
     return(
@@ -30,8 +46,7 @@ class ModalReponses extends Component {
           <h4 className="black">{`Bénéficiaire ${index + 1}`}</h4>
           <p className="blue">{user.first_name}</p>
         </div>
-        <p className="black">Question</p>
-        <p>Réponse</p>
+        {reponses != null ? renderReponses() : <h2>Chargement...</h2>}
         <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
       </div>
     )
@@ -41,11 +56,12 @@ class ModalReponses extends Component {
 function mapStateToProps(state) {
   return {
     modal_selected: state.modal_selected,
+    modal_reponses: state.modal_reponses,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal }, dispatch);
+  return bindActionCreators({ closeModal, fetchModalReponses }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalReponses);

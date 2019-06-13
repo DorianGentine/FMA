@@ -16,6 +16,7 @@ class Switch extends Component {
       const body = { ressource_id: ressourceId, project_id: clientProject }
       this.props.fetchPostCompte(`/api/v1/projects/${clientProject}/kits`, body, "POST" )
     }else if(checked){
+      console.log("DELETE")
       fetch(`/api/v1/projects/${clientProject}/kits/${kitId}`, { method: "DELETE", })
     }
   }
@@ -25,10 +26,9 @@ class Switch extends Component {
       const handleChange = (checked) => {
         this.setState({ checked: event.target.checked })
         if(!checked){
-          console.log(`/api/v1/projects/${this.props.clientId}/next_setp`)
           this.props.validateStep(
             `/api/v1/projects/${this.props.clientId}/next_setp`,
-            this.props.fetchClients("/api/v1/users"))
+            setTimeout(()=>{this.props.fetchClients("/api/v1/users")}, 500))
         }
       }
 

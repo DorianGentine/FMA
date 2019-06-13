@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { closeModal, fetchPostCompte } from '../../actions';
+import { closeModal, fetchPostCompte, validateStep } from '../../actions';
 
 import renderLogo from "../../../components/render_logo"
 
 import Switch from "./switch"
 
 class ModalClient extends Component {
+
+  componentWillReceiveProps(nextProps){
+    const ressources = nextProps.ressources
+    if(ressources != this.props.ressources){
+      console.log(ressources)
+    }
+  }
 
   render(){
     const client = this.props.modal_selected.client
@@ -22,11 +29,12 @@ class ModalClient extends Component {
               return (
                 <div className="flex space-between align-items-center margin-bottom-15" key={index}>
                   <div className="flex-grow-1">
-                    <h4 className="font-12 no-margin">{ressource.notice.substr(ressource.notice.lastIndexOf('/') + 1, 20)}</h4>
+                    <h4 className="font-12 no-margin">{ressource.id}</h4>
                     <p className="font-12">{"Description de la ressource"}</p>
                   </div>
                   <Switch checked={true} kind="switchKit" ressource={ressource} kit={client.kits[i]} />
                 </div>
+                    // <h4 className="font-12 no-margin">{ressource.notice.substr(ressource.notice.lastIndexOf('/') + 1, 20)}</h4>
               );
             }
           }
@@ -46,11 +54,12 @@ class ModalClient extends Component {
             return (
               <div className="flex space-between align-items-center margin-bottom-15" key={index}>
                 <div className="flex-grow-1">
-                  <h4 className="font-12 no-margin">{ressource.notice.substr(ressource.notice.lastIndexOf('/') + 1, 20)}</h4>
+                  <h4 className="font-12 no-margin">{ressource.id}</h4>
                   <p className="font-12">{"Description de la ressource"}</p>
                 </div>
                 <Switch checked={false} kind="switchKit" ressource={ressource} kit={kitSelected} />
               </div>
+                  // <h4 className="font-12 no-margin">{ressource.notice.substr(ressource.notice.lastIndexOf('/') + 1, 20)}</h4>
             );
           }
         }
@@ -84,7 +93,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, fetchPostCompte }, dispatch);
+  return bindActionCreators({ closeModal, fetchPostCompte, validateStep }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalClient);

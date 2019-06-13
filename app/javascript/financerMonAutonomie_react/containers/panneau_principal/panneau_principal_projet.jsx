@@ -8,6 +8,9 @@ import VosReponses from "./vos_reponses"
 import KitDeFinancement from "./kit_financement"
 import PanneauPrincipalForm from "./panneau_principal_form"
 import WidgetCalendly from "./widget_calendly"
+import AppelsProgrammes from './appels_programmes'
+import Ressources from './ressources';
+import ClientsAdvisor from './clients_advisor';
 
 class PanneauPrincipalProjet extends Component {
   render(){
@@ -42,10 +45,10 @@ class PanneauPrincipalProjet extends Component {
     }else if(statut === "conseiller"){
       return (
         <div className="row">
-          <KitDeFinancement appelsProgrammes={true} />
+          <AppelsProgrammes />
           <FinanceursPotentiels />
-          <VosReponses />
-          <KitDeFinancement />
+          <ClientsAdvisor />
+          <Ressources />
         </div>
       );
     }
