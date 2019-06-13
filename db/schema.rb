@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2019_06_11_233152) do
   create_table "frameworks", force: :cascade do |t|
     t.string "title"
     t.string "url"
+    t.string "schedule_url"
     t.string "logo"
     t.string "token"
     t.bigint "user_id"

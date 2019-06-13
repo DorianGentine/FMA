@@ -22,9 +22,7 @@ class ProjectPolicy < ApplicationPolicy
   def next_setp?
     true
   end
-  def update_calendly?
-    true
-  end
+
   def display_hint?
     true
   end

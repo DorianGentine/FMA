@@ -5,7 +5,14 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def index
     @user = current_user
-    @users = policy_scope(User)
+    if @user.advisor
+      if params[:query]
+        sql_query = "last_name LIKE :query OR first_name LIKE :query"
+        @users = policy_scope(User).where(sql_query, query: "%#{params[:query]}%")
+      else
+        @users = policy_scope(User)
+      end
+    end
   end
 
   def show
