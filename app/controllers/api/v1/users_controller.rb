@@ -13,8 +13,8 @@ class Api::V1::UsersController < Api::V1::BaseController
       @project = @user.projects.first
       @advisor = @project.is_his_advisor
       @solutions = @project.solutions
+      @url = @advisor.frameworks.first.schedule_url
     elsif @user.advisor
-      @url = "https://calendly.com/event_types/user/me"
       @clients = @user.his_clients
     end
     @statut = @user.client ? "client" : @user.admin ? "admin" : "conseiller"
