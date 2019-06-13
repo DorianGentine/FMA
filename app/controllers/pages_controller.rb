@@ -26,11 +26,26 @@ class PagesController < ApplicationController
   def prise_de_rdv
     p " params send => #{params}"
     p "/////answer_1 #{params["answer_1"]}"
-    p "/////event_start_time  #{params["event_start_time"]}"
+    appointment = Time.parse(params["event_start_time"])
+    p "/////appointment #{appointment}"
     if current_user
       @user = current_user
+      @project = @user.project
+      if appointment.present?
+        @project.appointment = appointment
+        p "///// project appointment #{ @project.appointment}"
+        @project.save
+      end
+    elsif User.find_by(params["answer_1"]).present?
+      @user = User.find_by(params["answer_1"])
+      @project = @user.project
+      if appointment.present?
+        @project.appointment = appointment
+        @project.save
+      end
     else
       @user = false
     end
   end
 end
+
