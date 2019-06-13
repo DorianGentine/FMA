@@ -110,4 +110,11 @@ function fetchFormulary(){
   }
 }
 
+
+
+
+
+
+
+
 export { fetchFormulary, onClickHint }
