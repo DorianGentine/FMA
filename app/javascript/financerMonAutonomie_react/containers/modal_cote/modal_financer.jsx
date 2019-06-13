@@ -12,10 +12,18 @@ class ModalFinancer extends Component {
     const financer = this.props.modal_selected.financer
 
     const changeText = () => {
-      if(event.target.innerHTML === "... Voir plus"){
-        event.target.innerHTML = "<br/>Réduire"
+      if(event.target.classList.value === "fas fa-chevron-down"){
+        event.target.classList.add('fa-chevron-up')
+        event.target.classList.remove('fa-chevron-down')
       }else{
-        event.target.innerHTML = "... Voir plus"
+        event.target.classList.add('fa-chevron-down')
+        event.target.classList.remove('fa-chevron-up')
+      }
+    }
+
+    const renderDescription = () =>{
+      if(financer.description != null){
+        return <p className="collapse" id="collapseDescription">{financer.description}</p>
       }
     }
 
@@ -23,23 +31,21 @@ class ModalFinancer extends Component {
       return answers.map((answer, index) => {
         const randomId = Math.floor((Math.random() * 100) + 1);
         return (
-          <p className="margin-bottom-15" key={randomId}>
-            {answer.content.substr(0, 60)}
-            <span
-              className="collapse"
-              id={`collapseAnswer${randomId}`}>
-              {answer.content.substr(60)}
-            </span>
-            <span
-              className="blue pointer"
-              data-toggle="collapse"
-              data-target={`#collapseAnswer${randomId}`}
-              aria-expanded="false"
-              aria-controls={`collapseAnswer${randomId}`}
-              onClick={()=>{changeText()}}>
-               ... Voir plus
-            </span>
-          </p>
+          <div key={index}>
+            <div className="flex space-between">
+              <p className="margin-bottom-15">{`Solution ${index + 1}`}</p>
+              <div className="blue pointer"
+                data-toggle="collapse"
+                data-target={`#collapseAnswer${randomId}`}
+                aria-expanded="false"
+                aria-controls={`collapseAnswer${randomId}`}>
+                <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
+              </div>
+            </div>
+            <p className="margin-bottom-15" className="collapse"
+                id={`collapseAnswer${randomId}`}>
+              {answer.content}</p>
+          </div>
         )
       })
     }
@@ -56,23 +62,17 @@ class ModalFinancer extends Component {
             <h4 className="black">{financer.name}</h4>
             <p className="blue">Conseil en solutions</p>
           </div>
-          <p className="black">Description de l'organisme</p>
-          <p>{financer.description.substr(0, 60)}
-            <span
-              className="collapse"
-              id="collapseDescription">
-              {financer.description.substr(60)}
-            </span>
-            <span
-              className="blue pointer"
+          <div className="flex space-between">
+            <p className="black">Description de l'organisme</p>
+            <div className="blue pointer"
               data-toggle="collapse"
               data-target="#collapseDescription"
               aria-expanded="false"
-              aria-controls="collapseDescription"
-              onClick={()=>{changeText()}}>
-               ... Voir plus
-            </span>
-          </p>
+              aria-controls="collapseDescription">
+              <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
+            </div>
+          </div>
+          {renderDescription()}
           <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
           <p className="black">Analyse de votre situation</p>
           {renderAnswers(financer.answers)}
@@ -82,6 +82,7 @@ class ModalFinancer extends Component {
 
 
     }else if(statut === "conseiller"){
+
       return(
         <div>
           <div className="flex space-between black margin-bottom-30">
@@ -93,23 +94,17 @@ class ModalFinancer extends Component {
             <h4 className="black">{financer.name}</h4>
             <p className="blue">Conseil en solutions</p>
           </div>
-          <p className="black">Description de l'organisme</p>
-          <p>{financer.description.substr(0, 60)}
-            <span
-              className="collapse"
-              id="collapseDescription">
-              {financer.description.substr(60)}
-            </span>
-            <span
-              className="blue pointer"
+          <div className="flex space-between">
+            <p className="black">Description de l'organisme</p>
+            <div className="blue pointer"
               data-toggle="collapse"
               data-target="#collapseDescription"
               aria-expanded="false"
-              aria-controls="collapseDescription"
-              onClick={()=>{changeText()}}>
-               ... Voir plus
-            </span>
-          </p>
+              aria-controls="collapseDescription">
+              <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
+            </div>
+          </div>
+          {renderDescription()}
           <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
         </div>
       )

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import PanneauPrincipalProjet from "./panneau_principal/panneau_principal_projet"
-import PanneauPrincipalCompte from "./panneau_principal/panneau_principal_compte"
+import PanneauPrincipalAlertes from "./panneau_principal/panneau_principal_alertes"
 import PanneauPrincipalClients from "./panneau_principal/panneau_principal_clients"
+import PanneauPrincipalCompte from "./panneau_principal/panneau_principal_compte"
+import PanneauPrincipalProjet from "./panneau_principal/panneau_principal_projet"
 
 class PanneauPrincipal extends Component {
   render(){
@@ -17,11 +18,7 @@ class PanneauPrincipal extends Component {
     }else if(selectedMenu.toLowerCase() == "compte"){
       return <PanneauPrincipalCompte selectedMenuVolet={this.props.selectedMenuVolet} />
     }else if(selectedMenu.toLowerCase() == "alertes"){
-      return (
-        <div>
-          <h1>{selectedMenu}</h1>
-        </div>
-      );
+      return <PanneauPrincipalAlertes selectedMenuVolet={this.props.selectedMenuVolet} />
     }else if(selectedMenu.toLowerCase() == "clients"){
       return <PanneauPrincipalClients />
     }else if(selectedMenu.toLowerCase() == "demandes"){

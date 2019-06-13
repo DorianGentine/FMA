@@ -20,19 +20,19 @@ class VoletCompte extends Component {
         <Link className={`volet-item-menu ${active("compte/identite")}`} to={`${rootCompte}/identite`}>
           Identité
         </Link>
-        <Link className={`volet-item-menu ${active("compte/email")}`} to={`${rootCompte}/email`}>
-          Email
-        </Link>
-        <Link className={`volet-item-menu ${active("compte/mdp")}`} to={`${rootCompte}/mdp`}>
-          Mot de passe
-        </Link>
-        <Link className={`volet-item-menu ${active("compte/telephone")}`} to={`${rootCompte}/telephone`}>
-          Téléphone
+        <Link className={`volet-item-menu ${active("compte/email")}`} to={`${rootCompte}/email_mdp`}>
+          Email & mot de passe
         </Link>
         <Link className={`volet-item-menu ${active("compte/suppression")}`} to={`${rootCompte}/suppression`}>
           Suppression du compte
         </Link>
       </div>
+        // <Link className={`volet-item-menu ${active("compte/mdp")}`} to={`${rootCompte}/mdp`}>
+        //   Mot de passe
+        // </Link>
+        // <Link className={`volet-item-menu ${active("compte/telephone")}`} to={`${rootCompte}/telephone`}>
+        //   Téléphone
+        // </Link>
     )
   }
 }

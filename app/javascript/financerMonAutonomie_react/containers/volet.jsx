@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import VoletProjet from "./Volet/volet_projet"
 import VoletCompte from "./Volet/volet_compte"
+import VoletAlertes from "./Volet/volet_alertes"
 
 class Volet extends Component {
   render(){
@@ -23,12 +24,10 @@ class Volet extends Component {
           <VoletCompte selectedMenuVolet={this.props.selectedMenuVolet} />
         </div>
       );
-    }else if(selectedMenu.toLowerCase() == "alertes" && this.props.api.statut === "client"){
+    }else if(selectedMenu.toLowerCase() == "alertes"){
       return (
         <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
-          <div>
-            <h2 className="text-align-center">{selectedMenu}</h2>
-          </div>
+          <VoletAlertes selectedMenuVolet={this.props.selectedMenuVolet} />
         </div>
       );
     }else if(selectedMenu.toLowerCase() == "demandes"){
@@ -40,14 +39,6 @@ class Volet extends Component {
         </div>
       );
     }else if(selectedMenu.toLowerCase() == "compte"){
-      return (
-        <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
-          <div>
-            <h2 className="text-align-center">{selectedMenu}</h2>
-          </div>
-        </div>
-      );
-    }else if(selectedMenu.toLowerCase() == "alertes" && this.props.api.statut === "conseiller"){
       return (
         <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
           <div>

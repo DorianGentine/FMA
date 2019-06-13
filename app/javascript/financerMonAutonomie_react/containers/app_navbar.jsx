@@ -30,7 +30,7 @@ class AppNavbar extends Component {
               <i className="far fa-user"></i>
               <p>Compte</p>
             </Link>
-            <Link className={`btn-app-navbar margin-top-30 ${active("alertes")}`} to={`${this.props.rootUrl}/alertes`}>
+            <Link className={`btn-app-navbar margin-top-30 ${active("alertes")}`} to={`${this.props.rootUrl}/alertes/notifications`}>
               <i className="far fa-bell"></i>
               <p>Alertes</p>
             </Link>
@@ -70,7 +70,7 @@ class AppNavbar extends Component {
               <i className="far fa-user"></i>
               <p>Compte</p>
             </Link>
-            <Link className={`btn-app-navbar margin-top-30 ${active("alertes")}`} to={`${this.props.rootUrl}/alertes`}>
+            <Link className={`btn-app-navbar margin-top-30 ${active("alertes")}`} to={`${this.props.rootUrl}/alertes/notifications`}>
               <i className="far fa-bell"></i>
               <p>Alertes</p>
             </Link>

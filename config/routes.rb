@@ -20,6 +20,8 @@ Rails.application.routes.draw do
         get '/compte/telephone', to: 'users#show'
         get '/compte/suppression', to: 'users#show'
       get '/alertes', to: 'users#show'
+        get '/alertes/notifications', to: 'users#show'
+        get '/alertes/actualites', to: 'users#show'
       get '/bureau', to: 'users#show'
       get '/clients', to: 'users#show'
       get '/demandes', to: 'users#show'
