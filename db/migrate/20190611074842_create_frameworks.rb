@@ -3,6 +3,7 @@ class CreateFrameworks < ActiveRecord::Migration[5.2]
     create_table :frameworks do |t|
       t.string :title
       t.string :url
+      t.string :schedule_url
       t.string :logo
       t.string :token
       t.references :user, foreign_key: true
