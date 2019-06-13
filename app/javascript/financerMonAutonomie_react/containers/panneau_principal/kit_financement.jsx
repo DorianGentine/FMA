@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Financers from './financers'
 import AppelsProgrammes from './appels_programmes'
+import Ressources from './ressources';
 
 class KitDeFinancement extends Component {
   render(){
@@ -49,7 +50,7 @@ class KitDeFinancement extends Component {
 
       // Liste des financeurs
       }else if(statut === "conseiller" && !this.props.appelsProgrammes){
-        return <Financers />
+        return <Ressources />
       }
   }
 };

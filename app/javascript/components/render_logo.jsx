@@ -12,7 +12,7 @@ export default function renderLogo(financer){
     return(
       <div
         className="logo-financeur margin-right-15"
-        style={{ height: "35px", width: "35px", backgroundImage: `url(${url})`}}
+        style={{ minHeight: "35px", minWidth: "35px", backgroundImage: `url(${url})`}}
         >
       </div>
     )

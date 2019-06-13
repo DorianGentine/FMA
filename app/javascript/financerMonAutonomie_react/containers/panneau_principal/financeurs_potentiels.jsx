@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Ressources from './ressources';
+import Financers from './financers'
 
 import { showFinancer } from '../../actions'
 
@@ -47,7 +48,7 @@ class FinanceursPotentiels extends Component {
 
     }else if(statut === "conseiller"){
 
-      return <Ressources />
+      return <Financers />
     }
   }
 };
