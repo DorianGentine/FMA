@@ -1,12 +1,10 @@
 export function renderDate(date, format){
-  console.log(date)
   let dateToRender
   if(date === undefined){
     dateToRender = new Date();
   }else{
     dateToRender = new Date(date);
   }
-  console.log(dateToRender)
 
   let weekday = new Array(7);
   weekday[0] = "dimanche";

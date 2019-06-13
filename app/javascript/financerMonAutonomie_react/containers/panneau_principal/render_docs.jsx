@@ -31,8 +31,6 @@ class RenderDocs extends Component {
         }
       }
 
-      console.log("etape", etape)
-
       if (documentsCompleted === documents.length && etape === "documentation") {
         validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchProjet() )
       }

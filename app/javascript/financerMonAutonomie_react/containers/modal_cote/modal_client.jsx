@@ -6,7 +6,7 @@ import { closeModal, fetchPostCompte } from '../../actions';
 
 import renderLogo from "../../../components/render_logo"
 
-import SwitchKit from "./switch_kit"
+import Switch from "./switch"
 
 class ModalClient extends Component {
 
@@ -25,7 +25,7 @@ class ModalClient extends Component {
                     <h4 className="font-12 no-margin">{ressource.notice.substr(ressource.notice.lastIndexOf('/') + 1, 20)}</h4>
                     <p className="font-12">{"Description de la ressource"}</p>
                   </div>
-                  <SwitchKit checked={true} ressource={ressource} kit={client.kits[i]} />
+                  <Switch checked={true} kind="switchKit" ressource={ressource} kit={client.kits[i]} />
                 </div>
               );
             }
@@ -49,7 +49,7 @@ class ModalClient extends Component {
                   <h4 className="font-12 no-margin">{ressource.notice.substr(ressource.notice.lastIndexOf('/') + 1, 20)}</h4>
                   <p className="font-12">{"Description de la ressource"}</p>
                 </div>
-                <SwitchKit checked={false} ressource={ressource} kit={kitSelected} />
+                <Switch checked={false} kind="switchKit" ressource={ressource} kit={kitSelected} />
               </div>
             );
           }
