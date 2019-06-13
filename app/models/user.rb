@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   acts_as_token_authenticatable
 
+  has_many :frameworks, dependent: :destroy
+
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects, dependent: :destroy
   has_many :notifications, through: :projects, dependent: :destroy

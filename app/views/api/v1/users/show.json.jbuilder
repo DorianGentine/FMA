@@ -12,7 +12,11 @@ elsif @user.advisor
     json.title notification.title
     json.time distance_of_time_in_words(notification.date, Time.now)
   end
-
+  json.frameworks @user.frameworks do |framework|
+    json.url framework.url
+    json.logo framework.logo
+    json.title framework.title
+  end
   json.clients @clients do |client|
     json.client client.id
     json.project client.project.id

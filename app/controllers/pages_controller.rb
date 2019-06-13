@@ -24,6 +24,8 @@ class PagesController < ApplicationController
 
   end
   def prise_de_rdv
+    p " params send => #{params}"
+    p "/////answer_1 #{params["answer_1"]}"
     appointment = Time.parse(params["event_start_time"])
     p "/////appointment #{appointment}"
     if current_user

@@ -5,7 +5,7 @@ class CreateFrameworks < ActiveRecord::Migration[5.2]
       t.string :url
       t.string :logo
       t.string :token
-      t.float :user_id
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

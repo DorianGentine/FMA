@@ -108,9 +108,10 @@ ActiveRecord::Schema.define(version: 2019_06_11_233152) do
     t.string "url"
     t.string "logo"
     t.string "token"
-    t.float "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_frameworks_on_user_id"
   end
 
   create_table "kits", force: :cascade do |t|
@@ -221,6 +222,7 @@ ActiveRecord::Schema.define(version: 2019_06_11_233152) do
   add_foreign_key "documents", "projects"
   add_foreign_key "formularies", "projects"
   add_foreign_key "formularies", "visitors"
+  add_foreign_key "frameworks", "users"
   add_foreign_key "kits", "projects"
   add_foreign_key "kits", "ressources"
   add_foreign_key "notes", "projects"
