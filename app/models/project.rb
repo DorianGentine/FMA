@@ -17,7 +17,6 @@ class Project < ApplicationRecord
   before_save :going_to_call, :clean_appointment
 
   enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evalution"]
-  # enum progress: ["new", "current", "archive"]
 
   def link_to_advisor(user)
     UserProject.create(user: user, project: self)
@@ -71,11 +70,13 @@ class Project < ApplicationRecord
   end
 
   private
+
   def clean_appointment
     if self.documentation?
       self.appointment = nil
     end
   end
+
   def going_to_call
     if self.meeting?
       self.call! if self.appointment

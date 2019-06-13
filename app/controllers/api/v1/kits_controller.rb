@@ -19,6 +19,7 @@ class Api::V1::KitsController < Api::V1::BaseController
   def destroy
     kit = Kit.find(params[:id])
     @project = kit.project
+    kit.destroy
     head :no_content
     authorize @project
   end
