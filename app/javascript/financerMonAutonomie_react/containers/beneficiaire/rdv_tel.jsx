@@ -36,6 +36,9 @@ class RdvTel extends Component {
         }else if(etape === "call"){
           rdvTitre = "Votre rendez-vous aura lieu"
           rdvText = renderDate(this.props.project.project.rdv, "ddd_mmm_hhhh")
+        }else if(etape === "progression"){
+          rdvTitre = "Rendez-vous effectué le"
+          rdvText = renderDate(this.props.project.project.rdv, "ddd_mmm_hhhh")
         }
 
         const handleCalendly = () => {

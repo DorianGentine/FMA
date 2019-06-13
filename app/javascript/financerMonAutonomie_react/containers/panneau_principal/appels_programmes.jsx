@@ -10,9 +10,13 @@ import { renderDate, diffDays } from "../../../components/render_date"
 import Switch from "../modal_cote/switch"
 
 class AppelsProgrammes extends Component {
-  // componentWillReceiveProps(nextProps){
-  //   console.log(nextProps)
-  // }
+  componentWillReceiveProps(nextProps){
+    // if(nextProps.clients === this.props.clients){
+    //   console.log("next", nextProps.clients[0].étape)
+    //   console.log("this", this.props.clients[0].étape)
+    //   this.props.fetchClients("/api/v1/users")
+    // }
+  }
 
   render(){
     const clients = this.props.clients
@@ -120,8 +124,8 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchClients, showFinancer }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchClients }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(AppelsProgrammes);
+export default connect(mapStateToProps, mapDispatchToProps)(AppelsProgrammes);

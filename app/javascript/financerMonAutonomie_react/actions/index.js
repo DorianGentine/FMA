@@ -5,6 +5,7 @@ export const FETCH_API = 'FETCH_API';
 export const FETCH_CLIENTS = 'FETCH_CLIENTS';
 export const FETCH_FINANCERS = 'FETCH_FINANCERS';
 export const FETCH_FORM = 'FETCH_FORM';
+export const FETCH_MODAL_REPONSES = 'FETCH_MODAL_REPONSES';
 export const FETCH_PROJET = 'FETCH_PROJET';
 export const FETCH_RESSOURCES = 'FETCH_RESSOURCES';
 export const POST_COMPTE = 'POST_COMPTE';
@@ -87,8 +88,16 @@ export function fetchFORM(url) {
   };
 }
 
+export function fetchModalReponses(url) {
+  const promise = fetch(url).then(r => r.json());
+
+  return {
+    type: FETCH_MODAL_REPONSES,
+    payload: promise
+  };
+}
+
 export function fetchPostCompte(url, body, method) {
-  console.log("body", body)
   const request = fetch(url,
      {
       method: method,
