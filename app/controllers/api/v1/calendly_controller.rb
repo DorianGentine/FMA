@@ -1,10 +1,10 @@
 class Api::V1::CalendlyController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User
 
   def update_calendly
-    @user = current_user
+    @user = User.find_by(params["payload"]["event"]["invitee"]["email"])
+
     p "//////////////// User first_name is => #{@user.first_name}"
-    @project = Project.find(params[:project_id])
+    @project =  @user.project
     p "//////////////// project id is => #{@project.id}"
     p "//////////////// params invitee_start_time_pretty => #{params["payload"]["event"]["invitee_start_time_pretty"]}"
     appointment = params["payload"]["event"]["invitee_start_time_pretty"]

@@ -28,12 +28,12 @@ Rails.application.routes.draw do
       # get '/compte', to: 'users#show'
       get '/a_propos', to: 'users#show'
     end
-
   end
 
   resources :projects, only: [:update]
 
   get '/home', to: 'pages#home'
+  get '/prise_de_rdv', to: 'pages#prise_de_rdv'
   get '/qui-sommes-nous', to: 'pages#team', as: "equipe"
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"
   get '/rgpd', to: 'pages#rgpd', as: "rgpd"
@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+    post '/update_calendly', to: 'calendly#update_calendly', as: "update_calendly"
       resources :visitors, only: [:show, :update] do
         member do
           patch :update_formulary
@@ -54,7 +55,6 @@ Rails.application.routes.draw do
       resources :formularies, only: [ :update, :edit, :show ]
       resources :notes, only: [ :update ]
       resources :projects, only: [ :show, :update ] do
-        post '/update_calendly', to: 'calendly#update_calendly', as: "update_calendly"
         resources :kits, only: [ :create, :destroy ]
         resources :notes, only: [ :create ]
         member do
