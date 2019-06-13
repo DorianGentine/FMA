@@ -23,5 +23,11 @@ class PagesController < ApplicationController
   def rgpd
 
   end
-
+  def prise_de_rdv
+    if current_user
+      @user = current_user
+    else
+      @user = false
+    end
+  end
 end

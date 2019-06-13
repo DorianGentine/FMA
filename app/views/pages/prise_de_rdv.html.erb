@@ -1,0 +1,19 @@
+
+
+<% if @user %>
+  <%= link_to 'Mon espace', projet_user_path(@user), id:"link_user" %>
+<% else %>
+  <%= link_to 'Home', root_path, id:"link_root" %>
+<% end %>
+
+
+<script>
+  const user = document.getElementById("link_user")
+  if (user) {
+    user.click()
+  } else {
+    document.getElementById("link_root").click()
+  }
+
+
+</script>
