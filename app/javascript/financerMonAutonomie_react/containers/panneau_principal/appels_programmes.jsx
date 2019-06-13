@@ -7,9 +7,11 @@ import { fetchClients, showFinancer } from '../../actions'
 import renderLogo from "../../../components/render_logo"
 import { renderDate, diffDays } from "../../../components/render_date"
 
+import Switch from "../modal_cote/switch"
+
 class AppelsProgrammes extends Component {
-  // componentWillMount(){
-  //   this.props.fetchClients("/api/v1/users")
+  // componentWillReceiveProps(nextProps){
+  //   console.log(nextProps)
   // }
 
   render(){
@@ -32,11 +34,8 @@ class AppelsProgrammes extends Component {
       }else{
         return clients.clients.map((client, index) => {
           if(client.étape === "call"){
-            // let today = renderDate();
-            // let dateRdv = renderDate(client.rdv)
             let hourRdv = new Date(client.rdv).getHours()
             let minRdv = String(new Date(client.rdv).getMinutes()).padStart(2, '0')
-            console.log(hourRdv + "h" + minRdv)
 
             const daysToRdv = diffDays(new Date(), new Date(client.rdv))
             let textNextMeeting
@@ -52,15 +51,15 @@ class AppelsProgrammes extends Component {
 
             return (
               <div className="flex margin-top-15" key={index}>
-                <p className="col-lg-2 font-12 blue bold" style={{paddingLeft: 0}}>{`${hourRdv}h${minRdv}`} <span className="gray-300">{textNextMeeting}</span></p>
+                <p className="col-lg-2 font-12 blue bold" style={{paddingLeft: 0}}>
+                  {`${hourRdv}h${minRdv}`}
+                  <span className="gray-300"> {textNextMeeting}</span>
+                </p>
                 <p className="col-lg-3 font-12">{client.first_name}</p>
                 <p className="col-lg-3 font-12">{`${client.financeurs} financeurs`}</p>
                 <p className="col-lg-2 font-12">{client.phone}</p>
                 <div className="col-lg-1">
-                  <label className="switch">
-                    <input type="checkbox" />
-                    <span className="slider round"></span>
-                  </label>
+                  <Switch checked={false} kind="switchAppel" clientId={client.project}/>
                 </div>
                 <div className="relative col-lg-1 text-align-right" role="group">
                   <div
@@ -70,7 +69,9 @@ class AppelsProgrammes extends Component {
                     aria-haspopup="true"
                     aria-expanded="false">...
                   </div>
-                  <div className="dropdown-menu drop-menu-call" aria-labelledby={`drop-call${index}`}>
+                  <div
+                    className="dropdown-menu drop-menu-call"
+                    aria-labelledby={`drop-call${index}`}>
                     <a href="#">Voir&nbsp;le&nbsp;profil</a>
                     <a href="#">Envoyer&nbsp;un&nbsp;message</a>
                   </div>
@@ -87,8 +88,16 @@ class AppelsProgrammes extends Component {
       <div className="col-lg-12">
         <div className="white-box flex flex-wrap align-items-center">
           <h4 className="padding-horizontal-15 no-margin">Appels programmés</h4>
-          <p className="blue padding-horizontal-15">{`${clientsStep4} ${clientsStep4 < 2 ? "appel" : "appels"}`}</p>
-          <p className="padding-horizontal-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
+          <p className="blue padding-horizontal-15">
+            {`${clientsStep4} ${clientsStep4 < 2 ? "appel" : "appels"}`}
+          </p>
+          <p className="
+            padding-horizontal-15
+            text-align-right
+            font-12
+            icon-arrow-right-gray
+            flex-grow-1">
+          </p>
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
             <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Heure</p>
             <p className="col-lg-3 font-12">Nom</p>
