@@ -51,3 +51,7 @@ gem 'faker'
 
 gem 'simple_token_authentication'
 gem 'sendgrid-ruby'
+
+
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'

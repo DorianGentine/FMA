@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
+
   match "/404", :to => "http_errors#error_404", :via => :all
   match "/422", :to => "http_errors#error_422", :via => :all
   match "/500", :to => "http_errors#error_500", :via => :all
