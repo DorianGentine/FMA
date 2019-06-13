@@ -50,3 +50,4 @@ gem "intercom-rails"
 gem 'faker'
 
 gem 'simple_token_authentication'
+gem 'sendgrid-ruby'

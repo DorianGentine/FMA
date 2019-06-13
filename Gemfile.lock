@@ -185,6 +185,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    ruby_http_client (3.3.0)
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
@@ -194,6 +195,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sendgrid-ruby (6.0.0)
+      ruby_http_client (~> 3.3.0)
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -265,6 +268,7 @@ DEPENDENCIES
   rails (= 5.2.0)
   redis
   sassc-rails
+  sendgrid-ruby
   simple_form
   simple_token_authentication
   spring
