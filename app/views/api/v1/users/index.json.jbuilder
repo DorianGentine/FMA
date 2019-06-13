@@ -16,6 +16,6 @@ json.clients @users do |user|
   #   json.id kit.id
   #   json.ressource kit.ressource.id
   # end
-  json.url "/mon_espcae/#{user.id}"
+  json.url "/mon_espace/#{user.id}"
 end
 
