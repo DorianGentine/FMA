@@ -168,7 +168,7 @@ class PanneauPrincipalCompte extends Component {
                   // />
         )
       }
-      case "email": {
+      case "email_mdp": {
         return(
           <div className="row">
             <div className="col-lg-12">
@@ -231,72 +231,72 @@ class PanneauPrincipalCompte extends Component {
           </div>
         )
       }
-      case "mdp": {
-        return(
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="white-box flex flex-wrap">
-                <h4 className="col-lg-12">Mot de passe</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "password")})}>
-                  <Field
-                    label="Ancien mot de passe"
-                    name={"password"}
-                    type="password"
-                    component={this.renderField}
-                  />
-                  <Field
-                    label="Nouveau"
-                    name={"new-password"}
-                    type="password"
-                    component={this.renderField}
-                    hint="6 caractères minimum"
-                  />
-                  <Field
-                    label="Confirmation"
-                    name={"new-password-confirm"}
-                    type="password"
-                    component={this.renderField}
-                  />
-                  <button
-                    className="float-right btn-blue"
-                    type="submit"
-                    disabled={this.props.pristine || this.props.submitting}>
-                      Enregistrer
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        )
-      }
-      case "telephone": {
-        return(
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="white-box flex flex-wrap">
-                <h4 className="col-lg-12">Téléphone</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
-                  <Field
-                    label="Numéro de téléphone"
-                    name={"phone"}
-                    type="tel"
-                    component={this.renderField}
-                    hint="
-                    Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
-                    // Recevez vos notifications de message par SMS.
-                  />
-                  <button
-                    className="float-right btn-blue"
-                    type="submit"
-                    disabled={this.props.pristine || this.props.submitting}>
-                      Enregistrer
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        )
-      }
+      // case "mdp": {
+      //   return(
+      //     <div className="row">
+      //       <div className="col-lg-12">
+      //         <div className="white-box flex flex-wrap">
+      //           <h4 className="col-lg-12">Mot de passe</h4>
+      //           <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "password")})}>
+      //             <Field
+      //               label="Ancien mot de passe"
+      //               name={"password"}
+      //               type="password"
+      //               component={this.renderField}
+      //             />
+      //             <Field
+      //               label="Nouveau"
+      //               name={"new-password"}
+      //               type="password"
+      //               component={this.renderField}
+      //               hint="6 caractères minimum"
+      //             />
+      //             <Field
+      //               label="Confirmation"
+      //               name={"new-password-confirm"}
+      //               type="password"
+      //               component={this.renderField}
+      //             />
+      //             <button
+      //               className="float-right btn-blue"
+      //               type="submit"
+      //               disabled={this.props.pristine || this.props.submitting}>
+      //                 Enregistrer
+      //             </button>
+      //           </form>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   )
+      // }
+      // case "telephone": {
+      //   return(
+      //     <div className="row">
+      //       <div className="col-lg-12">
+      //         <div className="white-box flex flex-wrap">
+      //           <h4 className="col-lg-12">Téléphone</h4>
+      //           <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
+      //             <Field
+      //               label="Numéro de téléphone"
+      //               name={"phone"}
+      //               type="tel"
+      //               component={this.renderField}
+      //               hint="
+      //               Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
+      //               // Recevez vos notifications de message par SMS.
+      //             />
+      //             <button
+      //               className="float-right btn-blue"
+      //               type="submit"
+      //               disabled={this.props.pristine || this.props.submitting}>
+      //                 Enregistrer
+      //             </button>
+      //           </form>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   )
+      // }
       case "suppression": {
         return(
           <div className="row">
