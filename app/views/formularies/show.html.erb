@@ -4,20 +4,27 @@
 <div class="container">
 
   <div class="row margin-top-120">
-    <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Analyse de vos réponses</h1>
-    <p class="col-lg-8 offset-lg-2 col-xs-12 text-align-center margin-bottom-60">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Sam a analysé vos résultats ! <br>Voici les réponses</h1>
 
-    <div class="col-lg-6 avantage" style="height: fit-content">
-      <h2 class="blue text-align-center">Vos financeurs potentiels</h2>
-      <div id="financeurs-potentiels" data-visitorid="<%= @visitor.id %>"></div> <!-- généré en js -->
-      <div class="margin-top-120 margin-bottom-60 text-align-center">
-        <%= link_to "Poursuivre avec un conseiller", new_user_registration_path, class: "btn-blue" %>
+    <div class="col-lg-6" id="financeurs-potentiels" data-visitorid="<%= @visitor.id %>"></div> <!-- généré en js -->
+    <div class="col-lg-6" style="padding: 0 120px">
+      <div class="blue-background margin-top-60 relative" style="padding: 40px 30px 100px; border-radius: 3px; max-width: 400px">
+        <h2 class="white margin-bottom-30">Poursuivez avec l'aide d'un conseiller</h2>
+        <p class="white margin-bottom-30">En décidant de poursuivre vous pouvez accéder à votre espace dédié.</p>
+        <%= link_to "Poursuivre l'inscription", new_user_registration_path, class: "btn white-background black" %>
+        <img class="absolute" style="bottom: 0; right: 0; height: 200px;" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1560519248/Illu%20HP/Illu_FMA_analyse_btn_wmjze0.svg" alt="">
       </div>
     </div>
 
-    <div class="col-lg-6" style="padding: 20px 0 0 80px">
+
+    <!-- <div class="col-lg-6" style="height: fit-content">
+      <div class="margin-top-120 margin-bottom-60 text-align-center">
+        <%#= link_to "Poursuivre avec un conseiller", new_user_registration_path, class: "btn-blue" %>
+      </div>
+    </div>  -->
+
+    <!-- <div class="col-lg-6" style="padding: 20px 0 0 80px">
       <h2 class="blue margin-bottom-60">Liste de vos réponses</h2>
-      <!-- Answers -->
         <% if @formulary.first_name.present? %>
           <p class="bold black">Quel est votre prénom ?</p>
           <p class="margin-bottom-15"><%= @formulary.first_name %></p>
@@ -144,8 +151,7 @@
       <div class="margin-top-120 text-align-center">
         <%= link_to "Refaire une simulation", root_path %>
       </div>
-
-    </div>
+    </div> -->
 
   </div>
 
