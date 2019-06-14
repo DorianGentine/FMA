@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchAPI, fetchProjet } from '../actions';
+import { fetchAPI, fetchProjet, fetchCurrentApi } from '../actions';
 
 import AppNavbar from "../containers/app_navbar"
 import Volet from "../containers/volet"
@@ -13,6 +13,10 @@ import ModalCote from "../containers/modal_cote"
 class App extends Component {
 
   componentWillMount() {
+    // if(this.props.current_user_id != this.props.user_id){
+    //   this.props.fetchCurrentApi(`/api/v1/users/${this.props.current_user_id}`)
+    // }
+
     this.props.fetchAPI(this.props.urlAPI)
     const b = () => {this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)}
 
@@ -93,16 +97,18 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    urlAPI: state.urlAPI,
     api: state.api,
+    current_user_id: state.current_user_id,
     modal_opened: state.modal_opened,
     project_id: state.project_id,
     project: state.project,
+    user_id: state.user_id,
+    urlAPI: state.urlAPI,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAPI, fetchProjet }, dispatch);
+  return bindActionCreators({ fetchAPI, fetchProjet, fetchCurrentApi }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
