@@ -14,13 +14,7 @@ class ClientsAdvisor extends Component {
   render(){
     const clients = this.props.clients
 
-    const renderClients = () => {
-      let clientsStep5 = 0
-      for (var i = clients.clients.length - 1; i >= 0; i--) {
-        if(clients.clients[i].étape === "progression"){
-          clientsStep5 = clientsStep5 + 1
-        }
-      }
+    const renderClients = (clientsStep5) => {
       if(clientsStep5 === 0){
         return (
           <div className="text-align-center">Aucun kit à renseigner</div>
@@ -29,11 +23,9 @@ class ClientsAdvisor extends Component {
         return clients.clients.map((client, index) => {
           if(client.étape === "progression"){
             return (
-              <div className="flex space-between margin-bottom-15" key={index}>
+              <div className="flex space-between align-items-center margin-bottom-15" key={index}>
                 {renderLogo(client)}
-                <div className="flex-grow-1">
-                  <h4 className="font-12 no-margin">{client.first_name} {client.last_name}</h4>
-                </div>
+                <h4 className="flex-grow-1 font-12 no-margin">{client.first_name} {client.last_name}</h4>
                 <button className="blue-gray-btn" onClick={()=>{this.props.showClient(client)}}>Compléter</button>
               </div>
             );
@@ -42,14 +34,23 @@ class ClientsAdvisor extends Component {
       }
     };
 
+    let clientsStep5 = 0
+    if(clients != null){
+      for (var i = clients.clients.length - 1; i >= 0; i--) {
+        if(clients.clients[i].étape === "progression"){
+          clientsStep5 = clientsStep5 + 1
+        }
+      }
+    }
+
     return (
       <div className="col-lg-6">
         <div className="white-box flex flex-wrap align-items-center">
           <h4 className="padding-horizontal-15 no-margin">Élaboration de kit</h4>
-          <p className="blue font-12 padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${clients != null ?  clients.clients.length : 0} en cours`}</p>
+          <p className="blue font-12 padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${clientsStep5} en cours`}</p>
           <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
           <div className="scroll col-lg-12 align-items-center margin-top-15" style={{ height: "145px" }}>
-            {clients != null ? renderClients() : <h2>Chargement...</h2> }
+            {clients != null ? renderClients(clientsStep5) : <h2>Chargement...</h2> }
           </div>
         </div>
       </div>

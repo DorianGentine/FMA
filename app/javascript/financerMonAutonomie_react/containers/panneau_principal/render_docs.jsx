@@ -9,11 +9,11 @@ import { fetchProjet, showDocument, validateStep } from '../../actions';
 
 class RenderDocs extends Component {
   componentWillReceiveProps(nextProps) {
-    console.log("nextProps", nextProps)
     const documents = this.props.project.documents
     const nextDocuments = nextProps.project.documents
     const etape = nextProps.etape
     const project_id = this.props.project_id
+    console.log("nextPropsEtape", etape)
 
     const fetchProjet = () => {
       this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
@@ -38,6 +38,7 @@ class RenderDocs extends Component {
 
     if(documents != undefined && documents != nextProps.project.documents){
       checkFiles()
+      // setTimeout(()=>{checkFiles()}, 1000)
     }
   }
 

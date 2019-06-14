@@ -1,3 +1,5 @@
+import fetchActionCreator from 'fetch-action-creator';
+
 export const CHANGE_BENEFICIAIRE = 'CHANGE_BENEFICIAIRE';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const DISPLAY_CALENDLY = 'DISPLAY_CALENDLY';
@@ -214,6 +216,23 @@ export function showRessource(ressource) {
     payload: ressourceSelected
   };
 }
+
+// TEST FONCTION ASYNCHRONE
+// export const validateStep = (url, callback) =>
+//   fetchActionCreator(
+
+//     // Included in the action types received by your redux store.
+//     'VALIDATE_STEP',
+
+//     // URL to fetch.
+//     url,
+//     {
+//       method: "PATCH",
+//     },
+//     {
+//       onResolve: callback
+//     }
+//   );
 
 export function validateStep(url, callback) {
   const request = fetch(url,

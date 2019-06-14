@@ -3195,6 +3195,11 @@ fbjs@^0.8.0:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
+fetch-action-creator@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/fetch-action-creator/-/fetch-action-creator-2.0.4.tgz#7fcc15110bcb600b110cbe910c6d5a80ae96bc09"
+  integrity sha512-2T2N1q4XFB/OnGOJxUT9m6xAUCUT40riDYtyJ3jnDHBCFPN/hSluGAc+Sx36n3he32AA5FUlywhh9Pl+/TxwjA==
+
 figgy-pudding@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"

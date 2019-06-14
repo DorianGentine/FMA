@@ -11,10 +11,15 @@ import Switch from "./switch"
 class ModalClient extends Component {
 
   componentWillReceiveProps(nextProps){
-    const ressources = nextProps.ressources
-    if(ressources != this.props.ressources){
-      console.log(ressources)
+    const clients = nextProps.clients
+    if(clients != this.props.clients){
+      console.log(clients)
     }
+  }
+
+  handleClick = (clientId) => {
+    this.props.validateStep(`/api/v1/projects/${clientId}/next_setp`, ()=>{console.log('coucou')})
+    this.props.closeModal()
   }
 
   render(){
@@ -79,7 +84,7 @@ class ModalClient extends Component {
         {ressources != null ? renderRessources(true) : <h2>Chargement...</h2>}
         <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
         {ressources != null ? renderRessources(false) : <h2>Chargement...</h2>}
-        <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Valider ce kit</button>
+        <button className="btn-blue margin-top-30 col-8 offset-2 text-align-center" onClick={()=>{this.handleClick(client.id)}}>Valider ce kit</button>
       </div>
     )
   }
@@ -89,6 +94,7 @@ function mapStateToProps(state) {
   return {
     modal_selected: state.modal_selected,
     ressources: state.ressources,
+    clients: state.clients,
   };
 }
 
