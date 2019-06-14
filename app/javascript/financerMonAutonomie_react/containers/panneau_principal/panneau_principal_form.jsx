@@ -112,10 +112,12 @@ class PanneauPrincipalForm extends Component {
         splitValue = splitValue
       }else if(typeof input.value == "string"){
         splitValue = input.value.split('", "')
-        // if(splitValue > 1){
-          splitValue[0] = splitValue[0].substr(2)
+        if(splitValue.length > 1){
+          console.log(splitValue)
+          splitValue[0] = splitValue[0].substr(splitValue[0].lastIndexOf(splitValue[0].lastIndexOf('"')))
           splitValue[splitValue.length - 1] = splitValue[splitValue.length -1].slice(0, -2);
-        // }
+          console.log(splitValue)
+        }
       }else{
         splitValue = input.value
       }
