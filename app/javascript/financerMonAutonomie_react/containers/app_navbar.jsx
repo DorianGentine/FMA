@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 class AppNavbar extends Component {
   render(){
     const menuActive = this.props.selectedMenu.toLowerCase()
-    const api = this.props.api
+    let api = this.props.api
+    // if(this.props.current_api != null){
+    //   api = this.props.current_api
+    // }
     const active = (param) => {
       if(param == menuActive){
         return "active"
@@ -94,6 +97,7 @@ function mapStateToProps(state) {
   return {
     rootUrl: state.rootUrl,
     api: state.api,
+    current_api: state.current_api
   };
 }
 

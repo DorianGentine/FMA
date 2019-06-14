@@ -63,7 +63,12 @@ class RdvTel extends Component {
             <div className="icon-calendar"></div>
             <p className="rdv-tel-text">Accédez à l'ensemble du calendrier <br/><strong>Voir mon calendrier</strong></p>
             <div className="icon-arrow"></div>
-            <a href={this.props.api.frameworks[0].url} target="_blank" className="d-none" id="link_advisor"></a>
+            <a
+              href={this.props.api.frameworks[0] ? this.props.api.frameworks[0].url : "#"}
+              target="_blank"
+              className="d-none"
+              id="link_advisor">
+            </a>
           </div>
         );
       }

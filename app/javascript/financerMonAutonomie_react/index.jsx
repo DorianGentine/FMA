@@ -18,6 +18,7 @@
   // State and reducers
   import apiReducer from './reducers/api_reducer';
   import clientsReducer from './reducers/clients_reducer';
+  import currentApiReducer from './reducers/current_api_reducer';
   import financersReducer from './reducers/financers_reducer';
   import formResultsReducer from './reducers/form_results_reducer';
   import formularyIdReducer from './reducers/formulary_id_reducer';
@@ -33,6 +34,7 @@ const app = document.getElementById('app')
 if(app){
   // const project_id = app.dataset.projectid
   const user_id = app.dataset.userid
+  const currentuser_id = app.dataset.currentuserid
   const urlAPI = `/api/v1/users/${user_id}`;
 
   const rootUrl = `/mon_espace/${user_id}`
@@ -42,6 +44,8 @@ if(app){
   const initialState = {
     api: {},
     clients: null,
+    current_user_id: currentuser_id,
+    current_api: null,
     financers: null,
     formulary_id: {},
     formResults: [],
@@ -60,6 +64,8 @@ if(app){
   const reducers = combineReducers({
     api: apiReducer,
     clients: clientsReducer,
+    current_user_id: identityReducer,
+    current_api: currentApiReducer,
     financers: financersReducer,
     form: formReducer,
     formResults: formResultsReducer,
