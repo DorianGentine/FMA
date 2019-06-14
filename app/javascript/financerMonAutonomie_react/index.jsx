@@ -34,8 +34,12 @@ const app = document.getElementById('app')
 if(app){
   // const project_id = app.dataset.projectid
   const user_id = app.dataset.userid
-  const currentuser_id = app.dataset.currentuserid
+  const current_user_id = app.dataset.currentuserid
   const urlAPI = `/api/v1/users/${user_id}`;
+  let otherUser = false
+  if(current_user_id != user_id){
+    otherUser = true
+  }
 
   const rootUrl = `/mon_espace/${user_id}`
 
@@ -44,7 +48,7 @@ if(app){
   const initialState = {
     api: {},
     clients: null,
-    current_user_id: currentuser_id,
+    current_user_id: current_user_id,
     current_api: null,
     financers: null,
     formulary_id: {},
@@ -52,6 +56,7 @@ if(app){
     modal_opened: false,
     modal_reponses: null,
     modal_selected: null,
+    otherUser: otherUser,
     project: null,
     project_id: null,
     ressources: null,
@@ -64,8 +69,8 @@ if(app){
   const reducers = combineReducers({
     api: apiReducer,
     clients: clientsReducer,
-    current_user_id: identityReducer,
     current_api: currentApiReducer,
+    current_user_id: identityReducer,
     financers: financersReducer,
     form: formReducer,
     formResults: formResultsReducer,
@@ -73,6 +78,7 @@ if(app){
     modal_opened: modalOpenedReducer,
     modal_reponses: modalReponsesReducer,
     modal_selected: modalSelectedReducer,
+    otherUser: identityReducer,
     project: projectReducer,
     project_id: projectIdReducer,
     ressources: ressourcesReducer,

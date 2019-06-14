@@ -1,0 +1,64 @@
+.other_user{
+  --height-info-panel: 100px;
+  padding: var(--height-info-panel) 20px 0;
+  .other_user_indication{
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--height-info-panel);
+    background-color: $green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2{
+      text-align: center;
+      color: white;
+    }
+    a{
+      color: white;
+      border: 1px solid white;
+      border-radius: 3px;
+      padding: 3px 5px;
+      transition: .5s;
+    }
+    a:hover{
+      color: $green !important;
+      background-color: white;
+    }
+  }
+  .app-navbar{
+    top: var(--height-info-panel);
+    height: calc(100vh - var(--height-info-panel));
+  }
+  .menu-principal > div{
+    top: var(--height-info-panel);
+    height: calc(100vh - var(--height-info-panel));
+  }
+  .modal-cote > div{
+    top: var(--height-info-panel);
+    height: calc(100vh - var(--height-info-panel));
+    right: 20px;
+  }
+}
+.other_user:after{
+  content: "";
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  right: 0px;
+  width: 20px;
+  height: 100vh;
+  background-color: $green;
+}
+.other_user:before{
+  content: "";
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  left: 0;
+  width: 20px;
+  height: 100vh;
+  background-color: #1EDD88;
+}

@@ -13,9 +13,9 @@ import ModalCote from "../containers/modal_cote"
 class App extends Component {
 
   componentWillMount() {
-    // if(this.props.current_user_id != this.props.user_id){
-    //   this.props.fetchCurrentApi(`/api/v1/users/${this.props.current_user_id}`)
-    // }
+    if(this.props.otherUser){
+      this.props.fetchCurrentApi(`/api/v1/users/${this.props.current_user_id}`)
+    }
 
     this.props.fetchAPI(this.props.urlAPI)
     const b = () => {this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)}
@@ -48,8 +48,21 @@ class App extends Component {
 
     // App beneficiaire
     }else if(api.statut === "client"){
+      const otherUser = this.props.otherUser
+      let conseillerName
+      if(this.props.current_api != null){
+        conseillerName = `${this.props.current_api.user.first_name} ${this.props.current_api.user.last_name}`
+      }
       return (
-        <div>
+        <div className={otherUser ? "other_user" : ""}>
+          {otherUser ?
+            <div className="other_user_indication">
+              <h2 className="margin-right-15">
+                {`Vous êtes connecté en tant que ${conseillerName}
+                   sur le compte de ${api.user.first_name} ${api.user.last_name}`
+                }</h2>
+              <a href={`/mon_espace/${this.props.current_user_id}/clients`}>Retourner sur mon profil</a>
+            </div> : null}
           <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
           <Volet selectedMenu={this.props.match.params.menu_nav}
               selectedMenuVolet={this.props.match.params.menu_volet}
@@ -99,10 +112,11 @@ function mapStateToProps(state) {
   return {
     api: state.api,
     current_user_id: state.current_user_id,
+    current_api: state.current_api,
     modal_opened: state.modal_opened,
+    otherUser: state.otherUser,
     project_id: state.project_id,
     project: state.project,
-    user_id: state.user_id,
     urlAPI: state.urlAPI,
   };
 }

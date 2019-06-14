@@ -82,7 +82,6 @@ class CardClient extends Component {
       </div>
     )
   }
-
 }
                 // <img src="https://res.cloudinary.com/financermonautonomie/image/upload/co_rgb:6B778E,e_colorize:100,f_png,h_50,w_50/v1557207527/icons/Te%CC%81l_bjyxz7.svg"
                 //   alt="" style={{ height: "12px", width: "12px"}} className="margin-right-5 icon-telephone"/>
