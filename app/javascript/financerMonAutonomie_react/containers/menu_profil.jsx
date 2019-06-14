@@ -7,12 +7,12 @@ import renderLogo from "../../components/render_logo"
 
 class MenuProfil extends Component {
   render(){
-    const current_api = this.props.current_api
+    // const current_api = this.props.current_api
 
     let user = this.props.api.user
-    if(current_api != null){
-      user = this.props.current_api.user
-    }
+    // if(current_api != null){
+    //   user = this.props.current_api.user
+    // }
     let selectedMenu
     if(this.props.selectedMenu){
       selectedMenu = this.props.selectedMenu
