@@ -37,8 +37,8 @@ class RenderDocs extends Component {
     }
 
     if(documents != undefined && documents != nextProps.project.documents){
-      checkFiles()
-      // setTimeout(()=>{checkFiles()}, 1000)
+      // checkFiles()
+      setTimeout(()=>{checkFiles()}, 1000)
     }
   }
 
