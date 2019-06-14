@@ -3,29 +3,52 @@ import renderInitiale from "../components/render_initiales"
 const financeursPotentielsId = document.getElementById('financeurs-potentiels')
 
 if(financeursPotentielsId){
-  const setSolution = (solution) => {
+  const setSolution = (solution, index) => {
     const div = document.createElement('div')
     div.acceptCharset = "UTF-8"
-    div.classList = "margin-top-60"
+    div.classList = `margin-top-60 ${index === 0 ? "blue-gray-background" : ""}`
+    div.style = `padding: 30px 40px;`
     // div.id = `edit_formulary_${form.dataset.id}`
 
-    const logoFinanceur = document.createElement("div")
-    // div.acceptCharset = "UTF-8"
-    logoFinanceur.classList = "logo-financeur"
-    logoFinanceur.style = "height: 60px; width: 60px;"
-    if(solution.financer.logo == null){
-      logoFinanceur.innerText = renderInitiale(solution.financer.name)
-    } else {
-      logoFinanceur.style.backgroundImage = `url(${solution.financer.logo})`
-    }
+    const numFinanceur = document.createElement("h4")
+    numFinanceur.classList = "blue"
+    numFinanceur.style = "font-weight: normal"
+    numFinanceur.innerText = `FINANCEUR N°${index + 1}`
 
-    const nomFinanceur = document.createElement("h4")
-    // div.acceptCharset = "UTF-8"
-    nomFinanceur.classList = "margin-top-15"
+    const nomFinanceur = document.createElement("h2")
+    nomFinanceur.classList = "margin-top-30"
     nomFinanceur.innerText = solution.financer.name.toUpperCase()
 
-    div.appendChild(logoFinanceur)
+    const descFinanceur = document.createElement("p")
+    descFinanceur.innerText = "Aide à domicile | Paris"
+
+    const barre = document.createElement("hr")
+    barre.classList = "ligne-horizontale"
+
+    const votreSolution = document.createElement("p")
+    votreSolution.style = "font-size: 18px"
+    votreSolution.innerText = "VOTRE SOLUTION"
+
+    const lienSite = document.createElement("a")
+    lienSite.classList = "black"
+    lienSite.innerText = "Site du financeur"
+
+    // const logoFinanceur = document.createElement("div")
+    // // div.acceptCharset = "UTF-8"
+    // logoFinanceur.classList = "logo-financeur"
+    // logoFinanceur.style = "height: 60px; width: 60px;"
+    // if(solution.financer.logo == null){
+    //   logoFinanceur.innerText = renderInitiale(solution.financer.name)
+    // } else {
+    //   logoFinanceur.style.backgroundImage = `url(${solution.financer.logo})`
+    // }
+
+
+    div.appendChild(numFinanceur)
     div.appendChild(nomFinanceur)
+    div.appendChild(descFinanceur)
+    div.appendChild(barre)
+    div.appendChild(votreSolution)
 
     if (solution.financer.answer) {
       addAndswer(div, solution.financer.answer)
@@ -35,12 +58,13 @@ if(financeursPotentielsId){
       addAndswer(div, answer.content)
     })
 
+    div.appendChild(lienSite)
     financeursPotentielsId.appendChild(div)
   }
 
   const addAndswer = (div, answer) => {
     const descriptionFinanceur = document.createElement("p")
-    descriptionFinanceur.classList = "margin-top-15"
+    descriptionFinanceur.classList = "margin-top-15 margin-bottom-30"
     descriptionFinanceur.innerText = answer
     div.appendChild(descriptionFinanceur)
   }
@@ -51,7 +75,7 @@ if(financeursPotentielsId){
     let data = await response.json()
 
     for (var i = 0; i < data.solutions.length; i++) {
-      setSolution(data.solutions[i])
+      setSolution(data.solutions[i], i)
     }
   }
 
