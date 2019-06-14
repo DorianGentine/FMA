@@ -59,10 +59,11 @@ class RdvTel extends Component {
     // App conseiller
       }else if(statut === "conseiller"){
         return (
-          <div className="margin-top-30 blue-gray-box relative">
+          <div className="margin-top-30 blue-gray-box relative" onClick={()=>{document.getElementById('link_advisor').click()}}>
             <div className="icon-calendar"></div>
             <p className="rdv-tel-text">Accédez à l'ensemble du calendrier <br/><strong>Voir mon calendrier</strong></p>
             <div className="icon-arrow"></div>
+            <a href={this.props.api.frameworks[0].url} target="_blank" className="d-none" id="link_advisor"></a>
           </div>
         );
       }
