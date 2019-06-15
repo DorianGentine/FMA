@@ -52,7 +52,7 @@ if(app){
     current_api: null,
     financers: null,
     formulary_id: {},
-    formResults: [],
+    formResults: null,
     modal_opened: false,
     modal_reponses: null,
     modal_selected: null,
