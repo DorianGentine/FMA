@@ -1,4 +1,5 @@
 import renderInitiale from "../components/render_initiales"
+import stickyCta from "../components/sticky_cta"
 
 const financeursPotentielsId = document.getElementById('financeurs-potentiels')
 
@@ -8,7 +9,7 @@ if(financeursPotentielsId){
     div.acceptCharset = "UTF-8"
     div.classList = `margin-top-60 ${index === 0 ? "blue-gray-background" : ""}`
     div.style = `padding: 30px 40px;`
-    // div.id = `edit_formulary_${form.dataset.id}`
+    div.id = `${index === 0 ? "TESTONS" : ""}`
 
     const numFinanceur = document.createElement("h4")
     numFinanceur.classList = "blue"
@@ -32,17 +33,6 @@ if(financeursPotentielsId){
     const lienSite = document.createElement("a")
     lienSite.classList = "black"
     lienSite.innerText = "Site du financeur"
-
-    // const logoFinanceur = document.createElement("div")
-    // // div.acceptCharset = "UTF-8"
-    // logoFinanceur.classList = "logo-financeur"
-    // logoFinanceur.style = "height: 60px; width: 60px;"
-    // if(solution.financer.logo == null){
-    //   logoFinanceur.innerText = renderInitiale(solution.financer.name)
-    // } else {
-    //   logoFinanceur.style.backgroundImage = `url(${solution.financer.logo})`
-    // }
-
 
     div.appendChild(numFinanceur)
     div.appendChild(nomFinanceur)
@@ -73,6 +63,7 @@ if(financeursPotentielsId){
     const visitorId = financeursPotentielsId.dataset.visitorid
     let response = await fetch(`/api/v1/visitors/${visitorId}/analyze`)
     let data = await response.json()
+    await stickyCta(data)
 
     for (var i = 0; i < data.solutions.length; i++) {
       setSolution(data.solutions[i], i)

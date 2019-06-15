@@ -6,6 +6,8 @@ import "../components/dynamicNavbar";
 
 import "../components/get_solutions";
 
+// import "../components/sticky_cta";
+
 // import { fetchFormulary } from "../components/formularies/new";
 // fetchFormulary();
 

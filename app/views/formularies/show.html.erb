@@ -1,4 +1,3 @@
-<!-- <img class="absolute" style="top: 0; right: 0; width: 50vw;" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1559381956/Illu%20HP/BG_djr1o2.svg" alt=""> -->
 <%= render "shared/navbar" %>
 
 <div class="container">
@@ -7,153 +6,36 @@
     <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Sam a analysé vos résultats ! <br>Voici les réponses</h1>
 
     <div class="col-lg-6" id="financeurs-potentiels" data-visitorid="<%= @visitor.id %>"></div> <!-- généré en js -->
-    <div class="col-lg-6" style="padding: 0 120px">
-      <div class="blue-background margin-top-60 relative" style="padding: 40px 30px 100px; border-radius: 3px; max-width: 400px">
+    <div class="col-lg-6">
+      <div id="blue-CTA">
         <h2 class="white margin-bottom-30">Poursuivez avec l'aide d'un conseiller</h2>
         <p class="white margin-bottom-30">En décidant de poursuivre vous pouvez accéder à votre espace dédié.</p>
         <%= link_to "Poursuivre l'inscription", new_user_registration_path, class: "btn white-background black" %>
         <img class="absolute" style="bottom: 0; right: 0; height: 200px;" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1560519248/Illu%20HP/Illu_FMA_analyse_btn_wmjze0.svg" alt="">
       </div>
     </div>
-
-
-    <!-- <div class="col-lg-6" style="height: fit-content">
-      <div class="margin-top-120 margin-bottom-60 text-align-center">
-        <%#= link_to "Poursuivre avec un conseiller", new_user_registration_path, class: "btn-blue" %>
-      </div>
-    </div>  -->
-
-    <!-- <div class="col-lg-6" style="padding: 20px 0 0 80px">
-      <h2 class="blue margin-bottom-60">Liste de vos réponses</h2>
-        <% if @formulary.first_name.present? %>
-          <p class="bold black">Quel est votre prénom ?</p>
-          <p class="margin-bottom-15"><%= @formulary.first_name %></p>
-        <% end %>
-
-
-        <% if @formulary.zip_code.present? %>
-          <p class="bold black">Quel est le code postale de votre résidence ?</p>
-          <p class="margin-bottom-15"><%= @formulary.zip_code %></p>
-        <% end %>
-
-        <% if @formulary.his_age.present? %>
-          <p class="bold black">Quel âge avez-vous ?</p>
-          <p class="margin-bottom-15"><%= @formulary.his_age %> ans - <%= @formulary.set_age_group %></p>
-        <% end %>
-
-        <% if @formulary.is_working.present? %>
-          <p class="bold black">Travaillez-vous ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.is_working] %></p>
-        <% end %>
-
-        <% if @formulary.loss_of_autonomy_receipt.present? %>
-          <p class="bold black">Disposez-vous de justificatifs prouvant que votre perte d'autonomie est antérieur à vos 60 ans ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.loss_of_autonomy_receipt] %></p>
-        <% end %>
-
-        <% if @formulary.occupation.present? %>
-          <p class="bold black">Quel est votre statut d'occupation dans votre logement ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::OCCUPATION_CHOICES[@formulary.occupation] %></p>
-        <% end %>
-
-        <% if @formulary.holder_occupation.present? %>
-          <p class="bold black">Quel est le statut d'occupation du titulaire de votre logement ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::HOLDER_OCCUPATION_CHOICES[@formulary.holder_occupation] %></p>
-        <% end %>
-
-        <% if @formulary.lessor.present? %>
-          <p class="bold black">Quel est le nom du bailleur de votre logement ?</p>
-          <p class="margin-bottom-15"><%= @formulary.lessor %></p>
-        <% end %>
-
-        <% if @formulary.accommodation.present? %>
-          <p class="bold black">Quel est la typologie de votre logement ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::ACCOMMODATION[@formulary.accommodation] %> -  <%= @formulary.type_accommodation %></p>
-        <% end %>
-
-        <% if @formulary.floor.present? %>
-          <p class="bold black">Résidez vous en rez de chaussée ou en étage ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::FLOOR[@formulary.floor] %></p>
-        <% end %>
-
-        <% if @formulary.accessibility_with_step.present? %>
-          <p class="bold black">La porte d'entrée de votre logement est-elle accessible sans que vous n'ayez de marche à franchir ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.accessibility_with_step] %></p>
-        <% end %>
-
-        <% if @formulary.type_of_pension.present? %>
-          <p class="bold black">Concernant votre pension de retraite ou de réversion ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::TYPE_OF_PENSION[@formulary.type_of_pension] %></p>
-        <% end %>
-
-        <% if @formulary.pension.present? %>
-          <p class="bold black">Comment se nomme la caisse de retraite principale vous versant votre pension de retraite ou de réversion à titre principal ?</p>
-          <p class="margin-bottom-15"><%= @formulary.pension %></p>
-        <% end %>
-
-        <% if @formulary.supplementary.present? %>
-          <p class="bold black">Comment se nomme(nt) la ou les caisse(s) de retraite(s) complémentaire(s) vous versant votre pension de retraite complémentaire ou de réversion ?</p>
-          <p class="margin-bottom-15"><%= @formulary.supplementary %></p>
-        <% end %>
-
-        <% if @formulary.loss_of_autonomy.present? %>
-          <p class="bold black">À quel Groupe Iso-Ressource ou GIR appartenez-vous ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::LOSS_OF_AUTONOMY[@formulary.loss_of_autonomy] %></p>
-        <% end %>
-
-        <% if @formulary.occupant.present? %>
-          <p class="bold black">Combien de personne(s) réside(nt) au sein de votre foyer ?</p>
-          <p class="margin-bottom-15"><%= @formulary.occupant %> - <%= @formulary.set_nbr_of_occupants %> </p>
-        <% end %>
-
-        <% if @formulary.owner_is_include.present? %>
-          <p class="bold black">Le propriétaire de votre logement y vit-il ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.owner_is_include] %></p>
-        <% end %>
-
-        <% if @formulary.has_partner.present? %>
-          <p class="bold black">Vivez-vous avec un conjoint, concubin ou partenaire de PACS ?</p>
-          <p class="margin-bottom-15"><%= FormularyChoice::YES_NO[@formulary.has_partner] %></p>
-        <% end %>
-
-        <% if @formulary.tax_revenue.present? %>
-          <p class="bold black">Quel est le montant de votre Revenu Fiscal de Référence ?</p>
-          <p class="margin-bottom-15"><%= @formulary.tax_revenue %></p>
-        <% end %>
-
-        <% if @formulary.gross_income.present? %>
-          <p class="bold black">Quel est le montant de votre Revenu Brut Global ?</p>
-          <p class="margin-bottom-15"><%= @formulary.gross_income %></p>
-        <% end %>
-
-        <% if @formulary.global_tax_revenue.present? %>
-          <p class="bold black">Quel est le montant du Revenu Fiscal de Référence de l'ensemble de votre foyer ?</p>
-          <p class="margin-bottom-15"><%= @formulary.global_tax_revenue %></p>
-        <% end %>
-
-        <% if @formulary.household_income.present? %>
-          <p class="bold black">Quel est le montant du Revenu Brut Global de votre ménage (incluant votre conjoint, concubin ou partenaire de PACS) ?</p>
-          <% limit = RevenuAnalyze.new(@formulary).analyze_brut_global %>
-
-
-          <p class="margin-bottom-15"><%= @formulary.household_income %> - <%= @formulary.household_income < limit[:a] ? 0 : 1 %></p>
-        <% end %>
-
-        <% if @formulary.owner_tax_revenue.present? %>
-          <p class="bold black">Quel est le montant du Revenu Fiscal de Référence du propriétaire de votre logement ?</p>
-          <p class="margin-bottom-15"><%= @formulary.owner_tax_revenue %></p>
-        <% end %>
-
-        <% if @formulary.assistant.present? %>
-          <p class="bold black">Avez-vous déjà perçu ou percevez-vous une de ses aides ou actions sociales ?</p>
-          <p class="margin-bottom-15"><%= @formulary.assistant %></p>
-        <% end %>
-      <div class="margin-top-120 text-align-center">
-        <%= link_to "Refaire une simulation", root_path %>
-      </div>
-    </div> -->
-
   </div>
+
+  <div class="row margin-top-120">
+    <h1 class="col-lg-8 offset-lg-2 col-xs-12 text-align-center">Bénéficiez de l'assistance complémentaire d'un conseiller social</h1>
+
+    <div class="col-lg-4">
+      <div class="icon-anlyse1"></div>
+      <h4 class="h4-with-number"><span>01</span>Accédez rapidement à votre espace personnel</h4>
+      <p>Transmettez-nous l'ensemble des informations complémentaires sur votre foyer de manières sécurisées, et bénéficiez d’un espace de partage personnalisé et adapté à votre projet.</p>
+    </div>
+    <div class="col-lg-4">
+      <div class="icon-anlyse2"></div>
+      <h4 class="h4-with-number"><span>02</span>Échangez directement avec un expert</h4>
+      <p>Lors de votre inscription un conseiller social dédié vous accompagne pour vous expliquer directement les démarches à accomplir. De plus, notre chatbot vous permet d'échanger rapidement avec ce dernier.</p>
+    </div>
+    <div class="col-lg-4">
+      <div class="icon-anlyse3"></div>
+      <h4 class="h4-with-number"><span>03</span>Disposez d’un kit de documents détaillé</h4>
+      <p>Via votre espace personnel, votre conseiller mettre à disposition les ressources nécessaires (lettres types, dossiers, procédures, ...) pour que vous meniez à bien votre demande de financement.</p>
+    </div>
+  </div>
+</div>
 
 
  <%# @testing_solutions.each do |key, value| %>
@@ -162,7 +44,7 @@
     <%# end %>
 <%# end %>
 
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+<!-- <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script> -->
 <%= render "shared/footer" %>
 
 
