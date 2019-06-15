@@ -18,6 +18,7 @@ class PanneauPrincipalProjet extends Component {
 
     if(statut === "client"){
       const etape = this.props.project.project.etape
+      console.log(etape)
 
     // App beneficiaire
       if(etape.toLowerCase() == "validation_data"){
@@ -32,7 +33,7 @@ class PanneauPrincipalProjet extends Component {
             <DocumentsSoumettre />
             <FinanceursPotentiels />
             <VosReponses />
-            { etape === "progression" || etape === "evaluation" ?
+            { etape === "progression" || etape === "evalution" ?
               <KitDeFinancement /> : null
             }
           </div>
