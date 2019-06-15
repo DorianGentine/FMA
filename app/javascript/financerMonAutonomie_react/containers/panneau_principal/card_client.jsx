@@ -38,7 +38,7 @@ class CardClient extends Component {
           numEtape = 5
           return numEtape;
         }
-        case "evalution": {
+        case "evaluation": {
           numEtape = 6
           return numEtape;
         }
@@ -66,7 +66,7 @@ class CardClient extends Component {
             <div className="col-lg-5 font-12 gray-300">Date:</div>
             <div className="col-lg-7 text-align-right font-12 black">{dateInscription}</div>
             <div className="col-lg-5 font-12 gray-300">Étape:</div>
-            <div className="col-lg-7 text-align-right font-12 black">{`${numEtape}/5`}</div>
+            <div className="col-lg-7 text-align-right font-12 black">{`${numEtape}/6`}</div>
             <div className="col-lg-12 margin-top-30 flex space-between">
               <a href={`tel:${client.phone}`} className="font-12 gray flex align-items-center">
                 <i className="fas fa-phone margin-right-5"></i>

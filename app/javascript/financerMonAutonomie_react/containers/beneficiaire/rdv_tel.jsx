@@ -8,19 +8,6 @@ import ValidationModal from "./validation_modal"
 import { renderDate } from "../../../components/render_date"
 
 class RdvTel extends Component {
-  // componentWillReceiveProps(nextProps) {
-  //   const statut = this.props.api.statut
-
-  //   if(statut === "client"){
-  //     const etape = this.props.api.project.etape
-
-  //     if(etape != nextProps.api.project.etape){
-  //       RdvTel.forceUpdate()
-  //     }
-  //   }
-
-  // }
-
   render(){
     const statut = this.props.api.statut
 
@@ -36,7 +23,7 @@ class RdvTel extends Component {
         }else if(etape === "call"){
           rdvTitre = "Votre rendez-vous aura lieu"
           rdvText = renderDate(this.props.project.project.rdv, "ddd_mmm_hhhh")
-        }else if(etape === "progression"){
+        }else if(etape === "progression" || etape === "evaluation"){
           rdvTitre = "Rendez-vous effectué le"
           rdvText = renderDate(this.props.project.project.rdv, "ddd_mmm_hhhh")
         }

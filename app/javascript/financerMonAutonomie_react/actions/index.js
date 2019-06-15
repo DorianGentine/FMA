@@ -1,4 +1,4 @@
-import fetchActionCreator from 'fetch-action-creator';
+// import fetchActionCreator from 'fetch-action-creator';
 
 export const CHANGE_BENEFICIAIRE = 'CHANGE_BENEFICIAIRE';
 export const CLOSE_MODAL = 'CLOSE_MODAL';

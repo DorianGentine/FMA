@@ -34,7 +34,7 @@ class Etapes extends Component {
           nomEtape = "Kit en cours d'élaboration"
           return [numEtape, nomEtape];
         }
-        case "evalution": {
+        case "evaluation": {
           numEtape = 6
           nomEtape = "Évaluation du service"
           return [numEtape, nomEtape];
