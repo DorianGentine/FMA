@@ -56,7 +56,7 @@ class CardClient extends Component {
     if(selectedClients === "tous" ||
       selectedClients === "en_cours" && numEtape < 6 ||
       selectedClients === "archives" && numEtape === 6 ||
-      fullName.includes(selectedClients) ||
+      fullName.toLowerCase().includes(selectedClients.toLowerCase()) ||
       parseInt(selectedClients) === numEtape) {
       return(
         <div className="col-lg-3 col-xs-12 col-sm-4">
@@ -64,7 +64,7 @@ class CardClient extends Component {
             <div className="row">
               <div className="col-lg-6 font-12 black flex align-items-center margin-bottom-15">
                 {renderLogo(client)}
-                <span className="bold" style={{marginLeft: "-10px"}}>{`${client.nombre_benef > 1 ? `+${client.nombre_benef - 1}` : null }`}</span>
+                <span className="bold" style={{marginLeft: "-10px"}}>{`${client.nombre_benef > 1 ? `+${client.nombre_benef - 1}` : "" }`}</span>
               </div>
               <div className="col-lg-6 text-align-right">...</div>
               <div className="col-lg-12 font-14 black bold">{fullName}</div>

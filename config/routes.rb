@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       get '/demandes', to: 'users#show'
       # get '/compte', to: 'users#show'
       get '/a_propos', to: 'users#show'
+        get '/a_propos/cgu_cgv', to: 'users#show'
+        get '/a_propos/protection_donnees', to: 'users#show'
     end
   end
 

@@ -37,6 +37,10 @@ class AppNavbar extends Component {
               <i className="far fa-bell"></i>
               <p>Alertes</p>
             </Link>
+            <Link className={`btn-app-navbar margin-top-30 ${active("a_propos")}`} to={`${this.props.rootUrl}/a_propos/cgu_cgv`}>
+              <i className="fas fa-info-circle"></i>
+              <p>A propos</p>
+            </Link>
 
             <a href="/users/sign_out" rel="nofollow" data-method="delete" className="btn-app-navbar navbar-quit margin-top-30">
               <i className="fas fa-door-open"></i>
@@ -77,7 +81,7 @@ class AppNavbar extends Component {
               <i className="far fa-bell"></i>
               <p>Alertes</p>
             </Link>
-            <Link className={`btn-app-navbar margin-top-30 ${active("a_propos")}`} to={`${this.props.rootUrl}/a_propos`}>
+            <Link className={`btn-app-navbar margin-top-30 ${active("a_propos")}`} to={`${this.props.rootUrl}/a_propos/cgu_cgv`}>
               <i className="fas fa-info-circle"></i>
               <p>A propos</p>
             </Link>
