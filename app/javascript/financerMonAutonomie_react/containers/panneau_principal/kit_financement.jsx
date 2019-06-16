@@ -1,13 +1,44 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import DownloadLink from "react-download-link";
+import { saveAs } from 'file-saver';
 
 import Financers from './financers'
+
+const JSZip = require("jszip");
 
 class KitDeFinancement extends Component {
   render(){
     const kits = this.props.project.kits
-    console.log(kits)
+    const first_name = this.props.project.formularies[0].first_name
+
+    const zip = new JSZip();
+    for (var i = 0; i < kits.length; i++) {
+      const kitZip = zip.folder(`Ressource ${i + 1}`);
+      const notice = $.get(kits[i].notice);
+      kitZip.file(`notice_ressource_${i + 1}.pdf`, notice);
+      const formulary = $.get(kits[i].formulary);
+      kitZip.file(`formulary_ressource_${i + 1}.pdf`, formulary);
+    }
+    console.log(zip)
+
+    const download = () =>{
+      zip.generateAsync({type:"blob"}).then(function (blob) { // 1) generate the zip file
+        saveAs(blob, `kit_${first_name}.zip`);                          // 2) trigger the download
+      }, function (err) {
+        console.log(err);
+      });
+    }
+
+
+    // let promise = null;
+    // if (JSZip.support.uint8array) {
+    //   promise = zip.generateAsync({type : "uint8array"});
+    // } else {
+    //   promise = zip.generateAsync({type : "string"});
+    // }
+    // console.log(promise)
     const renderKits = () => {
       return kits.map((kit, index) => {
         return (
@@ -26,7 +57,11 @@ class KitDeFinancement extends Component {
         <div className="white-box flex flex-wrap">
           <h4 className="col-lg-6">Découvrez votre kit de financement</h4>
           <p className="bold col-lg-1">2</p>
-          <a className="col-lg-5 text-align-right font-12" href="#">{`${ this.props.project.project.etape === "evaluation" ? "Tout télécharger" : ""}`}</a>
+          <a
+            className="col-lg-5 text-align-right font-12"
+            onClick={download}
+            >{`${ this.props.project.project.etape === "evaluation" ? "Tout télécharger" : ""}`}
+          </a>
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
             <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Id</p>
             <p className="col-lg-4 font-12">Notice</p>
@@ -34,7 +69,7 @@ class KitDeFinancement extends Component {
             <p className="col-lg-3 font-12" style={{paddingRight: 0}}>Date de publication</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "80px" }}>
-            { kits != undefined ? renderKits() : <h2 className="text-align-center margin-top-30 gray-300">Votre conseiller confectionne votre kit</h2>}
+            { kits != undefined && this.props.project.project.etape === "evaluation" ? renderKits() : <h2 className="text-align-center margin-top-30 gray-300">Votre conseiller confectionne votre kit</h2>}
           </div>
         </div>
       </div>

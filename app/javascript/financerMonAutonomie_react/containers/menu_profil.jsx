@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { selectClients } from '../actions';
+
 import renderLogo from "../../components/render_logo"
 
 class MenuProfil extends Component {
@@ -18,19 +20,26 @@ class MenuProfil extends Component {
       selectedMenu = this.props.selectedMenu
     }
 
-    let clients
-    let clientsEnCours = 0
-    let clientsArchives = 0
-    if(selectedMenu === "clients"){
-      clients = this.props.clients
-    }
 
     const renderFiltres = ()=> {
+      const selectedClients = this.props.selectedClients
+      let clients = this.props.clients
+      let clientsEnCours = 0
+      let clientsArchives = 0
+      if(clients != null){
+        for (var i = clients.clients.length - 1; i >= 0; i--) {
+          if(clients.clients[i].étape === "evaluation"){
+            clientsArchives = clientsArchives + 1
+          }else{
+            clientsEnCours = clientsEnCours + 1
+          }
+        }
+      }
       return(
         <div className="col-lg-6 row align-items-end">
-          <div className="padding-horizontal-15 titre-filtre active">Tous <span>{clients ? clients.clients.length : 0}</span></div>
-          <div className="padding-horizontal-15 titre-filtre">En cours <span>{clientsEnCours}</span></div>
-          <div className="padding-horizontal-15 titre-filtre">Archivés <span>{clientsArchives}</span></div>
+          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`} onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{clients ? clients.clients.length : 0}</span></div>
+          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`} onClick={()=>{this.props.selectClients("en_cours")}}>En cours <span>{clientsEnCours}</span></div>
+          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`} onClick={()=>{this.props.selectClients("archives")}}>Archivés <span>{clientsArchives}</span></div>
         </div>
       )
     }
@@ -65,11 +74,12 @@ function mapStateToProps(state) {
     rootUrl: state.rootUrl,
     current_api: state.current_api,
     current_user_id: state.current_user_id,
+    selectedClients: state.selectedClients,
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectClients }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(MenuProfil);
+export default connect(mapStateToProps, mapDispatchToProps)(MenuProfil);

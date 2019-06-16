@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchClients } from '../../actions';
+import { fetchClients, selectClients } from '../../actions';
 
 import CardClient from './card_client';
 
@@ -25,9 +25,24 @@ class PanneauPrincipalClients extends Component {
         <div className="row">
           <div className="input-wth-icon search-app col-lg-4">
             <i className="fas fa-search"></i>
-            <input type="text" placeholder="Nom ou prénom du client" style={{width: "100%"}} />
+            <input
+              type="text"
+              placeholder="Nom ou prénom du client"
+              style={{width: "100%"}}
+              onChange={()=>{this.props.selectClients(event.target.value)}}
+            />
           </div>
-          <div className="col-lg-4 offset-lg-4"><div>Classer par Étape</div></div>
+          <div className="col-lg-4 offset-lg-4">
+            <select className="selectize-input" onChange={()=>{this.props.selectClients(event.target.value)}}>
+              <option value="">Sélectionnez une étape</option>
+              <option value="1">Etape 1</option>
+              <option value="2">Etape 2</option>
+              <option value="3">Etape 3</option>
+              <option value="4">Etape 4</option>
+              <option value="5">Etape 5</option>
+              <option value="6">Étape 6</option>
+            </select>
+          </div>
         </div>
         <div className="margin-top-30 margin-bottom-30 flex align-items-center">
           <hr className="ligne-horizontal"/>
@@ -53,7 +68,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchClients }, dispatch);
+  return bindActionCreators({ fetchClients, selectClients }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalClients);
