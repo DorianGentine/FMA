@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import VoletProjet from "./Volet/volet_projet"
 import VoletCompte from "./Volet/volet_compte"
 import VoletAlertes from "./Volet/volet_alertes"
+import VoletAbout from "./Volet/volet_about"
 
 class Volet extends Component {
   render(){
@@ -38,20 +39,10 @@ class Volet extends Component {
           </div>
         </div>
       );
-    }else if(selectedMenu.toLowerCase() == "compte"){
-      return (
-        <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
-          <div>
-            <h2 className="text-align-center">{selectedMenu}</h2>
-          </div>
-        </div>
-      );
     }else if(selectedMenu.toLowerCase() == "a_propos"){
       return (
         <div className={`menu-principal ${ this.props.modal_opened ? "menu-principal-hidden" : ""}`}>
-          <div>
-            <h2 className="text-align-center">{selectedMenu}</h2>
-          </div>
+          <VoletAbout selectedMenuVolet={this.props.selectedMenuVolet} />
         </div>
       );
     }
