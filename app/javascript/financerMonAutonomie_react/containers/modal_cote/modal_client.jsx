@@ -18,7 +18,7 @@ class ModalClient extends Component {
   }
 
   handleClick = (clientId) => {
-    this.props.validateStep(`/api/v1/projects/${clientId}/next_setp`, ()=>{console.log('coucou')})
+    this.props.validateStep(`/api/v1/projects/${clientId}/next_setp`, ()=>{})
     this.props.closeModal()
   }
 
