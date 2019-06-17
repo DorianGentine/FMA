@@ -81,10 +81,12 @@ class ModalClient extends Component {
           <div className="margin-bottom-15" style={{marginRight: "-15px"}}>{renderLogo(client)}</div>
           <h4 className="black">{`${client.first_name}${client.last_name ? ` ${client.last_name}` : ""}`}</h4>
         </div>
-        {ressources != null ? renderRessources(true) : <h2>Chargement...</h2>}
-        <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
-        {ressources != null ? renderRessources(false) : <h2>Chargement...</h2>}
-        <button className="btn-blue margin-top-30 col-8 offset-2 text-align-center" onClick={()=>{this.handleClick(client.id)}}>Valider ce kit</button>
+        <div className="scroll" style={{ maxHeight: "calc(100vh - 390px)"}}>
+          {ressources != null ? renderRessources(true) : <h2>Chargement...</h2>}
+          <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
+          {ressources != null ? renderRessources(false) : <h2>Chargement...</h2>}
+        </div>
+        <button className="btn-blue margin-top-30 col-8 offset-2 text-align-center" onClick={()=>{this.handleClick(client.project)}}>Valider ce kit</button>
       </div>
     )
   }

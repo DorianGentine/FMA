@@ -1,4 +1,4 @@
-import fetchActionCreator from 'fetch-action-creator';
+// import fetchActionCreator from 'fetch-action-creator';
 
 export const CHANGE_BENEFICIAIRE = 'CHANGE_BENEFICIAIRE';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
@@ -13,6 +13,7 @@ export const FETCH_PROJET = 'FETCH_PROJET';
 export const FETCH_RESSOURCES = 'FETCH_RESSOURCES';
 export const POST_COMPTE = 'POST_COMPTE';
 export const POST_FORM = 'POST_FORM';
+export const SELECT_CLIENTS = 'SELECT_CLIENTS';
 export const SHOW_CLIENT = 'SHOW_CLIENT';
 export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
 export const SHOW_FINANCER = 'SHOW_FINANCER';
@@ -163,6 +164,16 @@ export function fetchRessources(url) {
   return {
     type: FETCH_RESSOURCES,
     payload: promise
+  };
+}
+
+export function selectClients(clientsSelected) {
+  if (clientsSelected === "") {
+    clientsSelected = "tous"
+  }
+  return {
+    type: SELECT_CLIENTS,
+    payload: clientsSelected
   };
 }
 

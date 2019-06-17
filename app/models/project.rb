@@ -16,7 +16,7 @@ class Project < ApplicationRecord
   before_create :fill_step
   before_save :going_to_call, :clean_appointment
 
-  enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evalution"]
+  enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evaluation"]
 
   def link_to_advisor(user)
     UserProject.create(user: user, project: self)
@@ -62,7 +62,7 @@ class Project < ApplicationRecord
       Notification.create(title:"a été appelé", date:Time.now, project: self)
       SuggestionKit.new(self).call
     elsif self.progression?
-      self.evalution!
+      self.evaluation!
       Notification.create(title:"a obtenu son kit", date:Time.now, project: self)
     end
     self.hint = true

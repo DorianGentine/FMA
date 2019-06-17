@@ -19,9 +19,9 @@ import { initSelectize } from "../../../components/init_select2";
 
 import 'react-widgets/dist/css/react-widgets.css'
 
-class PanneauPrincipalForm extends Component {
+class RenderForm extends Component {
   componentWillMount() {
-    if(this.props.formulary_id != this.props.formulary_ids[0]){
+    if(this.props.formulary_id !== this.props.formulary_ids[0]){
       this.props.changeBeneficiaireForm(this.props.formulary_ids[0])
     }
   }
@@ -29,16 +29,16 @@ class PanneauPrincipalForm extends Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.formulary_id === "add" && nextProps.formulary_id !== this.props.formulary_id){
       this.props.fetchFORM(`/api/v1/projects/${this.props.project_id}/formularies/new`)
+      .then( setTimeout( () => {this.handleInitialize()}, 500) )
     }else if (nextProps.formulary_id !== this.props.formulary_id) {
       this.props.fetchFORM(`/api/v1/formularies/${nextProps.formulary_id}/edit`)
-    }
-
-    if(nextProps.formResults != null && nextProps.formResults != this.props.formResults){
-      this.handleInitialize(nextProps.formResults)
+      .then( setTimeout( () => {this.handleInitialize()}, 500) )
     }
   }
 
-  handleInitialize(formResults) {
+  handleInitialize() {
+    const formResults = this.props.formResults
+
     let initData = {};
 
     for ( let i in formResults) {
@@ -52,19 +52,19 @@ class PanneauPrincipalForm extends Component {
 
   onSubmit = (values) => {
     if(this.props.formulary_id === "add"){
-      console.log("COCOU je suis un add !!!")
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
-      // .then( ()=>{
-      //   this.props.fetchAPI(this.props.urlAPI)
-      //   setTimeout( () => {
-      //     const formularyIdNewUser = this.props.formulary_ids[this.props.formulary_ids.length-1]
-      //     this.props.changeBeneficiaireForm(formularyIdNewUser)
-      //   }, 500)
-      // })
+      .then( ()=>{
+        this.props.fetchAPI(this.props.urlAPI)
+        setTimeout( () => {
+          const formularyIdNewUser = this.props.formulary_ids[this.props.formulary_ids.length-1]
+          this.props.changeBeneficiaireForm(formularyIdNewUser)
+        }, 500)
+      })
     }else{
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
       .then(()=>{
         this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
+        .then( setTimeout( () => {this.handleInitialize()}, 500) )
       })
     }
   }
@@ -198,68 +198,7 @@ class PanneauPrincipalForm extends Component {
       }
     }
 
-    const renderForm = (formResults) => {
-      if(formResults != null && formResults.length > 0 ){
-        return formResults.map((result, index) => {
-          if(result.set_up.need_answer == true){
-            return(
-              <div key={result.set_up.id}>
-                {renderInput(result)}
-              </div>
-            )
-          }
-        });
-      }
-    }
 
-    const renderBeneficiaires = () => {
-      return this.props.formulary_ids.map((formulary_id, index) => {
-        return (
-          <h4
-            className={`no-margin btn-select-onglet ${formulary_id == this.props.formulary_id ? 'active' : null}`}
-            data-benef-index={formulary_id}
-            onClick={() => {this.handleClickBenef(event)} }
-            key={formulary_id}>
-              Bénéficiaire {index+1}
-          </h4>
-        )
-      })
-    }
-
-
-    return (
-      <div className="col-lg-12">
-        <div className="flex">
-          {renderBeneficiaires()}
-          <h4
-            className={`no-margin btn-select-onglet ${"add" == this.props.formulary_id ? 'active' : null}`}
-            data-benef-index="add"
-            onClick={() => {this.handleClickBenef(event)} }>
-              +
-          </h4>
-        </div>
-        <div className="white-box">
-          <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-            {renderForm(this.props.formResults)}
-            <button
-              id="btn-validation-infos"
-              type="submit"
-              disabled={this.props.pristine || this.props.submitting}>
-                Vos informations ont bien été enregistrées
-            </button>
-          </form>
-          <h2
-            className={`width-fit-content btn-blue margin-top-60 margin-bottom-30 margin-left-auto ${this.props.formulary_id === "add" ? "d-none" : ""}`}
-            onClick={ etape === "validation_data" ? () => {
-              this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
-                () => { this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`) }
-              )
-            } : ()=>{} }>
-              Je valide mes réponses et je passe à la prochaine étape <i className="fas fa-arrow-right"></i>
-          </h2>
-        </div>
-      </div>
-    )
   }
 }
 
@@ -286,20 +225,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default reduxForm({ form: 'validationForm', })(
-connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalForm)
+connect(mapStateToProps, mapDispatchToProps)(RenderForm)
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

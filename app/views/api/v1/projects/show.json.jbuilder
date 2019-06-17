@@ -17,6 +17,11 @@ json.documents @project.documents do |document|
   json.extract! document, :id, :title, :description, :file, :notice, :solution_ids, :formulary_ids
 end
 
+json.kits @project.kits do |kit|
+  json.id kit.id
+  json.ressource kit.ressource.id
+  json.extract! kit.ressource, :id, :notice, :formulary, :model_1, :model_2
+end
 
 json.financers @project.solutions do |solution|
   json.id solution.id
