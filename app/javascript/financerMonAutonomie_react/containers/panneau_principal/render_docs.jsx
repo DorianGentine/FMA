@@ -13,7 +13,6 @@ class RenderDocs extends Component {
     const nextDocuments = nextProps.project.documents
     const etape = nextProps.etape
     const project_id = this.props.project_id
-    console.log("nextPropsEtape", etape)
 
     const fetchProjet = () => {
       this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
@@ -114,11 +113,13 @@ class RenderDocs extends Component {
 
           return (
             <div className="doc-to-send" key={index}>
-              <div className="icon-eye float-right" onClick={()=>{handleClick(doc)}}></div>
               <h4 className="font-14 no-margin">{doc.title}</h4>
-              <p className="black font-12">{doc.description}</p>
+              <p className="gray-300 font-12 margin-top-15 margin-bottom-15" id={`document_name${randomId}`}><i className="far fa-file margin-right-15"></i>{docName}</p>
               <div className="flex space-between align-items-center">
-                <p className="gray-300 font-12" id={`document_name${randomId}`}>{docName}</p>
+                <div className="flex align-items-center btn-apercu" onClick={()=>{handleClick(doc)}}>
+                  <div className="icon-eye margin-right-5"></div>
+                  <p className="font-12">Aperçu</p>
+                </div>
                 <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles, idDoc, randomId)}}>
                   {({getRootProps, getInputProps}) => (
                     <div {...getRootProps()}>
@@ -127,7 +128,6 @@ class RenderDocs extends Component {
                     </div>
                   )}
                 </Dropzone>
-
               </div>
             </div>
           );

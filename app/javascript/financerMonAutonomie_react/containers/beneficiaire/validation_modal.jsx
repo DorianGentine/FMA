@@ -27,14 +27,27 @@ class ValidationModal extends Component {
     let textTitre = ""
     let textPrincipal = ""
     let style = {}
-    if(etape === "documentation"){
-      textTitre = "Bienvenue sur votre dashboard"
-      textPrincipal = `Commencez par envoyer les documents demandés ici !`
+    if(etape === "validation_data"){
+      textTitre = "Étape 1 : Confirmation des réponses"
+      textPrincipal = `Veuillez vérifier et confirmer l’exactitude des réponses que vous avez fournis.
+      Si vous le souhaitez vous pouvez ajouter un bénéficiaire à votre demande.`
+      style = { top: "0px" }
+    }else if(etape === "documentation"){
+      textTitre = "Étape 2 : Document à soumettre"
+      textPrincipal = `Grâce au bouton “soumettre” vous pouvez charger le document correspondant.
+      Le bouton “ Aperçu” avec l’oeil vous permet d’avoir un visuel du document souhaité.`
       style = { top: "32px" }
     }else if(etape === "meeting"){
-      textTitre = "Félicitations !"
-      textPrincipal = `Nous avons bien reçu tous vos documents.
-      Vous pouvez désormais prendre rdv avec votre conseiller ici`
+      textTitre = "Étape 3 : Fixer un rendez-vous"
+      textPrincipal = `Grâce à votre calendrier, fixez un rendez-vous téléphonique avec votre conseiller selon les horaires qui vous sont proposés.`
+    }else if(etape === "progression"){
+      textTitre = "Étape 5: Kit en cours"
+      textPrincipal = `A l’aide de cette section vous pourrez bientôt télécharger les documents nécessaires à votre demande de financement.
+      Par ailleurs un guide détaillé vous sera fournis.`
+      style = { top: "30px", left: "5px" }
+    }else if(etape === "evaluation"){
+      textTitre = "Étape 6: Evaluation du service"
+      textPrincipal = `Pour améliorer notre accompagnement nous vous proposons d’accéder à un questionnaire de satisfaction.`
     } else {
       return null
     }
