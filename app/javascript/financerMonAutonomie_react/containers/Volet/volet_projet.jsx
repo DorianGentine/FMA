@@ -9,6 +9,7 @@ import ApercuProjet from "../beneficiaire/apercu_projet"
 import Evaluation from "../beneficiaire/evaluation"
 import MonActualite from "../conseiller/mon_actualite"
 
+
 class VoletProjet extends Component {
   render(){
     const statut = this.props.api.statut
@@ -23,6 +24,8 @@ class VoletProjet extends Component {
       </div>
     )
   }
+        // import ValidationModal from "../beneficiaire/validation_modal"
+        // {etape === "evaluation" ? <ValidationModal /> : null}
 }
 
 function mapStateToProps(state) {

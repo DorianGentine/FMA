@@ -21,6 +21,23 @@
   justify-content: flex-end;
 }
 
+// btn-apercu
+  .btn-apercu{
+    cursor: pointer;
+    padding: 2px 10px;
+    border-radius: 3px;
+    color: #D8DDF2;
+    border: 1px solid #D8DDF2;
+    transition: .5s
+  }
+  .btn-apercu:hover{
+    color: $blue;
+    border-color: $blue;
+    .icon-eye{
+      background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/co_rgb:2675e5,e_colorize:100,f_png,h_50,w_50/v1557384905/icons/eye_yskktm.svg);
+    }
+  }
+
 // btn-evalutaion
   .btn-evalutaion{
     margin: 0 auto;

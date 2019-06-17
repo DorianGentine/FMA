@@ -16,7 +16,7 @@ const MonActualite = (props) => {
         <div className="icon-live margin-right-15"></div>
         Mon actualité
       </div>
-      <div className="row scroll" style={{ maxHeight: "calc(100vh - 560px)"}}>
+      <div className="row scroll" style={{ maxHeight: "calc(100vh - 560px)", minHeight: "30px" }}>
         {renderActus()}
       </div>
     </div>

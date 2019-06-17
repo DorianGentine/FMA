@@ -5,12 +5,15 @@ import DownloadLink from "react-download-link";
 import { saveAs } from 'file-saver';
 
 import Financers from './financers'
+import ValidationModal from '../beneficiaire/validation_modal'
 
 const JSZip = require("jszip");
 
 class KitDeFinancement extends Component {
   render(){
     const kits = this.props.project.kits
+    const etape = this.props.project.project.etape
+    console.log(etape)
     const first_name = this.props.project.formularies[0].first_name
 
     const zip = new JSZip();
@@ -54,7 +57,8 @@ class KitDeFinancement extends Component {
 
     return (
       <div className="col-lg-12">
-        <div className="white-box flex flex-wrap">
+        <div className="white-box flex flex-wrap relative">
+          {etape === "progression" ? <ValidationModal /> : null}
           <h4 className="col-lg-6">Découvrez votre kit de financement</h4>
           <p className="bold col-lg-1">2</p>
           <a

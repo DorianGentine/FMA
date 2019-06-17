@@ -497,17 +497,17 @@ class Formulary < ApplicationRecord
   def add_answer_from_primary_form
     project = self.project
     first_formulary = Formulary.where(project: project, primary: true)
-    if first_formulary.present? && !self.primary
-      first_formulary = first_formulary.first
-      Formulary.column_names.each do |column_name|
-        ask_again = "ask_again_" + column_name + "?"
-        if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && column_name != "old_zip_code" && column_name != "address" && column_name != "latitude" && column_name != "longitude"
-          if !self.send(ask_again)
-            self[column_name] = first_formulary[column_name]
-          end
-        end
-      end
-    end
+    # if first_formulary.present? && !self.primary
+    #   first_formulary = first_formulary.first
+    #   Formulary.column_names.each do |column_name|
+    #     ask_again = "ask_again_" + column_name + "?"
+    #     if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && column_name != "old_zip_code" && column_name != "address" && column_name != "latitude" && column_name != "longitude"
+    #       if !self.send(ask_again)
+    #         self[column_name] = first_formulary[column_name]
+    #       end
+    #     end
+    #   end
+    # end
   end
 
   def set_primary
