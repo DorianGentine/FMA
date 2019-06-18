@@ -38,8 +38,8 @@ class PanneauPrincipalForm extends Component {
       this.handleInitialize(nextProps.formResults)
     }
 
-    // console.log(nextProps.project.formularies.length)
-    // console.log(this.props.project.formularies.length)
+    console.log(nextProps.project.formularies.length)
+    console.log(this.props.project.formularies.length)
     if(nextProps.project.formularies.length != this.props.project.formularies.length){
       const formularyIdNewUser = nextProps.formulary_ids[nextProps.project.formularies.length - 1]
       this.props.changeBeneficiaireForm(formularyIdNewUser)
@@ -63,7 +63,7 @@ class PanneauPrincipalForm extends Component {
       console.log("COCOU je suis un add !!!")
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
       .then(()=>{
-        this.props.fetchAPI(this.props.urlAPI)
+        this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
       })
     }else{
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
