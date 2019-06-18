@@ -32,15 +32,13 @@ export function changeBeneficiaireForm(event) {
   return {
     type: CHANGE_BENEFICIAIRE,
     payload: beneficiaireActif
-  };
-}
+  };}
 
 export function closeModal() {
   return {
     type: CLOSE_MODAL,
     payload: null
-  };
-}
+  };}
 
 export function displayCalendly(stateCalendly) {
   let toggleCalendly
@@ -53,8 +51,7 @@ export function displayCalendly(stateCalendly) {
   return {
     type: DISPLAY_CALENDLY,
     payload: toggleCalendly
-  };
-}
+  };}
 
 export function fetchAPI(url) {
   const promise = fetch(url).then(r => r.json());
@@ -62,8 +59,7 @@ export function fetchAPI(url) {
   return {
     type: FETCH_API,
     payload: promise
-  };
-}
+  };}
 
 export function fetchClients(url) {
   const promise = fetch(url).then(r => r.json());
@@ -71,8 +67,7 @@ export function fetchClients(url) {
   return {
     type: FETCH_CLIENTS,
     payload: promise
-  };
-}
+  };}
 
 export function fetchCurrentApi(url) {
   const promise = fetch(url).then(r => r.json());
@@ -80,8 +75,7 @@ export function fetchCurrentApi(url) {
   return {
     type: FETCH_CURRENT_API,
     payload: promise
-  };
-}
+  };}
 
 export function fetchFinancers(url) {
   const promise = fetch(url).then(r => r.json());
@@ -89,8 +83,7 @@ export function fetchFinancers(url) {
   return {
     type: FETCH_FINANCERS,
     payload: promise
-  };
-}
+  };}
 
 export function fetchFORM(url) {
   const promise = fetch(url).then(r => r.json());
@@ -98,8 +91,7 @@ export function fetchFORM(url) {
   return {
     type: FETCH_FORM,
     payload: promise
-  };
-}
+  };}
 
 export function fetchModalReponses(url) {
   const promise = fetch(url).then(r => r.json());
@@ -107,8 +99,7 @@ export function fetchModalReponses(url) {
   return {
     type: FETCH_MODAL_REPONSES,
     payload: promise
-  };
-}
+  };}
 
 export function fetchPostCompte(url, body, method) {
   const request = fetch(url,
@@ -121,8 +112,7 @@ export function fetchPostCompte(url, body, method) {
   return {
     type: POST_COMPTE,
     payload: request
-  };
-}
+  };}
 
 export function fetchPostForm(url, body, method) {
   const request = fetch(url,
@@ -145,8 +135,7 @@ export function fetchPostForm(url, body, method) {
   return {
     type: POST_FORM,
     payload: request
-  };
-}
+  };}
 
 export function fetchProjet(url) {
   const promise = fetch(url)
@@ -155,8 +144,7 @@ export function fetchProjet(url) {
   return {
     type: FETCH_PROJET,
     payload: promise
-  };
-}
+  };}
 
 export function fetchRessources(url) {
   const promise = fetch(url).then(r => r.json());
@@ -164,8 +152,7 @@ export function fetchRessources(url) {
   return {
     type: FETCH_RESSOURCES,
     payload: promise
-  };
-}
+  };}
 
 export function selectClients(clientsSelected) {
   if (clientsSelected === "") {
@@ -174,8 +161,7 @@ export function selectClients(clientsSelected) {
   return {
     type: SELECT_CLIENTS,
     payload: clientsSelected
-  };
-}
+  };}
 
 export function showDocument(doc) {
   const documentSelected = {
@@ -186,8 +172,7 @@ export function showDocument(doc) {
   return {
     type: SHOW_DOCUMENT,
     payload: documentSelected
-  };
-}
+  };}
 
 export function showFinancer(financer) {
   const financerSelected = {
@@ -198,8 +183,7 @@ export function showFinancer(financer) {
   return {
     type: SHOW_FINANCER,
     payload: financerSelected
-  };
-}
+  };}
 
 export function showClient(client) {
   const clientSelected = {
@@ -210,8 +194,7 @@ export function showClient(client) {
   return {
     type: SHOW_CLIENT,
     payload: clientSelected
-  };
-}
+  };}
 
 export function showReponses(user, index) {
   const userSelected = {
@@ -223,8 +206,7 @@ export function showReponses(user, index) {
   return {
     type: SHOW_REPONSES,
     payload: userSelected
-  };
-}
+  };}
 
 export function showRessource(ressource) {
   const ressourceSelected = {
@@ -235,8 +217,19 @@ export function showRessource(ressource) {
   return {
     type: SHOW_RESSOURCE,
     payload: ressourceSelected
-  };
-}
+  };}
+
+export function validateStep(url, callback) {
+  const request = fetch(url,
+    {
+      method: "PATCH",
+    }).then(response => response.json())
+    .then(callback)
+
+  return {
+    type: VALIDATE_STEP,
+    payload: request
+  };}
 
 // TEST FONCTION ASYNCHRONE
 // export const validateStep = (url, callback) =>
@@ -255,18 +248,6 @@ export function showRessource(ressource) {
 //     }
 //   );
 
-export function validateStep(url, callback) {
-  const request = fetch(url,
-    {
-      method: "PATCH",
-    }).then(response => response.json())
-    .then(callback)
-
-  return {
-    type: VALIDATE_STEP,
-    payload: request
-  };
-}
 
 
 
