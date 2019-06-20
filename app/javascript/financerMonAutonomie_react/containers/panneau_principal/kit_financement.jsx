@@ -60,7 +60,7 @@ class KitDeFinancement extends Component {
         <div className="white-box flex flex-wrap relative">
           {etape === "progression" ? <ValidationModal /> : null}
           <h4 className="col-lg-6">Découvrez votre kit de financement</h4>
-          <p className="bold col-lg-1">2</p>
+          <p className="bold col-lg-1">{kits.length}</p>
           <a
             className="col-lg-5 text-align-right font-12"
             onClick={download}
