@@ -23,6 +23,13 @@ class Api::V1::UsersController < Api::V1::BaseController
       @url = @advisor.frameworks.first.schedule_url
     elsif @user.advisor
       @clients = @user.his_clients
+      @nbr_kits = @user.projects.where(step: "progression")
+    elsif @user.admin
+      @clients = User.where(client: true)
+      @advisors = User.where(advisor: true)
+      @nbr_sign_in = Project.all
+      @in_progress = Project.all.where.not(step: "archived")
+      @archived = Project.all.where(step: "archived")
     end
     @statut = @user.client ? "client" : @user.admin ? "admin" : "conseiller"
   end
