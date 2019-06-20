@@ -1219,7 +1219,7 @@ ressource_63 = Ressource.create(financer: nil, solution_ids: "49,50,51,52,53,54,
 p "Ressources created"
 p "Create Advisor"
 
-  advisor = User.create(last_name: "Dupont", first_name: "Luc", phone: "998877866", avatar: "https://res.cloudinary.com/financermonautonomie/image/upload/v1556856590/portrait_avem_proche_b7j24g.jpg", advisor: true, client: false, admin: false, email: "advisor@mail.com", password:"password")
+  advisor = User.create(last_name: "Charet", first_name: "Marine", phone: "998877866", avatar: "https://res.cloudinary.com/financermonautonomie/image/upload/v1556856588/Belavie/Marine_CHARET_kyd3ee.jpg", advisor: true, client: false, admin: false, email: "marine@mail.com", password:"password")
 
   Framework.create(user: advisor, logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560410625/Belavie/calendly_pbazdl.png", url: "https://calendly.com/event_types/user/me", title: "calendly", schedule_url: "https://calendly.com/adrienfma/1er-rdv-telephonique")
 p "Create Admin"

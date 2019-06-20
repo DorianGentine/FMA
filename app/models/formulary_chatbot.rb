@@ -132,7 +132,7 @@ class FormularyChatbot
       placeholder: "dd/mm/aaaa",
       data: nil,
       need_answer: true,
-      start_answer: "Je suis né le",
+      start_answer: "Ma date de naissance est le",
       currency: nil,
       position: 4
     }
@@ -276,7 +276,7 @@ class FormularyChatbot
       column_name: "type_of_pension",
       type: "select",
       multiple_answers: false,
-      hint: "Une pension de réversion est versée à un conjoitn survivant d'une personne décédée ayant elle-même perçue une pension de retraite à titre principal ou complémentaire",
+      hint: "Une pension de réversion est versée à un conjoint survivant d'une personne décédée ayant elle-même perçue une pension de retraite à titre principal ou complémentaire",
       placeholder: "Choisir parmi la liste",
       data: FormularyChoice::TYPE_OF_PENSION,
       need_answer: true,
@@ -524,7 +524,7 @@ class FormularyChatbot
   def questions_chatbot
       return {
         step_0: "Bonjour...",
-        step_1: "Vérifions si votre projet d'adaptation de <strong>logement serait éligible</strong> à des financents.",
+        step_1: "Vérifions si votre projet d'adaptation de logement serait </strong>éligible à des financents.</strong>",
         # last_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
         first_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
         step_2: "Je vous propose de me donner 5 à 10 minutes pour que je puisse comprendre votre situation.",
@@ -533,7 +533,7 @@ class FormularyChatbot
         zip_code: "Quel est le code postal de votre lieu de résidence s'il vous plait ?",
         age: "Quel est votre date de naissance ?",
         is_working: "Exercez vous une activité professionnelle ?",
-        loss_of_autonomy_receipt: "Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement antérieur à vos 60 ans ?",
+        loss_of_autonomy_receipt: "Disposez-vous de justificatifs prouvant que votre perte d'autonomie est liée à un évènement <strong>antérieur</strong> à vos 60 ans ?",
         occupation: "Dans votre logement, vous êtes …",
         holder_occupation: "Le titulaire de votre lieu d'habitation est …",
         lessor: "Quel est le nom du bailleur de votre logement ?",
