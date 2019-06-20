@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchClients, showFinancer } from '../../actions'
+import { fetchClients, showDemande } from '../../actions'
 
 import renderLogo from "../../../components/render_logo"
 import { renderDate, diffDays } from "../../../components/render_date"
@@ -24,7 +24,8 @@ class AppelsProgrammes extends Component {
     let clientsStep4 = 0
     if(clients != null){
       for (let i = clients.clients.length - 1; i >= 0; i--) {
-        if(clients.clients[i].étape === "call"){
+        // if(clients.clients[i].étape === "call"){
+        if(clients.clients[i].étape === "evaluation"){
           clientsStep4 = clientsStep4 + 1
         }
       }
@@ -37,7 +38,8 @@ class AppelsProgrammes extends Component {
         )
       }else{
         return clients.clients.map((client, index) => {
-          if(client.étape === "call"){
+          // if(client.étape === "call"){
+          if(client.étape === "evaluation"){
             let hourRdv = new Date(client.rdv).getHours()
             let minRdv = String(new Date(client.rdv).getMinutes()).padStart(2, '0')
 
@@ -76,8 +78,9 @@ class AppelsProgrammes extends Component {
                   <div
                     className="dropdown-menu drop-menu-call"
                     aria-labelledby={`drop-call${index}`}>
-                    <a href="#">Voir&nbsp;le&nbsp;profil</a>
+                    <a href={client.url}>Voir&nbsp;le&nbsp;profil</a>
                     <a href="#">Envoyer&nbsp;un&nbsp;message</a>
+                    <a className="black" onClick={()=>{this.props.showDemande(client)}}>Demandes&nbsp;spécifiques</a>
                   </div>
                 </div>
               </div>
@@ -125,7 +128,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchClients }, dispatch);
+  return bindActionCreators({ fetchClients, showDemande }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppelsProgrammes);

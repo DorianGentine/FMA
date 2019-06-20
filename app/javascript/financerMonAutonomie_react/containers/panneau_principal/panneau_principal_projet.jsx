@@ -11,6 +11,7 @@ import WidgetCalendly from "./widget_calendly"
 import AppelsProgrammes from './appels_programmes'
 import Ressources from './ressources';
 import ClientsAdvisor from './clients_advisor';
+import Financers from './financers'
 
 class PanneauPrincipalProjet extends Component {
   render(){
@@ -46,7 +47,7 @@ class PanneauPrincipalProjet extends Component {
       return (
         <div className="row">
           <AppelsProgrammes />
-          <FinanceursPotentiels />
+          <Financers />
           <ClientsAdvisor />
           <Ressources />
         </div>

@@ -1,5 +1,6 @@
 import {
   SHOW_CLIENT,
+  SHOW_DEMANDE,
   SHOW_DOCUMENT,
   SHOW_FINANCER,
   SHOW_REPONSES,
@@ -10,6 +11,9 @@ import {
 export default function(state = null, action) {
   switch (action.type) {
     case SHOW_CLIENT: {
+      return action.payload;
+    }
+    case SHOW_DEMANDE: {
       return action.payload;
     }
     case SHOW_DOCUMENT: {

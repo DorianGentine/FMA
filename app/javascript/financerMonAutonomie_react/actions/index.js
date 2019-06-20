@@ -15,6 +15,7 @@ export const POST_COMPTE = 'POST_COMPTE';
 export const POST_FORM = 'POST_FORM';
 export const SELECT_CLIENTS = 'SELECT_CLIENTS';
 export const SHOW_CLIENT = 'SHOW_CLIENT';
+export const SHOW_DEMANDE = 'SHOW_DEMANDE';
 export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
 export const SHOW_FINANCER = 'SHOW_FINANCER';
 export const SHOW_REPONSES = 'SHOW_REPONSES';
@@ -161,6 +162,17 @@ export function selectClients(clientsSelected) {
   return {
     type: SELECT_CLIENTS,
     payload: clientsSelected
+  };}
+
+export function showDemande(client) {
+  const clientSelected = {
+    modalActive: "showDemande",
+    client: client,
+  }
+
+  return {
+    type: SHOW_DEMANDE,
+    payload: clientSelected
   };}
 
 export function showDocument(doc) {
