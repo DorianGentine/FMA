@@ -14,23 +14,23 @@ const form = document.getElementById("formulary")
 const conditionToAnswer = (question) => {
   const answer = question.answer
   let total_answer
-  if (answer == "0- Oui") {
+  if (answer == "Oui") {
     total_answer = question.set_up.start_answer["oui"]
   }
-  else if (answer == "1- Non") {
+  else if (answer == "Non") {
     total_answer = question.set_up.start_answer["non"]
   }
   else if ( question.set_up.column_name != "occupant" && answer == 1 ) {
-    total_answer = question.set_up.start_answer["1"] + answer
+    total_answer = question.set_up.start_answer["1"] + answer.toLowerCase()
   }
   else if (answer == 2 ) {
-    total_answer = question.set_up.start_answer["2"] + answer
+    total_answer = question.set_up.start_answer["2"] + answer.toLowerCase()
   }
   else if (question.set_up.column_name == "occupant" ) {
     if (answer == 1) {
       total_answer = question.set_up.start_answer["1"]
     } else {
-      total_answer = question.set_up.start_answer["2"] + answer + " dans le logement"
+      total_answer = question.set_up.start_answer["2"] + answer.toLowerCase() + " dans le logement"
     }
   }
   else if (question.set_up.currency ){
@@ -38,36 +38,40 @@ const conditionToAnswer = (question) => {
   }
   else if (question.set_up.column_name == "supplementary") {
     if (answer.split(", ").length > 1) {
-      total_answer = question.set_up.start_answer["more"] + answer
-    } else {total_answer = question.set_up.start_answer["one"] + answer}
+      total_answer = question.set_up.start_answer["more"] + answer.toLowerCase()
+    } else {total_answer = question.set_up.start_answer["one"] + answer.toLowerCase()}
   }
   else if (question.set_up.start_answer == null) {
     total_answer = ` ${answer}`
   }
   else if (question.set_up.column_name == "loss_of_autonomy") {
-    if (answer == "0- Supérieur à 4" || answer == "1- Inférieur ou égale à 4") {
-      total_answer = `${question.set_up.start_answer} ${answer}`
+    if (answer == "Supérieur à 4" || answer == "Inférieur ou égale à 4") {
+      total_answer = `${question.set_up.start_answer} ${answer.toLowerCase()}`
     } else {
       total_answer = `${answer}`
     }
   }
   else if (question.set_up.column_name == "assistant") {
-    if (answer == "5- Non") {
-      total_answer = `${question.set_up.start_answer["none"]} ${answer}`
+    if (answer == "Non") {
+      total_answer = `${question.set_up.start_answer["none"]} ${answer.toLowerCase()}`
     }
     else if (answer.split(", ").length > 1) {
       let answers = ""
       answer.split(", ").forEach((a) => {
         answers = answers + "<li>"+ a +"</li>"
       })
-      total_answer = `${question.set_up.start_answer["more"]} <ul> ${answers} </ul>`
+      total_answer = `${question.set_up.start_answer["more"]} <br><ul> ${answers} </ul>`
     } else {
-      total_answer = `${question.set_up.start_answer["one"]} ${answer}`
+      total_answer = `${question.set_up.start_answer["one"]} <br> ${answer}`
     }
   }
-
-  else {
+  else if (question.set_up.column_name == "first_name" || question.set_up.column_name == "zip_code" || question.set_up.column_name == "lessor"|| question.set_up.column_name == "accommodation"|| question.set_up.column_name == "supplementary" ) {
     total_answer = `${question.set_up.start_answer} ${answer}`
+
+  }
+  else {
+
+    total_answer = `${question.set_up.start_answer} ${answer.toLowerCase()}`
   }
   return total_answer
 }
@@ -81,7 +85,7 @@ const questionMark = () => {
 
 
 const insertHint = (question) => {
-  hint = `<div class="message hint-message" style="display:none"><em>${question.set_up.hint}</em></>`
+  hint = `<div class="message hint-message" style="display:none"><em style="font-size: 0.7rem;">${question.set_up.hint}</em></>`
 }
 
 const insertQuestion = (question, last = null) => {
