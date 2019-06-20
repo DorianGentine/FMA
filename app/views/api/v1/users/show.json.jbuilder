@@ -20,6 +20,8 @@ elsif @user.advisor
     json.logo framework.logo
     json.title framework.title
   end
+  json.nbr_clients @clients.count
+  json.nbr_kits @nbr_kits.count
   json.clients @clients do |client|
     json.client client.id
     json.project client.project.id
@@ -29,4 +31,22 @@ elsif @user.advisor
       json.description note.description
     end
   end
+
+elsif @user.admin
+    json.advisors @advisors do |advisor|
+      json.id advisor.id
+      json.sign_in user_signed_in?
+      json.clients advisor.his_clients do |client|
+        json.client client.id
+        json.project client.project.id
+      end
+    end
+    json.clients @clients do |client|
+      json.sign_in user_signed_in?
+      json.client client.id
+      json.project client.project.id
+    end
+    json.inscrits @nbr_sign_in.count
+    json.in_progress @in_progress.count
+    json.archived @archived.count
 end

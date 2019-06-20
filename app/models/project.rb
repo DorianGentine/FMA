@@ -16,7 +16,7 @@ class Project < ApplicationRecord
   before_create :fill_step
   before_save :going_to_call, :clean_appointment
 
-  enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evaluation"]
+  enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evaluation", "archived"]
 
   def link_to_advisor(user)
     UserProject.create(user: user, project: self)
