@@ -23,31 +23,70 @@ class ModalFinancer extends Component {
 
     const renderDescription = () =>{
       if(financer.description != null){
-        return <p className="collapse" id="collapseDescription">{financer.description}</p>
+        return (
+          <div>
+            <div className="flex space-between">
+              <p className="black">Description de l'organisme</p>
+              <div className="blue pointer"
+                data-toggle="collapse"
+                data-target="#collapseDescription"
+                aria-expanded="false"
+                aria-controls="collapseDescription">
+                <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
+              </div>
+            </div>
+            <p className="collapse" id="collapseDescription">{financer.description}</p>
+            <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
+          </div>
+        )
+      }
+    }
+    const renderConseil = () =>{
+      if(financer.answer != null){
+        return (
+          <div>
+            <div className="flex space-between">
+              <p className="black">Conseil</p>
+              <div className="blue pointer"
+                data-toggle="collapse"
+                data-target="#collapseDescription"
+                aria-expanded="false"
+                aria-controls="collapseDescription">
+                <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
+              </div>
+            </div>
+            <p className="collapse" id="collapseDescription">{financer.answer}</p>
+            <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
+          </div>
+        )
       }
     }
 
     const renderAnswers = (answers) => {
-      return answers.map((answer, index) => {
-        const randomId = Math.floor((Math.random() * 100) + 1);
-        return (
-          <div key={index}>
-            <div className="flex space-between">
-              <p className="margin-bottom-15">{`Solution ${index + 1}`}</p>
-              <div className="blue pointer"
-                data-toggle="collapse"
-                data-target={`#collapseAnswer${randomId}`}
-                aria-expanded="false"
-                aria-controls={`collapseAnswer${randomId}`}>
-                <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
+      if(answers != []){
+        console.log(answers.length)
+        return answers.map((answer, index) => {
+          const randomId = Math.floor((Math.random() * 100) + 1);
+          return (
+            <div key={index}>
+              { index === 0 && answers.length > 1 ? <p className="black">Analyse de votre situation</p> : ""}
+              <div className="flex space-between">
+                { answers.length > 1 ? <p className="margin-bottom-15">{`Solution ${index + 1}`}</p> : <p className="black">Analyse de votre situation</p>}
+                <div className="blue pointer"
+                  data-toggle="collapse"
+                  data-target={`#collapseAnswer${randomId}`}
+                  aria-expanded="false"
+                  aria-controls={`collapseAnswer${randomId}`}>
+                  <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
+                </div>
               </div>
+              <p className="margin-bottom-15" className="collapse"
+                  id={`collapseAnswer${randomId}`}>
+                {answer.content}</p>
             </div>
-            <p className="margin-bottom-15" className="collapse"
-                id={`collapseAnswer${randomId}`}>
-              {answer.content}</p>
-          </div>
-        )
-      })
+          )
+        })
+      }
     }
 
     if(statut === "client"){
@@ -62,19 +101,8 @@ class ModalFinancer extends Component {
             <h4 className="black">{financer.name}</h4>
             <p className="blue">Conseil en solutions</p>
           </div>
-          <div className="flex space-between">
-            <p className="black">Description de l'organisme</p>
-            <div className="blue pointer"
-              data-toggle="collapse"
-              data-target="#collapseDescription"
-              aria-expanded="false"
-              aria-controls="collapseDescription">
-              <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
-            </div>
-          </div>
           {renderDescription()}
-          <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
-          <p className="black">Analyse de votre situation</p>
+          {renderConseil()}
           {renderAnswers(financer.answers)}
           <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
         </div>
