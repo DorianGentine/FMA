@@ -9,7 +9,31 @@ import renderLogo from "../../../components/render_logo"
 import { fetchPostCompte } from '../../actions'
 
 class PanneauPrincipalCompte extends Component {
+  componentWillMount(){
+    this.handleInitialize()
+  }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.selectedMenuVolet != this.props.selectedMenuVolet){
+      console.log("yo")
+      this.handleInitialize(nextProps.formResults)
+    }
+  }
+
+  handleInitialize(formResults) {
+    let initData = {
+      first_name: this.props.api.user.first_name,
+      last_name: this.props.api.user.last_name,
+    };
+
+    // for ( let i in formResults) {
+    //   if( formResults[i].set_up.need_answer ){
+    //     initData[formResults[i].set_up.column_name] = formResults[i].answer;
+    //   }
+    // }
+
+    this.props.initialize(initData);
+  }
 
   onSubmit = (values, kind) => {
     let url = ""
@@ -81,14 +105,14 @@ class PanneauPrincipalCompte extends Component {
                 <h4 className="col-lg-12">Identité</h4>
                 <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
                   <Field
-                    label="Nom"
-                    name={"last_name"}
+                    label="Prénom"
+                    name={"first_name"}
                     type="text"
                     component={this.renderField}
                   />
                   <Field
-                    label="Prénom"
-                    name={"first_name"}
+                    label="Nom"
+                    name={"last_name"}
                     type="text"
                     component={this.renderField}
                   />
@@ -140,32 +164,6 @@ class PanneauPrincipalCompte extends Component {
               </div>
             </div>
           </div>
-            // <div className="col-lg-12">
-            //   <div className="white-box flex flex-wrap">
-            //     <h4 className="col-lg-12">Informations générales</h4>
-            //     <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
-            //       <Field
-            //         label="Date de naissance"
-            //         name={"birthdate"}
-            //        type="date"
-            //         component={this.renderField}
-            //      />
-            //      <button
-            //        className="float-right btn-blue"
-            //         type="submit"
-            //         disabled={this.props.pristine || this.props.submitting}>
-            //           Enregistrer
-            //       </button>
-            //     </form>
-            //   </div>
-            // </div>
-                  // <Field
-                  //   label="Sexe"
-                  //   name={"gender"}
-                  //   type="text"
-                  //   component={this.renderField}
-                  //   hint="(Nous ne communiquons pas ces informations. Elles ne sont utilisées que pour mieux vous connaître et/ou vous fournir des baromètres plus pertinents)."
-                  // />
         )
       }
       case "email_mdp": {
@@ -231,72 +229,6 @@ class PanneauPrincipalCompte extends Component {
           </div>
         )
       }
-      // case "mdp": {
-      //   return(
-      //     <div className="row">
-      //       <div className="col-lg-12">
-      //         <div className="white-box flex flex-wrap">
-      //           <h4 className="col-lg-12">Mot de passe</h4>
-      //           <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "password")})}>
-      //             <Field
-      //               label="Ancien mot de passe"
-      //               name={"password"}
-      //               type="password"
-      //               component={this.renderField}
-      //             />
-      //             <Field
-      //               label="Nouveau"
-      //               name={"new-password"}
-      //               type="password"
-      //               component={this.renderField}
-      //               hint="6 caractères minimum"
-      //             />
-      //             <Field
-      //               label="Confirmation"
-      //               name={"new-password-confirm"}
-      //               type="password"
-      //               component={this.renderField}
-      //             />
-      //             <button
-      //               className="float-right btn-blue"
-      //               type="submit"
-      //               disabled={this.props.pristine || this.props.submitting}>
-      //                 Enregistrer
-      //             </button>
-      //           </form>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   )
-      // }
-      // case "telephone": {
-      //   return(
-      //     <div className="row">
-      //       <div className="col-lg-12">
-      //         <div className="white-box flex flex-wrap">
-      //           <h4 className="col-lg-12">Téléphone</h4>
-      //           <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
-      //             <Field
-      //               label="Numéro de téléphone"
-      //               name={"phone"}
-      //               type="tel"
-      //               component={this.renderField}
-      //               hint="
-      //               Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
-      //               // Recevez vos notifications de message par SMS.
-      //             />
-      //             <button
-      //               className="float-right btn-blue"
-      //               type="submit"
-      //               disabled={this.props.pristine || this.props.submitting}>
-      //                 Enregistrer
-      //             </button>
-      //           </form>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   )
-      // }
       case "suppression": {
         return(
           <div className="row">

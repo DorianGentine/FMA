@@ -11,7 +11,7 @@ export default function renderLogo(financer){
     }
     return(
       <div
-        className="logo-financeur margin-right-15"
+        className={`${financer.name ? "logo-financeur" : "navbar-avatar no-margin" } margin-right-15`}
         style={{ minHeight: "35px", minWidth: "35px", backgroundImage: `url(${url})`}}
         >
       </div>

@@ -67,10 +67,10 @@ class KitDeFinancement extends Component {
             >{`${ this.props.project.project.etape === "evaluation" ? "Tout télécharger" : ""}`}
           </a>
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
-            <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Id</p>
-            <p className="col-lg-4 font-12">Notice</p>
-            <p className="col-lg-3 font-12">Formulary</p>
-            <p className="col-lg-3 font-12" style={{paddingRight: 0}}>Date de publication</p>
+            <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>Titre</p>
+            <p className="col-lg-2 font-12">Documents</p>
+            <p className="col-lg-4 font-12">Date de dernière mise à jour</p>
+            <p className="col-lg-2 font-12" style={{paddingRight: 0}}>Date de publication</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "80px" }}>
             { kits != undefined && this.props.project.project.etape === "evaluation" ? renderKits() : <h2 className="text-align-center margin-top-30 gray-300">Votre conseiller confectionne votre kit</h2>}
