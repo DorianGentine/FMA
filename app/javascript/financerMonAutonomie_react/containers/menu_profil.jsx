@@ -9,12 +9,7 @@ import renderLogo from "../../components/render_logo"
 
 class MenuProfil extends Component {
   render(){
-    // const current_api = this.props.current_api
-
-    let user = this.props.api.user
-    // if(current_api != null){
-    //   user = this.props.current_api.user
-    // }
+    const user = this.props.api.user
     let selectedMenu
     if(this.props.selectedMenu){
       selectedMenu = this.props.selectedMenu
@@ -51,11 +46,11 @@ class MenuProfil extends Component {
           <div
             id="drop-navbar"
             className="dropdown-toggle margin-bottom-15 flex justify-content-end align-items-center"
-            data-toggle="dropdown"
+            data-toggle={ this.props.otherUser ? null : "dropdown" } // désactive bouton si conseiller connecté
             aria-haspopup="true"
             aria-expanded="false">
-            <p className="pointer text-align-right">Bonjour, {user.first_name} {user.last_name}</p>
-            <div className="pointer margin-left-15">{renderLogo(user)}</div>
+            <p className={`${ this.props.otherUser ? "not-allowed" : "pointer" } text-align-right`}>Bonjour, {user.first_name} {user.last_name}</p>
+            <div className={`${ this.props.otherUser ? "not-allowed" : "pointer" } margin-left-15`}>{renderLogo(user)}</div>
           </div>
           <div className="dropdown-menu" aria-labelledby="drop-navbar">
             <Link to={`/mon_espace/${this.props.current_user_id}/compte/identite`}>Mon compte</Link>
@@ -74,6 +69,7 @@ function mapStateToProps(state) {
     rootUrl: state.rootUrl,
     current_api: state.current_api,
     current_user_id: state.current_user_id,
+    otherUser: state.otherUser,
     selectedClients: state.selectedClients,
   };
 }

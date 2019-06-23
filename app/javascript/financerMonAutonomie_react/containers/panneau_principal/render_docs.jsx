@@ -124,7 +124,13 @@ class RenderDocs extends Component {
                   {({getRootProps, getInputProps}) => (
                     <div {...getRootProps()}>
                       <input {...getInputProps()} />
-                      <button className="blue-gray-btn" id={`btn-doc${randomId}`}>{doc.file.url != null ? "Mettre à jour" : "Soumettre"}</button>
+                      <button
+                        className={`blue-gray-btn ${this.props.otherUser ? "not-allowed" : ""}`}
+                        id={`btn-doc${randomId}`}
+                        disabled={this.props.otherUser}
+                        >
+                          {doc.file.url != null ? "Mettre à jour" : "Soumettre"}
+                      </button>
                     </div>
                   )}
                 </Dropzone>
@@ -145,10 +151,11 @@ class RenderDocs extends Component {
 
 function mapStateToProps(state) {
   return {
-    user_id: state.user_id,
-    project: state.project,
     etape: state.project.project.etape,
+    otherUser: state.otherUser,
+    project: state.project,
     project_id: state.project_id,
+    user_id: state.user_id,
   };
 }
 

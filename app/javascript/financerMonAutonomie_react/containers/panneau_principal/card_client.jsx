@@ -62,7 +62,7 @@ class CardClient extends Component {
     subTitle = etapeText[1]
 
     const fullName = `${client.first_name} ${client.last_name}`
-
+    console.log("selectedClients", selectedClients)
     if(selectedClients === "tous" ||
       selectedClients === "en_cours" && numEtape < 6 ||
       selectedClients === "archives" && numEtape === 6 ||

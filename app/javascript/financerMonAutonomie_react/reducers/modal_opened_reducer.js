@@ -3,6 +3,7 @@ import {
   SHOW_DEMANDE,
   SHOW_DOCUMENT,
   SHOW_FINANCER,
+  SHOW_NOTES,
   SHOW_REPONSES,
   SHOW_RESSOURCE,
   CLOSE_MODAL,
@@ -20,6 +21,9 @@ export default function(state = null, action) {
       return true;
     }
     case SHOW_FINANCER: {
+      return true;
+    }
+    case SHOW_NOTES: {
       return true;
     }
     case SHOW_REPONSES: {

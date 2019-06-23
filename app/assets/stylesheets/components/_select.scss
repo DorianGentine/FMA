@@ -96,6 +96,18 @@
     border: 0 !important;
   }
 
+// react-dropdown-select
+  .react-dropdown-select.react-dropdown-select {
+    padding: 10px;
+    background-color: #E8EDF4;
+    border: none;
+    color: $gray-300;
+    font-size: 14px;
+  }
+  .react-dropdown-select-input {
+    padding: 0;
+  }
+
 // react-widget
   input.rw-input-reset:focus {
       box-shadow: none !important;

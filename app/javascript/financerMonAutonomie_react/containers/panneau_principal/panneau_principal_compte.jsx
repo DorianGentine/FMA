@@ -9,7 +9,7 @@ import renderLogo from "../../../components/render_logo"
 import { fetchPostCompte } from '../../actions'
 
 class PanneauPrincipalCompte extends Component {
-  componentWillMount(){
+  componentDidMount(){
     this.handleInitialize()
   }
 
@@ -62,6 +62,7 @@ class PanneauPrincipalCompte extends Component {
         <input {...input}
           className="form-control"
           type={type}
+          disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
           onBlur={event => {
             input.onBlur(event);
             // submitButton.click();
@@ -238,6 +239,7 @@ class PanneauPrincipalCompte extends Component {
                   <button
                     className="black btn no-padding"
                     type="submit"
+                    disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
                     style={{
                       fontSize: "1rem",
                       fontWeight: "700",
@@ -260,6 +262,7 @@ function mapStateToProps(state) {
   return {
     api: state.api,
     user_id: state.user_id,
+    otherUser: state.otherUser,
   };
 }
 

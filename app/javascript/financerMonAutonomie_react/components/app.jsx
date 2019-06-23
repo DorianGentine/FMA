@@ -63,6 +63,8 @@ class App extends Component {
                 }</h2>
               <a href={`/mon_espace/${this.props.current_user_id}/clients`}>Retourner sur mon profil</a>
             </div> : null}
+
+
           <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
           <Volet selectedMenu={this.props.match.params.menu_nav}
               selectedMenuVolet={this.props.match.params.menu_volet}

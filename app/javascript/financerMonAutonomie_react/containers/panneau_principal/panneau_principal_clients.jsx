@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Select from "react-dropdown-select"
 
 import { fetchClients, selectClients } from '../../actions';
 
@@ -20,6 +21,16 @@ class PanneauPrincipalClients extends Component {
       })
     }
 
+    const options = [
+      { name: "Sélectionnez une étape", value: "", key: 0, },
+      { name: "Etape 1", value: "1", key: 1, },
+      { name: "Etape 2", value: "2", key: 2, },
+      { name: "Etape 3", value: "3", key: 3, },
+      { name: "Etape 4", value: "4", key: 4, },
+      { name: "Etape 5", value: "5", key: 5, },
+      { name: "Étape 6", value: "6", key: 6, },
+    ]
+
     return (
       <div className="margin-top-15">
         <div className="row">
@@ -33,15 +44,14 @@ class PanneauPrincipalClients extends Component {
             />
           </div>
           <div className="col-lg-4 offset-lg-4">
-            <select className="selectize-input" onChange={()=>{this.props.selectClients(event.target.value)}}>
-              <option value="">Sélectionnez une étape</option>
-              <option value="1">Etape 1</option>
-              <option value="2">Etape 2</option>
-              <option value="3">Etape 3</option>
-              <option value="4">Etape 4</option>
-              <option value="5">Etape 5</option>
-              <option value="6">Étape 6</option>
-            </select>
+            <Select
+              className="react-dropdown-select"
+              options={options}
+              valueField="value"
+              values={[options.find(opt => opt.name === "Sélectionnez une étape")]}
+              onChange={(value) => {this.props.selectClients(value[0].value)}}
+              labelField="name"
+            />
           </div>
         </div>
         <div className="margin-top-30 margin-bottom-30 flex align-items-center">

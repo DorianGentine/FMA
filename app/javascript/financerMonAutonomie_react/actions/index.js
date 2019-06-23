@@ -18,6 +18,7 @@ export const SHOW_CLIENT = 'SHOW_CLIENT';
 export const SHOW_DEMANDE = 'SHOW_DEMANDE';
 export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
 export const SHOW_FINANCER = 'SHOW_FINANCER';
+export const SHOW_NOTES = 'SHOW_NOTES';
 export const SHOW_REPONSES = 'SHOW_REPONSES';
 export const SHOW_RESSOURCE = 'SHOW_RESSOURCE';
 export const VALIDATE_STEP = 'VALIDATE_STEP';
@@ -25,6 +26,8 @@ export const VALIDATE_STEP = 'VALIDATE_STEP';
 export function changeBeneficiaireForm(event) {
   let beneficiaireActif = {}
   if( typeof event == "number"){
+    beneficiaireActif = event
+  }else if(event === null){
     beneficiaireActif = event
   }else{
     beneficiaireActif = event.target.dataset.benefIndex
@@ -164,6 +167,17 @@ export function selectClients(clientsSelected) {
     payload: clientsSelected
   };}
 
+export function showClient(client) {
+  const clientSelected = {
+    modalActive: "showClient",
+    client: client,
+  }
+
+  return {
+    type: SHOW_CLIENT,
+    payload: clientSelected
+  };}
+
 export function showDemande(client) {
   const clientSelected = {
     modalActive: "showDemande",
@@ -197,15 +211,15 @@ export function showFinancer(financer) {
     payload: financerSelected
   };}
 
-export function showClient(client) {
-  const clientSelected = {
-    modalActive: "showClient",
-    client: client,
+export function showNotes(notes) {
+  const notesSelected = {
+    modalActive: "showNotes",
+    notes: notes,
   }
 
   return {
-    type: SHOW_CLIENT,
-    payload: clientSelected
+    type: SHOW_NOTES,
+    payload: notesSelected
   };}
 
 export function showReponses(user, index) {
