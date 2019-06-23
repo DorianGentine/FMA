@@ -26,6 +26,11 @@ class PanneauPrincipalForm extends Component {
       this.props.changeBeneficiaireForm(this.props.formulary_ids[0])
     }
   }
+  componentDidMount(){
+    if(this.props.formulary_id === this.props.formulary_ids[0]){
+      this.handleInitialize(this.props.formResults)
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.formulary_id === "add" && nextProps.formulary_id !== this.props.formulary_id){
@@ -38,8 +43,6 @@ class PanneauPrincipalForm extends Component {
       this.handleInitialize(nextProps.formResults)
     }
 
-    console.log(nextProps.project.formularies.length)
-    console.log(this.props.project.formularies.length)
     if(nextProps.project.formularies.length != this.props.project.formularies.length){
       const formularyIdNewUser = nextProps.formulary_ids[nextProps.project.formularies.length - 1]
       this.props.changeBeneficiaireForm(formularyIdNewUser)
@@ -60,7 +63,6 @@ class PanneauPrincipalForm extends Component {
 
   onSubmit = (values) => {
     if(this.props.formulary_id === "add"){
-      console.log("COCOU je suis un add !!!")
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
       .then(()=>{
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
@@ -84,6 +86,7 @@ class PanneauPrincipalForm extends Component {
             input.onBlur(event);
             submitButton.click();
           }}
+          disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
         />
       </div>
     </div>
@@ -133,6 +136,7 @@ class PanneauPrincipalForm extends Component {
           input.onBlur();
           submitButton.click();
         }}
+        disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
         value={splitValue} // requires value to be an array
         data={datas}
         valueField={valueField}
@@ -152,6 +156,7 @@ class PanneauPrincipalForm extends Component {
           data={datas}
           valueField={valueField}
           textField={textField}
+          disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
           onChange={input.onChange}
           onBlur={event => {
             input.onBlur(event);
@@ -268,9 +273,18 @@ class PanneauPrincipalForm extends Component {
             </button>
           </form>
           <p
-            className={`width-fit-content btn-blue margin-top-60 margin-bottom-30 margin-left-auto font-14 ${this.props.formulary_id === "add" ? "d-none" : ""}`}
+            className={`
+              width-fit-content
+              btn-blue
+              margin-top-60
+              margin-bottom-30
+              margin-left-auto
+              font-14
+              ${this.props.formulary_id === "add" ? "d-none" : ""}
+              ${this.props.otherUser ? "not-allowed" : ""}
+            `}
             style={{padding: "5px 10px"}}
-            onClick={ etape === "validation_data" ? () => {
+            onClick={ etape === "validation_data" && !this.props.otherUser ? () => { // désactive bouton si pas bonne étape et si user pas bon
               this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
                 () => { this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`) }
               )
@@ -290,6 +304,7 @@ function mapStateToProps(state) {
     formResults: state.formResults,
     project_id: state.project_id,
     project: state.project,
+    otherUser: state.otherUser,
     urlAPI: state.urlAPI,
   };
 }

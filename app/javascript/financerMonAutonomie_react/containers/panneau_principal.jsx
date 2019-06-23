@@ -15,7 +15,7 @@ class PanneauPrincipal extends Component {
     // const selectedMenuVolet = this.props.selectedMenuVolet
 
     if(selectedMenu.toLowerCase() == "projet" || selectedMenu.toLowerCase() == "bureau"){
-      return <PanneauPrincipalProjet />
+      return <PanneauPrincipalProjet selectedMenu={selectedMenu} />
     }else if(selectedMenu.toLowerCase() == "compte"){
       return <PanneauPrincipalCompte selectedMenuVolet={this.props.selectedMenuVolet} />
     }else if(selectedMenu.toLowerCase() == "alertes"){

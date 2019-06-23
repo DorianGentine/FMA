@@ -24,7 +24,7 @@ class PanneauPrincipalProjet extends Component {
       if(etape.toLowerCase() == "validation_data"){
         return (
           <div className="row">
-            <PanneauPrincipalForm />
+            <PanneauPrincipalForm selectedMenu={this.props.selectedMenu} />
           </div>
         );
       }else if(!this.props.stateCalendly){

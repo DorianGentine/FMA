@@ -122,16 +122,6 @@ class ModalFinancer extends Component {
             <h4 className="black">{financer.name}</h4>
             <p className="blue">Conseil en solutions</p>
           </div>
-          <div className="flex space-between">
-            <p className="black">Description de l'organisme</p>
-            <div className="blue pointer"
-              data-toggle="collapse"
-              data-target="#collapseDescription"
-              aria-expanded="false"
-              aria-controls="collapseDescription">
-              <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
-            </div>
-          </div>
           {renderDescription()}
           <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
         </div>

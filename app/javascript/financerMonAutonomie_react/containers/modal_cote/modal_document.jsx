@@ -15,10 +15,10 @@ class ModalDocument extends Component {
       <div>
         <div className="flex space-between margin-bottom-30">
           <h2>{`${doc.title.substr(0,25)}...`}</h2>
-          <p className="pointer black" onClick={this.props.closeModal}>X</p>
+          <i className="far fa-times-circle pointer" onClick={this.props.closeModal}></i>
         </div>
-        <Document
-          file={doc.notice} />
+        <Document file={doc.notice} />
+        <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
       </div>
         // <div
         //   className="image-document"

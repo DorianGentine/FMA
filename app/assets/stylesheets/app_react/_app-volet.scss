@@ -73,6 +73,13 @@
       background-color: $green;
       border-radius: 50%;
     }
+    & > div:last-child{
+      height: unset !important;
+      width: unset !important;
+      border: none;
+      font-size: unset;
+      margin-right: 0 !important;
+    }
   }
 
   .etape-text{

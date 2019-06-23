@@ -147,23 +147,26 @@
     color: white !important;
   }
   .white-background{
-    background-color: white;
+    background-color: white !important;
   }
 
 // Cursor
   .pointer{
-    cursor: pointer;
+    cursor: pointer !important;
+  }
+  .not-allowed{
+    cursor: not-allowed !important;
   }
 
 // Flex
   .flex{
-    display: flex;
+    display: flex !important;
   }
   .space-between{
-    justify-content: space-between;
+    justify-content: space-between !important;
   }
   .space-evenly{
-    justify-content: space-evenly;
+    justify-content: space-evenly !important;
   }
   .space-between-vertical{
     flex-direction: column;

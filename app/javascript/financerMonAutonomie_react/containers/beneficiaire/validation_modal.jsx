@@ -8,10 +8,12 @@ class ValidationModal extends Component {
     const hint = this.props.project.hint
 
     const closeLilModal = () => {
-      fetch(`/api/v1/projects/${this.props.project_id}/display_hint`,
-      {
-        method: "PATCH",
-      })
+      if( !this.props.otherUser ){ // désactive l'envoi si conseiller connecté
+        fetch(`/api/v1/projects/${this.props.project_id}/display_hint`,
+        {
+          method: "PATCH",
+        })
+      }
       const modal = document.getElementById(`tip_${etape}`)
       const point = document.getElementById(`point_${etape}`)
       modal.classList.add('hidden')
@@ -71,6 +73,7 @@ function mapStateToProps(state) {
   return {
     project: state.project.project,
     project_id: state.project_id,
+    otherUser: state.otherUser,
   };
 }
 
