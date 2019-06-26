@@ -72,7 +72,11 @@ Rails.application.routes.draw do
         end
         resources :formularies, only: [ :new, :create ]
       end
-      resources :users, only: [ :show, :update, :index ]
+      resources :users, only: [ :show, :update, :index ] do
+        collection do
+          get :advisors
+        end
+      end
     end
   end
 
