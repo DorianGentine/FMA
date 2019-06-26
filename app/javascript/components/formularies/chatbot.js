@@ -30,7 +30,6 @@ const getEditAnswer = (questions) => {
 
 const setQuestionAnswer = (question, questions, i) => {
   insertQuestion(question)
-  console.log(question.set_up.need_answer)
   if (question.set_up.need_answer) {
     insertAnswer(question)
   }

@@ -23,14 +23,14 @@ const conditionToAnswer = (question) => {
   else if ( question.set_up.column_name != "occupant" && answer == 1 ) {
     total_answer = question.set_up.start_answer["1"] + answer.toLowerCase()
   }
-  else if (answer == 2 ) {
+  else if (answer == 2 && question.set_up.column_name != "occupant") {
     total_answer = question.set_up.start_answer["2"] + answer.toLowerCase()
   }
   else if (question.set_up.column_name == "occupant" ) {
     if (answer == 1) {
       total_answer = question.set_up.start_answer["1"]
     } else {
-      total_answer = question.set_up.start_answer["2"] + answer.toLowerCase() + " dans le logement"
+      total_answer = question.set_up.start_answer["2"] + answer + " dans le logement"
     }
   }
   else if (question.set_up.currency ){
