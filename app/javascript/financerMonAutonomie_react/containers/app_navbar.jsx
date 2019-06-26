@@ -51,8 +51,8 @@ class AppNavbar extends Component {
       );
 
     // App conseiller
-    }else if(api.statut === "conseiller"){
-      if(menuActive === "projet"){
+    }else if(api.statut === "conseiller" || api.statut === "admin"){
+      if(menuActive === "bureau"){
         setTimeout(()=> {document.getElementById('link_bureau').click()}, 1000)
       }
       return (
@@ -69,6 +69,12 @@ class AppNavbar extends Component {
               <i className="far fa-folder"></i>
               <p>Clients</p>
             </Link>
+            { api.statut === "admin" ?
+              <Link className={`btn-app-navbar margin-top-30 ${active("conseillers")}`} to={`${this.props.rootUrl}/conseillers`}>
+                <i className="fas fa-users"></i>
+                <p>Conseillers</p>
+              </Link> : null
+            }
             <Link className={`btn-app-navbar margin-top-30 ${active("demandes")}`} to={`${this.props.rootUrl}/demandes`}>
               <i className="fas fa-question"></i>
               <p>Demandes</p>

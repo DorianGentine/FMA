@@ -30,6 +30,7 @@ Rails.application.routes.draw do
         get '/alertes/actualites', to: 'users#show'
       get '/bureau', to: 'users#show'
       get '/clients', to: 'users#show'
+      get '/conseillers', to: 'users#show'
       get '/demandes', to: 'users#show'
       # get '/compte', to: 'users#show'
       get '/a_propos', to: 'users#show'

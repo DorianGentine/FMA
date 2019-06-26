@@ -113,7 +113,7 @@ class AppelsProgrammes extends Component {
             <p className="col-lg-2 font-12" style={{paddingRight: 0}}>Appelé</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "120px" }}>
-            {clients != null ? renderCalls() : <h2>Chargement...</h2> }
+            {clients != null ? renderCalls() : <p className="text-align-center margin-top-15">Chargement...</p> }
           </div>
         </div>
       </div>

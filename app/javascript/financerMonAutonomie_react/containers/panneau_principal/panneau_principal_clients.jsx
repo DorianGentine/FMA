@@ -9,11 +9,19 @@ import CardClient from './card_client';
 
 class PanneauPrincipalClients extends Component {
   componentWillMount(){
-    this.props.fetchClients("/api/v1/users")
+    if(this.props.selectedMenu === "clients"){
+      this.props.fetchClients("/api/v1/users")
+    }else if(this.props.selectedMenu === "conseillers"){
+      this.props.fetchClients("/api/v1/conseillers")
+    }
   }
 
   render(){
     const clients = this.props.clients
+    let conseillersTrue = false
+    if(this.props.selectedMenu === "conseillers"){
+      conseillersTrue = true
+    }
 
     const renderClients = () => {
       return clients.clients.map((client, index) => {
@@ -54,17 +62,19 @@ class PanneauPrincipalClients extends Component {
             />
           </div>
         </div>
-        <div className="margin-top-30 margin-bottom-30 flex align-items-center">
-          <hr className="ligne-horizontal"/>
-          <div
-            className="font-14 black blue-gray-background flex-grow-1 text-align-center"
-            style={{ width: "100%" }}>
-            Etape 1 : Confirmation des réponses
+        { conseillersTrue ? null :
+          <div className="margin-top-30 margin-bottom-30 flex align-items-center">
+            <hr className="ligne-horizontal"/>
+            <div
+              className="font-14 black blue-gray-background flex-grow-1 text-align-center"
+              style={{ width: "100%" }}>
+              Etape 1 : Confirmation des réponses
+            </div>
+            <hr className="ligne-horizontal"/>
           </div>
-          <hr className="ligne-horizontal"/>
-        </div>
-        <div className="row">
-          {clients != null ? renderClients() : <h2>Chargement...</h2>}
+        }
+        <div className={`row ${conseillersTrue ? "margin-top-30" : "" }`}>
+          {clients != null ? renderClients() : <h2 className="text-align-center">Chargement...</h2>}
         </div>
       </div>
     )

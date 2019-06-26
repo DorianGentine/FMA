@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { closeModal, fetchPostCompte, validateStep } from '../../actions';
+import { closeModal, validateStep, showClient } from '../../actions';
 
 import renderLogo from "../../../components/render_logo"
 
@@ -12,8 +12,10 @@ class ModalClient extends Component {
 
   componentWillReceiveProps(nextProps){
     const clients = nextProps.clients
+    console.log(clients)
     if(clients != this.props.clients){
-      console.log(clients)
+      const client = this.props.modal_selected.client
+      this.props.showClient(client)
     }
   }
 
@@ -101,7 +103,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, fetchPostCompte, validateStep }, dispatch);
+  return bindActionCreators({ closeModal, validateStep, showClient }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalClient);
