@@ -52,7 +52,7 @@ class PanneauPrincipalCompte extends Component {
       url = `/mon_espace/${this.props.user_id}`
       method = "DELETE"
     }
-    this.props.fetchPostCompte(url, values, method)
+    this.props.fetchPostCompte(url, values, method, ()=>{})
   }
 
   renderField = ({ input, label, type, hint }) => (

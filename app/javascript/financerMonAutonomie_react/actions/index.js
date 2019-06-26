@@ -65,8 +65,15 @@ export function fetchAPI(url) {
     payload: promise
   };}
 
-export function fetchClients(url) {
-  const promise = fetch(url).then(r => r.json());
+export async function fetchClients(url) {
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  } else {
+    console.error('fetchClients passe pas : ', response)
+    promise = null
+  }
 
   return {
     type: FETCH_CLIENTS,
@@ -105,13 +112,14 @@ export function fetchModalReponses(url) {
     payload: promise
   };}
 
-export function fetchPostCompte(url, body, method) {
+export function fetchPostCompte(url, body, method, callback) {
   const request = fetch(url,
      {
       method: method,
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(body)
     }).then(response => response.json())
+    .then(callback)
 
   return {
     type: POST_COMPTE,

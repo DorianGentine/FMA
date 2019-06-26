@@ -50,7 +50,7 @@ class ClientsAdvisor extends Component {
           <p className="blue font-12 padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${clientsStep5} en cours`}</p>
           <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
           <div className="scroll col-lg-12 align-items-center margin-top-15" style={{ height: "145px" }}>
-            {clients != null ? renderClients(clientsStep5) : <h2>Chargement...</h2> }
+            {clients != null ? renderClients(clientsStep5) : <p className="text-align-center margin-top-15">Chargement...</p> }
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ class App extends Component {
       if(props.project_id){
         clearInterval(projetFetch)
         b()
-      }else if(props.api.statut === "conseiller"){
+      }else if(props.api.statut === "conseiller" || props.api.statut === "admin"){
         clearInterval(projetFetch)
       }
     }
@@ -47,66 +47,91 @@ class App extends Component {
       );
 
     // App beneficiaire
-    }else if(api.statut === "client"){
-      const otherUser = this.props.otherUser
-      let conseillerName
-      if(this.props.current_api != null){
-        conseillerName = `${this.props.current_api.user.first_name} ${this.props.current_api.user.last_name}`
-      }
-      return (
-        <div className={otherUser ? "other_user" : ""}>
-          {otherUser ?
-            <div className="other_user_indication">
-              <h2 className="margin-right-15">
-                {`Vous êtes connecté en tant que ${conseillerName}
-                   sur le compte de ${api.user.first_name} ${api.user.last_name}`
-                }</h2>
-              <a href={`/mon_espace/${this.props.current_user_id}/clients`}>Retourner sur mon profil</a>
-            </div> : null}
+      }else if(api.statut === "client"){
+        const otherUser = this.props.otherUser
+        let conseillerName
+        if(this.props.current_api != null){
+          conseillerName = `${this.props.current_api.user.first_name} ${this.props.current_api.user.last_name}`
+        }
+        return (
+          <div className={otherUser ? "other_user" : ""}>
+            {otherUser ?
+              <div className="other_user_indication">
+                <h2 className="margin-right-15">
+                  {`Vous êtes connecté en tant que ${conseillerName}
+                     sur le compte de ${api.user.first_name} ${api.user.last_name}`
+                  }</h2>
+                <a href={`/mon_espace/${this.props.current_user_id}/clients`}>Retourner sur mon profil</a>
+              </div> : null}
 
 
-          <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
-          <Volet selectedMenu={this.props.match.params.menu_nav}
-              selectedMenuVolet={this.props.match.params.menu_volet}
-           />
-          <div className="app-container container">
-            <MenuProfil />
-            <PanneauPrincipal
-              selectedMenu={this.props.match.params.menu_nav}
-              selectedMenuVolet={this.props.match.params.menu_volet}
+            <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
+            <Volet selectedMenu={this.props.match.params.menu_nav}
+                selectedMenuVolet={this.props.match.params.menu_volet}
+             />
+            <div className="app-container container">
+              <MenuProfil />
+              <PanneauPrincipal
+                selectedMenu={this.props.match.params.menu_nav}
+                selectedMenuVolet={this.props.match.params.menu_volet}
+              />
+            </div>
+            <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
+              <div><ModalCote /></div>
+            </div>
+          </div>
+        );
+
+    // App conseiller
+      }else if(api.statut === "conseiller"){
+        if(this.props.match.params.menu_nav === "projet"){
+          this.props.match.params.menu_nav = "bureau"
+        }
+
+        return (
+          <div>
+            <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
+            <Volet selectedMenu={this.props.match.params.menu_nav}
+                selectedMenuVolet={this.props.match.params.menu_volet}
+             />
+            <div className="app-container container">
+              <MenuProfil selectedMenu={this.props.match.params.menu_nav} />
+              <PanneauPrincipal
+                selectedMenu={this.props.match.params.menu_nav}
+                selectedMenuVolet={this.props.match.params.menu_volet}
+              />
+            </div>
+            <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
+              <div><ModalCote /></div>
+            </div>
+          </div>
+        );
+
+    // App admin
+      }else if(api.statut === "admin"){
+        if(this.props.match.params.menu_nav === "projet"){
+          this.props.match.params.menu_nav = "bureau"
+        }
+
+        return (
+          <div>
+            <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
+            <Volet selectedMenu={this.props.match.params.menu_nav}
+                selectedMenuVolet={this.props.match.params.menu_volet}
             />
+            <div className="app-container container">
+              <MenuProfil selectedMenu={this.props.match.params.menu_nav} />
+              <PanneauPrincipal
+                selectedMenu={this.props.match.params.menu_nav}
+                selectedMenuVolet={this.props.match.params.menu_volet}
+              />
+            </div>
+            <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
+              <div><ModalCote /></div>
+            </div>
           </div>
-          <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
-            <div><ModalCote /></div>
-          </div>
-        </div>
-      );
-
-      // App conseiller
-    }else if(api.statut === "conseiller"){
-      if(this.props.match.params.menu_nav === "projet"){
-        this.props.match.params.menu_nav = "bureau"
+        );
       }
-
-      return (
-        <div>
-          <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
-          <Volet selectedMenu={this.props.match.params.menu_nav}
-              selectedMenuVolet={this.props.match.params.menu_volet}
-           />
-          <div className="app-container container">
-            <MenuProfil selectedMenu={this.props.match.params.menu_nav} />
-            <PanneauPrincipal
-              selectedMenu={this.props.match.params.menu_nav}
-              selectedMenuVolet={this.props.match.params.menu_volet}
-            />
-          </div>
-          <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
-            <div><ModalCote /></div>
-          </div>
-        </div>
-      );
-    }
   }
 };
 

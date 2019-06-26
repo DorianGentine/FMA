@@ -47,7 +47,8 @@ class Conseiller extends Component {
           </div>
         );
       }
-    }else if(statut === "conseiller"){
+    // App conseiller / admin
+    }else if(statut === "conseiller" || statut === "admin"){
       const user = this.props.api.user
       return (
         <div className="conseiller">
@@ -55,7 +56,7 @@ class Conseiller extends Component {
             <div className="statut"></div>
             {renderLogo(user)}
           </div>
-          <p className="blue margin-top-30 font-12">conseiller</p>
+          <p className="blue margin-top-30 font-12">{`${statut === "conseiller" ? "conseiller" : "administrateur" }`}</p>
           <p className="">{user.first_name} {user.last_name}</p>
         </div>
       );
