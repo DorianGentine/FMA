@@ -4,15 +4,24 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: [:show, :update]
 
   def index
-    @user = current_user
-    if @user.advisor
-      if params[:query]
-        sql_query = "last_name LIKE :query OR first_name LIKE :query"
-        @users = policy_scope(User).where(sql_query, query: "%#{params[:query]}%")
-      else
-        @users = policy_scope(User)
-      end
+    if params[:query]
+      sql_query = "last_name LIKE :query OR first_name LIKE :query"
+      @users = policy_scope(User).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @users = policy_scope(User)
     end
+  end
+
+  def advisors
+    @user = current_user
+    advisors = User.where(advisor: true)
+    if params[:query]
+      sql_query = "last_name LIKE :query OR first_name LIKE :query"
+      @advisors = advisors.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @advisors = advisors
+    end
+    authorize @user
   end
 
   def show

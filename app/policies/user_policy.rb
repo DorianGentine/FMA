@@ -1,7 +1,16 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all.where(client: true)
+      if user.advisor || user.admin
+        scope.all.where(client: true)
+      end
+    end
+  end
+
+
+  def advisors?
+    if user.admin
+      true
     end
   end
 
