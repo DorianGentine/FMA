@@ -39,15 +39,6 @@ class Financers extends Component {
           </div>
         </div>
       </div>
-          // <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
-          //   <p className="col-lg-3 font-12" style={{paddingLeft: 0}}>Nom</p>
-          //   <p className="col-lg-9 font-12" style={{paddingRight: 0}}>Description</p>
-          // </div>
-
-          // <div className="input-wth-icon search-app margin-left-auto">
-          //   <i className="fas fa-search"></i>
-          //   <input type="text" placeholder="Rechercher une ressource" style={{width: "100%"}} />
-          // </div>
     )
   }
 }

@@ -6,8 +6,6 @@ import Dropzone from 'react-dropzone'
 
 import renderLogo from "../../../components/render_logo"
 
-import { fetchPostCompte } from '../../actions'
-
 class PanneauPrincipalAlertes extends Component {
   render(){
     const selectedMenuVolet = this.props.selectedMenuVolet
@@ -92,7 +90,7 @@ function mapStateToProps(state) {
 
 // function mapDispatchToProps(dispatch) {
 //   return bindActionCreators({
-//     fetchPostCompte,
+
 //   }, dispatch);
 // }
 

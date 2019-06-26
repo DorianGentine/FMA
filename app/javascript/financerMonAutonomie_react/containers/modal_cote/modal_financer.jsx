@@ -109,7 +109,7 @@ class ModalFinancer extends Component {
       )
 
 
-    }else if(statut === "conseiller"){
+    }else if(statut === "conseiller" || statut === "admin"){
 
       return(
         <div>

@@ -33,7 +33,7 @@ class Ressources extends Component {
           <h4 className="padding-horizontal-15 no-margin">Liste des ressources</h4>
           <p className="bold padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${ressources ? ressources.length : 0} ressources`}</p>
           <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
-          <div className="scroll col-lg-12 margin-top-15" style={{ height: "80px" }}>
+          <div className="scroll col-lg-12 margin-top-15" style={{ height: "calc(100vh - 700px)", minHeight: "80px" }}>
             {ressources != null ? renderRessources() : <h2>Chargement...</h2> }
           </div>
         </div>
