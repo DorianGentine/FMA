@@ -59,7 +59,6 @@ const nextStep = (questions, updated = null, question = null) => {
       if (typeof questions[i].answer != 'string' && typeof questions[i].answer != 'number') { break; }
     }
     if (updated && asked != undefined && questions[i].set_up.id === parseInt(asked.dataset.question, 10)){
-      console.log("I'm in")
       input.lastElementChild.remove()
       insertAnswer(questions[i])
       if (questions[i].set_up.column_name === "assistant") {
