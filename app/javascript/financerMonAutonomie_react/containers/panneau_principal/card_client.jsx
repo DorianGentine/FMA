@@ -62,14 +62,13 @@ class CardClient extends Component {
     subTitle = etapeText[1]
 
     const fullName = `${client.first_name} ${client.last_name}`
-    console.log("selectedClients", selectedClients)
     if(selectedClients === "tous" ||
       selectedClients === "en_cours" && numEtape < 6 ||
       selectedClients === "archives" && numEtape === 6 ||
       fullName.toLowerCase().includes(selectedClients.toLowerCase()) ||
       parseInt(selectedClients) === numEtape) {
       return(
-        <div className="col-lg-3 col-xs-12 col-sm-4">
+        <div className="col-lg-4 col-xs-12 col-sm-6">
           <div className="white-box" style={{padding: "20px"}}>
             <div className="row">
               <div className="col-lg-6 font-12 black flex align-items-center margin-bottom-15">

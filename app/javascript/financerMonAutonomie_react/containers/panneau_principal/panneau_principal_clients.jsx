@@ -12,7 +12,15 @@ class PanneauPrincipalClients extends Component {
     if(this.props.selectedMenu === "clients"){
       this.props.fetchClients("/api/v1/users")
     }else if(this.props.selectedMenu === "conseillers"){
-      this.props.fetchClients("/api/v1/conseillers")
+      this.props.fetchClients("/api/v1/advisors")
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.selectedMenu === "clients" && this.props.selectedMenu != nextProps.selectedMenu){
+      this.props.fetchClients("/api/v1/users")
+    }else if(nextProps.selectedMenu === "conseillers" && this.props.selectedMenu != nextProps.selectedMenu){
+      this.props.fetchClients("/api/v1/advisors")
     }
   }
 
@@ -57,6 +65,7 @@ class PanneauPrincipalClients extends Component {
               options={options}
               valueField="value"
               values={[options.find(opt => opt.name === "Sélectionnez une étape")]}
+              // onChange={console.log(value)}
               onChange={(value) => {this.props.selectClients(value[0].value)}}
               labelField="name"
             />

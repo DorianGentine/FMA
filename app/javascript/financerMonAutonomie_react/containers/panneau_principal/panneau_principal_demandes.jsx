@@ -8,18 +8,15 @@ import { fetchClients, selectClients } from '../../actions';
 import CardDemande from './card_demande';
 
 class PanneauPrincipalDemandes extends Component {
-  componentWillMount(){ // A VIRER
-    this.props.fetchClients("/api/v1/users")
+  componentWillMount(){
+    this.props.fetchClients("/api/v1/requests")
   }
 
   render(){
     const clients = this.props.clients
 
     const renderDemandes = (clients) => {
-      console.log(clients)
-      console.log(clients.clients[0])
-      // return clients.clients.map((client, index) => {
-        // return <p>Salut</p>
+      // return demandes.map((client, index) => {
         return <CardDemande client={clients.clients[0]} />
       // })
     }
