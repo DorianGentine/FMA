@@ -59,9 +59,9 @@ class PanneauPrincipalProjet extends Component {
           <div className="row">
             <DemandesSpecifiques />
             <Financers />
+            <ClientsAdvisor />
             <Ressources />
           </div>
-            // <ClientsAdvisor />
         );
       }
 

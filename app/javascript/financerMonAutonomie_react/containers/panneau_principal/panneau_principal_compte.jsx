@@ -15,7 +15,6 @@ class PanneauPrincipalCompte extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.selectedMenuVolet != this.props.selectedMenuVolet){
-      console.log("yo")
       this.handleInitialize(nextProps.formResults)
     }
   }
@@ -24,6 +23,8 @@ class PanneauPrincipalCompte extends Component {
     let initData = {
       first_name: this.props.api.user.first_name,
       last_name: this.props.api.user.last_name,
+      phone: this.props.api.user.phone,
+      mail: this.props.api.user.email,
     };
 
     // for ( let i in formResults) {

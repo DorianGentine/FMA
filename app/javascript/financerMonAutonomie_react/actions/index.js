@@ -5,6 +5,7 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const DISPLAY_CALENDLY = 'DISPLAY_CALENDLY';
 export const FETCH_API = 'FETCH_API';
 export const FETCH_CLIENTS = 'FETCH_CLIENTS';
+export const FETCH_CONSEILLERS = 'FETCH_CONSEILLERS';
 export const FETCH_CURRENT_API = 'FETCH_CURRENT_API';
 export const FETCH_FINANCERS = 'FETCH_FINANCERS';
 export const FETCH_FORM = 'FETCH_FORM';
@@ -78,6 +79,21 @@ export async function fetchClients(url) {
 
   return {
     type: FETCH_CLIENTS,
+    payload: promise
+  };}
+
+export async function fetchConseillers(url) {
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  } else {
+    console.error('fetchClients passe pas : ', response)
+    promise = null
+  }
+
+  return {
+    type: FETCH_CONSEILLERS,
     payload: promise
   };}
 

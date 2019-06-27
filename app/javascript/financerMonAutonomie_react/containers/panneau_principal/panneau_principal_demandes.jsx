@@ -16,9 +16,11 @@ class PanneauPrincipalDemandes extends Component {
     const clients = this.props.clients
 
     const renderDemandes = (clients) => {
-      // return demandes.map((client, index) => {
-        return <CardDemande client={clients.clients[0]} />
-      // })
+      if(clients != null && clients.clients != undefined){
+        // return demandes.map((client, index) => {
+          return <CardDemande client={clients.clients[0]} />
+        // })
+      }
     }
 
     const options = [
