@@ -21,7 +21,8 @@ class MenuProfil extends Component {
       let clients = this.props.clients
       let clientsEnCours = 0
       let clientsArchives = 0
-      if(clients != null){
+      console.log(clients)
+      if(clients != null && clients.clients != undefined){
         for (var i = clients.clients.length - 1; i >= 0; i--) {
           if(clients.clients[i].étape === "evaluation"){
             clientsArchives = clientsArchives + 1
@@ -32,7 +33,7 @@ class MenuProfil extends Component {
       }
       return(
         <div className="col-lg-6 row align-items-end">
-          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`} onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{clients ? clients.clients.length : 0}</span></div>
+          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`} onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{clients != null && clients.clients != undefined ? clients.clients.length : 0}</span></div>
           <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`} onClick={()=>{this.props.selectClients("en_cours")}}>En cours <span>{clientsEnCours}</span></div>
           <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`} onClick={()=>{this.props.selectClients("archives")}}>Archivés <span>{clientsArchives}</span></div>
         </div>

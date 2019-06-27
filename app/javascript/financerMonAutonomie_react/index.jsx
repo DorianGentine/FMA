@@ -18,6 +18,7 @@
   // State and reducers
   import apiReducer from './reducers/api_reducer';
   import clientsReducer from './reducers/clients_reducer';
+  import conseillersReducer from './reducers/conseillers_reducer';
   import currentApiReducer from './reducers/current_api_reducer';
   import financersReducer from './reducers/financers_reducer';
   import formResultsReducer from './reducers/form_results_reducer';
@@ -49,6 +50,7 @@ if(app){
   const initialState = {
     api: {},
     clients: null,
+    conseillers: null,
     current_user_id: current_user_id,
     current_api: null,
     financers: null,
@@ -71,6 +73,7 @@ if(app){
   const reducers = combineReducers({
     api: apiReducer,
     clients: clientsReducer,
+    conseillers: conseillersReducer,
     current_api: currentApiReducer,
     current_user_id: identityReducer,
     financers: financersReducer,
