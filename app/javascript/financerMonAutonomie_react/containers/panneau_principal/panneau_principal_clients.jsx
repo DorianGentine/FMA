@@ -6,13 +6,14 @@ import Select from "react-dropdown-select"
 import { fetchClients, selectClients } from '../../actions';
 
 import CardClient from './card_client';
+import CardConseiller from './card_conseiller';
 
 class PanneauPrincipalClients extends Component {
   componentWillMount(){
     if(this.props.selectedMenu === "clients"){
       this.props.fetchClients("/api/v1/users")
     }else if(this.props.selectedMenu === "conseillers"){
-      this.props.fetchClients("/api/v1/advisors")
+      this.props.fetchClients("/api/v1/users/advisors")
     }
   }
 
@@ -20,7 +21,7 @@ class PanneauPrincipalClients extends Component {
     if(nextProps.selectedMenu === "clients" && this.props.selectedMenu != nextProps.selectedMenu){
       this.props.fetchClients("/api/v1/users")
     }else if(nextProps.selectedMenu === "conseillers" && this.props.selectedMenu != nextProps.selectedMenu){
-      this.props.fetchClients("/api/v1/advisors")
+      this.props.fetchClients("/api/v1/users/advisors")
     }
   }
 
@@ -32,9 +33,15 @@ class PanneauPrincipalClients extends Component {
     }
 
     const renderClients = () => {
-      return clients.clients.map((client, index) => {
-        return <CardClient client={client} key={client.id}/>
-      })
+      if(clients.clients){
+        return clients.clients.map((client, index) => {
+          return <CardClient client={client} key={client.id}/>
+        })
+      }else{
+        return clients.advisors.map((advisor, index) => {
+          return <CardConseiller advisor={advisor} key={advisor.id}/>
+        })
+      }
     }
 
     const options = [
