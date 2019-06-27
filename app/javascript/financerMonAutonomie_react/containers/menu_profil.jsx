@@ -19,10 +19,11 @@ class MenuProfil extends Component {
     const renderFiltres = ()=> {
       const selectedClients = this.props.selectedClients
       let clients = this.props.clients
+      let clientsLength = 0
       let clientsEnCours = 0
       let clientsArchives = 0
-      console.log(clients)
       if(clients != null && clients.clients != undefined){
+        clientsLength = clients.clients.length
         for (var i = clients.clients.length - 1; i >= 0; i--) {
           if(clients.clients[i].étape === "evaluation"){
             clientsArchives = clientsArchives + 1
@@ -30,20 +31,32 @@ class MenuProfil extends Component {
             clientsEnCours = clientsEnCours + 1
           }
         }
+      }else if(clients != null && clients.advisors != undefined){
+        clientsLength = clients.advisors.length
       }
       return(
         <div className="col-lg-6 row align-items-end">
-          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`} onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{clients != null && clients.clients != undefined ? clients.clients.length : 0}</span></div>
-          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`} onClick={()=>{this.props.selectClients("en_cours")}}>En cours <span>{clientsEnCours}</span></div>
-          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`} onClick={()=>{this.props.selectClients("archives")}}>Archivés <span>{clientsArchives}</span></div>
+          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`} onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{clientsLength}</span></div>
+          <div
+            className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`}
+            onClick={()=>{this.props.selectClients("en_cours")}}>
+              {selectedMenu === "conseillers" || selectedMenu === "demandes" ? "" : "En cours "}
+              {selectedMenu === "conseillers" || selectedMenu === "demandes" ? "" : <span>{clientsEnCours}</span>}
+          </div>
+          <div
+            className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`}
+            onClick={()=>{this.props.selectClients("archives")}}>
+              {selectedMenu === "conseillers" || selectedMenu === "demandes" ? "" : "Archivés "}
+              {selectedMenu === "conseillers" || selectedMenu === "demandes" ? "" : <span>{clientsArchives}</span>}
+          </div>
         </div>
       )
     }
 
     return (
-      <div className={`${ selectedMenu === "clients" ? 'flex bordure-bas-300' : "" }`}>
-        {selectedMenu === "clients" ? renderFiltres() : null}
-        <div className={`relative col-lg-6 ${selectedMenu === "clients" ? "margin-left-30" : "offset-6"}`} role="group">
+      <div className={`${ selectedMenu === "clients" || selectedMenu === "conseillers" || selectedMenu === "demandes" ? 'flex bordure-bas-300' : "" }`}>
+        {selectedMenu === "clients" || selectedMenu === "conseillers" || selectedMenu === "demandes" ? renderFiltres() : null}
+        <div className={`relative col-lg-6 ${selectedMenu === "clients" || selectedMenu === "conseillers" || selectedMenu === "demandes" ? "margin-left-30" : "offset-6"}`} role="group">
           <div
             id="drop-navbar"
             className="dropdown-toggle margin-bottom-15 flex justify-content-end align-items-center"

@@ -61,7 +61,7 @@ class PanneauPrincipalClients extends Component {
             <i className="fas fa-search"></i>
             <input
               type="text"
-              placeholder="Nom ou prénom du client"
+              placeholder={this.props.selectedMenu === "conseillers" ? "Nom ou prénom du conseiller" : "Nom ou prénom du client"}
               style={{width: "100%"}}
               onChange={()=>{this.props.selectClients(event.target.value)}}
             />
@@ -78,7 +78,11 @@ class PanneauPrincipalClients extends Component {
             />
           </div>
         </div>
-        { conseillersTrue ? null :
+        { conseillersTrue ?
+          <div className="margin-top-30 margin-bottom-30 flex align-items-center">
+            <hr className="ligne-horizontal"/>
+          </div>
+          :
           <div className="margin-top-30 margin-bottom-30 flex align-items-center">
             <hr className="ligne-horizontal"/>
             <div
