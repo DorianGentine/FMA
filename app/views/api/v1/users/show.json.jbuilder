@@ -36,8 +36,8 @@ elsif @user.advisor
 elsif @user.admin
     json.advisors @advisors do |advisor|
       json.id advisor.id
-      json.email advisor.email
-      json.phone client.phone
+      # json.email advisor.email
+      # json.phone advisor.phone
       json.sign_in user_signed_in?
       json.clients advisor.his_clients do |client|
         json.client client.id
@@ -47,11 +47,19 @@ elsif @user.admin
     json.clients @clients do |client|
       json.sign_in user_signed_in?
       json.client client.id
-      json.email client.email
-      json.phone client.phone
+      # json.email client.email
+      # json.phone client.phone
       json.project client.project.id
     end
     json.inscrits @nbr_sign_in.count
     json.in_progress @in_progress.count
     json.archived @archived.count
+
+    json.notifications Notification.all.order(:date) do |notification|
+      json.project notification.project.id
+      json.conseiller notification.project.is_his_advisor.first_name
+      json.user notification.project.his_client.first_name
+      json.title notification.title
+      json.time distance_of_time_in_words(notification.date, Time.now)
+    end
 end

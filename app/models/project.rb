@@ -64,6 +64,9 @@ class Project < ApplicationRecord
     elsif self.progression?
       self.evaluation!
       Notification.create(title:"a obtenu son kit", date:Time.now, project: self)
+    elsif self.evaluation?
+      self.archived!
+      Notification.create(title:"a été archivé", date:Time.now, project: self)
     end
     self.hint = true
     self.save
