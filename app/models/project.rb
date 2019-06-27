@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  has_many :requests, dependent: :destroy
 
   has_many :notifications, dependent: :destroy
   has_many :notes, dependent: :destroy
