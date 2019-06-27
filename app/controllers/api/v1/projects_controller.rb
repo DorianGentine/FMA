@@ -3,6 +3,9 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   before_action :authenticate_user!
   before_action :set_project, only: [:show, :next_setp, :display_hint]
 
+  def index
+    @projects = policy_scope(Project)
+  end
 
   def show
 
