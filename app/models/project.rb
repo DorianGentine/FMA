@@ -22,6 +22,10 @@ class Project < ApplicationRecord
     UserProject.create(user: user, project: self)
   end
 
+  def link_to_beneficaire(user)
+    UserProject.create(user: user, project: self, client: self.client)
+  end
+
   def in_relationship?(user)
     return true if UserProject.where(user: user, project: self).first
   end
