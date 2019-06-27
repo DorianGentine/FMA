@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ModalClient from './modal_cote/modal_client';
+import ModalClientConseiller from './modal_cote/modal_client_conseiller';
 import ModalDemande from './modal_cote/modal_demande';
 import ModalDocument from './modal_cote/modal_document';
 import ModalFinancer from './modal_cote/modal_financer';
@@ -17,6 +18,8 @@ class ModalCote extends Component {
       return null
     }else if(modalSelected.modalActive === "showClient"){
       return (<ModalClient />)
+    }else if(modalSelected.modalActive === "showClientConseiller"){
+      return (<ModalClientConseiller />)
     }else if(modalSelected.modalActive === "showDoc"){
       return (<ModalDocument />)
     }else if(modalSelected.modalActive === "showFinancer"){
