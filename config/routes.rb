@@ -63,7 +63,7 @@ Rails.application.routes.draw do
       resources :documents, only: [ :update ]
       resources :formularies, only: [ :update, :edit, :show ]
       resources :notes, only: [ :update ]
-      resources :projects, only: [ :show, :update ] do
+      resources :projects, only: [ :show, :update, :index ] do
         resources :kits, only: [ :create, :destroy ]
         resources :notes, only: [ :create ]
         member do
