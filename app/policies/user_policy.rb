@@ -7,7 +7,9 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-
+  def intercom?
+    true
+  end
   def advisors?
     if user.admin
       true
