@@ -4,19 +4,31 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 import Dropzone from 'react-dropzone'
 
-import { closeModal, fetchPostCompte } from '../../actions';
+import { closeModal, fetchPostCompte, fetchRessources } from '../../actions';
 
 import renderLogo from "../../../components/render_logo"
 
 class ModalCreateRessource extends Component {
+  state = {
+    docs: []
+  }
 
-  onSubmit = (values) => {
-    console.log("values", values)
-    console.log("this.props.api.project.id", this.props.api.project.id)
-    let url = `/api/v1/projects/${this.props.api.project.id}/notes`
+  onSubmit = (oldValues) => {
+    let url = `/api/v1/ressources`
     let method = "POST"
+    const docs = this.state.docs
 
-    this.props.fetchPostCompte(url, values, method, ()=>{})
+    let values = {
+      title: oldValues.title,
+      description: oldValues.description,
+      formulary: docs.formulary,
+      notice: docs.notice,
+      model_1: docs.model_1,
+      model_2: docs.model_2,
+    }
+    console.log("VALUES", values)
+
+    this.props.fetchPostCompte(url, values, method, ()=>{this.props.fetchRessources(url)})
     this.props.closeModal()
   }
 
@@ -29,18 +41,51 @@ class ModalCreateRessource extends Component {
   )
 
   render(){
-    const readFile = (files) => {
-      if (files && files[0]) {
-        console.log(files[0])
-        let formPayLoad = new FormData();
-        formPayLoad.append('uploaded_image', files[0]);
-        sendImageToController(formPayLoad)
+    const renderDropZone = (name) => {
+      let nameFichier
+
+      const sendDocToState = (formPayLoad) => {
+        let updatedDocs
+        if( name === "formulary"){
+          updatedDocs = Object.assign({}, this.state.docs, { formulary: formPayLoad });
+        }else if( name === "notice"){
+          updatedDocs = Object.assign({}, this.state.docs, { notice: formPayLoad });
+        }else if( name === "model_1"){
+          updatedDocs = Object.assign({}, this.state.docs, { model_1: formPayLoad });
+        }else if( name === "model_2"){
+          updatedDocs = Object.assign({}, this.state.docs, { model_2: formPayLoad });
+        }
+
+        this.setState({
+          docs: updatedDocs
+        })
       }
+
+      const readFile = (files) => {
+        console.log(files)
+        if (files && files[0]) {
+          nameFichier = files[0].name
+          document.getElementById(`creation_ressource_${name}`).innerText = nameFichier
+          sendDocToState(files[0])
+        }
+      }
+
+      return (
+        <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles)}}>
+          {({getRootProps, getInputProps}) => (
+            <div className="pointer margin-bottom-30 font-12" id={`creation_ressource_${name}`} {...getRootProps()}>
+              <input {...getInputProps()} />
+              Ajouter votre fichier
+            </div>
+          )}
+        </Dropzone>
+      )
     }
+
     return(
       <div>
         <div className="flex space-between margin-bottom-30">
-          <h2>Notes du projet</h2>
+          <h2>Création ressource</h2>
           <i className="far fa-times-circle pointer" onClick={this.props.closeModal}></i>
         </div>
         <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
@@ -59,49 +104,17 @@ class ModalCreateRessource extends Component {
             component={this.renderField}
           />
           <p className="black font-14 margin-bottom-15">Formulaire</p>
-          <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles)}}>
-            {({getRootProps, getInputProps}) => (
-              <div className="photo-compte relative pointer" {...getRootProps()}>
-                <input {...getInputProps()} />
-                {renderLogo(user)}
-                <div className="btn-light btn-light-compte absolute"></div>
-              </div>
-            )}
-          </Dropzone>
+          {renderDropZone("formulary")}
           <p className="black font-14 margin-bottom-15">Notice</p>
-          <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles)}}>
-            {({getRootProps, getInputProps}) => (
-              <div className="photo-compte relative pointer" {...getRootProps()}>
-                <input {...getInputProps()} />
-                {renderLogo(user)}
-                <div className="btn-light btn-light-compte absolute"></div>
-              </div>
-            )}
-          </Dropzone>
+          {renderDropZone("notice")}
           <p className="black font-14 margin-bottom-15">Modèle 1</p>
-          <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles)}}>
-            {({getRootProps, getInputProps}) => (
-              <div className="photo-compte relative pointer" {...getRootProps()}>
-                <input {...getInputProps()} />
-                {renderLogo(user)}
-                <div className="btn-light btn-light-compte absolute"></div>
-              </div>
-            )}
-          </Dropzone>
+          {renderDropZone("model_1")}
           <p className="black font-14 margin-bottom-15">Modèle 2</p>
-          <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles)}}>
-            {({getRootProps, getInputProps}) => (
-              <div className="photo-compte relative pointer" {...getRootProps()}>
-                <input {...getInputProps()} />
-                {renderLogo(user)}
-                <div className="btn-light btn-light-compte absolute"></div>
-              </div>
-            )}
-          </Dropzone>
+          {renderDropZone("model_2")}
           <button
             className="btn-blue margin-top-30 offset-6 col-6 text-align-center"
             type="submit"
-            >
+            disabled={this.props.pristine || this.props.submitting || this.state.docs.length < 4}>
             Ajouter
           </button>
         </form>
@@ -118,7 +131,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, fetchPostCompte }, dispatch);
+  return bindActionCreators({ closeModal, fetchPostCompte, fetchRessources }, dispatch);
 }
 
 export default reduxForm({ form: 'note', })(
