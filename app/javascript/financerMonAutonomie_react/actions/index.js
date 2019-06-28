@@ -17,6 +17,7 @@ export const POST_FORM = 'POST_FORM';
 export const SELECT_CLIENTS = 'SELECT_CLIENTS';
 export const SHOW_CLIENT = 'SHOW_CLIENT';
 export const SHOW_CLIENT_CONSEILLER = 'SHOW_CLIENT_CONSEILLER';
+export const SHOW_CREATE_RESSOURCE = 'SHOW_CREATE_RESSOURCE';
 export const SHOW_DEMANDE = 'SHOW_DEMANDE';
 export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
 export const SHOW_FINANCER = 'SHOW_FINANCER';
@@ -214,6 +215,16 @@ export function showClientConseiller(advisor) {
     payload: advisorSelected
   };}
 
+export function showCreateRessource() {
+  const ressourceSelected = {
+    modalActive: "showCreateRessource",
+  }
+
+  return {
+    type: SHOW_CREATE_RESSOURCE,
+    payload: ressourceSelected
+  };}
+
 export function showDemande(client) {
   const clientSelected = {
     modalActive: "showDemande",
@@ -292,24 +303,3 @@ export function validateStep(url, callback) {
     type: VALIDATE_STEP,
     payload: request
   };}
-
-// TEST FONCTION ASYNCHRONE
-// export const validateStep = (url, callback) =>
-//   fetchActionCreator(
-
-//     // Included in the action types received by your redux store.
-//     'VALIDATE_STEP',
-
-//     // URL to fetch.
-//     url,
-//     {
-//       method: "PATCH",
-//     },
-//     {
-//       onResolve: callback
-//     }
-//   );
-
-
-
-

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchRessources, showRessource } from '../../actions'
+import { fetchRessources, showRessource, showCreateRessource } from '../../actions'
 
 class Ressources extends Component {
   componentWillMount(){
@@ -11,6 +11,7 @@ class Ressources extends Component {
 
   render(){
     const ressources = this.props.ressources
+    const statut = this.props.api.statut
 
     const renderRessources = () => {
       return ressources.map((ressource, index) => {
@@ -32,7 +33,12 @@ class Ressources extends Component {
         <div className="white-box flex flex-wrap align-items-center">
           <h4 className="padding-horizontal-15 no-margin">Liste des ressources</h4>
           <p className="bold padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${ressources ? ressources.length : 0} ressources`}</p>
-          <p className="margin-right-15 text-align-right font-12 icon-arrow-right-gray flex-grow-1"></p>
+          <p
+            className={`margin-right-15 text-align-right font-12 ${statut === "conseiller" ? "icon-arrow-right-gray" : "pointer" } flex-grow-1`}
+            onClick={statut === "admin" ? this.props.showCreateRessource : ()=>{}}
+            >
+            {statut === "admin" ? "Créer une ressource" : ""}
+          </p>
           <div className="scroll col-lg-12 margin-top-15" style={{ height: "calc(100vh - 700px)", minHeight: "80px" }}>
             {ressources != null ? renderRessources() : <h2>Chargement...</h2> }
           </div>
@@ -45,11 +51,12 @@ class Ressources extends Component {
 function mapStateToProps(state) {
   return {
     ressources: state.ressources,
+    api: state.api,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchRessources, showRessource }, dispatch);
+  return bindActionCreators({ fetchRessources, showRessource, showCreateRessource }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ressources);

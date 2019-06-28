@@ -1,6 +1,7 @@
 import {
   SHOW_CLIENT,
   SHOW_CLIENT_CONSEILLER,
+  SHOW_CREATE_RESSOURCE,
   SHOW_DEMANDE,
   SHOW_DOCUMENT,
   SHOW_FINANCER,
@@ -16,6 +17,9 @@ export default function(state = null, action) {
       return action.payload;
     }
     case SHOW_CLIENT_CONSEILLER: {
+      return action.payload;
+    }
+    case SHOW_CREATE_RESSOURCE: {
       return action.payload;
     }
     case SHOW_DEMANDE: {
