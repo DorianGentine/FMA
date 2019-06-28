@@ -9,6 +9,9 @@ json.solutions @projects do |project|
   json.demandes project.requests do |request|
     json.extract! request, :category, :description, :category, :close, :created_at
   end
+  json.notes @project.notes do |note|
+    json.extract! note, :title, :description
+  end
   json.financers project.solutions do |solution|
     json.id solution.id
     json.extract! solution.financer, :name, :logo, :description, :answer
