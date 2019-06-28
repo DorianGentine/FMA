@@ -59,10 +59,10 @@ Rails.application.routes.draw do
         end
       end
       resources :financers, only: [ :index, :show ]
-      resources :ressources, only: [ :index ]
+      resources :ressources, only: [ :index, :create, :update, :destroy ]
       resources :documents, only: [ :update ]
       resources :formularies, only: [ :update, :edit, :show ]
-      resources :notes, only: [ :update ]
+      resources :notes, only: [ :update, :destroy ]
       resources :projects, only: [ :show, :update, :index ] do
         resources :requests, only: [ :create ]
         resources :kits, only: [ :create, :destroy ]

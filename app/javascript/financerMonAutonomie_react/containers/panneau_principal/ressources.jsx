@@ -18,8 +18,8 @@ class Ressources extends Component {
           <div className="flex space-between align-items-center margin-bottom-15" key={index}>
             <div className="icon-doc margin-right-15"></div>
             <div className="flex-grow-1">
-              <h4 className="font-12 no-margin">{ressource.notice.substr(ressource.notice.lastIndexOf('/') + 1)}</h4>
-              <p className="font-12">{"Description de la ressource"}</p>
+              <h4 className="font-12 no-margin">{ressource.title}</h4>
+              <p className="font-12">{ressource.description}</p>
             </div>
             <button className="blue-gray-btn" onClick={()=>{this.props.showRessource(ressource)}}>Accéder</button>
           </div>

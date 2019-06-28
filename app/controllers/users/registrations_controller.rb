@@ -13,8 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     project = Formulary.find(formulary_id.to_i).project
     super do |resource|
       advisor = User.where(advisor: true).first
-      project.link_to_beneficaire(resource) unless project.in_relationship?(resource)
-      project.link_to_advisor(advisor) unless project.in_relationship?(advisor)
+      project.link_to_advisor_and_bene(resource, advisor)
+      # project.link_to_beneficaire(resource) unless project.in_relationship?(resource)
+      # project.link_to_advisor(advisor) unless project.in_relationship?(advisor)
     end
   end
 end
