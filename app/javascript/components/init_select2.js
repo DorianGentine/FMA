@@ -42,6 +42,7 @@ const initSelect2 = () => {
 };
 
 const initSelectize = (question) => {
+  debugger
   let select = $(".multiple_select2").selectize({
     plugins: ['remove_button'],
     placeholder: 'Choisissez ou ajoutez',

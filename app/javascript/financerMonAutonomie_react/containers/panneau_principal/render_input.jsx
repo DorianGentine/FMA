@@ -14,9 +14,6 @@ import {
   changeBeneficiaireForm,
 } from '../../actions';
 
-import initSelectFma from "../../../components/select_fma";
-import { initSelectize } from "../../../components/init_select2";
-
 import 'react-widgets/dist/css/react-widgets.css'
 
 class RenderForm extends Component {
