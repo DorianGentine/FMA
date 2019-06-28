@@ -66,6 +66,11 @@
     background-color: $blue;
     color: $white;
   }
+  .blue-gray-btn:disabled{
+    cursor: not-allowed;
+    color: $gray;
+    background-color: $blue-gray;
+  }
 
 // btn-select-onglet
   .btn-select-onglet {

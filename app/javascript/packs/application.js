@@ -22,4 +22,4 @@ createWebhook()
 
 import { initSelect2, initSelectize } from '../components/init_select2';
 initSelect2();
-initSelectize();
+// initSelectize();

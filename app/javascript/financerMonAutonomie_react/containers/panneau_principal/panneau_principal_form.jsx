@@ -15,9 +15,6 @@ import {
 } from '../../actions';
 import ValidationModal from "../beneficiaire/validation_modal"
 
-import initSelectFma from "../../../components/select_fma";
-import { initSelectize } from "../../../components/init_select2";
-
 import 'react-widgets/dist/css/react-widgets.css'
 
 class PanneauPrincipalForm extends Component {

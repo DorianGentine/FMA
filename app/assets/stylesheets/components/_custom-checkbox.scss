@@ -1,0 +1,31 @@
+/* Customize the label (the custom-checkbox) */
+.custom-checkbox .checkmark {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 3px;
+  color: black;
+  padding: 10px;
+  font-size: 12px;
+  transition: .5s;
+  margin-right: 5px;
+}
+
+/* Hide the browser's default checkbox */
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* When the checkbox is checked, add a blue background */
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: $black;
+  color: white;
+}
+
+/* On mouse-over, add a grey background color */
+  // .custom-checkbox:hover input ~ .checkmark {
+  //   background-color: #ccc;
+  // }
