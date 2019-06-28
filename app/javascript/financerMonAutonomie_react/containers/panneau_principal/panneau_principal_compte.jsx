@@ -26,13 +26,6 @@ class PanneauPrincipalCompte extends Component {
       phone: this.props.api.user.phone,
       mail: this.props.api.user.email,
     };
-
-    // for ( let i in formResults) {
-    //   if( formResults[i].set_up.need_answer ){
-    //     initData[formResults[i].set_up.column_name] = formResults[i].answer;
-    //   }
-    // }
-
     this.props.initialize(initData);
   }
 
@@ -81,22 +74,22 @@ class PanneauPrincipalCompte extends Component {
       case "identite": {
         const user = this.props.api.user
 
-        // const sendImageToController = (formPayLoad) => {
-        //   fetch(`/api/v1/users/${this.props.user_id}`, {
-        //     credentials: 'same-origin',
-        //     headers: { 'Content-Type': 'application/json'},
-        //     method: 'PATCH',
-        //     body: formPayLoad
-        //   })
-        //   .then(response => response.json())
-        // }
+        const sendImageToController = (formPayLoad) => {
+          fetch(`/api/v1/users/${this.props.user_id}`, {
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json'},
+            method: 'PATCH',
+            body: formPayLoad
+          })
+          .then(response => response.json())
+        }
 
         const readFile = (files) => {
           if (files && files[0]) {
             console.log(files[0])
             let formPayLoad = new FormData();
             formPayLoad.append('uploaded_image', files[0]);
-            // sendImageToController(formPayLoad)
+            sendImageToController(formPayLoad)
           }
         }
 
