@@ -1227,6 +1227,11 @@ p "Create Admin"
 
   User.create(last_name: "Euphrasie", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "admin@mail.com", password:"password")
 
+
+p "create Message"
+
+  Message.create(unread: 0, url: "https://app.intercom.io/a/apps/pfhokn92/inbox/inbox/all/")
+
 p "create formulary"
 
   form = Formulary.new
