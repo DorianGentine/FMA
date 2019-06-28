@@ -43,8 +43,8 @@ gem 'carrierwave', '~> 1.2'
 gem 'cloudinary', '~> 1.9.1'
 
 
-# test de intercom
-gem "intercom-rails"
+# # test de intercom
+# gem "intercom-rails"
 
 # faker for seed
 gem 'faker'
