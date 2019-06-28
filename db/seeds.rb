@@ -3,53 +3,53 @@ require 'faker'
 
 p "Create Financers"
 
-  anah = Financer.create(name: "anah", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905174/financers/anah_yw818q.png", description: "L’Agence Nationale pour l’Amélioration de l’habitat (ANAH) est un établissement public français existant depuis près de 50 ans. Son but est de favoriser la remise en bon état d’habitation le parc privé de logements pour lutter contre les fractures sociales et territoriales.
+  anah = Financer.create(name: "anah", web: "http://www.anah.fr", phone: "0 820 15 15 15", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905174/financers/anah_yw818q.png", description: "L’Agence Nationale pour l’Amélioration de l’habitat (ANAH) est un établissement public français existant depuis près de 50 ans. Son but est de favoriser la remise en bon état d’habitation le parc privé de logements pour lutter contre les fractures sociales et territoriales.
   L’établissement soutient les travaux de rénovation et réhabilitation des logements en accordant des aides financières. Les actions de l’ANAH se dirigent notamment vers les problématiques de mal-logement : l’insalubrité, la précarité énergétique ou encore l’inadaptation des logements à la perte d’autonomie ou au handicap.")
-  cnav = Financer.create(name: "cnav", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905174/financers/cnav_bdaqnx.png", description: "La Caisse Nationale d'Assurance Vieillesse constitue la caisse de retraite principale des salariés du régime général.
+  cnav = Financer.create(name: "cnav", web: "https://www.lassuranceretraite.fr/", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905174/financers/cnav_bdaqnx.png", description: "La Caisse Nationale d'Assurance Vieillesse constitue la caisse de retraite principale des salariés du régime général.
   Elle délivre des actions social en faveur du bien viellir, notamment en ce qui concerne l'adaptation du logement. L'enjeu pour elle est de favoriser respect du maintien à domicile dans de bonnes conditions des retraités.")
-  caisse = Financer.create(name: "caisse de retraite principale", logo: nil, description: nil)
-  bailleur = Financer.create(name: "bailleur", logo: nil, description: nil, answer: "Nous vous invitons à prendre contact avec votre bailleur social afin de vérifier avec lui les conditions d'une éventuelle aide")
-  mutuel = Financer.create(name: "mutuel", logo: nil, description: nil, answer: "Nous conseillons de vérifier aurès des organismes de mutuelles auprès desquels vous détenez un contrat. Il est probable que ce dernier couvre le risque de la perte d'autonomie à domicile.")
-  caisse_sup = Financer.create(name: "caisse de retraite complémentaire", logo: nil, description: nil)
-  apa = Financer.create(name: "apa", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905259/financers/apa_h51rcq.png", description: "Le Conseil départemental du Val de Marne met en place des services adaptés pour l'accompagnement, notamment à domicile, des personnes âgées de plus de 60 ans.
+  caisse = Financer.create(name: "caisse de retraite principale", web: nil, logo: nil, description: nil)
+  bailleur = Financer.create(name: "bailleur", web: nil, logo: nil, description: nil, answer: "Nous vous invitons à prendre contact avec votre bailleur social afin de vérifier avec lui les conditions d'une éventuelle aide")
+  mutuel = Financer.create(name: "mutuel", web: "http://www.mutuelle-medicis.com", phone: "01 73 78 32 78", logo: nil, description: nil, answer: "Nous conseillons de vérifier aurès des organismes de mutuelles auprès desquels vous détenez un contrat. Il est probable que ce dernier couvre le risque de la perte d'autonomie à domicile.")
+  caisse_sup = Financer.create(name: "caisse de retraite complémentaire", web: nil, logo: nil, description: nil)
+  apa = Financer.create(name: "apa", web: "http://www.valdemarne.fr", phone: "01.43.99.83.83", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905259/financers/apa_h51rcq.png", description: "Le Conseil départemental du Val de Marne met en place des services adaptés pour l'accompagnement, notamment à domicile, des personnes âgées de plus de 60 ans.
   C'est notamment via le service de l'Allocation Personnalisée d'Autonomie (APA) que ces services se déploient. L'APA constitue une aide sociale permettant de financer partiellement ou totalement les dépenses permettant notamment le maintien à domicile.")
-  pch = Financer.create(name: "pch", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905259/financers/apa_h51rcq.png", description: "Le Conseil départemental du Val de Marne met en place des services adaptés pour l'accompagnement, notamment à domicile, des personnes présentant une situation de handicap.
+  pch = Financer.create(name: "pch", web: "http://www.valdemarne.fr", phone: "01 43 99 79 00", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905259/financers/apa_h51rcq.png", description: "Le Conseil départemental du Val de Marne met en place des services adaptés pour l'accompagnement, notamment à domicile, des personnes présentant une situation de handicap.
   C'est notamment via la Maison Départementale des Personnes Handicapapées qui distribue la Prestation de Compensation du handicap. Cete dernière permet de couvrir certaines dépenses relatives à la compensation de la perte d'autonomie, dont celles ayant attrait à l'adaptation du logement.")
-  credit = Financer.create(name: "crédit d'impôt", logo: nil, description: "Vous pourriez bénéficier du crédit d'impot 'Aide aux personnes'. Il soutient les travaux d'adaptation du logement et peut couvrir les dépenses relatives à des équipements de types sanitaire, de sécurité ou d'accessibilité. Ouvert à tous, il vise les personnes imposables ou non. Le crédit d'impot en excédent éventuel est restitué au-delà de 8 euros. Si la mise en équipement concernant 1 personne, le montant du crédit d'impot est plafonné à 5000 euros et 10 000 lorsqu'il s'agit de 2 personnes. Une majoration de 400 euros est appliquée par personne à charge supplémentaire.")
-  securité_social = Financer.create(name: "Sécurité Sociale", logo: nil, description: "Vous pourriez bénéficier d'une participation de la sécurité sociale pour l'acquisition de matériels médicaux, ou compensant la perte d'autonomie.
+  credit = Financer.create(name: "crédit d'impôt", web: "https://www.impots.gouv.fr/portail/", phone: "0 810 467 687", logo: nil, description: "Vous pourriez bénéficier du crédit d'impot 'Aide aux personnes'. Il soutient les travaux d'adaptation du logement et peut couvrir les dépenses relatives à des équipements de types sanitaire, de sécurité ou d'accessibilité. Ouvert à tous, il vise les personnes imposables ou non. Le crédit d'impot en excédent éventuel est restitué au-delà de 8 euros. Si la mise en équipement concernant 1 personne, le montant du crédit d'impot est plafonné à 5000 euros et 10 000 lorsqu'il s'agit de 2 personnes. Une majoration de 400 euros est appliquée par personne à charge supplémentaire.")
+  securité_social = Financer.create(name: "Sécurité Sociale", web: "http://www.securite-sociale.fr/", logo: nil, description: "Vous pourriez bénéficier d'une participation de la sécurité sociale pour l'acquisition de matériels médicaux, ou compensant la perte d'autonomie.
     La prise en charge sera conditionnée à une prescription médicale et ne pourra se faire que sur une liste de matériel que votre médecin traitant connaît normalement.
     Le montant de la participation dépendra de votre taux de prise en charge.")
 
 
 p "Create Acteurs"
 
-  Acteur.create(financer: bailleur, name: "BATIGERE", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "CDC HABITAT", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "COOPERER POUR HABITER", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "CRETEIL HABITAT", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "DOMNIS", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "FRANCE HABITATION", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "BATIGERE", web:"http://www.batigere.fr", phone:"01 44 29 84 00", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "CDC HABITAT", web:"http://www.cdc-habitat.com", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "COOPERER POUR HABITER", web:"http://www.coopererpourhabiter.fr/", phone:"01 53 66 97 40", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "CRETEIL HABITAT", web:"http://www.creteil-habitat.com", phone:"01 45 17 40 00", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "DOMNIS", web:"http://www.domnis.fr/", phone:"01 44 79 89 89", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "FRANCE HABITATION", web: "http://www.france-habitation.fr", phone:"01 49 42 79 89", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
   Acteur.create(financer: bailleur, name: "FOYER SOLEIL", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "I3F", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "ICADE IPM", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "IN'LI QWACIO", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "KREMLIN BICETRE HABITAT", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "LA SEMISE", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "LOGIAS", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "LOGIAL OPH", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "MAISONS ALFORT HABITAT", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "NOVIGERE", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "OPALY", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "OPH GENTILLY", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "OPH L'HAY LES ROSES", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "OPH VILLEJUIF", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "OPH VITRY", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "OPH IVRY", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "OSICA", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "RATP HABITAT", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "RESIDENCE LE LOGEMENT DES FONCTIONNAIRES", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "SIEMP", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
-  Acteur.create(financer: bailleur, name: "VALOPHIS", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "I3F", web: "http://www.groupe3f.fr", phone:"01 55 26 11 90", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "ICADE IPM", web: "", phone:"", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "IN'LI QWACIO", web: "https://www.inli.fr/", phone:"01 40 89 77 77", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "KREMLIN BICETRE HABITAT", web: "http://kremlinbicetre-habitat.fr/ ", phone:"01 53 14 11 30", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "LA SEMISE", web: "http://www.semise.fr", phone:"01 45 73 65 65", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "LOGIAS", web: "", phone:"", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "LOGIAL OPH", web: "http://www.logial-oph.fr/ ", phone:"01 45 18 20 00 ", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "MAISONS ALFORT HABITAT", web: nil, phone:"01 45 18 34 00", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "NOVIGERE", web: "", phone:"", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "OPALY", web: "http://www.opaly.org/", phone:"01 46 15 32 00", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "OPH GENTILLY", web: "", phone:"", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "OPH L'HAY LES ROSES", web: nil, phone:"01 46 63 06 98", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "OPH VILLEJUIF", web: "http://www.oph-villejuif.fr/", phone:"01 43 90 16 00", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "OPH VITRY", web: "http://www..opvitry.org", phone:"01 49 59 31 00", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "OPH IVRY", web: "", phone:"", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "OSICA", web: nil, phone:"01 69 53 49 69", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "RATP HABITAT", web: nil, phone:"09 87 66 10 00", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "RESIDENCE LE LOGEMENT DES FONCTIONNAIRES", web: nil, phone:"01 44 37 72 77", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "SIEMP", web: "http://www.elogie-siemp.paris", phone:"", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
+  Acteur.create(financer: bailleur, name: "VALOPHIS", web: "http://www.groupevalophis.fr", phone:"08 92 97 62 82", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557908425/financers/BATIGERE_zdmd1x.png")
 
   Acteur.create(financer: caisse_sup, name: "Aucune")
   # Acteur.create(financer: caisse_sup, name: "AG2R", web: "https://www.ag2rlamondiale.fr/", logo:"https://res.cloudinary.com/financermonautonomie/image/upload/v1557909722/financers/AG2R_zpsdqe.png")
@@ -585,7 +585,7 @@ p "Create Solutions"
     category: "Personne vivant seule",
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]"
+    conditions: "4:[1,2,3]&13:0&16:0&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]"
   )
   Answer.create(solution: solution_29, content:"Vous pourriez bénéficier d'une subvention d'aide à l'habitat de la Caisse Nationale d'Assurance Vieillesse (CNAV).
               Elle pourrait correspondre à XXX % du montant des devis relatifs, dans le limite de XXX euros.

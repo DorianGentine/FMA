@@ -52,7 +52,8 @@ if(financeursPotentielsId){
     // nomFinanceur.innerText = solution.financer.name.toUpperCase()
 
     const descFinanceur = document.createElement("p")
-    descFinanceur.innerText = "Aide à domicile | Paris"
+    descFinanceur.innerText = solution.financer.description
+    descFinanceur.style.fontSize = "0.75em"
 
     const barre = document.createElement("hr")
     barre.classList = "ligne-horizontale"
@@ -64,6 +65,12 @@ if(financeursPotentielsId){
     const lienSite = document.createElement("a")
     lienSite.classList = "black"
     lienSite.innerText = "Site du financeur"
+    if (solution.financer.web) {
+      lienSite.setAttribute('href', solution.financer.web)
+    } else {
+      lienSite.setAttribute('href', solution.web)
+    }
+    lienSite.setAttribute("target", "_blank")
 
     // div.appendChild(numFinanceur)
     div.appendChild(nomFinanceur)
