@@ -131,13 +131,24 @@ export function fetchModalReponses(url) {
   };}
 
 export function fetchPostCompte(url, body, method, callback) {
-  const request = fetch(url,
-     {
+  let request
+  if(body != null){
+    request = fetch(url,
+    {
       method: method,
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(body)
-    }).then(response => response.json())
+    })
+    .then(response => response.json())
     .then(callback)
+  }else if(body === null && method === "DELETE"){
+    request = fetch(url,
+    {
+      method: method,
+      headers: { 'Content-Type': 'application/json'},
+    })
+    .then(callback)
+  }
 
   return {
     type: POST_COMPTE,

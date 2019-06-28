@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchRessources, showRessource, showCreateRessource } from '../../actions'
+import { fetchRessources, showRessource, showCreateRessource, fetchPostCompte } from '../../actions'
 
 class Ressources extends Component {
   componentWillMount(){
@@ -15,16 +15,37 @@ class Ressources extends Component {
 
     const renderRessources = () => {
       return ressources.map((ressource, index) => {
-        return (
-          <div className="flex space-between align-items-center margin-bottom-15" key={index}>
-            <div className="icon-doc margin-right-15"></div>
-            <div className="flex-grow-1">
-              <h4 className="font-12 no-margin">{ressource.title}</h4>
-              <p className="font-12">{ressource.description}</p>
+        if(statut === "conseiller"){
+          return (
+            <div className="flex space-between align-items-center margin-bottom-15" key={index}>
+              <div className="icon-doc margin-right-15"></div>
+              <div className="flex-grow-1">
+                <h4 className="font-12 no-margin">{ressource.title}</h4>
+                <p className="font-12">{ressource.description}</p>
+              </div>
+              <button className="blue-gray-btn" onClick={()=>{this.props.showRessource(ressource)}}>Accéder</button>
             </div>
-            <button className="blue-gray-btn" onClick={()=>{this.props.showRessource(ressource)}}>Accéder</button>
-          </div>
-        );
+          );
+        }else if(statut === "admin"){
+          const fetchDelete = () => {
+            let url = `/api/v1/ressources/${ressource.id}`
+            let method = "DELETE"
+
+            this.props.fetchPostCompte(url, null, method, ()=>{this.props.fetchRessources(`/api/v1/ressources`)})
+          }
+
+          return (
+            <div className="flex space-between align-items-center margin-bottom-15" key={index}>
+              <div className="icon-doc margin-right-15"></div>
+              <div className="flex-grow-1">
+                <h4 className="font-12 no-margin">{ressource.title}</h4>
+                <p className="font-12">{ressource.description}</p>
+              </div>
+              <button className="blue-gray-btn margin-right-15" onClick={()=>{this.props.showRessource(ressource)}}>Accéder</button>
+              <button className="blue-gray-btn" onClick={fetchDelete}><i className="red far fa-trash-alt"></i></button>
+            </div>
+          );
+        }
       });
     };
 
@@ -56,7 +77,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchRessources, showRessource, showCreateRessource }, dispatch);
+  return bindActionCreators({ fetchRessources, showRessource, showCreateRessource, fetchPostCompte }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ressources);
