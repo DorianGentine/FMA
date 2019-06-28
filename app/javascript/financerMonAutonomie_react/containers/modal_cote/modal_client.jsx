@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { closeModal, fetchPostCompte, validateStep } from '../../actions';
+import { closeModal, validateStep, showClient } from '../../actions';
 
 import renderLogo from "../../../components/render_logo"
 
@@ -12,8 +12,10 @@ class ModalClient extends Component {
 
   componentWillReceiveProps(nextProps){
     const clients = nextProps.clients
+    console.log(clients)
     if(clients != this.props.clients){
-      console.log(clients)
+      const client = this.props.modal_selected.client
+      this.props.showClient(client)
     }
   }
 
@@ -34,8 +36,8 @@ class ModalClient extends Component {
               return (
                 <div className="flex space-between align-items-center margin-bottom-15" key={index}>
                   <div className="flex-grow-1">
-                    <h4 className="font-12 no-margin">{ressource.id}</h4>
-                    <p className="font-12">{"Description de la ressource"}</p>
+                    <h4 className="font-12 no-margin">{ressource.title}</h4>
+                    <p className="font-12">{ressource.description}</p>
                   </div>
                   <Switch checked={true} kind="switchKit" ressource={ressource} kit={client.kits[i]} />
                 </div>
@@ -59,8 +61,8 @@ class ModalClient extends Component {
             return (
               <div className="flex space-between align-items-center margin-bottom-15" key={index}>
                 <div className="flex-grow-1">
-                  <h4 className="font-12 no-margin">{ressource.id}</h4>
-                  <p className="font-12">{"Description de la ressource"}</p>
+                  <h4 className="font-12 no-margin">{ressource.title}</h4>
+                  <p className="font-12">{ressource.description}</p>
                 </div>
                 <Switch checked={false} kind="switchKit" ressource={ressource} kit={kitSelected} />
               </div>
@@ -101,7 +103,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, fetchPostCompte, validateStep }, dispatch);
+  return bindActionCreators({ closeModal, validateStep, showClient }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalClient);

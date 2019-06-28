@@ -21,15 +21,16 @@ Rails.application.routes.draw do
       get '/projet', to: 'users#show'
       get '/compte', to: 'users#show'
         get '/compte/identite', to: 'users#show'
-        get '/compte/email', to: 'users#show'
-        get '/compte/mdp', to: 'users#show'
-        get '/compte/telephone', to: 'users#show'
+        get '/compte/email_mdp', to: 'users#show'
         get '/compte/suppression', to: 'users#show'
+        # get '/compte/mdp', to: 'users#show'
+        # get '/compte/telephone', to: 'users#show'
       get '/alertes', to: 'users#show'
         get '/alertes/notifications', to: 'users#show'
         get '/alertes/actualites', to: 'users#show'
       get '/bureau', to: 'users#show'
       get '/clients', to: 'users#show'
+      get '/conseillers', to: 'users#show'
       get '/demandes', to: 'users#show'
       # get '/compte', to: 'users#show'
       get '/a_propos', to: 'users#show'
@@ -58,11 +59,12 @@ Rails.application.routes.draw do
         end
       end
       resources :financers, only: [ :index, :show ]
-      resources :ressources, only: [ :index ]
+      resources :ressources, only: [ :index, :create, :update, :destroy ]
       resources :documents, only: [ :update ]
       resources :formularies, only: [ :update, :edit, :show ]
-      resources :notes, only: [ :update ]
-      resources :projects, only: [ :show, :update ] do
+      resources :notes, only: [ :update, :destroy ]
+      resources :projects, only: [ :show, :update, :index ] do
+        resources :requests, only: [ :create ]
         resources :kits, only: [ :create, :destroy ]
         resources :notes, only: [ :create ]
         member do
@@ -71,7 +73,11 @@ Rails.application.routes.draw do
         end
         resources :formularies, only: [ :new, :create ]
       end
-      resources :users, only: [ :show, :update, :index ]
+      resources :users, only: [ :show, :update, :index ] do
+        collection do
+          get :advisors
+        end
+      end
     end
   end
 

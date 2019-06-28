@@ -9,12 +9,7 @@ import renderLogo from "../../components/render_logo"
 
 class MenuProfil extends Component {
   render(){
-    // const current_api = this.props.current_api
-
-    let user = this.props.api.user
-    // if(current_api != null){
-    //   user = this.props.current_api.user
-    // }
+    const user = this.props.api.user
     let selectedMenu
     if(this.props.selectedMenu){
       selectedMenu = this.props.selectedMenu
@@ -24,9 +19,11 @@ class MenuProfil extends Component {
     const renderFiltres = ()=> {
       const selectedClients = this.props.selectedClients
       let clients = this.props.clients
+      let clientsLength = 0
       let clientsEnCours = 0
       let clientsArchives = 0
-      if(clients != null){
+      if(clients != null && clients.clients != undefined){
+        clientsLength = clients.clients.length
         for (var i = clients.clients.length - 1; i >= 0; i--) {
           if(clients.clients[i].étape === "evaluation"){
             clientsArchives = clientsArchives + 1
@@ -34,28 +31,40 @@ class MenuProfil extends Component {
             clientsEnCours = clientsEnCours + 1
           }
         }
+      }else if(clients != null && clients.advisors != undefined){
+        clientsLength = clients.advisors.length
       }
       return(
         <div className="col-lg-6 row align-items-end">
-          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`} onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{clients ? clients.clients.length : 0}</span></div>
-          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`} onClick={()=>{this.props.selectClients("en_cours")}}>En cours <span>{clientsEnCours}</span></div>
-          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`} onClick={()=>{this.props.selectClients("archives")}}>Archivés <span>{clientsArchives}</span></div>
+          <div className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`} onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{clientsLength}</span></div>
+          <div
+            className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`}
+            onClick={()=>{this.props.selectClients("en_cours")}}>
+              {selectedMenu === "conseillers" || selectedMenu === "demandes" ? "" : "En cours "}
+              {selectedMenu === "conseillers" || selectedMenu === "demandes" ? "" : <span>{clientsEnCours}</span>}
+          </div>
+          <div
+            className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`}
+            onClick={()=>{this.props.selectClients("archives")}}>
+              {selectedMenu === "conseillers" || selectedMenu === "demandes" ? "" : "Archivés "}
+              {selectedMenu === "conseillers" || selectedMenu === "demandes" ? "" : <span>{clientsArchives}</span>}
+          </div>
         </div>
       )
     }
 
     return (
-      <div className={`${ selectedMenu === "clients" ? 'flex bordure-bas-300' : "" }`}>
-        {selectedMenu === "clients" ? renderFiltres() : null}
-        <div className={`relative col-lg-6 ${selectedMenu === "clients" ? "margin-left-30" : "offset-6"}`} role="group">
+      <div className={`${ selectedMenu === "clients" || selectedMenu === "conseillers" || selectedMenu === "demandes" ? 'flex bordure-bas-300' : "" }`}>
+        {selectedMenu === "clients" || selectedMenu === "conseillers" || selectedMenu === "demandes" ? renderFiltres() : null}
+        <div className={`relative col-lg-6 ${selectedMenu === "clients" || selectedMenu === "conseillers" || selectedMenu === "demandes" ? "margin-left-30" : "offset-6"}`} role="group">
           <div
             id="drop-navbar"
             className="dropdown-toggle margin-bottom-15 flex justify-content-end align-items-center"
-            data-toggle="dropdown"
+            data-toggle={ this.props.otherUser ? null : "dropdown" } // désactive bouton si conseiller connecté
             aria-haspopup="true"
             aria-expanded="false">
-            <p className="pointer text-align-right">Bonjour, {user.first_name} {user.last_name}</p>
-            <div className="pointer margin-left-15">{renderLogo(user)}</div>
+            <p className={`${ this.props.otherUser ? "not-allowed" : "pointer" } text-align-right`}>Bonjour, {user.first_name} {user.last_name}</p>
+            <div className={`${ this.props.otherUser ? "not-allowed" : "pointer" } margin-left-15`}>{renderLogo(user)}</div>
           </div>
           <div className="dropdown-menu" aria-labelledby="drop-navbar">
             <Link to={`/mon_espace/${this.props.current_user_id}/compte/identite`}>Mon compte</Link>
@@ -74,6 +83,7 @@ function mapStateToProps(state) {
     rootUrl: state.rootUrl,
     current_api: state.current_api,
     current_user_id: state.current_user_id,
+    otherUser: state.otherUser,
     selectedClients: state.selectedClients,
   };
 }

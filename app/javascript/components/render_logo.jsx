@@ -11,7 +11,7 @@ export default function renderLogo(financer){
     }
     return(
       <div
-        className="logo-financeur margin-right-15"
+        className={`${financer.name ? "logo-financeur" : "navbar-avatar no-margin" } margin-right-15`}
         style={{ minHeight: "35px", minWidth: "35px", backgroundImage: `url(${url})`}}
         >
       </div>
@@ -22,6 +22,8 @@ export default function renderLogo(financer){
       name = financer.name
     }else if(financer.first_name){
       name = `${financer.first_name}${financer.last_name ? ` ${financer.last_name}` : ""}`
+    }else if( typeof financer === "string" ) {
+      name = financer
     }
     return(
       <div

@@ -1,7 +1,11 @@
 import {
   SHOW_CLIENT,
+  SHOW_CLIENT_CONSEILLER,
+  SHOW_CREATE_RESSOURCE,
+  SHOW_DEMANDE,
   SHOW_DOCUMENT,
   SHOW_FINANCER,
+  SHOW_NOTES,
   SHOW_REPONSES,
   SHOW_RESSOURCE,
   CLOSE_MODAL,
@@ -12,10 +16,22 @@ export default function(state = null, action) {
     case SHOW_CLIENT: {
       return true;
     }
+    case SHOW_CLIENT_CONSEILLER: {
+      return true;
+    }
+    case SHOW_CREATE_RESSOURCE: {
+      return true;
+    }
+    case SHOW_DEMANDE: {
+      return true;
+    }
     case SHOW_DOCUMENT: {
       return true;
     }
     case SHOW_FINANCER: {
+      return true;
+    }
+    case SHOW_NOTES: {
       return true;
     }
     case SHOW_REPONSES: {

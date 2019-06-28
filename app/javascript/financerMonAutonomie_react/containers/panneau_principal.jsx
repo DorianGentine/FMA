@@ -6,6 +6,7 @@ import PanneauPrincipalAbout from "./panneau_principal/panneau_principal_about"
 import PanneauPrincipalAlertes from "./panneau_principal/panneau_principal_alertes"
 import PanneauPrincipalClients from "./panneau_principal/panneau_principal_clients"
 import PanneauPrincipalCompte from "./panneau_principal/panneau_principal_compte"
+import PanneauPrincipalDemandes from "./panneau_principal/panneau_principal_demandes"
 import PanneauPrincipalProjet from "./panneau_principal/panneau_principal_projet"
 
 class PanneauPrincipal extends Component {
@@ -15,19 +16,15 @@ class PanneauPrincipal extends Component {
     // const selectedMenuVolet = this.props.selectedMenuVolet
 
     if(selectedMenu.toLowerCase() == "projet" || selectedMenu.toLowerCase() == "bureau"){
-      return <PanneauPrincipalProjet />
+      return <PanneauPrincipalProjet selectedMenu={selectedMenu} />
     }else if(selectedMenu.toLowerCase() == "compte"){
       return <PanneauPrincipalCompte selectedMenuVolet={this.props.selectedMenuVolet} />
     }else if(selectedMenu.toLowerCase() == "alertes"){
       return <PanneauPrincipalAlertes selectedMenuVolet={this.props.selectedMenuVolet} />
-    }else if(selectedMenu.toLowerCase() == "clients"){
-      return <PanneauPrincipalClients />
+    }else if(selectedMenu.toLowerCase() == "clients" || selectedMenu.toLowerCase() == "conseillers"){
+      return <PanneauPrincipalClients selectedMenu={selectedMenu} />
     }else if(selectedMenu.toLowerCase() == "demandes"){
-      return (
-        <div>
-          <h1>{selectedMenu}</h1>
-        </div>
-      );
+      return <PanneauPrincipalDemandes />
     }else if(selectedMenu.toLowerCase() == "a_propos"){
       return <PanneauPrincipalAbout selectedMenuVolet={this.props.selectedMenuVolet} />
     }

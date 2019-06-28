@@ -8,6 +8,14 @@ json.project do
   json.nombre_de_financer @project.solutions.count
   json.formulary_ids @project.formulary_ids
 end
+json.demandes @project.requests do |request|
+  json.extract! request, :category, :description, :category, :close, :created_at
+end
+
+json.notes @project.notes do |note|
+  json.extract! note, :title, :description
+end
+
 
 json.formularies @project.formularies do |formulary|
   json.extract! formulary, :id, :first_name

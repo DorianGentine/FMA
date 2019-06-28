@@ -17,49 +17,58 @@ class CardClient extends Component {
     const month = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"][mydate.getMonth()];
     const dateInscription = mydate.getDate() + ' ' + month + ' ' + mydate.getFullYear();
 
+    let numEtape
+    let subTitle
     const calculEtape = () => {
       switch (client.étape) {
         case "validation_data": {
           numEtape = 1
-          return numEtape;
+          subTitle = "Données à valider"
+          return [numEtape, subTitle];
         }
         case "documentation": {
           numEtape = 2
-          return numEtape;
+          subTitle = "Documents à envoyer"
+          return [numEtape, subTitle];
         }
         case "meeting": {
           numEtape = 3
-          return numEtape;
+          subTitle = "RDV à fixer"
+          return [numEtape, subTitle];
         }
         case "call": {
           numEtape = 4
-          return numEtape;
+          subTitle = "RDV fixé"
+          return [numEtape, subTitle];
         }
         case "progression": {
           numEtape = 5
-          return numEtape;
+          subTitle = "Kit à envoyer"
+          return [numEtape, subTitle];
         }
         case "evaluation": {
           numEtape = 6
-          return numEtape;
+          subTitle = "Formulaire satisfaction"
+          return [numEtape, subTitle];
         }
         default: {
           numEtape = 0
-          return numEtape;
+          return [numEtape, subTitle];
         }
       }
     }
-    let numEtape = calculEtape()
+    let etapeText = calculEtape()
+    numEtape = etapeText[0]
+    subTitle = etapeText[1]
 
     const fullName = `${client.first_name} ${client.last_name}`
-
     if(selectedClients === "tous" ||
       selectedClients === "en_cours" && numEtape < 6 ||
       selectedClients === "archives" && numEtape === 6 ||
       fullName.toLowerCase().includes(selectedClients.toLowerCase()) ||
       parseInt(selectedClients) === numEtape) {
       return(
-        <div className="col-lg-3 col-xs-12 col-sm-4">
+        <div className="col-lg-4 col-xs-12 col-sm-6">
           <div className="white-box" style={{padding: "20px"}}>
             <div className="row">
               <div className="col-lg-6 font-12 black flex align-items-center margin-bottom-15">
@@ -68,7 +77,7 @@ class CardClient extends Component {
               </div>
               <div className="col-lg-6 text-align-right">...</div>
               <div className="col-lg-12 font-14 black bold">{fullName}</div>
-              <div className="col-lg-12 margin-bottom-30 blue font-12">RDV à fixer</div>
+              <div className="col-lg-12 margin-bottom-30 blue font-12">{subTitle}</div>
               <div className="col-lg-5 font-12 gray-300">Financeurs:</div>
               <div className="col-lg-7 text-align-right font-12 black">{client.financeurs}</div>
               <div className="col-lg-5 font-12 gray-300">Date:</div>

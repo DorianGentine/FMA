@@ -6,8 +6,6 @@ import Dropzone from 'react-dropzone'
 
 import renderLogo from "../../../components/render_logo"
 
-import { fetchPostCompte } from '../../actions'
-
 class PanneauPrincipalAbout extends Component {
   render(){
     const selectedMenuVolet = this.props.selectedMenuVolet
@@ -47,7 +45,7 @@ class PanneauPrincipalAbout extends Component {
 
 // function mapDispatchToProps(dispatch) {
 //   return bindActionCreators({
-//     fetchPostCompte,
+
 //   }, dispatch);
 // }
 

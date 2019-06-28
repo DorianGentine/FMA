@@ -28,15 +28,21 @@ const getEditAnswer = (questions) => {
   })
 }
 
-const setQuestionAnswer = (question) => {
+const setQuestionAnswer = (question, questions, i) => {
   insertQuestion(question)
   if (question.set_up.need_answer) {
     insertAnswer(question)
   }
 }
 
+const displayQuestionsUntilNeedAnswer = (questions, i) => {
+  for (var e = 1; e < questions.length; e++) {
+    if (questions[i + e].set_up.need_answer) { break }
+      insertQuestion(questions[i + e])
+  }
+}
+
 const onClickHint = ({target}) => {
-  console.log("okaaaa")
   var message = target.parentNode.lastElementChild
   if (message.style.display === 'none') {
     message.style.display = "block"
@@ -50,15 +56,18 @@ const nextStep = (questions, updated = null, question = null) => {
     if (question) {
       if (questions[i] === question) { break; }
     } else {
-    if (typeof questions[i].answer != 'string' && typeof questions[i].answer != 'number') { break; } }
+      if (typeof questions[i].answer != 'string' && typeof questions[i].answer != 'number') { break; }
+    }
     if (updated && asked != undefined && questions[i].set_up.id === parseInt(asked.dataset.question, 10)){
       input.lastElementChild.remove()
       insertAnswer(questions[i])
       if (questions[i].set_up.column_name === "assistant") {
-        insertQuestion(questions[questions.length-1])
+        insertQuestion(questions[questions.length - 1])
+      } else if (questions[i + 1].set_up.need_answer === false) {
+        displayQuestionsUntilNeedAnswer(questions, i)
       }
     } else if (asked == undefined ) {
-      setQuestionAnswer(questions[i])
+      setQuestionAnswer(questions[i], questions, i)
     }
   }
   if (i == questions.length) {
@@ -74,7 +83,6 @@ const nextStep = (questions, updated = null, question = null) => {
   getEditAnswer(questions)
   // setTimeout(() => { onClickHint()}, 2000)
 }
-
 
 
 const updateFormulary = (event) => {

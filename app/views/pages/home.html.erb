@@ -1,7 +1,7 @@
 <img class="absolute d-none d-sm-block" style="top: 0; right: 0; width: 50vw;" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1559381956/Illu%20HP/BG_djr1o2.svg" alt="">
 
 <div class="container">
-<!-- Questionnaire -->
+  <!-- Questionnaire -->
     <div class="row margin-top-60">
       <div class="col-lg-5 col-xs-12" id="formulary-form">
         <div class="formulary-border"></div>
@@ -36,6 +36,17 @@
         <h1>03. Une information clair sur les financements.</h1>
         <p class="margin-bottom-30">Retrouvez à travers votre espace personnel l’ensemble des informations nécessaires à la construction de votre dossier d’aide au financement. Chargez les documents légaux demandés, fixé un rendez-vous avec votre conseiller, et consulté à tout moment l’avancé de votre dossier.<br>L’ensemble de ces étapes permettra de vous apporter l’information et l’assistance les plus adaptées.</p>
         <a class="blue" href="">En savoir plus sur l'éligibilité gratuite</a>
+      </div>
+    </div>
+
+  <!-- CTA -->
+    <div class="margin-top-120 CTA-padding">
+      <div class="inscription-newsletter blue-background">
+        <div class="margin-right-30">
+          <h1 class="white margin-right-30 no-margin">Estimez les aides à votre disposition</h1>
+          <p class="gray-300 margin-bottom-30-xs">Vous utilisez déjà financer mon autonomie ? <%= link_to "Connectez-vous", new_user_session_path, class: "gray-300" %></p>
+        </div>
+        <%= link_to "Découvrir", home_path, class: "btn-gris text-align-center" %>
       </div>
     </div>
 
@@ -98,21 +109,21 @@
         <p data-target="#carousel_maquettes" data-slide-to="4" class="text-align-center">Réglages du compte</p>
       </div>
 
-      <div class="carousel-inner">
+      <div class="carousel-inner d-none d-sm-block">
         <div class="carousel-item active">
-          <div class="carousel_01 d-block w-100"></div>
+          <div class="carousel_01 w-100"></div>
         </div>
         <div class="carousel-item">
-          <div class="carousel_02 d-block w-100"></div>
+          <div class="carousel_02 w-100"></div>
         </div>
         <div class="carousel-item">
-          <div class="carousel_03 d-block w-100"></div>
+          <div class="carousel_03 w-100"></div>
         </div>
         <div class="carousel-item">
-          <div class="carousel_04 d-block w-100"></div>
+          <div class="carousel_04 w-100"></div>
         </div>
         <div class="carousel-item">
-          <div class="carousel_05 d-block w-100"></div>
+          <div class="carousel_05 w-100"></div>
         </div>
       </div>
 
@@ -122,12 +133,22 @@
       <a class="carousel-control-next" href="#carousel_maquettes" role="button" data-slide="next">
         <%= render "shared/illustrations/arrow_right" %>
       </a>
-
-
     </div>
 
+  <!-- CTA -->
+  <div class="margin-top-120 CTA-padding">
+    <div class="inscription-newsletter blue-background">
+      <div class="margin-right-30">
+        <h1 class="white margin-right-30 no-margin">Estimez les aides à votre disposition</h1>
+        <p class="gray-300 margin-bottom-30-xs">Vous utilisez déjà financer mon autonomie ? <%= link_to "Connectez-vous", new_user_session_path, class: "gray-300" %></p>
+      </div>
+      <%= link_to "Découvrir", home_path, class: "btn-gris text-align-center" %>
+    </div>
+  </div>
+
+
   <!-- inscription newsletter -->
-    <div class="margin-top-120 inscription-newsletter-padding">
+    <!-- <div class="margin-top-120 inscription-newsletter-padding">
       <div class="inscription-newsletter blue-background">
         <p class="white margin-right-15 no-margin-xs margin-bottom-30-xs flex-grow-1">Souscrire à la Newsetter pour plus d'informations</p>
         <div class="input-wth-icon margin-right-15 no-margin-xs margin-bottom-15-xs">
@@ -136,7 +157,7 @@
         </div>
         <button class="btn-gris">S'incrire</button>
       </div>
-    </div>
+    </div> -->
 
   <!-- témoignages -->
     <div class="row margin-top-120">

@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  has_many :requests, dependent: :destroy
 
   has_many :notifications, dependent: :destroy
   has_many :notes, dependent: :destroy
@@ -16,11 +17,16 @@ class Project < ApplicationRecord
   before_create :fill_step
   before_save :going_to_call, :clean_appointment
 
-  enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evaluation"]
+  enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evaluation", "archived"]
 
-  def link_to_advisor(user)
-    UserProject.create(user: user, project: self)
+  def link_to_advisor_and_bene(benef, advisor)
+    UserProject.create(user: advisor, project: self)
+    UserProject.create(user: benef, project: self, client: benef.client)
   end
+
+  # def link_to_beneficaire(user)
+  #   UserProject.create(user: user, project: self, client: user.client)
+  # end
 
   def in_relationship?(user)
     return true if UserProject.where(user: user, project: self).first
@@ -64,6 +70,9 @@ class Project < ApplicationRecord
     elsif self.progression?
       self.evaluation!
       Notification.create(title:"a obtenu son kit", date:Time.now, project: self)
+    elsif self.evaluation?
+      self.archived!
+      Notification.create(title:"a été archivé", date:Time.now, project: self)
     end
     self.hint = true
     self.save

@@ -12,21 +12,29 @@ class Api::V1::NotesController < Api::V1::BaseController
   end
 
   def create
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
     @note = Note.new(note_params)
-    @note.project = project
+    @note.project = @project
     if @note.save
-      render json: project
+      render json: @project
     else
       render_error
     end
     authorize @project
   end
 
+  def destroy
+    note = Note.find(params[:id])
+    @project = note.project
+    note.destroy
+    head :no_content
+    authorize @project
+  end
+
   private
 
   def note_params
-    params.require(:note).permit(:title, :desciption)
+    params.require(:note).permit(:title, :description)
   end
 
   def render_error

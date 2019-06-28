@@ -33,9 +33,9 @@
   }
 }
 
-.image-document{
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: contain;
-  height: 75vh;
+.pdf_css{
+  div, canvas{
+    width: 100% !important;
+    height: unset !important;
+  }
 }

@@ -1,24 +1,58 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Select from "react-dropdown-select"
 
 import { fetchClients, selectClients } from '../../actions';
 
 import CardClient from './card_client';
+import CardConseiller from './card_conseiller';
 
 class PanneauPrincipalClients extends Component {
   componentWillMount(){
-    this.props.fetchClients("/api/v1/users")
+    if(this.props.selectedMenu === "clients"){
+      this.props.fetchClients("/api/v1/users")
+    }else if(this.props.selectedMenu === "conseillers"){
+      this.props.fetchClients("/api/v1/users/advisors")
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.selectedMenu === "clients" && this.props.selectedMenu != nextProps.selectedMenu){
+      this.props.fetchClients("/api/v1/users")
+    }else if(nextProps.selectedMenu === "conseillers" && this.props.selectedMenu != nextProps.selectedMenu){
+      this.props.fetchClients("/api/v1/users/advisors")
+    }
   }
 
   render(){
     const clients = this.props.clients
+    let conseillersTrue = false
+    if(this.props.selectedMenu === "conseillers"){
+      conseillersTrue = true
+    }
 
     const renderClients = () => {
-      return clients.clients.map((client, index) => {
-        return <CardClient client={client} key={client.id}/>
-      })
+      if(clients.clients){
+        return clients.clients.map((client, index) => {
+          return <CardClient client={client} key={client.id}/>
+        })
+      }else{
+        return clients.advisors.map((advisor, index) => {
+          return <CardConseiller advisor={advisor} key={advisor.id}/>
+        })
+      }
     }
+
+    const options = [
+      { name: "Sélectionnez une étape", value: "", key: 0, },
+      { name: "Etape 1", value: "1", key: 1, },
+      { name: "Etape 2", value: "2", key: 2, },
+      { name: "Etape 3", value: "3", key: 3, },
+      { name: "Etape 4", value: "4", key: 4, },
+      { name: "Etape 5", value: "5", key: 5, },
+      { name: "Étape 6", value: "6", key: 6, },
+    ]
 
     return (
       <div className="margin-top-15">
@@ -27,34 +61,40 @@ class PanneauPrincipalClients extends Component {
             <i className="fas fa-search"></i>
             <input
               type="text"
-              placeholder="Nom ou prénom du client"
+              placeholder={this.props.selectedMenu === "conseillers" ? "Nom ou prénom du conseiller" : "Nom ou prénom du client"}
               style={{width: "100%"}}
               onChange={()=>{this.props.selectClients(event.target.value)}}
             />
           </div>
           <div className="col-lg-4 offset-lg-4">
-            <select className="selectize-input" onChange={()=>{this.props.selectClients(event.target.value)}}>
-              <option value="">Sélectionnez une étape</option>
-              <option value="1">Etape 1</option>
-              <option value="2">Etape 2</option>
-              <option value="3">Etape 3</option>
-              <option value="4">Etape 4</option>
-              <option value="5">Etape 5</option>
-              <option value="6">Étape 6</option>
-            </select>
+            <Select
+              className="react-dropdown-select"
+              options={options}
+              valueField="value"
+              values={[options.find(opt => opt.name === "Sélectionnez une étape")]}
+              // onChange={console.log(value)}
+              onChange={(value) => {this.props.selectClients(value[0].value)}}
+              labelField="name"
+            />
           </div>
         </div>
-        <div className="margin-top-30 margin-bottom-30 flex align-items-center">
-          <hr className="ligne-horizontal"/>
-          <div
-            className="font-14 black blue-gray-background flex-grow-1 text-align-center"
-            style={{ width: "100%" }}>
-            Etape 1 : Confirmation des réponses
+        { conseillersTrue ?
+          <div className="margin-top-30 margin-bottom-30 flex align-items-center">
+            <hr className="ligne-horizontal"/>
           </div>
-          <hr className="ligne-horizontal"/>
-        </div>
-        <div className="row">
-          {clients != null ? renderClients() : <h2>Chargement...</h2>}
+          :
+          <div className="margin-top-30 margin-bottom-30 flex align-items-center">
+            <hr className="ligne-horizontal"/>
+            <div
+              className="font-14 black blue-gray-background flex-grow-1 text-align-center"
+              style={{ width: "100%" }}>
+              Etape 1 : Confirmation des réponses
+            </div>
+            <hr className="ligne-horizontal"/>
+          </div>
+        }
+        <div className={`row ${conseillersTrue ? "margin-top-30" : "" }`}>
+          {clients != null ? renderClients() : <h2 className="text-align-center">Chargement...</h2>}
         </div>
       </div>
     )

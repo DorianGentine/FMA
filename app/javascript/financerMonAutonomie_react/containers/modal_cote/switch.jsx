@@ -14,7 +14,7 @@ class Switch extends Component {
     event.preventDefault();
     if(!checked){
       const body = { ressource_id: ressourceId, project_id: clientProject }
-      this.props.fetchPostCompte(`/api/v1/projects/${clientProject}/kits`, body, "POST" )
+      this.props.fetchPostCompte(`/api/v1/projects/${clientProject}/kits`, body, "POST", () => {this.props.fetchClients("/api/v1/users")} )
     }else if(checked){
       console.log("DELETE")
       fetch(`/api/v1/projects/${clientProject}/kits/${kitId}`, { method: "DELETE", })

@@ -4,15 +4,24 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: [:show, :update]
 
   def index
-    @user = current_user
-    if @user.advisor
-      if params[:query]
-        sql_query = "last_name LIKE :query OR first_name LIKE :query"
-        @users = policy_scope(User).where(sql_query, query: "%#{params[:query]}%")
-      else
-        @users = policy_scope(User)
-      end
+    if params[:query]
+      sql_query = "last_name LIKE :query OR first_name LIKE :query"
+      @users = policy_scope(User).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @users = policy_scope(User)
     end
+  end
+
+  def advisors
+    @user = current_user
+    advisors = User.where(advisor: true)
+    if params[:query]
+      sql_query = "last_name LIKE :query OR first_name LIKE :query"
+      @advisors = advisors.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @advisors = advisors
+    end
+    authorize @user
   end
 
   def show
@@ -23,6 +32,13 @@ class Api::V1::UsersController < Api::V1::BaseController
       @url = @advisor.frameworks.first.schedule_url
     elsif @user.advisor
       @clients = @user.his_clients
+      @nbr_kits = @user.projects.where(step: "progression")
+    elsif @user.admin
+      @clients = User.where(client: true)
+      @advisors = User.where(advisor: true)
+      @nbr_sign_in = Project.all
+      @in_progress = Project.all.where.not(step: "archived")
+      @archived = Project.all.where(step: "archived")
     end
     @statut = @user.client ? "client" : @user.admin ? "admin" : "conseiller"
   end
@@ -38,7 +54,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name)
+    params.require(:user).permit(:first_name, :last_name, :phone, :avatar)
   end
 
   def render_error

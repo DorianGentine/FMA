@@ -10,14 +10,21 @@ const MonActualite = (props) => {
     })
   }
 
+  let style
+  if(props.api.statut === "conseiller"){
+    style = { maxHeight: "calc(100vh - 560px)", minHeight: "30px" }
+  }else{
+    style = { height: "136px", minHeight: "30px" }
+  }
+
   return (
-    <div className="margin-top-30 flex-grow-1">
+    <div className={`margin-top-30 ${props.api.statut === "conseiller" ? "flex-grow-1" : "" }`}>
       <div className="flex black align-items-center margin-bottom-30">
         <div className="icon-live margin-right-15"></div>
         Mon actualité
       </div>
-      <div className="row scroll" style={{ maxHeight: "calc(100vh - 560px)", minHeight: "30px" }}>
-        {renderActus()}
+      <div className="row scroll" style={style}>
+        {actus ? renderActus() : <p>Chargement...</p>}
       </div>
     </div>
   );
