@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2019_06_28_153610) do
   create_table "financers", force: :cascade do |t|
     t.string "name"
     t.string "logo"
+    t.string "web"
+    t.string "phone"
     t.text "description"
     t.text "answer"
     t.datetime "created_at", null: false

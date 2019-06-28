@@ -8,7 +8,7 @@ class ProjectPolicy < ApplicationPolicy
     true
   end
   def show?
-    record.users.include?(user)
+    true
   end
   def create?
     true
