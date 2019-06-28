@@ -14,7 +14,7 @@ class ModalRessource extends Component {
           <i className="far fa-times-circle pointer" onClick={this.props.closeModal}></i>
         </div>
         <div className="blue-gray-box align-text-center vertical margin-bottom-30 margin-top-30">
-          <h4 className="black">{`La caisse ${ressource.id}`}</h4>
+          <h4 className="black">{ressource.title}</h4>
           <p className="blue">Conseil en solutions</p>
         </div>
         <p className="black">Actions rapides</p>
@@ -25,7 +25,7 @@ class ModalRessource extends Component {
         </div>
         <hr className="ligne-horizontal gray-200-background"/>
         <p className="black">Description</p>
-        <p>Bonjour je viens de formuler une demande spécifique concernant le dossier de. Bonjour je viens de formuler une demande spécifique concernant le dossier de......</p>
+        <p>{ressource.description}</p>
         <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
       </div>
         // <hr className="ligne-horizontal gray-200-background"/>

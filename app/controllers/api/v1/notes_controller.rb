@@ -23,6 +23,14 @@ class Api::V1::NotesController < Api::V1::BaseController
     authorize @project
   end
 
+  def destroy
+    note = Note.find(params[:id])
+    @project = note.project
+    note.destroy
+    head :no_content
+    authorize @project
+  end
+
   private
 
   def note_params

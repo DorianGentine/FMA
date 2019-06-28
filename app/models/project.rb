@@ -19,13 +19,14 @@ class Project < ApplicationRecord
 
   enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evaluation", "archived"]
 
-  def link_to_advisor(user)
-    UserProject.create(user: user, project: self)
+  def link_to_advisor_and_bene(benef, advisor)
+    UserProject.create(user: advisor, project: self)
+    UserProject.create(user: benef, project: self, client: benef.client)
   end
 
-  def link_to_beneficaire(user)
-    UserProject.create(user: user, project: self, client: self.client)
-  end
+  # def link_to_beneficaire(user)
+  #   UserProject.create(user: user, project: self, client: user.client)
+  # end
 
   def in_relationship?(user)
     return true if UserProject.where(user: user, project: self).first

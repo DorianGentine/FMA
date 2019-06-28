@@ -36,8 +36,8 @@ class ModalClient extends Component {
               return (
                 <div className="flex space-between align-items-center margin-bottom-15" key={index}>
                   <div className="flex-grow-1">
-                    <h4 className="font-12 no-margin">{ressource.id}</h4>
-                    <p className="font-12">{"Description de la ressource"}</p>
+                    <h4 className="font-12 no-margin">{ressource.title}</h4>
+                    <p className="font-12">{ressource.description}</p>
                   </div>
                   <Switch checked={true} kind="switchKit" ressource={ressource} kit={client.kits[i]} />
                 </div>
@@ -61,8 +61,8 @@ class ModalClient extends Component {
             return (
               <div className="flex space-between align-items-center margin-bottom-15" key={index}>
                 <div className="flex-grow-1">
-                  <h4 className="font-12 no-margin">{ressource.id}</h4>
-                  <p className="font-12">{"Description de la ressource"}</p>
+                  <h4 className="font-12 no-margin">{ressource.title}</h4>
+                  <p className="font-12">{ressource.description}</p>
                 </div>
                 <Switch checked={false} kind="switchKit" ressource={ressource} kit={kitSelected} />
               </div>
