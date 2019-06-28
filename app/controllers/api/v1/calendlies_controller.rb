@@ -12,7 +12,7 @@ class Api::V1::CalendliesController < Api::V1::BaseController
     @user = User.find(1)
     p "////////////// data #{params[:data]}"
     p "////////////// item #{params[:data][:item]}"
-    p "////////////// conversation_parts #{params[:data][:item][:conversation_parts][:conversation_parts][:author]}"
+    p "////////////// conversation_parts #{params[:data][:item][:conversation_parts][:conversation_parts]}"
     p "////////////// author #{params[:data][:item][:conversation_parts][:conversation_parts].last[:author]}"
     p "////////////// links #{params[:data][:item][:links]}"
     message = Message.last
