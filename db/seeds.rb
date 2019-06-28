@@ -1222,6 +1222,7 @@ p "Create Advisor"
   advisor = User.create(last_name: "Charet", first_name: "Marine", phone: "998877866", avatar: "https://res.cloudinary.com/financermonautonomie/image/upload/v1556856588/Belavie/Marine_CHARET_kyd3ee.jpg", advisor: true, client: false, admin: false, email: "marine@mail.com", password:"password")
 
   Framework.create(user: advisor, logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560410625/Belavie/calendly_pbazdl.png", url: "https://calendly.com/event_types/user/me", title: "calendly", schedule_url: "https://calendly.com/adrienfma/1er-rdv-telephonique")
+  Framework.create(user: advisor, logo: nil, title: "intercom", schedule_url: "https://app.intercom.io/a/apps/pfhokn92/inbox/inbox/")
 p "Create Admin"
 
   User.create(last_name: "Euphrasie", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "admin@mail.com", password:"password")
