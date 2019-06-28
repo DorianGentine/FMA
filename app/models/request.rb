@@ -5,6 +5,6 @@ class Request < ApplicationRecord
 
 private
   def send_notifiaction
-    Notification.create(title:"a une demande spécifique", date:Time.now, project: self.project)
+    Notification.create(title:"a fait une demande spécifique", date:Time.now, project: self.project)
   end
 end
