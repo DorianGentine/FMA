@@ -18,12 +18,11 @@ class PanneauPrincipalDemandes extends Component {
     const renderDemandes = () => {
       let nbDemande = 0
       for (var i = projects.solutions.length - 1; i >= 0; i--) {
-        console.log(projects.solutions[i].demandes)
         if(projects.solutions[i].demandes.length > 0){
           nbDemande = nbDemande + 1
         }
       }
-      console.log("nbDemande", nbDemande)
+
       if(nbDemande != 0){
         return projects.solutions.map((project, index) => {
           if(project.demandes != []){
@@ -33,14 +32,15 @@ class PanneauPrincipalDemandes extends Component {
           }
         })
       }else{
-        return <h2 className="text-align-center margin-top-30">Pas de demandes</h2>
+        return <h2 className="margin-auto margin-top-30 gray">Pas de demandes</h2>
       }
     }
 
     const options = [
-      { name: "Sélectionnez une ???", value: "", key: 0, },
+      { name: "Sélectionnez une category", value: "", key: 0, },
       { name: "Diagnostic", value: "1", key: 1, },
-      { name: "Devis", value: "2", key: 2, },
+      { name: "Chiffrage", value: "2", key: 2, },
+      { name: "Financement", value: "3", key: 3, },
     ]
 
     return (
@@ -60,7 +60,7 @@ class PanneauPrincipalDemandes extends Component {
               className="react-dropdown-select"
               options={options}
               valueField="value"
-              values={[options.find(opt => opt.name === "Sélectionnez une ???")]}
+              values={[options.find(opt => opt.name === "Sélectionnez une category")]}
               // onChange={(value) => {this.props.selectClients(value[0].value)}}
               labelField="name"
             />

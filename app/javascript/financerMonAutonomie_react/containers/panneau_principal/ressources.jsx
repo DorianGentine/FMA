@@ -16,11 +16,6 @@ class Ressources extends Component {
     const renderRessources = () => {
       return ressources.map((ressource, index) => {
 
-        const showHint = () => {
-          const hintText = document.getElementById(`hint${index}`)
-          hintText.classList.toggle("d-none")
-        }
-
         let fetchDelete
         if(statut === "admin"){
           fetchDelete = () => {
@@ -37,16 +32,6 @@ class Ressources extends Component {
             <div className="flex-grow-1">
               <h4 className="font-12 no-margin">{ressource.title}</h4>
               <p className="font-12">{ressource.description}</p>
-            </div>
-            <div className="icon-alert relative pointer" onClick={showHint}>
-              <div
-                id={`hint${index}`}
-                className="red-background white d-none absolute"
-                style={{padding: "20px", right: "0px", top: "32px", width: "400px", borderRadius: "3px"}}
-              >
-                <h4 className="white">Informations supplémentaires:</h4>
-                <p>Le financeurs auxquels vous pouvez potentiellement être éligible ne peut être associé au financeur <strong>La caisse des retraites</strong> en raison de...</p>
-              </div>
             </div>
             <button className="blue-gray-btn" onClick={()=>{this.props.showRessource(ressource)}}>Accéder</button>
             {statut === "admin" ?
