@@ -250,7 +250,7 @@ class Formulary < ApplicationRecord
   end
   # Q-20
   def allow_tax_revenue?
-    raise
+
     if self.occupant.present? && self.set_nbr_of_occupants == 0
       if self.occupation.present? && self.occupation == 0
         return true
