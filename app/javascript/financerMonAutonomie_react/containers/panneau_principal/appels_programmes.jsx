@@ -10,21 +10,12 @@ import { renderDate, diffDays } from "../../../components/render_date"
 import Switch from "../modal_cote/switch"
 
 class AppelsProgrammes extends Component {
-  componentWillReceiveProps(nextProps){
-    // if(nextProps.clients === this.props.clients){
-    //   console.log("next", nextProps.clients[0].étape)
-    //   console.log("this", this.props.clients[0].étape)
-    //   this.props.fetchClients("/api/v1/users")
-    // }
-  }
-
   render(){
     const clients = this.props.clients
 
     let clientsStep4 = 0
     if(clients != null){
       for (let i = clients.clients.length - 1; i >= 0; i--) {
-        // if(clients.clients[i].étape === "call"){
         if(clients.clients[i].étape === "call"){
           clientsStep4 = clientsStep4 + 1
         }
@@ -38,7 +29,6 @@ class AppelsProgrammes extends Component {
         )
       }else{
         return clients.clients.map((client, index) => {
-          // if(client.étape === "call"){
           if(client.étape === "call"){
             let hourRdv = new Date(client.rdv).getHours()
             let minRdv = String(new Date(client.rdv).getMinutes()).padStart(2, '0')

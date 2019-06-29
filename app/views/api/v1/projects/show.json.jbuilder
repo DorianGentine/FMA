@@ -9,6 +9,7 @@ json.project do
   json.formulary_ids @project.formulary_ids
 end
 json.demandes @project.requests do |request|
+  json.author @project.is_his_advisor, :id, :name
   json.extract! request, :category, :description, :category, :close, :created_at
 end
 
