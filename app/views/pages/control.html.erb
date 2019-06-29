@@ -1,0 +1,62 @@
+<div id="soon_page">
+  <div class="logo">
+    <a href="#"><img src="https://res.cloudinary.com/dftixsglp/image/upload/v1553250289/Belavie_logo_-01.png" alt="Financer mon autonomie"></a>
+  </div>
+
+  <div class="titre">
+    <h1>Site actuellement en construction !</h1>
+    <h2>Un code vous a été communiqué, veuillez le composer</h2>
+  </div>
+
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="inputPassword2" class="sr-only">Password</label>
+      <input type="password" class="form-control" id="inputPassword2" placeholder="Code Promo">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" id="sendPromo">Valider mon identité</button>
+  </form>
+
+  <div class="copyright">
+    <p>© Copyright financermonautonomie 2019 | Développé par <a href="https://avemcreation.herokuapp.com">Avem création</a></p>
+  </div>
+</div>
+
+<%= link_to home_path do %>
+  <i class="fas fa-user hidden-xs" style="color: white; position: fixed; bottom: 0; font-size: 2em;"></i>
+<% end %>
+
+<style>
+  .form-inline {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 3vh;
+}
+#soon_page {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin: 0;
+}
+
+
+</style>
+
+<script>
+
+  password = document.getElementById("inputPassword2")
+  btn = document.getElementById("sendPromo")
+  btn.addEventListener("click", function(){
+    btn.disabled = true;
+    if (password.value == "ok") {
+      document.location.href= "https://financermonautonomie.herokuapp.com/home"
+    } else {
+      password.value = ""
+      btn.disabled = false;
+    };
+  });
+
+
+
+</script>

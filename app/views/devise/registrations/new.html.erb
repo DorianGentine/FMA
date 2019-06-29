@@ -15,16 +15,16 @@
         <div class="form-inputs">
           <div class="row">
             <div class="col-lg-6">
-              <%= f.input :first_name, autofocus: true, label: "Prénom" %>
+              <%= f.input :first_name, autofocus: true, label: "Prénom", error: f.object.errors.messages[:first_name][0] %>
             </div>
             <div class="col-lg-6">
-              <%= f.input :last_name, label: "Nom" %>
+              <%= f.input :last_name, label: "Nom", error: f.object.errors.messages[:last_name][0] %>
             </div>
             <div class="col-lg-12">
-              <%= f.input :phone, label: "Téléphone" %>
+              <%= f.input :phone, label: "Téléphone", error: f.object.errors.messages[:phone][0] %>
             </div>
             <div class="col-lg-12">
-              <%= f.input :email, required: true, input_html: { autocomplete: "email" }%>
+              <%= f.input :email, required: true, input_html: { autocomplete: "email" } %>
             </div>
             <div class="col-lg-6">
               <%= f.input :password, label: "Mot de passe", required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>

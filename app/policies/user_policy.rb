@@ -17,9 +17,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    if user.advisor && user.his_clients.include?(record)
-      return true
-    elsif user.admin
+    if user.advisor || user.admin
       return true
     else
       return true if record == user

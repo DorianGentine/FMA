@@ -7,7 +7,6 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :message => "Ton prénom doit être rempli"
   validates_presence_of :last_name, :message => "Ton nom doit être rempli"
   validates_presence_of :phone, :message => "Ton téléphone doit être rempli"
-  validates_presence_of :email, :message => "Ton email doit être rempli"
 
   before_create :set_as_client
   after_create :send_welcome_email

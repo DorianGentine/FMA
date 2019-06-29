@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :team, :cgu, :rgpd]
+  skip_before_action :authenticate_user!, only: [ :home, :team, :cgu, :rgpd, :control]
   # skip_after_action :intercom_rails_auto_include
 
   def home
@@ -11,6 +11,10 @@ class PagesController < ApplicationController
       @formulary = @visitor.formulary
       FormularyToHash.new(@formulary).form_json
     end
+  end
+
+  def control
+
   end
 
   def team

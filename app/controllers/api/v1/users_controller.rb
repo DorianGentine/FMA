@@ -34,6 +34,13 @@ class Api::V1::UsersController < Api::V1::BaseController
       @clients = @user.his_clients
       @nbr_kits = @user.projects.where(step: "progression")
     elsif @user.admin
+      @vis_formulaires  = Visitor.all.map { |e| e.formulary }
+
+      connections = User.clients.map { |e| e.current_sign_in_at.present? ? e.current_sign_in_at : nil }
+      @connected = connections.compact.map { |e| e.between?(Time.now.utc, 20.minutes.ago) ? e : nil }
+      @unloged = connections.compact.map { |e| e.between?(Time.now.utc, 20.minutes.ago) ? nil : e }
+      @inactifs = connections.compact.map { |e| e > 3.week.ago ? e : nil }
+
       @clients = User.where(client: true)
       @advisors = User.where(advisor: true)
       @nbr_sign_in = Project.all
