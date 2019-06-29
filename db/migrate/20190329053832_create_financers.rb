@@ -5,6 +5,7 @@ class CreateFinancers < ActiveRecord::Migration[5.2]
       t.string :logo
       t.string :web
       t.string :phone
+      t.text :unmatched
       t.text :description
       t.text :answer
 

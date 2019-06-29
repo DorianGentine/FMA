@@ -6,7 +6,7 @@ json.formulary(@formulary, :id, :first_name, :zip_code, :age,
 
 
 json.solutions @solutions do |solution|
-  json.financer solution.financer, :id, :name, :web, :phone, :logo, :description, :answer
+  json.financer solution.financer, :id, :name, :unmatched, :web, :phone, :logo, :description, :answer
 
   if solution.financer.web.nil?
     if solution.financer.name == "CAISSE DE RETRAITE PRINCIPALE"
