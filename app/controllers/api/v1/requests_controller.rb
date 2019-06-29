@@ -4,22 +4,27 @@ class Api::V1::RequestsController < Api::V1::BaseController
 
   def create
     @project = Project.find(params[:project_id])
-    kit = Request.new(note_params)
-    kit.project = @project
-    if kit.save
+    request = Request.new(request_params)
+    request.project = @project
+    if request.save
       render json: @project
     end
     authorize @project
   end
 
   def update
-
+    request = Request.find(params[:id])
+    @project = request.project
+    if request.update(request_params)
+      render json: @project
+    end
+    authorize @project
   end
 
   private
 
-  def note_params
-    params.require(:request).permit(:category, :description)
+  def request_params
+    params.require(:request).permit(:category, :description, :close)
   end
 end
 
