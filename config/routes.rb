@@ -51,7 +51,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-    post '/update_calendly', to: 'calendly#update_calendly', as: "update_calendly"
+      post :intercom, to: 'calendlies#intercom', as: "intercom"
+      patch :update, to: 'calendlies#update', as: "update"
       resources :visitors, only: [:show, :update] do
         member do
           patch :update_formulary
@@ -64,6 +65,7 @@ Rails.application.routes.draw do
       resources :formularies, only: [ :update, :edit, :show ]
       resources :notes, only: [ :update, :destroy ]
       resources :projects, only: [ :show, :update, :index ] do
+        resources :ratings, only: [ :create, :new ]
         resources :requests, only: [ :create ]
         resources :kits, only: [ :create, :destroy ]
         resources :notes, only: [ :create ]
@@ -88,9 +90,9 @@ Rails.application.routes.draw do
 
   root to: 'contact_forms#new'
 
-  constraints subdomain: "calendly.com", defaults: { format: :json } do
-      post '/api/v1/hooks' => 'calendly#create', as: :create
-  end
+  # constraints subdomain: "calendly.com", defaults: { format: :json } do
+  #   post '/api/v1/hooks' => 'calendly#create', as: :create
+  # end
 end
 
 

@@ -35,6 +35,8 @@ class MatchSolution
         value_to_check = his_age(value_to_check)
       elsif key == 10
         value_to_check = check_accommodation(value_to_check)
+      elsif key == 15
+        return true if @form[key] != "Aucune"
       elsif key == 17
         value_to_check = set_nbr_of_occupants(value_to_check)
       elsif key == 20 || key == 22 || key == 24
@@ -104,7 +106,6 @@ class MatchSolution
   end
 
   def set_tax_brut(form, key)
-    # TODO en fonction réponse ADRIEN
     limit = RevenuAnalyze.new(@formulaire).analyze_brut_global
     result = form[key] / 12
     return result < limit[:a] ? 0 : 1

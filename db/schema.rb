@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_204308) do
+ActiveRecord::Schema.define(version: 2019_06_29_082018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,9 @@ ActiveRecord::Schema.define(version: 2019_06_27_204308) do
   create_table "financers", force: :cascade do |t|
     t.string "name"
     t.string "logo"
+    t.string "web"
+    t.string "phone"
+    t.text "unmatched"
     t.text "description"
     t.text "answer"
     t.datetime "created_at", null: false
@@ -124,6 +127,15 @@ ActiveRecord::Schema.define(version: 2019_06_27_204308) do
     t.index ["ressource_id"], name: "index_kits_on_ressource_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "url"
+    t.integer "unread"
+    t.string "email"
+    t.string "full_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -148,6 +160,19 @@ ActiveRecord::Schema.define(version: 2019_06_27_204308) do
     t.boolean "hint", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.string "obvious"
+    t.string "useful"
+    t.string "reactivity"
+    t.string "recommend"
+    t.text "remark"
+    t.string "satisfy"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_ratings_on_project_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -240,6 +265,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_204308) do
   add_foreign_key "kits", "ressources"
   add_foreign_key "notes", "projects"
   add_foreign_key "notifications", "projects"
+  add_foreign_key "ratings", "projects"
   add_foreign_key "requests", "projects"
   add_foreign_key "solutions", "financers"
   add_foreign_key "user_projects", "projects"

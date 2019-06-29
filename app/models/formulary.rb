@@ -208,6 +208,7 @@ class Formulary < ApplicationRecord
   end
   # Q-17
   def allow_occupant?
+    # raise
     if self.occupation.present? && self.occupation == 0 || self.occupation == 2 || self.occupation == 3
       return true
     elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 0
@@ -250,6 +251,7 @@ class Formulary < ApplicationRecord
   end
   # Q-20
   def allow_tax_revenue?
+
     if self.occupant.present? && self.set_nbr_of_occupants == 0
       if self.occupation.present? && self.occupation == 0
         return true
@@ -267,10 +269,14 @@ class Formulary < ApplicationRecord
   end
   # Q-21
   def allow_gross_income?
-    if self.occupant.present? && self.set_nbr_of_occupants == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
-      return true
-    elsif self.has_partner.present? && self.has_partner == 1 && self.occupant.present? && self.set_nbr_of_occupants == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
-      return true
+    if self.type_of_pension.present? && self.type_of_pension == 0
+      if self.occupant.present? && self.set_nbr_of_occupants == 0 && self.age.present? && self.set_age_group > 0
+        return true
+      elsif self.occupant.present? && self.set_nbr_of_occupants == 1 && self.age.present? && self.set_age_group > 0 && self.has_partner.present? && self.has_partner == 1
+        return true
+      else
+        return false
+      end
     else
       return false
     end
@@ -278,6 +284,8 @@ class Formulary < ApplicationRecord
   def ask_again_gross_income?
     true
   end
+
+
   # Q-22
   def allow_global_tax_revenue?
     if self.occupant.present? && self.set_nbr_of_occupants == 1
@@ -300,12 +308,13 @@ class Formulary < ApplicationRecord
 
   # Q-23
   def allow_household_income?
-    if self.occupant.present? && self.set_nbr_of_occupants == 1 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
+    if self.occupant.present? && self.set_nbr_of_occupants == 1 && self.has_partner.present? && self.has_partner == 0 && self.type_of_pension.present? && self.type_of_pension == 0 && self.age.present? && self.set_age_group > 0
       return true
     else
       return false
     end
   end
+
   def ask_again_household_income?
     true
   end

@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates_presence_of :email, :message => "Ton email doit être rempli"
 
   before_create :set_as_client
-  after_create :send_welcome_email
+  after_create :send_welcome_email, :set_a_advisor
 
   scope :clients, -> { User.where(client: true) }
 
@@ -59,6 +59,13 @@ class User < ApplicationRecord
   end
 
   private
+
+  def set_a_advisor
+    # project = Formulary.find(formulary_id.to_i).project
+    # if self.client && self.project.nil?
+    #   self.link_to_project()
+    # end
+  end
 
   def set_as_client
     if !self.admin && !self.advisor

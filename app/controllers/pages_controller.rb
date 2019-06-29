@@ -9,6 +9,7 @@ class PagesController < ApplicationController
       @formulary = Formulary.new
     else
       @formulary = @visitor.formulary
+      FormularyToHash.new(@formulary).form_json
     end
   end
 

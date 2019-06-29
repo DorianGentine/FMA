@@ -6,7 +6,25 @@ json.formulary(@formulary, :id, :first_name, :zip_code, :age,
 
 
 json.solutions @solutions do |solution|
-  json.financer solution.financer, :id, :name, :logo, :description, :answer
+  json.financer solution.financer, :id, :name, :unmatched, :web, :phone, :logo, :description, :answer
+
+  if solution.financer.web.nil?
+    if solution.financer.name == "CAISSE DE RETRAITE PRINCIPALE"
+      if @formulary.pension.present?
+        json.web Acteur.where(name: @formulary.pension.upcase).first.web
+      else
+        json.web Financer.find_by(name:"CNAV").web
+      end
+    elsif solution.financer.name == "CAISSE DE RETRAITE COMPLÉMENTAIRE"
+      json.web Acteur.where(name: @formulary.supplementary.upcase).first.web
+    elsif solution.financer.name == "BAILLEUR"
+  # rajouter les urls pour les bailleurs
+      json.web Acteur.where(name: @formulary.lessor).first.web
+    end
+  end
+
+  # rajouter avec qui il ne vont pas
+
   json.extract! solution, :id, :background, :category, :group, :name, :financer_id
   json.answers solution.answers do |answer|
     json.extract! answer, :content

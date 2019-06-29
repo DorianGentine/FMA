@@ -18,11 +18,10 @@ if(financeursPotentielsId){
     titreFinanceur.innerText = solution.financer.name.toUpperCase()
 
     let hintFinanceur = null
-    if(true){
+    if(solution.financer.unmatched){
       const showHint = () => {
         hintText.classList.toggle("d-none")
       }
-
       const hintText = document.createElement("div")
       hintText.classList = "red-background white d-none absolute"
       hintText.style = "padding: 20px; right: 0; top: 32px; width: 400px; border-radius: 3px;"
@@ -30,7 +29,7 @@ if(financeursPotentielsId){
         hintTitre.classList = "white"
         hintTitre.innerText = "Informations supplémentaires:"
         const hintCorps = document.createElement("p")
-        hintCorps.innerHTML = "Le financeurs auxquels vous pouvez potentiellement être éligible ne peut être associé au financeur <strong>La caisse des retraites</strong> en raison de..."
+        hintCorps.innerHTML = "<ul>" + solution.financer.unmatched + "</ul> Sachez que ces financeurs ne peuvent être cumulés. Vous aurez donc à faire un choix entre l'un d'entre eux si vous les sollicitez."
       hintText.appendChild(hintTitre)
       hintText.appendChild(hintCorps)
 
@@ -39,6 +38,7 @@ if(financeursPotentielsId){
       hintFinanceur.addEventListener("click", ()=>{showHint()})
 
       hintFinanceur.appendChild(hintText)
+
     }
 
     nomFinanceur.appendChild(titreFinanceur)
@@ -51,7 +51,8 @@ if(financeursPotentielsId){
     // nomFinanceur.innerText = solution.financer.name.toUpperCase()
 
     const descFinanceur = document.createElement("p")
-    descFinanceur.innerText = "Aide à domicile | Paris"
+    descFinanceur.innerText = solution.financer.description
+    descFinanceur.style.fontSize = "0.75em"
 
     const barre = document.createElement("hr")
     barre.classList = "ligne-horizontale"
@@ -63,6 +64,12 @@ if(financeursPotentielsId){
     const lienSite = document.createElement("a")
     lienSite.classList = "black"
     lienSite.innerText = "Site du financeur"
+    if (solution.financer.web) {
+      lienSite.setAttribute('href', solution.financer.web)
+    } else {
+      lienSite.setAttribute('href', solution.web)
+    }
+    lienSite.setAttribute("target", "_blank")
 
     // div.appendChild(numFinanceur)
     div.appendChild(nomFinanceur)

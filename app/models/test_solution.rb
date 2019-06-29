@@ -46,8 +46,8 @@ class TestSolution
           end
         elsif column_name == "gross_income" || column_name == "household_income"
           @array_of_conditions.each do |conditions|
-            form.send("#{column_name}=", rand(2000.. 2200) ) if form.has_partner != "1- Non"
-            form.send("#{column_name}=", rand(1000.. 1600) ) if form.occupant == "1- Non"
+            form.send("#{column_name}=", rand(2000.. 2200) ) if form.has_partner != "Non"
+            form.send("#{column_name}=", rand(1000.. 1600) ) if form.occupant == "Non"
           end
         else
           @array_of_conditions.each do |conditions|

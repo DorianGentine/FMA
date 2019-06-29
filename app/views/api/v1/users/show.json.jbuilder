@@ -9,6 +9,7 @@ if @user.client
 
 
 elsif @user.advisor
+  json.new_message Message.last
   json.notifications @user.notifications.order(:date) do |notification|
     json.user notification.project.his_client.first_name
     json.title notification.title

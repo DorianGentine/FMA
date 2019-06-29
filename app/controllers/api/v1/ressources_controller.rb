@@ -15,6 +15,8 @@ class Api::V1::RessourcesController < Api::V1::BaseController
   end
 
   def create
+    p "//// Params is #{params}"
+    p "//// ressource_params is #{ressource_params}"
     ressource = Ressource.new(ressource_params)
     if ressource.save
       render json: ressource
@@ -35,9 +37,17 @@ class Api::V1::RessourcesController < Api::V1::BaseController
 
 
   def ressource_params
-    params.require(:ressource).permit(:title, :desciption, :formulary, :notice, :model_1, :model_2)
+    params.require(:ressource).permit(:title, :description, :formulary, :notice, :model_1, :model_2)
   end
 end
+
+
+
+
+
+
+
+
 
 
 
