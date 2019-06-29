@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:update]
 
   get '/home', to: 'pages#home'
+  get '/control', to: 'pages#control'
   get '/prise_de_rdv', to: 'pages#prise_de_rdv'
   get '/qui-sommes-nous', to: 'pages#team', as: "equipe"
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"

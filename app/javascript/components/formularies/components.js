@@ -106,7 +106,7 @@ const insertQuestion = (question, last = null) => {
 
   form.insertAdjacentHTML("beforeend", question_send);
   if (question.set_up.hint) {
-    document.getElementById(`hint_${question.set_up.id}`).onclick = onClickHint;
+    document.getElementById(`hint_${question.set_up.id}`).querySelector(".hintClick").onclick = onClickHint;
   }
 }
 
@@ -163,7 +163,7 @@ const createInput = (question, div) => {
 const createMultiInput = (question, div) => {
   const input = document.createElement("input")
   input.style.width = "calc(100% - 40px)"
-  input.classList = "flex"
+  // input.classList = "flex"
   input.classList.add("multiple_select2")
   input.type = "text"
   input.multiple = "multiple"

@@ -52,6 +52,21 @@ elsif @user.admin
       # json.phone client.phone
       json.project client.project.id
     end
+    json.activities do
+      json.projects Project.all.count
+      json.current Project.where.not(step: "archived").count
+      json.requests Request.where.not(close: true).count
+      json.formulaires @vis_formulaires.count
+      json.inscription User.clients.count
+      json.connected @connected.compact.count
+      json.unloged @unloged.compact.count
+      json.dormant @inactifs.compact.count
+    end
+
+
+
+
+
     json.inscrits @nbr_sign_in.count
     json.in_progress @in_progress.count
     json.archived @archived.count
