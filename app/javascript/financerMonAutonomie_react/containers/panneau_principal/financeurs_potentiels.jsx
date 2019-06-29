@@ -15,12 +15,27 @@ class FinanceursPotentiels extends Component {
 
     const renderFinanceurs = () => {
       return financers.map((financer, index) => {
+        const showHint = () => {
+          const hintText = document.getElementById(`hint${index}`)
+          hintText.classList.toggle("d-none")
+        }
+
         return (
           <div className="flex space-between align-items-center margin-bottom-30" key={index}>
             {renderLogo(financer)}
-            <div className="flex-grow-1">
+            <div className="flex-grow-1 margin-right-15">
               <h4 className="font-12 no-margin">{financer.name}</h4>
-              <p className="font-12">{financer.description ? `${financer.description.substring(0,30)}...` : ""}</p>
+              <p className="font-12">{financer.description ? `${financer.description.substring(0,20)}...` : ""}</p>
+            </div>
+            <div className="icon-alert relative pointer text-align-right" onClick={showHint}>
+              <div
+                id={`hint${index}`}
+                className="red-background white d-none absolute margin-right-15"
+                style={{padding: "20px", right: "-80px", top: "32px", width: "400px", borderRadius: "3px", zIndex: "10"}}
+              >
+                <h4 className="white">Informations supplémentaires:</h4>
+                <p>Le financeurs auxquels vous pouvez potentiellement être éligible ne peut être associé au financeur <strong>La caisse des retraites</strong> en raison de...</p>
+              </div>
             </div>
             <button className="blue-gray-btn" onClick={()=>{this.props.showFinancer(financer)}}>Infos</button>
           </div>

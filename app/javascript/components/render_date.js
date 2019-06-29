@@ -35,9 +35,17 @@ export function renderDate(date, format){
   return dateToRender
 }
 
-export function diffDays(d1, d2) {
-  var t2 = d2.getTime();
-  var t1 = d1.getTime();
+export function diffDays(date) {
+  var t1 = date.getTime();
+  var t2 = new Date().getTime(); // date d'aujourd'hui
 
   return parseInt((t2-t1)/(24*3600*1000));
 }
+
+export function diffTime(date) {
+  var t1 = date.getTime();
+  var t2 = new Date().getTime(); // date d'aujourd'hui
+
+  return parseInt((t2-t1)/(60*1000));
+}
+
