@@ -8,12 +8,10 @@ class ValidationModal extends Component {
     const hint = this.props.project.hint
 
     const closeLilModal = () => {
-      if( !this.props.otherUser ){ // désactive l'envoi si conseiller connecté
-        fetch(`/api/v1/projects/${this.props.project_id}/display_hint`,
-        {
-          method: "PATCH",
-        })
-      }
+      fetch(`/api/v1/projects/${this.props.project_id}/display_hint`,
+      {
+        method: "PATCH",
+      })
       const modal = document.getElementById(`tip_${etape}`)
       const point = document.getElementById(`point_${etape}`)
       modal.classList.add('hidden')
@@ -54,18 +52,22 @@ class ValidationModal extends Component {
       return null
     }
 
-    return(
-      <div className="validation_modal" style={style}>
-        <div className={`validation_modal-point ${ hint ? "" : "hidden"}`} id={`point_${etape}`} onClick={toggleLilModal}></div>
-        <div className={`validation_modal-text ${ hint ? "" : "hidden"}`} id={`tip_${etape}`}>
-          <div className="flex">
-            <p className="white flex-grow-1 margin-right-15 bold">{textTitre}</p>
-            <i className="fas fa-times white text-align-right align-center" onClick={closeLilModal}></i>
+    if(!this.props.otherUser){
+      return(
+        <div className="validation_modal" style={style}>
+          <div className={`validation_modal-point ${ hint ? "" : "hidden"}`} id={`point_${etape}`} onClick={toggleLilModal}></div>
+          <div className={`validation_modal-text ${ hint ? "" : "hidden"}`} id={`tip_${etape}`}>
+            <div className="flex">
+              <p className="white flex-grow-1 margin-right-15 bold">{textTitre}</p>
+              <i className="fas fa-times white text-align-right align-center" onClick={closeLilModal}></i>
+            </div>
+            <p className="white" style={{ whiteSpace: "pre-line" }}>{textPrincipal}</p>
           </div>
-          <p className="white" style={{ whiteSpace: "pre-line" }}>{textPrincipal}</p>
         </div>
-      </div>
-    )
+      )
+    }else{
+      return null
+    }
   }
 }
 

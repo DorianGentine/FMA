@@ -42,9 +42,18 @@ class MenuProfil extends Component {
         clients = this.props.project
         if(clients != null){
           clientsLength = 0
+          clientsEnCours = 0
+          clientsArchives = 0
           for (var i = clients.solutions.length - 1; i >= 0; i--) {
             if(clients.solutions[i].demandes.length > 0){
               clientsLength = clientsLength + 1
+              for (var j = clients.solutions[i].demandes.length - 1; j >= 0; j--) {
+                if(clients.solutions[i].demandes[j].close){
+                  clientsArchives = clientsArchives + 1
+                }else if(!clients.solutions[i].demandes[j].close){
+                  clientsEnCours = clientsEnCours + 1
+                }
+              }
             }
           }
         }
@@ -57,14 +66,14 @@ class MenuProfil extends Component {
           <div
             className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`}
             onClick={()=>{this.props.selectClients("en_cours")}}>
-              {selectedMenu != "clients" ? "" : "En cours "}
-              {selectedMenu != "clients" ? "" : <span>{clientsEnCours}</span>}
+              {selectedMenu != "conseillers" ? "En cours " : "" }
+              {selectedMenu != "conseillers" ? <span>{clientsEnCours}</span> : "" }
           </div>
           <div
             className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`}
             onClick={()=>{this.props.selectClients("archives")}}>
-              {selectedMenu != "clients" ? "" : "Archivés "}
-              {selectedMenu != "clients" ? "" : <span>{clientsArchives}</span>}
+              {selectedMenu != "conseillers" ? "Archivés " : "" }
+              {selectedMenu != "conseillers" ? <span>{clientsArchives}</span> : "" }
           </div>
         </div>
       )

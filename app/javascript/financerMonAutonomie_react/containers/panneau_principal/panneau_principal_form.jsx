@@ -236,16 +236,6 @@ class PanneauPrincipalForm extends Component {
 
 
     return (
-      // <p
-      //   className={`width-fit-content no-margin btn-select-onglet select-onglet-next-step font-12 ${this.props.formulary_id === "add" ? "d-none" : ""}`}
-      //   style={{lineHeight: "1"}}
-      //   onClick={ etape === "validation_data" ? () => {
-      //     this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
-      //       () => { this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`) }
-      //     )
-      //   } : ()=>{} }>
-      //     Valider mes réponses <i className="fas fa-arrow-right"></i><br/><span style={{fontSize: "10px"}}>et passer à la prochaine étape</span>
-      // </p>
       <div className="col-lg-12">
         <div className="flex space-between">
           <div className="flex">
@@ -258,7 +248,7 @@ class PanneauPrincipalForm extends Component {
             </h4>
           </div>
         </div>
-        <div className="white-box relative">
+        <div className="flex flex-column white-box relative">
           {etape === "validation_data" ? <ValidationModal /> : null}
           <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
             {renderForm(this.props.formResults)}
@@ -269,17 +259,16 @@ class PanneauPrincipalForm extends Component {
                 Vos informations ont bien été enregistrées
             </button>
           </form>
-          <p
+          <button
             className={`
-              width-fit-content
               btn-blue
               margin-top-60
               margin-bottom-30
-              margin-left-auto
               font-14
+              align-self-end
               ${this.props.formulary_id === "add" ? "d-none" : ""}
-              ${this.props.otherUser ? "not-allowed" : ""}
             `}
+            disabled={this.props.otherUser}
             style={{padding: "5px 10px"}}
             onClick={ etape === "validation_data" && !this.props.otherUser ? () => { // désactive bouton si pas bonne étape et si user pas bon
               this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
@@ -287,7 +276,7 @@ class PanneauPrincipalForm extends Component {
               )
             } : ()=>{} }>
               Je valide mes réponses et je passe à la prochaine étape <i className="fas fa-arrow-right"></i>
-          </p>
+          </button>
         </div>
       </div>
     )

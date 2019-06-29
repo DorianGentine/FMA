@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { fetchProjet } from '../../actions'
 
 import renderLogo from "../../../components/render_logo"
-import { diffTime } from "../../../components/render_date"
+import { postedAgo } from "../../../components/render_date"
 
 class AppelsProgrammes extends Component {
   componentWillMount(){
@@ -34,15 +34,7 @@ class AppelsProgrammes extends Component {
           if(project.demandes != []){
             return project.demandes.map((demande, index) => {
               const authorName = demande.author.name
-              const timeMin = diffTime(new Date(demande.created_at));
-
-              let time = ""
-              if(timeMin < 60){
-                time = `${timeMin} ${timeMin > 1 ? "minutes" : "minute"}`
-              }else{
-                const timeHeure = Math.round(timeMin/60)
-                time = `${timeHeure} ${timeHeure > 1 ? "heures" : "heure"}`
-              }
+              const time = postedAgo(new Date(demande.created_at));
 
               return (
                 <div className="flex margin-top-15 align-items-center" key={index}>
