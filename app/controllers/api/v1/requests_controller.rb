@@ -12,6 +12,10 @@ class Api::V1::RequestsController < Api::V1::BaseController
     authorize @project
   end
 
+  def update
+
+  end
+
   private
 
   def note_params

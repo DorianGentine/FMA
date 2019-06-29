@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       resources :documents, only: [ :update ]
       resources :formularies, only: [ :update, :edit, :show ]
       resources :notes, only: [ :update, :destroy ]
+      resources :requests, only: [ :update ]
       resources :projects, only: [ :show, :update, :index ] do
         resources :ratings, only: [ :create, :new ]
         resources :requests, only: [ :create ]
