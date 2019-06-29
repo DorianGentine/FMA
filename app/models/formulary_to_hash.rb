@@ -102,7 +102,16 @@ class FormularyToHash
   def set_answer_for_espace(form, column_name)
     if form.send(column_name).present?
       if authorize_answer_form?(form, column_name)
-        form.send(column_name)
+        if column_name == "supplementary"
+          first = form.send(column_name).delete! '[]'
+          if first.nil?
+            form.send(column_name)
+          else
+            first.gsub('"', '')
+          end
+        else
+          form.send(column_name)
+        end
       else
         FormularyChoice.new.set_collections_formulary[column_name.to_sym][form.send(column_name)].first
       end
