@@ -33,3 +33,27 @@
     color: white;
   }
 }
+
+.point{
+  padding: 0 0 0 13px;
+  position: relative;
+  margin-bottom: 25px;
+}
+.point:before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px;
+  border-radius: 5px;
+}
+.point-bleu.point:before{
+  background-color: $blue;
+}
+.point-jaune.point:before{
+  background-color: $yellow;
+}
+.point-vert.point:before{
+  background-color: $green;
+}

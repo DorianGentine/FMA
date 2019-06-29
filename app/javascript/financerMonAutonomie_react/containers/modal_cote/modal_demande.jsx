@@ -67,7 +67,6 @@ class ModalDemande extends Component {
   }
 
   onSubmit = (oldValues) => {
-    console.log("Old Values", oldValues)
     let category = ""
     if(oldValues.category1){
       category = `${category === "" ? "diagnostic" : category + ", diagnostic"}`
@@ -84,11 +83,11 @@ class ModalDemande extends Component {
       description: oldValues.description,
       category: category,
     }
-    console.log("values", values)
     let url = `/api/v1/projects/${values.project}/requests`
     let method = "POST"
 
     this.props.fetchPostCompte(url, values, method, ()=>{})
+    this.props.closeModal()
   }
 
   render(){
