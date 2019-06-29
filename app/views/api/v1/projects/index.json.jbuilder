@@ -7,6 +7,7 @@ json.solutions @projects do |project|
   json.first_name project.user_projects.where(client: true).first.user.first_name
   json.last_name project.user_projects.where(client: true).first.user.last_name
   json.demandes project.requests do |request|
+    json.author project.is_his_advisor, :id, :name
     json.extract! request, :category, :description, :category, :close, :created_at
   end
   json.notes project.notes do |note|

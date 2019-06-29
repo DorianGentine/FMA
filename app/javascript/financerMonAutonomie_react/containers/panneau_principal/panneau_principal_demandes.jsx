@@ -3,23 +3,37 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Select from "react-dropdown-select"
 
-import { fetchClients, selectClients } from '../../actions';
+import { fetchProjet, selectClients } from '../../actions';
 
 import CardDemande from './card_demande';
 
 class PanneauPrincipalDemandes extends Component {
   componentWillMount(){
-    this.props.fetchClients("/api/v1/requests")
+    this.props.fetchProjet("/api/v1/projects")
   }
 
   render(){
-    const clients = this.props.clients
+    const projects = this.props.project
 
-    const renderDemandes = (clients) => {
-      if(clients != null && clients.clients != undefined){
-        // return demandes.map((client, index) => {
-          return <CardDemande client={clients.clients[0]} />
-        // })
+    const renderDemandes = () => {
+      let nbDemande = 0
+      for (var i = projects.solutions.length - 1; i >= 0; i--) {
+        console.log(projects.solutions[i].demandes)
+        if(projects.solutions[i].demandes.length > 0){
+          nbDemande = nbDemande + 1
+        }
+      }
+      console.log("nbDemande", nbDemande)
+      if(nbDemande != 0){
+        return projects.solutions.map((project, index) => {
+          if(project.demandes != []){
+            return project.demandes.map((demande, index) => {
+              return <CardDemande demande={demande} project={project} key={index} />
+            })
+          }
+        })
+      }else{
+        return <h2 className="text-align-center margin-top-30">Pas de demandes</h2>
       }
     }
 
@@ -62,7 +76,7 @@ class PanneauPrincipalDemandes extends Component {
           <hr className="ligne-horizontal"/>
         </div>
         <div className="row">
-          {clients != null ? renderDemandes(clients) : <h2>Chargement...</h2>}
+          {projects != null ? renderDemandes() : <h2>Chargement...</h2>}
         </div>
       </div>
     )
@@ -71,12 +85,12 @@ class PanneauPrincipalDemandes extends Component {
 
 function mapStateToProps(state) {
   return {
-    clients: state.clients,
+    project: state.project,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchClients, selectClients }, dispatch);
+  return bindActionCreators({ fetchProjet, selectClients }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalDemandes);

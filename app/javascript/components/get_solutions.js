@@ -20,7 +20,6 @@ if(financeursPotentielsId){
     let hintFinanceur = null
     if(true){
       const showHint = () => {
-        console.log('launched')
         hintText.classList.toggle("d-none")
       }
 
