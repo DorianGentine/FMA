@@ -5,13 +5,18 @@ import { connect } from 'react-redux';
 import { fetchProjet } from '../../actions';
 
 class ApercuProjet extends Component {
+  componentWillMount(){
+    if(this.props.api.statut === "conseiller"){
+      this.props.fetchProjet('/api/v1/projects')
+    }
+  }
 
   render(){
     const statut = this.props.api.statut
+    const project = this.props.project
 
     // App client
       if(statut === "client"){
-        const project = this.props.project
         const financers = project.financers
 
         const mydate = new Date(project.project.date_de_creation);
@@ -35,6 +40,18 @@ class ApercuProjet extends Component {
 
     // App conseiller
     }else if(statut === "conseiller"){
+      let nbDemande = 0
+      if(project){
+        for (var i = project.solutions.length - 1; i >= 0; i--) {
+          if(project.solutions[i].demandes.length > 0){
+            for (var j = project.solutions[i].demandes.length - 1; j >= 0; j--) {
+              if(!project.solutions[i].demandes[j].close){
+                nbDemande = nbDemande + 1
+              }
+            }
+          }
+        }
+      }
       return (
         <div className="margin-top-30">
           <div className="flex black align-items-center">
@@ -45,7 +62,7 @@ class ApercuProjet extends Component {
             <p className="col-lg-6 font-14">Clients</p>
             <p className="col-lg-6 font-14 text-align-right black bold">{`${this.props.api.clients.length} en cours`}</p>
             <p className="col-lg-8 font-14">Demandes spécifiques</p>
-            <p className="col-lg-4 font-14 text-align-right black bold">{`${"X"} en cours`}</p>
+            <p className="col-lg-4 font-14 text-align-right black bold">{`${nbDemande} en cours`}</p>
           </div>
         </div>
       );
@@ -57,7 +74,6 @@ function mapStateToProps(state) {
   return {
     api: state.api,
     project: state.project,
-    project_id: state.project_id
   };
 }
 

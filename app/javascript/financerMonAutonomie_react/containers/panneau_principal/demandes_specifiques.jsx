@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchProjet } from '../../actions'
 
 import renderLogo from "../../../components/render_logo"
+import { diffTime } from "../../../components/render_date"
 
 class AppelsProgrammes extends Component {
   componentWillMount(){
@@ -19,33 +20,45 @@ class AppelsProgrammes extends Component {
     const renderDemandes = () => {
       let nbDemande = 0
       for (var i = projects.solutions.length - 1; i >= 0; i--) {
-        console.log(projects.solutions[i].demandes)
         if(projects.solutions[i].demandes.length > 0){
-          console.log('COUCOU')
           nbDemande = nbDemande + 1
         }
       }
 
-      // if(nbDemande === 0){
-      if(false){
+      if(nbDemande === 0){
         return (
           <div className="text-align-center margin-top-15">Aucune demande en cours</div>
         )
       }else{
-        // return clients.clients.map((client, index) => {
-          return (
-            <div className="flex margin-top-15 align-items-center">
-              <p className="col-lg-2 font-12 bold black" style={{paddingLeft: 0}}>{"Diagnostic"}</p>
-              <div className="col-lg-3 flex align-items-center">
-                {renderLogo("Marine Charret")}
-                <p className="bold font-12 black">{"Marine Charret"}</p>
-              </div>
-              <p className="col-lg-3 font-12 blue">{"Michel de Freimont"}</p>
-              <p className="col-lg-2 font-12 black">{"30 minutes"}</p>
-              <button className="col-lg-2 blue-gray-btn" style={{padding: "5px"}}>Voir&nbsp;la&nbsp;demande</button>
-            </div>
-          );
-        // });
+        return projects.solutions.map((project, index) => {
+          if(project.demandes != []){
+            return project.demandes.map((demande, index) => {
+              const authorName = demande.author.name
+              const timeMin = diffTime(new Date(demande.created_at));
+
+              let time = ""
+              if(timeMin < 60){
+                time = `${timeMin} ${timeMin > 1 ? "minutes" : "minute"}`
+              }else{
+                const timeHeure = Math.round(timeMin/60)
+                time = `${timeHeure} ${timeHeure > 1 ? "heures" : "heure"}`
+              }
+
+              return (
+                <div className="flex margin-top-15 align-items-center" key={index}>
+                  <p className="col-lg-2 font-12 bold black" style={{paddingLeft: 0}}>{demande.category}</p>
+                  <div className="col-lg-3 flex align-items-center">
+                    {renderLogo(authorName)}
+                    <p className="bold font-12 black">{authorName}</p>
+                  </div>
+                  <p className="col-lg-3 font-12 blue">{`${project.first_name} ${project.last_name}`}</p>
+                  <p className="col-lg-2 font-12 black">{time}</p>
+                  <button className="col-lg-2 blue-gray-btn" style={{padding: "5px"}}>Voir&nbsp;la&nbsp;demande</button>
+                </div>
+              );
+            })
+          }
+        });
       }
     };
 
