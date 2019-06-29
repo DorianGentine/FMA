@@ -44,13 +44,34 @@ class KitDeFinancement extends Component {
     // console.log(promise)
     const renderKits = () => {
       return kits.map((kit, index) => {
+        let nbDocs = 0
+        {kit.notice != null ? nbDocs = nbDocs + 1 : null}
+        {kit.formulary.url != null ? nbDocs = nbDocs + 1 : null}
+        {kit.model_1 != null ? nbDocs = nbDocs + 1 : null}
+        {kit.model_2 != null ? nbDocs = nbDocs + 1 : null}
+
+        const showHint = () => {
+          const hintText = document.getElementById(`hint${index}`)
+          hintText.classList.toggle("d-none")
+        }
+
         return (
           <div className="flex margin-top-15" key={index}>
-            <p className="col-lg-2 font-12 blue bold" style={{paddingLeft: 0}}>{kit.ressource}</p>
-            <p className="col-lg-4 font-12">{kit.notice ? kit.notice.substr(kit.notice.lastIndexOf('/') + 1, 25) : ""}</p>
-            <p className="col-lg-3 font-12">{kit.formulary ? kit.formulary.substr(kit.notice.lastIndexOf('/') + 1, 20) : ""}</p>
-            <p className="col-lg-3 font-12">_____</p>
+            <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>{kit.notice ? kit.notice.substr(kit.notice.lastIndexOf('/') + 1, 25) : ""}</p>
+            <p className="col-lg-2 font-12 blue bold text-align-right">{nbDocs}</p>
+            <p className="col-lg-4 font-12">_______</p>
+            <div className="col-lg-2 icon-alert relative pointer text-align-right" onClick={showHint}>
+              <div
+                id={`hint${index}`}
+                className="red-background white d-none absolute"
+                style={{padding: "20px", right: "0px", top: "32px", width: "400px", borderRadius: "3px", zIndex: "10"}}
+              >
+                <h4 className="white">Informations supplémentaires:</h4>
+                <p>Le financeurs auxquels vous pouvez potentiellement être éligible ne peut être associé au financeur <strong>La caisse des retraites</strong> en raison de...</p>
+              </div>
+            </div>
           </div>
+            // <p className="col-lg-4 font-12">{kit.formulary && kit.formulary.url != null ? kit.formulary.url.substr(kit.notice.lastIndexOf('/') + 1, 20) : ""}</p>
         );
       });
     };
@@ -70,13 +91,13 @@ class KitDeFinancement extends Component {
             <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>Titre</p>
             <p className="col-lg-2 font-12">Documents</p>
             <p className="col-lg-4 font-12">Date de dernière mise à jour</p>
-            <p className="col-lg-2 font-12" style={{paddingRight: 0}}>Date de publication</p>
           </div>
-          <div className="scroll col-lg-12" style={{ height: "80px" }}>
+          <div className="scroll col-lg-12" style={{ height: "calc(100vh - 720px)", minHeight: "80px" }}>
             { kits != undefined && this.props.project.project.etape === "evaluation" ? renderKits() : <h2 className="text-align-center margin-top-30 gray-300">Votre conseiller confectionne votre kit</h2>}
           </div>
         </div>
       </div>
+            // <p className="col-lg-2 font-12" style={{paddingRight: 0}}>Date de publication</p>
     );
   }
 };
