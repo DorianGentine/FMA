@@ -88,8 +88,8 @@ class SetSolutions
       elsif financer_ids.include?(Financer.find_by(name: "APA").id)
         first_unmatched = "Il apparait que vous pourriez être éligible à des aides de votre caisse de retraite principale et de l'APA"
       end
-    elsif financer.name == "SÉCURITÉ SOCIALE"
-      first_unmatched = "petit test pour voir"
+    # elsif financer.name == "SÉCURITÉ SOCIALE"
+    #   first_unmatched = "petit test pour voir"
     end
     if first_unmatched.present? || second_unmatched.present? || third_unmatched.present?
       array = [first_unmatched, second_unmatched, third_unmatched].compact

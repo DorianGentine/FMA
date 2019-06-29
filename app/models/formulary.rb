@@ -208,6 +208,7 @@ class Formulary < ApplicationRecord
   end
   # Q-17
   def allow_occupant?
+    # raise
     if self.occupation.present? && self.occupation == 0 || self.occupation == 2 || self.occupation == 3
       return true
     elsif self.occupation.present? && self.occupation == 1 && self.holder_occupation.present? && self.holder_occupation == 0
