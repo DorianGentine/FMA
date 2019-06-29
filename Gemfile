@@ -42,16 +42,11 @@ gem 'geocoder'
 gem 'carrierwave', '~> 1.2'
 gem 'cloudinary', '~> 1.9.1'
 
-
-# # test de intercom
-# gem "intercom-rails"
-
 # faker for seed
 gem 'faker'
 
 gem 'simple_token_authentication'
-gem 'sendgrid-ruby'
-
 
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+
