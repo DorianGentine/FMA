@@ -104,7 +104,11 @@ class FormularyToHash
       if authorize_answer_form?(form, column_name)
         if column_name == "supplementary"
           first = form.send(column_name).delete! '[]'
-          first.gsub('"', '')
+          if first.nil?
+            form.send(column_name)
+          else
+            first.gsub('"', '')
+          end
         else
           form.send(column_name)
         end

@@ -3,8 +3,8 @@ ActionMailer::Base.smtp_settings = {
   # port: 465,
   port: 587,
   domain: 'financermonautonomie.herokuapp.com',
-  user_name: ENV['USERNAME_KEY'],
-  password: ENV['SENDGRID_API_KEY'],
+  user_name: ENV['SENDGRID_USERNAME'],
+  password: ENV['SENDGRID_PASSWORD'],
   authentication: :login,
   enable_starttls_auto: true
 }
