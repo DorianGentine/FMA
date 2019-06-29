@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'your-email@example.com'
+  default from: 'donatien@rollandmail.com'
 
   layout 'mailer'
 
