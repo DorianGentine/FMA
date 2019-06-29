@@ -2,15 +2,31 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-// import { fetchClients, showDemande } from '../../actions'
+import { fetchProjet } from '../../actions'
 
 import renderLogo from "../../../components/render_logo"
 
 class AppelsProgrammes extends Component {
+  componentWillMount(){
+    console.log(this.props.project)
+    this.props.fetchProjet("/api/v1/projects")
+  }
+
   render(){
+    const projects = this.props.project
     // const clients = this.props.clients
 
-    const renderCalls = () => {
+    const renderDemandes = () => {
+      let nbDemande = 0
+      for (var i = projects.solutions.length - 1; i >= 0; i--) {
+        console.log(projects.solutions[i].demandes)
+        if(projects.solutions[i].demandes.length > 0){
+          console.log('COUCOU')
+          nbDemande = nbDemande + 1
+        }
+      }
+
+      // if(nbDemande === 0){
       if(false){
         return (
           <div className="text-align-center margin-top-15">Aucune demande en cours</div>
@@ -55,7 +71,7 @@ class AppelsProgrammes extends Component {
             <p className="col-lg-4 font-12" style={{paddingRight: 0}}>Envoyé il y a</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "120px" }}>
-            {true ? renderCalls() : <p className="text-align-center margin-top-15">Chargement...</p> }
+            {projects != null ? renderDemandes() : <p className="text-align-center margin-top-15">Chargement...</p> }
           </div>
         </div>
       </div>
@@ -65,12 +81,12 @@ class AppelsProgrammes extends Component {
 
 function mapStateToProps(state) {
   return {
-    clients: state.clients,
+    project: state.project,
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchClients, showDemande }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchProjet }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(AppelsProgrammes);
+export default connect(mapStateToProps, mapDispatchToProps)(AppelsProgrammes);

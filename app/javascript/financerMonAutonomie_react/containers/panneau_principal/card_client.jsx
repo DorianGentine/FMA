@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { showDemande } from '../../actions'
+
 import renderLogo from "../../../components/render_logo"
 
 class CardClient extends Component {
@@ -75,7 +77,24 @@ class CardClient extends Component {
                 {renderLogo(client)}
                 <span className="bold" style={{marginLeft: "-10px"}}>{`${client.nombre_benef > 1 ? `+${client.nombre_benef - 1}` : "" }`}</span>
               </div>
-              <div className="col-lg-6 text-align-right">...</div>
+
+              <div className="relative col-lg-6 text-align-right" role="group">
+                <div
+                  id={`drop-call${client.id}`}
+                  className="pointer"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false">...
+                </div>
+                <div
+                  className="dropdown-menu drop-menu-call"
+                  aria-labelledby={`drop-call${client.id}`}>
+                  <a className="black" onClick={()=>{this.props.showDemande(client)}}>Demandes&nbsp;spécifiques</a>
+                  <a href="#">Marquer</a>
+                  <a href="#">Archiver</a>
+                </div>
+              </div>
+
               <div className="col-lg-12 font-14 black bold">{fullName}</div>
               <div className="col-lg-12 margin-bottom-30 blue font-12">{subTitle}</div>
               <div className="col-lg-5 font-12 gray-300">Financeurs:</div>
@@ -110,8 +129,8 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchFORM }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ showDemande }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(CardClient);
+export default connect(mapStateToProps, mapDispatchToProps)(CardClient);

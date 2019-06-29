@@ -11,6 +11,7 @@ import FinanceursPotentiels from "./financeurs_potentiels"
 import KitDeFinancement from "./kit_financement"
 import PanneauPrincipalForm from "./panneau_principal_form"
 import Ressources from './ressources';
+import Statistiques from './statistiques';
 import VosReponses from "./vos_reponses"
 import WidgetCalendly from "./widget_calendly"
 
@@ -58,7 +59,7 @@ class PanneauPrincipalProjet extends Component {
         return (
           <div className="row">
             <DemandesSpecifiques />
-            <Financers />
+            <Statistiques />
             <ClientsAdvisor />
             <Ressources />
           </div>
