@@ -10,7 +10,11 @@ json.solutions @solutions do |solution|
 
   if solution.financer.web.nil?
     if solution.financer.name == "CAISSE DE RETRAITE PRINCIPALE"
-      json.web Acteur.where(name: @formulary.pension.upcase).first.web
+      if @formulary.pension.present?
+        json.web Acteur.where(name: @formulary.pension.upcase).first.web
+      else
+        json.web Financer.find_by(name:"CNAV").web
+      end
     elsif solution.financer.name == "CAISSE DE RETRAITE COMPLÉMENTAIRE"
       json.web Acteur.where(name: @formulary.supplementary.upcase).first.web
     elsif solution.financer.name == "BAILLEUR"
