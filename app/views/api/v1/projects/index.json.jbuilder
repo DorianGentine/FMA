@@ -11,7 +11,7 @@ json.solutions @projects do |project|
     json.extract! request, :category, :description, :close, :created_at, :id
   end
   json.notes project.notes do |note|
-    json.extract! note, :title, :description
+    json.extract! note, :title, :description, :created_at, :id
   end
   json.financers project.solutions do |solution|
     json.id solution.id

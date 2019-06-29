@@ -49,3 +49,31 @@ export function diffTime(date) {
   return parseInt((t2-t1)/(60*1000));
 }
 
+export function postedAgo(date){
+  const timeMin = diffTime(date);
+
+  let time = ""
+  let timeHeure = 0
+  let timeJour = 0
+  let timeSemaine = 0
+
+  if(timeMin < 60){
+    time = `${timeMin} ${timeMin > 1 ? "minutes" : "minute"}`
+  }else{
+    timeHeure = Math.floor(timeMin/60)
+    time = `${timeHeure} ${timeHeure > 1 ? "heures" : "heure"}`
+  }
+
+  if(timeHeure >= 24){
+    timeJour = Math.floor(timeHeure/24)
+    time = `${timeJour} ${timeJour > 1 ? "jours" : "jour"}`
+  }
+
+  if(timeJour >= 7){
+    timeSemaine = Math.floor(timeJour/7)
+    time = `${timeSemaine} ${timeSemaine > 1 ? "semaines" : "semaine"}`
+  }
+
+  return time
+}
+

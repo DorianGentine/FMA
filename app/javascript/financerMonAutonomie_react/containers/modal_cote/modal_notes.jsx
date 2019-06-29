@@ -3,50 +3,108 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 
-import { closeModal, fetchPostCompte } from '../../actions';
+import { closeModal, fetchPostCompte, fetchProjet } from '../../actions';
 
 import renderLogo from "../../../components/render_logo"
+import {postedAgo} from "../../../components/render_date"
 
 class ModalNotes extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      modifying: false,
+      modNoteId: 0,
+      uploaded: false,
+    };
+  }
+
+  componentWillMount(){
+    if(this.props.project === null){
+      this.props.fetchProjet(`/api/v1/projects/${this.props.api.project.id}`)
+    }
+
+    if(this.props.current_api && this.props.current_api.statut === "admin"){
+      const note = {
+        title: "Fonctionnalité réservée",
+        description: "aux conseillers",
+      }
+      this.handleInitialize(note)
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(this.state.uploaded){
+      const note_zero = {title: "", description: ""}
+      this.handleInitialize(note_zero)
+      this.setState({ uploaded: false })
+    }
+  }
+
+  handleInitialize(note) {
+    let initData = {
+      title: note.title,
+      description: note.description,
+    };
+    this.props.initialize(initData);
+  }
 
   onSubmit = (values) => {
-    console.log("values", values)
-    console.log("this.props.api.project.id", this.props.api.project.id)
     let url = `/api/v1/projects/${this.props.api.project.id}/notes`
     let method = "POST"
 
-    this.props.fetchPostCompte(url, values, method, ()=>{})
-    this.props.closeModal()
+    if(this.state.modifying){
+      url = `/api/v1/notes/${this.state.modNoteId}`
+      method = "PATCH"
+    }
+
+    this.props.fetchPostCompte(url, values, method, ()=>{
+      this.props.fetchProjet(`/api/v1/projects/${this.props.api.project.id}`)
+    })
+    this.setState({ uploaded: true })
   }
 
   renderField = ({ input, type, label }) => (
     <input {...input}
-      className="form-control margin-bottom-30"
+      className={`form-control margin-bottom-30 ${this.props.current_api && this.props.current_api.statut === "admin" ? "not-allowed" : ""}`}
+      disabled={this.props.current_api && this.props.current_api.statut === "admin"}
       type={type}
       onBlur={event => {input.onBlur(event);}}
     />
   )
 
   render(){
-    const notes = this.props.modal_selected.notes
+    const notes = this.props.project.notes
+    console.log("notes", notes)
+
+    const modifyNote = (note) => {
+      this.setState({
+        modifying: true,
+        modNoteId: note.id,
+      })
+      this.handleInitialize(note)
+    }
+
+    const deleteNote = (note) => {
+      this.props.fetchPostCompte(`/api/v1/notes/${note.id}`, null, "DELETE", ()=>{this.props.fetchProjet(`/api/v1/projects/${this.props.api.project.id}`)})
+    }
 
     const renderNotes = () => {
-      // return notes.map((answer, index) => {
+      return notes.map((note, index) => {
         return(
-          <div className="flex margin-bottom-30">
-            <div>{renderLogo(this.props.api.user)}</div>
+          <div className="margin-bottom-30" key={index}>
             <div className="flex flex-wrap">
-              <div className="col-10 black font-12 no-padding">Wireframe for new prototypage de la ...</div>
-              <div className="col-2 blue font-12 no-padding">Il y a 1h</div>
-              <div className="col-12 font-12 no-padding">Bonjour je viens de formuler une demande spécifique concernant le dossier.</div>
+              <div className="col-8 black font-12 no-padding">{note.title}</div>
+              <div className="col-4 blue font-12 no-padding text-align-right">{`Il y a ${postedAgo(new Date(note.created_at))}`}</div>
+              <div className="col-12 font-12 no-padding">{note.description}</div>
               <div className="col-6 no-padding flex">
-                <a href="#" className="col-6 font-12 no-padding black">modifier</a>
-                <a href="#" className="col-6 font-12 no-padding black">supprimer</a>
+                <p onClick={()=>{modifyNote(note)}} className="col-6 font-12 no-padding black pointer">modifier</p>
+                <p onClick={()=>{deleteNote(note)}} className="col-6 font-12 no-padding black pointer">supprimer</p>
               </div>
             </div>
           </div>
+            // <div>{renderLogo(this.props.api.user)}</div>
         )
-      // }
+      })
     }
 
 
@@ -74,8 +132,8 @@ class ModalNotes extends Component {
           />
           <button
             className="btn-blue margin-top-30 offset-6 col-6 text-align-center"
+            disabled={this.props.current_api && this.props.current_api.statut === "admin" || this.props.pristine || this.props.submitting}
             type="submit"
-            // onClick={this.props.closeModal}
             >
             Ajouter
           </button>
@@ -89,11 +147,13 @@ function mapStateToProps(state) {
   return {
     modal_selected: state.modal_selected,
     api: state.api,
+    current_api: state.current_api,
+    project: state.project,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, fetchPostCompte }, dispatch);
+  return bindActionCreators({ closeModal, fetchPostCompte, fetchProjet }, dispatch);
 }
 
 export default reduxForm({ form: 'note', })(

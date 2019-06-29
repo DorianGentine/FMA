@@ -47,28 +47,6 @@ class VoletProjet extends Component {
         </div>
       )
     }
-
-    // Ca dégage
-      // const encartTel = ()=>{
-      //   if(this.props.otherUser){
-      //     return <Notes />
-      //   }else if(statut === "client"){
-      //     return <RdvTel />
-      //   }else if(statut === 'conseiller'){
-      //     return <ApercuProjet />
-      //   }
-      // }
-
-      // return(
-      //   <div className="space-between">
-      //     <Conseiller />
-      //     {statut === "client" ? <Etapes /> : null}
-      //     {encartTel()}
-      //     {statut === "client" ? <ApercuProjet /> : <RdvTel />}
-      //     {statut === "client" ? <Evaluation /> : null}
-      //     {statut === "client" ? null : <MonActualite />}
-      //   </div>
-      // )
   }
 }
 

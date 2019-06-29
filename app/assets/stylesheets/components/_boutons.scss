@@ -38,6 +38,12 @@
       padding: 5px 10px;
     }
   }
+  .btn-blue:disabled{
+    background-color: $blue;
+    color: white;
+    opacity: .66;
+    cursor: not-allowed;
+  }
 
 // btn-gris
   .btn-gris{

@@ -14,7 +14,7 @@ json.demandes @project.requests do |request|
 end
 
 json.notes @project.notes do |note|
-  json.extract! note, :title, :description
+  json.extract! note, :title, :description, :created_at, :id
 end
 
 

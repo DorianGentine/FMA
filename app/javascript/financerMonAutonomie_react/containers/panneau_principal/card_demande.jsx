@@ -25,8 +25,14 @@ class CardDemande extends Component {
       value = {close: true}
     }
 
-    const selectedClients = this.props.selectedClients
+    let selectedClients = this.props.selectedClients
+    if(selectedClients === "tous"){
+      selectedClients = "en_cours"
+    }
+
     if(selectedClients === "tous" ||
+      selectedClients === "en_cours" && !demande.close ||
+      selectedClients === "archives" && demande.close ||
       fullNameAdivsor.toLowerCase().includes(selectedClients.toLowerCase()) ||
       fullNameBene.toLowerCase().includes(selectedClients.toLowerCase()) ||
       demande.category.toLowerCase().includes(selectedClients.toLowerCase()) ) {
