@@ -106,7 +106,6 @@ class MatchSolution
   end
 
   def set_tax_brut(form, key)
-    # TODO en fonction réponse ADRIEN
     limit = RevenuAnalyze.new(@formulaire).analyze_brut_global
     result = form[key] / 12
     return result < limit[:a] ? 0 : 1
