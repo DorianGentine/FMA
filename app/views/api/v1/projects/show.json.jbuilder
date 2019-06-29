@@ -9,7 +9,7 @@ json.project do
   json.formulary_ids @project.formulary_ids
 end
 json.demandes @project.requests do |request|
-  json.author @project.is_his_advisor, :id, :name
+  json.author @project.is_his_advisor, :id, :name, :avatar
   json.extract! request, :category, :description, :category, :close, :created_at
 end
 
@@ -34,7 +34,8 @@ end
 
 json.financers @project.solutions do |solution|
   json.id solution.id
-  json.extract! solution.financer, :name, :logo, :unmatched, :description, :answer
+  json.extract! solution.financer, :name, :logo, :unmatched, :web, :phone, :description, :answer
+
   json.answers solution.answers do |answer|
     json.extract! answer, :content
   end
