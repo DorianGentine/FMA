@@ -10,7 +10,7 @@ json.project do
 end
 json.demandes @project.requests do |request|
   json.author @project.is_his_advisor, :id, :name, :avatar
-  json.extract! request, :category, :description, :category, :close, :created_at
+  json.extract! request, :category, :description, :category, :close, :created_at, :id
 end
 
 json.notes @project.notes do |note|

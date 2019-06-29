@@ -23,6 +23,8 @@ class ModalCote extends Component {
       return (<ModalClientConseiller />)
     }else if(modalSelected.modalActive === "showCreateRessource"){
       return (<ModalCreateRessource />)
+    }else if(modalSelected.modalActive === "showDemande"){
+      return (<ModalDemande />)
     }else if(modalSelected.modalActive === "showDoc"){
       return (<ModalDocument />)
     }else if(modalSelected.modalActive === "showFinancer"){
@@ -33,8 +35,6 @@ class ModalCote extends Component {
       return (<ModalRessource />)
     }else if(modalSelected.modalActive === "showReponses"){
       return (<ModalReponses />)
-    }else if(modalSelected.modalActive === "showDemande"){
-      return (<ModalDemande />)
     }else{
       return null
     }
