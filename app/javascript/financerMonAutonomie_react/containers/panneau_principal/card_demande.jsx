@@ -18,9 +18,11 @@ class CardDemande extends Component {
     const fullNameAdivsor = `${demande.author.name}`
     const fullNameBene = `${project.first_name} ${project.last_name}`
 
-    let value = {close: true}
+    let value
     if(demande.close){
-      {close: false}
+      value = {close: false}
+    } else {
+      value = {close: true}
     }
 
     const selectedClients = this.props.selectedClients
