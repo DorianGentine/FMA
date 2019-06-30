@@ -107,7 +107,7 @@ class MatchSolution
 
   def set_tax_brut(form, key)
     limit = RevenuAnalyze.new(@formulaire).analyze_brut_global
-    result = form[key] / 12
+    result = form[key].nil? ? 0: form[key] / 12
     return result < limit[:a] ? 0 : 1
   end
 

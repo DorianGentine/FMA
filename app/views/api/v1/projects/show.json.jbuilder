@@ -9,7 +9,11 @@ json.project do
   json.formulary_ids @project.formulary_ids
 end
 json.demandes @project.requests do |request|
-  json.author @project.is_his_advisor, :id, :name, :avatar
+  json.author  do
+    json.id @project.is_his_advisor.id
+    json.name @project.is_his_advisor.name
+    json.avatar @project.is_his_advisor.avatar.url(:bright_face)
+  end
   json.extract! request, :category, :description, :category, :close, :created_at, :id
 end
 
