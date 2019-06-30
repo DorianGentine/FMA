@@ -1,6 +1,11 @@
-json.statut @statut
-json.user @user, :first_name, :last_name, :avatar, :email, :phone
-
+json.user do
+  json.statut @statut
+  json.first_name @user.first_name
+  json.last_name @user.last_name
+  json.avatar @user.avatar.url(:bright_face)
+  json.email @user.email
+  json.phone @user.phone
+end
 
 if @user.client
   json.conseiller @advisor, :id, :first_name, :last_name, :avatar, :phone

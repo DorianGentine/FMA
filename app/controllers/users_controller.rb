@@ -20,7 +20,6 @@ class UsersController < ApplicationController
     @formulary_setted = FormularyToHash.new(Formulary.first).form_json_for_espace
     @current_user = current_user
     @user = User.find(params[:id])
-    @documents = @user.project.documents
 
 
     authorize @current_user

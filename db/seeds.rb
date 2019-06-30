@@ -1219,7 +1219,9 @@ ressource_63 = Ressource.create(title: "BailleurSocial_RATP HABITAT", descriptio
 p "Ressources created"
 p "Create Advisor"
 
-  advisor = User.create(last_name: "Charet", first_name: "Marine", phone: "998877866", avatar: "https://res.cloudinary.com/financermonautonomie/image/upload/v1556856588/Belavie/Marine_CHARET_kyd3ee.jpg", advisor: true, client: false, admin: false, email: "marine@mail.com", password:"password")
+  advisor = User.create(last_name: "Charet", first_name: "Marine", phone: "998877866", advisor: true, client: false, admin: false, email: "marine@mail.com", password:"password")
+  advisor.remote_avatar_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1561901450/Belavie/Marine_CHARRET_j4j2yv.png"
+  advisor.save
 
   Framework.create(user: advisor, logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560410625/Belavie/calendly_pbazdl.png", url: "https://calendly.com/event_types/user/me", title: "calendly", schedule_url: "https://calendly.com/adrienfma/1er-rdv-telephonique")
   Framework.create(user: advisor, logo: nil, title: "intercom", schedule_url: "https://app.intercom.io/a/apps/pfhokn92/inbox/inbox/")
