@@ -1127,99 +1127,296 @@ p "Solutions Created"
 p "Create Ressources"
 
 # 2,5,8,12,16,19,22,26
-ressource_1 = Ressource.create(title: "ANAH locataire parc privé", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH)", acteur: nil, financer: nil, solution_ids: "2,5,8,12,16,19,22,26", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160073/ressources/ANAH/Notice_ANAH_locataire_parc_prive_dssvaw.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160063/ressources/ANAH/FORMULAIRE_ANAH_sby8hz.pdf", model_1: nil, model_2: nil)
-
+ressource_1 = Ressource.create(title: "ANAH locataire parc privé", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH)", solution_ids: "2,5,8,12,16,19,22,26")
+ressource_1.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160073/ressources/ANAH/Notice_ANAH_locataire_parc_prive_dssvaw.pdf"
+ressource_1.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160063/ressources/ANAH/FORMULAIRE_ANAH_sby8hz.pdf"
+ressource_1.save
 # 3,6,9,10,13,14,17,20,23,24,27,28
-ressource_2 = Ressource.create(title: "ANAH occupant à titre gratuit", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH)", acteur: nil, financer: nil, solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160070/ressources/ANAH/Notice_ANAH_occupant_titre_gratuit_vl0ytc.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160063/ressources/ANAH/FORMULAIRE_ANAH_sby8hz.pdf", model_1: nil, model_2: nil)
-
+ressource_2 = Ressource.create(title: "ANAH occupant à titre gratuit", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH)", solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28")
+ressource_2.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160070/ressources/ANAH/Notice_ANAH_occupant_titre_gratuit_vl0ytc.pdf"
+ressource_2.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160063/ressources/ANAH/FORMULAIRE_ANAH_sby8hz.pdf"
+ressource_2.save
 # 1,4,7,11,15,18,21,25
-ressource_3 = Ressource.create(title: "ANAH_propriétaire_occupant", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH)", acteur: nil, financer: nil, solution_ids: "1,4,7,11,15,18,21,25", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160067/ressources/ANAH/Notice_ANAH_proprietaire_occupant_ssdrop.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160063/ressources/ANAH/FORMULAIRE_ANAH_sby8hz.pdf", model_1: nil, model_2: nil)
-
+ressource_3 = Ressource.create(title: "ANAH_propriétaire_occupant", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH)", solution_ids: "1,4,7,11,15,18,21,25")
+ressource_3.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160067/ressources/ANAH/Notice_ANAH_proprietaire_occupant_ssdrop.pdf"
+ressource_3.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160063/ressources/ANAH/FORMULAIRE_ANAH_sby8hz.pdf"
+ressource_3.save
 # 62,63,64,65,66
-ressource_4 = Ressource.create(title: "APA", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de des services de l'Allocation Personnalisée Autonomie (APA)", acteur: nil, financer: nil, solution_ids: "62,63,64,65,66", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160056/ressources/APA/Notice_APA_eeuddt.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160057/ressources/APA/Formulaire_APA_kmjfy1.pdf", model_1: nil, model_2: nil)
-
+ressource_4 = Ressource.create(title: "APA", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de des services de l'Allocation Personnalisée Autonomie (APA)", solution_ids: "62,63,64,65,66",)
+ressource_4.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160056/ressources/APA/Notice_APA_eeuddt.pdf"
+ressource_4.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160057/ressources/APA/Formulaire_APA_kmjfy1.pdf"
+ressource_4.save
 # 60
-ressource_5 = Ressource.create(title: "Bailleur privé", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur privé", acteur: nil, financer: nil, solution_ids: "60", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160066/ressources/Bailleur_parc_prive/Notice_bailleur_parc_prive_pscor2.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160064/ressources/Bailleur_parc_prive/Modele_demande_autorisation_proprietaire_lohlid.pdf", model_2: nil)
+ressource_5 = Ressource.create(title: "Bailleur privé", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur privé", solution_ids: "60" )
+ressource_5.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160066/ressources/Bailleur_parc_prive/Notice_bailleur_parc_prive_pscor2.pdf"
+ressource_5.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160064/ressources/Bailleur_parc_prive/Modele_demande_autorisation_proprietaire_lohlid.pdf"
+ressource_5.save
 
 # 29,30,31,32,33,34,35,36,37,38,39,40,41,42,43
-ressource_6 = Ressource.create(title: "CNAV", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de la Caisse Nationale d'Assurance Vieillesse (CNAV)", acteur: nil, financer: nil, solution_ids: "29,30,31,32,33,34,35,36,37,38,39,40,41,42,43", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNAV/FORMULAIRE_CNAV_hyrjkx.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNAV/FORMULAIRE_CNAV_hyrjkx.pdf", model_1: nil, model_2: nil)
-
+ressource_6 = Ressource.create(title: "CNAV", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de la Caisse Nationale d'Assurance Vieillesse (CNAV)", solution_ids: "29,30,31,32,33,34,35,36,37,38,39,40,41,42,43")
+ressource_6.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNAV/FORMULAIRE_CNAV_hyrjkx.pdf"
+ressource_6.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNAV/FORMULAIRE_CNAV_hyrjkx.pdf"
+ressource_6.save
 # CREDIT D'IMPOT
-ressource_7 = Ressource.create(title: "Crédit d'impôt", description: "Retrouvez, ici, les ressources pour bénéficier du Crétit d'impôt", acteur: nil, financer: "CREDIT D'IMPOT", solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160058/ressources/Credit_d_impot/Notice_Credit_d_impot_bg6hyp.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160057/ressources/Credit_d_impot/Explication_Credit_d_impot_zvbmrn.pdf", model_2: nil)
+ressource_7 = Ressource.create(title: "Crédit d'impôt", description: "Retrouvez, ici, les ressources pour bénéficier du Crétit d'impôt", financer: "CREDIT D'IMPOT", solution_ids: "61")
+ressource_7.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160058/ressources/Credit_d_impot/Notice_Credit_d_impot_bg6hyp.pdf"
+ressource_7.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160057/ressources/Credit_d_impot/Explication_Credit_d_impot_zvbmrn.pdf"
+ressource_7.save
+
 
 # 67,68,69,70
-ressource_8 = Ressource.create(title: "PCH", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de des services de la Prestation de Compensation du Handicap (PCH)", acteur: nil, financer: nil, solution_ids: "67,68,69,70", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160068/ressources/PCH/Notice_PCH_rdpkxw.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160075/ressources/PCH/FORMULAIRE_PCH_fjyqba.pdf", model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160072/ressources/PCH/certificat_medical_zuvql6.pdf", model_2: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160069/ressources/PCH/GUIDE_FORMULAIRE_jpnk1d.pdf")
+ressource_8 = Ressource.create(title: "PCH", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès de des services de la Prestation de Compensation du Handicap (PCH)", solution_ids: "67,68,69,70",)
+ressource_8.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160068/ressources/PCH/Notice_PCH_rdpkxw.pdf"
+ressource_8.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160075/ressources/PCH/FORMULAIRE_PCH_fjyqba.pdf"
+ressource_8.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160072/ressources/PCH/certificat_medical_zuvql6.pdf"
+ressource_8.remote_model_2_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160069/ressources/PCH/GUIDE_FORMULAIRE_jpnk1d.pdf"
+ressource_8.save
+
 
 # SECURITE SOCIALE
-ressource_9 = Ressource.create(title: "Sécurité sociale", description: "Retrouvez, ici, les ressources pour conduire une demande de financement de la Sécurité sociale", acteur: nil, financer: "SECURITE SOCIALE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160066/ressources/Securite_sociale/Notice_Securite_Sociale_yxkudk.pdf", formulary: nil, model_1: nil, model_2: nil)
+ressource_9 = Ressource.create(title: "Sécurité sociale", description: "Retrouvez, ici, les ressources pour conduire une demande de financement de la Sécurité sociale", financer: "SECURITE SOCIALE")
+ressource_9.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1561931070/ressources/Notice_Securite_Sociale_cvsbhz.pdf"
+ressource_9.save
 
 # 44,45,46,47,48  + NOM
-ressource_10 = Ressource.create(title: "CaisseRetraitePrincipale_CAMIEG", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", financer: nil, solution_ids: "44,45,46,47,48", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160061/ressources/Caisse_retraite_principale/CAMIEG/FORMULAIRE_CAMIEG.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160061/ressources/Caisse_retraite_principale/CAMIEG/FORMULAIRE_CAMIEG.pdf", model_1: nil, model_2: nil, acteur: "CAMIEG")
-ressource_11 = Ressource.create(title: "CaisseRetraitePrincipale_CARCDSF", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", financer: nil, solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160059/ressources/Caisse_retraite_principale/CARCDSF/Notice_CARCDSF.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160060/ressources/Caisse_retraite_principale/CARCDSF/FORMULAIRE_CARCDSF.pdf", model_1: nil, model_2: nil, acteur: "CARCDSF")
-ressource_12 = Ressource.create(title: "CaisseRetraitePrincipale_CNRACL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", financer: nil, solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160069/ressources/Caisse_retraite_principale/CNRACL/Notice_CNRACL_ujp5ly.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNRACL/FORMULAIRE_CNRACL_esezsj.pdf", model_1: nil, model_2: nil, acteur: "CNRACL")
-ressource_13 = Ressource.create(title: "CaisseRetraitePrincipale_CNAV", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", financer: nil, solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160060/ressources/Caisse_retraite_principale/CNAV/Notice_CNAV_lpawfu.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNAV/FORMULAIRE_CNAV_hyrjkx.pdf", model_1: nil, model_2: nil, acteur: "CNAV")
-ressource_14 = Ressource.create(title: "CaisseRetraitePrincipale_CNRACL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", financer: nil, solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160069/ressources/Caisse_retraite_principale/CNRACL/Notice_CNRACL_ujp5ly.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNRACL/FORMULAIRE_CNRACL_esezsj.pdf", model_1: nil, model_2: nil, acteur: "CNRACL")
-ressource_15 = Ressource.create(title: "CaisseRetraitePrincipale_RSI", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", financer: nil, solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/SSI/Notice_SSI_pplfkw.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/SSI/FORMULAIRE_RSI_ux9yyn.pdf", model_1: nil, model_2: nil, acteur: "RSI")
+ressource_10 = Ressource.create(title: "CaisseRetraitePrincipale_CAMIEG", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", solution_ids: "44,45,46,47,48", acteur: "CAMIEG")
+ressource_10.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160061/ressources/Caisse_retraite_principale/CAMIEG/FORMULAIRE_CAMIEG.pdf"
+ressource_10.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160061/ressources/Caisse_retraite_principale/CAMIEG/FORMULAIRE_CAMIEG.pdf"
+ressource_10.save
+ressource_11 = Ressource.create(title: "CaisseRetraitePrincipale_CARCDSF", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", acteur: "CARCDSF")
+ressource_11.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160059/ressources/Caisse_retraite_principale/CARCDSF/Notice_CARCDSF.pdf"
+ressource_11.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160060/ressources/Caisse_retraite_principale/CARCDSF/FORMULAIRE_CARCDSF.pdf"
+ressource_11.save
+ressource_12 = Ressource.create(title: "CaisseRetraitePrincipale_CNRACL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", acteur: "CNRACL")
+ressource_12.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160069/ressources/Caisse_retraite_principale/CNRACL/Notice_CNRACL_ujp5ly.pdf"
+ressource_12.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNRACL/FORMULAIRE_CNRACL_esezsj.pdf"
+ressource_12.save
+ressource_13 = Ressource.create(title: "CaisseRetraitePrincipale_CNAV", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", acteur: "CNAV")
+ressource_13.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160060/ressources/Caisse_retraite_principale/CNAV/Notice_CNAV_lpawfu.pdf"
+ressource_13.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNAV/FORMULAIRE_CNAV_hyrjkx.pdf"
+ressource_13.save
+ressource_14 = Ressource.create(title: "CaisseRetraitePrincipale_CNRACL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", acteur: "CNRACL")
+ressource_14.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160069/ressources/Caisse_retraite_principale/CNRACL/Notice_CNRACL_ujp5ly.pdf"
+ressource_14.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/CNRACL/FORMULAIRE_CNRACL_esezsj.pdf"
+ressource_14.save
+ressource_15 = Ressource.create(title: "CaisseRetraitePrincipale_RSI", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite principale", solution_ids: "3,6,9,10,13,14,17,20,23,24,27,28", acteur: "RSI")
+ressource_15.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/SSI/Notice_SSI_pplfkw.pdf"
+ressource_15.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160062/ressources/Caisse_retraite_principale/SSI/FORMULAIRE_RSI_ux9yyn.pdf"
+ressource_15.save
+
+
 
 # MUTUELLE  + NOM
-ressource_16 = Ressource.create(title: "Mutuelle_ALLIANZ", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/ALLIANZ/Notice_ALLIANZ_rngdab.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/ALLIANZ/Modele_lettre_ALLIANZ_kx6nob.pdf", model_2: nil, acteur: "ALLIANZ")
-ressource_17 = Ressource.create(title: "Mutuelle_AMPLI", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/AMPLI/Notice_AMPLI_d6dblv.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/AMPLI/Modele_lettre_AMPLI_wjtq2l.pdf", model_2: nil, acteur: "AMPLI")
-ressource_18 = Ressource.create(title: "Mutuelle_MACIF", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160055/ressources/Mutuelle/MACIF/Notice_MACIF_oczu3g.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/MACIF/Modele_lettre_MACIF_trfigk.pdf", model_2: nil, acteur: "MACIF")
-ressource_19 = Ressource.create(title: "Mutuelle_MEDICIS", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160055/ressources/Mutuelle/MEDICIS/Notice_MEDICIS_fjsc81.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160055/ressources/Mutuelle/MEDICIS/Modele_lettre_MEDICIS_essp95.pdf", model_2: nil, acteur: "MEDICIS")
-ressource_20 = Ressource.create(title: "Mutuelle_MGP SANTE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/MGP_SANTE/Notice_MGP_SANTE_ivx8zi.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/MGP_SANTE/Modele_lettre_MGP_SANTE_v6f08l.pdf", model_2: nil, acteur: "MGP SANTE")
-ressource_21 = Ressource.create(title: "Mutuelle_MUTUELLE BLEUE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160052/ressources/Mutuelle/MUTUELLE_BLEUE/Modele_mail_MUTUELLE_BLEUE_hkceab.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160052/ressources/Mutuelle/MUTUELLE_BLEUE/Modele_mail_MUTUELLE_BLEUE_hkceab.pdf", model_2: nil, acteur: "MUTUELLE BLEUE")
-ressource_22 = Ressource.create(title: "Mutuelle_MUTUELLE FAMILIALE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/MUTUELLE_FAMILIALE/Notice_MUTUELLE_FAMILIALE_calbqv.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160052/ressources/Mutuelle/MUTUELLE_FAMILIALE/Formulaire_MUTUELLE_FAMILIALE_bkv6dd.pdf", model_1: nil, model_2: nil, acteur: "MUTUELLE FAMILIALE")
-ressource_23 = Ressource.create(title: "Mutuelle_MALAKOFF_MEDERIC", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160057/ressources/Mutuelle/Notice_MALAKOFF_MEDERIC_mutuelle_mw3sru.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "MEDERIC")
-ressource_24 = Ressource.create(title: "Mutuelle_APIVIA", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/Notice_APIVIA_m2p9ws.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "APIVIA")
-ressource_25 = Ressource.create(title: "Mutuelle_DYNALIS", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/Notice_DYNALIS_shy5mq.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "DYNALIS")
-ressource_26 = Ressource.create(title: "Mutuelle_APRIL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160052/ressources/Mutuelle/Notice_APRIL_t98qnj.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "APRIL")
-ressource_27 = Ressource.create(title: "Mutuelle_AUTRE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", solution_ids: nil, notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160051/ressources/Mutuelle/Notice_MUTUELLE_AUTRE_ldq58e.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "AUTRE")
+ressource_16 = Ressource.create(title: "Mutuelle_ALLIANZ", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "ALLIANZ")
+ressource_16.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/ALLIANZ/Notice_ALLIANZ_rngdab.pdf"
+ressource_16.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/ALLIANZ/Modele_lettre_ALLIANZ_kx6nob.pdf"
+ressource_16.save
+ressource_17 = Ressource.create(title: "Mutuelle_AMPLI", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "AMPLI")
+ressource_17.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/AMPLI/Notice_AMPLI_d6dblv.pdf"
+ressource_17.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/AMPLI/Modele_lettre_AMPLI_wjtq2l.pdf"
+ressource_17.save
+ressource_18 = Ressource.create(title: "Mutuelle_MACIF", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "MACIF")
+ressource_18.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160055/ressources/Mutuelle/MACIF/Notice_MACIF_oczu3g.pdf"
+ressource_18.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/MACIF/Modele_lettre_MACIF_trfigk.pdf"
+ressource_18.save
+ressource_19 = Ressource.create(title: "Mutuelle_MEDICIS", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "MEDICIS")
+ressource_19.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160055/ressources/Mutuelle/MEDICIS/Notice_MEDICIS_fjsc81.pdf"
+ressource_19.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160055/ressources/Mutuelle/MEDICIS/Modele_lettre_MEDICIS_essp95.pdf"
+ressource_19.save
+ressource_20 = Ressource.create(title: "Mutuelle_MGP SANTE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "MGP SANTE")
+ressource_20.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/MGP_SANTE/Notice_MGP_SANTE_ivx8zi.pdf"
+ressource_20.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/MGP_SANTE/Modele_lettre_MGP_SANTE_v6f08l.pdf"
+ressource_20.save
+ressource_21 = Ressource.create(title: "Mutuelle_MUTUELLE BLEUE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "MUTUELLE BLEUE")
+ressource_21.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160052/ressources/Mutuelle/MUTUELLE_BLEUE/Modele_mail_MUTUELLE_BLEUE_hkceab.pdf"
+ressource_21.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160052/ressources/Mutuelle/MUTUELLE_BLEUE/Modele_mail_MUTUELLE_BLEUE_hkceab.pdf"
+ressource_21.save
+ressource_22 = Ressource.create(title: "Mutuelle_MUTUELLE FAMILIALE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "MUTUELLE FAMILIALE")
+ressource_22.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/MUTUELLE_FAMILIALE/Notice_MUTUELLE_FAMILIALE_calbqv.pdf"
+ressource_22.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160052/ressources/Mutuelle/MUTUELLE_FAMILIALE/Formulaire_MUTUELLE_FAMILIALE_bkv6dd.pdf"
+ressource_22.save
+ressource_23 = Ressource.create(title: "Mutuelle_MALAKOFF_MEDERIC", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "MEDERIC")
+ressource_23.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160057/ressources/Mutuelle/Notice_MALAKOFF_MEDERIC_mutuelle_mw3sru.pdf"
+ressource_23.save
+ressource_24 = Ressource.create(title: "Mutuelle_APIVIA", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "APIVIA")
+ressource_24.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/Notice_APIVIA_m2p9ws.pdf"
+ressource_24.save
+ressource_25 = Ressource.create(title: "Mutuelle_DYNALIS", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "DYNALIS")
+ressource_25.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160054/ressources/Mutuelle/Notice_DYNALIS_shy5mq.pdf"
+ressource_25.save
+ressource_26 = Ressource.create(title: "Mutuelle_APRIL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "APRIL")
+ressource_26.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160052/ressources/Mutuelle/Notice_APRIL_t98qnj.pdf"
+ressource_26.save
+ressource_27 = Ressource.create(title: "Mutuelle_AUTRE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "AUTRE")
+ressource_27.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160051/ressources/Mutuelle/Notice_MUTUELLE_AUTRE_ldq58e.pdf"
+ressource_27.save
+
 
 # 61 + NOM
-ressource_28 = Ressource.create(title: "CaisseRetraiteComplementaire_AG2R", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160043/ressources/Caisse_retraite_complementaire/AG2R/Notice_AG2R_sntyqe.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160041/ressources/Caisse_retraite_complementaire/AG2R/FORMULAIRE_AG2R_pkdtmp.pdf", model_1: nil, model_2: nil, acteur: "AG2R")
-ressource_29 = Ressource.create(title: "CaisseRetraiteComplementaire_B2V", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/B2V/Notice_B2V_kbfbwh.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/B2V/Modele_lettre_B2V_wsr0pi.pdf", model_2: nil, acteur: "B2V")
-ressource_30 = Ressource.create(title: "CaisseRetraiteComplementaire_HUMANIS", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160040/ressources/Caisse_retraite_complementaire/HUMANIS/Notice_HUMANIS_nsqthh.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160034/ressources/Caisse_retraite_complementaire/HUMANIS/FORMULAIRE_HUMANIS_nm04oo.pdf", model_1: nil, model_2: nil, acteur: "HUMANIS")
-ressource_31 = Ressource.create(title: "CaisseRetraiteComplementaire_IRP AUTO", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160038/ressources/Caisse_retraite_complementaire/IRP_AUTO/Notice_IRP_AUTO_h7aqfe.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160040/ressources/Caisse_retraite_complementaire/IRP_AUTO/FORMULAIRE_IRP_AUTO_ddyiqc.pdf", model_1: nil, model_2: nil, acteur: "IRP AUTO")
-ressource_32 = Ressource.create(title: "CaisseRetraiteComplementaire_LOURMEL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160034/ressources/Caisse_retraite_complementaire/LOURMEL/Notice_LOURMEL_br2cei.pdf", formulary: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/LOURMEL/FORMULAIRE_LOURMEL_bbgvp5.pdf", model_1: nil, model_2: nil, acteur: "LOURMEL")
-ressource_33 = Ressource.create(title: "CaisseRetraiteComplementaire_IRCANTEC", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/Notice_IRCANTEC_ecrvof.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "IRCANTEC")
-ressource_34 = Ressource.create(title: "CaisseRetraiteComplementaire_AUTRE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/Notice_CAISSE_RETRAITE_COMPLEMENTAIRE_AUTRE_dfrj7d.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "AUTRE")
-ressource_35 = Ressource.create(title: "CaisseRetraiteComplementaire_MALAKOFF MEDERIC", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160035/ressources/Caisse_retraite_complementaire/Notice_MALAKOFF_MEDERIC_i70ipa.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "MALAKOFF MEDERIC")
-ressource_36 = Ressource.create(title: "CaisseRetraiteComplementaire_KLESIA", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160035/ressources/Caisse_retraite_complementaire/Notice_KLESIA_ez4fkw.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "KLESIA")
-ressource_37 = Ressource.create(title: "CaisseRetraiteComplementaire_PRO BTP fomnnu", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", financer: nil, solution_ids: "61", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160034/ressources/Caisse_retraite_complementaire/Notice_PRO_BTP_fomnnu.pdf", formulary: nil, model_1: nil, model_2: nil, acteur: "PRO BTP fomnnu")
+ressource_28 = Ressource.create(title: "CaisseRetraiteComplementaire_AG2R", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "AG2R")
+ressource_28.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160043/ressources/Caisse_retraite_complementaire/AG2R/Notice_AG2R_sntyqe.pdf"
+ressource_28.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160041/ressources/Caisse_retraite_complementaire/AG2R/FORMULAIRE_AG2R_pkdtmp.pdf"
+ressource_28.save
+
+ressource_29 = Ressource.create(title: "CaisseRetraiteComplementaire_B2V", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "B2V")
+ressource_29.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/B2V/Notice_B2V_kbfbwh.pdf"
+ressource_29.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/B2V/Modele_lettre_B2V_wsr0pi.pdf"
+ressource_29.save
+
+ressource_30 = Ressource.create(title: "CaisseRetraiteComplementaire_HUMANIS", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "HUMANIS")
+ressource_30.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160040/ressources/Caisse_retraite_complementaire/HUMANIS/Notice_HUMANIS_nsqthh.pdf"
+ressource_30.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160034/ressources/Caisse_retraite_complementaire/HUMANIS/FORMULAIRE_HUMANIS_nm04oo.pdf"
+ressource_30.save
+
+ressource_31 = Ressource.create(title: "CaisseRetraiteComplementaire_IRP AUTO", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "IRP AUTO")
+ressource_31.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160038/ressources/Caisse_retraite_complementaire/IRP_AUTO/Notice_IRP_AUTO_h7aqfe.pdf"
+ressource_31.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160040/ressources/Caisse_retraite_complementaire/IRP_AUTO/FORMULAIRE_IRP_AUTO_ddyiqc.pdf"
+ressource_31.save
+
+ressource_32 = Ressource.create(title: "CaisseRetraiteComplementaire_LOURMEL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "LOURMEL")
+ressource_32.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160034/ressources/Caisse_retraite_complementaire/LOURMEL/Notice_LOURMEL_br2cei.pdf"
+ressource_32.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/LOURMEL/FORMULAIRE_LOURMEL_bbgvp5.pdf"
+ressource_32.save
+
+ressource_33 = Ressource.create(title: "CaisseRetraiteComplementaire_IRCANTEC", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "IRCANTEC")
+ressource_33.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/Notice_IRCANTEC_ecrvof.pdf"
+ressource_33.save
+
+ressource_34 = Ressource.create(title: "CaisseRetraiteComplementaire_AUTRE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "AUTRE")
+ressource_34.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160036/ressources/Caisse_retraite_complementaire/Notice_CAISSE_RETRAITE_COMPLEMENTAIRE_AUTRE_dfrj7d.pdf"
+ressource_34.save
+
+ressource_35 = Ressource.create(title: "CaisseRetraiteComplementaire_MALAKOFF MEDERIC", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "MALAKOFF MEDERIC")
+ressource_35.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160035/ressources/Caisse_retraite_complementaire/Notice_MALAKOFF_MEDERIC_i70ipa.pdf"
+ressource_35.save
+
+ressource_36 = Ressource.create(title: "CaisseRetraiteComplementaire_KLESIA", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "KLESIA")
+ressource_36.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160035/ressources/Caisse_retraite_complementaire/Notice_KLESIA_ez4fkw.pdf"
+ressource_36.save
+
+ressource_37 = Ressource.create(title: "CaisseRetraiteComplementaire_PRO BTP fomnnu", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une Caisse de retraite complémentaire", solution_ids: "61", acteur: "PRO BTP fomnnu")
+ressource_37.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160034/ressources/Caisse_retraite_complementaire/Notice_PRO_BTP_fomnnu.pdf"
+ressource_37.save
+
 
 # 49,50,51,52,53,54,55,56,57,58,59 + NOM
-ressource_38 = Ressource.create(title: "BailleurSocial_INLI QWACIO", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160051/ressources/Bailleur_parc_social/Notice_INLI_QWACIO_nmgaad.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "INLI QWACIO")
-ressource_39 = Ressource.create(title: "BailleurSocial_OSICA", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160051/ressources/Bailleur_parc_social/Notice_OSICA_mdarqw.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "OSICA")
-ressource_40 = Ressource.create(title: "BailleurSocial_OPH LHAY LES ROSES", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160051/ressources/Bailleur_parc_social/Notice_OPH_LHAY_LES_ROSES_ftyakx.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "OPH LHAY LES ROSES")
-ressource_41 = Ressource.create(title: "BailleurSocial_OPH IVRY", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Notice_OPH_IVRY_vbxe3y.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "OPH IVRY")
-ressource_42 = Ressource.create(title: "BailleurSocial_OPH VITRY", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Notice_OPH_VITRY_ctwxzm.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "OPH VITRY")
-ressource_43 = Ressource.create(title: "BailleurSocial_LOGIAL OPH", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160049/ressources/Bailleur_parc_social/Notice_LOGIAL_OPH_phxuq7.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "LOGIAL OPH")
-ressource_44 = Ressource.create(title: "BailleurSocial_IDF HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160049/ressources/Bailleur_parc_social/Notice_IDF_HABITAT_a0rw2m.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "IDF HABITAT")
-ressource_45 = Ressource.create(title: "BailleurSocial_AUTRE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160048/ressources/Bailleur_parc_social/Notice_BAILLEUR_AUTRE_xyc10d.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "AUTRE")
-ressource_46 = Ressource.create(title: "BailleurSocial_ICF HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160048/ressources/Bailleur_parc_social/Notice_ICF_HABITAT_qns07o.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "ICF HABITAT")
-ressource_47 = Ressource.create(title: "BailleurSocial_SIEMP", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160047/ressources/Bailleur_parc_social/Notice_SIEMP_yu4oi6.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "SIEMP")
-ressource_48 = Ressource.create(title: "BailleurSocial_LA SEMISE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160047/ressources/Bailleur_parc_social/Notice_LA_SEMISE_cvsegu.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "LA SEMISE")
-ressource_49 = Ressource.create(title: "BailleurSocial_PARIS HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160047/ressources/Bailleur_parc_social/Notice_PARIS_HABITAT_adkikz.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "PARIS HABITAT")
-ressource_50 = Ressource.create(title: "BailleurSocial_OPH VILLEJUIF", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160046/ressources/Bailleur_parc_social/Notice_OPH_VILLEJUIF_lga3go.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "OPH VILLEJUIF")
-ressource_51 = Ressource.create(title: "BailleurSocial_RESIDENCE LE LOGEMENT DES FONCTIONNAIRRES", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160046/ressources/Bailleur_parc_social/Notice_RESIDENCE_LE_LOGEMENT_DES_FONCTIONNAIRRES_cbdpre.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "RESIDENCE LE LOGEMENT DES FONCTIONNAIRRES")
-ressource_52 = Ressource.create(title: "BailleurSocial_OPALY", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160046/ressources/Bailleur_parc_social/Notice_OPALY_sjxqlj.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "OPALY")
-ressource_53 = Ressource.create(title: "BailleurSocial_FOYER SOLEIL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160045/ressources/Bailleur_parc_social/Notice_FOYER_SOLEIL_rhhp5v.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "FOYER SOLEIL")
-ressource_54 = Ressource.create(title: "BailleurSocial_CDC HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160044/ressources/Bailleur_parc_social/Notice_CDC_HABITAT_jfvawv.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "CDC HABITAT")
-ressource_55 = Ressource.create(title: "BailleurSocial_FRANCE HABITATION", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160043/ressources/Bailleur_parc_social/Notice_FRANCE_HABITATION_ctim4j.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "FRANCE HABITATION")
-ressource_56 = Ressource.create(title: "BailleurSocial_MAISONS ALFORT HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160043/ressources/Bailleur_parc_social/Notice_MAISONS_ALFORT_HABITAT_nkapiz.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "MAISONS ALFORT HABITAT")
-ressource_57 = Ressource.create(title: "BailleurSocial_KREMLIN BICETRE HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160043/ressources/Bailleur_parc_social/Notice_KREMLIN_BICETRE_HABITAT_a2czqt.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "KREMLIN BICETRE HABITAT")
-ressource_58 = Ressource.create(title: "BailleurSocial_BATIGERE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160042/ressources/Bailleur_parc_social/Notice_BATIGERE_lfdudg.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "BATIGERE")
-ressource_59 = Ressource.create(title: "BailleurSocial_DOMNIS", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160041/ressources/Bailleur_parc_social/Notice_DOMNIS_yvrjih.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "DOMNIS")
-ressource_60 = Ressource.create(title: "BailleurSocial_I3F", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160041/ressources/Bailleur_parc_social/Notice_I3F_jc8srk.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "I3F")
-ressource_61 = Ressource.create(title: "BailleurSocial_VALOPHIS HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160040/ressources/Bailleur_parc_social/Notice_VALOPHIS_HABITAT_itq3zr.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "VALOPHIS HABITAT")
-ressource_62 = Ressource.create(title: "BailleurSocial_ANTIN RESIDENCES", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160039/ressources/Bailleur_parc_social/Notice_ANTIN_RESIDENCES_cysodt.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "ANTIN RESIDENCES")
-ressource_63 = Ressource.create(title: "BailleurSocial_RATP HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", financer: nil, solution_ids: "49,50,51,52,53,54,55,56,57,58,59", notice: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160038/ressources/Bailleur_parc_social/Notice_RATP_HABITAT_ukmcby.pdf", formulary: nil, model_1: "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf", model_2: nil, acteur: "RATP HABITAT")
+
+ressource_38 = Ressource.create(title: "BailleurSocial_INLI QWACIO", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "INLI QWACIO")
+ressource_38.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160051/ressources/Bailleur_parc_social/Notice_INLI_QWACIO_nmgaad.pdf"
+ressource_38.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_38.save
+ressource_39 = Ressource.create(title: "BailleurSocial_OSICA", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "OSICA")
+ressource_39.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160051/ressources/Bailleur_parc_social/Notice_OSICA_mdarqw.pdf"
+ressource_39.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_39.save
+ressource_40 = Ressource.create(title: "BailleurSocial_OPH LHAY LES ROSES", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "OPH LHAY LES ROSES")
+ressource_40.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160051/ressources/Bailleur_parc_social/Notice_OPH_LHAY_LES_ROSES_ftyakx.pdf"
+ressource_40.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_40.save
+
+ressource_41 = Ressource.create(title: "BailleurSocial_OPH IVRY", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "OPH IVRY")
+ressource_41.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Notice_OPH_IVRY_vbxe3y.pdf"
+ressource_41.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_41.save
+
+ressource_42 = Ressource.create(title: "BailleurSocial_OPH VITRY", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "OPH VITRY")
+ressource_42.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Notice_OPH_VITRY_ctwxzm.pdf"
+ressource_42.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_42.save
+
+ressource_43 = Ressource.create(title: "BailleurSocial_LOGIAL OPH", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "LOGIAL OPH")
+ressource_43.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160049/ressources/Bailleur_parc_social/Notice_LOGIAL_OPH_phxuq7.pdf"
+ressource_43.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_43.save
+ressource_44 = Ressource.create(title: "BailleurSocial_IDF HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "IDF HABITAT")
+ressource_44.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160049/ressources/Bailleur_parc_social/Notice_IDF_HABITAT_a0rw2m.pdf"
+ressource_44.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_44.save
+ressource_45 = Ressource.create(title: "BailleurSocial_AUTRE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "AUTRE")
+ressource_45.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160048/ressources/Bailleur_parc_social/Notice_BAILLEUR_AUTRE_xyc10d.pdf"
+ressource_45.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_45.save
+ressource_46 = Ressource.create(title: "BailleurSocial_ICF HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "ICF HABITAT")
+ressource_46.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160048/ressources/Bailleur_parc_social/Notice_ICF_HABITAT_qns07o.pdf"
+ressource_46.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_46.save
+ressource_47 = Ressource.create(title: "BailleurSocial_SIEMP", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "SIEMP")
+ressource_47.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160047/ressources/Bailleur_parc_social/Notice_SIEMP_yu4oi6.pdf"
+ressource_47.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_47.save
+ressource_48 = Ressource.create(title: "BailleurSocial_LA SEMISE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "LA SEMISE")
+ressource_48.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160047/ressources/Bailleur_parc_social/Notice_LA_SEMISE_cvsegu.pdf"
+ressource_48.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_48.save
+ressource_49 = Ressource.create(title: "BailleurSocial_PARIS HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "PARIS HABITAT")
+ressource_49.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160047/ressources/Bailleur_parc_social/Notice_PARIS_HABITAT_adkikz.pdf"
+ressource_49.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_49.save
+ressource_50 = Ressource.create(title: "BailleurSocial_OPH VILLEJUIF", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "OPH VILLEJUIF")
+ressource_50.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160046/ressources/Bailleur_parc_social/Notice_OPH_VILLEJUIF_lga3go.pdf"
+ressource_50.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_50.save
+ressource_51 = Ressource.create(title: "BailleurSocial_RESIDENCE LE LOGEMENT DES FONCTIONNAIRRES", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "RESIDENCE LE LOGEMENT DES FONCTIONNAIRRES")
+ressource_51.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160046/ressources/Bailleur_parc_social/Notice_RESIDENCE_LE_LOGEMENT_DES_FONCTIONNAIRRES_cbdpre.pdf"
+ressource_51.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_51.save
+ressource_52 = Ressource.create(title: "BailleurSocial_OPALY", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "OPALY")
+ressource_52.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160046/ressources/Bailleur_parc_social/Notice_OPALY_sjxqlj.pdf"
+ressource_52.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_52.save
+ressource_53 = Ressource.create(title: "BailleurSocial_FOYER SOLEIL", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "FOYER SOLEIL")
+ressource_53.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160045/ressources/Bailleur_parc_social/Notice_FOYER_SOLEIL_rhhp5v.pdf"
+ressource_53.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_53.save
+
+ressource_54 = Ressource.create(title: "BailleurSocial_CDC HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "CDC HABITAT")
+ressource_54.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160044/ressources/Bailleur_parc_social/Notice_CDC_HABITAT_jfvawv.pdf"
+ressource_54.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_54.save
+ressource_55 = Ressource.create(title: "BailleurSocial_FRANCE HABITATION", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "FRANCE HABITATION")
+ressource_55.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160043/ressources/Bailleur_parc_social/Notice_FRANCE_HABITATION_ctim4j.pdf"
+ressource_55.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_55.save
+ressource_56 = Ressource.create(title: "BailleurSocial_MAISONS ALFORT HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "MAISONS ALFORT HABITAT")
+ressource_56.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160043/ressources/Bailleur_parc_social/Notice_MAISONS_ALFORT_HABITAT_nkapiz.pdf"
+ressource_56.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_56.save
+ressource_57 = Ressource.create(title: "BailleurSocial_KREMLIN BICETRE HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "KREMLIN BICETRE HABITAT")
+ressource_57.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160043/ressources/Bailleur_parc_social/Notice_KREMLIN_BICETRE_HABITAT_a2czqt.pdf"
+ressource_57.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_57.save
+ressource_58 = Ressource.create(title: "BailleurSocial_BATIGERE", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "BATIGERE")
+ressource_58.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160042/ressources/Bailleur_parc_social/Notice_BATIGERE_lfdudg.pdf"
+ressource_58.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_58.save
+ressource_59 = Ressource.create(title: "BailleurSocial_DOMNIS", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "DOMNIS")
+ressource_59.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160041/ressources/Bailleur_parc_social/Notice_DOMNIS_yvrjih.pdf"
+ressource_59.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_59.save
+
+ressource_60 = Ressource.create(title: "BailleurSocial_I3F", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "I3F")
+ressource_60.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160041/ressources/Bailleur_parc_social/Notice_I3F_jc8srk.pdf"
+ressource_60.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_60.save
+
+ressource_61 = Ressource.create(title: "BailleurSocial_VALOPHIS HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "VALOPHIS HABITAT")
+ressource_61.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160040/ressources/Bailleur_parc_social/Notice_VALOPHIS_HABITAT_itq3zr.pdf"
+ressource_61.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_61.save
+ressource_62 = Ressource.create(title: "BailleurSocial_ANTIN RESIDENCES", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "ANTIN RESIDENCES")
+ressource_62.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160039/ressources/Bailleur_parc_social/Notice_ANTIN_RESIDENCES_cysodt.pdf"
+ressource_62.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_62.save
+ressource_63 = Ressource.create(title: "BailleurSocial_RATP HABITAT", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'un bailleur social", solution_ids: "49,50,51,52,53,54,55,56,57,58,59", acteur: "RATP HABITAT")
+ressource_63.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160038/ressources/Bailleur_parc_social/Notice_RATP_HABITAT_ukmcby.pdf"
+ressource_63.remote_model_1_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160050/ressources/Bailleur_parc_social/Modele_demande_autorisation_bailleur_aimx8f.pdf"
+ressource_63.save
 
 
 p "Ressources created"
 p "Create Advisor"
 
-  advisor = User.create(last_name: "Charet", first_name: "Marine", phone: "998877866", advisor: true, client: false, admin: false, email: "marine@mail.com", password:"password")
+  advisor = User.create(last_name: "Charet", first_name: "Marine", phone: "998877866", advisor: true, client: false, admin: false, email: "d.rolland@ymail.com", password:"password")
   advisor.remote_avatar_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1561901450/Belavie/Marine_CHARRET_j4j2yv.png"
   advisor.save
 
@@ -1227,7 +1424,7 @@ p "Create Advisor"
   Framework.create(user: advisor, logo: nil, title: "intercom", schedule_url: "https://app.intercom.io/a/apps/pfhokn92/inbox/inbox/")
 p "Create Admin"
 
-  User.create(last_name: "Euphrasie", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "admin@mail.com", password:"password")
+  User.create(last_name: "Euphrasie", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "donatien@rollandmail.com", password:"password")
 
 
 p "create Message"
@@ -1252,7 +1449,7 @@ p "Formulary created"
 
 p "Create a Beneficaire"
 
-  bene = User.create(first_name: form.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test@mail.com", password: "password")
+  bene = User.create(first_name: form.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "donatien@avemcreation.com", password: "password")
   UserProject.create(user: bene, project: project, client: true)
   UserProject.create(user: advisor, project: project)
 

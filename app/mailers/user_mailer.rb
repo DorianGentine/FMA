@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'donatien@rollandmail.com'
+  default from: 'contact@financermonautonomie.fr'
 
   layout 'mailer'
 

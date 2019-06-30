@@ -34,7 +34,6 @@ class CardClient extends Component {
           <div className="white-box" style={{padding: "20px"}}>
             <div className="row">
               <div className="col-lg-6 margin-bottom-15">{renderLogo(advisor)}</div>
-              <div className="col-lg-6 text-align-right">...</div>
 
               <div className="col-lg-12 font-14 black bold">{fullName}</div>
 

@@ -33,7 +33,7 @@ if @project.kits.count > 0
   json.kits @project.kits do |kit|
     json.id kit.id
     json.ressource kit.ressource.id
-    json.extract! kit.ressource, :id, :notice, :formulary, :model_1, :model_2
+    json.extract! kit.ressource, :id, :title, :description, :updated_at, :notice, :formulary, :model_1, :model_2
   end
 end
 

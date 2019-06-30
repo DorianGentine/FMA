@@ -19,7 +19,7 @@ class Api::V1::RessourcesController < Api::V1::BaseController
     ressource = Ressource.new(ressource_params)
     if ressource.save
       if ressource.request
-        kit = Kit.create(project: Project.find(params[:project_id], ressource: ressource )
+        kit = Kit.create(project: Project.find(params[:project_id]), ressource: ressource )
       end
       render json: ressource
     else

@@ -27,7 +27,7 @@ class KitDeFinancement extends Component {
           <div className="flex margin-top-15" key={index}>
             <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>{kit.notice.url ? kit.notice.url.substr(kit.notice.url.lastIndexOf('/') + 1, 25) : ""}</p>
             <p className="col-lg-2 font-12 blue bold text-align-right">{nbDocs}</p>
-            <p className="col-lg-4 font-12">_______</p>
+            <p className="col-lg-4 font-12">{kit.updated_at}</p>
             <a className="blue-gray-btn" href={kit.download_ressource}>Télécharger <i className="fas fa-download"></i></a>
           </div>
             // <p className="col-lg-4 font-12">{kit.formulary && kit.formulary.url != null ? kit.formulary.url.substr(kit.notice.lastIndexOf('/') + 1, 20) : ""}</p>

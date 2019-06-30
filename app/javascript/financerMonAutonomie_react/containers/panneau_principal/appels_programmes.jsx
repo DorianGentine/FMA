@@ -87,13 +87,6 @@ class AppelsProgrammes extends Component {
           <p className="blue padding-horizontal-15">
             {`${clientsStep4} ${clientsStep4 < 2 ? "appel" : "appels"}`}
           </p>
-          <p className="
-            padding-horizontal-15
-            text-align-right
-            font-12
-            icon-arrow-right-gray
-            flex-grow-1">
-          </p>
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
             <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Heure</p>
             <p className="col-lg-3 font-12">Nom</p>

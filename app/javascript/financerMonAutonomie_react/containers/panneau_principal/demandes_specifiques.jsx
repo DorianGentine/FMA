@@ -62,13 +62,7 @@ class AppelsProgrammes extends Component {
           <p className="padding-horizontal-15">
             {`${String(4).padStart(2, '0')}`}
           </p>
-          <p className="
-            padding-horizontal-15
-            text-align-right
-            font-12
-            icon-arrow-right-gray
-            flex-grow-1">
-          </p>
+
           <div className="bordure-bas flex w-100" style={{margin: "15px 15px 0"}}>
             <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Catégorie</p>
             <p className="col-lg-3 font-12">Conseiller</p>
