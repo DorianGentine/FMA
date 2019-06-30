@@ -123,7 +123,14 @@ class FormularyToHash
   def set_answer_for_chatbot(form, column_name)
     if form.send(column_name).present?
       if authorize_answer_form?(form, column_name)
-        if column_name == "zip_code"
+        if column_name == "supplementary" || column_name == "assistant"
+          first = form.send(column_name).delete! '[]'
+          if first.nil?
+            form.send(column_name)
+          else
+            first.gsub('"', '')
+          end
+        elsif column_name == "zip_code"
           form.address + ", " + form.zip_code
         elsif column_name == "age"
           "#{form.age}, j'ai #{form.his_age} ans"

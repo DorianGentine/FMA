@@ -17,7 +17,7 @@ class Api::V1::CalendliesController < Api::V1::BaseController
     authorize @user
   end
 
-  def update
+  def restart_compteur
     @user = User.find(1)
     message = Message.last
     message.unread = 0
@@ -25,10 +25,8 @@ class Api::V1::CalendliesController < Api::V1::BaseController
     message.email = nil
     message.full_name = nil
     message.save
-
     authorize @user
   end
-
 end
 
 

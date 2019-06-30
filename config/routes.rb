@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       post :intercom, to: 'calendlies#intercom', as: "intercom"
-      patch :update, to: 'calendlies#update', as: "update"
+      patch :restart_compteur, to: 'calendlies#restart_compteur', as: "restart_compteur"
       resources :visitors, only: [:show, :update] do
         member do
           patch :update_formulary
