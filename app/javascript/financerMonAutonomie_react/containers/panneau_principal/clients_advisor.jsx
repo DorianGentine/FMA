@@ -7,12 +7,23 @@ import { fetchClients, showClient } from '../../actions'
 import renderLogo from "../../../components/render_logo"
 
 class ClientsAdvisor extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      clients: this.props.clients,
+    };
+  }
+
   componentWillMount(){
     this.props.fetchClients("/api/v1/users")
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({ clients: nextProps.clients })
+  }
+
   render(){
-    const clients = this.props.clients
+    const clients = this.state.clients
 
     const renderClients = (clientsStep5) => {
       if(clientsStep5 === 0){

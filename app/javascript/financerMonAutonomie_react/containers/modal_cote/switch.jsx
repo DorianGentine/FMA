@@ -17,7 +17,7 @@ class Switch extends Component {
       this.props.fetchPostCompte(`/api/v1/projects/${clientProject}/kits`, body, "POST", () => {this.props.fetchClients("/api/v1/users")} )
     }else if(checked){
       console.log("DELETE")
-      fetch(`/api/v1/projects/${clientProject}/kits/${kitId}`, { method: "DELETE", })
+      this.props.fetchPostCompte(`/api/v1/projects/${clientProject}/kits/${kitId}`, null, "DELETE", () => {this.props.fetchClients("/api/v1/users")} )
     }
   }
 

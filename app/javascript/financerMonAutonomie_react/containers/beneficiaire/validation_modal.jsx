@@ -27,6 +27,7 @@ class ValidationModal extends Component {
     let textTitre = ""
     let textPrincipal = ""
     let style = {}
+    let styleText = {}
     if(etape === "validation_data"){
       textTitre = "Étape 1 : Confirmation des réponses"
       textPrincipal = `Veuillez vérifier et confirmer l’exactitude des réponses que vous avez fournis.
@@ -46,6 +47,7 @@ class ValidationModal extends Component {
       Par ailleurs un guide détaillé vous sera fournis.`
       style = { top: "30px", left: "5px" }
     }else if(etape === "evaluation"){
+      styleText = { top: "unset", bottom: "50px" }
       textTitre = "Étape 6: Evaluation du service"
       textPrincipal = `Pour améliorer notre accompagnement nous vous proposons d’accéder à un questionnaire de satisfaction.`
     } else {
@@ -56,7 +58,7 @@ class ValidationModal extends Component {
       return(
         <div className="validation_modal" style={style}>
           <div className={`validation_modal-point ${ hint ? "" : "hidden"}`} id={`point_${etape}`} onClick={toggleLilModal}></div>
-          <div className={`validation_modal-text ${ hint ? "" : "hidden"}`} id={`tip_${etape}`}>
+          <div className={`validation_modal-text ${ hint ? "" : "hidden"}`} id={`tip_${etape}`} style={styleText}>
             <div className="flex">
               <p className="white flex-grow-1 margin-right-15 bold">{textTitre}</p>
               <i className="fas fa-times white text-align-right align-center" onClick={closeLilModal}></i>

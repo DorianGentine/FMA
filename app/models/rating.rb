@@ -19,7 +19,7 @@ class Rating < ApplicationRecord
     {
       column: "obvious",
       question: "Les informations fournies à travers notre plateforme et votre espace personnel sont-elles suffisamment claires ?",
-      type: "select",
+      type: "radio",
       choice: {
         1 => "Ce n’était pas clair du tout",
         2 => "J’ai rencontré quelques difficultés de compréhension",
@@ -33,7 +33,7 @@ class Rating < ApplicationRecord
     {
       column: "useful",
       question: "Les informations fournies à travers notre plateforme et votre espace personnel sont-elles utiles pour vous ?",
-      type: "select",
+      type: "radio",
       choice: {
         1 => "Pas du tout",
         2 => "Peu d’entre elles me sont utiles",
@@ -48,7 +48,7 @@ class Rating < ApplicationRecord
     {
       column: "reactivity",
       question: "Avons-nous été suffisamment rapide pour vous délivrer les informations et conseils ?",
-      type: "select",
+      type: "radio",
       choice: {
         1 => "J’ai trouvé le service trop lent",
         2 => "Rapide vous pourriez mieux faire",
@@ -61,7 +61,7 @@ class Rating < ApplicationRecord
     {
       column: "satisfy",
       question: "Êtes globalement satisfait de notre plateforme ?",
-      type: "select",
+      type: "radio",
       choice: {
         1 => "Pas du tout",
         2 => "Je suis peu satisfait(e)",
@@ -75,7 +75,7 @@ class Rating < ApplicationRecord
     {
       column: "recommend",
       question: "Recommanderiez-vous l’utilisation de notre plateforme ?",
-      type: "select",
+      type: "radio",
       choice: {
         1 => "Oui",
         2 => "Non"

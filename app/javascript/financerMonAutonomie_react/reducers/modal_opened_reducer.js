@@ -4,6 +4,7 @@ import {
   SHOW_CREATE_RESSOURCE,
   SHOW_DEMANDE,
   SHOW_DOCUMENT,
+  SHOW_EVALUATION,
   SHOW_FINANCER,
   SHOW_NOTES,
   SHOW_REPONSES,
@@ -26,6 +27,9 @@ export default function(state = null, action) {
       return true;
     }
     case SHOW_DOCUMENT: {
+      return true;
+    }
+    case SHOW_EVALUATION: {
       return true;
     }
     case SHOW_FINANCER: {

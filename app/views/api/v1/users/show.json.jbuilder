@@ -56,6 +56,7 @@ elsif @user.admin
       json.projects Project.all.count
       json.current Project.where.not(step: "archived").count
       json.requests Request.where.not(close: true).count
+      json.visitors Visitor.all.count
       json.formulaires @vis_formulaires.count
       json.inscription User.clients.count
       json.connected @connected.compact.count

@@ -9,16 +9,8 @@ class PanneauPrincipalClients extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      messageUnread: 0,
+      messageUnread: this.props.api.new_message.unread,
     };
-  }
-
-  componentDidMount(){
-    this.refresher = setInterval(()=>{this.props.fetchAPI(`/api/v1/users/${this.props.user_id}`)}, 10000)
-  }
-
-  componentWillUnmount(){
-    clearInterval(this.refresher);
   }
 
   componentWillReceiveProps(nextProps){
@@ -31,9 +23,11 @@ class PanneauPrincipalClients extends Component {
     const newMessages = this.props.api.new_message
 
     return (
-      <div className="fixed chat-advisor">
-        {this.state.messageUnread != 0 ? <div className="message-unread">{this.state.messageUnread}</div> : null}
-        <img src="https://res.cloudinary.com/financermonautonomie/image/upload/v1560225478/Symbole_white_ypjj6m.png" alt=""/>
+      <div>
+        <a href={newMessages.url} target="_blank" className="fixed chat-advisor">
+          {this.state.messageUnread != 0 ? <div className="message-unread">{this.state.messageUnread}</div> : null}
+          <img src="https://res.cloudinary.com/financermonautonomie/image/upload/v1560225478/Symbole_white_ypjj6m.png" alt=""/>
+        </a>
       </div>
     )
   }
