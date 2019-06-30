@@ -76,7 +76,7 @@
   }
   .blue-gray-btn:hover{
     background-color: $blue;
-    color: $white;
+    color: $white !important;
   }
   .blue-gray-btn:disabled{
     cursor: not-allowed;
