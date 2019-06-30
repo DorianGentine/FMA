@@ -74,6 +74,7 @@ Rails.application.routes.draw do
         member do
           patch :next_setp
           patch :display_hint
+          get :download_zip
         end
         resources :formularies, only: [ :new, :create ]
       end

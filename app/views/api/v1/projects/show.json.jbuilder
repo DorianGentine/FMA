@@ -25,14 +25,14 @@ end
 json.documents @project.documents do |document|
   json.extract! document, :id, :title, :description, :file, :notice, :solution_ids, :formulary_ids
 end
-
-json.kits @project.kits do |kit|
-  json.id kit.id
-  json.ressource kit.ressource.id
-  json.extract! kit.ressource, :id, :notice, :formulary, :model_1, :model_2
-  json.download_ressource ZipFile.new(@project).call_ressource(kit.ressource)
+if @project.kits.count > 0
+  json.kits @project.kits do |kit|
+    json.id kit.id
+    json.ressource kit.ressource.id
+    json.extract! kit.ressource, :id, :notice, :formulary, :model_1, :model_2
+  end
 end
-json.download_all_ressources ZipFile.new(@project).call_ressources if @project.kits.count > 0
+
 
 json.financers @project.solutions do |solution|
   json.id solution.id

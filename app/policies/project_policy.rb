@@ -31,4 +31,8 @@ class ProjectPolicy < ApplicationPolicy
     true
   end
 
+  def download_zip?
+    true
+  end
+
 end
