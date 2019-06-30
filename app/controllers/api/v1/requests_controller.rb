@@ -7,6 +7,8 @@ class Api::V1::RequestsController < Api::V1::BaseController
     request = Request.new(request_params)
     request.project = @project
     if request.save
+      p "WE ARE CREATE "
+      UserMailer.with(user: User.where(admin: true).first, client: @project.his_client).new_request.deliver_now
       render json: @project
     end
     authorize @project

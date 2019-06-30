@@ -2,6 +2,13 @@
 
 </div>
 
+<script>
+  if (document.querySelector(".alert")) {
+    setTimeout(function() { document.querySelector(".alert").style.display = "none" }, 5000)
+  }
+</script>
+
+
 <% if current_user.client  %>
   <script>
     window.intercomSettings = {

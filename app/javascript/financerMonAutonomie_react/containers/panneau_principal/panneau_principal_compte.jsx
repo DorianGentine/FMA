@@ -77,7 +77,7 @@ class PanneauPrincipalCompte extends Component {
         const sendImageToController = (formPayLoad) => {
           fetch(`/api/v1/users/${this.props.user_id}`, {
             credentials: 'same-origin',
-            headers: { 'Content-Type': 'application/json'},
+            // headers: { 'Content-Type': 'application/json'},
             method: 'PATCH',
             body: formPayLoad
           })
@@ -88,7 +88,7 @@ class PanneauPrincipalCompte extends Component {
           if (files && files[0]) {
             console.log(files[0])
             let formPayLoad = new FormData();
-            formPayLoad.append('uploaded_image', files[0]);
+            formPayLoad.append('avatar', files[0]);
             sendImageToController(formPayLoad)
           }
         }
@@ -145,9 +145,7 @@ class PanneauPrincipalCompte extends Component {
                     name={"phone"}
                     type="tel"
                     component={this.renderField}
-                    hint="
-                    Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
-                    // Recevez vos notifications de message par SMS.
+                    hint="Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
                   />
                   <button
                     className="float-right btn-blue"

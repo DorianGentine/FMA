@@ -1,5 +1,5 @@
-json.user do
   json.statut @statut
+json.user do
   json.first_name @user.first_name
   json.last_name @user.last_name
   json.avatar @user.avatar.url(:bright_face)
@@ -8,7 +8,13 @@ json.user do
 end
 
 if @user.client
-  json.conseiller @advisor, :id, :first_name, :last_name, :avatar, :phone
+  json.conseiller  do
+    json.id @advisor.id
+    json.first_name @advisor.first_name
+    json.avatar @advisor.avatar.url(:bright_face)
+    json.last_name @advisor.last_name
+    json.phone @advisor.phone
+  end
   json.agenda @url
   json.project @project, :id
 

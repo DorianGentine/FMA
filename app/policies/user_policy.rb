@@ -17,8 +17,17 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    if user.advisor || user.admin
+    if user.admin
       return true
+
+    elsif user.advisor
+      if record == user
+        return true
+      elsif record.is_a_client
+        record.project.is_his_advisor == user
+      else
+        return false
+      end
     else
       return true if record == user
     end

@@ -40,10 +40,6 @@ class Conseiller extends Component {
             </div>
             <p className="blue margin-top-30 font-12">votre conseillé est</p>
             <p className="">{conseiller.first_name} {conseiller.last_name}</p>
-            <div className="margin-top-15 flex space-evenly">
-              <a href={telTo}><img className="conseiller-tel" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1557207527/icons/Te%CC%81l_bjyxz7.svg" alt={conseiller.phone} /></a>
-              <a href={conseiller.phone}><img className="conseiller-messagerie" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1557207527/icons/Chat_dtjlyt.svg" alt={conseiller.phone} /></a>
-            </div>
           </div>
         );
       }
@@ -63,6 +59,7 @@ class Conseiller extends Component {
     }
   }
 };
+
 
 function mapStateToProps(state) {
   return {
