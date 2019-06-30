@@ -37,4 +37,8 @@ class UserPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def restart_compteur?
+    user.advisor
+  end
 end
