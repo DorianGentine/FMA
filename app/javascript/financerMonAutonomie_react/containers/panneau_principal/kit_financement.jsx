@@ -15,45 +15,20 @@ class KitDeFinancement extends Component {
     const etape = this.props.project.project.etape
     const first_name = this.props.project.formularies[0].first_name
 
-    const zip = new JSZip();
-    for (var i = 0; i < kits.length; i++) {
-      const kitZip = zip.folder(`Ressource ${i + 1}`);
-      const notice = $.get(kits[i].notice);
-      kitZip.file(`notice_ressource_${i + 1}.pdf`, notice);
-      const formulary = $.get(kits[i].formulary);
-      kitZip.file(`formulary_ressource_${i + 1}.pdf`, formulary);
-    }
-    console.log(zip)
-
-    const download = () =>{
-      zip.generateAsync({type:"blob"}).then(function (blob) { // 1) generate the zip file
-        saveAs(blob, `kit_${first_name}.zip`);                          // 2) trigger the download
-      }, function (err) {
-        console.log(err);
-      });
-    }
-
-
-    // let promise = null;
-    // if (JSZip.support.uint8array) {
-    //   promise = zip.generateAsync({type : "uint8array"});
-    // } else {
-    //   promise = zip.generateAsync({type : "string"});
-    // }
-    // console.log(promise)
     const renderKits = () => {
       return kits.map((kit, index) => {
         let nbDocs = 0
-        {kit.notice != null ? nbDocs = nbDocs + 1 : null}
+        {kit.notice.url != null ? nbDocs = nbDocs + 1 : null}
         {kit.formulary.url != null ? nbDocs = nbDocs + 1 : null}
-        {kit.model_1 != null ? nbDocs = nbDocs + 1 : null}
-        {kit.model_2 != null ? nbDocs = nbDocs + 1 : null}
+        {kit.model_1.url != null ? nbDocs = nbDocs + 1 : null}
+        {kit.model_2.url != null ? nbDocs = nbDocs + 1 : null}
 
         return (
           <div className="flex margin-top-15" key={index}>
-            <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>{kit.notice ? kit.notice.substr(kit.notice.lastIndexOf('/') + 1, 25) : ""}</p>
+            <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>{kit.notice.url ? kit.notice.url.substr(kit.notice.url.lastIndexOf('/') + 1, 25) : ""}</p>
             <p className="col-lg-2 font-12 blue bold text-align-right">{nbDocs}</p>
             <p className="col-lg-4 font-12">_______</p>
+            <a className="blue-gray-btn" href={kit.download_ressource}>Télécharger <i className="fas fa-download"></i></a>
           </div>
             // <p className="col-lg-4 font-12">{kit.formulary && kit.formulary.url != null ? kit.formulary.url.substr(kit.notice.lastIndexOf('/') + 1, 20) : ""}</p>
         );
@@ -66,11 +41,10 @@ class KitDeFinancement extends Component {
           {etape === "progression" ? <ValidationModal /> : null}
           <h4 className="col-lg-6">Découvrez votre kit de financement</h4>
           <p className="bold col-lg-1">{etape === "progression" ? 0 : kits.length}</p>
-          <a
-            className="col-lg-5 text-align-right font-12"
-            onClick={download}
-            >{`${ etape === "evaluation" ? "Tout télécharger" : ""}`}
-          </a>
+          {etape === "evaluation" ?
+            <div className="col-lg-5 text-align-right"><a className="blue-gray-btn" href={this.props.project.download_all_ressources}>Tout télécharger <i className="fas fa-download"></i></a></div>
+            : null
+          }
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
             <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>Titre</p>
             <p className="col-lg-2 font-12">Documents</p>

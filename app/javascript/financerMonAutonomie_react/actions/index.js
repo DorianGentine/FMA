@@ -189,8 +189,8 @@ export function fetchProjet(url) {
     payload: promise
   };}
 
-export async function fetchRatings() {
-  let response = await fetch("/api/v1/projects/1/ratings/new")
+export async function fetchRatings(projectId) {
+  let response = await fetch(`/api/v1/projects/${projectId}/ratings/new`)
   let promise
   if(response.ok){
     promise = await response.json();
