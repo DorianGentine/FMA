@@ -1,7 +1,7 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
 
   before_action :authenticate_user!
-  before_action :set_project, only: [:show, :next_setp, :display_hint]
+  before_action :set_project, only: [:show, :next_setp, :display_hint, :download_zip]
 
   def index
     @projects = policy_scope(Project)
@@ -19,10 +19,19 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   end
 
   def next_setp
-    @project.change_next_step
+    p "params is => #{params}"
+    if params[:project].present?
+      raise
+    else
+      @project.change_next_step
+    end
     @formulary = @project.formularies.first
     @formulary_setted = FormularyToHash.new(@formulary).form_json_for_espace
     render json: @formulary_setted
+  end
+
+  def download_zip
+
   end
 
   private
