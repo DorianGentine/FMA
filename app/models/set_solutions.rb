@@ -20,15 +20,18 @@ class SetSolutions
     forms.each do |form|
       Solution.all.each do |solution|
         if form.is_finish? && MatchSolution.new(form, solution).call
-          financer = solutions.map { |e| e.financer  }
+          financers = solutions.map { |e| e.financer }
           if solutions.exclude?(solution)
             solution_set = change_XXX_for(solution, form)
             solutions << solution_set
+          elsif financers.include?(solution.financer)
+            if solution.financer.name != "ANAH" && solution.financer.name != "BAILLEUR" && solution.financer.name != "CRÉDIT D'IMPÔT"
+              solution_set = change_XXX_for(solution, form)
+              solutions << solution_set
+            end
           end
         end
       end
-
-      "ANAH, Bailleur, Crédit d'impot"
       solutions.each do |solution|
         change_unmatched_for(solution, form, solutions, false)
       end
@@ -91,8 +94,8 @@ class SetSolutions
       elsif financer_ids.include?(Financer.find_by(name: "APA").id)
         first_unmatched = "Il apparait que vous pourriez être éligible à des aides de votre caisse de retraite principale et de l'APA"
       end
-    elsif financer.name == "SÉCURITÉ SOCIALE"
-      first_unmatched = "petit test pour voir"
+    # elsif financer.name == "SÉCURITÉ SOCIALE"
+    #   first_unmatched = "petit test pour voir"
     end
     if first_unmatched.present? || second_unmatched.present? || third_unmatched.present?
       array = [first_unmatched, second_unmatched, third_unmatched].compact

@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @current_user = current_user
     @user = User.find(params[:id])
 
-
+    @solutions = @user.project.solutions
 
     authorize @current_user
   end
