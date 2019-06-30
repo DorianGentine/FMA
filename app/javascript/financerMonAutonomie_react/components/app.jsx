@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import { fetchAPI, fetchProjet, fetchCurrentApi } from '../actions';
 
 import AppNavbar from "../containers/app_navbar"
-import Volet from "../containers/volet"
+import Chat from "../containers/chat"
 import MenuProfil from "../containers/menu_profil"
-import PanneauPrincipal from "../containers/panneau_principal"
 import ModalCote from "../containers/modal_cote"
+import PanneauPrincipal from "../containers/panneau_principal"
+import Volet from "../containers/volet"
 
 class App extends Component {
 
@@ -104,6 +105,7 @@ class App extends Component {
             <div className={`modal-cote ${ this.props.modal_opened ? "" : "modal-cote-hidden"}`}>
               <div><ModalCote /></div>
             </div>
+            <Chat />
           </div>
         );
 
