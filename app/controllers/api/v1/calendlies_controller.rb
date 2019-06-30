@@ -13,7 +13,20 @@ class Api::V1::CalendliesController < Api::V1::BaseController
       author = params[:data][:item][:conversation_parts][:conversation_parts].last[:author]
       message.update(url: params[:data][:item][:links][:conversation_web], email: author[:email], full_name: author[:name], unread: 1)
     end
+    info_message = {
+      url:params[:data][:item][:links],
+      content: ,
+      author: params[:data][:item][:conversation_parts][:conversation_parts].last[:author],
+      create_at: Time.now
+    }
     message.save
+    UserMailer.with(user: @user,
+      message: nil,
+      url:params[:data][:item][:links],
+      author: params[:data][:item][:conversation_parts][:conversation_parts].last[:author],
+      create_at: Time.now
+    ).new_message.deliver_now
+
     authorize @user
   end
 

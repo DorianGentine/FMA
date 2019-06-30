@@ -16,9 +16,11 @@ class Api::V1::RessourcesController < Api::V1::BaseController
 
   def create
     p "//// Params is #{params}"
-    p "//// ressource_params is #{ressource_params}"
     ressource = Ressource.new(ressource_params)
     if ressource.save
+      if ressource.request
+        kit = Kit.create(project: Project.find(params[:project_id], ressource: ressource )
+      end
       render json: ressource
     else
       render_error
@@ -37,7 +39,7 @@ class Api::V1::RessourcesController < Api::V1::BaseController
 
 
   def ressource_params
-    params.require(:ressource).permit(:title, :description, :formulary, :notice, :model_1, :model_2)
+    params.require(:ressource).permit(:title, :description, :formulary, :notice, :model_1, :model_2, :request)
   end
 end
 

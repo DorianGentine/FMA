@@ -17,14 +17,23 @@ class Project < ApplicationRecord
   has_many :documents, dependent: :destroy
 
   before_create :fill_step
-  before_save :going_to_call, :clean_appointment
+  before_save :clean_appointment
+  before_save :going_to_call
 
   enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evaluation", "archived"]
 
+  after_create :send_new_member
+
   def link_to_advisor_and_bene(benef, advisor)
-    UserProject.create(user: advisor, project: self)
     UserProject.create(user: benef, project: self, client: benef.client)
+    UserProject.create(user: advisor, project: self)
+    UserMailer.with(user: advisor, client: benef).new_member.deliver_now
+    UserMailer.with(user: User.where(admin: true).first, client: benef).new_member.deliver_now
   end
+
+    def send_new_member
+  end
+
 
   # def link_to_beneficaire(user)
   #   UserProject.create(user: user, project: self, client: user.client)
@@ -69,9 +78,11 @@ class Project < ApplicationRecord
       self.progression!
       Notification.create(title:"a été appelé", date:Time.now, project: self)
       SuggestionKit.new(self).call
+      UserMailer.with(user: self.his_client).after_appointment.deliver_now
     elsif self.progression?
       self.evaluation!
       Notification.create(title:"a obtenu son kit", date:Time.now, project: self)
+      UserMailer.with(user: self.his_client).kit_ready.deliver_now
     elsif self.evaluation?
       self.archived!
       Notification.create(title:"a été archivé", date:Time.now, project: self)
@@ -81,6 +92,8 @@ class Project < ApplicationRecord
   end
 
   private
+
+
 
   def clean_appointment
     if self.documentation?
