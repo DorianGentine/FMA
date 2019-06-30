@@ -28,6 +28,7 @@
   import modalSelectedReducer from './reducers/modal_selected_reducer';
   import projectIdReducer from './reducers/project_id_reducer';
   import projectReducer from './reducers/project_reducer';
+  import ratingsReducer from './reducers/ratings_reducer';
   import ressourcesReducer from './reducers/ressources_reducer';
   import selectedClientsReducer from './reducers/selected_clients_reducer';
   import stateCalendlyReducer from './reducers/state_calendly_reducer';
@@ -62,6 +63,7 @@ if(app){
     otherUser: otherUser,
     project: null,
     project_id: null,
+    ratings: null,
     ressources: null,
     rootUrl: rootUrl,
     selectedClients: "tous",
@@ -86,6 +88,7 @@ if(app){
     otherUser: identityReducer,
     project: projectReducer,
     project_id: projectIdReducer,
+    ratings: ratingsReducer,
     ressources: ressourcesReducer,
     rootUrl: identityReducer,
     selectedClients: selectedClientsReducer,

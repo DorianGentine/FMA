@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import ModalClient from './modal_cote/modal_client';
 import ModalClientConseiller from './modal_cote/modal_client_conseiller';
 import ModalCreateRessource from './modal_cote/modal_create_ressource';
 import ModalDemande from './modal_cote/modal_demande';
 import ModalDocument from './modal_cote/modal_document';
+import ModalEvaluation from './modal_cote/modal_evaluation';
 import ModalFinancer from './modal_cote/modal_financer';
+import ModalKit from './modal_cote/modal_kit';
 import ModalNotes from './modal_cote/modal_notes';
 import ModalRessource from './modal_cote/modal_ressource';
 import ModalReponses from './modal_cote/modal_reponses';
@@ -18,7 +19,7 @@ class ModalCote extends Component {
     if(modalSelected == null){
       return null
     }else if(modalSelected.modalActive === "showClient"){
-      return (<ModalClient />)
+      return (<ModalKit />)
     }else if(modalSelected.modalActive === "showClientConseiller"){
       return (<ModalClientConseiller />)
     }else if(modalSelected.modalActive === "showCreateRessource"){
@@ -27,6 +28,8 @@ class ModalCote extends Component {
       return (<ModalDemande />)
     }else if(modalSelected.modalActive === "showDoc"){
       return (<ModalDocument />)
+    }else if(modalSelected.modalActive === "showEvaluation"){
+      return (<ModalEvaluation />)
     }else if(modalSelected.modalActive === "showFinancer"){
       return (<ModalFinancer />)
     }else if(modalSelected.modalActive === "showNotes"){

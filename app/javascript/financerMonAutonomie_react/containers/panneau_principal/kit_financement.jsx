@@ -13,7 +13,6 @@ class KitDeFinancement extends Component {
   render(){
     const kits = this.props.project.kits
     const etape = this.props.project.project.etape
-    console.log(etape)
     const first_name = this.props.project.formularies[0].first_name
 
     const zip = new JSZip();
@@ -66,11 +65,11 @@ class KitDeFinancement extends Component {
         <div className="white-box flex flex-wrap relative">
           {etape === "progression" ? <ValidationModal /> : null}
           <h4 className="col-lg-6">Découvrez votre kit de financement</h4>
-          <p className="bold col-lg-1">{kits.length}</p>
+          <p className="bold col-lg-1">{etape === "progression" ? 0 : kits.length}</p>
           <a
             className="col-lg-5 text-align-right font-12"
             onClick={download}
-            >{`${ this.props.project.project.etape === "evaluation" ? "Tout télécharger" : ""}`}
+            >{`${ etape === "evaluation" ? "Tout télécharger" : ""}`}
           </a>
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
             <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>Titre</p>
@@ -78,7 +77,7 @@ class KitDeFinancement extends Component {
             <p className="col-lg-4 font-12">Date de dernière mise à jour</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "calc(100vh - 720px)", minHeight: "80px" }}>
-            { kits != undefined && this.props.project.project.etape === "evaluation" ? renderKits() : <h2 className="text-align-center margin-top-30 gray-300">Votre conseiller confectionne votre kit</h2>}
+            { kits != undefined && etape === "evaluation" ? renderKits() : <h2 className="text-align-center margin-top-30 gray-300">Votre conseiller confectionne votre kit</h2>}
           </div>
         </div>
       </div>

@@ -38,16 +38,28 @@
     }
   }
 
-// btn-evalutaion
-  .btn-evalutaion{
+// btn-evaluation
+  .btn-evaluation{
+    cursor: pointer;
     margin: 0 auto;
     width: fit-content;
     min-width: 210px !important;
     padding: 8px 15px;
     display: flex;
     align-items: center;
+    border: none;
     border-radius: 3px;
     background-color: $blue-gray;
+    color: $blue;
+    transition: .5s;
+  }
+  .btn-evaluation:hover{
+    background-color: $blue;
+    color: white;
+  }
+  .btn-evaluation:disabled{
+    background-color: $blue-gray;
+    cursor: not-allowed;
     color: $gray-300;
   }
 

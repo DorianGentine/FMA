@@ -11,6 +11,7 @@ export const FETCH_FINANCERS = 'FETCH_FINANCERS';
 export const FETCH_FORM = 'FETCH_FORM';
 export const FETCH_MODAL_REPONSES = 'FETCH_MODAL_REPONSES';
 export const FETCH_PROJET = 'FETCH_PROJET';
+export const FETCH_RATINGS = 'FETCH_RATINGS';
 export const FETCH_RESSOURCES = 'FETCH_RESSOURCES';
 export const POST_COMPTE = 'POST_COMPTE';
 export const POST_FORM = 'POST_FORM';
@@ -19,6 +20,7 @@ export const SHOW_CLIENT = 'SHOW_CLIENT';
 export const SHOW_CLIENT_CONSEILLER = 'SHOW_CLIENT_CONSEILLER';
 export const SHOW_CREATE_RESSOURCE = 'SHOW_CREATE_RESSOURCE';
 export const SHOW_DEMANDE = 'SHOW_DEMANDE';
+export const SHOW_EVALUATION = 'SHOW_EVALUATION';
 export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
 export const SHOW_FINANCER = 'SHOW_FINANCER';
 export const SHOW_NOTES = 'SHOW_NOTES';
@@ -187,6 +189,21 @@ export function fetchProjet(url) {
     payload: promise
   };}
 
+export async function fetchRatings() {
+  let response = await fetch("/api/v1/projects/1/ratings/new")
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  } else {
+    console.error('fetchRatingss passe pas : ', response)
+    promise = null
+  }
+
+  return {
+    type: FETCH_RATINGS,
+    payload: promise
+  };}
+
 export function fetchRessources(url) {
   const promise = fetch(url).then(r => r.json());
 
@@ -256,6 +273,17 @@ export function showDocument(doc) {
   return {
     type: SHOW_DOCUMENT,
     payload: documentSelected
+  };}
+
+export function showEvaluation(project) {
+  const projectSelected = {
+    modalActive: "showEvaluation",
+    project: project,
+  }
+
+  return {
+    type: SHOW_EVALUATION,
+    payload: projectSelected
   };}
 
 export function showFinancer(financer) {

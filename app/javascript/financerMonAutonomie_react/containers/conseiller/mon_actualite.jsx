@@ -3,8 +3,29 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 class MonActualite extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      actus: this.props.api.notifications,
+    };
+  }
+
+  // componentDidMount(){
+  //   this.refresher = setInterval(()=>{this.props.fetchAPI(`/api/v1/users/${this.props.user_id}`)}, 10000)
+  // }
+
+  // componentWillUnmount(){
+  //   clearInterval(this.refresher);
+  // }
+
+  componentWillReceiveProps(nextProps){
+    if(this.props.api.notifications != nextProps.api.notifications){
+      this.setState({ actus: nextProps.api.notifications })
+    }
+  }
+
   render(){
-    const actus = this.props.api.notifications
+    const actus = this.state.actus
     const renderActus = () => {
       return actus.slice(0).reverse().map((actu, index) => {
         return <p key={index} className="col-lg-12 font-12 black margin-bottom-15"><span className="bold">{actu.user} </span>{actu.title} <span className="gray">{actu.time}</span></p>
@@ -35,6 +56,7 @@ class MonActualite extends Component {
 function mapStateToProps(state) {
   return {
     api: state.api,
+    user_id: state.user_id,
   };
 }
 

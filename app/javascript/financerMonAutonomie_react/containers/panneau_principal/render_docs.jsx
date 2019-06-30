@@ -8,19 +8,45 @@ import { fetchProjet, showDocument, validateStep } from '../../actions';
 
 
 class RenderDocs extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      validateStepLaunched: false,
+    };
+  }
+
+  componentDidMount(){
+    const documents = this.props.project.documents
+    const project_id = this.props.project_id
+    const etape = this.props.etape
+
+    const checkFiles = () => {
+      let documentsCompleted = 0
+      for (var i = documents.length - 1; i >= 0; i--) {
+        if(documents[i].file.url != null){
+          documentsCompleted = documentsCompleted + 1
+        }
+      }
+      console.log("coucou", documentsCompleted, documents.length)
+      if (documentsCompleted === documents.length && !this.state.validateStepLaunched) {
+        this.setState({ validateStepLaunched: true })
+        this.props.validateStep(`/api/v1/projects/${project_id}/next_setp`,
+          ()=>{
+            this.props.fetchProjet(`/api/v1/projects/${project_id}`)
+          }
+        )
+      }
+    }
+
+    if(documents != undefined && etape === "documentation"){
+      checkFiles()
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     const documents = this.props.project.documents
     const nextDocuments = nextProps.project.documents
-    const etape = nextProps.etape
     const project_id = this.props.project_id
-
-    const fetchProjet = () => {
-      this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
-    }
-
-    const validateStep = (url, callback) => {
-      this.props.validateStep(url, callback)
-    }
 
     const checkFiles = () => {
       let documentsCompleted = 0
@@ -30,14 +56,21 @@ class RenderDocs extends Component {
         }
       }
 
-      if (documentsCompleted === documents.length && etape === "documentation") {
-        validateStep(`/api/v1/projects/${project_id}/next_setp`, fetchProjet() )
+      if (documentsCompleted === documents.length) {
+        this.setState({ validateStepLaunched: true })
+        this.props.validateStep(`/api/v1/projects/${project_id}/next_setp`,
+          ()=>{
+            this.props.fetchProjet(`/api/v1/projects/${project_id}`)
+          }
+        )
       }
     }
 
-    if(documents != undefined && documents != nextProps.project.documents){
-      // checkFiles()
-      setTimeout(()=>{checkFiles()}, 1000)
+    if(documents != undefined &&
+      documents != nextDocuments  &&
+      !this.state.validateStepLaunched  &&
+      etape === "documentation"){
+      checkFiles()
     }
   }
 
@@ -55,7 +88,7 @@ class RenderDocs extends Component {
 
 
 
-    const sendImageToController = (formPayLoad, idDoc, randomId) => {
+    const sendImageToController = (formPayLoad, idDoc, index) => {
       fetch(`/api/v1/documents/${idDoc}`, {
         credentials: 'same-origin',
         headers: {},
@@ -65,16 +98,13 @@ class RenderDocs extends Component {
       .then(response => response.json())
       .then(() => {
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
-        document.getElementById(`btn-doc${randomId}`).innerText = "Mettre à jour"
+        document.getElementById(`btn-doc${index}`).innerText = "Mettre à jour"
       })
-      // .then(()=> {
-        // checkFiles()
-      // })
     }
 
 
 
-    const readFile = (files, idDoc, randomId) => {
+    const readFile = (files, idDoc, index) => {
       if (files && files[0]) {
 
         let newDocName = ""
@@ -83,13 +113,14 @@ class RenderDocs extends Component {
         }else{
           newDocName = `${files[0].name.substr(0, 14)}...`
         }
-        document.getElementById(`document_name${randomId}`).innerText = newDocName
+        document.getElementById(`document_name${index}`).innerText = newDocName
 
-        document.getElementById(`btn-doc${randomId}`).innerText = "Chargement..."
+        document.getElementById(`btn-doc${index}`).innerText = "Chargement..."
 
         let formPayLoad = new FormData();
         formPayLoad.append('uploaded_image', files[0]);
-        sendImageToController(formPayLoad, idDoc, randomId)
+
+        sendImageToController(formPayLoad, idDoc, index)
       }
     }
 
@@ -99,7 +130,6 @@ class RenderDocs extends Component {
         return documents.map((doc, index) => {
           const idDoc = doc.id
 
-          const randomId = Math.floor((Math.random() * 100) + 1);
           let docName = "Aucun document"
           if(doc.file.url != null){
             const positionSlash = doc.file.url.lastIndexOf("/")
@@ -114,19 +144,19 @@ class RenderDocs extends Component {
           return (
             <div className="doc-to-send" key={index}>
               <h4 className="font-14 no-margin">{doc.title}</h4>
-              <p className="gray-300 font-12 margin-top-15 margin-bottom-15" id={`document_name${randomId}`}><i className="far fa-file margin-right-15"></i>{docName}</p>
+              <p className="gray-300 font-12 margin-top-15 margin-bottom-15" id={`document_name${index}`}><i className="far fa-file margin-right-15"></i>{docName}</p>
               <div className="flex space-between align-items-center">
                 <div className="flex align-items-center btn-apercu" onClick={()=>{handleClick(doc)}}>
                   <div className="icon-eye margin-right-5"></div>
                   <p className="font-12">Aperçu</p>
                 </div>
-                <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles, idDoc, randomId)}}>
+                <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles, idDoc, index)}}>
                   {({getRootProps, getInputProps}) => (
                     <div {...getRootProps()}>
                       <input {...getInputProps()} />
                       <button
                         className={`blue-gray-btn ${this.props.otherUser ? "not-allowed" : ""}`}
-                        id={`btn-doc${randomId}`}
+                        id={`btn-doc${index}`}
                         disabled={this.props.otherUser}
                         >
                           {doc.file.url != null ? "Mettre à jour" : "Soumettre"}

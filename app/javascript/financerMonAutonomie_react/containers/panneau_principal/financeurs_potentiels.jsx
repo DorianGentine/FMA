@@ -20,14 +20,15 @@ class FinanceursPotentiels extends Component {
           hintText.classList.toggle("d-none")
         }
         return (
-        <div className="icon-alert relative pointer text-align-right" onClick={showHint}>
+        <div className="icon-alert relative pointer text-align-right margin-right-15" onClick={showHint}>
           <div
             id={`hint${index}`}
-            className="red-background white d-none absolute margin-right-15"
+            className="red-background white d-none absolute"
             style={{padding: "20px", right: "-80px", top: "32px", width: "400px", borderRadius: "3px", zIndex: "10"}}
           >
             <h4 className="white">Informations supplémentaires:</h4>
-            <p><ul>{financer.unmatched} </ul> <strong>Sachez que ces financeurs ne peuvent être cumulés. Vous aurez donc à faire un choix entre l'un d'entre eux si vous les sollicitez.</strong></p>
+            <p>{financer.unmatched}</p>
+            <p><strong>Sachez que ces financeurs ne peuvent être cumulés. Vous aurez donc à faire un choix entre l'un d'entre eux si vous les sollicitez.</strong></p>
           </div>
         </div>
         );

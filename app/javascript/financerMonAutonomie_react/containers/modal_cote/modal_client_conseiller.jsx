@@ -35,6 +35,7 @@ class ModalRessource extends Component {
     const renderClients = (etape) => {
       return advisor.clients.map((client, index) => {
         if(client.étape === etape){
+          console.log('client', client)
           return(
             <div className="flex space-between align-items-center margin-top-15" key={index}>
               {renderLogo(client)}
@@ -42,73 +43,21 @@ class ModalRessource extends Component {
                 <h4 className="font-12 no-margin">{client.first_name} {client.last_name}</h4>
                 <p className="font-12">{`${client.financeurs} financeurs`}</p>
               </div>
-              <a href={`${client.url ? client.url : ""}/projet`} className="blue-gray-btn" onClick={()=>{this.props.showClient(client)}}>Voir profil</a>
+              <a href={client.id ? `/mon_espace/${client.id}/projet` : ""} className="blue-gray-btn">Voir profil</a>
             </div>
           )
         }
       })
     }
 
-    const renderEtapes = () => {
-      if(step1 != 0){
-        return (
-          <div>
-            <p className="black">Etape 1</p>
-            {renderClients("validation_data")}
-            <hr className="ligne-horizontal gray-200-background"/>
-          </div>
-        )
-      }
-
-      if(step2 != 0){
-        return (
-          <div>
-            <p className="black">Etape 2</p>
-            {renderClients("documentation")}
-            <hr className="ligne-horizontal gray-200-background"/>
-          </div>
-        )
-      }
-
-      if(step3 != 0){
-        return (
-          <div>
-            <p className="black">Etape 3</p>
-            {renderClients("meeting")}
-            <hr className="ligne-horizontal gray-200-background"/>
-          </div>
-        )
-      }
-
-      if(step4 != 0){
-        return (
-          <div>
-            <p className="black">Etape 4</p>
-            {renderClients("call")}
-            <hr className="ligne-horizontal gray-200-background"/>
-          </div>
-        )
-      }
-
-      if(step5 != 0){
-        return (
-          <div>
-            <p className="black">Etape 5</p>
-            {renderClients("progression")}
-            <hr className="ligne-horizontal gray-200-background"/>
-          </div>
-        )
-      }
-
-      if(step6 != 0){
-        return (
-          <div>
-            <p className="black">Étape 6</p>
-            {renderClients("evaluation")}
-            <hr className="ligne-horizontal gray-200-background"/>
-          </div>
-        )
-      }
+    const renderEtapes = (nb, etape) => {
+      return (
+        <div>
+          <p className="black">{`Étape ${nb}`}</p>
+          {renderClients(etape)}
+          <hr className="ligne-horizontal gray-200-background"/>
+        </div>
+      )
     }
 
     return(
@@ -125,7 +74,13 @@ class ModalRessource extends Component {
           </div>
           <p className="margin-top-15 font-12">Dernière connexion il y a 30 minutes</p>
         </div>
-        {renderEtapes()}
+        {step1 != 0 ? renderEtapes(1, "validation_data") : null}
+        {step2 != 0 ? renderEtapes(2, "documentation") : null}
+        {step3 != 0 ? renderEtapes(3, "meeting") : null}
+        {step4 != 0 ? renderEtapes(4, "call") : null}
+        {step5 != 0 ? renderEtapes(5, "progression") : null}
+        {step6 != 0 ? renderEtapes(6, "evaluation") : null}
+
         <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
       </div>
     )

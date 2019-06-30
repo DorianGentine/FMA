@@ -2,30 +2,50 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { closeModal, validateStep, showClient } from '../../actions';
+import { closeModal, validateStep, showClient, fetchClients, fetchAPI } from '../../actions';
 
 import renderLogo from "../../../components/render_logo"
 
 import Switch from "./switch"
 
-class ModalClient extends Component {
+class ModalKit extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      client: this.props.modal_selected.client,
+    };
+  }
 
   componentWillReceiveProps(nextProps){
-    const clients = nextProps.clients
-    console.log(clients)
-    if(clients != this.props.clients){
-      const client = this.props.modal_selected.client
-      this.props.showClient(client)
+    const idClient = this.props.modal_selected.client.id
+
+    let newKits
+    const oldKits = this.props.modal_selected.client.kits
+
+    let clientSelected
+    const clients = nextProps.clients.clients
+    for (var i = clients.length - 1; i >= 0; i--) {
+      if(clients[i].id === idClient){
+        clientSelected = clients[i]
+        newKits = clients[i].kits
+      }
+    }
+
+    if(oldKits != newKits){
+      this.setState({ client: clientSelected })
     }
   }
 
   handleClick = (clientId) => {
-    this.props.validateStep(`/api/v1/projects/${clientId}/next_setp`, ()=>{})
+    this.props.validateStep(`/api/v1/projects/${clientId}/next_setp`, ()=>{
+      this.props.fetchClients("/api/v1/users")
+      this.props.fetchAPI(`/api/v1/users/${this.props.user_id}`)
+    })
     this.props.closeModal()
   }
 
   render(){
-    const client = this.props.modal_selected.client
+    const client = this.state.client
     const ressources = this.props.ressources
 
     const renderRessources = (checked) => {
@@ -41,7 +61,6 @@ class ModalClient extends Component {
                   </div>
                   <Switch checked={true} kind="switchKit" ressource={ressource} kit={client.kits[i]} />
                 </div>
-                    // <h4 className="font-12 no-margin">{ressource.notice.substr(ressource.notice.lastIndexOf('/') + 1, 20)}</h4>
               );
             }
           }
@@ -99,11 +118,12 @@ function mapStateToProps(state) {
     modal_selected: state.modal_selected,
     ressources: state.ressources,
     clients: state.clients,
+    user_id: state.user_id,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, validateStep, showClient }, dispatch);
+  return bindActionCreators({ closeModal, validateStep, showClient, fetchClients, fetchAPI }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalClient);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalKit);
