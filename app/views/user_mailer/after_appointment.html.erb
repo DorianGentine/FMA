@@ -1,6 +1,3 @@
-
-
-
 <table style="border-radius: 1px;" align="center"; bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" class="wrapper" class="container">
   <tbody>
 
@@ -13,7 +10,7 @@
         <table  align="center" width="600" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
-              Bonjour <%= "#{@user.first_name} #{@user.last_name}" %>,<br>
+              Bonjour <%= @user.first_name %>,<br>
             </td>
           </tr>
 
@@ -21,11 +18,11 @@
             <td height="15" style="font-size:15px; line-height:15px;" class="mobileOn">&nbsp;</td>
           </tr>
 
-          <!-- Message du mail -->
+    <!-- Message du mail -->
 
           <tr>
             <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
-              Bienvenue sur la plateforme <span style="background-color: #F5F9FF; padding:0px 2px 0px 2px;">Financer mon autonomie!</span> Votre inscription a bien été prise en compte, vous pouvez dès à présent accèder à votre espace personnel.
+              Vous venez de discuter avec votre Conseiller social à propos de votre projet d'adaptation de logement.
             </td>
           </tr>
 
@@ -35,7 +32,17 @@
 
           <tr>
             <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
-              Pour vous aider dans l'élaboration de votre projet de financement, <span style="font-weight: bold;">un conseiller vous accompagnera</span> dans l'ensemble de votre parcours sur notre plateforme.
+              Il a désormais suffisament d'informations pour préparer <span style="font-weight: bold;">votre kit de demande de financements.</span> Il sera constituer de dossiers-types, lettres-modèles ou notices vous aidant à concrétiser votre projet.
+            </td>
+          </tr>
+
+          <tr>
+            <td height="15" style="font-size:15px; line-height:15px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Nous vous avertirons une fois que ce kit sera disponible dans votre espace personnel.
             </td>
           </tr>
 
@@ -43,12 +50,13 @@
             <td height="20" style="font-size:20px; line-height:20px;" class="mobileOn">&nbsp;</td>
           </tr>
 
-          <!-- Lien du mail -->
+    <!-- Lien du mail -->
 
           <tr>
             <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #000; line-height: 22px;">
+
               <%= link_to projet_user_url(@user), {  target: "_blank", style: "color:#2675E5; text-decoration:underline;"} do %>
-                <p style="margin:0">Rendez-vous sur votre espace personnel</p>
+                <p style="margin:0">Accèder à mon espace personnel</p>
               <% end %>
             </td>
           </tr>
@@ -59,8 +67,8 @@
 
           <tr>
             <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
-              Merci de votre confiance,<br>
-              L'équipe de Financer mon autonomie.
+              À bientôt,<br>
+              L'équipe de Financer Mon Autonomie.
             </td>
           </tr>
 
@@ -74,14 +82,3 @@
 
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-

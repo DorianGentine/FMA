@@ -51,6 +51,10 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def update
+    if params["avatar"].present?
+      @user.avatar = params["avatar"]
+      @user.save
+    end
     if @user.update(user_params)
       render :show
     else
@@ -61,7 +65,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :phone, :avatar, :email)
+    params.require(:user).permit(:first_name, :last_name, :phone, :email)
   end
 
   def render_error

@@ -40,6 +40,8 @@ class PagesController < ApplicationController
         @project.appointment = appointment
         p "///// project appointment #{ @project.appointment}"
         @project.save
+        UserMailer.with(user: @user, project: @project).appointment.deliver_now
+        UserMailer.with(user: User.find(1), project: @project).appointment.deliver_now
       end
     elsif User.find_by(params["answer_1"]).present?
       @user = User.find_by(params["answer_1"])
@@ -47,6 +49,8 @@ class PagesController < ApplicationController
       if appointment.present?
         @project.appointment = appointment
         @project.save
+        UserMailer.with(user: @user, project: @project).appointment.deliver_now
+        UserMailer.with(user: User.find(1), project: @project).appointment.deliver_now
       end
     else
       @user = false

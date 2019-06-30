@@ -1,0 +1,59 @@
+<table style="border-radius: 1px;" align="center"; bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" class="wrapper" class="container">
+  <tbody>
+
+    <tr>
+      <td height="70" style="font-size:70px; line-height:70px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>
+        <table  align="center" width="600" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Bonjour <%= @user.first_name %>,<br>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="15" style="font-size:15px; line-height:15px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+      <!-- Message du mail -->
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Nous vous confirmons la programmation d'un nouvel entretien avec <span style="font-weight:bold;"> <%= @client.name %></span>, le:
+            </td>
+          </tr>
+
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+      <!-- Date du mail -->
+          <tr>
+            <td align="center" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: center; font-size: 18px; color: #000; line-height: 22px;">
+              <a href="#" target="_blank" style="color:#2675E5; text-decoration:underline;"><%= @project.appointment.present? ? l(DateTime.parse(@project.appointment), :format => '%A %d %B %Y à %Hh%M') : "Erreur d'information" %></a>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              À bientôt,<br>
+              L'équipe de Financer Mon Autonomie.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+  </tbody>
+</table>

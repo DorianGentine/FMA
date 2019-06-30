@@ -1,0 +1,81 @@
+<table style="border-radius: 1px;" align="center"; bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" class="wrapper" class="container">
+  <tbody>
+
+    <tr>
+      <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>
+        <table  align="center" width="600" border="0" cellpadding="0" cellspacing="0">
+
+
+          <tr>
+            <td align="center" valign="top" style="letter-spacing:0.025em; padding:0px 60px 0px 60px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: bold; text-align: center; font-size: 22px; color: #182335; line-height: 30px;">
+              Votre kit est disponnible<br>
+            </td>
+          </tr>
+          <tr>
+            <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Bonjour <%= @user.first_name %>,<br>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="5" style="font-size:5px; line-height:5px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+      <!-- Message du mail -->
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Nous avons le plaisir de vous informer que votre kit de demande de financements est désormais <span style="font-weight:bold;">disponible dans votre espace personnel !</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+      <!-- Bouton du mail -->
+
+          <tr>
+            <td align="center">
+            <table align="center" width="270" cellspacing="0" cellpadding="0">
+              <tbody>
+                <td height="40" align="center" bgcolor="#fff" style="border-radius: 2px; border: 2px solid #182335; text-align: center;" valign="middle">
+
+                  <%= link_to projet_user_url(@user), { target: "_blank", style: "font-size: 14px; font-weight: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: bold; color: #182335; text-align: center; text-decoration: none; line-height: 40px; display: block; height: 40px;"} do %>
+                    <p style="margin:0">Accèder à mon espace personnel</p>
+                  <% end %>
+                </td>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              À bientôt,<br>
+              L'équipe de Financer Mon Autonomie.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+  </tbody>
+</table>

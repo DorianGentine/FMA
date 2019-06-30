@@ -1,0 +1,138 @@
+<table style="border-radius: 1px;" align="center"; bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" class="wrapper" class="container">
+  <tbody>
+
+    <tr>
+      <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>
+        <table  align="center" width="600" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+      <!-- Destinataire du mail -->
+
+          <tr>
+            <td align="center" valign="top" style="letter-spacing:0.025em; padding:0px 60px 0px 60px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: bold; text-align: center; font-size: 22px; color: #182335; line-height: 30px;">
+              Bonjour <%= @user.first_name %>,<br>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="15" style="font-size:15px; line-height:15px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="center" valign="top" style="letter-spacing:0.025em; padding:0px 60px 0px 60px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: bold; text-align: center; font-size: 16px; color: #585855; line-height: 22px;">
+              <%= @client.name %> a désormais besoins de nous pour son projet d'adaptation de logement. Rendez-vous sur votre espace professionnel.
+            </td>
+          </tr>
+
+      <!-- 1er Trait du mail -->
+
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="center">
+              <table align="center" width="480" border="0" cellpadding="0" cellspacing="0" bgcolor="#e2e2e2">
+              <tbody>
+                <tr>
+                  <td height="1" style="font-size: 1px; line-height: 1px;"></td>
+                </tr>
+              </tbody>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+      <!-- 1er Notification du mail -->
+
+          <tr>
+            <td>
+                <table align="left" width="40" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td align="left" valign="top" style="padding-left: 70px;">
+                      &nbsp;
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table align="left" width="30" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td height="22" style="font-size: 22px; line-height: 22px;"></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table align="left" width="390" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td align="left" valign="top" style="padding-right: 70px;">
+                    <tr>
+                      <td align="left" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; text-align: left; letter-spacing:0.025em;font-size: 16px; color: #000; line-height: 24px;">
+                        <span style="font-weight:bold;"><%= @client.name %></span> vient de s'inscrire sur FMA.<br>
+                        <%= link_to user_url(@client), {target:"_blank", style:"color:#2675E5; text-decoration:underline;"} do %>
+                          <p style="margin:0">Accèder à son profil</p>
+                        <% end %>
+                    </td>
+                    </tr>
+                  </tr>
+
+                </tbody>
+              </table>
+            </td>
+          </tr>
+
+      <!-- 2ieme Trait du mail -->
+
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="center">
+              <table align="center" width="480" border="0" cellpadding="0" cellspacing="0" bgcolor="#e2e2e2">
+              <tbody>
+                <tr>
+                  <td height="1" style="font-size: 1px; line-height: 1px;"></td>
+                </tr>
+              </tbody>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+
+      <!-- Lien afficher plus du mail -->
+
+          <tr>
+            <td align="center" valign="top" style="letter-spacing:0.025em; padding:0px 70px 0px 70px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: center; font-size: 14px; color: #000; line-height: 22px;">
+              <%= link_to user_url(@user), {target:"_blank", style:"color:#6B778E; text-decoration:underline;"} do %>
+                <p style="margin:0">Accèder à mon espace professionnel</p>
+              <% end %>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td height="50" style="font-size:50px; line-height:50px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+  </tbody>
+</table>
