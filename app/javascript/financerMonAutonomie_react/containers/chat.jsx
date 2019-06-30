@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Select from "react-dropdown-select"
 
-import { fetchAPI } from '../actions';
+import { fetchAPI, fetchPostCompte } from '../actions';
 
 class PanneauPrincipalClients extends Component {
   constructor(props) {
@@ -24,7 +24,16 @@ class PanneauPrincipalClients extends Component {
 
     return (
       <div>
-        <a href={newMessages.url} target="_blank" className="fixed chat-advisor">
+        <a
+          href={newMessages.url}
+          target="_blank"
+          className="fixed chat-advisor"
+          onClick={()=>{this.props.fetchPostCompte(`/api/v1/restart_compteur`,
+            null,
+            "PATCH",
+            ()=>{this.setState({ messageUnread: 0 })},
+          )}}
+          >
           {this.state.messageUnread != 0 ? <div className="message-unread">{this.state.messageUnread}</div> : null}
           <img src="https://res.cloudinary.com/financermonautonomie/image/upload/v1560225478/Symbole_white_ypjj6m.png" alt=""/>
         </a>
@@ -41,7 +50,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAPI }, dispatch);
+  return bindActionCreators({ fetchAPI, fetchPostCompte }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PanneauPrincipalClients);

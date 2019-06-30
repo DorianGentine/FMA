@@ -2,7 +2,7 @@
 json.project do
   json.id @project.id
   json.date_de_creation @project.created_at
-  json.etape @project.step if @user.avatar?
+  json.etape @project.step
   json.hint @project.hint
   json.rdv @project.appointment
   json.nombre_de_financer @project.solutions.count

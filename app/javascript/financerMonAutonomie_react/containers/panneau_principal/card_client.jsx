@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { showDemande, validateStep, fetchClients } from '../../actions'
+import { showDemande, validateStep, fetchClients, fetchPostCompte } from '../../actions'
 
 import renderLogo from "../../../components/render_logo"
 
 class CardClient extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      step: "archived",
-    };
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     step: "archived",
+  //   };
+  // }
+
   // componentWillMount(){
   //   console.log(this.props.client)
   // }
@@ -75,6 +76,9 @@ class CardClient extends Component {
       selectedClients === "archives" && numEtape === 6 ||
       fullName.toLowerCase().includes(selectedClients.toLowerCase()) ||
       parseInt(selectedClients) === numEtape) {
+
+      const archived = {step: "archived"}
+
       return(
         <div className="col-lg-4 col-xs-12 col-sm-6">
           <div className="white-box" style={{padding: "20px"}}>
@@ -96,11 +100,10 @@ class CardClient extends Component {
                   className="dropdown-menu drop-menu-call"
                   aria-labelledby={`drop-call${client.id}`}>
                   <a className="black" onClick={()=>{this.props.showDemande(client)}}>Demandes&nbsp;spécifiques</a>
-                  <a href="#">Marquer</a>
                   <p className="pointer" onClick={() => {
                     this.props.validateStep(`/api/v1/projects/${client.id}/next_setp`,
-                      this.props.fetchClients("/api/v1/users"),
-                      this.state.step)
+                      ()=>{this.props.fetchClients("/api/v1/users")},
+                    )
                   }}>Archiver</p>
                 </div>
               </div>
@@ -140,7 +143,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ showDemande, validateStep, fetchClients }, dispatch);
+  return bindActionCreators({ showDemande, validateStep, fetchClients, fetchPostCompte }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardClient);

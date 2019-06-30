@@ -333,20 +333,23 @@ export function showRessource(ressource) {
 
 export function validateStep(url, callback, body) {
   let request
-  if(body){
+  if(body != undefined){
+    console.log(body)
     request = fetch(url,
-      {
-        method: "PATCH",
-        headers: { 'Content-Type': 'application/json'},
-        body: body,
-      }).then(response => response.json())
-      .then(callback)
-  }else if(!body){
+    {
+      method: "PATCH",
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    })
+    .then(response => response.json())
+    .then(callback)
+  }else if(body === undefined){
     request = fetch(url,
-      {
-        method: "PATCH",
-      }).then(response => response.json())
-      .then(callback)
+    {
+      method: "PATCH",
+    })
+    .then(response => response.json())
+    .then(callback)
   }
 
   return {
