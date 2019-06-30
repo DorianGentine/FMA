@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { showDemande } from '../../actions'
+import { showDemande, validateStep, fetchClients } from '../../actions'
 
 import renderLogo from "../../../components/render_logo"
 
 class CardClient extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      step: "archived",
+    };
+  }
   // componentWillMount(){
   //   console.log(this.props.client)
   // }
@@ -91,7 +97,11 @@ class CardClient extends Component {
                   aria-labelledby={`drop-call${client.id}`}>
                   <a className="black" onClick={()=>{this.props.showDemande(client)}}>Demandes&nbsp;spécifiques</a>
                   <a href="#">Marquer</a>
-                  <a href="#">Archiver</a>
+                  <p className="pointer" onClick={() => {
+                    this.props.validateStep(`/api/v1/projects/${client.id}/next_setp`,
+                      this.props.fetchClients("/api/v1/users"),
+                      this.state.step)
+                  }}>Archiver</p>
                 </div>
               </div>
 
@@ -130,7 +140,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ showDemande }, dispatch);
+  return bindActionCreators({ showDemande, validateStep, fetchClients }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardClient);

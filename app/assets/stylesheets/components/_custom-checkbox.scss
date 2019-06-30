@@ -47,7 +47,7 @@
 }
 
 /* Create a custom radio button */
-.checkmark {
+.custom-radio .checkmark {
   position: absolute;
   top: 0;
   left: 0;
@@ -69,7 +69,7 @@
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
+.custom-radio .checkmark:after {
   content: "";
   position: absolute;
   display: none;

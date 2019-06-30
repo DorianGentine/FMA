@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone'
 
 import renderLogo from "../../../components/render_logo"
 
-import { fetchPostCompte } from '../../actions'
+import { fetchPostCompte, fetchAPI } from '../../actions'
 
 class PanneauPrincipalCompte extends Component {
   componentDidMount(){
@@ -30,6 +30,7 @@ class PanneauPrincipalCompte extends Component {
   }
 
   onSubmit = (values, kind) => {
+    console.log("valuesLOG", values)
     let url = ""
     let method = "PATCH"
     if(kind === "classic"){
@@ -46,7 +47,7 @@ class PanneauPrincipalCompte extends Component {
       url = `/mon_espace/${this.props.user_id}`
       method = "DELETE"
     }
-    this.props.fetchPostCompte(url, values, method, ()=>{})
+    this.props.fetchPostCompte(url, values, method, ()=>{this.props.fetchAPI(`/api/v1/users/${this.props.user_id}`)})
   }
 
   renderField = ({ input, label, type, hint }) => (
@@ -77,87 +78,88 @@ class PanneauPrincipalCompte extends Component {
         const sendImageToController = (formPayLoad) => {
           fetch(`/api/v1/users/${this.props.user_id}`, {
             credentials: 'same-origin',
-            headers: { 'Content-Type': 'application/json'},
+            headers: {},
             method: 'PATCH',
             body: formPayLoad
           })
           .then(response => response.json())
+          .then(()=>{this.props.fetchAPI(`/api/v1/users/${this.props.user_id}`)})
         }
 
         const readFile = (files) => {
           if (files && files[0]) {
             console.log(files[0])
             let formPayLoad = new FormData();
-            formPayLoad.append('uploaded_image', files[0]);
+            formPayLoad.append('avatar', files[0]);
             sendImageToController(formPayLoad)
           }
         }
 
         return(
-          <div className="row">
-            <div className="col-lg-8">
-              <div className="white-box flex flex-wrap">
-                <h4 className="col-lg-12">Identité</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
-                  <Field
-                    label="Prénom"
-                    name={"first_name"}
-                    type="text"
-                    component={this.renderField}
-                  />
-                  <Field
-                    label="Nom"
-                    name={"last_name"}
-                    type="text"
-                    component={this.renderField}
-                  />
-                  <button
-                    className="float-right btn-blue"
-                    type="submit"
-                    disabled={this.props.pristine || this.props.submitting}>
-                      Enregistrer
-                  </button>
-                </form>
+          <div>
+            <form className="row" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
+              <div className="col-lg-8">
+                <div className="white-box flex flex-wrap">
+                  <h4 className="col-lg-12">Identité</h4>
+                  <div className="col-lg-12">
+                    <Field
+                      label="Prénom"
+                      name={"first_name"}
+                      type="text"
+                      component={this.renderField}
+                    />
+                    <Field
+                      label="Nom"
+                      name={"last_name"}
+                      type="text"
+                      component={this.renderField}
+                    />
+                    <button
+                      className="float-right btn-blue"
+                      type="submit"
+                      disabled={this.props.pristine || this.props.submitting}>
+                        Enregistrer
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="white-box flex flex-wrap" style={{height: "calc(100% - 20px)"}}>
-                <h4 className="col-lg-12">Ma photo</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
-                  <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles)}}>
-                    {({getRootProps, getInputProps}) => (
-                      <div className="photo-compte relative pointer" {...getRootProps()}>
-                        <input {...getInputProps()} />
-                        {renderLogo(user)}
-                        <div className="btn-light btn-light-compte absolute"></div>
-                      </div>
-                    )}
-                  </Dropzone>
-                </form>
+              <div className="col-lg-4">
+                <div className="white-box flex flex-wrap" style={{height: "calc(100% - 20px)"}}>
+                  <h4 className="col-lg-12">Ma photo</h4>
+                    <Dropzone onDrop={(acceptedFiles) => {readFile(acceptedFiles)}}>
+                      {({getRootProps, getInputProps}) => (
+                        <div className="photo-compte relative pointer" {...getRootProps()}>
+                          <input {...getInputProps()} />
+                          {renderLogo(user)}
+                          <div className="btn-light btn-light-compte absolute"></div>
+                        </div>
+                      )}
+                    </Dropzone>
+                </div>
               </div>
-            </div>
-            <div className="col-lg-12">
-              <div className="white-box flex flex-wrap">
-                <h4 className="col-lg-12">Téléphone</h4>
-                <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values, "classic")})}>
-                  <Field
-                    label="Numéro de téléphone"
-                    name={"phone"}
-                    type="tel"
-                    component={this.renderField}
-                    hint="
-                    Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
-                    // Recevez vos notifications de message par SMS.
-                  />
-                  <button
-                    className="float-right btn-blue"
-                    type="submit"
-                    disabled={this.props.pristine || this.props.submitting}>
-                      Enregistrer
-                  </button>
-                </form>
+              <div className="col-lg-12">
+                <div className="white-box flex flex-wrap">
+                  <h4 className="col-lg-12">Téléphone</h4>
+                  <div className="col-lg-12">
+                    <Field
+                      label="Numéro de téléphone"
+                      name={"phone"}
+                      type="tel"
+                      component={this.renderField}
+                      hint="
+                      Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
+                      // Recevez vos notifications de message par SMS.
+                    />
+                    <button
+                      className="float-right btn-blue"
+                      type="submit"
+                      disabled={this.props.pristine || this.props.submitting}>
+                        Enregistrer
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
         )
       }
@@ -261,9 +263,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchPostCompte,
-  }, dispatch);
+  return bindActionCreators({ fetchPostCompte, fetchAPI }, dispatch);
 }
 
 export default reduxForm({ form: 'validationForm', })(
