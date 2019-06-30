@@ -9,7 +9,7 @@ class SetSolutions
       end
     end
     solutions.each do |solution|
-      change_unmatched_for(solution, form, solutions)
+      change_unmatched_for(solution, form, solutions, true)
     end
     return solutions
   end
@@ -27,7 +27,7 @@ class SetSolutions
         end
       end
       solutions.each do |solution|
-        change_unmatched_for(solution, form, solutions)
+        change_unmatched_for(solution, form, solutions, false)
       end
     end
     return solutions
@@ -56,7 +56,7 @@ class SetSolutions
 
   private
 
-  def change_unmatched_for(solution, form, solutions)
+  def change_unmatched_for(solution, form, solutions, chatbot)
       financer = solution.financer
       financer_ids = solutions.map { |e| e.financer.id  }
     if financer.name == "CNAV"
@@ -93,7 +93,7 @@ class SetSolutions
     end
     if first_unmatched.present? || second_unmatched.present? || third_unmatched.present?
       array = [first_unmatched, second_unmatched, third_unmatched].compact
-      financer.unmatched = "<li>#{array.join('</li><li>')}</li>"
+      chatbot ? financer.unmatched = "<li>#{array.join('</li><li>')}</li>" : financer.unmatched = "#{array.join('///')}"
     end
     return solution
   end
@@ -121,7 +121,6 @@ class SetSolutions
          answer.content = answer.content.split("XXX et XXX").join("#{selected[:a]} et #{selected[:b]}€")
          first = answer.content.split("atteindre XXX euros").first(2).join("atteindre #{selected[:result] * 1000 > selected[:max] ? selected[:max]: selected[:result] * 1000} euros")
          last = "atteindre #{selected[:result] * 30000 > selected[:max] ? selected[:max]: selected[:result] * 30000} euros" + answer.content.split("atteindre XXX euros").last
-
          answer.content = first + last
       end
       return solution
