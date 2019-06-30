@@ -69,7 +69,6 @@ class AppelsProgrammes extends Component {
                     className="dropdown-menu drop-menu-call"
                     aria-labelledby={`drop-call${index}`}>
                     <a href={client.url}>Voir&nbsp;le&nbsp;profil</a>
-                    <a href="#">Envoyer&nbsp;un&nbsp;message</a>
                     <a className="black" onClick={()=>{this.props.showDemande(client)}}>Demandes&nbsp;spécifiques</a>
                   </div>
                 </div>

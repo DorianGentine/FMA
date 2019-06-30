@@ -57,3 +57,52 @@
 .point-vert.point:before{
   background-color: $green;
 }
+
+
+.chat-advisor{
+  bottom: 50px;
+  right: 50px;
+  z-index: 100;
+  background-color: $blue;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .message-unread{
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: $red;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: -3px;
+    line-height: 1;
+    font-size: 12px
+
+  }
+  img{
+    width:  20px;
+    height: 20px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

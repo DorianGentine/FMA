@@ -78,20 +78,20 @@ class PanneauPrincipalClients extends Component {
             />
           </div>
         </div>
-        { conseillersTrue ?
+        { true ?
           <div className="margin-top-30 margin-bottom-30 flex align-items-center">
             <hr className="ligne-horizontal"/>
           </div>
-          :
-          <div className="margin-top-30 margin-bottom-30 flex align-items-center">
-            <hr className="ligne-horizontal"/>
-            <div
-              className="font-14 black blue-gray-background flex-grow-1 text-align-center"
-              style={{ width: "100%" }}>
-              Etape 1 : Confirmation des réponses
-            </div>
-            <hr className="ligne-horizontal"/>
-          </div>
+          : null
+          // <div className="margin-top-30 margin-bottom-30 flex align-items-center">
+          //   <hr className="ligne-horizontal"/>
+          //   <div
+          //     className="font-14 black blue-gray-background flex-grow-1 text-align-center"
+          //     style={{ width: "100%" }}>
+          //     {this.props.selectedClients}
+          //   </div>
+          //   <hr className="ligne-horizontal"/>
+          // </div>
         }
         <div className={`row ${conseillersTrue ? "margin-top-30" : "" }`}>
           {clients != null ? renderClients() : <h2 className="text-align-center">Chargement...</h2>}
@@ -104,6 +104,7 @@ class PanneauPrincipalClients extends Component {
 function mapStateToProps(state) {
   return {
     clients: state.clients,
+    selectedClients: state.selectedClients,
   };
 }
 
