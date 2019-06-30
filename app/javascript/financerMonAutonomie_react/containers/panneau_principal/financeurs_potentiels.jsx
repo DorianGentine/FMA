@@ -15,23 +15,10 @@ class FinanceursPotentiels extends Component {
 
     const renderUnmatch = (financer, index) => {
       if (financer.unmatched) {
-        const showHint = () => {
-          const hintText = document.getElementById(`hint${index}`)
-          hintText.classList.toggle("d-none")
-        }
-        return (
-        <div className="icon-alert relative pointer text-align-right margin-right-15" onClick={showHint}>
-          <div
-            id={`hint${index}`}
-            className="red-background white d-none absolute"
-            style={{padding: "20px", right: "-80px", top: "32px", width: "400px", borderRadius: "3px", zIndex: "10"}}
-          >
-            <h4 className="white">Informations supplémentaires:</h4>
-            <p>{financer.unmatched}</p>
-            <p><strong>Sachez que ces financeurs ne peuvent être cumulés. Vous aurez donc à faire un choix entre l'un d'entre eux si vous les sollicitez.</strong></p>
-          </div>
+        return <div
+          className="icon-alert pointer text-align-right margin-right-15"
+          onClick={()=>{this.props.showFinancer(financer)}}>
         </div>
-        );
       }
     }
 
