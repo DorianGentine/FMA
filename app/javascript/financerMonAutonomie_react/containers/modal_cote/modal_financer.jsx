@@ -86,7 +86,6 @@ class ModalFinancer extends Component {
 
     const renderAnswers = (answers) => {
       if(answers != []){
-        console.log(answers.length)
         return answers.map((answer, index) => {
           const randomId = Math.floor((Math.random() * 100) + 1);
           return (

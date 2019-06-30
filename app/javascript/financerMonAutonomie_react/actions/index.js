@@ -143,7 +143,7 @@ export function fetchPostCompte(url, body, method, callback) {
     })
     .then(response => response.json())
     .then(callback)
-  }else if(body === null && method === "DELETE"){
+  }else if(body === null){
     request = fetch(url,
     {
       method: method,
@@ -154,7 +154,7 @@ export function fetchPostCompte(url, body, method, callback) {
 
   return {
     type: POST_COMPTE,
-    payload: request
+    payload: body
   };}
 
 export function fetchPostForm(url, body, method) {
@@ -331,12 +331,23 @@ export function showRessource(ressource) {
     payload: ressourceSelected
   };}
 
-export function validateStep(url, callback) {
-  const request = fetch(url,
-    {
-      method: "PATCH",
-    }).then(response => response.json())
-    .then(callback)
+export function validateStep(url, callback, body) {
+  let request
+  if(body){
+    request = fetch(url,
+      {
+        method: "PATCH",
+        headers: { 'Content-Type': 'application/json'},
+        body: body,
+      }).then(response => response.json())
+      .then(callback)
+  }else if(!body){
+    request = fetch(url,
+      {
+        method: "PATCH",
+      }).then(response => response.json())
+      .then(callback)
+  }
 
   return {
     type: VALIDATE_STEP,
