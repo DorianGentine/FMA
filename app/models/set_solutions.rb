@@ -20,12 +20,15 @@ class SetSolutions
     forms.each do |form|
       Solution.all.each do |solution|
         if form.is_finish? && MatchSolution.new(form, solution).call
+          financer = solutions.map { |e| e.financer  }
           if solutions.exclude?(solution)
             solution_set = change_XXX_for(solution, form)
             solutions << solution_set
           end
         end
       end
+
+      "ANAH, Bailleur, Crédit d'impot"
       solutions.each do |solution|
         change_unmatched_for(solution, form, solutions, false)
       end
