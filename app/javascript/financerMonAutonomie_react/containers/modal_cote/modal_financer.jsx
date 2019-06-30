@@ -21,6 +21,27 @@ class ModalFinancer extends Component {
       }
     }
 
+    const renderUnmatched = () =>{
+      if(financer.unmatched != null){
+        return (
+          <div>
+            <div className="flex space-between">
+              <p className="black"><i className="red margin-right-15 fas fa-exclamation-triangle"></i> À noter</p>
+              <div className="red pointer"
+                data-toggle="collapse"
+                data-target="#collapseNote"
+                aria-expanded="false"
+                aria-controls="collapseNote">
+                <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
+              </div>
+            </div>
+            <p className="collapse" id="collapseNote">{financer.unmatched}<br/><br/><strong>Sachez que ces financeurs ne peuvent être cumulés. Vous aurez donc à faire un choix entre l'un d'entre eux si vous les sollicitez.</strong></p>
+            <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
+          </div>
+        )
+      }
+    }
+
     const renderDescription = () =>{
       if(financer.description != null){
         return (
@@ -41,6 +62,7 @@ class ModalFinancer extends Component {
         )
       }
     }
+
     const renderConseil = () =>{
       if(financer.answer != null){
         return (
@@ -101,6 +123,7 @@ class ModalFinancer extends Component {
             <h4 className="black">{financer.name}</h4>
             <p className="blue">Conseil en solutions</p>
           </div>
+          {renderUnmatched()}
           {renderDescription()}
           {renderConseil()}
           {renderAnswers(financer.answers)}
