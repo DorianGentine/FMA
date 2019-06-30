@@ -47,6 +47,7 @@ class RenderDocs extends Component {
     const documents = this.props.project.documents
     const nextDocuments = nextProps.project.documents
     const project_id = this.props.project_id
+    const etape = this.props.etape
 
     const checkFiles = () => {
       let documentsCompleted = 0

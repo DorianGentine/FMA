@@ -46,7 +46,9 @@ class ModalReponses extends Component {
           <h4 className="black">{`Bénéficiaire ${index + 1}`}</h4>
           <p className="blue">{user.first_name}</p>
         </div>
-        {reponses != null ? renderReponses() : <h2>Chargement...</h2>}
+        <div className="scroll" style={{ maxHeight: "calc(100vh - 390px)"}}>
+          {reponses != null ? renderReponses() : <h2>Chargement...</h2>}
+        </div>
         <button className="btn-blue margin-top-30 offset-3 col-6 text-align-center" onClick={this.props.closeModal}>Fermer</button>
       </div>
     )
