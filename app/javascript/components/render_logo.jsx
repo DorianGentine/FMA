@@ -24,6 +24,8 @@ export default function renderLogo(financer){
       name = `${financer.first_name}${financer.last_name ? ` ${financer.last_name}` : ""}`
     }else if( typeof financer === "string" ) {
       name = financer
+    }else{
+      name = "Adrien Euphrasie"
     }
     return(
       <div

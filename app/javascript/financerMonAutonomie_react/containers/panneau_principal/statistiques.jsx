@@ -12,7 +12,7 @@ class Statistiques extends Component {
     return (
       <div className="col-lg-6">
         <div className="white-box flex flex-wrap align-items-center">
-          <h4 className="padding-horizontal-15 no-margin">Activités de la plateforme</h4>
+          <h4 className="w-100 padding-horizontal-15 no-margin">Activités de la plateforme</h4>
           <div className="margin-top-15 col-lg-4" style={{ height: "145px" }}>
             <p className="point point-bleu font-12 black bold">Projets</p>
             <p className="no-margin black bold" style={{fontSize: "34px", lineHeight: "41px"}}>{api.inscrits != null ? api.inscrits : 0}</p>

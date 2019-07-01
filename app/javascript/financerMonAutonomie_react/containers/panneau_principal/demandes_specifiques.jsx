@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchProjet } from '../../actions'
+import { fetchProjet, showDemandeAnswer } from '../../actions'
 
 import renderLogo from "../../../components/render_logo"
 import { postedAgo } from "../../../components/render_date"
 
 class AppelsProgrammes extends Component {
   componentWillMount(){
-    console.log(this.props.project)
     this.props.fetchProjet("/api/v1/projects")
   }
 
@@ -33,19 +32,30 @@ class AppelsProgrammes extends Component {
         return projects.solutions.map((project, index) => {
           if(project.demandes != []){
             return project.demandes.map((demande, index) => {
-              const authorName = demande.author.name
+              const author = demande.author
+              const beneName = `${project.first_name} ${project.last_name}`
+              const infoProject = {
+                beneName: beneName,
+                project_id: project.id,
+              }
               const time = postedAgo(new Date(demande.created_at));
 
               return (
                 <div className="flex margin-top-15 align-items-center" key={index}>
                   <p className="col-lg-2 font-12 bold black" style={{paddingLeft: 0}}>{demande.category}</p>
                   <div className="col-lg-3 flex align-items-center">
-                    {renderLogo(authorName)}
-                    <p className="bold font-12 black">{authorName}</p>
+                    {renderLogo(author)}
+                    <p className="bold font-12 black">{author.name}</p>
                   </div>
-                  <p className="col-lg-3 font-12 blue">{`${project.first_name} ${project.last_name}`}</p>
+                  <p className="col-lg-3 font-12 blue">{beneName}</p>
                   <p className="col-lg-2 font-12 black">{time}</p>
-                  <button className="col-lg-2 blue-gray-btn" style={{padding: "5px"}}>Voir&nbsp;la&nbsp;demande</button>
+                  <button
+                    className="col-lg-2 blue-gray-btn"
+                    style={{padding: "5px"}}
+                    onClick={()=>(this.props.showDemandeAnswer(demande, infoProject))}
+                    >
+                    Voir&nbsp;la&nbsp;demande
+                  </button>
                 </div>
               );
             })
@@ -85,7 +95,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchProjet }, dispatch);
+  return bindActionCreators({ fetchProjet, showDemandeAnswer }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppelsProgrammes);

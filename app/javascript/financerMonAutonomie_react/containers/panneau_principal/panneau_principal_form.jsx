@@ -155,10 +155,11 @@ class PanneauPrincipalForm extends Component {
           textField={textField}
           disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
           onChange={input.onChange}
-          onBlur={event => {
-            input.onBlur(event);
-            submitButton.click();
-          }} />
+          // onBlur={event => {
+          //   input.onBlur(event);
+          //   submitButton.click();
+          // }}
+        />
       )
     }
 

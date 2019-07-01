@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import ModalClientConseiller from './modal_cote/modal_client_conseiller';
 import ModalCreateRessource from './modal_cote/modal_create_ressource';
 import ModalDemande from './modal_cote/modal_demande';
+import ModalDemandeAnswer from './modal_cote/modal_demande_answer';
 import ModalDocument from './modal_cote/modal_document';
 import ModalEvaluation from './modal_cote/modal_evaluation';
 import ModalFinancer from './modal_cote/modal_financer';
@@ -26,6 +27,8 @@ class ModalCote extends Component {
       return (<ModalCreateRessource />)
     }else if(modalSelected.modalActive === "showDemande"){
       return (<ModalDemande />)
+    }else if(modalSelected.modalActive === "showDemandeAnswer"){
+      return (<ModalDemandeAnswer />)
     }else if(modalSelected.modalActive === "showDoc"){
       return (<ModalDocument />)
     }else if(modalSelected.modalActive === "showEvaluation"){

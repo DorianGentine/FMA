@@ -20,6 +20,7 @@ export const SHOW_CLIENT = 'SHOW_CLIENT';
 export const SHOW_CLIENT_CONSEILLER = 'SHOW_CLIENT_CONSEILLER';
 export const SHOW_CREATE_RESSOURCE = 'SHOW_CREATE_RESSOURCE';
 export const SHOW_DEMANDE = 'SHOW_DEMANDE';
+export const SHOW_DEMANDE_ANSWER = 'SHOW_DEMANDE_ANSWER';
 export const SHOW_EVALUATION = 'SHOW_EVALUATION';
 export const SHOW_DOCUMENT = 'SHOW_DOCUMENT';
 export const SHOW_FINANCER = 'SHOW_FINANCER';
@@ -262,6 +263,18 @@ export function showDemande(client) {
   return {
     type: SHOW_DEMANDE,
     payload: clientSelected
+  };}
+
+export function showDemandeAnswer(demande, infoProject) {
+  const demandeSelected = {
+    modalActive: "showDemandeAnswer",
+    demande: demande,
+    infoProject: infoProject,
+  }
+
+  return {
+    type: SHOW_DEMANDE_ANSWER,
+    payload: demandeSelected
   };}
 
 export function showDocument(doc) {

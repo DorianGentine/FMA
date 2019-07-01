@@ -66,17 +66,20 @@ class PanneauPrincipalClients extends Component {
               onChange={()=>{this.props.selectClients(event.target.value)}}
             />
           </div>
-          <div className="col-lg-4 offset-lg-4">
-            <Select
-              className="react-dropdown-select"
-              options={options}
-              valueField="value"
-              values={[options.find(opt => opt.name === "Sélectionnez une étape")]}
-              // onChange={console.log(value)}
-              onChange={(value) => {this.props.selectClients(value[0].value)}}
-              labelField="name"
-            />
-          </div>
+
+          { conseillersTrue ? null :
+            <div className="col-lg-4 offset-lg-4">
+              <Select
+                className="react-dropdown-select"
+                options={options}
+                valueField="value"
+                values={[options.find(opt => opt.name === "Sélectionnez une étape")]}
+                onChange={(value) => {this.props.selectClients(value[0].value)}}
+                labelField="name"
+              />
+            </div>
+          }
+
         </div>
         { true ?
           <div className="margin-top-30 margin-bottom-30 flex align-items-center">

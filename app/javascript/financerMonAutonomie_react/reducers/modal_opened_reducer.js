@@ -3,6 +3,7 @@ import {
   SHOW_CLIENT_CONSEILLER,
   SHOW_CREATE_RESSOURCE,
   SHOW_DEMANDE,
+  SHOW_DEMANDE_ANSWER,
   SHOW_DOCUMENT,
   SHOW_EVALUATION,
   SHOW_FINANCER,
@@ -24,6 +25,9 @@ export default function(state = null, action) {
       return true;
     }
     case SHOW_DEMANDE: {
+      return true;
+    }
+    case SHOW_DEMANDE_ANSWER: {
       return true;
     }
     case SHOW_DOCUMENT: {

@@ -9,8 +9,11 @@ import { closeModal, fetchPostCompte, fetchRessources } from '../../actions';
 import renderLogo from "../../../components/render_logo"
 
 class ModalCreateRessource extends Component {
-  state = {
-    docs: []
+  constructor(props) {
+    super(props)
+    this.state = {
+      docs: []
+    };
   }
 
   onSubmit = (oldValues) => {
