@@ -61,6 +61,7 @@ class PanneauPrincipalForm extends Component {
   }
 
   onSubmit = (values) => {
+    console.log('values', values)
     if(this.props.formulary_id === "add"){
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
       .then(()=>{
@@ -176,9 +177,9 @@ class PanneauPrincipalForm extends Component {
         )
       }else if(result.set_up.type == "select"){
         if(result.set_up.multiple_answers == false){
-
+          console.log("result", result)
           let data = renderOptions(result.set_up.data)
-          return <RenderDropdownList valueInitial={"Coool"} label={result.set_up.question} name={result.set_up.column_name} data={data} submitButton={submitButton} />
+          return <RenderDropdownList valueInitial={result.answer} label={result.set_up.question} name={result.set_up.column_name} data={data} submitButton={submitButton} />
 
           // return(
           //   <div className="form-group">
