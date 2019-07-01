@@ -42,7 +42,6 @@ class VoletProjet extends Component {
         <div className="space-between">
           <Conseiller />
           <MonActualite />
-          <RdvTel />
           <MonEquipe />
         </div>
       )
