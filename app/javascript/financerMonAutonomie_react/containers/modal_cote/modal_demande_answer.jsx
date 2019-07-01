@@ -11,8 +11,7 @@ class ModalDemandeAnswer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // nbDocs: 1,
-      notice: [],
+      docs: []
     };
   }
 
@@ -35,9 +34,12 @@ class ModalDemandeAnswer extends Component {
 
     const values = {
       project_id: this.props.modal_selected.infoProject.project_id,
-      name: oldValues.name,
+      title: oldValues.title,
       message: oldValues.message,
-      notice: notice,
+      formulary: docs.formulary,
+      notice: docs.notice,
+      model_1: docs.model_1,
+      model_2: docs.model_2,
     }
     console.log("values", values)
 
@@ -54,10 +56,19 @@ class ModalDemandeAnswer extends Component {
       let nameFichier
 
       const sendDocToState = (formPayLoad) => {
-        let updatedNotice = Object.assign({}, this.state.notice, { documentJoint: formPayLoad });
+        let updatedDocs
+        if( name === "formulary"){
+          updatedDocs = Object.assign({}, this.state.docs, { formulary: formPayLoad });
+        }else if( name === "notice"){
+          updatedDocs = Object.assign({}, this.state.docs, { notice: formPayLoad });
+        }else if( name === "model_1"){
+          updatedDocs = Object.assign({}, this.state.docs, { model_1: formPayLoad });
+        }else if( name === "model_2"){
+          updatedDocs = Object.assign({}, this.state.docs, { model_2: formPayLoad });
+        }
 
         this.setState({
-          notice: updatedNotice
+          docs: updatedDocs
         })
       }
 
@@ -65,7 +76,7 @@ class ModalDemandeAnswer extends Component {
         console.log(files)
         if (files && files[0]) {
           nameFichier = files[0].name
-          document.getElementById(`doc_joint_${name}`).innerText = nameFichier
+          document.getElementById(`doc_${name}`).innerText = nameFichier
           sendDocToState(files[0])
         }
       }
@@ -75,25 +86,12 @@ class ModalDemandeAnswer extends Component {
           {({getRootProps, getInputProps}) => (
             <div className="pointer margin-bottom-30 font-12 col-12" {...getRootProps()}>
               <input {...getInputProps()} />
-              <button id={`doc_joint_${name}`} className="col-12 margin-top-15 app-white-btn">Joindre un fichier à cette demande</button>
+              <button id={`doc_${name}`} className="col-12 margin-top-15 app-white-btn">Joindre un fichier</button>
             </div>
           )}
         </Dropzone>
       )
     }
-
-    // const renderDropZones = (name) => {
-    //   console.log(this.state.nbDocs)
-    //   for (var i = this.state.nbDocs; i >= 1; i--) {
-    //     console.log(i)
-    //     const nameDoc = `${name}${i}`
-    //     renderDropZone(nameDoc)
-    //   }
-    // }
-
-    // const addDoc = () => this.setState(prevState => ({
-    //   nbDocs: prevState.nbDocs + 1
-    // }))
 
     return(
       <div>
@@ -120,20 +118,27 @@ class ModalDemandeAnswer extends Component {
             style={{margin: "15px -30px", width: "calc(100% + 60px)" }}
           />
 
-          {renderDropZone("documentJoint")}
-
           <p className="black font-14 margin-bottom-15 col-12">Nom du package</p>
           <Field
-            name="name"
+            name="titre"
             type="text"
             component={this.renderField}
           />
-          <p className="black font-14 margin-bottom-15 col-12">Message</p>
+          <p className="black font-14 margin-bottom-15 col-12">Description</p>
           <Field
-            name="message"
+            name="description"
             type="text"
             component={this.renderField}
           />
+
+          <p className="black font-14 margin-bottom-15 col-12">Formulaire</p>
+          {renderDropZone("formulary")}
+          <p className="black font-14 margin-bottom-15 col-12">Notice</p>
+          {renderDropZone("notice")}
+          <p className="black font-14 margin-bottom-15 col-12">Modèle 1</p>
+          {renderDropZone("model_1")}
+          <p className="black font-14 margin-bottom-15 col-12">Modèle 2</p>
+          {renderDropZone("model_2")}
 
           <button
             className="btn-blue margin-top-30 offset-6 col-6 text-align-center"
@@ -143,11 +148,6 @@ class ModalDemandeAnswer extends Component {
           </button>
         </form>
       </div>
-          // <p
-          //   className="col-6 offset-6 blue font-12 margin-bottom-30 text-align-right pointer"
-          //   onClick={addDoc}
-          //   >Ajouter un fichier
-          // </p>
     )
 
   }

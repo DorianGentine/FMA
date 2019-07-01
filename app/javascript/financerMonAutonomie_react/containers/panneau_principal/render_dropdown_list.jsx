@@ -20,6 +20,10 @@ class RenderDropdownList extends Component {
         datas.push(data[i].props.value);
       }
 
+      const clickSubmit = () => {
+        this.props.submitButton.click()
+      }
+
       return(
         <DropdownList {...input}
           data={datas}
@@ -27,7 +31,9 @@ class RenderDropdownList extends Component {
           value={this.state.value}
           onChange={value => {
             this.setState({ value })
-            console.log(value)
+            clickSubmit()
+
+            console.log(() =>{this.props.submitButton.click()})
           }}
         />
       )
