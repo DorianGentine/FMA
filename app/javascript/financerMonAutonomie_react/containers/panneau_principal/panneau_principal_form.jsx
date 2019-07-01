@@ -20,6 +20,13 @@ import RenderDropdownList from "./render_dropdown_list"
 import 'react-widgets/dist/css/react-widgets.css'
 
 class PanneauPrincipalForm extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      envoiEnCours: false,
+    }
+  }
+
   componentWillMount() {
     if(this.props.formulary_id != this.props.formulary_ids[0]){
       this.props.changeBeneficiaireForm(this.props.formulary_ids[0])
@@ -61,17 +68,17 @@ class PanneauPrincipalForm extends Component {
   }
 
   onSubmit = (values) => {
-    console.log('values', values)
     if(this.props.formulary_id === "add"){
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
       .then(()=>{
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
+        this.setState({ envoiEnCours: false })
       })
     }else{
-      console.log(values)
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
       .then(()=>{
         this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
+        this.setState({ envoiEnCours: false })
       })
     }
   }
@@ -177,9 +184,16 @@ class PanneauPrincipalForm extends Component {
         )
       }else if(result.set_up.type == "select"){
         if(result.set_up.multiple_answers == false){
-          console.log("result", result)
+
+          const clickButton = () => {
+            this.setState({ envoiEnCours: true})
+            submitButton.disabled = false,
+            submitButton.click()
+            setTimeout(submitButton.disabled = true, 100)
+          }
+
           let data = renderOptions(result.set_up.data)
-          return <RenderDropdownList valueInitial={result.answer} label={result.set_up.question} name={result.set_up.column_name} data={data} submitButton={submitButton} />
+          return <RenderDropdownList submitting={this.state.envoiEnCours} valueInitial={result.answer} label={result.set_up.question} name={result.set_up.column_name} data={data} clickButton={clickButton} />
 
           // return(
           //   <div className="form-group">
