@@ -12,7 +12,7 @@ class ModalDemandeAnswer extends Component {
     super(props)
     this.state = {
       // nbDocs: 1,
-      docs: [],
+      notice: [],
     };
   }
 
@@ -31,13 +31,13 @@ class ModalDemandeAnswer extends Component {
   onSubmit = (oldValues) => {
     let url = `/api/v1/ressources`
     let method = "POST"
-    const docs = this.state.docs
+    const notice = this.state.notice
 
     const values = {
       project_id: this.props.modal_selected.infoProject.project_id,
       name: oldValues.name,
       message: oldValues.message,
-      docs: docs,
+      notice: notice,
     }
     console.log("values", values)
 
@@ -54,10 +54,10 @@ class ModalDemandeAnswer extends Component {
       let nameFichier
 
       const sendDocToState = (formPayLoad) => {
-        let updatedDocs = Object.assign({}, this.state.docs, { documentJoint: formPayLoad });
+        let updatedNotice = Object.assign({}, this.state.notice, { documentJoint: formPayLoad });
 
         this.setState({
-          docs: updatedDocs
+          notice: updatedNotice
         })
       }
 
