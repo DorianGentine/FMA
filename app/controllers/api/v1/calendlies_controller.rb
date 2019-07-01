@@ -8,7 +8,7 @@ class Api::V1::CalendliesController < Api::V1::BaseController
     p "////////////// author #{params[:data][:item][:conversation_parts][:conversation_parts].first[:author]}"
     p "////////////// body #{params[:data][:item][:conversation_parts][:conversation_parts].first[:body]}"
     p "////////////// links #{params[:data][:item][:links][:conversation_web]}"
-    "conversation_parts"=>[{"type"=>"conversation_part", "id"=>"3314707457", "part_type"=>"comment", "body"=>
+
     message = Message.last
     if message.unread > 0
       message.unread = message.unread + 1
