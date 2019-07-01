@@ -20,20 +20,15 @@ class RenderDropdownList extends Component {
         datas.push(data[i].props.value);
       }
 
-      const clickSubmit = () => {
-        this.props.submitButton.click()
-      }
-
       return(
         <DropdownList {...input}
           data={datas}
+          busy={this.props.submitting}
           disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
           value={this.state.value}
           onChange={value => {
             this.setState({ value })
-            clickSubmit()
-
-            console.log(() =>{this.props.submitButton.click()})
+            this.props.clickButton()
           }}
         />
       )
