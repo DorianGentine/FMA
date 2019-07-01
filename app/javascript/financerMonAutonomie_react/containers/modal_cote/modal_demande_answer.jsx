@@ -30,7 +30,7 @@ class ModalDemandeAnswer extends Component {
   onSubmit = (oldValues) => {
     let url = `/api/v1/ressources`
     let method = "POST"
-    const notice = this.state.notice
+    const docs = this.state.docs
 
     const values = {
       project_id: this.props.modal_selected.infoProject.project_id,

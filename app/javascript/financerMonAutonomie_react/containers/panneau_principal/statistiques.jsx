@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 class Statistiques extends Component {
   render(){
     const api = this.props.api
-    console.log("retour api", api)
     return (
       <div className="col-lg-6">
         <div className="white-box flex flex-wrap align-items-center">

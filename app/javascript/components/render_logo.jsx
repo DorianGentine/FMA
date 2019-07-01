@@ -16,6 +16,7 @@ export default function renderLogo(financer){
         >
       </div>
     )
+
   }else{
     let name = ""
     if(financer.name){
