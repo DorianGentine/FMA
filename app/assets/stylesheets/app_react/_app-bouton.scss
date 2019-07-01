@@ -1,25 +1,32 @@
-.btn-app-navbar{
-  text-align: center;
-  color: $gray-300;
-  cursor: pointer;
-  transition: .5s;
-  p{
-    font-size: 10px;
-  }
-  i{
-    font-size: 25px;
-  }
-}
-.btn-app-navbar:hover{
-  color: $blue !important;
+// app-white-btn
+.app-white-btn{
+  border: 1px solid $blue-gray-darker;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 12px;
+  color: $blue;
 }
 
-.navbar-quit{
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
+// blue-gray-btn
+  .blue-gray-btn{
+    cursor: pointer;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: $blue-gray;
+    color: $blue;
+    font-size: 12px;
+    transition: .5s;
+  }
+  .blue-gray-btn:hover{
+    background-color: $blue;
+    color: $white !important;
+  }
+  .blue-gray-btn:disabled{
+    cursor: not-allowed;
+    color: $gray;
+    background-color: $blue-gray;
+  }
 
 // btn-apercu
   .btn-apercu{
@@ -36,6 +43,23 @@
     .icon-eye{
       background-image: url(https://res.cloudinary.com/financermonautonomie/image/upload/co_rgb:2675e5,e_colorize:100,f_png,h_50,w_50/v1557384905/icons/eye_yskktm.svg);
     }
+  }
+
+// btn-app-navbar
+  .btn-app-navbar{
+    text-align: center;
+    color: $gray-300;
+    cursor: pointer;
+    transition: .5s;
+    p{
+      font-size: 10px;
+    }
+    i{
+      font-size: 25px;
+    }
+  }
+  .btn-app-navbar:hover{
+    color: $blue !important;
   }
 
 // btn-evaluation
@@ -61,27 +85,6 @@
     background-color: $blue-gray;
     cursor: not-allowed;
     color: $gray-300;
-  }
-
-// blue-gray-btn
-  .blue-gray-btn{
-    cursor: pointer;
-    padding: 5px 12px;
-    border: none;
-    border-radius: 3px;
-    background-color: $blue-gray;
-    color: $blue;
-    font-size: 12px;
-    transition: .5s;
-  }
-  .blue-gray-btn:hover{
-    background-color: $blue;
-    color: $white !important;
-  }
-  .blue-gray-btn:disabled{
-    cursor: not-allowed;
-    color: $gray;
-    background-color: $blue-gray;
   }
 
 // btn-select-onglet
@@ -113,6 +116,14 @@
     border-radius: 3px;
     opacity: 0;
     transition: .5s;
+  }
+
+// navbar-quit
+  .navbar-quit{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
 
