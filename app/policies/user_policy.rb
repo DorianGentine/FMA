@@ -19,7 +19,6 @@ class UserPolicy < ApplicationPolicy
   def show?
     if user.admin
       return true
-
     elsif user.advisor
       if record == user
         return true
