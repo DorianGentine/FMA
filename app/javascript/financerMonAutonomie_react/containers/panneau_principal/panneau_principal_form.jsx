@@ -13,7 +13,9 @@ import {
   validateStep,
   changeBeneficiaireForm,
 } from '../../actions';
+
 import ValidationModal from "../beneficiaire/validation_modal"
+import RenderDropdownList from "./render_dropdown_list"
 
 import 'react-widgets/dist/css/react-widgets.css'
 
@@ -65,6 +67,7 @@ class PanneauPrincipalForm extends Component {
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
       })
     }else{
+      console.log(values)
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
       .then(()=>{
         this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
@@ -142,26 +145,21 @@ class PanneauPrincipalForm extends Component {
       )
     }
 
-    const renderDropdownList = ({ input, data, valueField, textField }) => {
-      let datas = []
-      for ( let i in data) {
-        datas.push(data[i].props.value);
-      }
+    // const renderDropdownList = ({ input, data, valueField, textField }) => {
+    //   let datas = []
+    //   for ( let i in data) {
+    //     datas.push(data[i].props.value);
+    //   }
 
-      return(
-        <DropdownList {...input}
-          data={datas}
-          valueField={valueField}
-          textField={textField}
-          disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
-          onChange={input.onChange}
-          // onBlur={event => {
-          //   input.onBlur(event);
-          //   submitButton.click();
-          // }}
-        />
-      )
-    }
+    //   return(
+    //     <DropdownList {...input}
+    //       data={datas}
+    //       disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
+    //       value={this.state.value}
+    //       onChange={value => this.setState({ value })}
+    //     />
+    //   )
+    // }
 
 
     const renderInput = (result) => {
@@ -178,18 +176,22 @@ class PanneauPrincipalForm extends Component {
         )
       }else if(result.set_up.type == "select"){
         if(result.set_up.multiple_answers == false){
-          return(
-            <div className="form-group">
-              <label className="font-14 black">{result.set_up.question}</label>
-              <Field
-                className="margin-bottom-15 no-padding form-control"
-                name={result.set_up.column_name}
-                component={renderDropdownList}
-                data={renderOptions(result.set_up.data)}
-                valueField="value"
-                textField="color"/>
-            </div>
-          )
+
+          let data = renderOptions(result.set_up.data)
+          return <RenderDropdownList valueInitial={"Coool"} label={result.set_up.question} name={result.set_up.column_name} data={data} submitButton={submitButton} />
+
+          // return(
+          //   <div className="form-group">
+          //     <label className="font-14 black">{result.set_up.question}</label>
+          //     <Field
+          //       className="margin-bottom-15 no-padding form-control"
+          //       name={result.set_up.column_name}
+          //       component={renderDropdownList}
+          //       data={renderOptions(result.set_up.data)}
+          //     />
+          //   </div>
+          // )
+
         }else{ // Multiple select
           return(
             <div className="form-group">
