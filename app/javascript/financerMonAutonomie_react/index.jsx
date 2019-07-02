@@ -32,6 +32,7 @@
   import ressourcesReducer from './reducers/ressources_reducer';
   import selectedClientsReducer from './reducers/selected_clients_reducer';
   import stateCalendlyReducer from './reducers/state_calendly_reducer';
+  import zipUrlsReducer from './reducers/zip_urls_reducer';
 
 const app = document.getElementById('app')
 if(app){
@@ -70,6 +71,7 @@ if(app){
     stateCalendly: false,
     urlAPI: urlAPI,
     user_id: user_id,
+    zip_urls: null,
   };
 
   const reducers = combineReducers({
@@ -95,6 +97,7 @@ if(app){
     stateCalendly: stateCalendlyReducer,
     urlAPI: identityReducer,
     user_id: identityReducer,
+    zip_urls: zipUrlsReducer,
   });
 
 
