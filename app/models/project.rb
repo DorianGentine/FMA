@@ -44,12 +44,12 @@ class Project < ApplicationRecord
   end
 
   def is_his_advisor
-    user = UserProject.where(project: self, client: false).first.user
+    user = UserProject.where(project: self, client: false).first.user if UserProject.where(project: self, client: false).first.present?
     return user
   end
 
   def his_client
-    user = UserProject.where(project: self, client: true).first.user
+    user = UserProject.where(project: self, client: true).first.user if UserProject.where(project: self, client: true).first.present?
     return user
   end
 

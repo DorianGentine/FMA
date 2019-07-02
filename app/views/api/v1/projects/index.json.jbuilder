@@ -2,15 +2,17 @@ json.solutions @projects do |project|
   json.extract! project, :id
   json.date_de_creation project.created_at
   json.etape project.step
-  json.nombre_de_bene project.formulary_ids.count
-  json.nombre_de_financer project.solutions.count
-  json.first_name project.user_projects.where(client: true).first.user.first_name
-  json.last_name project.user_projects.where(client: true).first.user.last_name
+  json.nombre_de_bene project.formulary_ids.count  if project.formulary_ids.present?
+  json.nombre_de_financer project.solutions.count  if project.solutions.present?
+  json.first_name project.his_client.first_name if project.his_client.present?
+  json.last_name project.his_client.last_name if project.his_client.present?
   json.demandes project.requests do |request|
-    json.author  do
-      json.id project.is_his_advisor.id
-      json.name project.is_his_advisor.name
-      json.avatar project.is_his_advisor.avatar.url(:bright_face)
+    if project.is_his_advisor.present?
+      json.author  do
+        json.id project.is_his_advisor.id
+        json.name project.is_his_advisor.name
+        json.avatar project.is_his_advisor.avatar.url(:bright_face)
+      end
     end
     json.extract! request, :category, :description, :close, :created_at, :id
   end

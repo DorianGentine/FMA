@@ -9,7 +9,7 @@ p "Create Financers"
   Elle délivre des actions social en faveur du bien viellir, notamment en ce qui concerne l'adaptation du logement. L'enjeu pour elle est de favoriser respect du maintien à domicile dans de bonnes conditions des retraités.")
   caisse = Financer.create(name: "caisse de retraite principale", web: nil, logo: nil, description: nil)
   bailleur = Financer.create(name: "bailleur", web: nil, logo: nil, description: nil, answer: "Nous vous invitons à prendre contact avec votre bailleur social afin de vérifier avec lui les conditions d'une éventuelle aide")
-  mutuel = Financer.create(name: "mutuel", web: "http://www.mutuelle-medicis.com", phone: "01 73 78 32 78", logo: nil, description: nil, answer: "Nous conseillons de vérifier auprès des organismes de mutuelles auprès desquels vous détenez un contrat. Il est probable que ce dernier couvre le risque de la perte d'autonomie à domicile.")
+  mutuel = Financer.create(name: "mutuelle", web: "http://www.mutuelle-medicis.com", phone: "01 73 78 32 78", logo: nil, description: nil, answer: "Nous conseillons de vérifier auprès des organismes de mutuelles auprès desquels vous détenez un contrat. Il est probable que ce dernier couvre le risque de la perte d'autonomie à domicile.")
   caisse_sup = Financer.create(name: "caisse de retraite complémentaire", web: nil, logo: nil, description: nil)
   apa = Financer.create(name: "apa", web: "http://www.valdemarne.fr", phone: "01.43.99.83.83", logo: "https://res.cloudinary.com/financermonautonomie/image/upload/v1557905259/financers/apa_h51rcq.png", description: "Le Conseil départemental du Val de Marne met en place des services adaptés pour l'accompagnement, notamment à domicile, des personnes âgées de plus de 60 ans.
   C'est notamment via le service de l'Allocation Personnalisée d'Autonomie (APA) que ces services se déploient. L'APA constitue une aide sociale permettant de financer partiellement ou totalement les dépenses permettant notamment le maintien à domicile.")
@@ -803,7 +803,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:0&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]"
+    conditions: "4:[1,2,3]&13:1&16:0&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]"
   )
   Answer.create(solution: solution_44, content:"Vous pourriez peut-être bénéficier d'une subvention d'aide à l'habitat de votre caisse de retraite principale, XXX.")
 
@@ -813,7 +813,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]"
+    conditions: "4:[1,2,3]&13:1&16:2&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]"
   )
   Answer.create(solution: solution_45, content:"Vous pourriez peut-être bénéficier d'une subvention d'aide à l'habitat de votre caisse de retraite principale, XXX. Cela peut toutefois dépendre du Groupe Iso-Ressource auquel vous appartenez. Nous vous invitons à le rechercher pour vérifier que votre GIR est bien supérieur à 4.")
 
@@ -823,7 +823,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR non évalué",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:3&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]"
+    conditions: "4:[1,2,3]&13:1&16:3&17:0&21:0&25:["+@assistants[0]+","+@assistants[4]+","+@assistants[5]+"]"
   )
   Answer.create(solution: solution_46, content:"Vous pourriez peut-être bénéficier d'une subvention d'aide à l'habitat de votre caisse de retraite principale, XXX. Cela dépendrait toutefois de l'évaluation que celle-ci fera de votre Groupe Iso-Ressource (GIR). ")
 
@@ -833,7 +833,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR > 4",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:0&17:0&21:0&25:"+@assistants[3]
+    conditions: "4:[1,2,3]&13:1&16:0&17:0&21:0&25:"+@assistants[3]
   )
   Answer.create(solution: solution_47, content:"Vous pourriez peut-être bénéficier d'une subvention d'aide à l'habitat de votre caisse de retraite principale, XXX.
             Il apparait que vous avez déjà perçu une aide sociale de sa part. Nous vous conseillons de vérifier notamment les critères de renouvellement qui peuvent être conditionnés à une somme plafond attribuable sur une période délimitée.")
@@ -844,7 +844,7 @@ p "Create Solutions"
     category: nil,
     group: "GIR inconnu",
     name: nil,
-    conditions: "4:[1,2,3]&13:0&16:2&17:0&21:0&25:"+@assistants[3]
+    conditions: "4:[1,2,3]&13:1&16:2&17:0&21:0&25:"+@assistants[3]
   )
   Answer.create(solution: solution_48, content:"Vous pourriez peut-être bénéficier d'une subvention d'aide à l'habitat de votre caisse de retraite principale, XXX. Cela pourrait toutefois dépendre du Groupe Iso-Ressource auquel vous appartenez. Nous vous invitons à le rechercher pour vérifier que votre GIR est bien supérieur à 4.
             Il apparait que vous avez déjà perçu une aide sociale de votre caisse de retraite principale. Nous vous conseillons de vérifier notamment les critères de renouvellement qui peuvent être conditionnés à une somme plafond attribuable sur une période délimitée.")
@@ -1471,12 +1471,100 @@ p "Formulary created"
 
 p "Create a Beneficaire"
 
-  bene2 = User.create(first_name: form_3.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test2@gmail.com", password: "password")
+  bene2 = User.create(first_name: form_3.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test2@mail.com", password: "password")
   UserProject.create(user: bene2, project: project2, client: true)
   UserProject.create(user: advisor, project: project2)
 
 
 
+p "create formulary"
+
+  form_5 = Formulary.new
+  form_5.set_a_new_form(Faker::Name.first_name)
+  form_5.visitor = Visitor.create(user_ip: "::4")
+  form_5.project = Project.create()
+  form_5.save
+  project3 = form_5.project
+
+  form_6 = Formulary.new
+  form_6.set_a_new_form(Faker::Name.first_name)
+  form_6.project = project3
+  form_6.save
+
+p "Formulary created"
+
+p "Create a Beneficaire"
+
+  bene3 = User.create(first_name: form_5.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test3@mail.com", password: "password")
+  UserProject.create(user: bene3, project: project3, client: true)
+  UserProject.create(user: advisor, project: project3)
+
+p "create formulary"
+
+  form_7 = Formulary.new
+  form_7.set_a_new_form(Faker::Name.first_name)
+  form_7.visitor = Visitor.create(user_ip: "::2")
+  form_7.project = Project.create()
+  form_7.save
+  project4 = form_7.project
+
+  form_8 = Formulary.new
+  form_8.set_a_new_form(Faker::Name.first_name)
+  form_8.project = project4
+  form_8.save
+
+p "Formulary created"
+
+p "Create a Beneficaire"
+
+  bene4 = User.create(first_name: form_7.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test4@mail.com", password: "password")
+  UserProject.create(user: bene4, project: project4, client: true)
+  UserProject.create(user: advisor, project: project4)
+
+
+p "create formulary"
+
+  form_9 = Formulary.new
+  form_9.set_a_new_form(Faker::Name.first_name)
+  form_9.visitor = Visitor.create(user_ip: "::2")
+  form_9.project = Project.create()
+  form_9.save
+  project5 = form_9.project
+
+  form_10 = Formulary.new
+  form_10.set_a_new_form(Faker::Name.first_name)
+  form_10.project = project5
+  form_10.save
+
+p "Formulary created"
+
+p "Create a Beneficaire"
+
+  bene5 = User.create(first_name: form_9.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test5@mail.com", password: "password")
+  UserProject.create(user: bene5, project: project5, client: true)
+  UserProject.create(user: advisor, project: project5)
+
+p "create formulary"
+
+  form_11 = Formulary.new
+  form_11.set_a_new_form(Faker::Name.first_name)
+  form_11.visitor = Visitor.create(user_ip: "::2")
+  form_11.project = Project.create()
+  form_11.save
+  project6 = form_11.project
+
+  form_12 = Formulary.new
+  form_12.set_a_new_form(Faker::Name.first_name)
+  form_12.project = project6
+  form_12.save
+
+p "Formulary created"
+
+p "Create a Beneficaire"
+
+  bene6 = User.create(first_name: form_11.first_name, last_name: Faker::Name.last_name, phone: "0786019942", client: true, email: "test6@mail.com", password: "password")
+  UserProject.create(user: bene6, project: project6, client: true)
+  UserProject.create(user: advisor, project: project6)
 
 
 

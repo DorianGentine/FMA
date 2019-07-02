@@ -22,7 +22,7 @@ if @user.client
 elsif @user.advisor
   json.new_message Message.last
   json.notifications @user.notifications.order(:date) do |notification|
-    json.user notification.project.his_client.first_name
+    json.user notification.project.his_client.first_name if notification.project.his_client.present?
     json.title notification.title
     json.time distance_of_time_in_words(notification.date, Time.now)
   end
@@ -34,14 +34,17 @@ elsif @user.advisor
   json.nbr_clients @clients.count
   json.nbr_kits @nbr_kits.count
   json.clients @clients do |client|
-    json.client client.id
-    json.email client.email
-    json.phone client.phone
-    json.project client.project.id
-    json.inscription client.created_at
-    json.notes client.project.notes do |note|
-      json.title note.title
-      json.description note.description
+    if client.present?
+      json.client client.id
+      json.email client.email
+      json.phone client.phone
+      json.project client.project.id
+      json.inscription client.created_at
+      json.notes client.project.notes do |note|
+        json.title note.title
+        json.description note.description
+      end
+
     end
   end
 
@@ -51,9 +54,13 @@ elsif @user.admin
       # json.email advisor.email
       # json.phone advisor.phone
       json.sign_in user_signed_in?
-      json.clients advisor.his_clients do |client|
-        json.client client.id
-        json.project client.project.id
+      if advisor.his_clients.present?
+        json.clients advisor.his_clients do |client|
+          if client.present?
+            json.client client.id
+            json.project client.project.id
+          end
+        end
       end
     end
     json.clients @clients do |client|
@@ -85,8 +92,8 @@ elsif @user.admin
 
     json.notifications Notification.all.order(:date) do |notification|
       json.project notification.project.id
-      json.conseiller notification.project.is_his_advisor.first_name
-      json.user notification.project.his_client.first_name
+      json.conseiller notification.project.is_his_advisor.first_name  if notification.project.is_his_advisor.present?
+      json.user notification.project.his_client.first_name if notification.project.his_client.present?
       json.title notification.title
       json.time distance_of_time_in_words(notification.date, Time.now)
     end

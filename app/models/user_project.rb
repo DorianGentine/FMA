@@ -4,6 +4,9 @@ class UserProject < ApplicationRecord
 
   after_create :create_a_notifiaction
 
+  validates :user, presence: true
+  validates :project, presence: true
+
   private
 
   def create_a_notifiaction

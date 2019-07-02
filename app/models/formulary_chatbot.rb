@@ -524,7 +524,7 @@ class FormularyChatbot
   def questions_chatbot
       return {
         step_0: "Bonjour...",
-        step_1: "Vérifions si votre projet d'adaptation de logement serait </strong>éligible à des financents.</strong>",
+        step_1: "Vérifions si votre projet d'adaptation de logement serait </strong>éligible à des financements.</strong>",
         # last_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
         first_name: "Je me présente je m'appelle <strong>Sam</strong> et vous ?",
         step_2: "Je vous propose de me donner 5 à 10 minutes pour que je puisse comprendre votre situation.",
