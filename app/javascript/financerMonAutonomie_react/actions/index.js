@@ -13,6 +13,7 @@ export const FETCH_MODAL_REPONSES = 'FETCH_MODAL_REPONSES';
 export const FETCH_PROJET = 'FETCH_PROJET';
 export const FETCH_RATINGS = 'FETCH_RATINGS';
 export const FETCH_RESSOURCES = 'FETCH_RESSOURCES';
+export const FETCH_ZIP_URL = 'FETCH_ZIP_URL';
 export const POST_COMPTE = 'POST_COMPTE';
 export const POST_FORM = 'POST_FORM';
 export const SELECT_CLIENTS = 'SELECT_CLIENTS';
@@ -210,6 +211,22 @@ export function fetchRessources(url) {
 
   return {
     type: FETCH_RESSOURCES,
+    payload: promise
+  };}
+
+export async function fetchZipUrl(url) {
+  console.log(url)
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  } else {
+    console.error('fetchClients passe pas : ', response)
+    promise = null
+  }
+
+  return {
+    type: FETCH_ZIP_URL,
     payload: promise
   };}
 

@@ -8,9 +8,12 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 import { closeModal } from '../../actions';
 
 class ModalDocument extends Component {
-  state = {
-    numPages: null,
-    pageNumber: 1,
+  constructor(props) {
+    super(props)
+    this.state = {
+      numPages: null,
+      pageNumber: 1,
+    };
   }
 
   onDocumentLoadSuccess = (document) => {
