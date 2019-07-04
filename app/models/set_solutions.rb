@@ -4,8 +4,11 @@ class SetSolutions
     solutions = []
     Solution.all.each do |solution|
       if form.is_finish? && MatchSolution.new(form, solution).call
-        solution_set = change_XXX_for(solution, form)
-        solutions << solution_set
+        financers = solutions.map { |e| e.financer.name }
+        unless solution.financer.name == "CAISSE DE RETRAITE PRINCIPALE" && financers.include?("CNAV")
+          solution_set = change_XXX_for(solution, form)
+          solutions << solution_set
+        end
       end
     end
     solutions.each do |solution|
@@ -20,12 +23,17 @@ class SetSolutions
     forms.each do |form|
       Solution.all.each do |solution|
         if form.is_finish? && MatchSolution.new(form, solution).call
-          financers = solutions.map { |e| e.financer }
+          financers = solutions.map { |e| e.financer.name }
+          financer_name = solution.financer.name
+          # ne pas répété les solutions
           if solutions.exclude?(solution)
-            solution_set = change_XXX_for(solution, form)
-            solutions << solution_set
-          elsif financers.include?(solution.financer)
-            if solution.financer.name != "ANAH" && solution.financer.name != "BAILLEUR" && solution.financer.name != "CRÉDIT D'IMPÔT"
+            unless financer_name == "CAISSE DE RETRAITE PRINCIPALE" && financers.include?("CNAV")
+              solution_set = change_XXX_for(solution, form)
+              solutions << solution_set
+            end
+          # certaine solutions peuvent être présentes plusieurs fois
+          elsif financers.include?(financer_name)
+            if financer_name != "ANAH" && financer_name != "BAILLEUR" && financer_name != "CRÉDIT D'IMPÔT"
               solution_set = change_XXX_for(solution, form)
               solutions << solution_set
             end

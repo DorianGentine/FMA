@@ -38,6 +38,7 @@ const setQuestionAnswer = (question, questions, i) => {
 const displayQuestionsUntilNeedAnswer = (questions, i) => {
   for (var e = 1; e < questions.length; e++) {
     if (questions[i + e].set_up.need_answer) { break }
+      console.log("here",questions[i + e] )
       insertQuestion(questions[i + e])
   }
 }

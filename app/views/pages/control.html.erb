@@ -11,7 +11,7 @@
   <form class="form-inline">
     <div class="form-group mx-sm-3 mb-2">
       <label for="inputPassword2" class="sr-only">Password</label>
-      <input type="password" class="form-control" id="inputPassword2" placeholder="Code Promo">
+      <input type="password" class="form-control" id="inputPassword2" placeholder="Code d'accès">
     </div>
     <button type="submit" class="btn btn-primary mb-2" id="sendPromo">Valider mon identité</button>
   </form>
@@ -49,7 +49,7 @@
   btn = document.getElementById("sendPromo")
   btn.addEventListener("click", function(){
     btn.disabled = true;
-    if (password.value == "ok") {
+    if (password.value == "fmaBa") {
       document.location.href= "https://www.financermonautonomie.fr/home"
     } else {
       password.value = ""
