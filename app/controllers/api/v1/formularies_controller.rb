@@ -1,6 +1,6 @@
 class Api::V1::FormulariesController < Api::V1::BaseController
   before_action :authenticate_user!
-  before_action :set_formulary, only: [:update, :edit, :show]
+  before_action :set_formulary, only: [:update, :edit, :show, :destroy ]
   before_action :set_project, only: [:new, :create]
 
   def show
@@ -31,6 +31,11 @@ class Api::V1::FormulariesController < Api::V1::BaseController
   def update
     @formulary.update(params_formulary)
     render json: @formulary
+  end
+
+  def destroy
+    @formulary.destroy
+    head :no_content
   end
 
 

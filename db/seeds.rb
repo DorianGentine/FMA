@@ -1416,7 +1416,7 @@ ressource_63.save
 p "Ressources created"
 p "Create Advisor"
 
-  advisor = User.create(last_name: "Charet", first_name: "Marine", phone: "998877866", advisor: true, client: false, admin: false, email: "d.rolland@ymail.com", password:"password")
+  advisor = User.create(last_name: "Charet", first_name: "Marine", phone: "998877866", advisor: true, client: false, admin: false, email: "bienvenue@financermonautonomie.fr", password:"fma011")
   advisor.remote_avatar_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1561901450/Belavie/Marine_CHARRET_j4j2yv.png"
   advisor.save
 
@@ -1424,7 +1424,7 @@ p "Create Advisor"
   Framework.create(user: advisor, logo: nil, title: "intercom", schedule_url: "https://app.intercom.io/a/apps/pfhokn92/inbox/inbox/")
 p "Create Admin"
 
-  User.create(last_name: "Euphrasie", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "donatien@rollandmail.com", password:"password")
+  User.create(last_name: "Euphrasie", first_name: "Adrien", phone: "998877866", avatar: nil, advisor: false, client: false, admin: true, email: "contact@bel-avie.com", password:"fma010")
 
 
 p "create Message"

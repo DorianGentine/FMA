@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'contact@financermonautonomie.fr'
+  default from: 'bienvenue@financermonautonomie.fr'
 
   layout 'mailer'
 

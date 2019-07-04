@@ -63,7 +63,7 @@ Rails.application.routes.draw do
       resources :financers, only: [ :index, :show ]
       resources :ressources, only: [ :index, :create, :update, :destroy ]
       resources :documents, only: [ :update ]
-      resources :formularies, only: [ :update, :edit, :show ]
+      resources :formularies, only: [ :update, :edit, :show, :destroy ]
       resources :notes, only: [ :update, :destroy ]
       resources :requests, only: [ :update ]
       resources :projects, only: [ :show, :update, :index ] do
