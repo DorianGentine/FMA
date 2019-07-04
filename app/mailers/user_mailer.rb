@@ -49,4 +49,10 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Suite à votre entretient")
   end
 
+
+  def prise_de_contact
+    @user = params[:user]
+    @form = params[:form]
+    mail(to: @user.email, subject: "Prise de contact visiteur")
+  end
 end

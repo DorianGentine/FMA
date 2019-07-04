@@ -10,8 +10,8 @@
       <div id="blue-CTA">
         <h2 class="white margin-bottom-30">Poursuivez avec l'aide d'un conseiller</h2>
         <p class="white margin-bottom-30">En décidant de poursuivre vous pouvez accéder à votre espace dédié.</p>
-        <%= link_to "Poursuivre l'inscription", new_user_registration_path, class: "btn white-background black" %>
-        <img class="absolute" style="bottom: 0; right: 0; height: 200px;" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1560519248/Illu%20HP/Illu_FMA_analyse_btn_wmjze0.svg" alt="">
+        <%= link_to "Poursuivez avec l’aide d’un Conseiller social", new_user_registration_path, class: "btn white-background black" %>
+        <img class="absolute" id="clickOnbtn" style="bottom: 0; right: 0; height: 200px; cursor: pointer;" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1560519248/Illu%20HP/Illu_FMA_analyse_btn_wmjze0.svg" alt="">
       </div>
     </div>
   </div>
@@ -27,12 +27,12 @@
     <div class="col-lg-4">
       <div class="icon-anlyse2"></div>
       <h4 class="h4-with-number"><span>02</span>Échangez directement avec un expert</h4>
-      <p>Lors de votre inscription un conseiller social dédié vous accompagne pour vous expliquer directement les démarches à accomplir. De plus, notre chatbot vous permet d'échanger rapidement avec ce dernier.</p>
+      <p>Lors de votre inscription, un Conseiller social dédié vous accompagnera pour vous expliquer directement les démarches à accomplir. De plus, notre espace de chat vous permet d’échanger rapidement avec notre équipe.</p>
     </div>
     <div class="col-lg-4">
       <div class="icon-anlyse3"></div>
-      <h4 class="h4-with-number"><span>03</span>Disposez d’un kit de documents détaillé</h4>
-      <p>Via votre espace personnel, votre conseiller mettre à disposition les ressources nécessaires (lettres types, dossiers, procédures, ...) pour que vous meniez à bien votre demande de financement.</p>
+      <h4 class="h4-with-number"><span>03</span>Disposez d’un kit de documents détaillés</h4>
+      <p>Via votre espace personnel, votre Conseiller social met à disposition les ressources nécessaires (dossiers-types, lettres-modèles, notices) pour que vous meniez à bien votre demande de financements.</p>
     </div>
   </div>
 </div>
@@ -48,7 +48,12 @@
 <%= render "shared/footer" %>
 
 
-
+<script>
+  const img = document.getElementById("clickOnbtn")
+  img.addEventListener("click", function(){
+    document.querySelector(".btn").click()
+  })
+</script>
 
 
 

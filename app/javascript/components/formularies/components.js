@@ -18,7 +18,9 @@ const conditionToAnswer = (question) => {
     total_answer = question.set_up.start_answer["oui"]
   }
   else if (answer == "Non") {
-    total_answer = question.set_up.start_answer["non"]
+    if (question.set_up.start_answer["non"]) {
+      total_answer = question.set_up.start_answer["non"]
+    } else {total_answer = answer }
   }
   else if ( question.set_up.column_name != "occupant" && answer == 1 ) {
     total_answer = question.set_up.start_answer["1"] + answer.toLowerCase()
@@ -70,7 +72,6 @@ const conditionToAnswer = (question) => {
 
   }
   else {
-
     total_answer = `${question.set_up.start_answer} ${answer.toLowerCase()}`
   }
   return total_answer
