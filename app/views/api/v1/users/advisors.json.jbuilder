@@ -4,7 +4,7 @@ json.advisors @advisors do |user|
   json.first_name user.first_name
   json.last_name user.last_name
   json.email user.email
-  json.avatar user.avatar
+  json.avatar user.avatar.url(:bright_face)
   json.phone user.phone
   json.created_at user.created_at
   json.url "/mon_espace/#{user.id}"

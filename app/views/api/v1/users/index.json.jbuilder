@@ -6,7 +6,7 @@ json.clients @users do |user|
   json.first_name user.first_name
   json.nombre_benef user.project.formularies.count
   json.last_name user.last_name
-  json.avatar user.avatar
+  json.avatar user.avatar.url(:bright_face)
   json.phone user.phone
   json.created_at user.created_at
   json.étape user.project.step
