@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import renderInitiale from "./render_initiales"
 
 export default function renderLogo(financer){
-  if(financer.logo != null ||
-    financer.avatar != null ||
+  if(financer.logo && financer.logo != null ||
+    financer.avatar != null && typeof financer.avatar != "object" ||
     typeof financer.avatar === "object" && financer.avatar && financer.avatar.url != null){
     let url = ""
     if(financer.logo){

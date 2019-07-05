@@ -28,14 +28,14 @@ class Ressources extends Component {
 
         return (
           <div className="flex space-between align-items-center margin-bottom-15" key={index}>
-            <div className="icon-doc margin-right-15"></div>
+            <div className="icon-doc margin-left-15"></div>
             <div className="flex-grow-1">
               <h4 className="font-12 no-margin">{ressource.title}</h4>
               <p className="font-12">{ressource.description}</p>
             </div>
             <button className="blue-gray-btn" onClick={()=>{this.props.showRessource(ressource)}}>Accéder</button>
             {statut === "admin" ?
-              <button className="blue-gray-btn" onClick={fetchDelete}><i className="red far fa-trash-alt"></i></button>
+              <button className="blue-gray-btn margin-right-15" onClick={fetchDelete}><i className="red far fa-trash-alt"></i></button>
             : null}
           </div>
         );
