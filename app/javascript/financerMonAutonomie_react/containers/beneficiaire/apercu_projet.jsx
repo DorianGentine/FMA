@@ -30,10 +30,10 @@ class ApercuProjet extends Component {
               Détails du projet
             </div>
             <div className="row margin-top-30">
-              <p className="col-lg-6 font-14">Date d'inscription</p>
-              <p className="col-lg-6 font-14 text-align-right blue bold">{dateInscription}</p>
-              <p className="col-lg-6 font-14">Financeurs</p>
-              <p className="col-lg-6 font-14 bold text-align-right black">+ {financers.length}</p>
+              <p className="col-6 font-14">Date d'inscription</p>
+              <p className="col-6 font-14 text-align-right blue bold">{dateInscription}</p>
+              <p className="col-6 font-14">Financeurs</p>
+              <p className="col-6 font-14 bold text-align-right black">+ {financers.length}</p>
             </div>
           </div>
         );
@@ -59,10 +59,10 @@ class ApercuProjet extends Component {
             Détails
           </div>
           <div className="row margin-top-30">
-            <p className="col-lg-6 font-14">Clients</p>
-            <p className="col-lg-6 font-14 text-align-right black bold">{`${this.props.api.clients.length} en cours`}</p>
-            <p className="col-lg-8 font-14">Demandes spécifiques</p>
-            <p className="col-lg-4 font-14 text-align-right black bold">{`${nbDemande} en cours`}</p>
+            <p className="col-6 font-14">Clients</p>
+            <p className="col-6 font-14 text-align-right black bold">{`${this.props.api.clients.length} en cours`}</p>
+            <p className="col-8 font-14">Demandes spécifiques</p>
+            <p className="col-4 font-14 text-align-right black bold">{`${nbDemande} en cours`}</p>
           </div>
         </div>
       );

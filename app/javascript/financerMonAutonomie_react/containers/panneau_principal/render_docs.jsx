@@ -27,7 +27,6 @@ class RenderDocs extends Component {
           documentsCompleted = documentsCompleted + 1
         }
       }
-      console.log("coucou", documentsCompleted, documents.length)
       if (documentsCompleted === documents.length && !this.state.validateStepLaunched) {
         this.setState({ validateStepLaunched: true })
         this.props.validateStep(`/api/v1/projects/${project_id}/next_setp`,

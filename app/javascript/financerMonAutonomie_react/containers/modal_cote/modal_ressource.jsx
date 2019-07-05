@@ -16,10 +16,10 @@ class ModalRessource extends Component {
       numPages: null,
       pageNumber: 1,
       actionsShown: null,
-      value: {
-        fullName: this.props.clients.clients[0].first_name + " " + this.props.clients.clients[0].last_name,
-        project: this.props.clients.clients[0].project,
-      },
+      // value: {
+      //   fullName: "",
+      //   project: "",
+      // },
       added: false,
     };
   }
@@ -43,6 +43,7 @@ class ModalRessource extends Component {
   renderDropdownList = ({ input, data, valueField, textField }) => {
     let datas = []
     for ( let i in data) {
+      if(data[i].étape === "progression" || data[i].étape === "evaluation" )
       datas.push({
         fullName: data[i].first_name + " " + data[i].last_name,
         project: data[i].project,
@@ -60,11 +61,11 @@ class ModalRessource extends Component {
         data={datas}
         textField={textField}
         valueField={valueField}
-        value={this.state.value}
-        onChange={value => {
-          this.setState({ value })
-          check(value)
-        }}
+        // value={this.state.value}
+        // onChange={value => {
+        //   this.setState({ value })
+        //   check(value)
+        // }}
       />
     )
   }
@@ -82,28 +83,32 @@ class ModalRessource extends Component {
     const { numPages, pageNumber } = this.state;
 
     const renderGuide = () => {
-      return(
-        <div className="margin-top-15">
-          <Document
-            file={"https://res.cloudinary.com/financermonautonomie/image/upload/v1561995847/ressources/Notice_RATP_HABITAT_ukmcby_-f4.pdf"}
-            onLoadSuccess={this.onDocumentLoadSuccess}
-          >
-            <Page
-              pageNumber={this.state.pageNumber}
-              className="pdf_css"
-            />
-          </Document>
-          <div className="row margin-top-15 margin-bottom-30">
-            <button className="col-lg-2 blue-gray-btn" type="button" disabled={pageNumber <= 1} onClick={this.previousPage}>
-              Préc.
-            </button>
-            <p className="col-lg-8 text-align-center">Page {pageNumber || (numPages ? 1 : '--')} sur {numPages || '--'}</p>
-            <button className="col-lg-2 blue-gray-btn" type="button" disabled={pageNumber >= numPages} onClick={this.nextPage}>
-              Suiv.
-            </button>
+      if(ressource.notice.url){
+        return(
+          <div className="margin-top-15">
+            <Document
+              file={ressource.notice.url}
+              onLoadSuccess={this.onDocumentLoadSuccess}
+            >
+              <Page
+                pageNumber={this.state.pageNumber}
+                className="pdf_css"
+              />
+            </Document>
+            <div className="row margin-top-15 margin-bottom-30">
+              <button className="col-lg-2 blue-gray-btn" type="button" disabled={pageNumber <= 1} onClick={this.previousPage}>
+                Préc.
+              </button>
+              <p className="col-lg-8 text-align-center">Page {pageNumber || (numPages ? 1 : '--')} sur {numPages || '--'}</p>
+              <button className="col-lg-2 blue-gray-btn" type="button" disabled={pageNumber >= numPages} onClick={this.nextPage}>
+                Suiv.
+              </button>
+            </div>
           </div>
-        </div>
-      )
+        )
+      }else{
+        return <p className="text-align-center margin-top-30">Pas de guide</p>
+      }
     }
     const renderKit = () => {
       return(
@@ -163,13 +168,6 @@ class ModalRessource extends Component {
         >
           Ajouter à un kit
         </button>
-          <a
-          className="btn font-12 border flex-grow-1"
-          style={{padding: "3px"}}
-          href=""
-        >
-          Télécharger
-        </a>
         </div>
         { this.state.actionsShown === "guide" ? renderGuide() : null}
         { this.state.actionsShown === "kit" ? renderKit() : null}
@@ -185,6 +183,13 @@ class ModalRessource extends Component {
     )
   }
 }
+        // <a
+        //   className="btn font-12 border flex-grow-1"
+        //   style={{padding: "3px"}}
+        //   href=""
+        //   >
+        //   Télécharger
+        // </a>
 
 function mapStateToProps(state) {
   return {
