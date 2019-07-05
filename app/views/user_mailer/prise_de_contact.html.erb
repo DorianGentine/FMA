@@ -2,26 +2,14 @@
   <tbody>
 
     <tr>
-      <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+      <td height="70" style="font-size:70px; line-height:70px;" class="mobileOn">&nbsp;</td>
     </tr>
 
     <tr>
       <td>
         <table  align="center" width="600" border="0" cellpadding="0" cellspacing="0">
           <tr>
-            <td align="center" valign="top">
-                <img src="https://media.giphy.com/media/8PjqMa7AkAU5al1aTG/giphy.gif" width="50" border="0" alt="FMA">
-            </td>
-          </tr>
-
-          <tr>
-            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
-          </tr>
-
-      <!-- Destinataire du mail -->
-
-          <tr>
-            <td align="center" valign="top" style="letter-spacing:0.025em; padding:0px 60px 0px 60px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: bold; text-align: center; font-size: 22px; color: #182335; line-height: 30px;">
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
               Bonjour <%= @user.first_name %>,<br>
             </td>
           </tr>
@@ -30,27 +18,11 @@
             <td height="15" style="font-size:15px; line-height:15px;" class="mobileOn">&nbsp;</td>
           </tr>
 
-          <tr>
-            <td align="center" valign="top" style="letter-spacing:0.025em; padding:0px 60px 0px 60px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: bold; text-align: center; font-size: 16px; color: #585855; line-height: 22px;">
-              Vous avez une prise de contact.
-            </td>
-          </tr>
-
-      <!-- 1er Trait du mail -->
+        <!-- Message du mail -->
 
           <tr>
-            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
-          </tr>
-
-          <tr>
-            <td align="center">
-              <table align="center" width="480" border="0" cellpadding="0" cellspacing="0" bgcolor="#e2e2e2">
-              <tbody>
-                <tr>
-                  <td height="1" style="font-size: 1px; line-height: 1px;"></td>
-                </tr>
-              </tbody>
-              </table>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Un nouveau visiteur vient de s'inscrire sur le formulaire de la page <span style="font-weight:bold;">en construction</span>, voici ces coordonnées:
             </td>
           </tr>
 
@@ -58,74 +30,74 @@
             <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
           </tr>
 
-      <!-- 1er Notification du mail -->
-
           <tr>
-            <td>
-                <table align="left" width="70" cellpadding="0" cellspacing="0">
-                <tbody>
-                  <tr>
-                    <td align="left" valign="top" style="padding-left: 70px;">
-                      &nbsp;
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <table align="left" width="20" cellpadding="0" cellspacing="0">
-                <tbody>
-                  <tr>
-                    <td height="22" style="font-size: 22px; line-height: 22px;"></td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <table align="left" width="390" cellpadding="0" cellspacing="0">
-                <tbody>
-                  <tr>
-                    <td align="left" valign="top" style="padding-right: 70px;">
-                    <tr>
-                      <td align="left" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; text-align: left; letter-spacing:0.025em;font-size: 16px; color: #000;">
-                        <span style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; text-align: left; letter-spacing:0.025em;font-size: 12px; color: #585855; line-height: 26px; font-weight: bold;">À <%= @form.created_at %>, <%= @form.email %> a envoyé :</span><br>
-                        <span style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; text-align: left; letter-spacing:0.025em;font-size: 14px; color: #182335; line-height: 22px; font-weight: normal;"><%= @form.description %></span>
-                    </td>
-                    </tr>
-                  </tr>
-
-                </tbody>
-              </table>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; font-style:italic; text-align: left; font-size: 14px; color:rgba(0,0,0,.6); line-height: 22px;">
+              Nom:
             </td>
           </tr>
 
-      <!-- 2ieme Trait du mail -->
 
+        <!-- Nom du mail -->
           <tr>
-            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
-          </tr>
-
-          <tr>
-            <td align="center">
-              <table align="center" width="480" border="0" cellpadding="0" cellspacing="0" bgcolor="#e2e2e2">
-              <tbody>
-                <tr>
-                  <td height="1" style="font-size: 1px; line-height: 1px;"></td>
-                </tr>
-              </tbody>
-              </table>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #000; line-height: 22px;">
+              <%= @form.full_name %>
             </td>
           </tr>
 
           <tr>
-            <td height="50" style="font-size:50px; line-height:50px;" class="mobileOn">&nbsp;</td>
+            <td height="20" style="font-size:20px; line-height:20px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; font-style:italic;text-align: left; font-size: 14px; color:rgba(0,0,0,.6); line-height: 22px;">
+              Email:
+            </td>
           </tr>
 
 
+        <!-- Mail du mail -->
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #000; line-height: 22px;">
+              <%= @form.email %>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td height="20" style="font-size:20px; line-height:20px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; font-style:italic;text-align: left; font-size: 14px; color:rgba(0,0,0,.6); line-height: 22px;">
+              Message:
+            </td>
+          </tr>
+
+
+        <!-- Message du mail -->
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #000; line-height: 22px;">
+              <%= @form.description %>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              À bientôt,<br>
+              L'équipe de Financer Mon Autonomie.
+            </td>
+          </tr>
         </table>
       </td>
     </tr>
 
     <tr>
-      <td height="50" style="font-size:50px; line-height:50px;" class="mobileOn">&nbsp;</td>
+      <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
     </tr>
 
   </tbody>

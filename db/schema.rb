@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_06_29_082018) do
 
   create_table "contact_forms", force: :cascade do |t|
     t.string "email"
+    t.string "full_name"
     t.text "description"
     t.bigint "visitor_id"
     t.datetime "created_at", null: false

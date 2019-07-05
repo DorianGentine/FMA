@@ -1,5 +1,11 @@
 #soon_page {
-  margin: 2%;
+  padding: 2%;
+  height: 100vh;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  max-height: 900px;
+  margin: auto;
   /* Classes générales */
   html {
     font-size: 18px;
@@ -33,12 +39,12 @@
   }
 
   h2 {
-    font-size: .8rem;
+    font-size: 1rem;
     font-weight: 400;
   }
 
   p {
-    font-size: .6rem;
+    font-size: .8rem;
     font-weight: 400;
   }
 
@@ -65,13 +71,6 @@
     max-width: 550px;
   }
 
-  /* Container big */
-  .container-big {
-    margin: 0 auto;
-    max-width: 900px;
-    display: flex;
-    justify-content: space-around;
-  }
 
   /* Classes générales */
   .logo img {
@@ -92,25 +91,29 @@
     display: flex;
     flex-direction: column;
     margin-top: 25px;
-    #contact_form_email {
-      // flex: 1 0 auto;
-      height: 45px;
-      font-size: .8rem;
+    .form-control {
+      font-size: .9rem;
       font-weight: 400;
       color: $gray;
       padding-left: 20px;
-      border: solid 1px $blue;
       border-radius: 3px;
-      outline: 0;
-      margin-right: 20px;
+    }
+    #contact_form_email {
+      margin-right: 10px;
     }
     #thank_message {
       flex: 1 0 auto;
     }
   }
-
+  .form-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 100%;
+  }
   /* Bouton style 1 */
   .footer-newsletter-btn {
+    margin-top: 10px;
     flex: 0 0 20%;
     background-color: $blue;
     color: white;
@@ -121,6 +124,8 @@
     border: solid 1px $blue;
     transition: opacity.3s;
     cursor: pointer;
+    width: 40%;
+    float: right;
   }
 
   .footer-newsletter-btn:hover {
@@ -128,10 +133,10 @@
   }
 
   .image {
-    margin-top: 40px;
-    height: 435px;
-    width: 70%;
-    background: no-repeat center center / cover;
+    height: 100%;
+    max-width: 550px;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   .copyright {
