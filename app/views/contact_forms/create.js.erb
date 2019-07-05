@@ -6,6 +6,7 @@ function refreshForm(innerHTML) {
 <% if @contact.errors.any? %>
   refreshForm('<%= j render "form", contact: @contact %>');
 <% else %>
-  refreshForm('<%= j render "thank" %>');
+  refreshForm('<%= j render "form", contact: @contact %>');
+  // refreshForm('<%= j render "thank" %>');
 <% end %>
 

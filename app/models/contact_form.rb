@@ -2,7 +2,7 @@ class ContactForm < ApplicationRecord
   belongs_to :visitor
   validates :email, uniqueness: true
 
-  after_create :send_email_to_admin
+  after_save :send_email_to_admin
 
   private
 

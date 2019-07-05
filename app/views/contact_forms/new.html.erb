@@ -4,26 +4,41 @@
   </div>
 
   <div class="titre">
-    <h1>Site actuellement en construction !</h1>
-    <h2>Souscrivez à la newsletter pour être informé</h2>
+    <h1>Plateforme en cours de construction  </h1>
+    <h2>Cela, ne vous empêche cependant pas de vous inscrire pour en savoir plus !</h2>
+  </div>
+  <div style="display: flex; flex: 1 100%; padding: 2%;">
+    <div class="form-part" style="width: 100%;">
+      <div class="image" style="background-image: url(https://res.cloudinary.com/dftixsglp/image/upload/v1553587276/05.png ) "></div>
+      <div class="container-middle" id="new_form">
+        <%= render 'form', contact: @contact %>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column-reverse; margin-left: 30px; width: 85%;">
+      <div class="right-description" style="background: #F5F9FF;padding: 50px 20px; height: fit-content;">
+        <h2>Bienvenue !</h2>
+        <br>
+        <p>Nous voulons donner toutes les chances aux personnes présentant un handicap, d'être respéctées dans leurs choix de vivres chez elles, confortablement et en toute sécurité. </p>
+        <br>
+        <p>Pour cela nous allions l'expertise médico-sociale à une technologie intuitive afin de développer des solutions d'assistance simples, réactives et accessibles à tous.</p>
+        <br>
+
+        <p>Financermonautonomie.fr est le premier conseiller digital en financement des solutions favorisant l'amélioration ou le maintien de l'autonomie à domicile. </p>
+      </div>
+
+    </div>
   </div>
 
-  <div class="container-middle" id="new_form">
-    <%= render 'form', contact: @contact %>
-  </div>
 
-  <div class="container-big">
-    <div class="image" style="background-image: url(https://res.cloudinary.com/dftixsglp/image/upload/v1553587276/05.png ) "></div>
-  </div>
 
   <div class="copyright">
     <p>© Copyright financermonautonomie 2019 | Développé par <a href="https://avemcreation.com">Avem création</a></p>
   </div>
-</div>
-
 <%#= link_to home_path do %>
 <%= link_to control_path do %>
   <i class="fas fa-user hidden-xs" style="color: white; position: fixed; bottom: 0; font-size: 2em;"></i>
 <% end %>
+</div>
+
 
 
