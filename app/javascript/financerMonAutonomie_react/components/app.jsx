@@ -33,6 +33,16 @@ class App extends Component {
     }
   }
 
+  // componentDidMount(){
+  //   this.refresherDemandes = setInterval(()=>{this.props.fetchProjet("/api/v1/projects")}, 60000)
+  //   this.refresher = setInterval(()=>{this.props.fetchAPI(`/api/v1/users/${this.props.user_id}`)}, 10000)
+  // }
+
+  // componentWillUnmount(){
+  //   clearInterval(this.refresherDemandes);
+  //   clearInterval(this.refresher);
+  // }
+
 
   render () {
 

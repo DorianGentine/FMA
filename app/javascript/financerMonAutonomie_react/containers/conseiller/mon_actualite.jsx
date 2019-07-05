@@ -10,14 +10,6 @@ class MonActualite extends Component {
     };
   }
 
-  // componentDidMount(){
-  //   this.refresher = setInterval(()=>{this.props.fetchAPI(`/api/v1/users/${this.props.user_id}`)}, 10000)
-  // }
-
-  // componentWillUnmount(){
-  //   clearInterval(this.refresher);
-  // }
-
   componentWillReceiveProps(nextProps){
     if(this.props.api.notifications != nextProps.api.notifications){
       this.setState({ actus: nextProps.api.notifications })

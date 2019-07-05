@@ -8,7 +8,9 @@ import renderLogo from "../../../components/render_logo"
 
 class MonEquipe extends Component {
   componentWillMount(){
-    this.props.fetchConseillers("/api/v1/users/advisors")
+    if(!this.props.conseillers){
+      this.props.fetchConseillers("/api/v1/users/advisors")
+    }
   }
 
   render(){

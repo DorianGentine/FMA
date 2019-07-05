@@ -8,7 +8,9 @@ import renderLogo from "../../../components/render_logo"
 
 class Financers extends Component {
   componentWillMount(){
-    this.props.fetchFinancers("/api/v1/financers")
+    if(!this.props.financers){
+      this.props.fetchFinancers("/api/v1/financers")
+    }
   }
 
   render(){

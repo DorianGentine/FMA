@@ -9,7 +9,9 @@ import { postedAgo } from "../../../components/render_date"
 
 class AppelsProgrammes extends Component {
   componentWillMount(){
-    this.props.fetchProjet("/api/v1/projects")
+    if(!this.props.project){
+      this.props.fetchProjet("/api/v1/projects")
+    }
   }
 
   render(){

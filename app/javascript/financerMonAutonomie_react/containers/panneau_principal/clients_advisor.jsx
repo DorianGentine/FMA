@@ -15,7 +15,9 @@ class ClientsAdvisor extends Component {
   }
 
   componentWillMount(){
-    this.props.fetchClients("/api/v1/users")
+    if(!this.props.clients){
+      this.props.fetchClients("/api/v1/users")
+    }
   }
 
   componentWillReceiveProps(nextProps){

@@ -10,38 +10,30 @@ import CardConseiller from './card_conseiller';
 
 class PanneauPrincipalClients extends Component {
   componentWillMount(){
-    if(this.props.selectedMenu === "clients"){
+    if(!this.props.clients){
       this.props.fetchClients("/api/v1/users")
-    }else if(this.props.selectedMenu === "conseillers"){
-      this.props.fetchClients("/api/v1/users/advisors")
     }
   }
 
-  componentWillReceiveProps(nextProps){
-    if(nextProps.selectedMenu === "clients" && this.props.selectedMenu != nextProps.selectedMenu){
-      this.props.fetchClients("/api/v1/users")
-    }else if(nextProps.selectedMenu === "conseillers" && this.props.selectedMenu != nextProps.selectedMenu){
-      this.props.fetchClients("/api/v1/users/advisors")
-    }
-  }
+  // componentWillReceiveProps(nextProps){
+  //   if(nextProps.selectedMenu === "clients" && this.props.selectedMenu != nextProps.selectedMenu){
+  //     this.props.fetchClients("/api/v1/users")
+  //   }else if(nextProps.selectedMenu === "conseillers" && this.props.selectedMenu != nextProps.selectedMenu){
+  //     this.props.fetchClients("/api/v1/users/advisors")
+  //   }
+  // }
 
   render(){
     const clients = this.props.clients
     let conseillersTrue = false
-    if(this.props.selectedMenu === "conseillers"){
-      conseillersTrue = true
-    }
+    // if(this.props.selectedMenu === "conseillers"){
+    //   conseillersTrue = true
+    // }
 
     const renderClients = () => {
-      if(clients.clients){
-        return clients.clients.map((client, index) => {
-          return <CardClient client={client} key={client.id}/>
-        })
-      }else{
-        return clients.advisors.map((advisor, index) => {
-          return <CardConseiller advisor={advisor} key={advisor.id}/>
-        })
-      }
+      return clients.clients.map((client, index) => {
+        return <CardClient client={client} key={client.id}/>
+      })
     }
 
     const options = [
@@ -54,6 +46,13 @@ class PanneauPrincipalClients extends Component {
       { name: "Étape 6", value: "6", key: 6, },
     ]
 
+    let titreBarre = this.props.selectedClients
+    if(this.props.selectedClients === "en_cours"){
+      titreBarre = "En cours"
+    }else if(this.props.selectedClients === "archives"){
+      titreBarre = "Archivés"
+    }
+
     return (
       <div className="margin-top-15">
         <div className="row">
@@ -61,42 +60,39 @@ class PanneauPrincipalClients extends Component {
             <i className="fas fa-search"></i>
             <input
               type="text"
-              placeholder={this.props.selectedMenu === "conseillers" ? "Nom ou prénom du conseiller" : "Nom ou prénom du client"}
+              placeholder="Nom ou prénom du client"
               style={{width: "100%"}}
               onChange={()=>{this.props.selectClients(event.target.value)}}
             />
           </div>
-
-          { conseillersTrue ? null :
-            <div className="col-lg-4 offset-lg-4">
-              <Select
-                className="react-dropdown-select"
-                options={options}
-                valueField="value"
-                values={[options.find(opt => opt.name === "Sélectionnez une étape")]}
-                onChange={(value) => {this.props.selectClients(value[0].value)}}
-                labelField="name"
-              />
-            </div>
-          }
-
+          <div className="col-lg-4 offset-lg-4">
+            <Select
+              className="react-dropdown-select"
+              options={options}
+              valueField="value"
+              values={[options.find(opt => opt.name === "Sélectionnez une étape")]}
+              onChange={(value) => {this.props.selectClients(value[0].value)}}
+              labelField="name"
+            />
+          </div>
         </div>
-        { true ?
+
+        { this.props.selectedClients === "tous" ?
           <div className="margin-top-30 margin-bottom-30 flex align-items-center">
             <hr className="ligne-horizontal"/>
           </div>
-          : null
-          // <div className="margin-top-30 margin-bottom-30 flex align-items-center">
-          //   <hr className="ligne-horizontal"/>
-          //   <div
-          //     className="font-14 black blue-gray-background flex-grow-1 text-align-center"
-          //     style={{ width: "100%" }}>
-          //     {this.props.selectedClients}
-          //   </div>
-          //   <hr className="ligne-horizontal"/>
-          // </div>
+          :
+          <div className="margin-top-30 margin-bottom-30 flex align-items-center">
+            <hr className="ligne-horizontal"/>
+            <div
+              className="font-14 black blue-gray-background flex-grow-1 text-align-center"
+              style={{ width: "100%" }}>
+              {titreBarre}
+            </div>
+            <hr className="ligne-horizontal"/>
+          </div>
         }
-        <div className={`row ${conseillersTrue ? "margin-top-30" : "" }`}>
+        <div className="row">
           {clients != null ? renderClients() : <h2 className="text-align-center">Chargement...</h2>}
         </div>
       </div>
