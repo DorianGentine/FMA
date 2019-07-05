@@ -24,6 +24,8 @@ class PanneauPrincipalForm extends Component {
     super(props)
     this.state = {
       envoiEnCours: false,
+      certified: true,
+      multiple_beneficiaires: false,
     }
   }
 
@@ -52,6 +54,18 @@ class PanneauPrincipalForm extends Component {
     if(nextProps.project.formularies.length != this.props.project.formularies.length){
       const formularyIdNewUser = nextProps.formulary_ids[nextProps.project.formularies.length - 1]
       this.props.changeBeneficiaireForm(formularyIdNewUser)
+    }
+
+    if(this.props.formResults != null && this.props.formResults.length > 0 ){
+      this.props.formResults.map((result, index) => {
+        if(result.set_up.column_name === "occupant"){
+          if(result.answer > 1){
+            this.setState({ multiple_beneficiaires: true })
+          }else{
+            this.setState({ multiple_beneficiaires: false })
+          }
+        }
+      })
     }
   }
 
@@ -128,12 +142,6 @@ class PanneauPrincipalForm extends Component {
         splitValue = splitValue
       }else if(typeof input.value == "string"){
         splitValue = input.value.split(', ')
-        // console.log("input.value", input.value)
-        // console.log("splitValue", splitValue)
-        // if(splitValue.length > 1){
-        //   splitValue[0] = splitValue[0].substr(splitValue[0].lastIndexOf(splitValue[0].lastIndexOf('"')))
-        //   splitValue[splitValue.length - 1] = splitValue[splitValue.length -1].slice(0, -2);
-        // }
       }else{
         splitValue = input.value
       }
@@ -152,23 +160,6 @@ class PanneauPrincipalForm extends Component {
         />
       )
     }
-
-    // const renderDropdownList = ({ input, data, valueField, textField }) => {
-    //   let datas = []
-    //   for ( let i in data) {
-    //     datas.push(data[i].props.value);
-    //   }
-
-    //   return(
-    //     <DropdownList {...input}
-    //       data={datas}
-    //       disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
-    //       value={this.state.value}
-    //       onChange={value => this.setState({ value })}
-    //     />
-    //   )
-    // }
-
 
     const renderInput = (result) => {
       if(result.set_up.type == "input" || result.set_up.type == "number"){
@@ -194,18 +185,6 @@ class PanneauPrincipalForm extends Component {
 
           let data = renderOptions(result.set_up.data)
           return <RenderDropdownList submitting={this.state.envoiEnCours} valueInitial={result.answer} label={result.set_up.question} name={result.set_up.column_name} data={data} clickButton={clickButton} />
-
-          // return(
-          //   <div className="form-group">
-          //     <label className="font-14 black">{result.set_up.question}</label>
-          //     <Field
-          //       className="margin-bottom-15 no-padding form-control"
-          //       name={result.set_up.column_name}
-          //       component={renderDropdownList}
-          //       data={renderOptions(result.set_up.data)}
-          //     />
-          //   </div>
-          // )
 
         }else{ // Multiple select
           return(
@@ -258,12 +237,14 @@ class PanneauPrincipalForm extends Component {
         <div className="flex space-between">
           <div className="flex">
             {renderBeneficiaires()}
-            <h4
-              className={`no-margin btn-select-onglet ${"add" == this.props.formulary_id ? 'active' : null}`}
-              data-benef-index="add"
-              onClick={() => {this.handleClickBenef(event)} }>
-                +
-            </h4>
+            {this.state.multiple_beneficiaires ?
+              <h4
+                className={`no-margin btn-select-onglet ${"add" == this.props.formulary_id ? 'active' : null}`}
+                data-benef-index="add"
+                onClick={() => {this.handleClickBenef(event)} }>
+                  Ajouter un bénéficiaire
+              </h4>
+            : null}
           </div>
         </div>
         <div className="flex flex-column white-box relative">
@@ -277,23 +258,33 @@ class PanneauPrincipalForm extends Component {
                 Vos informations ont bien été enregistrées
             </button>
           </form>
+
+          <div className="flex align-items-center margin-top-60 margin-bottom-15">
+            <label className="custom-checkbox-form black font-14">Je certifie la véracité de mes réponses
+              <input className="margin-right-15" type="checkbox" value={!this.state.certified} onClick={()=>{
+                this.setState((prevState) => { return { certified: !prevState.certified}; });
+              } }/>
+              <span className="checkmark"></span>
+            </label>
+          </div>
+
+
           <button
             className={`
               btn-blue
-              margin-top-60
               margin-bottom-30
               font-14
-              align-self-end
+              align-self-baseline
               ${this.props.formulary_id === "add" ? "d-none" : ""}
             `}
-            disabled={this.props.otherUser}
-            style={{padding: "5px 10px"}}
+            disabled={this.props.otherUser || this.state.certified}
+            style={{padding: "5px 55px"}}
             onClick={ etape === "validation_data" && !this.props.otherUser ? () => { // désactive bouton si pas bonne étape et si user pas bon
               this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
                 () => { this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`) }
               )
             } : ()=>{} }>
-              Je valide mes réponses et je passe à la prochaine étape <i className="fas fa-arrow-right"></i>
+              Valider cette étape
           </button>
         </div>
       </div>
