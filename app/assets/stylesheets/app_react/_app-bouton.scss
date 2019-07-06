@@ -95,6 +95,7 @@
     background-color: rgba(255,255,255,.5);
     border-radius: 10px 10px 0 0;
     transition: .5s;
+    display: flex;
   }
   .btn-select-onglet.active {
     background-color: white;
