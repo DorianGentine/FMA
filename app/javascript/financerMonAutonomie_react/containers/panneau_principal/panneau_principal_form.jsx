@@ -10,6 +10,7 @@ import {
   fetchFORM,
   fetchProjet,
   fetchPostForm,
+  fetchPostCompte,
   validateStep,
   changeBeneficiaireForm,
 } from '../../actions';
@@ -26,6 +27,7 @@ class PanneauPrincipalForm extends Component {
       envoiEnCours: false,
       certified: true,
       multiple_beneficiaires: false,
+      changedToNewBene: false,
     }
   }
 
@@ -41,9 +43,9 @@ class PanneauPrincipalForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.formulary_id === "add" && nextProps.formulary_id !== this.props.formulary_id){
+    if(nextProps.formulary_id === "add" && nextProps.formulary_id != this.props.formulary_id){
       this.props.fetchFORM(`/api/v1/projects/${this.props.project_id}/formularies/new`)
-    }else if (nextProps.formulary_id !== this.props.formulary_id) {
+    }else if (nextProps.formulary_id != this.props.formulary_id) {
       this.props.fetchFORM(`/api/v1/formularies/${nextProps.formulary_id}/edit`)
     }
 
@@ -51,7 +53,8 @@ class PanneauPrincipalForm extends Component {
       this.handleInitialize(nextProps.formResults)
     }
 
-    if(nextProps.project.formularies.length != this.props.project.formularies.length){
+    if(nextProps.project.formularies.length != this.props.project.formularies.length && !this.state.changedToNewBene){
+      this.setState({ changedToNewBene: true })
       const formularyIdNewUser = nextProps.formulary_ids[nextProps.project.formularies.length - 1]
       this.props.changeBeneficiaireForm(formularyIdNewUser)
     }
@@ -59,7 +62,7 @@ class PanneauPrincipalForm extends Component {
     if(this.props.formResults != null && this.props.formResults.length > 0 ){
       this.props.formResults.map((result, index) => {
         if(result.set_up.column_name === "occupant"){
-          if(result.answer > 1){
+          if(result.answer > this.props.formulary_ids.length){
             this.setState({ multiple_beneficiaires: true })
           }else{
             this.setState({ multiple_beneficiaires: false })
@@ -114,10 +117,6 @@ class PanneauPrincipalForm extends Component {
     </div>
   )
 
-  handleClickBenef = (event) => {
-    this.props.changeBeneficiaireForm(event)
-  }
-
 
   render(){
     const submitButton = document.getElementById('btn-validation-infos')
@@ -150,8 +149,10 @@ class PanneauPrincipalForm extends Component {
         <Multiselect {...input}
         onBlur={() => {
           input.onBlur();
+          this.setState({ envoiEnCours: true })
           submitButton.click();
         }}
+        busy={this.state.envoiEnCours}
         disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
         value={splitValue} // requires value to be an array
         data={datas}
@@ -220,13 +221,23 @@ class PanneauPrincipalForm extends Component {
     const renderBeneficiaires = () => {
       return this.props.formulary_ids.map((formulary_id, index) => {
         return (
-          <h4
-            className={`no-margin btn-select-onglet ${formulary_id == this.props.formulary_id ? 'active' : null}`}
-            data-benef-index={formulary_id}
-            onClick={() => {this.handleClickBenef(event)} }
-            key={formulary_id}>
-              Bénéficiaire {index+1}
-          </h4>
+          <div className={`btn-select-onglet ${formulary_id == this.props.formulary_id ? 'active' : null}`}>
+            <h4
+              className="no-margin"
+              data-benef-index={formulary_id}
+              onClick={() => {this.props.changeBeneficiaireForm(event)} }
+              key={formulary_id}>
+                Bénéficiaire&nbsp;{index+1}
+            </h4>
+            {index === 0 ? null :
+              <i
+                onClick={()=>{
+                  this.props.fetchPostCompte(`/api/v1/formularies/${formulary_id}`, null, "DELETE", ()=>{})
+                }}
+                className="red far fa-trash-alt margin-left-15">
+              </i>
+            }
+          </div>
         )
       })
     }
@@ -241,7 +252,10 @@ class PanneauPrincipalForm extends Component {
               <h4
                 className={`no-margin btn-select-onglet ${"add" == this.props.formulary_id ? 'active' : null}`}
                 data-benef-index="add"
-                onClick={() => {this.handleClickBenef(event)} }>
+                onClick={() => {
+                  this.setState({ changedToNewBene: false })
+                  this.props.changeBeneficiaireForm(event)
+                }}>
                   Ajouter un bénéficiaire
               </h4>
             : null}
@@ -310,6 +324,7 @@ function mapDispatchToProps(dispatch) {
     fetchFORM,
     fetchProjet,
     fetchPostForm,
+    fetchPostCompte,
     validateStep,
     changeBeneficiaireForm,
   }, dispatch);
