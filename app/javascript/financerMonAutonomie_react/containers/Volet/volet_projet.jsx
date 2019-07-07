@@ -52,6 +52,7 @@ class VoletProjet extends Component {
 function mapStateToProps(state) {
   return {
     api: state.api,
+    project: state.project,
     otherUser: state.otherUser,
   };
 }

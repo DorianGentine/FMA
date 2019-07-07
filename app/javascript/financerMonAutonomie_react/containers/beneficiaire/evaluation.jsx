@@ -9,11 +9,17 @@ import ValidationModal from './validation_modal'
 class Evaluation extends Component {
   render(){
     const etape = this.props.project.project.etape
+    let style = {}
+    if(etape === "archived"){
+      style = {opacity: 0}
+    }
+
     return (
       <div className="margin-top-30 relative">
         {etape === "evaluation" ? <ValidationModal /> : null}
         <button
           className="btn-evaluation"
+          style={style}
           disabled={etape != "evaluation"}
           onClick={()=>{this.props.showEvaluation(this.props.project)}}
           >
