@@ -5,9 +5,14 @@
   <div class="row margin-top-120">
     <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Sam a analysé vos résultats ! <br>Voici les réponses</h1>
 
+    <div class="col-12 margin-top-60 flex justify-content-center align-items-center" id="loading-analyse">
+      <h2>Chargement</h2>
+      <div class="loading-analyse-icon"></div>
+    </div>
+
     <div class="col-lg-6" id="financeurs-potentiels" data-visitorid="<%= @visitor.id %>"></div> <!-- généré en js -->
     <div class="col-lg-6">
-      <div id="blue-CTA">
+      <div id="blue-CTA" class="d-none">
         <h2 class="white margin-bottom-30">Poursuivez avec l'aide d'un conseiller</h2>
         <p class="white margin-bottom-30">En décidant de poursuivre vous pouvez accéder à votre espace dédié.</p>
         <%= link_to "Poursuivez avec l’aide d’un Conseiller social", new_user_registration_path, class: "btn white-background black" %>

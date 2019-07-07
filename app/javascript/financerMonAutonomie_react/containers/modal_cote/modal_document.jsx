@@ -5,7 +5,7 @@ import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-import { closeModal } from '../../actions';
+import { closeModal, showModalPdf } from '../../actions';
 
 class ModalDocument extends Component {
   constructor(props) {
@@ -45,6 +45,8 @@ class ModalDocument extends Component {
         <Document
           file={doc.notice}
           onLoadSuccess={this.onDocumentLoadSuccess}
+          className="pointer"
+          onClick={()=>{this.props.showModalPdf(doc.notice)}}
         >
           <Page
             pageNumber={this.state.pageNumber}
@@ -74,7 +76,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal }, dispatch);
+  return bindActionCreators({ closeModal, showModalPdf }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalDocument);

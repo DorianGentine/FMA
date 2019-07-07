@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { closeModal } from '../actions';
+
 import ModalClientConseiller from './modal_cote/modal_client_conseiller';
 import ModalCreateRessource from './modal_cote/modal_create_ressource';
 import ModalDemande from './modal_cote/modal_demande';
@@ -15,8 +17,22 @@ import ModalRessource from './modal_cote/modal_ressource';
 import ModalReponses from './modal_cote/modal_reponses';
 
 class ModalCote extends Component {
+
   render(){
     const modalSelected = this.props.modal_selected
+
+    const fermerModal = () => {
+      this.props.closeModal()
+    }
+
+    if(modalSelected != null){
+      window.onkeydown = function(event){
+        if (event.key === "Escape") {
+          fermerModal()
+        }
+      };
+    }
+
     if(modalSelected == null){
       return null
     }else if(modalSelected.modalActive === "showClient"){
@@ -53,8 +69,8 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ closeModal }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(ModalCote);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalCote);

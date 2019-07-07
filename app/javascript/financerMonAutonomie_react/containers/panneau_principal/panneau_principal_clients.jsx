@@ -44,6 +44,7 @@ class PanneauPrincipalClients extends Component {
       { name: "Etape 4", value: "4", key: 4, },
       { name: "Etape 5", value: "5", key: 5, },
       { name: "Étape 6", value: "6", key: 6, },
+      { name: "Étape 7", value: "7", key: 7, },
     ]
 
     let titreBarre = this.props.selectedClients

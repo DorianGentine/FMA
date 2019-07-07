@@ -50,9 +50,50 @@ if(financeursPotentielsId){
     // nomFinanceur.classList = "margin-top-30"
     // nomFinanceur.innerText = solution.financer.name.toUpperCase()
 
-    const descFinanceur = document.createElement("p")
-    descFinanceur.innerText = solution.financer.description
-    descFinanceur.style.fontSize = "0.75em"
+    const changeText = (id) => {
+      const chevronTarget = document.getElementById(`chevron${id}`)
+      if(chevronTarget.classList.value === "fas fa-chevron-down"){
+        chevronTarget.classList.add('fa-chevron-up')
+        chevronTarget.classList.remove('fa-chevron-down')
+      }else{
+        chevronTarget.classList.add('fa-chevron-down')
+        chevronTarget.classList.remove('fa-chevron-up')
+      }
+    }
+
+    const descFinanceur = document.createElement("div")
+      const titreDescFinanceur = document.createElement("div")
+      titreDescFinanceur.classList = "flex space-between margin-top-15 pointer"
+      titreDescFinanceur.setAttribute("data-toggle", "collapse")
+      titreDescFinanceur.setAttribute("data-target", `#collapseDescription${solution.financer.id}`)
+      titreDescFinanceur.setAttribute("aria-expanded", "false")
+      titreDescFinanceur.setAttribute("aria-controls", `collapseDescription${solution.financer.id}`)
+      titreDescFinanceur.addEventListener("click", ()=>{changeText(solution.financer.id)})
+        const textTitreDescFinanceur = document.createElement("p")
+        textTitreDescFinanceur.classList = "black"
+        textTitreDescFinanceur.innerText = "Description de l'organisme"
+        textTitreDescFinanceur.style.fontSize = "0.75em"
+        titreDescFinanceur.appendChild(textTitreDescFinanceur)
+
+        const chevron = document.createElement("div")
+        chevron.classList = "blue"
+        chevron.style.fontSize = "0.75em"
+          const iconChevron = document.createElement("i")
+          iconChevron.id = `chevron${solution.financer.id}`
+          iconChevron.classList = "fas fa-chevron-down"
+          chevron.appendChild(iconChevron)
+        titreDescFinanceur.appendChild(chevron)
+
+
+      const textDescFinanceur = document.createElement("p")
+      textDescFinanceur.classList = "collapse"
+      textDescFinanceur.id = `collapseDescription${solution.financer.id}`
+      textDescFinanceur.innerText = solution.financer.description
+      textDescFinanceur.style.fontSize = "0.75em"
+
+
+    descFinanceur.appendChild(titreDescFinanceur)
+    descFinanceur.appendChild(textDescFinanceur)
 
     const barre = document.createElement("hr")
     barre.classList = "ligne-horizontale"
@@ -71,9 +112,10 @@ if(financeursPotentielsId){
     }
     lienSite.setAttribute("target", "_blank")
 
-    // div.appendChild(numFinanceur)
     div.appendChild(nomFinanceur)
-    div.appendChild(descFinanceur)
+    if(solution.financer.description){
+      div.appendChild(descFinanceur)
+    }
     div.appendChild(barre)
     div.appendChild(votreSolution)
 
@@ -100,7 +142,11 @@ if(financeursPotentielsId){
     const visitorId = financeursPotentielsId.dataset.visitorid
     let response = await fetch(`/api/v1/visitors/${visitorId}/analyze`)
     let data = await response.json()
-    await stickyCta(data)
+
+    document.getElementById('loading-analyse').style.display = "none";
+    document.getElementById('loading-analyse').classList.remove("flex");
+    document.getElementById('blue-CTA').classList.remove('d-none')
+    stickyCta(data)
 
     for (var i = 0; i < data.solutions.length; i++) {
       setSolution(data.solutions[i], i)

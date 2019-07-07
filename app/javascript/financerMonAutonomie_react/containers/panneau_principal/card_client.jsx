@@ -60,6 +60,11 @@ class CardClient extends Component {
           subTitle = "Formulaire satisfaction"
           return [numEtape, subTitle];
         }
+        case "archived": {
+          numEtape = 7
+          subTitle = "Archivé"
+          return [numEtape, subTitle];
+        }
         default: {
           numEtape = 0
           return [numEtape, subTitle];
@@ -72,8 +77,8 @@ class CardClient extends Component {
 
     const fullName = `${client.first_name} ${client.last_name}`
     if(selectedClients === "tous" ||
-      selectedClients === "en_cours" && numEtape < 6 ||
-      selectedClients === "archives" && numEtape === 6 ||
+      selectedClients === "en_cours" && numEtape < 7 ||
+      selectedClients === "archives" && numEtape === 7 ||
       fullName.toLowerCase().includes(selectedClients.toLowerCase()) ||
       parseInt(selectedClients) === numEtape) {
 
@@ -102,7 +107,7 @@ class CardClient extends Component {
                   <a className="black" onClick={()=>{this.props.showDemande(client)}}>Demandes&nbsp;spécifiques</a>
                   <p className="pointer" onClick={() => {
                     this.props.validateStep(`/api/v1/projects/${client.id}/next_setp`,
-                      ()=>{this.props.fetchClients("/api/v1/users")},
+                      ()=>{this.props.fetchClients("/api/v1/users")}, {id: client.id, archived: true,}
                     )
                   }}>Archiver</p>
                 </div>
@@ -115,7 +120,7 @@ class CardClient extends Component {
               <div className="col-lg-5 font-12 gray-300">Date:</div>
               <div className="col-lg-7 text-align-right font-12 black">{dateInscription}</div>
               <div className="col-lg-5 font-12 gray-300">Étape:</div>
-              <div className="col-lg-7 text-align-right font-12 black">{`${numEtape}/6`}</div>
+              <div className="col-lg-7 text-align-right font-12 black">{`${numEtape}/7`}</div>
               <div className="col-lg-12 margin-top-30 flex space-between">
                 <a href={`tel:${client.phone}`} className="font-12 gray flex align-items-center">
                   <i className="fas fa-phone margin-right-5"></i>

@@ -1,6 +1,7 @@
 .other_user{
   --height-info-panel: 60px;
-  padding: var(--height-info-panel) 0;
+  padding: var(--height-info-panel) 0 0;
+  min-height: calc(100vh - var(--height-info-panel) ) !important;
   .other_user_indication{
     position: fixed;
     z-index: 10;
@@ -40,6 +41,9 @@
     top: var(--height-info-panel);
     height: calc(100vh - var(--height-info-panel));
     // right: 20px;
+  }
+  .app-container{
+    height: calc(100vh - var(--height-info-panel));
   }
 }
 // .other_user:after{

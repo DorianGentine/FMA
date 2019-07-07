@@ -8,6 +8,7 @@ import AppNavbar from "../containers/app_navbar"
 import Chat from "../containers/chat"
 import MenuProfil from "../containers/menu_profil"
 import ModalCote from "../containers/modal_cote"
+import ModalPdf from "../containers/modal_pdf"
 import PanneauPrincipal from "../containers/panneau_principal"
 import Volet from "../containers/volet"
 
@@ -75,7 +76,7 @@ class App extends Component {
                 <a href={`/mon_espace/${this.props.current_user_id}/clients`}>Retourner sur mon profil</a>
               </div> : null}
 
-
+            {this.props.modal_pdf != null ? <ModalPdf /> : null}
             <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
             <Volet selectedMenu={this.props.match.params.menu_nav}
                 selectedMenuVolet={this.props.match.params.menu_volet}
@@ -153,6 +154,7 @@ function mapStateToProps(state) {
     current_user_id: state.current_user_id,
     current_api: state.current_api,
     modal_opened: state.modal_opened,
+    modal_pdf: state.modal_pdf,
     otherUser: state.otherUser,
     project_id: state.project_id,
     project: state.project,
