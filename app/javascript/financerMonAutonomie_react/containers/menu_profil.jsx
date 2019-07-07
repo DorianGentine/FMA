@@ -8,6 +8,94 @@ import { selectClients } from '../actions';
 import renderLogo from "../../components/render_logo"
 
 class MenuProfil extends Component {
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     selectedMenu: null,
+  //     showLeftSide: false,
+  //     clientsLength: 0,
+  //     clientsEnCours: 0,
+  //     clientsArchives: 0,
+  //   };
+  // }
+
+  // componentWillReceiveProps(nextProps){
+  //   let selectedMenu
+  //   if(nextProps.selectedMenu){
+  //     selectedMenu = nextProps.selectedMenu
+  //   }
+
+  //   if(selectedMenu && selectedMenu != this.state.selectedMenu){
+  //     this.setState({selectedMenu: selectedMenu})
+  //   }
+
+  //   if(selectedMenu === "clients" || selectedMenu === "conseillers" || selectedMenu === "demandes"){
+  //     this.setState({showLeftSide: true})
+  //   }else{
+  //     this.setState({showLeftSide: false})
+  //   }
+
+  //   const renderFiltres = ()=> {
+  //     const selectedClients = this.props.selectedClients
+  //     let clients = this.props.clients
+
+  //     if(clients != null && clients.clients != undefined){
+  //       this.setState({clientsLength: clients.clients.length})
+  //       this.setState({clientsEnCours: 0})
+  //       this.setState({clientsArchives: 0})
+
+  //       for (var i = this.state.clientsLength - 1; i >= 0; i--) {
+  //         if(clients.clients[i].étape === "evaluation"){
+  //           this.setState(prevState => ({clientsArchives: prevState.clientsArchives + 1}))
+  //         }else{
+  //           this.setState(prevState => ({clientsEnCours: prevState.clientsEnCours + 1}))
+  //         }
+  //       }
+  //     }else if(clients != null && clients.advisors != undefined){
+  //       this.setState({clientsLength: clients.advisors.length})
+  //     }else if(selectedMenu === "demandes"){
+  //       clients = this.props.project
+  //       if(clients != null){
+  //         this.setState({clientsLength: 0})
+  //         this.setState({clientsEnCours: 0})
+  //         this.setState({clientsArchives: 0})
+  //         for (var i = clients.solutions.length - 1; i >= 0; i--) {
+  //           if(clients.solutions[i].demandes.length > 0){
+  //             this.setState(prevState => ({clientsLength: prevState.clientsLength + 1}))
+  //             for (var j = clients.solutions[i].demandes.length - 1; j >= 0; j--) {
+  //               if(clients.solutions[i].demandes[j].close){
+  //                 this.setState(prevState => ({clientsArchives: prevState.clientsArchives + 1}))
+  //               }else if(!clients.solutions[i].demandes[j].close){
+  //                 this.setState(prevState => ({clientsEnCours: prevState.clientsEnCours + 1}))
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //     return(
+  //       <div className="col-lg-6 row align-items-end">
+  //         <div
+  //           className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`}
+  //           onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{clientsLength}</span></div>
+  //         <div
+  //           className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`}
+  //           onClick={()=>{this.props.selectClients("en_cours")}}>
+  //             {selectedMenu != "conseillers" ? "En cours " : "" }
+  //             {selectedMenu != "conseillers" ? <span>{clientsEnCours}</span> : "" }
+  //         </div>
+  //         <div
+  //           className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`}
+  //           onClick={()=>{this.props.selectClients("archives")}}>
+  //             {selectedMenu != "conseillers" ? "Archivés " : "" }
+  //             {selectedMenu != "conseillers" ? <span>{clientsArchives}</span> : "" }
+  //         </div>
+  //       </div>
+  //     )
+  //   }
+
+  // }
+
   render(){
     const user = this.props.api.user
     let selectedMenu

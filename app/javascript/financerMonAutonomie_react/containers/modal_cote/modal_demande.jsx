@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 import DropdownList from 'react-widgets/lib/DropdownList'
 
-import { closeModal, fetchPostCompte } from '../../actions';
+import { closeModal, fetchPostCompte, fetchProjet } from '../../actions';
 
 class ModalDemande extends Component {
   componentDidMount(){
@@ -86,7 +86,7 @@ class ModalDemande extends Component {
     let url = `/api/v1/projects/${values.project}/requests`
     let method = "POST"
 
-    this.props.fetchPostCompte(url, values, method, ()=>{})
+    this.props.fetchPostCompte(url, values, method, this.props.fetchProjet("/api/v1/projects") )
     this.props.closeModal()
   }
 
@@ -158,7 +158,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, fetchPostCompte }, dispatch);
+  return bindActionCreators({ closeModal, fetchPostCompte, fetchProjet }, dispatch);
 }
 
 export default reduxForm({ form: 'demande', })(

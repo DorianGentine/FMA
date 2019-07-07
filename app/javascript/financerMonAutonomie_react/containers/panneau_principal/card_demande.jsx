@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchPostCompte } from '../../actions'
+import { fetchPostCompte, fetchProjet } from '../../actions'
 
 import renderLogo from "../../../components/render_logo"
 
@@ -54,27 +54,12 @@ class CardDemande extends Component {
               <div className="col-lg-12">
                 <button
                   className={`w-100 blue-gray-btn ${demande.close ? "green" : "red"}`}
-                  onClick={()=>{this.props.fetchPostCompte(`/api/v1/requests/${demande.id}`, value, "PATCH")}}
+                  onClick={()=>{this.props.fetchPostCompte(`/api/v1/requests/${demande.id}`, value, "PATCH", this.props.fetchProjet("/api/v1/projects") )}}
                   >{!demande.close ? "Archiver la demande" : "Rouvrir la demande"}</button>
               </div>
             </div>
           </div>
         </div>
-                // {renderLogo(client)}
-              // <div className="relative col-lg-4 text-align-right" role="group">
-              //   <div
-              //     id={`drop-demande${mydate.getSeconds()}${mydate.getMilliseconds()}`}
-              //     className="pointer"
-              //     data-toggle="dropdown"
-              //     aria-haspopup="true"
-              //     aria-expanded="false">...
-              //   </div>
-              //   <div
-              //     className="dropdown-menu drop-menu-call"
-              //     aria-labelledby={`drop-demande${mydate.getDate()}${mydate.getMonth()}`}>
-              //     <a href="#">Archiver</a>
-              //   </div>
-              // </div>
       )
     }else{
       return null
@@ -89,7 +74,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchPostCompte }, dispatch);
+  return bindActionCreators({ fetchPostCompte, fetchProjet }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardDemande);
