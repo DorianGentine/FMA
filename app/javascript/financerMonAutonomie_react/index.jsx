@@ -24,6 +24,7 @@
   import formResultsReducer from './reducers/form_results_reducer';
   import formularyIdReducer from './reducers/formulary_id_reducer';
   import modalOpenedReducer from './reducers/modal_opened_reducer';
+  import modalPdfReducer from './reducers/modal_pdf_reducer';
   import modalReponsesReducer from './reducers/modal_reponses_reducer';
   import modalSelectedReducer from './reducers/modal_selected_reducer';
   import projectIdReducer from './reducers/project_id_reducer';
@@ -59,6 +60,7 @@ if(app){
     formulary_id: {},
     formResults: null,
     modal_opened: false,
+    modal_pdf: null,
     modal_reponses: null,
     modal_selected: null,
     otherUser: otherUser,
@@ -85,6 +87,7 @@ if(app){
     formResults: formResultsReducer,
     formulary_id: formularyIdReducer,
     modal_opened: modalOpenedReducer,
+    modal_pdf: modalPdfReducer,
     modal_reponses: modalReponsesReducer,
     modal_selected: modalSelectedReducer,
     otherUser: identityReducer,

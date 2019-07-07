@@ -7,7 +7,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 import DropdownList from 'react-widgets/lib/DropdownList'
 
-import { closeModal } from '../../actions';
+import { closeModal, showModalPdf } from '../../actions';
 
 class ModalRessource extends Component {
   constructor(props) {
@@ -89,6 +89,8 @@ class ModalRessource extends Component {
             <Document
               file={ressource.notice.url}
               onLoadSuccess={this.onDocumentLoadSuccess}
+              className="pointer"
+              onClick={()=>{this.props.showModalPdf(doc.notice)}}
             >
               <Page
                 pageNumber={this.state.pageNumber}
@@ -199,7 +201,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal }, dispatch);
+  return bindActionCreators({ closeModal, showModalPdf }, dispatch);
 }
 
 export default reduxForm({ form: 'ajoutKit', })(

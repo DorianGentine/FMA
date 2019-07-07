@@ -30,8 +30,8 @@ class Ressources extends Component {
 
         return (
           <div className="flex space-between align-items-center margin-bottom-15" key={index}>
-            <div className="icon-doc margin-right-15-15"></div>
-            <div className="flex-grow-1">
+            <div className="icon-doc margin-right-15"></div>
+            <div className="flex-grow-1 margin-right-15">
               <h4 className="font-12 no-margin">{ressource.title}</h4>
               <p className="font-12">{ressource.description}</p>
             </div>
@@ -46,17 +46,16 @@ class Ressources extends Component {
 
     return (
       <div className="col-lg-12">
-        <div className="white-box flex flex-wrap align-items-center">
-          <h4 className="padding-horizontal-15 no-margin">Liste des ressources</h4>
-          <p className="bold padding-horizontal-15" style={{paddingLeft: "unset"}}>{`${ressources ? ressources.length : 0} ressources`}</p>
-          <p
-            className={`margin-right-15 text-align-right font-12 ${statut === "conseiller" ? "icon-arrow-right-gray" : "pointer" } flex-grow-1`}
-            onClick={statut === "admin" ? this.props.showCreateRessource : ()=>{}}
-            >
-            {statut === "admin" ? "Créer une ressource" : ""}
-          </p>
-          <div className="scroll col-lg-12 margin-top-15" style={{ height: "calc(100vh - 700px)", minHeight: "80px" }}>
-            {ressources != null ? renderRessources() : <h2>Chargement...</h2> }
+        <div className="white-box flex flex-wrap align-items-baseline">
+          <h4 className="margin-right-15">Liste des ressources</h4>
+          <p className="bold flex-grow-1">{`${ressources ? ressources.length : 0} ressources`}</p>
+          {statut === "conseiller" ? null :
+            <p className="text-align-right font-12 pointer"
+              onClick={this.props.showCreateRessource}>
+              Créer une ressource</p>
+          }
+          <div className="scroll w-100" style={{ height: "calc(100vh - 700px)", minHeight: "80px" }}>
+            {ressources != null ? renderRessources() : <p className="text-align-center margin-top-30">Chargement...</p> }
           </div>
         </div>
       </div>

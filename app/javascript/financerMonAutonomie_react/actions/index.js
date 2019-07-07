@@ -2,6 +2,7 @@
 
 export const CHANGE_BENEFICIAIRE = 'CHANGE_BENEFICIAIRE';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const CLOSE_MODAL_PDF = 'CLOSE_MODAL_PDF';
 export const DISPLAY_CALENDLY = 'DISPLAY_CALENDLY';
 export const FETCH_API = 'FETCH_API';
 export const FETCH_CLIENTS = 'FETCH_CLIENTS';
@@ -14,6 +15,7 @@ export const FETCH_PROJET = 'FETCH_PROJET';
 export const FETCH_RATINGS = 'FETCH_RATINGS';
 export const FETCH_RESSOURCES = 'FETCH_RESSOURCES';
 export const FETCH_ZIP_URL = 'FETCH_ZIP_URL';
+export const MODAL_PDF = 'MODAL_PDF';
 export const POST_COMPTE = 'POST_COMPTE';
 export const POST_FORM = 'POST_FORM';
 export const SELECT_CLIENTS = 'SELECT_CLIENTS';
@@ -48,6 +50,12 @@ export function changeBeneficiaireForm(event) {
 export function closeModal() {
   return {
     type: CLOSE_MODAL,
+    payload: null
+  };}
+
+export function closeModalPdf() {
+  return {
+    type: CLOSE_MODAL_PDF,
     payload: null
   };}
 
@@ -327,6 +335,12 @@ export function showFinancer(financer) {
     payload: financerSelected
   };}
 
+export function showModalPdf(url) {
+  return {
+    type: MODAL_PDF,
+    payload: url
+  };}
+
 export function showNotes(notes) {
   const notesSelected = {
     modalActive: "showNotes",
@@ -374,6 +388,7 @@ export function validateStep(url, callback, body) {
     .then(response => response.json())
     .then(callback)
   }else if(body === undefined){
+    console.log(body)
     request = fetch(url,
     {
       method: "PATCH",

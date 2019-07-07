@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 import Multiselect from 'react-widgets/lib/Multiselect'
-import DropdownList from 'react-widgets/lib/DropdownList'
 
 import {
   fetchAPI,
@@ -28,6 +27,7 @@ class PanneauPrincipalForm extends Component {
       certified: true,
       multiple_beneficiaires: false,
       changedToNewBene: false,
+      beneficiaireActif: 1,
     }
   }
 
@@ -89,7 +89,10 @@ class PanneauPrincipalForm extends Component {
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
       .then(()=>{
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
-        this.setState({ envoiEnCours: false })
+        this.setState({
+          changedToNewBene: false,
+          envoiEnCours: false
+        })
       })
     }else{
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
@@ -100,7 +103,15 @@ class PanneauPrincipalForm extends Component {
     }
   }
 
-  renderField = ({ input, label, type, submitButton }) => (
+  validate = values => {
+    const errors = {}
+    if (!values) {
+      errors = 'Requis'
+    }
+    return errors
+  }
+
+  renderField = ({ input, label, type, submitButton, meta: { touched, error } }) => (
     <div className="form-group">
       <label className="font-14 black">{label}</label>
       <div>
@@ -113,6 +124,7 @@ class PanneauPrincipalForm extends Component {
           }}
           disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
         />
+        {touched && (error && <span>{error}</span>)}
       </div>
     </div>
   )
@@ -221,18 +233,20 @@ class PanneauPrincipalForm extends Component {
     const renderBeneficiaires = () => {
       return this.props.formulary_ids.map((formulary_id, index) => {
         return (
-          <div className={`btn-select-onglet ${formulary_id == this.props.formulary_id ? 'active' : null}`}>
+          <div className={`btn-select-onglet ${formulary_id == this.props.formulary_id ? 'active' : null}`} key={index}>
             <h4
               className="no-margin"
               data-benef-index={formulary_id}
-              onClick={() => {this.props.changeBeneficiaireForm(event)} }
-              key={formulary_id}>
+              onClick={() => {
+                this.setState({ beneficiaireActif: index + 1 })
+                this.props.changeBeneficiaireForm(event)
+              }}>
                 Bénéficiaire&nbsp;{index+1}
             </h4>
             {index === 0 ? null :
               <i
                 onClick={()=>{
-                  this.props.fetchPostCompte(`/api/v1/formularies/${formulary_id}`, null, "DELETE", ()=>{})
+                  this.props.fetchPostCompte(`/api/v1/formularies/${formulary_id}`, null, "DELETE", ()=>{this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)})
                 }}
                 className="red far fa-trash-alt margin-left-15">
               </i>
@@ -253,7 +267,7 @@ class PanneauPrincipalForm extends Component {
                 className={`no-margin btn-select-onglet ${"add" == this.props.formulary_id ? 'active' : null}`}
                 data-benef-index="add"
                 onClick={() => {
-                  this.setState({ changedToNewBene: false })
+                  this.setState({ beneficiaireActif: null })
                   this.props.changeBeneficiaireForm(event)
                 }}>
                   Ajouter un bénéficiaire
@@ -263,6 +277,12 @@ class PanneauPrincipalForm extends Component {
         </div>
         <div className="flex flex-column white-box relative">
           {etape === "validation_data" ? <ValidationModal /> : null}
+
+          {this.state.beneficiaireActif ?
+            <h2 className="margin-bottom-30">Validation des réponses du <strong className="blue">Bénéficiaire {this.state.beneficiaireActif}</strong></h2> :
+            <h2 className="margin-bottom-30">Ajout d'un nouveau <strong className="blue">Bénéficiaire</strong></h2>
+          }
+
           <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
             {renderForm(this.props.formResults)}
             <button
@@ -273,7 +293,7 @@ class PanneauPrincipalForm extends Component {
             </button>
           </form>
 
-          <div className="flex align-items-center margin-top-60 margin-bottom-15">
+          <div className={`flex align-items-center margin-top-60 margin-bottom-15 ${this.props.formulary_id === "add" ? "d-none" : ""}`}>
             <label className="custom-checkbox-form black font-14">Je certifie la véracité de mes réponses
               <input className="margin-right-15" type="checkbox" value={!this.state.certified} onClick={()=>{
                 this.setState((prevState) => { return { certified: !prevState.certified}; });
@@ -281,8 +301,6 @@ class PanneauPrincipalForm extends Component {
               <span className="checkmark"></span>
             </label>
           </div>
-
-
           <button
             className={`
               btn-blue

@@ -125,7 +125,8 @@ class RenderDocs extends Component {
 
 
     const renderDocs = () => {
-      if(documents != undefined){
+      console.log("documents", documents)
+      if(documents.length != 0){
         return documents.map((doc, index) => {
           const idDoc = doc.id
 
@@ -167,12 +168,14 @@ class RenderDocs extends Component {
             </div>
           );
         });
+      }else if(documents.length === 0){
+        return <p className="margin-top-30 margin-auto">Pas de documents nécessaires</p>
       }
     };
 
     return(
-      <div className="scroll col-lg-12 flex-wrap flex" style={{ height: "155px" }}>
-        {renderDocs()}
+      <div className="scroll flex-wrap flex w-100" style={{ height: "155px" }}>
+        {documents != undefined ? renderDocs() : <p className="margin-top-30 margin-auto">Chargement...</p>}
       </div>
     )
   }
