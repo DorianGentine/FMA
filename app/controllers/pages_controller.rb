@@ -34,7 +34,7 @@ class PagesController < ApplicationController
     p "/////test time #{ DateTime.parse(params['event_start_time'])}"
 
     # appointment = Time.parse(params["event_start_time"])
-    app = l(params["event_start_time"], :format => '%A %d %B %Y à %Hh%M')
+    app = l(DateTime.parse(params["event_start_time"]), :format => '%A %d %B %Y à %Hh%M')
     p "/////appointment #{app}"
     if current_user
       @user = current_user
