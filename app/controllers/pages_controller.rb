@@ -38,10 +38,10 @@ class PagesController < ApplicationController
     p "/////appointment #{app}"
     if current_user
       @user = current_user
-      set_appointment(@user)
+      set_appointment(@user, app)
     elsif User.find_by(params["answer_1"]).present?
       @user = User.find_by(params["answer_1"])
-      set_appointment(@user)
+      set_appointment(@user, app)
     else
       @user = false
     end
@@ -50,7 +50,7 @@ class PagesController < ApplicationController
 
   private
 
-  def set_appointment(user)
+  def set_appointment(user, app)
     @project = user.project
     if app.present?
       @project.appointment = app
