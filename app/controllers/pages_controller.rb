@@ -32,28 +32,29 @@ class PagesController < ApplicationController
     p " params send => #{params}"
     p "/////answer_1 #{params["answer_1"]}"
     appointment = Time.parse(params["event_start_time"])
-    p "/////appointment #{appointment}"
+    app = l(DateTime.parse(appointment), :format => '%A %d %B %Y à %Hh%M')
+    p "/////appointment #{app}"
     if current_user
       @user = current_user
-      @project = @user.project
-      if appointment.present?
-        @project.appointment = appointment
-        p "///// project appointment #{ @project.appointment}"
-        @project.save
-        UserMailer.with(user: @user, project: @project).appointment.deliver_now
-        UserMailer.with(user: User.find(1), project: @project).appointment.deliver_now
-      end
+      set_appointment(@user)
     elsif User.find_by(params["answer_1"]).present?
       @user = User.find_by(params["answer_1"])
-      @project = @user.project
-      if appointment.present?
-        @project.appointment = appointment
-        @project.save
-        UserMailer.with(user: @user, project: @project).appointment.deliver_now
-        UserMailer.with(user: User.find(1), project: @project).appointment.deliver_now
-      end
+      set_appointment(@user)
     else
       @user = false
+    end
+  end
+
+
+  private
+
+  def set_appointment(user)
+    @project = user.project
+    if app.present?
+      @project.appointment = app
+      @project.save
+      UserMailer.with(user: user, project: @project).appointment.deliver_now
+      UserMailer.with(user: User.find(1), project: @project).appointment.deliver_now
     end
   end
 end

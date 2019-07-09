@@ -33,7 +33,9 @@
       <!-- Date du mail -->
           <tr>
             <td align="center" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: center; font-size: 18px; color: #000; line-height: 22px;">
-              <a href="#" target="_blank" style="color:#2675E5; text-decoration:underline;"><%= @project.appointment.present? ? l(DateTime.parse(@project.appointment), :format => '%A %d %B %Y à %Hh%M') : "Erreur d'information" %></a>
+              <a href="#" target="_blank" style="color:#2675E5; text-decoration:underline;">
+                <%= @project.appointment.present? ? @project.appointment : "Erreur d'information" %></a>
+                <%#= @project.appointment.present? ? l(DateTime.parse(@project.appointment), :format => '%A %d %B %Y à %Hh%M') : "Erreur d'information" %></a>
             </td>
           </tr>
 
