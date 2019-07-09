@@ -50,7 +50,9 @@ class CardClient extends Component {
               <div className="col-lg-6 font-12 gray-300">Actif il y a:</div>
               <div className="col-lg-6 text-align-right font-12 black">{`30 minutes`}</div>
               <div className="col-lg-12 margin-top-30 flex space-between">
-                <a href={`tel:${advisor.phone}`} className="font-12 gray flex align-items-center">
+                <a
+                  // href={`tel:${advisor.phone}`}
+                  className="cursor-default opacity-0 font-12 gray flex align-items-center">
                   <i className="fas fa-phone margin-right-5"></i>
                   Appeler
                 </a>

@@ -30,7 +30,7 @@ class MonEquipe extends Component {
     return (
       <div className="margin-top-30 flex-grow-1">
         <div className="flex black align-items-center margin-bottom-30">
-          <div className="icon-live margin-right-15"></div>
+          <i className="fas fa-users margin-right-15"></i>
           Mon équipe de conseillers
         </div>
         <div className="row scroll" style={{ maxHeight: "calc(100vh - 560px)", minHeight: "30px" }}>

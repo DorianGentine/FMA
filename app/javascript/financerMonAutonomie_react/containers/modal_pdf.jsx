@@ -46,7 +46,10 @@ class ModalPdf extends Component {
           zIndex: 15,
         }}>
         <i className="float-right margin-top-30 margin-right-30 white far fa-times-circle pointer" onClick={this.props.closeModalPdf}></i>
-        <div className="flex flex-column align-items-center margin-top-30 margin-bottom-30" onClick={this.props.closeModalPdf}>
+        <div
+          className="flex flex-column align-items-center margin-top-30 margin-bottom-30"
+          // onClick={this.props.closeModalPdf}
+          >
           <Document
             file={doc}
             onLoadSuccess={this.onDocumentLoadSuccess}

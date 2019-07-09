@@ -146,8 +146,7 @@ class PanneauPrincipalCompte extends Component {
                       name={"phone"}
                       type="tel"
                       component={this.renderField}
-                      hint="
-                      Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
+                      // hint="Votre numéro de téléphone ne sera jamais communiqué aux clients et autres utilisateurs du site"
                       // Recevez vos notifications de message par SMS.
                     />
                     <button
