@@ -102,6 +102,7 @@ class App extends Component {
 
         return (
           <div>
+            {this.props.modal_pdf != null ? <ModalPdf /> : null}
             <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
             <Volet selectedMenu={this.props.match.params.menu_nav}
                 selectedMenuVolet={this.props.match.params.menu_volet}
@@ -128,6 +129,7 @@ class App extends Component {
 
         return (
           <div>
+            {this.props.modal_pdf != null ? <ModalPdf /> : null}
             <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
             <Volet selectedMenu={this.props.match.params.menu_nav}
                 selectedMenuVolet={this.props.match.params.menu_volet}

@@ -45,6 +45,13 @@ class PanneauPrincipalDemandes extends Component {
       { name: "Financement", value: "financement", key: 3, },
     ]
 
+    let titreBarre = this.props.selectedClients
+    if(this.props.selectedClients === "en_cours"){
+      titreBarre = "En cours"
+    }else if(this.props.selectedClients === "archives"){
+      titreBarre = "Archivés"
+    }
+
     return (
       <div className="margin-top-15">
         <div className="row">
@@ -68,15 +75,21 @@ class PanneauPrincipalDemandes extends Component {
             />
           </div>
         </div>
-        <div className="margin-top-30 margin-bottom-30 flex align-items-center">
-          <hr className="ligne-horizontal"/>
-          <div
-            className="font-14 black blue-gray-background flex-grow-1 text-align-center"
-            style={{ width: "100%" }}>
-            Diagnostic
+        { this.props.selectedClients === "tous" ?
+          <div className="margin-top-30 margin-bottom-30 flex align-items-center">
+            <hr className="ligne-horizontal"/>
           </div>
-          <hr className="ligne-horizontal"/>
-        </div>
+          :
+          <div className="margin-top-30 margin-bottom-30 flex align-items-center">
+            <hr className="ligne-horizontal"/>
+            <div
+              className="font-14 black blue-gray-background flex-grow-1 text-align-center"
+              style={{ width: "100%" }}>
+              {titreBarre}
+            </div>
+            <hr className="ligne-horizontal"/>
+          </div>
+        }
         <div className="row">
           {projects != null ? renderDemandes() : <h2>Chargement...</h2>}
         </div>
@@ -88,6 +101,7 @@ class PanneauPrincipalDemandes extends Component {
 function mapStateToProps(state) {
   return {
     project: state.project,
+    selectedClients: state.selectedClients,
   };
 }
 

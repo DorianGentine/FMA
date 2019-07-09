@@ -28,6 +28,7 @@
     "react-dropzone": "^10.1.4",
     "react-pdf": "^4.0.5",
     "react-redux": "^7.0.3",
+    "react-responsive": "^7.0.0",
     "react-router-dom": "^5.0.0",
     "react-selectize": "^3.0.1",
     "react-widgets": "^4.4.11",

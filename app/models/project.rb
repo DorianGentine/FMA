@@ -66,7 +66,7 @@ class Project < ApplicationRecord
   def change_next_step
     if self.validation_data?
       self.documentation!
-      Notification.create(title:"a valdié ses formulaires", date:Time.now, project: self)
+      Notification.create(title:"a validé ses formulaires", date:Time.now, project: self)
       DocumentAsked.new(self).call
     elsif self.documentation?
       self.meeting!

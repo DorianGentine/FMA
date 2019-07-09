@@ -26,9 +26,6 @@ class CardDemande extends Component {
     }
 
     let selectedClients = this.props.selectedClients
-    if(selectedClients === "tous"){
-      selectedClients = "en_cours"
-    }
 
     if(selectedClients === "tous" ||
       selectedClients === "en_cours" && !demande.close ||

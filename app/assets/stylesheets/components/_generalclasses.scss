@@ -154,6 +154,9 @@
   }
 
 // Cursor
+  .cursor-default{
+    cursor: default !important;
+  }
   .pointer{
     cursor: pointer !important;
   }
@@ -304,6 +307,14 @@
     .margin-right-15-xs{
       margin-right: 15px !important
     }
+  }
+
+// Opacity
+  .opacity-0{
+    opacity: 0 !important;
+  }
+  .opacity-1{
+    opacity: 1 !important;
   }
 
 // Padding
