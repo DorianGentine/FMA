@@ -2,7 +2,6 @@ class ContactFormsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :new, :create, :update]
 
   def new
-    raise
     @visitor = Visitor.find_or_create_by(user_ip: request.ip)
     if @visitor.contact_form.present?
       @contact = @visitor.contact_form
