@@ -143,13 +143,19 @@ if(financeursPotentielsId){
     let response = await fetch(`/api/v1/visitors/${visitorId}/analyze`)
     let data = await response.json()
 
-    document.getElementById('loading-analyse').style.display = "none";
-    document.getElementById('loading-analyse').classList.remove("flex");
-    document.getElementById('blue-CTA').classList.remove('d-none')
-    stickyCta(data)
 
-    for (var i = 0; i < data.solutions.length; i++) {
-      setSolution(data.solutions[i], i)
+    if(data.solutions.length > 0){
+      document.getElementById('loading-analyse').style.display = "none";
+      document.getElementById('loading-analyse').classList.remove("flex");
+      document.getElementById('blue-CTA').classList.remove('d-none')
+      stickyCta(data)
+      for (var i = 0; i < data.solutions.length; i++) {
+        setSolution(data.solutions[i], i)
+      }
+    }else{
+      // document.getElementById('loading-analyse').style.display = "block";
+      // document.getElementById('loading-analyse').classList.add("flex");
+      document.getElementById('loading-analyse').innerHTML = "Malheureusement, aucun financeur ne vous correspond 😭"
     }
   }
 
