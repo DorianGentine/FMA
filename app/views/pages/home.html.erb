@@ -56,8 +56,8 @@
         <h1 class="col-lg-6 offset-lg-3 col-xs-12 text-align-center">Pourquoi choisir financer mon autonomie ?</h1>
         <p class="col-lg-8 offset-lg-2 col-xs-12 text-align-center margin-bottom-60">Nous allions l’expertise humaine médico-sociale à une technologie intuitive.</p>
       <!-- liste avantages -->
-        <div class="col-lg-3 col-xs-12" style="padding: 0 30px;">
-          <div class="avantage margin-top-60 no-margin-xs">
+        <div class="col-lg-3 col-md-12" style="padding: 0 30px;">
+          <div class="avantage margin-top-60 no-margin-md">
             <div class="avantage-icon margin-bottom-30">
               <i class="blue far fa-comments"></i>
             </div>
@@ -65,7 +65,7 @@
             <p class="margin-bottom-15 font-12">Vos données sont comparées instantanement aux critères d'une dizaine de financeurs légaux et extra légaux.</p>
           </div>
         </div>
-        <div class="col-lg-3 col-xs-12 margin-top-30-xs" style="padding: 0 30px;">
+        <div class="col-lg-3 col-md-12 margin-top-30-md" style="padding: 0 30px;">
           <div class="avantage">
             <div class="avantage-icon margin-bottom-30">
               <i class="blue fas fa-network-wired"></i>
@@ -74,8 +74,8 @@
             <p class="margin-bottom-15 font-12">Sam, notre conseiller digital, analyse et compare quotidiennement de nombreuses données afin d’estimer au mieux votre éligibilité auprès des financeurs.</p>
           </div>
         </div>
-        <div class="col-lg-3 col-xs-12 margin-top-30-xs" style="padding: 0 30px;">
-          <div class="avantage margin-top-60 no-margin-xs">
+        <div class="col-lg-3 col-md-12 margin-top-30-md" style="padding: 0 30px;">
+          <div class="avantage margin-top-60 no-margin-md">
             <div class="avantage-icon margin-bottom-30">
               <i class="blue fas fa-stopwatch"></i>
             </div>
@@ -83,7 +83,7 @@
             <p class="margin-bottom-15 font-12">À tout moment, via Sam, vous pouvez bénéficier d’un diagnostic personnalisé, avec en journée l’appui de notre équipe de conseillers.</p>
           </div>
         </div>
-        <div class="col-lg-3 col-xs-12 margin-top-30-xs" style="padding: 0 30px;">
+        <div class="col-lg-3 col-md-12 margin-top-30-md" style="padding: 0 30px;">
           <div class="avantage">
             <div class="avantage-icon margin-bottom-30">
               <i class="blue fas fa-phone"></i>
@@ -100,7 +100,9 @@
       <p class="col-lg-8 offset-lg-2 text-align-center margin-bottom-60">Bénéficiez d’un espace sécurisé pour partager vos données avec nos conseillers. <br>Nous partagerons aussi avec vous un certains nombres de pièces nécessaires.</p>
     </div>
 
-    <div id="carousel_maquettes" class="carousel slide d-none d-sm-block" data-ride="carousel">
+    <div id="carousel_maquettes" class="carousel slide d-none d-sm-block"
+    >
+    <!-- data-ride="carousel" -->
       <div class="carousel-indicators flex no-margin margin-bottom-30">
         <p data-target="#carousel_maquettes" data-slide-to="0" class="active text-align-center">Documents à soumettre</p>
         <p data-target="#carousel_maquettes" data-slide-to="1" class="text-align-center">Prise de rendez-vous</p>
@@ -111,19 +113,59 @@
 
       <div class="carousel-inner d-none d-sm-block">
         <div class="carousel-item active">
-          <div class="carousel_01 w-100"></div>
+          <div class="carousel_01 w-100 relative">
+            <div class="validation_modal" style="top: 110px; left: 435px;">
+              <div class="validation_modal-point"></div>
+              <div class="validation_modal-text" style="left: -295px; width: 285px; top: -10px;">
+                <p class="white flex-grow-1 margin-right-15 bold">Tous vos documents</p>
+                <p class="white" style="white-space: pre-line">À travers votre espace personnel, chargez en toute sécurité l’ensemble des documents nécessaire à l’élaboration de votre dossier de financement.</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="carousel-item">
-          <div class="carousel_02 w-100"></div>
+          <div class="carousel_02 w-100 relative">
+            <div class="validation_modal" style="top: 117px; left: 435px;">
+              <div class="validation_modal-point"></div>
+              <div class="validation_modal-text" style="left: -280px; width: 380px; top: 20px;">
+                <p class="white flex-grow-1 margin-right-15 bold">Une vision globale</p>
+                <p class="white" style="white-space: pre-line">Fixer un rendez-vous téléphonique avec votre conseiller, pour davantage détailler votre projet de financement et déterminez ensemble les prochaines échéances.</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="carousel-item">
-          <div class="carousel_03 w-100"></div>
+          <div class="carousel_03 w-100 relative">
+            <div class="validation_modal" style="top: 400px; left: 435px;">
+              <div class="validation_modal-point"></div>
+              <div class="validation_modal-text" style="left: 0px; width: 400px; top: -200px;">
+                <p class="white flex-grow-1 margin-right-15 bold">Dossier de financement</p>
+                <p class="white" style="white-space: pre-line">A l’issue de votre parcours sur Financer mon autonomie, votre conseiller vous remettra un kit de financement détaillé pour finaliser votre demande auprès de nos financeurs.</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="carousel-item">
-          <div class="carousel_04 w-100"></div>
+          <div class="carousel_04 w-100 relative">
+            <div class="validation_modal" style="top: 140px; left: 315px;">
+              <div class="validation_modal-point"></div>
+              <div class="validation_modal-text" style="left: 35px; width: 400px; top: 0px;">
+                <p class="white flex-grow-1 margin-right-15 bold">Un espace dédié</p>
+                <p class="white" style="white-space: pre-line">Allier à notre technologie intuitive, un conseiller dédié vous accompagnera dans l’ensemble des étapes clefs de votre projet.</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="carousel-item">
-          <div class="carousel_05 w-100"></div>
+          <div class="carousel_05 w-100 relative">
+            <div class="validation_modal" style="top: 170px; left: 140px;">
+              <div class="validation_modal-point"></div>
+              <div class="validation_modal-text" style="left: 35px; width: 350px; top: 0;">
+                <p class="white flex-grow-1 margin-right-15 bold">Paramétrage des préférences</p>
+                <p class="white" style="white-space: pre-line">A tout moment vous pouvez régler les différents paramètres de votre espace personnel afin de faciliter votre expérience sur FMA.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -153,7 +195,7 @@
     </div>
 
     <div class="temoignages">
-      <div class="temoignage">
+      <div class="temoignage d-none d-lg-block">
         <div class="avatar margin-top-60"></div>
         <div class="text-temoignage">
           <h4 class="no-margin black">Martin Legrand</h4>
@@ -161,7 +203,7 @@
           <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
         </div>
       </div>
-      <div class="temoignage">
+      <div class="temoignage d-none d-md-block">
         <div class="avatar delay1"></div>
         <div class="text-temoignage">
           <h4 class="no-margin black">Martin Legrand</h4>
@@ -177,7 +219,7 @@
           <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
         </div>
       </div>
-      <div class="temoignage">
+      <div class="temoignage d-none d-md-block">
         <div class="avatar delay2 margin-top-60"></div>
         <div class="text-temoignage">
           <h4 class="no-margin black">Martin Legrand</h4>
@@ -185,7 +227,7 @@
           <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
         </div>
       </div>
-      <div class="temoignage">
+      <div class="temoignage d-none d-lg-block">
         <div class="avatar delay1"></div>
         <div class="text-temoignage">
           <h4 class="no-margin black">Martin Legrand</h4>
@@ -206,19 +248,19 @@
       <div class="partenaire col-lg-2">
         <%= render "shared/illustrations/above" %>
       </div>
-      <div class="partenaire col-lg-2">
+      <div class="partenaire col-lg-2 margin-top-15-xs">
         <%= render "shared/illustrations/bear" %>
       </div>
-      <div class="partenaire col-lg-2">
+      <div class="partenaire col-lg-2 margin-top-15-xs">
         <%= render "shared/illustrations/evolve" %>
       </div>
-      <div class="partenaire col-lg-2">
+      <div class="partenaire col-lg-2 margin-top-15-xs">
         <%= render "shared/illustrations/homely" %>
       </div>
-      <div class="partenaire col-lg-2">
+      <div class="partenaire col-lg-2 margin-top-15-xs">
         <%= render "shared/illustrations/sunrise" %>
       </div>
-      <div class="partenaire col-lg-2">
+      <div class="partenaire col-lg-2 margin-top-15-xs">
         <%= render "shared/illustrations/whale" %>
       </div>
     </div>

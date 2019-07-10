@@ -281,6 +281,15 @@
     margin-right: 5px !important
   }
 
+  @media screen and (max-width: 991px){
+    .no-margin-md{
+      margin: 0 !important;
+    }
+    .margin-top-30-md{
+      margin-top: 30px !important
+    }
+  }
+
   @media screen and (max-width: 770px){
     .no-margin-xs{
       margin: 0 !important;

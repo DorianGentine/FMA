@@ -1,6 +1,6 @@
 .temoignages{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .temoignage{
@@ -18,6 +18,25 @@
     // height: 60%;
     opacity: 1;
     transform: translatey(0px);
+  }
+}
+@media screen and (max-width: 1200px){
+  .temoignage{
+    max-width: 33%
+  }
+}
+@media screen and (max-width: 767px){
+  .temoignage{
+    max-width: 100%;
+    .avatar{
+    width: 150px;
+    height: 150px;
+    margin-top: 0 !important;
+    }
+    .text-temoignage{
+      opacity: 1;
+      transform: translatey(0px);
+    }
   }
 }
 
@@ -72,3 +91,5 @@
 .delay2{
   animation-delay: 2s;
 }
+
+
