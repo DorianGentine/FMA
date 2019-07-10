@@ -195,8 +195,13 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $blue !important;
   }
 
+  input:focus.red, button:focus.red, select:focus.red, textarea:focus.red {
+    border-color: $red !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $red !important;
+  }
+
   input, button, select, textarea {
-      font-size: 18px;
+    font-size: 18px;
   }
 
 // Grid
