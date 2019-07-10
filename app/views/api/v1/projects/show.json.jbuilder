@@ -4,7 +4,8 @@ json.project do
   json.date_de_creation @project.created_at
   json.etape @project.step
   json.hint @project.hint
-  json.rdv @project.appointment
+  json.appointment @project.appointment
+  json.rdv l(DateTime.parse(@project.appointment), :format => '%A %d %B %Y à %Hh%M')
   json.nombre_de_financer @project.solutions.count
   json.formulary_ids @project.formulary_ids
 end
