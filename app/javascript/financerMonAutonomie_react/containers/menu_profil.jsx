@@ -84,15 +84,21 @@ class MenuProfil extends Component {
       this.setState({showLeftSide: false})
     }
 
-    if(selectedMenu === "clients" && selectedMenu != this.state.selectedMenu || nextProps.clients != this.props.clients){
-      const clients = nextProps.clients
-      this.renderFiltresNumberClients(clients)
-    }else if(selectedMenu === "conseillers" && selectedMenu != this.state.selectedMenu || nextProps.conseillers != this.props.conseillers){
-      const advisors = nextProps.conseillers
-      this.renderFiltresNumberConseillers(advisors)
-    }else if(selectedMenu === "demandes" && selectedMenu != this.state.selectedMenu || nextProps.project != this.props.project){
-      const demandes = nextProps.project
-      this.renderFiltresNumberDemandes(demandes)
+    if(selectedMenu === "clients"){
+      if(selectedMenu != this.state.selectedMenu || nextProps.clients != this.props.clients){
+        const clients = nextProps.clients
+        this.renderFiltresNumberClients(clients)
+      }
+    }else if(selectedMenu === "conseillers"){
+      if(selectedMenu != this.state.selectedMenu || nextProps.conseillers != this.props.conseillers){
+        const advisors = nextProps.conseillers
+        this.renderFiltresNumberConseillers(advisors)
+      }
+    }else if(selectedMenu === "demandes"){
+      if(selectedMenu != this.state.selectedMenu || nextProps.project != this.props.project){
+        const demandes = nextProps.project
+        this.renderFiltresNumberDemandes(demandes)
+      }
     }
   }
 

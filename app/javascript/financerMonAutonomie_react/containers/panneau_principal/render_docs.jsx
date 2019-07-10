@@ -87,18 +87,27 @@ class RenderDocs extends Component {
 
 
 
-    const sendImageToController = (formPayLoad, idDoc, index) => {
-      fetch(`/api/v1/documents/${idDoc}`, {
+    const sendImageToController = async (formPayLoad, idDoc, index) => {
+      let response = await fetch(`/api/v1/documents/${idDoc}`, {
         credentials: 'same-origin',
         headers: {},
         method: 'PATCH',
         body: formPayLoad
       })
-      .then(response => response.json())
-      .then(() => {
+
+      if(response.ok){
+        response = await response.json();
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
         document.getElementById(`btn-doc${index}`).innerText = "Mettre à jour"
-      })
+      } else {
+        console.error('fetchClients passe pas : ', response)
+        response = null
+        document.getElementById(`document_name${index}`).innerText = "Erreur dans l'envoi du document"
+        document.getElementById(`document_name${index}`).classList.add('red')
+        document.getElementById(`document_name${index}`).classList.remove('gray-300')
+        document.getElementById(`btn-doc${index}`).innerText = "Rééssayer"
+        document.getElementById(`btn-doc${index}`).classList.add('red')
+      }
     }
 
 
@@ -106,20 +115,34 @@ class RenderDocs extends Component {
     const readFile = (files, idDoc, index) => {
       if (files && files[0]) {
 
+        console.log(files, files[0])
+        document.getElementById(`document_name${index}`).classList.add('gray-300')
+        document.getElementById(`document_name${index}`).classList.remove('red')
+        document.getElementById(`btn-doc${index}`).classList.remove('red')
+
         let newDocName = ""
-        if (files[0].name.length < 14){
+        if(files[0].size > 5000000){
+          newDocName = "Fichier trop volumineux"
+          document.getElementById(`document_name${index}`).classList.add('red')
+          document.getElementById(`document_name${index}`).classList.remove('gray-300')
+          document.getElementById(`btn-doc${index}`).innerText = "Rééssayer"
+          document.getElementById(`btn-doc${index}`).classList.add('red')
+        }else if (files[0].name.length < 14){
           newDocName = files[0].name
         }else{
           newDocName = `${files[0].name.substr(0, 14)}...`
         }
+
         document.getElementById(`document_name${index}`).innerText = newDocName
+        if(files[0].size <= 5000000){
 
-        document.getElementById(`btn-doc${index}`).innerText = "Chargement..."
+          document.getElementById(`btn-doc${index}`).innerText = "Chargement..."
 
-        let formPayLoad = new FormData();
-        formPayLoad.append('uploaded_image', files[0]);
+        }
+          let formPayLoad = new FormData();
+          formPayLoad.append('uploaded_image', files[0]);
 
-        sendImageToController(formPayLoad, idDoc, index)
+          sendImageToController(formPayLoad, idDoc, index)
       }
     }
 

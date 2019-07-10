@@ -12,7 +12,9 @@ import { renderDate } from "../../../components/render_date"
 
 class KitDeFinancement extends Component {
   componentDidMount(){
-    this.props.fetchZipUrl(`/api/v1/projects/${this.props.project.project.id}/download_zip`)
+    if(this.props.project.project.etape === "evaluation"){
+      this.props.fetchZipUrl(`/api/v1/projects/${this.props.project.project.id}/download_zip`)
+    }
   }
 
 

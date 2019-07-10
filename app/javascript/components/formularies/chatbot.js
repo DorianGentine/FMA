@@ -35,11 +35,17 @@ const setQuestionAnswer = (question, questions, i) => {
   }
 }
 
+let delay = 1000
+
 const displayQuestionsUntilNeedAnswer = (questions, i) => {
   for (var e = 1; e < questions.length; e++) {
+    delay = 1000 * e
     if (questions[i + e].set_up.need_answer) { break }
-      console.log("here",questions[i + e] )
-      insertQuestion(questions[i + e])
+    const eTest = e
+    setTimeout(()=>{
+      insertQuestion(questions[i + eTest])
+      scrollLastMessageIntoView(formulary)
+    }, delay)
   }
 }
 
@@ -78,11 +84,11 @@ const nextStep = (questions, updated = null, question = null) => {
     setTimeout(function(){
       insertQuestion(questions[i], true);
       scrollLastMessageIntoView(formulary)
-    }, 1000)
+      delay = 1000
+    }, delay)
   }
   scrollLastMessageIntoView(formulary)
   getEditAnswer(questions)
-  // setTimeout(() => { onClickHint()}, 2000)
 }
 
 
