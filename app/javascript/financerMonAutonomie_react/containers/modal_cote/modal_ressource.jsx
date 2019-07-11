@@ -83,14 +83,14 @@ class ModalRessource extends Component {
     const { numPages, pageNumber } = this.state;
 
     const renderGuide = () => {
-      if(ressource.notice.url){
+      if(ressource.notice){
         return(
           <div className="margin-top-15">
             <Document
-              file={ressource.notice.url}
+              file={ressource.notice}
               onLoadSuccess={this.onDocumentLoadSuccess}
               className="pointer"
-              onClick={()=>{this.props.showModalPdf(ressource.notice.url)}}
+              onClick={()=>{this.props.showModalPdf(ressource.notice)}}
             >
               <Page
                 pageNumber={this.state.pageNumber}

@@ -28,7 +28,7 @@ class RenderDropdownList extends Component {
           value={this.state.value}
           onChange={value => {
             this.setState({ value })
-            this.props.clickButton()
+            this.props.clickButton(this.props.name, value)
           }}
         />
       )

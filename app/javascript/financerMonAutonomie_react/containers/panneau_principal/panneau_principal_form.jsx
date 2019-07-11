@@ -23,11 +23,15 @@ class PanneauPrincipalForm extends Component {
   constructor(props){
     super(props)
     this.state = {
-      envoiEnCours: false,
-      certified: true,
-      multiple_beneficiaires: false,
-      changedToNewBene: false,
       beneficiaireActif: 1,
+      certified: true,
+      changedToNewBene: false,
+      envoiEnCours: false,
+      multiple_beneficiaires: false,
+      valueToAdd: {
+        name: null,
+        value: null,
+      },
     }
   }
 
@@ -84,8 +88,28 @@ class PanneauPrincipalForm extends Component {
     this.props.initialize(initData);
   }
 
-  onSubmit = (values) => {
+  onSubmit = (oldValues) => {
+    const valueToAdd = this.state.valueToAdd
+
+    let values = new Object()
+    values[valueToAdd.name] = valueToAdd.value
+    // for ( let i in oldValues) {
+    //   values.push()
+    //   console.log("salut", oldValues[i])
+    //   if(oldValues[valueToAdd.name] === oldValues[i]){
+    //   if(oldValues[valueToAdd.name] != valueToAdd.value){
+    //   }
+    //   oldValues[i].set_up.column_name] = oldValues[i].answer;
+    // }
+
+    // const nextValueName = valueToAdd.name
+    // console.log("salut", nextValueName)
+    // values.nextValueName = valueToAdd.value
+
+
+
     if(this.props.formulary_id === "add"){
+      values = oldValues
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
       .then(()=>{
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
@@ -95,6 +119,8 @@ class PanneauPrincipalForm extends Component {
         })
       })
     }else{
+      console.log(oldValues)
+      console.log(values)
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
       .then(()=>{
         this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
@@ -189,8 +215,15 @@ class PanneauPrincipalForm extends Component {
       }else if(result.set_up.type == "select"){
         if(result.set_up.multiple_answers == false){
 
-          const clickButton = () => {
-            this.setState({ envoiEnCours: true})
+          const clickButton = (name, value) => {
+            console.log(name, value)
+            this.setState({
+              envoiEnCours: true,
+              valueToAdd: {
+                name: name,
+                value: value,
+              },
+            })
             submitButton.disabled = false,
             submitButton.click()
             setTimeout(submitButton.disabled = true, 100)
@@ -279,7 +312,7 @@ class PanneauPrincipalForm extends Component {
           {etape === "validation_data" ? <ValidationModal /> : null}
 
           {this.state.beneficiaireActif ?
-            <h2 className="margin-bottom-30">Validation des réponses du <strong className="blue">Bénéficiaire {this.state.beneficiaireActif}</strong></h2> :
+            <h2 className="margin-bottom-30">{this.state.valueToAdd.name + " " + this.state.valueToAdd.value} Validation des réponses du <strong className="blue">Bénéficiaire {this.state.beneficiaireActif}</strong></h2> :
             <h2 className="margin-bottom-30">Ajout d'un nouveau <strong className="blue">Bénéficiaire</strong></h2>
           }
 
