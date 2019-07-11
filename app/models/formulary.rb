@@ -504,10 +504,10 @@ class Formulary < ApplicationRecord
 
   def add_answer_from_primary_form
     project = self.project
-    first_formulary = Formulary.where(project: project, primary: true)
-    first_formulary = first_formulary.first
+    p "Project is  => #{project.id}"
+    first_formulary = Formulary.where(project: project, primary: true).first
+    p "first_formulary is  => #{first_formulary.present?}"
     if first_formulary.present? && !self.primary
-
       Formulary.column_names.each do |column_name|
         if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && column_name != "old_zip_code" && column_name != "address" && column_name != "latitude" && column_name != "longitude"
           ask_again = "ask_again_" + column_name + "?"
@@ -516,6 +516,8 @@ class Formulary < ApplicationRecord
           end
         end
       end
+    p "Self Formulary is  => #{self.valid?}"
+      return self
     end
   end
 
