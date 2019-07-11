@@ -388,7 +388,6 @@ export function validateStep(url, callback, body) {
     .then(response => response.json())
     .then(callback)
   }else if(body === undefined){
-    console.log(body)
     request = fetch(url,
     {
       method: "PATCH",
