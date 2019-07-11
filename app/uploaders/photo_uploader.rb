@@ -2,7 +2,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   version :bright_face do
-    cloudinary_transformation effect: "brightness:30",
+    cloudinary_transformation effect: "brightness:30", secure: true,
       width: 200, height: 200, crop: :thumb, gravity: :face
   end
 
