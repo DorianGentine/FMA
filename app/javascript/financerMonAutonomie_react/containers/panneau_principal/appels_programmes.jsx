@@ -34,6 +34,7 @@ class AppelsProgrammes extends Component {
             let minRdv = String(new Date(client.rdv).getMinutes()).padStart(2, '0')
 
             const daysToRdv = diffDays(new Date(client.rdv))
+            console.log(daysToRdv)
             let textNextMeeting
             if(daysToRdv == 0){
               textNextMeeting = "aujourd'hui"

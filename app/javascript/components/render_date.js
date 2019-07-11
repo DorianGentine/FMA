@@ -1,9 +1,10 @@
-export function renderDate(date, format){
+export function renderDate(date, format = null){
   let dateToRender
   if(date === undefined){
     dateToRender = new Date();
   }else{
     dateToRender = new Date(date);
+    console.log(dateToRender)
   }
 
   let weekday = new Array(7);
@@ -22,7 +23,7 @@ export function renderDate(date, format){
   let hour = dateToRender.getHours()
   let min = String(dateToRender.getMinutes()).padStart(2, '0')
 
-  if(format === undefined){
+  if(format === null){
     dateToRender = dd + '/' + mm + '/' + yyyy;
   }else if(format === "dd_mmm"){
     mm = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"][dateToRender.getMonth()];
@@ -39,7 +40,7 @@ export function diffDays(date) {
   var t1 = date.getTime();
   var t2 = new Date().getTime(); // date d'aujourd'hui
 
-  return parseInt((t2-t1)/(24*3600*1000));
+  return parseInt((t1-t2)/(24*3600*1000));
 }
 
 export function diffTime(date) {
