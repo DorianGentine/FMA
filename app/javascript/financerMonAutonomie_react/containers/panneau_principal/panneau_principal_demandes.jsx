@@ -39,7 +39,7 @@ class PanneauPrincipalDemandes extends Component {
     }
 
     const options = [
-      { name: "Sélectionnez une categorie", value: "", key: 0, },
+      { name: "Sélectionnez une catégorie", value: "en_cours", key: 0, },
       { name: "Diagnostic", value: "diagnostic", key: 1, },
       { name: "Chiffrage", value: "chiffrage", key: 2, },
       { name: "Financement", value: "financement", key: 3, },
@@ -69,7 +69,7 @@ class PanneauPrincipalDemandes extends Component {
               className="react-dropdown-select"
               options={options}
               valueField="value"
-              values={[options.find(opt => opt.name === "Sélectionnez une categorie")]}
+              values={[options.find(opt => opt.name === "Sélectionnez une catégorie")]}
               onChange={(value) => {this.props.selectClients(value[0].value)}}
               labelField="name"
             />

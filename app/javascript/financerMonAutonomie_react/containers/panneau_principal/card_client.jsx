@@ -106,8 +106,10 @@ class CardClient extends Component {
                   aria-labelledby={`drop-call${client.id}`}>
                   <a className="black" onClick={()=>{this.props.showDemande(client)}}>Demandes&nbsp;spécifiques</a>
                   <p className="pointer" onClick={() => {
-                    this.props.validateStep(`/api/v1/projects/${client.id}/next_setp`,
-                      ()=>{this.props.fetchClients("/api/v1/users")}, {id: client.id, archived: true,}
+                    // console.log(client)
+                    this.props.validateStep(`/api/v1/projects/${client.project}/next_setp`,
+                      ()=>{this.props.fetchClients("/api/v1/users")},
+                      {id: client.project, archived: true,}
                     )
                   }}>Archiver</p>
                 </div>

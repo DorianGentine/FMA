@@ -13,54 +13,54 @@ class MenuProfil extends Component {
     this.state = {
       selectedMenu: null,
       showLeftSide: false,
-      clientsLength: 0,
-      clientsEnCours: 0,
-      clientsArchives: 0,
+      tousLength: 0,
+      enCoursLength: 0,
+      archivesLength: 0,
     };
   }
 
   renderFiltresNumberClients = (clients) => {
-    this.setState({clientsLength: 0})
-    this.setState({clientsEnCours: 0})
-    this.setState({clientsArchives: 0})
+    this.setState({tousLength: 0})
+    this.setState({enCoursLength: 0})
+    this.setState({archivesLength: 0})
 
     if(clients != null && clients.clients != undefined){
-      this.setState({clientsLength: clients.clients.length})
+      this.setState({tousLength: clients.clients.length})
 
       for (var i = clients.clients.length - 1; i >= 0; i--) {
         if(clients.clients[i].étape === "archived"){
-          this.setState(prevState => ({clientsArchives: prevState.clientsArchives + 1}))
+          this.setState(prevState => ({archivesLength: prevState.archivesLength + 1}))
         }else{
-          this.setState(prevState => ({clientsEnCours: prevState.clientsEnCours + 1}))
+          this.setState(prevState => ({enCoursLength: prevState.enCoursLength + 1}))
         }
       }
     }
   }
 
   renderFiltresNumberConseillers = (advisors) => {
-    this.setState({clientsLength: 0})
-    this.setState({clientsEnCours: 0})
-    this.setState({clientsArchives: 0})
+    this.setState({tousLength: 0})
+    this.setState({enCoursLength: 0})
+    this.setState({archivesLength: 0})
 
     if(advisors != null && advisors.advisors != undefined){
-      this.setState({clientsLength: advisors.advisors.length})
+      this.setState({tousLength: advisors.advisors.length})
     }
   }
 
   renderFiltresNumberDemandes = (demandes) => {
-    this.setState({clientsLength: 0})
-    this.setState({clientsEnCours: 0})
-    this.setState({clientsArchives: 0})
+    this.setState({tousLength: 0})
+    this.setState({enCoursLength: 0})
+    this.setState({archivesLength: 0})
 
     if(demandes != null){
       for (var i = demandes.solutions.length - 1; i >= 0; i--) {
         if(demandes.solutions[i].demandes.length > 0){
           for (var j = demandes.solutions[i].demandes.length - 1; j >= 0; j--) {
-            this.setState(prevState => ({clientsLength: prevState.clientsLength + 1}))
+            this.setState(prevState => ({tousLength: prevState.tousLength + 1}))
             if(demandes.solutions[i].demandes[j].close){
-              this.setState(prevState => ({clientsArchives: prevState.clientsArchives + 1}))
+              this.setState(prevState => ({archivesLength: prevState.archivesLength + 1}))
             }else if(!demandes.solutions[i].demandes[j].close){
-              this.setState(prevState => ({clientsEnCours: prevState.clientsEnCours + 1}))
+              this.setState(prevState => ({enCoursLength: prevState.enCoursLength + 1}))
             }
           }
         }
@@ -108,27 +108,27 @@ class MenuProfil extends Component {
 
     const selectedMenu = this.state.selectedMenu
     const showLeftSide = this.state.showLeftSide
-    const clientsLength = this.state.clientsLength
-    const clientsEnCours = this.state.clientsEnCours
-    const clientsArchives = this.state.clientsArchives
+    const tousLength = this.state.tousLength
+    const enCoursLength = this.state.enCoursLength
+    const archivesLength = this.state.archivesLength
 
     const renderFiltres = ()=> {
       return(
         <div className="col-lg-6 row align-items-end">
           <div
             className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`}
-            onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{clientsLength}</span></div>
+            onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{tousLength}</span></div>
           <div
             className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`}
             onClick={()=>{this.props.selectClients("en_cours")}}>
               {selectedMenu != "conseillers" ? "En cours " : "" }
-              {selectedMenu != "conseillers" ? <span>{clientsEnCours}</span> : "" }
+              {selectedMenu != "conseillers" ? <span>{enCoursLength}</span> : "" }
           </div>
           <div
             className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`}
             onClick={()=>{this.props.selectClients("archives")}}>
               {selectedMenu != "conseillers" ? "Archivés " : "" }
-              {selectedMenu != "conseillers" ? <span>{clientsArchives}</span> : "" }
+              {selectedMenu != "conseillers" ? <span>{archivesLength}</span> : "" }
           </div>
         </div>
       )

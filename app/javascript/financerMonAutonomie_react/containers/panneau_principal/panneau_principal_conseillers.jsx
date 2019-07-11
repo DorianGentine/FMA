@@ -13,6 +13,9 @@ class PanneauPrincipalConseillers extends Component {
     if(this.props.conseillers === null){
       this.props.fetchConseillers("/api/v1/users/advisors")
     }
+    if(this.props.selectedClients != "tous"){
+      this.props.selectClients("")
+    }
   }
 
   render(){
@@ -26,11 +29,6 @@ class PanneauPrincipalConseillers extends Component {
     }
 
     let titreBarre = this.props.selectedClients
-    if(this.props.selectedClients === "en_cours"){
-      titreBarre = "En cours"
-    }else if(this.props.selectedClients === "archives"){
-      titreBarre = "Archivés"
-    }
 
     return (
       <div className="margin-top-15">
