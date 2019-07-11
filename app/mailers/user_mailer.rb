@@ -55,4 +55,10 @@ class UserMailer < ApplicationMailer
     @form = params[:form]
     mail(to: @user.email, subject: "Prise de contact visiteur")
   end
+
+  def evalution_result
+    @user = params[:user]
+    @rating = params[:rating]
+    mail(to: [@user.email, User.where(admin:true).first.email, User.where(advisor:true).first.email], subject: "Retour évalution")
+  end
 end

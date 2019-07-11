@@ -1,6 +1,7 @@
 class Rating < ApplicationRecord
   belongs_to :project
 
+  after_create :send_evalution
 
   def set_evaluation_form
     return {
@@ -14,7 +15,9 @@ class Rating < ApplicationRecord
   end
 
   private
-
+  def send_evalution
+    UserMailer.with(user: self.project.his_client, rating: self).evalution_result.deliver_now
+  end
   def set_obvious
     {
       column: "obvious",
