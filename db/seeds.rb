@@ -1175,7 +1175,7 @@ ressource_8.save
 
 # SECURITE SOCIALE
 ressource_9 = Ressource.create(title: "Sécurité sociale", description: "Retrouvez, ici, les ressources pour conduire une demande de financement de la Sécurité sociale", financer: "SECURITE SOCIALE")
-ressource_9.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1561931070/ressources/Notice_Securite_Sociale_cvsbhz.pdf"
+ressource_9.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160066/ressources/Securite_sociale/Notice_Securite_Sociale_yxkudk.pdf"
 ressource_9.save
 
 # 44,45,46,47,48  + NOM

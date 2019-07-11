@@ -7,5 +7,5 @@ class Ressource < ApplicationRecord
    mount_uploader :model_2, RessourceUploader
    mount_uploader :model_1, RessourceUploader
 
-
+   default_scope { order(title: :ASC)}
 end

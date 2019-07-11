@@ -1,0 +1,97 @@
+<table style="border-radius: 1px;" align="center"; bgcolor="#fff" border="0" cellpadding="0" cellspacing="0" class="wrapper" class="container">
+  <tbody>
+
+    <tr>
+      <td height="70" style="font-size:70px; line-height:70px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>
+        <table  align="center" width="600" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Bonjour <%= @user.first_name %>,<br>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="15" style="font-size:15px; line-height:15px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+            <!-- Message du mail
+
+            Conseiller: [BENEFICIAIRE] vient de compléter son évaluation concernant son expérience sur notre plateforme <span style="font-weight:bold;">Financer Mon Autonomie</span>. Vous trouverez ci-dessous l'ensemble de ses réponses !
+
+
+            Admin: [BENEFICIAIRE] qui fut accompagné par [CONSEILLER], vient de compléter son évaluation concernant son expérience sur notre plateforme <span style="font-weight:bold;">Financer Mon Autonomie</span>. Vous trouverez ci-dessous l'ensemble de ses réponses !
+
+             -->
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              <% if @user.advisor %>
+                <%= @bene.name %> vient de compléter son évaluation concernant son expérience sur notre plateforme <span style="font-weight:bold;">Financer Mon Autonomie</span>. Vous trouverez ci-dessous l'ensemble de ses réponses !
+              <% elsif @user.admin %>
+                <%= @bene.name %> qui fut accompagné par <%= @conseiller.name %>, vient de compléter son évaluation concernant son expérience sur notre plateforme <span style="font-weight:bold;">Financer Mon Autonomie</span>. Vous trouverez ci-dessous l'ensemble de ses réponses !
+              <% else %>
+                L'ensemble de l'équipe de <span style="font-weight:bold;">Financer Mon Autonomie</span> vous remercie d'avoir pû répondre à ces quelques questions. Nous avons à cœur de proposer la meilleure expérience à nos bénéficiaires, et <span style="font-weight:bold;">votre avis nous importe beaucoup !</span>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="15" style="font-size:15px; line-height:15px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              Voici une copie des réponses:
+            </td>
+          </tr>
+
+          <tr>
+            <td height="30" style="font-size:30px; line-height:30px;" class="mobileOn">&nbsp;</td>
+          </tr>
+
+
+          <% @rating.set_evaluation_form.each do |value| %>
+            <tr>
+              <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; font-style:italic; text-align: left; font-size: 14px; color:rgba(0,0,0,.6); line-height: 20px;">
+                <%= value.second[:question] %>
+              </td>
+            </tr>
+
+            <tr>
+              <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #000; line-height: 22px;">
+                <% result = @rating[value.second[:column]] %>
+                <% if value.second[:choice].present? %>
+
+                  <%= value.second[:choice][result.to_i] %>
+                <% else %>
+                  <%= result %>
+                <% end %>
+              </td>
+            </tr>
+
+            <tr>
+              <td height="20" style="font-size:20px; line-height:20px;" class="mobileOn">&nbsp;</td>
+            </tr>
+          <% end %>
+
+          <tr>
+            <td align="left" valign="top" style="letter-spacing:0.025em; padding:0px 40px 0px 40px; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font-weight: normal; text-align: left; font-size: 16px; color: #182335; line-height: 22px;">
+              À bientôt,<br>
+              L'équipe de Financer Mon Autonomie.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td height="40" style="font-size:40px; line-height:40px;" class="mobileOn">&nbsp;</td>
+    </tr>
+
+  </tbody>
+</table>

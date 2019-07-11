@@ -25,9 +25,8 @@ class Formulary < ApplicationRecord
   end
 
   def check_zip_change
-    if self.old_zip_code != self.zip_code
+    if self.zip_code_changed?
       self.add_city
-      self.old_zip_code = self.zip_code
     end
   end
 
@@ -518,8 +517,6 @@ class Formulary < ApplicationRecord
         end
       end
     end
-    p "self is =W #{self.valid?}"
-    p "self is =W #{self.errors.messages}"
   end
 
   def set_primary
