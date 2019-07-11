@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 
-import { closeModal, fetchPostCompte, fetchRatings } from '../../actions';
+import { closeModal, fetchPostCompte, fetchRatings, validateStep } from '../../actions';
 
 import LabelRadio from './label_radio';
 
@@ -66,7 +66,9 @@ class ModalEvaluation extends Component {
     let method = "POST"
     console.log("url", url)
 
-    this.props.fetchPostCompte(url, values, method, ()=>{})
+    this.props.fetchPostCompte(url, values, method, ()=>{
+      this.props.validateStep(`/api/v1/projects/${this.props.user_id}/next_setp`, ()=>{})
+    })
     this.props.closeModal()
   }
 
@@ -118,12 +120,13 @@ class ModalEvaluation extends Component {
 function mapStateToProps(state) {
   return {
     modal_selected: state.modal_selected,
+    user_id: state.user_id,
     ratings: state.ratings,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, fetchPostCompte, fetchRatings }, dispatch);
+  return bindActionCreators({ closeModal, fetchPostCompte, fetchRatings, validateStep }, dispatch);
 }
 
 export default reduxForm({ form: 'evaluation', })(

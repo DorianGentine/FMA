@@ -378,7 +378,6 @@ export function showRessource(ressource) {
 export function validateStep(url, callback, body) {
   let request
   if(body != undefined){
-    console.log(body)
     request = fetch(url,
     {
       method: "PATCH",

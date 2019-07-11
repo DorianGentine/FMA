@@ -148,7 +148,6 @@ class RenderDocs extends Component {
 
 
     const renderDocs = () => {
-      console.log("documents", documents)
       if(documents.length != 0){
         return documents.map((doc, index) => {
           const idDoc = doc.id
