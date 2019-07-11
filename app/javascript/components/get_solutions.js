@@ -117,7 +117,9 @@ if(financeursPotentielsId){
       div.appendChild(descFinanceur)
     }
     div.appendChild(barre)
-    div.appendChild(votreSolution)
+    if (solution.answers.length > 0) {
+      div.appendChild(votreSolution)
+    }
 
     if (solution.financer.answer) {
       addAndswer(div, solution.financer.answer)

@@ -24,6 +24,7 @@ class Api::V1::FormulariesController < Api::V1::BaseController
     @formulary = Formulary.new(params_formulary)
     p "formulary => #{params_formulary}"
     @formulary.project = @project
+    p "form is VALID? => >>>> #{@formulary.valid?}"
     @formulary.save
     render json: @formulary
   end

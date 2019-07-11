@@ -20,8 +20,9 @@ class Api::V1::ProjectsController < Api::V1::BaseController
 
   def next_setp
     p "params is => #{params}"
-    if params[:project].present?
-      raise
+    if params[:archived].present? && params[:archived]
+      @project.archived!
+      Notification.create(title:"a été archivé", date:Time.now, project: @project)
     else
       @project.change_next_step
     end

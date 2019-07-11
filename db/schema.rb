@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 2019_06_29_082018) do
     t.boolean "advisor", default: false
     t.boolean "client", default: false
     t.boolean "admin", default: false
-    t.boolean "agreed", default: false
+    t.boolean "archived", default: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

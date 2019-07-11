@@ -58,7 +58,27 @@ class UserMailer < ApplicationMailer
 
   def evalution_result
     @user = params[:user]
+    @project = params[:project]
+
+    @bene = @project.his_client
+    @conseiller = @project.is_his_advisor
+
     @rating = params[:rating]
-    mail(to: [@user.email, User.where(admin:true).first.email, User.where(advisor:true).first.email], subject: "Retour évalution")
+    mail(to: @user.email, subject: "Retour évalution")
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

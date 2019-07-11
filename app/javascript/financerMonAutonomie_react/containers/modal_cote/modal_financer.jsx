@@ -101,6 +101,7 @@ class ModalFinancer extends Component {
                   <i className="fas fa-chevron-down" onClick={()=>{changeText()}}></i>
                 </div>
               </div>
+
               <p className="margin-bottom-15" className="collapse"
                   id={`collapseAnswer${randomId}`}>
                 {answer.content}</p>

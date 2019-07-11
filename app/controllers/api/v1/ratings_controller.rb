@@ -11,11 +11,15 @@ class Api::V1::RatingsController < Api::V1::BaseController
 
   def create
     project = Project.find(params[:project_id])
+    p "project ID is => #{project.id}"
     @rating = Rating.new(rating_params)
     @rating.project = project
-    if rating.save
+    p "rating_params ID  is => #{@rating.obvious}"
+    if @rating.save
+    p "rating_params save is => #{@rating.valid?}"
       render json: project
     else
+    p "rating_params NOT SAVE is => #{@rating.valid?}"
       render_error
     end
     authorize project
