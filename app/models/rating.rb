@@ -14,10 +14,15 @@ class Rating < ApplicationRecord
     }
   end
 
+
   private
+
   def send_evalution
-    UserMailer.with(user: self.project.his_client, rating: self).evalution_result.deliver_now
+    UserMailer.with(user: self.project.his_client, project: self.project, rating: self).evalution_result.deliver_now
+    UserMailer.with(user: self.project.is_his_advisor, project: self.project, rating: self).evalution_result.deliver_now
+    UserMailer.with(user: User.where(admin: true).first, project: self.project, rating: self).evalution_result.deliver_now
   end
+
   def set_obvious
     {
       column: "obvious",

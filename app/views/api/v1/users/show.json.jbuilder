@@ -5,6 +5,7 @@ json.user do
   json.avatar @user.avatar.url(:bright_face)
   json.email @user.email
   json.phone @user.phone
+  json.archived @user.archived
 end
 
 if @user.client
