@@ -127,7 +127,9 @@ if(financeursPotentielsId){
       addAndswer(div, answer.content)
     })
 
-    div.appendChild(lienSite)
+    if(solution.financer.web || solution.web){
+      div.appendChild(lienSite)
+    }
     financeursPotentielsId.appendChild(div)
   }
 
