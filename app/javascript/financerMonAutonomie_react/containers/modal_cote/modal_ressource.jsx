@@ -90,7 +90,7 @@ class ModalRessource extends Component {
               file={ressource.notice}
               onLoadSuccess={this.onDocumentLoadSuccess}
               className="pointer"
-              onClick={()=>{this.props.showModalPdf(ressource.notice.url)}}
+              onClick={()=>{this.props.showModalPdf(ressource.notice)}}
             >
               <Page
                 pageNumber={this.state.pageNumber}
