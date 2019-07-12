@@ -68,7 +68,7 @@ class KitDeFinancement extends Component {
             <p className="col-lg-4 font-12">Date de dernière mise à jour</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "calc(100vh - 720px)", minHeight: "80px" }}>
-            { kits != undefined && etape === "evaluation" ? renderKits() : <h2 className="text-align-center margin-top-30 gray-300">Votre conseiller confectionne votre kit</h2>}
+            { kits != undefined && (etape === "evaluation" || etape === "archived") ? renderKits() : <h2 className="text-align-center margin-top-30 gray-300">Votre conseiller confectionne votre kit</h2>}
           </div>
         </div>
       </div>

@@ -55,7 +55,7 @@ class Etapes extends Component {
     numEtape = etapeEnCours[0]
     nomEtape = etapeEnCours[1]
 
-    const styleAfter = { width: `calc( ${numEtape} / 6 * 100%)` }
+    const styleAfter = { width: `calc( ${numEtape} / 7 * 100%)` }
 
     return (
       <div className="margin-top-30">
