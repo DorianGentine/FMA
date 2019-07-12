@@ -88,28 +88,13 @@ class PanneauPrincipalForm extends Component {
     this.props.initialize(initData);
   }
 
-  onSubmit = (oldValues) => {
-    const valueToAdd = this.state.valueToAdd
-
-    let values = new Object()
-    values[valueToAdd.name] = valueToAdd.value
-    // for ( let i in oldValues) {
-    //   values.push()
-    //   console.log("salut", oldValues[i])
-    //   if(oldValues[valueToAdd.name] === oldValues[i]){
-    //   if(oldValues[valueToAdd.name] != valueToAdd.value){
-    //   }
-    //   oldValues[i].set_up.column_name] = oldValues[i].answer;
-    // }
-
-    // const nextValueName = valueToAdd.name
-    // console.log("salut", nextValueName)
-    // values.nextValueName = valueToAdd.value
-
-
+  onSubmit = (values) => {
+    if(this.state.valueToAdd.name != null){
+      values[this.state.valueToAdd.name] = this.state.valueToAdd.value
+      this.setState({ valueToAdd: { name: null, value: null, }})
+    }
 
     if(this.props.formulary_id === "add"){
-      values = oldValues
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
       .then(()=>{
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
@@ -119,8 +104,8 @@ class PanneauPrincipalForm extends Component {
         })
       })
     }else{
-      console.log(oldValues)
       console.log(values)
+      console.log(this.state.valueToAdd)
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
       .then(()=>{
         this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
@@ -216,13 +201,13 @@ class PanneauPrincipalForm extends Component {
         if(result.set_up.multiple_answers == false){
 
           const clickButton = (name, value) => {
-            console.log(name, value)
-            this.setState({
-              envoiEnCours: true,
-              valueToAdd: {
-                name: name,
-                value: value,
-              },
+            // console.log(name, value)
+            this.setState({ envoiEnCours: true, })
+            this.setState(prevState => {
+              let valueToAdd = Object.assign({}, prevState.valueToAdd);
+              valueToAdd["name"] = name
+              valueToAdd.value = value
+              return { valueToAdd }
             })
             submitButton.disabled = false,
             submitButton.click()
@@ -316,7 +301,9 @@ class PanneauPrincipalForm extends Component {
             <h2 className="margin-bottom-30">Ajout d'un nouveau <strong className="blue">Bénéficiaire</strong></h2>
           }
 
-          <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+          <form onSubmit={this.props.handleSubmit(values => {
+              setTimeout(()=> {this.onSubmit(values)}, 10)
+            })}>
             {renderForm(this.props.formResults)}
             <button
               id="btn-validation-infos"

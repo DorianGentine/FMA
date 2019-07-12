@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2019_06_29_082018) do
     t.boolean "primary", default: false
     t.bigint "visitor_id"
     t.bigint "project_id"
-    t.string "old_zip_code"
     t.string "address"
     t.float "latitude"
     t.float "longitude"
@@ -229,7 +228,6 @@ ActiveRecord::Schema.define(version: 2019_06_29_082018) do
     t.boolean "advisor", default: false
     t.boolean "client", default: false
     t.boolean "admin", default: false
-    t.boolean "archived", default: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
