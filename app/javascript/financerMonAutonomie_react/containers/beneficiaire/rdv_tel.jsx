@@ -23,7 +23,7 @@ class RdvTel extends Component {
         }else if(etape === "call"){
           rdvTitre = "Votre rendez-vous aura lieu"
           rdvText = renderDate(this.props.project.project.rdv, "ddd_mmm_hhhh")
-        }else if(etape === "progression" || etape === "evaluation"){
+        }else if(etape === "progression" || etape === "evaluation" || etape === "archived"){
           rdvTitre = "Rendez-vous effectué le"
           rdvText = renderDate(this.props.project.project.rdv, "ddd_mmm_hhhh")
         }
