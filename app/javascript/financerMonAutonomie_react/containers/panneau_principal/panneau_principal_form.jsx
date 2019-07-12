@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
-import Multiselect from 'react-widgets/lib/Multiselect'
+// import Multiselect from 'react-widgets/lib/Multiselect'
 
 import {
   fetchAPI,
@@ -16,6 +16,7 @@ import {
 
 import ValidationModal from "../beneficiaire/validation_modal"
 import RenderDropdownList from "./render_dropdown_list"
+import RenderMultiSelect from "./render_multi_select"
 
 import 'react-widgets/dist/css/react-widgets.css'
 
@@ -27,6 +28,7 @@ class PanneauPrincipalForm extends Component {
       certified: true,
       changedToNewBene: false,
       envoiEnCours: false,
+      infoIncomplete: 0,
       multiple_beneficiaires: false,
       valueToAdd: {
         name: null,
@@ -78,9 +80,13 @@ class PanneauPrincipalForm extends Component {
 
   handleInitialize(formResults) {
     let initData = {};
+    this.setState({ infoIncomplete: 0 })
 
     for ( let i in formResults) {
       if( formResults[i].set_up.need_answer ){
+        if(formResults[i].answer === null){
+          this.setState(prevState => ({ infoIncomplete: prevState.infoIncomplete + 1 }))
+        }
         initData[formResults[i].set_up.column_name] = formResults[i].answer;
       }
     }
@@ -89,10 +95,12 @@ class PanneauPrincipalForm extends Component {
   }
 
   onSubmit = (values) => {
+    console.log("values", values)
     if(this.state.valueToAdd.name != null){
+      console.log(this.state.valueToAdd.name)
       values[this.state.valueToAdd.name] = this.state.valueToAdd.value
-      this.setState({ valueToAdd: { name: null, value: null, }})
     }
+    console.log("values2", values)
 
     if(this.props.formulary_id === "add"){
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
@@ -104,12 +112,13 @@ class PanneauPrincipalForm extends Component {
         })
       })
     }else{
-      console.log(values)
-      console.log(this.state.valueToAdd)
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
       .then(()=>{
         this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
-        this.setState({ envoiEnCours: false })
+        this.setState({
+          envoiEnCours: false,
+          valueToAdd: { name: null, value: null, },
+        })
       })
     }
   }
@@ -145,45 +154,6 @@ class PanneauPrincipalForm extends Component {
     const submitButton = document.getElementById('btn-validation-infos')
     const etape = this.props.project.project.etape
 
-    const renderOptions = (data) => {
-      let options = []
-      for ( let i in data) {
-        options.push(<option key={i} value={data[i]} >{data[i]}</option>);
-      }
-      return options
-    }
-
-    const renderMultiselect = ({ input, data, valueField, textField }) => {
-      let datas = []
-      for ( let i in data) {
-        datas.push(data[i].props.value);
-      }
-
-      let splitValue = []
-      if(input.value == ""){
-        splitValue = splitValue
-      }else if(typeof input.value == "string"){
-        splitValue = input.value.split(', ')
-      }else{
-        splitValue = input.value
-      }
-
-      return(
-        <Multiselect {...input}
-        onBlur={() => {
-          input.onBlur();
-          this.setState({ envoiEnCours: true })
-          submitButton.click();
-        }}
-        busy={this.state.envoiEnCours}
-        disabled={this.props.otherUser} // désactive les input text quand conseiller connecté
-        value={splitValue} // requires value to be an array
-        data={datas}
-        valueField={valueField}
-        textField={textField}
-        />
-      )
-    }
 
     const renderInput = (result) => {
       if(result.set_up.type == "input" || result.set_up.type == "number"){
@@ -198,38 +168,39 @@ class PanneauPrincipalForm extends Component {
           </Field>
         )
       }else if(result.set_up.type == "select"){
-        if(result.set_up.multiple_answers == false){
-
-          const clickButton = (name, value) => {
-            // console.log(name, value)
-            this.setState({ envoiEnCours: true, })
-            this.setState(prevState => {
-              let valueToAdd = Object.assign({}, prevState.valueToAdd);
-              valueToAdd["name"] = name
-              valueToAdd.value = value
-              return { valueToAdd }
-            })
-            submitButton.disabled = false,
-            submitButton.click()
-            setTimeout(submitButton.disabled = true, 100)
+        const clickButton = (name, value) => {
+          this.setState({ envoiEnCours: true, })
+          this.setState(prevState => {
+            let valueToAdd = Object.assign({}, prevState.valueToAdd);
+            valueToAdd["name"] = name
+            valueToAdd.value = value
+            return { valueToAdd }
+          })
+          submitButton.disabled = false,
+          submitButton.click()
+          setTimeout(submitButton.disabled = true, 100)
+        }
+        const renderOptions = (data, multiple) => {
+          let options = []
+          if(multiple){
+            for ( let i in data) {
+              options.push(<option key={i} value={data[i]} >{data[i]}</option>);
+            }
+          }else{
+            for ( let i in data) {
+              options.push({ text: data[i], value: i, });
+            }
           }
+          return options
+        }
 
-          let data = renderOptions(result.set_up.data)
-          return <RenderDropdownList submitting={this.state.envoiEnCours} valueInitial={result.answer} label={result.set_up.question} name={result.set_up.column_name} data={data} clickButton={clickButton} />
+        let data = renderOptions(result.set_up.data, result.set_up.multiple_answers)
+        if(result.set_up.multiple_answers){
+          return <RenderMultiSelect submitting={this.state.envoiEnCours} valueInitial={result.answer} label={result.set_up.question} name={result.set_up.column_name} data={data} clickButton={clickButton} />
 
         }else{ // Multiple select
-          return(
-            <div className="form-group">
-              <label className="font-14 black">{result.set_up.question}</label>
-              <Field
-                className="margin-bottom-15 no-padding form-control"
-                name={result.set_up.column_name}
-                component={renderMultiselect}
-                data={renderOptions(result.set_up.data)}
-              >
-              </Field>
-            </div>
-          )
+          return <RenderDropdownList submitting={this.state.envoiEnCours} valueInitial={result.answer} label={result.set_up.question} name={result.set_up.column_name} data={data} clickButton={clickButton} />
+
         }
       }
     }
@@ -297,7 +268,7 @@ class PanneauPrincipalForm extends Component {
           {etape === "validation_data" ? <ValidationModal /> : null}
 
           {this.state.beneficiaireActif ?
-            <h2 className="margin-bottom-30">{this.state.valueToAdd.name + " " + this.state.valueToAdd.value} Validation des réponses du <strong className="blue">Bénéficiaire {this.state.beneficiaireActif}</strong></h2> :
+            <h2 className="margin-bottom-30">Validation des réponses du <strong className="blue">Bénéficiaire {this.state.beneficiaireActif}</strong></h2> :
             <h2 className="margin-bottom-30">Ajout d'un nouveau <strong className="blue">Bénéficiaire</strong></h2>
           }
 
@@ -313,7 +284,7 @@ class PanneauPrincipalForm extends Component {
             </button>
           </form>
 
-          <div className={`flex align-items-center margin-top-60 margin-bottom-15 ${this.props.formulary_id === "add" ? "d-none" : ""}`}>
+          <div className={`flex align-items-center margin-top-60 ${this.props.formulary_id === "add" ? "d-none" : ""}`}>
             <label className="custom-checkbox-form black font-14">Je certifie la véracité de mes réponses
               <input className="margin-right-15" type="checkbox" value={!this.state.certified} onClick={()=>{
                 this.setState((prevState) => { return { certified: !prevState.certified}; });
@@ -321,6 +292,9 @@ class PanneauPrincipalForm extends Component {
               <span className="checkmark"></span>
             </label>
           </div>
+          { this.state.certified || this.state.infoIncomplete === 0 ? null :
+            <p className="margin-bottom-15 red font-14">Certaines questions sont sans réponses 😟</p>
+          }
           <button
             className={`
               btn-blue
@@ -329,7 +303,7 @@ class PanneauPrincipalForm extends Component {
               align-self-baseline
               ${this.props.formulary_id === "add" ? "d-none" : ""}
             `}
-            disabled={this.props.otherUser || this.state.certified}
+            disabled={this.props.otherUser || this.state.certified || this.state.infoIncomplete != 0}
             style={{padding: "5px 55px"}}
             onClick={ etape === "validation_data" && !this.props.otherUser ? () => { // désactive bouton si pas bonne étape et si user pas bon
               this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`,
