@@ -23,11 +23,15 @@ class PanneauPrincipalForm extends Component {
   constructor(props){
     super(props)
     this.state = {
-      envoiEnCours: false,
-      certified: true,
-      multiple_beneficiaires: false,
-      changedToNewBene: false,
       beneficiaireActif: 1,
+      certified: true,
+      changedToNewBene: false,
+      envoiEnCours: false,
+      multiple_beneficiaires: false,
+      valueToAdd: {
+        name: null,
+        value: null,
+      },
     }
   }
 
@@ -85,6 +89,11 @@ class PanneauPrincipalForm extends Component {
   }
 
   onSubmit = (values) => {
+    if(this.state.valueToAdd.name != null){
+      values[this.state.valueToAdd.name] = this.state.valueToAdd.value
+      this.setState({ valueToAdd: { name: null, value: null, }})
+    }
+
     if(this.props.formulary_id === "add"){
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
       .then(()=>{
@@ -95,6 +104,8 @@ class PanneauPrincipalForm extends Component {
         })
       })
     }else{
+      console.log(values)
+      console.log(this.state.valueToAdd)
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
       .then(()=>{
         this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
@@ -189,8 +200,15 @@ class PanneauPrincipalForm extends Component {
       }else if(result.set_up.type == "select"){
         if(result.set_up.multiple_answers == false){
 
-          const clickButton = () => {
-            this.setState({ envoiEnCours: true})
+          const clickButton = (name, value) => {
+            // console.log(name, value)
+            this.setState({ envoiEnCours: true, })
+            this.setState(prevState => {
+              let valueToAdd = Object.assign({}, prevState.valueToAdd);
+              valueToAdd["name"] = name
+              valueToAdd.value = value
+              return { valueToAdd }
+            })
             submitButton.disabled = false,
             submitButton.click()
             setTimeout(submitButton.disabled = true, 100)
@@ -279,11 +297,13 @@ class PanneauPrincipalForm extends Component {
           {etape === "validation_data" ? <ValidationModal /> : null}
 
           {this.state.beneficiaireActif ?
-            <h2 className="margin-bottom-30">Validation des réponses du <strong className="blue">Bénéficiaire {this.state.beneficiaireActif}</strong></h2> :
+            <h2 className="margin-bottom-30">{this.state.valueToAdd.name + " " + this.state.valueToAdd.value} Validation des réponses du <strong className="blue">Bénéficiaire {this.state.beneficiaireActif}</strong></h2> :
             <h2 className="margin-bottom-30">Ajout d'un nouveau <strong className="blue">Bénéficiaire</strong></h2>
           }
 
-          <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+          <form onSubmit={this.props.handleSubmit(values => {
+              setTimeout(()=> {this.onSubmit(values)}, 10)
+            })}>
             {renderForm(this.props.formResults)}
             <button
               id="btn-validation-infos"
