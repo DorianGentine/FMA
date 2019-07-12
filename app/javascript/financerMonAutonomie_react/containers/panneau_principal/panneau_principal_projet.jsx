@@ -34,7 +34,7 @@ class PanneauPrincipalProjet extends Component {
               <DocumentsSoumettre />
               <FinanceursPotentiels />
               <VosReponses />
-              { etape === "progression" || etape === "evaluation" ?
+              { etape === "progression" || etape === "evaluation" || etape === "archived" ?
                 <KitDeFinancement /> : null
               }
             </div>

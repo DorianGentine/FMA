@@ -39,6 +39,11 @@ class Etapes extends Component {
           nomEtape = "Évaluation du service"
           return [numEtape, nomEtape];
         }
+        case "archived": {
+          numEtape = 7
+          nomEtape = "Merci 😉"
+          return [numEtape, nomEtape];
+        }
         default: {
           numEtape = 0
           nomEtape = "Commencez un nouveau projet"
@@ -54,7 +59,7 @@ class Etapes extends Component {
 
     return (
       <div className="margin-top-30">
-        <p className="etape-text"><strong>{`Étape ${numEtape}/6:`}</strong> {nomEtape}</p>
+        <p className="etape-text"><strong>{`Étape ${numEtape}/7:`}</strong> {nomEtape}</p>
         <div className="progression-etapes">
           <div className="after" style={styleAfter}></div>
         </div>
