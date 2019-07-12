@@ -39,7 +39,7 @@ let delay = 1000
 
 const displayQuestionsUntilNeedAnswer = (questions, i) => {
   for (var e = 1; e < questions.length; e++) {
-    delay = 1000 * e
+    delay = 2000 * e
     if (questions[i + e].set_up.need_answer) { break }
     const eTest = e
     setTimeout(()=>{
