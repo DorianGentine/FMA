@@ -7,7 +7,7 @@ if(financeursPotentielsId){
   const setSolution = (solution, index) => {
     const div = document.createElement('div')
     div.acceptCharset = "UTF-8"
-    div.classList = `margin-top-60 ${index === 0 ? "blue-gray-background" : ""}`
+    div.classList = `${index === 0 ? "blue-gray-background" : "margin-top-60"}`
     div.style = `padding: 30px 40px;`
 
     const nomFinanceur = document.createElement("div")
