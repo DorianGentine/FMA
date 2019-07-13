@@ -84,7 +84,7 @@ class PanneauPrincipalForm extends Component {
 
     for ( let i in formResults) {
       if( formResults[i].set_up.need_answer ){
-        if(formResults[i].answer === null){
+        if(formResults[i].answer === null || formResults[i].answer === [] || formResults[i].answer === ""){
           this.setState(prevState => ({ infoIncomplete: prevState.infoIncomplete + 1 }))
         }
         initData[formResults[i].set_up.column_name] = formResults[i].answer;
