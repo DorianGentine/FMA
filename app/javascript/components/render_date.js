@@ -37,10 +37,19 @@ export function renderDate(date, format = null){
 }
 
 export function diffDays(date) {
-  var t1 = date.getTime();
-  var t2 = new Date().getTime(); // date d'aujourd'hui
+  const t1 = date.getTime();
+  const t2 = new Date().getTime(); // date d'aujourd'hui
 
-  return parseInt((t1-t2)/(24*3600*1000));
+  let hourT1 = parseInt(`${String(date.getHours()).padStart(2, '0')}${String(date.getMinutes()).padStart(2, '0')}`)
+  let hourT2 = parseInt(`${String(new Date().getHours()).padStart(2, '0')}${String(new Date().getMinutes()).padStart(2, '0')}`)
+
+  let dayToRender = parseInt((t1-t2)/(24*3600*1000))
+
+  if(hourT2 >= hourT1){
+    dayToRender = dayToRender + 1
+  }
+
+  return dayToRender;
 }
 
 export function diffTime(date) {
