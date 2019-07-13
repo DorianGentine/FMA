@@ -12,7 +12,7 @@ import { renderDate } from "../../../components/render_date"
 
 class KitDeFinancement extends Component {
   componentDidMount(){
-    if(this.props.project.project.etape === "evaluation"){
+    if(this.props.project.project.etape === "evaluation" || this.props.project.project.etape === "archived"){
       this.props.fetchZipUrl(`/api/v1/projects/${this.props.project.project.id}/download_zip`)
     }
   }
@@ -58,7 +58,7 @@ class KitDeFinancement extends Component {
           {etape === "progression" ? <ValidationModal /> : null}
           <h4 className="col-lg-6">Découvrez votre kit de financement</h4>
           <p className="bold col-lg-1">{etape === "progression" ? 0 : kits.length}</p>
-          {etape === "evaluation" ?
+          {etape === "evaluation" || etape === "archived" ?
             <div className="col-lg-5 text-align-right"><a className="blue-gray-btn" href={zips != null ? zips.download_all_ressources : null}>Tout télécharger <i className="fas fa-download"></i></a></div>
             : null
           }

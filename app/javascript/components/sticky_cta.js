@@ -17,33 +17,6 @@ const stickyCta = (data) => {
     answers = document.getElementById('financeurs-potentiels')
     stopSticky = offsetCta + answers.offsetHeight - hWindow2 - ctaOffsetHeight2
     }, 500)
-    // const div = document.createElement('div')
-    // div.classList = `red-background absolute`
-    // div.style = `width: 50px;
-    //   height: ${offsetCta}px;
-    //   top: 0;
-    //   left: 750px;
-    //   z-index: 30;`
-    // document.getElementById('TESTZZ').appendChild(div)
-
-    // const div2 = document.createElement('div')
-    // div2.classList = `green-background absolute`
-    // div2.style = `width: 50px;
-    //   height: ${answers.offsetHeight}px;
-    //   top: ${offsetCta}px;
-    //   left: 750px;
-    //   z-index: 32;`
-    // document.getElementById('TESTZZ').appendChild(div2)
-
-    // const div3 = document.createElement('div')
-    // div3.classList = `blue-background fixed`
-    // div3.style = `width: 800px;
-    //   height: 3px;
-    //   top: calc(50% + ${ctaOffsetHeight2}px);
-    //   transform: translateY(-100%);
-    //   left: 0px;
-    //   z-index: 32;`
-    // document.getElementById('TESTZZ').appendChild(div3)
 
     // Add the sticky class to the cta when you reach its scroll position. Remove "sticky" when you leave the scroll position
     function myFunction() {
