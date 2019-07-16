@@ -96,9 +96,16 @@ class PanneauPrincipalForm extends Component {
 
   onSubmit = (values) => {
     console.log("values", values)
+    // remplace la valeur à ajouter
     if(this.state.valueToAdd.name != null){
       console.log(this.state.valueToAdd.name)
       values[this.state.valueToAdd.name] = this.state.valueToAdd.value
+    }
+    // corrige la valeur en supprimant "text" de l'objet value
+    for( let i in values){
+      if(values[i] && values[i].text){
+        values[i] = values[i].value
+      }
     }
     console.log("values2", values)
 

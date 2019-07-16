@@ -30,6 +30,7 @@ class RenderDropdownList extends Component {
           textField={textField}
           onChange={value => {
             this.setState({ value })
+            console.log(value)
             this.props.clickButton(this.props.name, parseInt(value.value, 10))
           }}
         />
