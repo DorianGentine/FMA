@@ -48,6 +48,12 @@ Rails.application.routes.draw do
   get '/cgu_cgv', to: 'pages#cgu', as: "cgu"
   get '/rgpd', to: 'pages#rgpd', as: "rgpd"
 
+  root to: 'contact_forms#new'
+  resources :formularies, only: [ :show ]
+
+  resources :contact_forms, only: [ :create, :update, :edit ]
+  resources :visitors, only: [ :create, :update, :edit ]
+
 
 
   namespace :api, defaults: { format: :json } do
@@ -86,12 +92,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :formularies, only: [ :show ]
-
-  resources :contact_forms, only: [ :create, :update, :edit ]
-  resources :visitors, only: [ :create, :update, :edit ]
-
-  root to: 'contact_forms#new'
 
   # constraints subdomain: "calendly.com", defaults: { format: :json } do
   #   post '/api/v1/hooks' => 'calendly#create', as: :create
