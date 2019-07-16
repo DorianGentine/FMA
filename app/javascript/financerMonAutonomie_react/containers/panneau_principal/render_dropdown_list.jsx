@@ -31,7 +31,13 @@ class RenderDropdownList extends Component {
           onChange={value => {
             this.setState({ value })
             console.log(value)
-            this.props.clickButton(this.props.name, parseInt(value.value, 10))
+            let answer
+            if (this.props.name === "lessor") {
+              answer = value.text
+            } else {
+              answer = parseInt(value.value, 10)
+            }
+            this.props.clickButton(this.props.name, answer)
           }}
         />
       )
