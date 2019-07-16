@@ -25,6 +25,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def show
+    FormularyToHash.new(Formulary.find(11)).form_json_for_espace
     if @user.client
       @project = @user.projects.first
       @advisor = @project.is_his_advisor

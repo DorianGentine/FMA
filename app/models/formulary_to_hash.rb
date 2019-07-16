@@ -61,7 +61,6 @@ class FormularyToHash
       column = question[:set_up][:column_name]
       ask_again = "ask_again_" + column + "?"
       if !@form.primary
-        # raise if column_name == "is_working"
         array << question if @form.send(ask_again)
       else
         array << question
@@ -77,9 +76,10 @@ class FormularyToHash
     questions_to_ask = FormularyChatbot.new.set_questions_form(chatbot)
       questions_to_ask.each do |key, value|
         if questions_to_ask[key][:question].present?
+
           allow = "allow_" + key + "?"
           if form.respond_to? key
-            hash = { set_up: value, answer: chatbot ? set_answer_for_chatbot(form, key) : set_answer_for_espace(form, key)} if form.try(allow) && form.send(allow)
+            hash = { set_up: value, answer: chatbot ? set_answer_for_chatbot(form, key) : set_answer_for_espace(form, key, value[:type])} if form.try(allow) && form.send(allow)
           else
             hash = { set_up: value, answer: "next", formulary_id: form.id}
           end
@@ -99,7 +99,7 @@ class FormularyToHash
   end
 
 
-  def set_answer_for_espace(form, column_name)
+  def set_answer_for_espace(form, column_name, type)
     if form.send(column_name).present?
       if authorize_answer_form?(form, column_name)
         if column_name == "supplementary" || column_name == "assistant"
@@ -109,11 +109,19 @@ class FormularyToHash
           else
             first.gsub('"', '')
           end
+
         else
           form.send(column_name)
         end
       else
-        FormularyChoice.new.set_collections_formulary[column_name.to_sym][form.send(column_name)].first
+        if type == "select" && column_name != "pension"
+          {
+            text: FormularyChoice.new.set_collections_formulary[column_name.to_sym][form.send(column_name)].first,
+            value: form.send(column_name)
+          }
+        else
+          FormularyChoice.new.set_collections_formulary[column_name.to_sym][form.send(column_name)].first
+        end
       end
     else
       return nil
