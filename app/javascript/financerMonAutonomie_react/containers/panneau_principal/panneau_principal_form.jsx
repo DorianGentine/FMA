@@ -193,7 +193,8 @@ class PanneauPrincipalForm extends Component {
             for ( let i in data) {
               options.push(<option key={i} value={data[i]} >{data[i]}</option>);
             }
-          }else{
+          }
+          else{
             for ( let i in data) {
               options.push({ text: data[i], value: i, });
             }
