@@ -53,11 +53,11 @@
   }
 
   a {
-    color: inherit;
+    color: $blue;
     text-decoration: none;
-    font-size: .9rem;
-    font-weight: 500;
-    transition: opacity.3s;
+    font-size: .8rem;
+    font-weight: 400;
+    transition: .3s;
   }
 
   i {
@@ -75,10 +75,6 @@
   /* Classes générales */
   .logo img {
     max-width: 150px;
-  }
-
-  .logo {
-    text-align: center;
   }
 
   .titre {
@@ -138,15 +134,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
-  }
-
-  .copyright {
-    text-align: center;
-    a {
-      font-size: .6rem;
-      color: $blue;
-      font-weight: 400;
-    }
   }
 
 

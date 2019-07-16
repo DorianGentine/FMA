@@ -3,25 +3,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 
-import { closeModal, fetchPostCompte, fetchRatings, validateStep } from '../../actions';
+import { closeModal, fetchPostCompte, fetchRatings, validateStep, fetchProjet } from '../../actions';
 
 import LabelRadio from './label_radio';
 
 class ModalEvaluation extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isChecked: false,
-    };
-  }
-
   componentWillMount(){
     if(this.props.ratings === null){
       this.props.fetchRatings(this.props.modal_selected.project.project.id)
     }
   }
 
-  renderField = ({ input, type, label, nameLabel, choices }) => {
+  renderField = ({ input, nameLabel, label, type, choices }) => {
+
     if(type === "radio"){
       const renderOptions = () => {
 
@@ -32,10 +26,11 @@ class ModalEvaluation extends Component {
 
         return choicesMaps.map((choice, index) => {
           return <LabelRadio
+            name={nameLabel}
             key={index}
             index={index}
             choice={choice}
-            nameLabel={nameLabel} />
+            />
         })
       }
 
@@ -62,12 +57,15 @@ class ModalEvaluation extends Component {
   }
 
   onSubmit = (values) => {
+    console.log(values)
     let url = `/api/v1/projects/${this.props.modal_selected.project.project.id}/ratings`
     let method = "POST"
     console.log("url", url)
 
     this.props.fetchPostCompte(url, values, method, ()=>{
-      this.props.validateStep(`/api/v1/projects/${this.props.user_id}/next_setp`, ()=>{})
+      this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`, ()=>{
+        this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
+      })
     })
     this.props.closeModal()
   }
@@ -84,15 +82,17 @@ class ModalEvaluation extends Component {
 
       return ratingsMaps.map((rating, index) => {
         return <Field key={index}
-          label={rating.question}
           name={rating.column}
           nameLabel={rating.column}
+          label={rating.question}
           type={rating.type}
           choices={rating.choice}
           component={this.renderField}
         />
       })
     }
+
+
     return(
       <div>
         <div className="flex space-between black margin-bottom-30">
@@ -120,13 +120,13 @@ class ModalEvaluation extends Component {
 function mapStateToProps(state) {
   return {
     modal_selected: state.modal_selected,
-    user_id: state.user_id,
+    project_id: state.project_id,
     ratings: state.ratings,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, fetchPostCompte, fetchRatings, validateStep }, dispatch);
+  return bindActionCreators({ closeModal, fetchPostCompte, fetchRatings, validateStep, fetchProjet }, dispatch);
 }
 
 export default reduxForm({ form: 'evaluation', })(

@@ -64,6 +64,7 @@ class Project < ApplicationRecord
   end
 
   def change_next_step
+    p "// => Set is ..... #{self.step}"
     if self.validation_data?
       self.documentation!
       Notification.create(title:"a validé ses formulaires", date:Time.now, project: self)
