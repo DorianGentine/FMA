@@ -4,7 +4,6 @@ export function renderDate(date, format = null){
     dateToRender = new Date();
   }else{
     dateToRender = new Date(date);
-    console.log(dateToRender)
   }
 
   let weekday = new Array(7);

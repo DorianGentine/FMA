@@ -5,29 +5,38 @@ import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-
 
 // import { closeModal, fetchPostCompte, fetchRatings } from '../../actions';
 
-class LabelRadio extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isChecked: false,
-    };
+const renderRadioButton = (props) => {
+
+  const {caption, radioButtonValue, handleChange, meta: {touched, error}, ...field} = props;
+  const _onChange = (event) => {
+    field.input.onChange(event);
+    if (handleChange) {
+      handleChange(event);
+    }
   }
 
+    let validationError = false;
+    if (error && touched) {
+      validationError=true;
+    }
+
+    return <label className="black font-14 w-100 custom-radio">
+      <input {...field.input}
+              type="radio"
+              value={props.index + 1}
+              onChange={_onChange}
+              className={((validationError && "requireViolation ") || "")}
+              />
+      {props.choice}
+      <span className="checkmark"></span>
+    </label>
+};
+
+class LabelRadio extends Component {
   render(){
     return(
-      <label className="black font-14 w-100 custom-radio">
-        <Field
-          onClick={() => {
-            this.setState((prevState) => { return { isChecked: !prevState.isChecked}; });
-          }}
-          name={this.props.nameLabel}
-          component="input"
-          type="radio"
-          value={this.props.index + 1}
-          checked={this.state.isChecked}/>
-        {this.props.choice}
-        <span className="checkmark"></span>
-      </label>
+        <Field {...this.props}
+          component={renderRadioButton}/>
     )
   }
 }

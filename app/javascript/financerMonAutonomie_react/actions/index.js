@@ -223,13 +223,12 @@ export function fetchRessources(url) {
   };}
 
 export async function fetchZipUrl(url) {
-  console.log(url)
   let response = await fetch(url)
   let promise
   if(response.ok){
     promise = await response.json();
   } else {
-    console.error('fetchClients passe pas : ', response)
+    console.error('fetchZipUrl passe pas : ', response)
     promise = null
   }
 
