@@ -153,7 +153,6 @@ class PanneauPrincipalForm extends Component {
       if(response.ok){
         response = await response.json()
         for(let j = 0; j < response.length; j++ ){
-          console.log(response[j].answer)
           if(response[j].answer === null){
             this.setState(prevState => ({ infoIncomplete: prevState.infoIncomplete + 1 }))
           }
@@ -161,7 +160,6 @@ class PanneauPrincipalForm extends Component {
       }else{
         console.error(`fonction checkInfos ne passe pas pour le formulary_id ${formulary_ids[i]}`)
       }
-      console.log(this.state.infoIncomplete)
     }
   }
 
@@ -222,7 +220,6 @@ class PanneauPrincipalForm extends Component {
     }
 
     const renderForm = (formResults) => {
-      console.log("form", formResults)
       if(formResults != null && formResults.length > 0 ){
         return formResults.map((result, index) => {
           if(result.set_up.need_answer == true){
@@ -292,9 +289,8 @@ class PanneauPrincipalForm extends Component {
 
           <form onSubmit={this.props.handleSubmit(values => {
               setTimeout(()=> {this.onSubmit(values)}, 10)
-            // {setTimeout(()=> {renderForm(this.state.formResults)}, 10)}
             })}>
-            {renderForm(this.state.formResults)}
+            {this.state.formResults ? renderForm(this.state.formResults) : <p className="text-align-center">Chargement...</p>}
             <button
               id="btn-validation-infos"
               type="submit"
