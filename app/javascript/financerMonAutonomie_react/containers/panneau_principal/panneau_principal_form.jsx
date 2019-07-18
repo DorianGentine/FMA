@@ -28,6 +28,7 @@ class PanneauPrincipalForm extends Component {
       certified: true,
       changedToNewBene: false,
       envoiEnCours: false,
+      formResults: this.props.formResults,
       infoIncomplete: 0,
       multiple_beneficiaires: false,
       valueToAdd: {
@@ -52,11 +53,13 @@ class PanneauPrincipalForm extends Component {
     if(nextProps.formulary_id === "add" && nextProps.formulary_id != this.props.formulary_id){
       this.props.fetchFORM(`/api/v1/projects/${this.props.project_id}/formularies/new`)
     }else if (nextProps.formulary_id != this.props.formulary_id) {
+      this.setState({ formResults:  null })
       this.props.fetchFORM(`/api/v1/formularies/${nextProps.formulary_id}/edit`)
     }
 
     if(nextProps.formResults != null && nextProps.formResults != this.props.formResults){
       this.handleInitialize(nextProps.formResults)
+      this.setState({ formResults:  nextProps.formResults })
     }
 
     if(nextProps.project.formularies.length != this.props.project.formularies.length && !this.state.changedToNewBene){
@@ -80,13 +83,9 @@ class PanneauPrincipalForm extends Component {
 
   handleInitialize(formResults) {
     let initData = {};
-    this.setState({ infoIncomplete: 0 })
 
     for ( let i in formResults) {
       if( formResults[i].set_up.need_answer ){
-        if(formResults[i].answer === null || formResults[i].answer === [] || formResults[i].answer === ""){
-          this.setState(prevState => ({ infoIncomplete: prevState.infoIncomplete + 1 }))
-        }
         initData[formResults[i].set_up.column_name] = formResults[i].answer;
       }
     }
@@ -95,10 +94,8 @@ class PanneauPrincipalForm extends Component {
   }
 
   onSubmit = (values) => {
-    console.log("values", values)
     // remplace la valeur à ajouter
     if(this.state.valueToAdd.name != null){
-      console.log(this.state.valueToAdd.name)
       values[this.state.valueToAdd.name] = this.state.valueToAdd.value
     }
     // corrige la valeur en supprimant "text" de l'objet value
@@ -107,7 +104,6 @@ class PanneauPrincipalForm extends Component {
         values[i] = values[i].value
       }
     }
-    console.log("values2", values)
 
     if(this.props.formulary_id === "add"){
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
@@ -130,14 +126,6 @@ class PanneauPrincipalForm extends Component {
     }
   }
 
-  validate = values => {
-    const errors = {}
-    if (!values) {
-      errors = 'Requis'
-    }
-    return errors
-  }
-
   renderField = ({ input, label, type, submitButton, meta: { touched, error } }) => (
     <div className="form-group">
       <label className="font-14 black">{label}</label>
@@ -156,6 +144,26 @@ class PanneauPrincipalForm extends Component {
     </div>
   )
 
+  checkInfos = async () => {
+    this.setState({ infoIncomplete: 0 })
+    const formulary_ids = this.props.formulary_ids
+    for(let i = 0; i < formulary_ids.length; i++ ){
+      let response = await fetch(`/api/v1/formularies/${formulary_ids[i]}/edit`)
+
+      if(response.ok){
+        response = await response.json()
+        for(let j = 0; j < response.length; j++ ){
+          console.log(response[j].answer)
+          if(response[j].answer === null){
+            this.setState(prevState => ({ infoIncomplete: prevState.infoIncomplete + 1 }))
+          }
+        }
+      }else{
+        console.error(`fonction checkInfos ne passe pas pour le formulary_id ${formulary_ids[i]}`)
+      }
+      console.log(this.state.infoIncomplete)
+    }
+  }
 
   render(){
     const submitButton = document.getElementById('btn-validation-infos')
@@ -214,6 +222,7 @@ class PanneauPrincipalForm extends Component {
     }
 
     const renderForm = (formResults) => {
+      console.log("form", formResults)
       if(formResults != null && formResults.length > 0 ){
         return formResults.map((result, index) => {
           if(result.set_up.need_answer == true){
@@ -254,6 +263,7 @@ class PanneauPrincipalForm extends Component {
     }
 
 
+
     return (
       <div className="col-lg-12">
         <div className="flex space-between">
@@ -282,8 +292,9 @@ class PanneauPrincipalForm extends Component {
 
           <form onSubmit={this.props.handleSubmit(values => {
               setTimeout(()=> {this.onSubmit(values)}, 10)
+            // {setTimeout(()=> {renderForm(this.state.formResults)}, 10)}
             })}>
-            {renderForm(this.props.formResults)}
+            {renderForm(this.state.formResults)}
             <button
               id="btn-validation-infos"
               type="submit"
@@ -295,13 +306,14 @@ class PanneauPrincipalForm extends Component {
           <div className={`flex align-items-center margin-top-60 ${this.props.formulary_id === "add" ? "d-none" : ""}`}>
             <label className="custom-checkbox-form black font-14">Je certifie la véracité de mes réponses
               <input className="margin-right-15" type="checkbox" value={!this.state.certified} onClick={()=>{
+                this.checkInfos()
                 this.setState((prevState) => { return { certified: !prevState.certified}; });
               } }/>
               <span className="checkmark"></span>
             </label>
           </div>
-          { this.state.certified || this.state.infoIncomplete === 0 ? null :
-            <p className="margin-bottom-15 red font-14">Certaines questions sont sans réponses 😟</p>
+          {this.state.certified || this.state.infoIncomplete === 0 ? null :
+            <p className="margin-bottom-15 red font-14">{this.state.infoIncomplete === 1 ? `${this.state.infoIncomplete} question est sans réponse 😟` : `${this.state.infoIncomplete} questions sont sans réponses 😟` }</p>
           }
           <button
             className={`
