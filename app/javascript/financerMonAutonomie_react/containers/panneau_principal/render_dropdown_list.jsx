@@ -32,7 +32,7 @@ class RenderDropdownList extends Component {
             this.setState({ value })
             console.log(value)
             let answer
-            if (this.props.name === "lessor") {
+            if (this.props.name === "lessor" || this.props.name === "pension") {
               answer = value.text
             } else {
               answer = parseInt(value.value, 10)
