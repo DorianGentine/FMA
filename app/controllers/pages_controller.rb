@@ -5,6 +5,9 @@ class PagesController < ApplicationController
   def home
     @choices = FormularyChoice.new.set_collections_formulary
     @visitor = Visitor.find_by(user_ip: request.ip)
+    if @visitor.nil?
+      redirect_to root_path
+    end
     if @visitor.nil? || @visitor.formulary.nil?
       @formulary = Formulary.new
     else
