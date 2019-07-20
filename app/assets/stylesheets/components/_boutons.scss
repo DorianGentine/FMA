@@ -26,12 +26,11 @@
     background-color: $blue;
     color: white;
     border-radius: 3px;
-    border: 1px solid $blue;
     transition: 0.5s;
   }
   .btn-blue:hover{
-    color: $blue;
-    background-color: transparent;
+    color: white;
+    background-color: #2261BB;
   }
   @media screen and (max-width: 770px){
     .btn-blue{
