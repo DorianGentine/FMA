@@ -18,4 +18,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # project.link_to_advisor(advisor) unless project.in_relationship?(advisor)
     end
   end
+
+  protected
+
+  def after_update_path_for(resource)
+    edit_user_registration_path
+  end
 end

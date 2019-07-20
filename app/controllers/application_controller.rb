@@ -23,6 +23,12 @@ class ApplicationController < ActionController::Base
     user_path(resource_or_scope) || super
   end
 
+  def after_sign_out_path_for(resource_or_scope)
+    "/home"
+  end
+
+
+
   private
 
   def configure_permitted_parameters
