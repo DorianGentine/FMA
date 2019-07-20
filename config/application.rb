@@ -18,6 +18,9 @@ module Fma
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+      # test pour les pages erreurs
+    config.exceptions_app = self.routes
+
     config.active_job.queue_adapter = :sidekiq
 
     # Settings in config/environments/* take precedence over those specified here.
