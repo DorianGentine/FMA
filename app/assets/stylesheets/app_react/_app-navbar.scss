@@ -12,7 +12,7 @@
   overflow-y: auto;
   min-width: 86px;
   .active{
-    color: $blue;
+    color: $blue !important;
     width: 100%;
     position: relative;
   }

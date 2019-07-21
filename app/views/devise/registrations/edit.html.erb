@@ -1,35 +1,194 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div id="appfalse">
+  <div>
+    <!-- AppNavbar -->
+    <div>
+      <div style="height: 100vh; padding: 43px"></div>
+      <div class="app-navbar">
+        <a href="/home"><div class="logo-app"></div></a>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+        <a class="btn-app-navbar margin-top-60" href="/mon_espace/<%= @user.id %>/projet">
+          <i class="far fa-file-alt"></i>
+          <p>Projet</p>
+        </a>
+        <a class="btn-app-navbar margin-top-30 active" href="/mon_espace/<%= @user.id %>/compte/identite">
+          <i class="far fa-user"></i>
+          <p>Compte</p>
+        </a>
+        <a class="btn-app-navbar margin-top-30" href="/mon_espace/<%= @user.id %>/alertes/notifications">
+          <i class="far fa-bell"></i>
+          <p>Alertes</p>
+        </a>
+        <a class="btn-app-navbar margin-top-30" href="/mon_espace/<%= @user.id %>/a_propos/cgu_cgv">
+          <i class="fas fa-info-circle"></i>
+          <p>A propos</p>
+        </a>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+        <a href="/users/sign_out" rel="nofollow" data-method="delete" class="btn-app-navbar navbar-quit margin-top-30">
+          <i class="fas fa-door-open"></i>
+          <p>Quitter</p>
+        </a>
+      </div>
+    </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+    <!-- Volet -->
+    <div class="menu-principal">
+      <div>
+        <h2 class="text-align-center margin-bottom-60">Réglages du compte</h2>
+        <a class="volet-item-menu" href="/mon_espace/<%= @user.id %>/compte/identite">
+          Identité
+        </a>
+        <a class="volet-item-menu active" href="/users/edit">
+          Email & mot de passe
+        </a>
+        <!-- <a class="volet-item-menu" href="/mon_espace/<%= @user.id %>/compte/suppression">
+          Suppression du compte
+        </a> -->
+      </div>
+    </div>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+    <!-- Container -->
+    <div class="app-container container">
+      <!-- MenuProfil -->
+      <div>
+        <div class="relative col-lg-6 offset-lg-6 offset-sm-0" role="group">
+          <div
+            id="drop-navbar"
+            class="dropdown-toggle margin-bottom-15 flex justify-content-end align-items-center"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+            <p class="pointer text-align-right">Bonjour, <%= @user.first_name %> <%= @user.last_name %></p>
+            <div class="pointer margin-left-15">
+              <% if @user.avatar.present? %>
+                <div
+                  class="navbar-avatar no-margin margin-right-15"
+                  style="min-height: 35px; min-width: 35px; background-image: url(<%= @user.avatar %>);"
+                  >
+                </div>
+              <% else %>
+                <div
+                  class="navbar-avatar no-margin margin-right-15"
+                  style="height: 35px; width: 35px"
+                  ><%= @user.first_name[0] %><%= @user.last_name[0] %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="dropdown-menu" aria-labelledby="drop-navbar">
+            <a href="/mon_espace/<%= @user.id %>/compte/identite">Mon compte</a>
+            <a href="/users/sign_out" rel="nofollow" data-method="delete">Se déconnecter</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="white-box flex flex-wrap">
+            <h4 class="col-lg-12">Modification de votre email</h4>
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "col-lg-12" }) do |f| %>
+              <div class="margin-top-15 form-group flex space-between align-items-baseline">
+                <label class="font-14 min-width-25 no-margin">Email</label>
+                <div class="flex-grow-1">
+                  <%= f.input :email, required: true, autofocus: true, label: false, wrapper: false %>
+                </div>
+              </div>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+              <% end %>
+              <div class="margin-top-15 form-group flex space-between align-items-baseline">
+                <label class="font-14 min-width-25 no-margin">Mot de passe actuel</label>
+                <div class="flex-grow-1">
+                  <%= f.input :current_password,
+                              hint: "Veuillez renseigner votre mot de passe actuel pour enregistrer vos changements",
+                              required: true,
+                              input_html: { autocomplete: "current-password", class: "current-password" },
+                              label: false,
+                              wrapper: false %>
+                </div>
+              </div>
+
+              <%= f.button :submit, "Enregistrer", class: "float-right btn-blue", id: "saveMail", disabled: true %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="white-box flex flex-wrap">
+            <h4 class="col-lg-12">Modification de votre mot de passe</h4>
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "col-lg-12" }) do |f| %>
+              <div class="margin-top-15 form-group flex space-between align-items-baseline">
+                <label class="font-14 min-width-25 no-margin">Nouveau mot de passe</label>
+                <div class="flex-grow-1">
+                  <%= f.input :password,
+                              hint: "Laisser vide si vous souhaitez conserver votre mot de passe",
+                              required: true,
+                              input_html: { autocomplete: "new-password" },
+                              label: false,
+                              wrapper: false %>
+                </div>
+              </div>
+              <div class="margin-top-15 form-group flex space-between align-items-baseline">
+                <label class="font-14 min-width-25 no-margin">Confirmation</label>
+                <div class="flex-grow-1">
+                  <%= f.input :password_confirmation,
+                              required: true,
+                              input_html: { autocomplete: "new-password" },
+                              label: false,
+                              wrapper: false %>
+                </div>
+              </div>
+              <div class="margin-top-15 form-group flex space-between align-items-baseline">
+                <label class="font-14 min-width-25 no-margin">Mot de passe actuel</label>
+                <div class="flex-grow-1">
+                  <%= f.input :current_password,
+                              hint: "Veuillez renseigner votre mot de passe actuel pour enregistrer vos changements",
+                              required: true,
+                              input_html: { autocomplete: "current-password", class: "current-password" },
+                              label: false,
+                              wrapper: false %>
+                </div>
+              </div>
+
+              <%= f.button :submit, "Enregistrer", class: "float-right btn-blue", id: "saveMdp", disabled: true %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="white-box flex flex-wrap">
+            <h4 class="col-lg-12 red">Suppression de votre compte</h4>
+            <%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Êtes-vous sûr ?" }, method: :delete, class: "col-lg-12" %>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
+<script>
+  const saveMail = document.getElementById('saveMail')
+  const saveMdp = document.getElementById('saveMdp')
+  const passwords = document.getElementsByClassName('current-password')
+  passwords[0].addEventListener("blur", ()=>{
+    if(passwords[0].value != ""){
+      saveMail.disabled = false
+    }else if(passwords[0].value === ""){
+      saveMail.disabled = true
+    }
+  })
+  passwords[1].addEventListener("blur", ()=>{
+    if(passwords[1].value != ""){
+      saveMdp.disabled = false
+    }else if(passwords[1].value === ""){
+      saveMdp.disabled = true
+    }
+  })
 
-<h3>Cancel my account</h3>
+</script>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+
+
+
+
+
+
