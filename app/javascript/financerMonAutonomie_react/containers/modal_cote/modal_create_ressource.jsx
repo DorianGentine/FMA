@@ -16,23 +16,31 @@ class ModalCreateRessource extends Component {
     };
   }
 
-  onSubmit = (oldValues) => {
+  onSubmit = async (oldValues) => {
     let url = `/api/v1/ressources`
     let method = "POST"
     const docs = this.state.docs
 
-    let values = {
-      title: oldValues.title,
-      description: oldValues.description,
-      formulary: docs.formulary,
-      notice: docs.notice,
-      model_1: docs.model_1,
-      model_2: docs.model_2,
-    }
-    console.log("VALUES", values)
+    let formData = new FormData();
+    formData.append('ressource[title]', oldValues.title);
+    formData.append('ressource[description]', oldValues.description);
+    formData.append('ressource[formulary]', docs.formulary);
+    formData.append('ressource[notice]', docs.notice);
+    formData.append('ressource[model_1]', docs.model_1);
+    formData.append('ressource[model_2]', docs.model_2);
 
-    this.props.fetchPostCompte(url, values, method, ()=>{this.props.fetchRessources(url)})
-    this.props.closeModal()
+    let response = await fetch(url, {
+      credentials: 'same-origin',
+      headers: {},
+      method: method,
+      body: formData,
+    })
+    console.log(response)
+    if(response.ok){
+      response = await response.json();
+      this.props.fetchRessources(url)
+      this.props.closeModal()
+    }
   }
 
   renderField = ({ input, type, label }) => (
@@ -47,7 +55,7 @@ class ModalCreateRessource extends Component {
     const renderDropZone = (name) => {
       let nameFichier
 
-      const sendDocToState = (formPayLoad) => {
+      const sendDocToState = async (formPayLoad) => {
         let updatedDocs
         if( name === "formulary"){
           updatedDocs = Object.assign({}, this.state.docs, { formulary: formPayLoad });
@@ -65,7 +73,6 @@ class ModalCreateRessource extends Component {
       }
 
       const readFile = (files) => {
-        console.log(files)
         if (files && files[0]) {
           nameFichier = files[0].name
           document.getElementById(`creation_ressource_${name}`).innerText = nameFichier
