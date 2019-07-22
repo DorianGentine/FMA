@@ -5,12 +5,15 @@ class SuggestionKit
     @solution_ids = @project.solutions.map { |s| s.id }
     @financers_name = SetSolutions.new.financers(@project)
     @acteurs_name = SetSolutions.new.acteurs(@project)
+    p "solution_ids is #{@solution_ids}"
+    p "financers_name is #{@financers_name}"
+    p "acteurs_name is #{@acteurs_name}"
   end
 
   def call
     # J'ai besoin: Solutions / Nom des Financeurs / Nom des Acteurs
     Ressource.all.each do |suggestion|
-      if is_a_match?(suggestion) && suggestion[:request].nil?
+      if is_a_match?(suggestion) && suggestion.request.nil?
         kit = Kit.create(project: @project, ressource: suggestion )
       end
     end

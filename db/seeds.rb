@@ -1235,7 +1235,7 @@ ressource_22 = Ressource.create(title: "Mutuelle_MUTUELLE FAMILIALE", descriptio
 ressource_22.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160053/ressources/Mutuelle/MUTUELLE_FAMILIALE/Notice_MUTUELLE_FAMILIALE_calbqv.pdf"
 ressource_22.remote_formulary_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160052/ressources/Mutuelle/MUTUELLE_FAMILIALE/Formulaire_MUTUELLE_FAMILIALE_bkv6dd.pdf"
 ressource_22.save
-ressource_23 = Ressource.create(title: "Mutuelle_MALAKOFF_MEDERIC", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "MEDERIC")
+ressource_23 = Ressource.create(title: "Mutuelle_MALAKOFF_MEDERIC", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "MALAKOFF MEDERIC")
 ressource_23.remote_notice_url = "https://res.cloudinary.com/financermonautonomie/image/upload/v1560160057/ressources/Mutuelle/Notice_MALAKOFF_MEDERIC_mutuelle_mw3sru.pdf"
 ressource_23.save
 ressource_24 = Ressource.create(title: "Mutuelle_APIVIA", description: "Retrouvez, ici, les ressources pour conduire une demande de financement auprès d'une mutuelle", financer: "MUTUELLE", acteur: "APIVIA")
