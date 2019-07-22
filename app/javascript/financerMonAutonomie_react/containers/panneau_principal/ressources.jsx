@@ -48,9 +48,9 @@ class Ressources extends Component {
       <div className="col-lg-12">
         <div className="white-box flex flex-wrap align-items-baseline">
           <h4 className="margin-right-15">Liste des ressources</h4>
-          <p className="bold flex-grow-1">{`${ressources ? ressources.length : 0} ressources`}</p>
+          <p className="flex-grow-1">{`${ressources ? ressources.length : 0} ressources`}</p>
           {statut === "conseiller" ? null :
-            <p className="text-align-right font-12 pointer"
+            <p className="text-align-right font-12 pointer create-doc"
               onClick={this.props.showCreateRessource}>
               Créer une ressource</p>
           }

@@ -85,7 +85,7 @@ class AppelsProgrammes extends Component {
       <div className="col-lg-12">
         <div className="white-box flex flex-wrap align-items-center">
           <h4 className="padding-horizontal-15 no-margin">Appels programmés</h4>
-          <p className="blue padding-horizontal-15">
+          <p className="gray padding-horizontal-15">
             {`${clientsStep4} ${clientsStep4 < 2 ? "appel" : "appels"}`}
           </p>
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>

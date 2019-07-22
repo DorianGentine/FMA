@@ -35,7 +35,7 @@ class Financers extends Component {
       <div className="col-lg-6">
         <div className="white-box flex flex-wrap align-items-center">
           <h4 className="padding-horizontal-15 no-margin">Les financeurs</h4>
-          <p className="blue font-12 padding-horizontal-15">{`${financers ? financers.financers.length : 0} financeurs`}</p>
+          <p className="gray font-12 padding-horizontal-15">{`${financers ? financers.financers.length : 0} financeurs`}</p>
           <div className="scroll col-lg-12 margin-top-15" style={{ height: "145px" }}>
             {financers != null ? renderFinanceurs() : <h2>Chargement...</h2> }
           </div>

@@ -5,10 +5,47 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 100px;
+  padding: 60px 100px;
   .input-wth-icon{
     width: 20%;
   }
+
+  a {
+  position: relative;
+  transition: .3s all;
+  }
+  a:hover {
+  color: #A7B2C6 !important;
+  }
+  a:hover::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #A7B2C6 !important;
+  }
+
+  .btn-gris{
+    cursor: pointer;
+    padding: 10px 30px;
+    background-color: $gray-100;
+    color: $dark-blue;
+    border-radius: 3px;
+    border: 0;
+    transition: 0.5s;
+  }
+  .btn-gris:hover{
+    color: rgba(42,54,84,.8) !important;
+    background-color: rgba(250,252,255,.8);
+  }
+  .btn-gris:hover::after{
+    content: '';
+    display: none;
+  }
+
 }
 
 .inscription-newsletter-padding{

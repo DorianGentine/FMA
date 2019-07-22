@@ -10,14 +10,13 @@
   }
 
   .link-avem{
-    color: #4ECCA3;
-    border-radius: 3px;
-    padding: 3px 6px;
+    color: #2675e5;
+    padding: 3px 0px;
   }
   .link-avem:hover{
-    color: white !important;
-    background-color: #4ECCA3;
+    color: darken($blue, 15%) !important;
   }
+
 
 // btn-blue
   .btn-blue{
@@ -27,9 +26,10 @@
     color: white;
     border-radius: 3px;
     transition: 0.5s;
+    border: 0;
   }
   .btn-blue:hover{
-    color: white;
+    color: white!important;
     background-color: #2261BB;
   }
   @media screen and (max-width: 770px){
@@ -51,12 +51,12 @@
     background-color: $gray-100;
     color: $dark-blue;
     border-radius: 3px;
-    border: 1px solid $gray-100;
+    border: 0;
     transition: 0.5s;
   }
   .btn-gris:hover{
-    color: $gray-100 !important;
-    background-color: transparent;
+    color: rgba(42,54,84,.8) !important;
+    background-color: rgba(250,252,255,.8);
   }
   @media screen and (max-width: 770px){
     .btn-gris{
