@@ -146,7 +146,7 @@ class PanneauPrincipalForm extends Component {
   )
 
   checkInfos = async () => {
-    this.setState({ infoIncomplete: 0 })
+    this.setState({ infoIncomplete: 1 })
     const formulary_ids = this.props.formulary_ids
     for(let i = 0; i < formulary_ids.length; i++ ){
       let response = await fetch(`/api/v1/formularies/${formulary_ids[i]}/edit`)
@@ -154,7 +154,7 @@ class PanneauPrincipalForm extends Component {
       if(response.ok){
         response = await response.json()
         for(let j = 0; j < response.length; j++ ){
-          if(response[j].answer === null){
+          if(response[j].answer === null || response[j].answer === ""){
             this.setState(prevState => ({ infoIncomplete: prevState.infoIncomplete + 1 }))
           }
         }
@@ -162,6 +162,7 @@ class PanneauPrincipalForm extends Component {
         console.error(`fonction checkInfos ne passe pas pour le formulary_id ${formulary_ids[i]}`)
       }
     }
+    this.setState(prevState => ({ infoIncomplete: prevState.infoIncomplete - 1 }))
   }
 
   render(){
