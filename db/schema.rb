@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 2019_06_29_082018) do
     t.string "model_2"
     t.string "notice"
     t.string "formulary"
-    t.boolean "request", default: false
+    t.integer "request"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

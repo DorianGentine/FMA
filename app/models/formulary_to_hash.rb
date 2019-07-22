@@ -40,7 +40,7 @@ class FormularyToHash
     Formulary.column_names.map do |column_name|
       question = FormularyChatbot.new().questions[column_name.to_sym]
       if question.present?
-        answer = set_answer_for_espace(@form, column_name)
+        answer = set_answer_for_espace(@form, column_name, nil)
         if answer.present?
           set = {
             question: question,
@@ -114,7 +114,7 @@ class FormularyToHash
           form.send(column_name)
         end
       else
-        if type == "select" && column_name != "pension"
+        if !type.nil? && type == "select" && column_name != "pension"
           {
             text: FormularyChoice.new.set_collections_formulary[column_name.to_sym][form.send(column_name)].first,
             value: form.send(column_name)

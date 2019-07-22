@@ -91,6 +91,7 @@ class PanneauPrincipalCompte extends Component {
             console.log(files[0])
             let formPayLoad = new FormData();
             formPayLoad.append('avatar', files[0]);
+            console.log("Avatar is ", formPayLoad)
             sendImageToController(formPayLoad)
           }
         }
