@@ -107,7 +107,7 @@ p "Create Solutions"
   Answer.create(solution: solution_2, content: "Pour plus d'informations, vous pourriez :
             Vous rendre sur le site internet de l'ANAH : www.anah.fr
             Contacter téléphoniquement l'ANAH au 0808 800 700" )
-   Answer.create(solution: solution_2, content: "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
+  Answer.create(solution: solution_2, content: "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
               Votre revenu annuel fiscal de référence fait parti des revenus considérés comme 'très modestes' par l'ANAH. En prenant en compte le fait que vous viviez seul(e), le revenu annuel fiscal de référence doit être ainsi compris entre XXX et XXX euros.
               Exemple 1 : vos devis relatifs au projet s'élèvent à 1000 euros. En cas d'éligibilité avérée, la subvention de l'ANAH pourrait atteindre 500 euros.
@@ -125,7 +125,7 @@ p "Create Solutions"
   Answer.create(solution: solution_3, content: "Pour plus d'informations, vous pourriez :
             Vous rendre sur le site internet de l'ANAH : www.anah.fr
             Contacter téléphoniquement l'ANAH au 0808 800 700" )
-   Answer.create(solution: solution_3, content: "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
+  Answer.create(solution: solution_3, content: "Vous pourriez bénéficier d'une subvention de l'Agence Nationale de l'Amélioration de l'Habitat (ANAH).
               Elle pourrait correspondre à 50 % du montant des devis relatifs, dans le limite de 10 000 euros.
               Votre revenu annuel fiscal de référence fait parti des revenus considérés comme 'très modestes' par l'ANAH. En prenant en compte le fait que vous viviez seul(e), le annuel revenu fiscal de référence doit être ainsi compris entre XXX et XXX euros. Le revenu annuel fiscal de référence du propriétaire du logement a été vérifié indépendamment, comme cela devrait se dérouler.
               Exemple 1 : vos devis relatifs au projet s'élèvent à 1000 euros. En cas d'éligibilité avérée, la subvention de l'ANAH pourrait atteindre 500 euros.

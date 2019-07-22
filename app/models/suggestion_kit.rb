@@ -10,8 +10,7 @@ class SuggestionKit
   def call
     # J'ai besoin: Solutions / Nom des Financeurs / Nom des Acteurs
     Ressource.all.each do |suggestion|
-      if is_a_match?(suggestion)
-        p "OKKKKKK" if Kit.where(ressource: suggestion).count > 0
+      if is_a_match?(suggestion) && suggestion.request.nil?
         kit = Kit.create(project: @project, ressource: suggestion )
       end
     end
@@ -24,7 +23,6 @@ class SuggestionKit
     if suggestion[:solution_ids].present?
       sugg = suggestion[:solution_ids].split(",").map { |s| s.to_i }
       @solution_ids.each do |solution_id|
-        p "OKKKKKK" if Kit.where(ressource: suggestion).count > 0
         solutions << "ok" if sugg.include?(solution_id)
       end
       solution = solutions.uniq.to_s
@@ -37,9 +35,6 @@ class SuggestionKit
       acteur = @acteurs_name.include?(suggestion[:acteur]) ? "ok" : "not"
     end
     if solution == "not" || financer == "not" || acteur == "not"
-      return false
-    elsif suggestion[:request].present?
-      p "NONNONNONO"
       return false
     else
       return true
