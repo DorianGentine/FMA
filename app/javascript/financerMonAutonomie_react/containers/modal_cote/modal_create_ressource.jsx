@@ -16,6 +16,8 @@ class ModalCreateRessource extends Component {
     };
   }
 
+
+
   onSubmit = (oldValues) => {
     let url = `/api/v1/ressources`
     let method = "POST"
@@ -30,10 +32,24 @@ class ModalCreateRessource extends Component {
       model_2: docs.model_2,
     }
     console.log("VALUES", values)
+    console.log("docs", docs)
 
-    this.props.fetchPostCompte(url, values, method, ()=>{this.props.fetchRessources(url)})
+
+      let ressourceFormData = new FormData();
+      ressourceFormData.append('ressource[title]', oldValues.title);
+      ressourceFormData.append('ressource[description]', oldValues.description);
+      ressourceFormData.append('ressource[description]', docs.formulary);
+      ressourceFormData.append('ressource[description]', docs.notice);
+      console.log('=> ressourceFormData is', ressourceFormData)
+
+
+
+    this.props.fetchPostCompte(url, ressourceFormData, method, ()=>{this.props.fetchRessources(url)})
     this.props.closeModal()
   }
+
+
+
 
   renderField = ({ input, type, label }) => (
     <input {...input}
