@@ -10,7 +10,7 @@ class CreateRessources < ActiveRecord::Migration[5.2]
       t.string :model_2
       t.string :notice
       t.string :formulary
-      t.boolean :request, :default => false
+      t.integer :request
       t.timestamps
     end
   end
