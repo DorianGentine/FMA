@@ -6,10 +6,32 @@
       <div class="app-navbar">
         <a href="/home"><div class="logo-app"></div></a>
 
-        <a class="btn-app-navbar margin-top-60" href="/mon_espace/<%= @user.id %>/projet">
-          <i class="far fa-file-alt"></i>
-          <p>Projet</p>
-        </a>
+        <% if @user.client %>
+          <a class="btn-app-navbar margin-top-60" href="/mon_espace/<%= @user.id %>/projet">
+            <i class="far fa-file-alt"></i>
+            <p>Projet</p>
+          </a>
+        <% else %>
+          <a class="btn-app-navbar margin-top-60" href="/mon_espace/<%= @user.id %>/bureau">
+            <i class="far fa-file-alt"></i>
+            <p>Bureau</p>
+          </a>
+          <a class="btn-app-navbar margin-top-30" href="/mon_espace/<%= @user.id %>/clients">
+            <i class="far fa-folder"></i>
+            <p>Clients</p>
+          </a>
+          <% if @user.admin %>
+            <a class="btn-app-navbar margin-top-30" href="/mon_espace/<%= @user.id %>/conseillers">
+              <i class="fas fa-users"></i>
+              <p>Conseillers</p>
+            </a>
+          <% end %>
+          <a class="btn-app-navbar margin-top-30" href="/mon_espace/<%= @user.id %>/demandes">
+            <i class="fas fa-question"></i>
+            <p>Demandes</p>
+          </a>
+        <% end %>
+
         <a class="btn-app-navbar margin-top-30 active" href="/mon_espace/<%= @user.id %>/compte/identite">
           <i class="far fa-user"></i>
           <p>Compte</p>
@@ -59,10 +81,10 @@
             aria-expanded="false">
             <p class="pointer text-align-right">Bonjour, <%= @user.first_name %> <%= @user.last_name %></p>
             <div class="pointer margin-left-15">
-              <% if @user.avatar.present? %>
+              <% if @user.avatar? %>
                 <div
                   class="navbar-avatar no-margin margin-right-15"
-                  style="min-height: 35px; min-width: 35px; background-image: url(<%= @user.avatar %>);"
+                  style="min-height: 35px; min-width: 35px; background-image: url(<%= @user.avatar.url(:bright_face) %>);"
                   >
                 </div>
               <% else %>

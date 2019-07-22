@@ -47,7 +47,6 @@ class ModalDemandeAnswer extends Component {
       method: method,
       body: formData,
     })
-    console.log(response)
     if(response.ok){
       response = await response.json();
       this.props.fetchRessources(url)
