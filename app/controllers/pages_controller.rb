@@ -58,8 +58,9 @@ class PagesController < ApplicationController
     if app.present?
       @project.appointment = app
       @project.save
+      UserMailer.with(user: User.find(3), project: User.find(3).project).appointment.deliver_now
       UserMailer.with(user: user, project: @project).appointment.deliver_now
-      UserMailer.with(user: User.find(1), project: @project).appointment.deliver_now
+      UserMailer.with(user: @project.is_his_advisor, project: @project).appointment.deliver_now
     end
   end
 end
