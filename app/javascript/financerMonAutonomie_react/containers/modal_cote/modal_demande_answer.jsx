@@ -39,7 +39,7 @@ class ModalDemandeAnswer extends Component {
     formData.append('ressource[notice]', docs.notice);
     formData.append('ressource[model_1]', docs.model_1);
     formData.append('ressource[model_2]', docs.model_2);
-    formData.append('ressource[request]', parseInt(this.props.modal_selected.demande.id, 10);
+    formData.append('ressource[request]', parseInt(this.props.modal_selected.demande.id, 10));
 
     let response = await fetch(url, {
       credentials: 'same-origin',

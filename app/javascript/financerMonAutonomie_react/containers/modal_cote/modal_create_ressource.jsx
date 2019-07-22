@@ -17,12 +17,7 @@ class ModalCreateRessource extends Component {
   }
 
 
-
-
-  onSubmit = (oldValues) => {
-
   onSubmit = async (oldValues) => {
-
     let url = `/api/v1/ressources`
     let method = "POST"
     const docs = this.state.docs

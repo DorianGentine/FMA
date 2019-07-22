@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_033600) do
+ActiveRecord::Schema.define(version: 2019_06_29_082018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2019_07_22_033600) do
     t.boolean "primary", default: false
     t.bigint "visitor_id"
     t.bigint "project_id"
-    t.string "old_zip_code"
     t.string "address"
     t.float "latitude"
     t.float "longitude"
@@ -196,7 +195,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_033600) do
     t.string "model_2"
     t.string "notice"
     t.string "formulary"
-    t.boolean "request", default: false
+    t.integer "request"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -229,7 +228,6 @@ ActiveRecord::Schema.define(version: 2019_07_22_033600) do
     t.boolean "advisor", default: false
     t.boolean "client", default: false
     t.boolean "admin", default: false
-    t.boolean "archived", default: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
