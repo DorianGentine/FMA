@@ -10,7 +10,7 @@ class SuggestionKit
   def call
     # J'ai besoin: Solutions / Nom des Financeurs / Nom des Acteurs
     Ressource.all.each do |suggestion|
-      if is_a_match?(suggestion) && suggestion.request.nil?
+      if is_a_match?(suggestion) && suggestion[:request].nil?
         kit = Kit.create(project: @project, ressource: suggestion )
       end
     end
