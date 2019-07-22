@@ -1,24 +1,47 @@
-<h2>Change your password</h2>
+<img class="absolute" style="top: 0; right: 0; width: 50vw;" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1559381956/Illu%20HP/BG_djr1o2.svg" alt="">
+<%= render "shared/navbar" %>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+<div class="container">
 
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
+  <!-- Questionnaire -->
+  <div class="row">
+    <div class="col-lg-5 col-xs-12">
 
-  <div class="form-inputs">
-    <%= f.input :password,
-                label: "New password",
-                required: true,
-                autofocus: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+      <h1 class="no-margin">Changer votre mot de passe</h1>
+      <p class="margin-bottom-30">Renseignez votre nouveau mot de passe puis confirmez le une deuxième fois.</p>
+
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+
+          <%= f.input :reset_password_token, as: :hidden %>
+          <%= f.full_error :reset_password_token %>
+
+          <div class="form-inputs">
+            <%= f.input :password,
+                        label: "Nouveau mot de passe",
+                        required: true,
+                        autofocus: true,
+                        hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation, label: "Confirmer votre mot de passe", required: true %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Confirmer", class: "btn-blue w-100" %>
+          </div>
+        <% end %>
+        <p class="margin-top-15">Vous avez un compte ? <%= link_to "Connectez-vous ici", new_session_path(resource_name) %>.</p>
+
+
+
+
+
+
+    </div>
+    <div class="image-connexion col-lg-7 d-none d-sm-block"></div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+
+
