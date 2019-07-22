@@ -72,8 +72,15 @@ export function displayCalendly(stateCalendly) {
     payload: toggleCalendly
   };}
 
-export function fetchAPI(url) {
-  const promise = fetch(url).then(r => r.json());
+export async function fetchAPI(url) {
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  }else{
+    console.error('fetchAPI passe pas : ', response)
+    promise = null
+  }
 
   return {
     type: FETCH_API,
@@ -86,7 +93,7 @@ export async function fetchClients(url) {
   if(response.ok){
     promise = await response.json();
   } else {
-    console.error('fetchClients passe pas : ', response)
+    console.error('fetchClients ne passe pas : ', response)
     promise = null
   }
 
@@ -101,7 +108,7 @@ export async function fetchConseillers(url) {
   if(response.ok){
     promise = await response.json();
   } else {
-    console.error('fetchClients passe pas : ', response)
+    console.error('fetchConseillers ne passe pas : ', response)
     promise = null
   }
 
@@ -110,24 +117,45 @@ export async function fetchConseillers(url) {
     payload: promise
   };}
 
-export function fetchCurrentApi(url) {
-  const promise = fetch(url).then(r => r.json());
+export async function fetchCurrentApi(url) {
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  } else {
+    console.error('fetchCurrentApi ne passe pas : ', response)
+    promise = null
+  }
 
   return {
     type: FETCH_CURRENT_API,
     payload: promise
   };}
 
-export function fetchFinancers(url) {
-  const promise = fetch(url).then(r => r.json());
+export async function fetchFinancers(url) {
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  } else {
+    console.error('fetchFinancers ne passe pas : ', response)
+    promise = null
+  }
 
   return {
     type: FETCH_FINANCERS,
     payload: promise
   };}
 
-export function fetchFORM(url) {
-  const promise = fetch(url).then(r => r.json());
+export async function fetchFORM(url) {
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  } else {
+    console.error('fetchForm ne passe pas : ', response)
+    promise = null
+  }
 
   return {
     type: FETCH_FORM,
@@ -197,9 +225,15 @@ export function fetchPostForm(url, body, method) {
     payload: request
   };}
 
-export function fetchProjet(url) {
-  const promise = fetch(url)
-  .then(r => r.json())
+export async function fetchProjet(url) {
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  } else {
+    console.error('fetchProjet ne passe pas : ', response)
+    promise = null
+  }
 
   return {
     type: FETCH_PROJET,
@@ -221,8 +255,15 @@ export async function fetchRatings(projectId) {
     payload: promise
   };}
 
-export function fetchRessources(url) {
-  const promise = fetch(url).then(r => r.json());
+export async function fetchRessources(url) {
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  } else {
+    console.error('fetchProjet ne passe pas : ', response)
+    promise = null
+  }
 
   return {
     type: FETCH_RESSOURCES,
