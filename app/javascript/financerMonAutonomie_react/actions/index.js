@@ -134,8 +134,15 @@ export function fetchFORM(url) {
     payload: promise
   };}
 
-export function fetchModalReponses(url) {
-  const promise = fetch(url).then(r => r.json());
+export async function fetchModalReponses(url) {
+  let response = await fetch(url)
+  let promise
+  if(response.ok){
+    promise = await response.json();
+  }else{
+    console.error('fetchModalReponses ne passe pas : ', response)
+    promise = null
+  }
 
   return {
     type: FETCH_MODAL_REPONSES,
