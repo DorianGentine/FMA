@@ -23,6 +23,7 @@ class SuggestionKit
     if suggestion[:solution_ids].present?
       sugg = suggestion[:solution_ids].split(",").map { |s| s.to_i }
       @solution_ids.each do |solution_id|
+        "YEAhIS #{suggestion.id}" if sugg.include?(solution_id)
         solutions << "ok" if sugg.include?(solution_id)
       end
       solution = solutions.uniq.to_s

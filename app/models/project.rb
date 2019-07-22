@@ -79,6 +79,7 @@ class Project < ApplicationRecord
       self.progression!
       Notification.create(title:"a été appelé", date:Time.now, project: self)
       SuggestionKit.new(self).call
+
       UserMailer.with(user: self.his_client).after_appointment.deliver_now
     elsif self.progression?
       self.evaluation!
