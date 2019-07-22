@@ -51,6 +51,7 @@ class PanneauPrincipalForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.formulary_id === "add" && nextProps.formulary_id != this.props.formulary_id){
+      this.setState({ formResults:  null })
       this.props.fetchFORM(`/api/v1/projects/${this.props.project_id}/formularies/new`)
     }else if (nextProps.formulary_id != this.props.formulary_id) {
       this.setState({ formResults:  null })
