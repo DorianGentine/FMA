@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, initialize, change as changeFieldValue } from 'redux-form';
 import Dropzone from 'react-dropzone'
 
-import { closeModal, fetchPostCompte } from '../../actions';
+import { closeModal, fetchPostCompte, fetchRessources } from '../../actions';
 import { postedAgo } from "../../../components/render_date"
 
 class ModalDemandeAnswer extends Component {
@@ -27,24 +27,32 @@ class ModalDemandeAnswer extends Component {
     )
   }
 
-  onSubmit = (oldValues) => {
+  onSubmit = async (oldValues) => {
     let url = `/api/v1/ressources`
     let method = "POST"
     const docs = this.state.docs
 
-    const values = {
-      project_id: this.props.modal_selected.infoProject.project_id,
-      title: oldValues.title,
-      message: oldValues.message,
-      formulary: docs.formulary,
-      notice: docs.notice,
-      model_1: docs.model_1,
-      model_2: docs.model_2,
-    }
-    console.log("values", values)
+    let formData = new FormData();
+    formData.append('ressource[title]', oldValues.title);
+    formData.append('ressource[description]', oldValues.description);
+    formData.append('ressource[formulary]', docs.formulary);
+    formData.append('ressource[notice]', docs.notice);
+    formData.append('ressource[model_1]', docs.model_1);
+    formData.append('ressource[model_2]', docs.model_2);
+    formData.append('ressource[request]', this.props.modal_selected.demande.id);
 
-    this.props.fetchPostCompte(url, values, method, ()=>{})
-    this.props.closeModal()
+    let response = await fetch(url, {
+      credentials: 'same-origin',
+      headers: {},
+      method: method,
+      body: formData,
+    })
+    console.log(response)
+    if(response.ok){
+      response = await response.json();
+      this.props.fetchRessources(url)
+      this.props.closeModal()
+    }
   }
 
   render(){
@@ -120,7 +128,7 @@ class ModalDemandeAnswer extends Component {
 
           <p className="black font-14 margin-bottom-15 col-12">Nom du package</p>
           <Field
-            name="titre"
+            name="title"
             type="text"
             component={this.renderField}
           />
@@ -160,7 +168,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModal, fetchPostCompte }, dispatch);
+  return bindActionCreators({ closeModal, fetchPostCompte, fetchRessources }, dispatch);
 }
 
 export default reduxForm({ form: 'demande_answer', })(
