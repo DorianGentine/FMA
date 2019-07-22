@@ -25,9 +25,14 @@ class UserMailer < ApplicationMailer
   def appointment
     @user = params[:user]
     @project = params[:project]
-    @client = @project.his_client
+    if @project.his_client.id == @user.id
+      @client = @project.is_his_advisor
+    else
+      @client = @project.his_client
+    end
     mail(to: @user.email, subject: "Votre entretien")
   end
+
 
   def new_message
     @user = params[:user]

@@ -15,18 +15,11 @@ class Api::V1::RessourcesController < Api::V1::BaseController
   end
 
   def create
-    p "//// Params is #{params}"
     ressource = Ressource.new(ressource_params)
-    if ressource.notice.present? || ressource.formulary.present? || ressource.model_2.present? || ressource.model_1.present?
-      if ressource.save
-        if ressource.request.present?
-          req = Request.find(ressource.request.to_i)
-          kit = Kit.create(project: req.project, ressource: ressource )
-        end
-        render json: ressource
-      else
-        render_error
-      end
+    if ressource.save
+      render json: ressource
+    else
+      render_error
     end
     authorize ressource
   end
