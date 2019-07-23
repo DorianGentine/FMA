@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 
-import { selectClients } from '../actions';
+import { selectClients, menuMobileOpened } from '../actions';
 
 import renderLogo from "../../components/render_logo"
 
@@ -136,22 +137,42 @@ class MenuProfil extends Component {
 
     return (
       <div className={showLeftSide ? 'flex bordure-bas-300' : "" }>
-        {showLeftSide ? renderFiltres() : null}
-        <div className={`relative col-lg-6 ${showLeftSide ? "margin-left-30" : "offset-lg-6 offset-sm-0"}`} role="group">
-          <div
-            id="drop-navbar"
-            className="dropdown-toggle margin-bottom-15 flex justify-content-end align-items-center"
-            data-toggle={ this.props.otherUser ? null : "dropdown" } // désactive bouton si conseiller connecté
-            aria-haspopup="true"
-            aria-expanded="false">
-            <p className={`${ this.props.otherUser ? "not-allowed" : "pointer" } text-align-right`}>Bonjour, {user.first_name} {user.last_name}</p>
-            <div className={`${ this.props.otherUser ? "not-allowed" : "pointer" } margin-left-15`}>{renderLogo(user)}</div>
+        <MediaQuery minDeviceWidth={850}>
+          {showLeftSide ? renderFiltres() : null}
+          <div className={`relative col-lg-6 ${showLeftSide ? "margin-left-30" : "offset-lg-6 offset-sm-0"}`} role="group">
+            <div
+              id="drop-navbar"
+              className="dropdown-toggle margin-bottom-15 flex justify-content-end align-items-center"
+              data-toggle={ this.props.otherUser ? null : "dropdown" } // désactive bouton si conseiller connecté
+              aria-haspopup="true"
+              aria-expanded="false">
+                <p className={`${ this.props.otherUser ? "not-allowed" : "pointer" } text-align-right`}>Bonjour, {user.first_name} {user.last_name}</p>
+                <div className={`${ this.props.otherUser ? "not-allowed" : "pointer" } margin-left-15`}>{renderLogo(user)}</div>
+            </div>
+            <div className="dropdown-menu" aria-labelledby="drop-navbar">
+              <Link to={`/mon_espace/${this.props.current_user_id}/compte/identite`}>Mon compte</Link>
+              <a href="/users/sign_out" rel="nofollow" data-method="delete">Se déconnecter</a>
+            </div>
           </div>
-          <div className="dropdown-menu" aria-labelledby="drop-navbar">
-            <Link to={`/mon_espace/${this.props.current_user_id}/compte/identite`}>Mon compte</Link>
-            <a href="/users/sign_out" rel="nofollow" data-method="delete">Se déconnecter</a>
+        </MediaQuery>
+        <MediaQuery maxDeviceWidth={850}>
+          <div className="flex space-between margin-bottom-15">
+            <div className="logo-app" onClick={()=>{this.props.menuMobileOpened(true)}}></div>
+            <div
+              id="drop-navbar"
+              className="dropdown-toggle flex align-items-center"
+              data-toggle={ this.props.otherUser ? null : "dropdown" } // désactive bouton si conseiller connecté
+              aria-haspopup="true"
+              aria-expanded="false">
+                <div className={`${ this.props.otherUser ? "not-allowed" : "pointer" } margin-left-15`}>{renderLogo(user)}</div>
+            </div>
+            <div className="dropdown-menu" aria-labelledby="drop-navbar">
+              <p onClick={()=>{this.props.menuMobileOpened(true)}}>Ouvrir le menu</p>
+              <Link to={`/mon_espace/${this.props.current_user_id}/compte/identite`}>Mon compte</Link>
+              <a href="/users/sign_out" rel="nofollow" data-method="delete">Se déconnecter</a>
+            </div>
           </div>
-        </div>
+        </MediaQuery>
       </div>
     );
   }
@@ -172,7 +193,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectClients }, dispatch);
+  return bindActionCreators({ selectClients, menuMobileOpened }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuProfil);

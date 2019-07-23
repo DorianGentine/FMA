@@ -109,6 +109,7 @@ class PanneauPrincipalForm extends Component {
     if(this.props.formulary_id === "add"){
       this.props.fetchPostForm(`/api/v1/projects/${this.props.project_id}/formularies`, values, "POST")
       .then(()=>{
+        this.checkInfos()
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
         this.setState({
           changedToNewBene: false,
@@ -118,6 +119,7 @@ class PanneauPrincipalForm extends Component {
     }else{
       this.props.fetchPostForm(`/api/v1/formularies/${this.props.formulary_id}`, values, "PATCH")
       .then(()=>{
+        this.checkInfos()
         this.props.fetchFORM(`/api/v1/formularies/${this.props.formulary_id}/edit`)
         this.setState({
           envoiEnCours: false,

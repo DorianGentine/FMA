@@ -23,6 +23,8 @@
   import financersReducer from './reducers/financers_reducer';
   import formResultsReducer from './reducers/form_results_reducer';
   import formularyIdReducer from './reducers/formulary_id_reducer';
+  import isMobileReducer from './reducers/is_mobile_reducer';
+  import menuMobileOpenedReducer from './reducers/menu_mobile_opened_reducer';
   import modalOpenedReducer from './reducers/modal_opened_reducer';
   import modalPdfReducer from './reducers/modal_pdf_reducer';
   import modalReponsesReducer from './reducers/modal_reponses_reducer';
@@ -59,6 +61,8 @@ if(app){
     financers: null,
     formulary_id: {},
     formResults: null,
+    isMobile: false,
+    menuMobileOpened: false,
     modal_opened: false,
     modal_pdf: null,
     modal_reponses: null,
@@ -86,6 +90,8 @@ if(app){
     form: formReducer,
     formResults: formResultsReducer,
     formulary_id: formularyIdReducer,
+    isMobile: isMobileReducer,
+    menuMobileOpened: menuMobileOpenedReducer,
     modal_opened: modalOpenedReducer,
     modal_pdf: modalPdfReducer,
     modal_reponses: modalReponsesReducer,

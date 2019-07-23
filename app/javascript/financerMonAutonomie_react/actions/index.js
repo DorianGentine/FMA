@@ -15,6 +15,8 @@ export const FETCH_PROJET = 'FETCH_PROJET';
 export const FETCH_RATINGS = 'FETCH_RATINGS';
 export const FETCH_RESSOURCES = 'FETCH_RESSOURCES';
 export const FETCH_ZIP_URL = 'FETCH_ZIP_URL';
+export const IS_MOBILE = 'IS_MOBILE';
+export const MENU_MOBILE_OPENED = 'MENU_MOBILE_OPENED';
 export const MODAL_PDF = 'MODAL_PDF';
 export const POST_COMPTE = 'POST_COMPTE';
 export const POST_FORM = 'POST_FORM';
@@ -282,6 +284,24 @@ export async function fetchZipUrl(url) {
 
   return {
     type: FETCH_ZIP_URL,
+    payload: promise
+  };}
+
+export function checkIsMobile() {
+  console.log('MOBILE')
+  let promise = true
+
+  return {
+    type: IS_MOBILE,
+    payload: promise
+  };}
+
+export function menuMobileOpened(state) {
+  console.log('Opened?', state)
+  let promise = state
+
+  return {
+    type: MENU_MOBILE_OPENED,
     payload: promise
   };}
 

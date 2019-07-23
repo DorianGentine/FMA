@@ -10,7 +10,19 @@
       <div class="btn-group pointer" role="group">
         <div id="drop-navbar" class="dropdown-toggle flex align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <p class="text-align-right">Bonjour, <%= current_user.first_name %> <%= current_user.last_name %></p>
-          <div class="navbar-avatar"><%= current_user.first_name[0] %><%= current_user.last_name[0] %></div>
+          <% if current_user.avatar? %>
+            <div
+              class="navbar-avatar"
+              style="min-height: 35px; min-width: 35px; background-image: url(<%= current_user.avatar.url(:bright_face) %>);"
+              >
+            </div>
+          <% else %>
+            <div
+              class="navbar-avatar"
+              style="height: 35px; width: 35px"
+              ><%= current_user.first_name[0] %><%= current_user.last_name[0] %>
+            </div>
+          <% end %>
         </div>
         <div class="dropdown-menu" aria-labelledby="drop-navbar">
           <p><%= link_to "Mon compte", user_path(current_user) if current_user.present? %></p>

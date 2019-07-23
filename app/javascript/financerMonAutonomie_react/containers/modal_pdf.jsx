@@ -5,7 +5,7 @@ import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-import { closeModalPdf, showModalPdf } from '../actions';
+import { closeModalPdf, showModalPdf, closeModal } from '../actions';
 
 class ModalPdf extends Component {
   constructor(props) {
@@ -13,7 +13,12 @@ class ModalPdf extends Component {
     this.state = {
       numPages: null,
       pageNumber: 1,
+      doc: this.props.modal_pdf,
     };
+  }
+
+  componentWillUnmount(){
+    this.setState({ doc: null })
   }
 
   onDocumentLoadSuccess = (document) => {
@@ -33,8 +38,22 @@ class ModalPdf extends Component {
   nextPage = () => this.changePage(1);
 
   render(){
-    const doc = this.props.modal_pdf
+    let doc = this.state.doc
     const { numPages, pageNumber } = this.state;
+
+    const fermerModal = () => {
+      this.props.closeModalPdf()
+      this.props.closeModal()
+    }
+
+    if(this.state.doc != null){
+      window.onkeydown = function(event){
+        // console.log("modal_pdf", doc)
+        if (event.key === "Escape") {
+          fermerModal()
+        }
+      };
+    }
 
     return(
       <div className="fixed scroll" style={{
@@ -84,7 +103,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeModalPdf, showModalPdf }, dispatch);
+  return bindActionCreators({ closeModalPdf, showModalPdf, closeModal }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalPdf);

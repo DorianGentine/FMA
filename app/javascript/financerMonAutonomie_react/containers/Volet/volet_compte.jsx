@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { menuMobileOpened } from '../../actions';
+
 class VoletCompte extends Component {
   render(){
     const rootCompte = `${this.props.rootUrl}/compte`
@@ -37,8 +39,8 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ menuMobileOpened }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(VoletCompte);
+export default connect(mapStateToProps, mapDispatchToProps)(VoletCompte);
