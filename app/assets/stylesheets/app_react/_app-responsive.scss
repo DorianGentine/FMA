@@ -40,4 +40,25 @@
       overflow-x: hidden;
     }
   }
+
+  .modal-cote{
+    min-width: 100vw;
+    position: fixed;
+  }
+  .modal-cote.modal-cote-hidden{
+    min-width: 0vw;
+  }
+  .modal-cote.modal-cote-hidden > div{
+    width: 0;
+    height: 100vh;
+    min-width: 0px;
+    padding: 30px 0;
+  }
+  .modal-cote > div {
+    min-width: 100vw;
+    padding: 30px;
+  }
+  .modal-cote > div > div {
+    min-width: calc(100vw - 146px);
+  }
 }

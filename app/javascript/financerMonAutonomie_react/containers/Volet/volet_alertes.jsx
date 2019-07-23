@@ -22,7 +22,7 @@ class VoletAlertes extends Component {
         <Link className={`volet-item-menu ${active("notifications")}`} to={`${rootAlertes}/notifications`} onClick={()=>{this.props.menuMobileOpened(false)}}>
           Notifications
         </Link>
-        <Link className={`volet-item-menu ${active("actualites")}`} to={`${rootAlertes}/actualites`}>
+        <Link className={`volet-item-menu ${active("actualites")}`} to={`${rootAlertes}/actualites`} onClick={()=>{this.props.menuMobileOpened(false)}}>
           Actualités
         </Link>
       </div>
