@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import MediaQuery from 'react-responsive';
 
-import { fetchAPI, fetchProjet, fetchCurrentApi } from '../actions';
+import { fetchAPI, fetchProjet, fetchCurrentApi, checkIsMobile } from '../actions';
 
 import AppNavbar from "../containers/app_navbar"
 import Chat from "../containers/chat"
@@ -15,6 +16,10 @@ import Volet from "../containers/volet"
 class App extends Component {
 
   componentWillMount() {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      this.props.checkIsMobile()
+    }
+
     if(this.props.otherUser){
       this.props.fetchCurrentApi(`/api/v1/users/${this.props.current_user_id}`)
     }
@@ -49,6 +54,7 @@ class App extends Component {
 
     const api = this.props.api
     const project = this.props.project
+    const isMobile = this.props.isMobile
 
     if(api.statut == undefined || api.statut === "client" && project == null){
       return(
@@ -57,6 +63,11 @@ class App extends Component {
           <img style={{height: "50px",}} src="https://media2.giphy.com/media/jAYUbVXgESSti/giphy.gif?cid=790b76115cdbb4a9722f685249ba06d7&rid=giphy.gif" alt=""/>
         </div>
       );
+          // <MediaQuery maxDeviceWidth={850}>
+          //   <div className="d-none">
+          //     {checkIsMobile}
+          //   </div>
+          // </MediaQuery>
 
     // App beneficiaire
       }else if(api.statut === "client"){
@@ -65,6 +76,7 @@ class App extends Component {
         if(this.props.current_api != null){
           conseillerName = `${this.props.current_api.user.first_name} ${this.props.current_api.user.last_name}`
         }
+            // <MediaQuery query="(min-device-width: 850px)"><h1>DESKTOP</h1></MediaQuery>
         return (
           <div className={otherUser ? "other_user" : ""}>
             {otherUser ?
@@ -77,10 +89,18 @@ class App extends Component {
               </div> : null}
 
             {this.props.modal_pdf != null ? <ModalPdf /> : null}
-            <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
-            <Volet selectedMenu={this.props.match.params.menu_nav}
+            { !isMobile ? <AppNavbar selectedMenu={this.props.match.params.menu_nav} /> : null }
+            { !isMobile ? <Volet selectedMenu={this.props.match.params.menu_nav}
                 selectedMenuVolet={this.props.match.params.menu_volet}
-             />
+              />
+            :
+              <div className={`menu_mobile ${this.props.menuMobileOpened ? "" : "hidden"}`}>
+                <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
+                <Volet selectedMenu={this.props.match.params.menu_nav}
+                  selectedMenuVolet={this.props.match.params.menu_volet}
+                />
+              </div>
+            }
             <div className="app-container container">
               <MenuProfil />
               <PanneauPrincipal
@@ -103,10 +123,18 @@ class App extends Component {
         return (
           <div>
             {this.props.modal_pdf != null ? <ModalPdf /> : null}
-            <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
-            <Volet selectedMenu={this.props.match.params.menu_nav}
+            { !isMobile ? <AppNavbar selectedMenu={this.props.match.params.menu_nav} /> : null }
+            { !isMobile ? <Volet selectedMenu={this.props.match.params.menu_nav}
                 selectedMenuVolet={this.props.match.params.menu_volet}
-             />
+              />
+            :
+              <div className={`menu_mobile ${this.props.menuMobileOpened ? "" : "hidden"}`}>
+                <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
+                <Volet selectedMenu={this.props.match.params.menu_nav}
+                  selectedMenuVolet={this.props.match.params.menu_volet}
+                />
+              </div>
+            }
             <div className="app-container container">
               <MenuProfil selectedMenu={this.props.match.params.menu_nav} />
               <PanneauPrincipal
@@ -130,10 +158,18 @@ class App extends Component {
         return (
           <div>
             {this.props.modal_pdf != null ? <ModalPdf /> : null}
-            <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
-            <Volet selectedMenu={this.props.match.params.menu_nav}
+            { !isMobile ? <AppNavbar selectedMenu={this.props.match.params.menu_nav} /> : null }
+            { !isMobile ? <Volet selectedMenu={this.props.match.params.menu_nav}
                 selectedMenuVolet={this.props.match.params.menu_volet}
-            />
+              />
+            :
+              <div className={`menu_mobile ${this.props.menuMobileOpened ? "" : "hidden"}`}>
+                <AppNavbar selectedMenu={this.props.match.params.menu_nav} />
+                <Volet selectedMenu={this.props.match.params.menu_nav}
+                  selectedMenuVolet={this.props.match.params.menu_volet}
+                />
+              </div>
+            }
             <div className="app-container container">
               <MenuProfil selectedMenu={this.props.match.params.menu_nav} />
               <PanneauPrincipal
@@ -155,6 +191,8 @@ function mapStateToProps(state) {
     api: state.api,
     current_user_id: state.current_user_id,
     current_api: state.current_api,
+    isMobile: state.isMobile,
+    menuMobileOpened: state.menuMobileOpened,
     modal_opened: state.modal_opened,
     modal_pdf: state.modal_pdf,
     otherUser: state.otherUser,
@@ -165,7 +203,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAPI, fetchProjet, fetchCurrentApi }, dispatch);
+  return bindActionCreators({ fetchAPI, fetchProjet, fetchCurrentApi, checkIsMobile }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

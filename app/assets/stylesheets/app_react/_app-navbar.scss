@@ -11,6 +11,8 @@
   transition: 1s;
   overflow-y: auto;
   min-width: 86px;
+  width: 30px;
+  z-index: 1;
   .active{
     color: $blue !important;
     width: 100%;

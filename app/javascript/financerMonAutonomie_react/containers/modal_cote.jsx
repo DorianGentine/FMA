@@ -27,6 +27,7 @@ class ModalCote extends Component {
 
     if(modalSelected != null){
       window.onkeydown = function(event){
+        // console.log("modal_cote", modalSelected)
         if (event.key === "Escape") {
           fermerModal()
         }

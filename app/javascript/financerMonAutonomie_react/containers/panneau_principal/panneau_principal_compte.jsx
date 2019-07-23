@@ -51,9 +51,9 @@ class PanneauPrincipalCompte extends Component {
   }
 
   renderField = ({ input, label, type, hint }) => (
-    <div className="margin-top-15 form-group flex space-between align-items-center">
-      <label className="font-14 min-width-25 no-margin">{label}</label>
-      <div className="flex-grow-1">
+    <div className="margin-top-15 form-group row align-items-center">
+      <label className="font-14 col-lg-3 col-xs-12 no-margin">{label}</label>
+      <div className="col-lg-9 col-xs-12">
         <input {...input}
           className="form-control"
           type={type}

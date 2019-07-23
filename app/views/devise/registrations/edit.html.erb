@@ -190,14 +190,14 @@
   const saveMail = document.getElementById('saveMail')
   const saveMdp = document.getElementById('saveMdp')
   const passwords = document.getElementsByClassName('current-password')
-  passwords[0].addEventListener("blur", ()=>{
+  passwords[0].addEventListener("input", ()=>{
     if(passwords[0].value != ""){
       saveMail.disabled = false
     }else if(passwords[0].value === ""){
       saveMail.disabled = true
     }
   })
-  passwords[1].addEventListener("blur", ()=>{
+  passwords[1].addEventListener("input", ()=>{
     if(passwords[1].value != ""){
       saveMdp.disabled = false
     }else if(passwords[1].value === ""){

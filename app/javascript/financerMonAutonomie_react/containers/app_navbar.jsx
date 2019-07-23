@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
+
+import { menuMobileOpened } from '../actions';
 
 class AppNavbar extends Component {
   render(){
     const menuActive = this.props.selectedMenu.toLowerCase()
     let api = this.props.api
+    const isMobile = this.props.isMobile
     // if(this.props.current_api != null){
     //   api = this.props.current_api
     // }
@@ -16,14 +20,22 @@ class AppNavbar extends Component {
       }
     }
 
+    const closeMenuMobile = () => {
+      this.props.menuMobileOpened(false)
+    }
+
 
     // App beneficiaire
     if(api.statut === "client"){
       return (
         <div>
-          <div style={{height: "100vh", padding: "43px"}}></div>
+          { isMobile ? null :<div style={{height: "100vh", padding: "43px"}}></div> }
           <div className="app-navbar">
-            <a href="/home"><div className="logo-app"></div></a>
+            { isMobile ?
+              <div className="logo-app" onClick={()=>{this.props.menuMobileOpened(false)}}></div>
+              :
+              <a href="/home"><div className="logo-app"></div></a>
+            }
 
             <Link className={`btn-app-navbar margin-top-60 ${active("projet")}`} to={`${this.props.rootUrl}/projet`}>
               <i className="far fa-file-alt"></i>
@@ -57,9 +69,13 @@ class AppNavbar extends Component {
       }
       return (
         <div>
-          <div style={{height: "100vh", padding: "43px"}}></div>
+          { isMobile ? null :<div style={{height: "100vh", padding: "43px"}}></div> }
           <div className="app-navbar">
-            <a href="/home"><div className="logo-app"></div></a>
+            { isMobile ?
+              <a onClick={()=>{this.props.menuMobileOpened(false)}}><div className="logo-app"></div></a>
+              :
+              <a href="/home"><div className="logo-app"></div></a>
+            }
 
             <Link className={`btn-app-navbar margin-top-60 ${active("bureau")}`} id="link_bureau" to={`${this.props.rootUrl}/bureau`}>
               <i className="far fa-file-alt"></i>
@@ -107,12 +123,13 @@ function mapStateToProps(state) {
   return {
     rootUrl: state.rootUrl,
     api: state.api,
-    current_api: state.current_api
+    current_api: state.current_api,
+    isMobile: state.isMobile,
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ menuMobileOpened }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(AppNavbar);
+export default connect(mapStateToProps, mapDispatchToProps)(AppNavbar);

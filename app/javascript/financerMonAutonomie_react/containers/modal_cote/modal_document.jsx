@@ -55,11 +55,11 @@ class ModalDocument extends Component {
           />
         </Document>
         <div className="row margin-top-15 margin-bottom-30">
-          <button className="col-lg-2 blue-gray-btn" type="button" disabled={pageNumber <= 1} onClick={this.previousPage}>
+          <button className="col-2 blue-gray-btn" type="button" disabled={pageNumber <= 1} onClick={this.previousPage}>
             Préc.
           </button>
-          <p className="col-lg-8 text-align-center">Page {pageNumber || (numPages ? 1 : '--')} sur {numPages || '--'}</p>
-          <button className="col-lg-2 blue-gray-btn" type="button" disabled={pageNumber >= numPages} onClick={this.nextPage}>
+          <p className="col-8 text-align-center">Page {pageNumber || (numPages ? 1 : '--')} sur {numPages || '--'}</p>
+          <button className="col-2 blue-gray-btn" type="button" disabled={pageNumber >= numPages} onClick={this.nextPage}>
             Suiv.
           </button>
         </div>

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { menuMobileOpened } from '../../actions';
 import renderLogo from "../../../components/render_logo"
 
 class Conseiller extends Component {
   render(){
     const statut = this.props.api.statut
+    const isMobile = this.props.isMobile
 
     if(statut === "client"){
       if(this.props.otherUser){
@@ -65,11 +67,12 @@ function mapStateToProps(state) {
   return {
     api: state.api,
     otherUser: state.otherUser,
+    isMobile: state.isMobile,
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAPI }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ menuMobileOpened }, dispatch);
+}
 
-export default connect(mapStateToProps, null)(Conseiller);
+export default connect(mapStateToProps, mapDispatchToProps)(Conseiller);
