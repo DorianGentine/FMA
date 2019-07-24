@@ -85,7 +85,7 @@ class App extends Component {
                   {`Vous êtes connecté en tant que ${conseillerName}
                      sur le compte de ${api.user.first_name} ${api.user.last_name}`
                   }</h2>
-                <a href={`/mon_espace/${this.props.current_user_id}/clients`}>Retourner sur mon profil</a>
+                <a href={`/mon_espace/${this.props.current_user_id}/clients`}>{isMobile ? "Retour" : "Retourner sur mon profil"}</a>
               </div> : null}
 
             {this.props.modal_pdf != null ? <ModalPdf /> : null}
