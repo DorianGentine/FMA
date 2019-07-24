@@ -2,7 +2,6 @@
   <div>
     <!-- AppNavbar -->
     <div class="fixed-xs edit-menu-mobile-hidden" style="z-index: 1">
-      <div style="height: 100vh; padding: 43px"></div>
       <div class="app-navbar">
         <a href="/home"><div class="logo-app"></div></a>
 
@@ -73,7 +72,7 @@
       <!-- MenuProfil -->
       <div>
         <div class="relative col-lg-6 offset-lg-6 offset-sm-0 flex-xs space-between" role="group">
-          <div class="logo-app d-block d-sm-none margin-bottom-15-xs"></div>
+          <div class="logo-app d-block d-sm-none margin-bottom-15-xs ouvrirMenu"></div>
           <div
             id="drop-navbar"
             class="dropdown-toggle margin-bottom-15 flex justify-content-end align-items-center"
@@ -98,12 +97,14 @@
             </div>
           </div>
           <div class="dropdown-menu" aria-labelledby="drop-navbar">
+            <p class="ouvrirMenu">Ouvrir le menu</p>
             <a href="/mon_espace/<%= @user.id %>/compte/identite">Mon compte</a>
             <a href="/users/sign_out" rel="nofollow" data-method="delete">Se déconnecter</a>
           </div>
         </div>
       </div>
 
+      <!-- PanneauPrincipal -->
       <div class="row">
         <div class="col-lg-12">
           <div class="white-box flex flex-wrap">
@@ -205,6 +206,17 @@
       saveMdp.disabled = true
     }
   })
+
+  const ouvrirMenuBtns = document.getElementsByClassName('ouvrirMenu')
+  const navbarApp = document.getElementsByClassName("edit-menu-mobile-hidden")[0]
+    console.log(ouvrirMenuBtns)
+  for (var i = ouvrirMenuBtns.length - 1; i >= 0; i--) {
+    console.log(ouvrirMenuBtns[i])
+    ouvrirMenuBtns[i].addEventListener("click", ()=>{
+      console.log('SALUT')
+      navbarApp.classList.toggle('edit-menu-mobile-hidden')
+    })
+  }
 
 </script>
 
