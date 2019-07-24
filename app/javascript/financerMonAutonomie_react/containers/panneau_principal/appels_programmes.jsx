@@ -53,8 +53,8 @@ class AppelsProgrammes extends Component {
                   <span className="gray-300"> {textNextMeeting}</span>
                 </p>
                 <p className="col-lg-3 font-12">{client.first_name}</p>
-                <p className="col-lg-3 font-12">{`${client.financeurs} financeurs`}</p>
-                <p className="col-lg-2 font-12">{client.phone}</p>
+                <p className="col-lg-3 font-12 d-md-block d-none">{`${client.financeurs} financeurs`}</p>
+                <p className="col-lg-2 font-12 d-sm-block d-none">{client.phone}</p>
                 <div className="col-lg-1">
                   <Switch checked={false} kind="switchAppel" clientId={client.project}/>
                 </div>
@@ -91,8 +91,8 @@ class AppelsProgrammes extends Component {
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
             <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Heure</p>
             <p className="col-lg-3 font-12">Nom</p>
-            <p className="col-lg-3 font-12">Financeurs éligibles</p>
-            <p className="col-lg-2 font-12">Tél</p>
+            <p className="col-lg-3 font-12 d-md-block d-none">Financeurs éligibles</p>
+            <p className="col-lg-2 font-12 d-sm-block d-none">Tél</p>
             <p className="col-lg-2 font-12" style={{paddingRight: 0}}>Appelé</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "120px" }}>

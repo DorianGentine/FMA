@@ -1,9 +1,9 @@
 <div id="appfalse">
   <div>
     <!-- AppNavbar -->
-    <div class="fixed-xs edit-menu-mobile-hidden" style="z-index: 1">
+    <div class="fixed-xs edit-menu-mobile" style="z-index: 1">
       <div class="app-navbar">
-        <a href="/home"><div class="logo-app"></div></a>
+        <div class="ouvrirMenu logo-app"></div>
 
         <% if @user.client %>
           <a class="btn-app-navbar margin-top-60" href="/mon_espace/<%= @user.id %>/projet">
@@ -52,7 +52,7 @@
     </div>
 
     <!-- Volet -->
-    <div class="menu-principal hidden fixed-xs" style="z-index: 1">
+    <div class="menu-principal fixed-xs" style="z-index: 1">
       <div>
         <h2 class="text-align-center margin-bottom-60">Réglages du compte</h2>
         <a class="volet-item-menu" href="/mon_espace/<%= @user.id %>/compte/identite">
@@ -72,14 +72,14 @@
       <!-- MenuProfil -->
       <div>
         <div class="relative col-lg-6 offset-lg-6 offset-sm-0 flex-xs space-between" role="group">
-          <div class="logo-app d-block d-sm-none margin-bottom-15-xs ouvrirMenu"></div>
+          <div class="logo-app d-block d-md-none margin-bottom-15-xs ouvrirMenu"></div>
           <div
             id="drop-navbar"
             class="dropdown-toggle margin-bottom-15 flex justify-content-end align-items-center"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false">
-            <p class="pointer text-align-right d-none d-sm-block">Bonjour, <%= @user.first_name %> <%= @user.last_name %></p>
+            <p class="pointer text-align-right d-none d-md-block">Bonjour, <%= @user.first_name %> <%= @user.last_name %></p>
             <div class="pointer margin-left-15">
               <% if @user.avatar? %>
                 <div
@@ -208,18 +208,36 @@
   })
 
   const ouvrirMenuBtns = document.getElementsByClassName('ouvrirMenu')
-  const navbarApp = document.getElementsByClassName("edit-menu-mobile-hidden")[0]
-    console.log(ouvrirMenuBtns)
+  const navbarApp = document.getElementsByClassName("edit-menu-mobile")[0]
+  const menuPrincipal = document.getElementsByClassName("menu-principal")[0]
+  window.onload = () => {
+    navbarApp.classList.add('edit-menu-mobile-hidden')
+    menuPrincipal.classList.add('hidden')
+  }
+
   for (var i = ouvrirMenuBtns.length - 1; i >= 0; i--) {
-    console.log(ouvrirMenuBtns[i])
     ouvrirMenuBtns[i].addEventListener("click", ()=>{
-      console.log('SALUT')
       navbarApp.classList.toggle('edit-menu-mobile-hidden')
+      menuPrincipal.classList.toggle('hidden')
     })
   }
 
 </script>
 
+<% if current_user.client  %>
+  <script>
+    window.intercomSettings = {
+      app_id: "pfhokn92",
+      name: "<%= current_user.name %>", // Full name
+      id: "<%= current_user.id %>", // Full name
+      email: "<%= current_user.email %>", // Email address
+      created_at: "<%= current_user.created_at.to_i %>" // Signup date as a Unix timestamp
+    };
+  </script>
+  <script>
+    (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/pfhokn92';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+  </script>
+<% end %>
 
 
 

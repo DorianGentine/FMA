@@ -64,7 +64,7 @@ class PanneauPrincipalDemandes extends Component {
               onChange={()=>{this.props.selectClients(event.target.value)}}
             />
           </div>
-          <div className="col-lg-4 offset-lg-4">
+          <div className="col-lg-4 offset-lg-4 margin-top-15-xs">
             <Select
               className="react-dropdown-select"
               options={options}

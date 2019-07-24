@@ -33,7 +33,7 @@ class Ressources extends Component {
             <div className="icon-doc margin-right-15"></div>
             <div className="flex-grow-1 margin-right-15">
               <h4 className="font-12 no-margin">{ressource.title}</h4>
-              <p className="font-12">{ressource.description}</p>
+              <p className="font-12 d-none d-sm-block">{ressource.description}</p>
             </div>
             <button className="blue-gray-btn" onClick={()=>{this.props.showRessource(ressource)}}>Accéder</button>
             {statut === "admin" ?
