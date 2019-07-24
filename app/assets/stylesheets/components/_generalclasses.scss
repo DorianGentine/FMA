@@ -362,6 +362,11 @@
   .fixed{
     position: fixed;
   }
+  @media screen and (max-width: 770px){
+    .fixed-xs{
+      position: fixed;
+    }
+  }
 
 // Scroll
   .scroll{
