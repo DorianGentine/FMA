@@ -113,24 +113,26 @@ class MenuProfil extends Component {
     const enCoursLength = this.state.enCoursLength
     const archivesLength = this.state.archivesLength
 
+    const isMobile = this.props.isMobile
+
     const renderFiltres = ()=> {
       return(
         <div className="col-lg-6 row align-items-end">
           <div
-            className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : null}`}
-            onClick={()=>{this.props.selectClients("tous")}}>Tous <span>{tousLength}</span></div>
-          <div
-            className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : null}`}
-            onClick={()=>{this.props.selectClients("en_cours")}}>
-              {selectedMenu != "conseillers" ? "En cours " : "" }
-              {selectedMenu != "conseillers" ? <span>{enCoursLength}</span> : "" }
-          </div>
-          <div
-            className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : null}`}
-            onClick={()=>{this.props.selectClients("archives")}}>
-              {selectedMenu != "conseillers" ? "Archivés " : "" }
-              {selectedMenu != "conseillers" ? <span>{archivesLength}</span> : "" }
-          </div>
+            className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : ""}`} style={ isMobile ? {padding: "0 10px 12px"} : {}}
+            onClick={()=>{this.props.selectClients("tous")}}>{ isMobile ? <i className="fas fa-infinity"></i> : "Tous"} <span>{tousLength}</span></div>
+          {selectedMenu != "conseillers" ?
+            <div
+              className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : ""}`} style={ isMobile ? {padding: "0 10px 12px"} : {}}
+              onClick={()=>{this.props.selectClients("en_cours")}}>{ isMobile ? <i className="fas fa-tasks"></i> : "En cours"} <span>{enCoursLength}</span>
+            </div>
+          : null }
+          {selectedMenu != "conseillers" ?
+            <div
+              className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : ""}`} style={ isMobile ? {padding: "0 10px 12px"} : {}}
+              onClick={()=>{this.props.selectClients("archives")}}>{ isMobile ? <i className="fas fa-archive"></i> : "Archivés"} <span>{archivesLength}</span>
+            </div>
+          : null }
         </div>
       )
     }
@@ -157,7 +159,8 @@ class MenuProfil extends Component {
         </MediaQuery>
         <MediaQuery maxDeviceWidth={850}>
           <div className="flex space-between margin-bottom-15">
-            <div className="logo-app" onClick={()=>{this.props.menuMobileOpened(true)}}></div>
+            <div className="logo-app margin-right-15-xs" onClick={()=>{this.props.menuMobileOpened(true)}}></div>
+            {showLeftSide ? renderFiltres() : null}
             <div
               id="drop-navbar"
               className="dropdown-toggle flex align-items-center"
@@ -183,6 +186,7 @@ function mapStateToProps(state) {
     api: state.api,
     clients: state.clients,
     conseillers: state.conseillers,
+    isMobile: state.isMobile,
     rootUrl: state.rootUrl,
     current_api: state.current_api,
     current_user_id: state.current_user_id,
