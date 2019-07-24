@@ -29,7 +29,7 @@ class Project < ApplicationRecord
       UserProject.create(user: benef, project: self, client: benef.client)
     end
     if self.user_projects.where(user: advisor).count < 1
-      UserProject.create(user: advisor, project: self, client: benef.client)
+      UserProject.create(user: advisor, project: self)
     end
     UserMailer.with(user: advisor, client: benef).new_member.deliver_now
     UserMailer.with(user: User.where(admin: true).first, client: benef).new_member.deliver_now
