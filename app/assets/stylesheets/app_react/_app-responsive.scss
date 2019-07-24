@@ -15,6 +15,26 @@
   .menu-principal > div > div {
     min-width: calc(100vw - 146px);
   }
+  // pour la page edit
+  .menu-principal.hidden{
+    display: none;
+    > div{
+      min-width: 0;
+      width: 0;
+      padding: 30px 0;
+      border-right: 0;
+    }
+  }
+  .edit-menu-mobile-hidden{
+    .app-navbar{
+      padding: 30px 0;
+      min-width: 0;
+      width: 0;
+      overflow-x: hidden;
+    }
+  }
+
+
 
   .menu_mobile{
     position: fixed;
