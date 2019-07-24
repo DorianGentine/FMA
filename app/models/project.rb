@@ -22,8 +22,6 @@ class Project < ApplicationRecord
 
   enum step: ["validation_data", "documentation", "meeting", "call", "progression", "evaluation", "archived"]
 
-  after_create :send_new_member
-
   def link_to_advisor_and_bene(benef, advisor)
     if self.user_projects.where(user: benef).count < 1
       UserProject.create(user: benef, project: self, client: benef.client)
@@ -35,8 +33,6 @@ class Project < ApplicationRecord
     UserMailer.with(user: User.where(admin: true).first, client: benef).new_member.deliver_now
   end
 
-    def send_new_member
-  end
 
 
   # def link_to_beneficaire(user)

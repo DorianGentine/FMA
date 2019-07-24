@@ -1435,7 +1435,7 @@ p "create formulary"
 
   form = Formulary.new
   form.set_a_new_form(Faker::Name.first_name)
-  form.visitor = Visitor.create(user_ip: "::1")
+  form.visitor = Visitor.create(user_ip: "")
   form.project = Project.create()
   form.save
   project = form.project
