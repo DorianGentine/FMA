@@ -25,8 +25,12 @@ class Project < ApplicationRecord
   after_create :send_new_member
 
   def link_to_advisor_and_bene(benef, advisor)
-    UserProject.create(user: benef, project: self, client: benef.client)
-    UserProject.create(user: advisor, project: self)
+    if self.user_projects.where(user: benef).count < 1
+      UserProject.create(user: benef, project: self, client: benef.client)
+    end
+    if self.user_projects.where(user: advisor).count < 1
+      UserProject.create(user: advisor, project: self, client: benef.client)
+    end
     UserMailer.with(user: advisor, client: benef).new_member.deliver_now
     UserMailer.with(user: User.where(admin: true).first, client: benef).new_member.deliver_now
   end
@@ -44,7 +48,7 @@ class Project < ApplicationRecord
   end
 
   def is_his_advisor
-    user = UserProject.where(project: self, client: false).first.user if UserProject.where(project: self, client: false).first.present?
+    user = UserProject.where(project: self, client: false).where.not(user: nil).first.user if UserProject.where(project: self, client: false).first.present?
     return user
   end
 

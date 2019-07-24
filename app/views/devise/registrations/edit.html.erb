@@ -1,7 +1,7 @@
 <div id="appfalse">
   <div>
     <!-- AppNavbar -->
-    <div>
+    <div class="fixed">
       <div style="height: 100vh; padding: 43px"></div>
       <div class="app-navbar">
         <a href="/home"><div class="logo-app"></div></a>
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Volet -->
-    <div class="menu-principal">
+    <div class="menu-principal fixed">
       <div>
         <h2 class="text-align-center margin-bottom-60">Réglages du compte</h2>
         <a class="volet-item-menu" href="/mon_espace/<%= @user.id %>/compte/identite">
@@ -73,13 +73,14 @@
       <!-- MenuProfil -->
       <div>
         <div class="relative col-lg-6 offset-lg-6 offset-sm-0" role="group">
+          <!-- <div class="logo-app"></div> -->
           <div
             id="drop-navbar"
             class="dropdown-toggle margin-bottom-15 flex justify-content-end align-items-center"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false">
-            <p class="pointer text-align-right">Bonjour, <%= @user.first_name %> <%= @user.last_name %></p>
+            <p class="pointer text-align-right d-none d-sm-block">Bonjour, <%= @user.first_name %> <%= @user.last_name %></p>
             <div class="pointer margin-left-15">
               <% if @user.avatar? %>
                 <div

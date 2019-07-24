@@ -1,12 +1,17 @@
-<%= simple_form_for contact, remote: true do |f| %>
-  <div class="footer-newsletter-input">
-    <div style="display: flex; margin-bottom: 10px; ">
+<%= simple_form_for contact, remote: true, :html=> { class: "row margin-top-30 margin-bottom-30-xs" } do |f| %>
+    <div class="col-6">
       <%= f.input :email, label: false, placeholder:"Email", wrapper: false, error: 'Cette adresse email est déjà renseigné' %>
+    </div>
+    <div class="col-6">
       <%= f.input :full_name, label: false, placeholder:"Prénom et Nom", wrapper: false, error: 'Le nom doit être renseigné' %>
     </div>
-    <%= f.input :description, label: false, placeholder:"Message", wrapper: false, error: 'Cette adresse email est déjà renseigné' %>
-    <div>
-      <%= f.submit "S'inscrire", class:"footer-newsletter-btn" %>
+    <div class="col-12 margin-top-15">
+      <%= f.input :description, label: false, placeholder:"Message", wrapper: false, error: "Le message n'est pas bon" %>
     </div>
-  </div>
+    <div class="col-6 offset-6">
+      <%= f.submit "S'inscrire", class:"btn-blue margin-top-15 footer-newsletter-btn" %>
+    </div>
 <% end %>
+
+<!-- <div class="footer-newsletter-input row margin-top-30"> -->
+<!-- </div> -->

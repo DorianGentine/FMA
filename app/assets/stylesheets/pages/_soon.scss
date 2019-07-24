@@ -1,10 +1,10 @@
 #soon_page {
   padding: 2%;
-  height: 100vh;
+  min-height: 100vh;
   max-width: 1300px;
   display: flex;
   flex-direction: column;
-  max-height: 900px;
+  // max-height: 900px;
   margin: auto;
   /* Classes générales */
   html {
@@ -87,19 +87,19 @@
     display: flex;
     flex-direction: column;
     margin-top: 25px;
-    .form-control {
-      font-size: .9rem;
-      font-weight: 400;
-      color: $gray;
-      padding-left: 20px;
-      border-radius: 3px;
-    }
-    #contact_form_email {
-      margin-right: 10px;
-    }
+    // #contact_form_email {
+    //   margin-right: 10px;
+    // }
     #thank_message {
       flex: 1 0 auto;
     }
+  }
+  .form-control {
+    font-size: .9rem;
+    // font-weight: 400;
+    // color: $gray;
+    // padding-left: 20px;
+    // border-radius: 3px;
   }
   .form-part {
     display: flex;
@@ -107,26 +107,31 @@
     justify-content: space-between;
     flex: 1 100%;
   }
+  @media only screen and (max-width: 770px) {
+    .soon-form-xs{
+      flex-direction: column;
+    }
+  }
   /* Bouton style 1 */
   .footer-newsletter-btn {
-    margin-top: 10px;
-    flex: 0 0 20%;
-    background-color: $blue;
-    color: white;
+    // margin-top: 10px;
+    // flex: 0 0 20%;
+    // background-color: $blue;
+    // color: white;
     font-size: .8rem;
     font-weight: 500;
-    padding: 11px 35px;
-    border-radius: 3px;
-    border: solid 1px $blue;
-    transition: opacity.3s;
+    // padding: 11px 35px;
+    // border-radius: 3px;
+    // border: solid 1px $blue;
+    transition: .3s;
     cursor: pointer;
-    width: 40%;
+    // width: 40%;
     float: right;
   }
 
-  .footer-newsletter-btn:hover {
-    opacity: .7;
-  }
+  // .footer-newsletter-btn:hover {
+  //   opacity: .7;
+  // }
 
   .image {
     height: 100%;

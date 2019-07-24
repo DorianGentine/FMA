@@ -9,7 +9,7 @@
     <% if user_signed_in? %>
       <div class="btn-group pointer" role="group">
         <div id="drop-navbar" class="dropdown-toggle flex align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <p class="text-align-right">Bonjour, <%= current_user.first_name %> <%= current_user.last_name %></p>
+          <p class="text-align-right d-none d-sm-block">Bonjour, <%= current_user.first_name %> <%= current_user.last_name %></p>
           <% if current_user.avatar? %>
             <div
               class="navbar-avatar"

@@ -46,6 +46,20 @@
     height: calc(100vh - var(--height-info-panel));
   }
 }
+
+@media only screen and (max-width: 770px) {
+  .other_user{
+    --height-info-panel: 100px;
+    .other_user_indication{
+      padding: 0 15px;
+      h2{
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+
 // .other_user:after{
 //   content: "";
 //   position: fixed;
