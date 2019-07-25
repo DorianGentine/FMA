@@ -54,7 +54,7 @@ class Ressources extends Component {
               onClick={this.props.showCreateRessource}>
               Créer une ressource</p>
           }
-          <div className="scroll w-100" style={{ height: "calc(100vh - 700px)", minHeight: "80px" }}>
+          <div className="scroll w-100" style={{ height: "calc(100vh - 700px)", minHeight: `${this.props.isMobile?"200px":"80px"}` }}>
             {ressources != null ? renderRessources() : <p className="text-align-center margin-top-30">Chargement...</p> }
           </div>
         </div>
@@ -67,6 +67,7 @@ function mapStateToProps(state) {
   return {
     ressources: state.ressources,
     api: state.api,
+    isMobile: state.isMobile,
   };
 }
 

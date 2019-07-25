@@ -70,12 +70,12 @@ class AppelsProgrammes extends Component {
                 return (
                   <div className="flex margin-top-15 align-items-center" key={index}>
                     <p className="col-lg-2 font-12 bold black" style={{paddingLeft: 0}}>{demande.category}</p>
-                    <div className="col-lg-3 flex align-items-center">
+                    <div className={`col-lg-3 ${this.props.isMobile ? "" : "flex "}align-items-center d-none d-sm-block`}>
                       {renderLogo(author)}
                       <p className="bold font-12 black">{author.name}</p>
                     </div>
                     <p className="col-lg-3 font-12 blue">{beneName}</p>
-                    <p className="col-lg-2 font-12 black">{time}</p>
+                    <p className="col-lg-2 font-12 black d-none d-sm-block">{time}</p>
                     <button
                       className="col-lg-2 blue-gray-btn"
                       style={{padding: "5px"}}
@@ -103,9 +103,9 @@ class AppelsProgrammes extends Component {
 
           <div className="bordure-bas flex w-100" style={{margin: "15px 15px 0"}}>
             <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Catégorie</p>
-            <p className="col-lg-3 font-12">Conseiller</p>
+            <p className="col-lg-3 font-12 d-none d-sm-block">Conseiller</p>
             <p className="col-lg-3 font-12">Bénéficiaire</p>
-            <p className="col-lg-4 font-12" style={{paddingRight: 0}}>Envoyé il y a</p>
+            <p className="col-lg-4 font-12 d-none d-sm-block" style={{paddingRight: 0}}>Envoyé il y a</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "120px" }}>
             {projects != null ? renderDemandes() : <p className="text-align-center margin-top-15">Chargement...</p> }
@@ -119,6 +119,7 @@ class AppelsProgrammes extends Component {
 function mapStateToProps(state) {
   return {
     project: state.project,
+    isMobile: state.isMobile,
   };
 }
 

@@ -119,17 +119,17 @@ class MenuProfil extends Component {
       return(
         <div className="col-lg-6 row align-items-end">
           <div
-            className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : ""}`} style={ isMobile ? {padding: "0 10px 12px"} : {}}
+            className={`padding-horizontal-15 titre-filtre ${selectedClients === "tous" ? "active" : ""}`} style={ isMobile ? {padding: "0 5px 12px"} : {}}
             onClick={()=>{this.props.selectClients("tous")}}>{ isMobile ? <i className="fas fa-infinity"></i> : "Tous"} <span>{tousLength}</span></div>
           {selectedMenu != "conseillers" ?
             <div
-              className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : ""}`} style={ isMobile ? {padding: "0 10px 12px"} : {}}
+              className={`padding-horizontal-15 titre-filtre ${selectedClients === "en_cours" ? "active" : ""}`} style={ isMobile ? {padding: "0 5px 12px"} : {}}
               onClick={()=>{this.props.selectClients("en_cours")}}>{ isMobile ? <i className="fas fa-tasks"></i> : "En cours"} <span>{enCoursLength}</span>
             </div>
           : null }
           {selectedMenu != "conseillers" ?
             <div
-              className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : ""}`} style={ isMobile ? {padding: "0 10px 12px"} : {}}
+              className={`padding-horizontal-15 titre-filtre ${selectedClients === "archives" ? "active" : ""}`} style={ isMobile ? {padding: "0 5px 12px"} : {}}
               onClick={()=>{this.props.selectClients("archives")}}>{ isMobile ? <i className="fas fa-archive"></i> : "Archivés"} <span>{archivesLength}</span>
             </div>
           : null }
@@ -158,8 +158,8 @@ class MenuProfil extends Component {
           </div>
         </MediaQuery>
         <MediaQuery maxDeviceWidth={850}>
-          <div className="flex space-between margin-bottom-15">
-            <div className="logo-app margin-right-15-xs" onClick={()=>{this.props.menuMobileOpened(true)}}></div>
+          <div className="flex space-between margin-bottom-15 w-100">
+            <div className="logo-app margin-right-15-xs" onClick={()=>{this.props.menuMobileOpened(true)}} style={{minWidth: "40px"}}></div>
             {showLeftSide ? renderFiltres() : null}
             <div
               id="drop-navbar"
