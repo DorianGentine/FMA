@@ -12,7 +12,8 @@ class ModalCreateRessource extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      docs: []
+      docs: [],
+      btnPushed: false,
     };
   }
 
@@ -40,6 +41,7 @@ class ModalCreateRessource extends Component {
     if(response.ok){
       response = await response.json();
       this.props.fetchRessources(url)
+      this.setState({ btnPushed: false })
       this.props.closeModal()
     }
   }
@@ -101,7 +103,10 @@ class ModalCreateRessource extends Component {
         </div>
         <hr className="ligne-horizontal gray-200-background margin-bottom-30 margin-top-30"/>
 
-        <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {this.onSubmit(values)})}>
+        <form className="col-lg-12" onSubmit={this.props.handleSubmit((values) => {
+          this.setState({ btnPushed: true })
+          this.onSubmit(values)
+        })}>
           <p className="black font-14 margin-bottom-15">Titre</p>
           <Field
             name="title"
@@ -125,7 +130,7 @@ class ModalCreateRessource extends Component {
           <button
             className="btn-blue margin-top-30 offset-6 col-6 text-align-center"
             type="submit"
-            disabled={this.props.pristine || this.props.submitting || this.state.docs.length < 4}>
+            disabled={this.props.pristine || this.props.submitting || this.state.btnPushed }>
             Ajouter
           </button>
         </form>
