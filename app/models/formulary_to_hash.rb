@@ -139,7 +139,7 @@ class FormularyToHash
             first.gsub('"', '')
           end
         elsif column_name == "zip_code"
-          form.address + ", " + form.zip_code
+          form.address ? form.address + ", " + form.zip_code :  "___, " + form.zip_code
         elsif column_name == "age"
           "#{form.age}, j'ai #{form.his_age} ans"
         else

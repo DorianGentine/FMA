@@ -109,6 +109,7 @@ const updateFormulary = (event) => {
   }
 }
 
+
 if (input) {
   input.addEventListener("submit", updateFormulary);
 }
