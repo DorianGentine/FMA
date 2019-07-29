@@ -17,6 +17,7 @@
     "ikonate": "^1.0.1",
     "jquery": "^3.4.1",
     "jszip": "^3.2.1",
+    "lodash": "^4.17.15",
     "mgr-pdf-viewer-react": "^1.0.3",
     "ngrok": "^3.1.1",
     "places.js": "^1.16.4",
@@ -24,6 +25,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-dom-factories": "^1.0.2",
     "react-download-link": "^2.2.0",
     "react-dropdown-select": "^3.0.0",
     "react-dropzone": "^10.1.4",
@@ -32,15 +34,18 @@
     "react-responsive": "^7.0.0",
     "react-router-dom": "^5.0.0",
     "react-selectize": "^3.0.1",
+    "react-transition-group": "^4.2.1",
     "react-widgets": "^4.4.11",
     "redux": "^4.0.1",
     "redux-form": "^8.2.0",
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.6.0",
     "select2": "^4.0.7-rc.0",
-    "selectize": "^0.12.6"
+    "selectize": "^0.12.6",
+    "webpack": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
     "@types/file-saver": "^2.0.1",
     "webpack-dev-server": "^3.3.1"
   }
