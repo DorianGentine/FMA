@@ -14,6 +14,7 @@ class Ressources extends Component {
   render(){
     const ressources = this.props.ressources
     const statut = this.props.api.statut
+    const isMobile = this.props.isMobile
 
     const renderRessources = () => {
       return ressources.map((ressource, index) => {
@@ -27,12 +28,12 @@ class Ressources extends Component {
             this.props.fetchPostCompte(url, null, method, ()=>{this.props.fetchRessources(`/api/v1/ressources`)})
           }
         }
-
+        console.log(ressource.title.replace("_", " ").replace("CaisseRetraiteComplementaire", "Caisse retraite complémentaire").replace("CaisseRetraitePrincipale", "Caisse retraite principale").replace("_", " "))
         return (
           <div className="flex space-between align-items-center margin-bottom-15" key={index}>
-            <div className="icon-doc margin-right-15"></div>
+            {isMobile?null:<div className="icon-doc margin-right-15"></div>}
             <div className="flex-grow-1 margin-right-15">
-              <h4 className="font-12 no-margin">{ressource.title}</h4>
+              <h4 className="font-12 no-margin">{ressource.title.replace("_", " ").replace("CaisseRetraiteComplementaire", "Caisse retraite complémentaire").replace("CaisseRetraitePrincipale", "Caisse retraite principale").replace("_", " ")}</h4>
               <p className="font-12 d-none d-sm-block">{ressource.description}</p>
             </div>
             <button className="blue-gray-btn" onClick={()=>{this.props.showRessource(ressource)}}>Accéder</button>
@@ -47,14 +48,14 @@ class Ressources extends Component {
     return (
       <div className="col-lg-12">
         <div className="white-box flex flex-wrap align-items-baseline">
-          <h4 className="margin-right-15">Liste des ressources</h4>
-          <p className="flex-grow-1">{`${ressources ? ressources.length : 0} ressources`}</p>
+          <h4 className="margin-right-15 no-margin-xs">Liste des ressources</h4>
+          <p className="flex-grow-1 text-align-right-xs">{`${ressources ? ressources.length : 0}${this.props.isMobile ? "" : " ressources"}`}</p>
           {statut === "conseiller" ? null :
             <p className="text-align-right font-12 pointer create-doc"
               onClick={this.props.showCreateRessource}>
               Créer une ressource</p>
           }
-          <div className="scroll w-100" style={{ height: "calc(100vh - 700px)", minHeight: `${this.props.isMobile?"200px":"80px"}` }}>
+          <div className="scroll w-100 margin-top-15-xs" style={{ height: "calc(100vh - 700px)", minHeight: `${isMobile?"200px":"80px"}` }}>
             {ressources != null ? renderRessources() : <p className="text-align-center margin-top-30">Chargement...</p> }
           </div>
         </div>

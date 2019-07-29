@@ -13,10 +13,10 @@
     <div class="col-lg-6" id="financeurs-potentiels" data-visitorid="<%= @visitor.id %>"></div> <!-- généré en js -->
     <div class="col-lg-6">
       <div id="blue-CTA" class="d-none">
-        <h2 class="white margin-bottom-30">Poursuivez avec l'aide d'un conseiller</h2>
-        <p class="white margin-bottom-30">En décidant de poursuivre vous pouvez accéder à votre espace dédié.</p>
+        <h2 class="white margin-bottom-30 d-none d-sm-block">Poursuivez avec l'aide d'un conseiller</h2>
+        <p class="white margin-bottom-30 d-none d-sm-block">En décidant de poursuivre vous pouvez accéder à votre espace dédié.</p>
         <%= link_to "Poursuivez avec l’aide d’un Conseiller social", new_user_registration_path, class: "btn white-background black" %>
-        <img class="absolute" id="clickOnbtn" style="bottom: 0; right: 0; height: 200px; cursor: pointer;" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1560519248/Illu%20HP/Illu_FMA_analyse_btn_wmjze0.svg" alt="">
+        <img class="absolute d-none d-sm-block" id="clickOnbtn" style="bottom: 0; right: 0; height: 200px; cursor: pointer;" src="https://res.cloudinary.com/financermonautonomie/image/upload/v1560519248/Illu%20HP/Illu_FMA_analyse_btn_wmjze0.svg" alt="">
       </div>
     </div>
   </div>

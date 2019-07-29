@@ -48,17 +48,17 @@ class AppelsProgrammes extends Component {
 
             return (
               <div className="flex margin-top-15" key={index}>
-                <p className="col-lg-2 font-12 blue bold" style={{paddingLeft: 0}}>
+                <p className="col-lg-2 col-xs-2 font-12 blue bold" style={{paddingLeft: 0}}>
                   {`${hourRdv}h${minRdv}`}
                   <span className="gray-300"> {textNextMeeting}</span>
                 </p>
-                <p className="col-lg-3 font-12">{client.first_name}</p>
+                <p className="col-lg-3 col-xs-5 font-12">{client.first_name}</p>
                 <p className="col-lg-3 font-12 d-md-block d-none">{`${client.financeurs} financeurs`}</p>
                 <p className="col-lg-2 font-12 d-sm-block d-none">{client.phone}</p>
-                <div className="col-lg-1">
+                <div className="col-lg-1 col-xs-2">
                   <Switch checked={false} kind="switchAppel" clientId={client.project}/>
                 </div>
-                <div className="relative col-lg-1 text-align-right" role="group">
+                <div className="relative col-lg-1 col-xs-3 text-align-right" role="group">
                   <div
                     id={`drop-call${index}`}
                     className="pointer font-12"
@@ -85,15 +85,13 @@ class AppelsProgrammes extends Component {
       <div className="col-lg-12">
         <div className="white-box flex flex-wrap align-items-center">
           <h4 className="padding-horizontal-15 no-margin">Appels programmés</h4>
-          <p className="gray padding-horizontal-15">
-            {`${clientsStep4} ${clientsStep4 < 2 ? "appel" : "appels"}`}
-          </p>
+          {this.props.isMobile ? null : <p className="gray padding-horizontal-15">{`${clientsStep4} ${clientsStep4 < 2 ? "appel" : "appels"}`}</p>}
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
-            <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Heure</p>
-            <p className="col-lg-3 font-12">Nom</p>
+            <p className="col-lg-2 col-xs-2 font-12" style={{paddingLeft: 0}}>Heure</p>
+            <p className="col-lg-3 col-xs-5 font-12">Nom</p>
             <p className="col-lg-3 font-12 d-md-block d-none">Financeurs éligibles</p>
             <p className="col-lg-2 font-12 d-sm-block d-none">Tél</p>
-            <p className="col-lg-2 font-12" style={{paddingRight: 0}}>Appelé</p>
+            <p className="col-lg-2 col-xs-5 font-12" style={{paddingRight: 0}}>Appelé</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "120px" }}>
             {clients != null ? renderCalls() : <p className="text-align-center margin-top-15">Chargement...</p> }
@@ -107,6 +105,7 @@ class AppelsProgrammes extends Component {
 function mapStateToProps(state) {
   return {
     clients: state.clients,
+    isMobile: state.isMobile,
   };
 }
 

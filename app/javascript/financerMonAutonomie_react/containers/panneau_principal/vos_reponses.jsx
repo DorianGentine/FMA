@@ -21,7 +21,7 @@ class VosReponses extends Component {
               <h4 className="font-12 no-margin">Bénéficiaire {index + 1}:</h4>
               <p className="font-12">{user.first_name}</p>
             </div>
-            <button className="blue-gray-btn" onClick={()=>{this.props.showReponses(user, index)}}>Voir les réponses</button>
+            <button className="blue-gray-btn" onClick={()=>{this.props.showReponses(user, index)}}>{this.props.isMobile ? "Réponses" : "Voir les réponses"}</button>
           </div>
         );
       });
@@ -43,6 +43,7 @@ class VosReponses extends Component {
 function mapStateToProps(state) {
   return {
     project: state.project,
+    isMobile: state.isMobile,
   };
 }
 

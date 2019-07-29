@@ -44,9 +44,9 @@ class KitDeFinancement extends Component {
         return (
           <div className="flex margin-top-15" key={index}>
             <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>{kit.title ? kit.title : "chargement"}</p>
-            <p className="col-lg-2 font-12 blue bold text-align-right">{nbDocs}</p>
-            <p className="col-lg-4 font-12 text-align-right">{renderDate(kit.updated_at)}</p>
-            <a className="blue-gray-btn text-align-right" href={url != null ? url : null}>Télécharger <i className="fas fa-download"></i></a>
+            {this.props.isMobile ? null : <p className="col-lg-2 font-12 blue bold text-align-right">{nbDocs}</p>}
+            {this.props.isMobile ? null : <p className="col-lg-4 font-12 text-align-right">{renderDate(kit.updated_at)}</p>}
+            <a className="blue-gray-btn text-align-right" href={url != null ? url : null}>{`${this.props.isMobile ? "" : "Télécharger "}`}<i className="fas fa-download"></i></a>
           </div>
         );
       });
@@ -56,16 +56,16 @@ class KitDeFinancement extends Component {
       <div className="col-lg-12">
         <div className="white-box flex flex-wrap relative">
           {etape === "progression" ? <ValidationModal /> : null}
-          <h4 className="col-lg-6">Découvrez votre kit de financement</h4>
-          <p className="bold col-lg-1">{etape === "progression" ? 0 : kits.length}</p>
+          <h4 className="col-lg-6">{`${this.props.isMobile ? "Kit de financement" : "Découvrez votre kit de financement"}`}</h4>
+          <p className="bold col-lg-1 col-xs-3">{etape === "progression" ? 0 : kits.length}</p>
           {etape === "evaluation" || etape === "archived" ?
-            <div className="col-lg-5 text-align-right"><a className="blue-gray-btn" href={zips != null ? zips.download_all_ressources : null}>Tout télécharger <i className="fas fa-download"></i></a></div>
+            <div className="col-lg-5 text-align-right col-xs-9"><a className="blue-gray-btn" href={zips != null ? zips.download_all_ressources : null}>Tout télécharger <i className="fas fa-download"></i></a></div>
             : null
           }
           <div className="bordure-bas flex w-100" style={{margin: "0 15px"}}>
             <p className="col-lg-4 font-12" style={{paddingLeft: 0}}>Titre</p>
-            <p className="col-lg-2 font-12">Documents</p>
-            <p className="col-lg-4 font-12">Date de dernière mise à jour</p>
+            {this.props.isMobile ? null : <p className="col-lg-2 font-12">Documents</p>}
+            {this.props.isMobile ? null : <p className="col-lg-4 font-12">Date de dernière mise à jour</p>}
           </div>
           <div className="scroll col-lg-12" style={{ height: "calc(100vh - 720px)", minHeight: "80px" }}>
             { kits != undefined && (etape === "evaluation" || etape === "archived") ? renderKits() : <h2 className="text-align-center margin-top-30 gray-300">Votre conseiller confectionne votre kit</h2>}
@@ -81,6 +81,7 @@ function mapStateToProps(state) {
   return {
     project: state.project,
     zip_urls: state.zip_urls,
+    isMobile: state.isMobile,
   };
 }
 

@@ -94,6 +94,7 @@ const nextStep = (questions, updated = null, question = null) => {
 
 const updateFormulary = (event) => {
   if(event.srcElement[1].value != ""){
+    document.getElementById('envoyer').disabled = true;
     const obj = {
       name: event.srcElement[1].name,
       value: event.srcElement[1].value,

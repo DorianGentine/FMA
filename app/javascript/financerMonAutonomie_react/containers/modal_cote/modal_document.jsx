@@ -46,7 +46,7 @@ class ModalDocument extends Component {
           file={doc.notice}
           onLoadSuccess={this.onDocumentLoadSuccess}
           className="pointer"
-          onClick={()=>{this.props.showModalPdf(doc.notice)}}
+          onClick={this.props.isMobile ? null : ()=>{this.props.showModalPdf(doc.notice)}}
         >
           <Page
             pageNumber={this.state.pageNumber}
@@ -72,6 +72,7 @@ class ModalDocument extends Component {
 function mapStateToProps(state) {
   return {
     modal_selected: state.modal_selected,
+    isMobile: state.isMobile,
   };
 }
 
