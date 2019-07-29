@@ -65,9 +65,9 @@ class ModalEvaluation extends Component {
     this.props.fetchPostCompte(url, values, method, ()=>{
       this.props.validateStep(`/api/v1/projects/${this.props.project_id}/next_setp`, ()=>{
         this.props.fetchProjet(`/api/v1/projects/${this.props.project_id}`)
+        this.props.closeModal()
       })
     })
-    this.props.closeModal()
   }
 
   render(){

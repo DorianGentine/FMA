@@ -23,7 +23,7 @@ class Financers extends Component {
             {renderLogo(financer)}
             <div className="flex-grow-1">
               <h4 className="font-12 no-margin" style={{paddingLeft: 0}}>{financer.name}</h4>
-              <p className="font-12 black">{financer.description ? financer.description.substr(0, 20) : ""}</p>
+              {this.props.isMobile ? null : <p className="font-12 black">{financer.description ? financer.description.substr(0, 20) : ""}</p>}
             </div>
             <p className="font-12 blue-gray-btn center-text" onClick={()=>{this.props.showFinancer(financer)}}>Accéder</p>
           </div>
@@ -35,7 +35,7 @@ class Financers extends Component {
       <div className="col-lg-6">
         <div className="white-box flex flex-wrap align-items-center">
           <h4 className="padding-horizontal-15 no-margin">Les financeurs</h4>
-          <p className="gray font-12 padding-horizontal-15">{`${financers ? financers.financers.length : 0} financeurs`}</p>
+          {this.props.isMobile ? null : <p className="gray font-12 padding-horizontal-15">{`${financers ? financers.financers.length : 0} financeurs`}</p>}
           <div className="scroll col-lg-12 margin-top-15" style={{ height: "145px" }}>
             {financers != null ? renderFinanceurs() : <h2>Chargement...</h2> }
           </div>
@@ -48,6 +48,7 @@ class Financers extends Component {
 function mapStateToProps(state) {
   return {
     financers: state.financers,
+    isMobile: state.isMobile,
   };
 }
 

@@ -98,7 +98,7 @@ class ModalPdf extends Component {
 
 function mapStateToProps(state) {
   return {
-    modal_pdf: state.modal_pdf
+    modal_pdf: state.modal_pdf,
   };
 }
 

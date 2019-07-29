@@ -39,16 +39,16 @@ class CardClient extends Component {
 
               <div className="col-lg-12 margin-bottom-30 blue font-12">{`${0} demandes spécifiques`}</div>
 
-              <div className="col-lg-6 font-12 gray-300">Clients total:</div>
-              <div className="col-lg-6 text-align-right font-12 black">{advisor.clients.length}</div>
-              <div className="col-lg-6 font-12 gray-300">En cours:</div>
-              <div className="col-lg-6 text-align-right font-12 black">{clientsEnCours}</div>
-              <div className="col-lg-6 font-12 gray-300">Kit en cours:</div>
-              <div className="col-lg-6 text-align-right font-12 black">{kitEnCours}</div>
-              <div className="col-lg-6 font-12 gray-300">Archivés:</div>
-              <div className="col-lg-6 text-align-right font-12 black">{clientsArchives}</div>
-              <div className="col-lg-6 font-12 gray-300">Actif il y a:</div>
-              <div className="col-lg-6 text-align-right font-12 black">{`30 minutes`}</div>
+              <div className="col-lg-6 col-xs-6 font-12 gray-300">Clients total:</div>
+              <div className="col-lg-6 col-xs-6 text-align-right font-12 black">{advisor.clients.length}</div>
+              <div className="col-lg-6 col-xs-6 font-12 gray-300">En cours:</div>
+              <div className="col-lg-6 col-xs-6 text-align-right font-12 black">{clientsEnCours}</div>
+              <div className="col-lg-6 col-xs-6 font-12 gray-300">Kit en cours:</div>
+              <div className="col-lg-6 col-xs-6 text-align-right font-12 black">{kitEnCours}</div>
+              <div className="col-lg-6 col-xs-6 font-12 gray-300">Archivés:</div>
+              <div className="col-lg-6 col-xs-6 text-align-right font-12 black">{clientsArchives}</div>
+              <div className="col-lg-6 col-xs-6 font-12 gray-300">Actif il y a:</div>
+              <div className="col-lg-6 col-xs-6 text-align-right font-12 black">{`30 minutes`}</div>
               <div className="col-lg-12 margin-top-30 flex space-between">
                 <a
                   // href={`tel:${advisor.phone}`}

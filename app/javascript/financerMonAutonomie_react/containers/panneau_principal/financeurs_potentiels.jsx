@@ -31,7 +31,7 @@ class FinanceursPotentiels extends Component {
             {renderLogo(financer)}
             <div className="flex-grow-1 margin-right-15">
               <h4 className="font-12 no-margin">{financer.name}</h4>
-              <p className="font-12">{financer.description ? `${financer.description.substring(0,20)}...` : ""}</p>
+              {this.props.isMobile ? null : <p className="font-12">{financer.description ? `${financer.description.substring(0,20)}...` : ""}</p>}
             </div>
             {renderUnmatch(financer, index)}
             <button className="blue-gray-btn" onClick={()=>{this.props.showFinancer(financer)}}>Infos</button>
@@ -57,6 +57,7 @@ class FinanceursPotentiels extends Component {
 function mapStateToProps(state) {
   return {
     project: state.project,
+    isMobile: state.isMobile,
   };
 }
 

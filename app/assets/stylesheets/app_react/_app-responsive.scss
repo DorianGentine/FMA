@@ -1,6 +1,11 @@
-@media screen and (max-width: 850px){
+@media screen and (max-width: 770px){
   .app-container{
     padding: 30px;
+  }
+
+  .doc-to-send{
+    min-width: 100%;
+    margin-right: 0;
   }
 
   .white-box{
@@ -47,6 +52,11 @@
     position: fixed;
     z-index: 3;
   }
+  .menu_mobile > div{
+    .app-navbar{
+      transition: .25s;
+    }
+  }
   .menu_mobile.hidden{
     .menu-principal{
       min-width: 0;
@@ -65,7 +75,6 @@
       min-width: 0;
       width: 0;
       overflow-x: hidden;
-      transition: .5s;
     }
   }
 

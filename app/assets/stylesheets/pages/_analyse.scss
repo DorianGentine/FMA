@@ -27,6 +27,22 @@
   }
 }
 
+@media screen and (max-width: 770px){
+  #blue-CTA{
+    max-width: 225px;
+    padding: 5px;
+    position: fixed;
+    bottom: 30px;
+    right: 15px;
+    z-index: 5;
+  }
+  .h4-with-number{
+    span{
+      left: 0;
+    }
+  }
+}
+
 .loading-analyse-icon{
   height: 30px;
   width: 40px;

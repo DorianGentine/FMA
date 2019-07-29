@@ -81,7 +81,7 @@ class AppelsProgrammes extends Component {
                       style={{padding: "5px"}}
                       onClick={()=>(this.props.showDemandeAnswer(demande, infoProject))}
                       >
-                      Voir&nbsp;la&nbsp;demande
+                      {this.props.isMobile ? "Demande" : "Voir&nbsp;la&nbsp;demande"}
                     </button>
                   </div>
                 );
@@ -97,14 +97,12 @@ class AppelsProgrammes extends Component {
       <div className="col-lg-12">
         <div className="white-box flex flex-wrap align-items-center">
           <h4 className="padding-horizontal-15 no-margin">Demandes spécifiques</h4>
-          <p className="padding-horizontal-15">
-            {`${String(this.state.nbDemandeEnCours).padStart(2, '0')}`}
-          </p>
+          {this.props.isMobile ? null : <p className="padding-horizontal-15">{`${String(this.state.nbDemandeEnCours).padStart(2, '0')}`}</p>}
 
           <div className="bordure-bas flex w-100" style={{margin: "15px 15px 0"}}>
-            <p className="col-lg-2 font-12" style={{paddingLeft: 0}}>Catégorie</p>
+            <p className="col-lg-2 font-12 col-xs-4" style={{paddingLeft: 0}}>Catégorie</p>
             <p className="col-lg-3 font-12 d-none d-sm-block">Conseiller</p>
-            <p className="col-lg-3 font-12">Bénéficiaire</p>
+            <p className="col-lg-3 font-12 col-xs-8">Bénéficiaire</p>
             <p className="col-lg-4 font-12 d-none d-sm-block" style={{paddingRight: 0}}>Envoyé il y a</p>
           </div>
           <div className="scroll col-lg-12" style={{ height: "120px" }}>

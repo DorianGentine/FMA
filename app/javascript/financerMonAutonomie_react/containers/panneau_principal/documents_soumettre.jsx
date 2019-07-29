@@ -13,7 +13,7 @@ class DocumentsSoumettre extends Component {
         {etape === "documentation" ? <ValidationModal /> : null}
         <div className="white-box flex flex-wrap align-items-baseline">
           <h4 className="margin-right-15">Documents à soumettre</h4>
-          <p className="blue font-12">Format PDF, PNG ou JPG</p>
+          {this.props.isMobile ? null : <p className="blue font-12">Format PDF, PNG ou JPG</p>}
           <RenderDocs />
         </div>
       </div>
@@ -24,6 +24,7 @@ class DocumentsSoumettre extends Component {
 function mapStateToProps(state) {
   return {
     etape: state.project.project.etape,
+    isMobile: state.isMobile,
   };
 }
 

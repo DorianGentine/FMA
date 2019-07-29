@@ -88,12 +88,12 @@ class CardClient extends Component {
         <div className="col-lg-4 col-xs-12 col-sm-6">
           <div className="white-box" style={{padding: "20px"}}>
             <div className="row">
-              <div className="col-lg-6 font-12 black flex align-items-center margin-bottom-15">
+              <div className="col-lg-6 col-xs-6 font-12 black flex align-items-center margin-bottom-15">
                 {renderLogo(client)}
                 <span className="bold" style={{marginLeft: "-10px"}}>{`${client.nombre_benef > 1 ? `+${client.nombre_benef - 1}` : "" }`}</span>
               </div>
 
-              <div className="relative col-lg-6 text-align-right" role="group">
+              <div className="relative col-lg-6 col-xs-6 text-align-right" role="group">
                 <div
                   id={`drop-call${client.id}`}
                   className="pointer"
@@ -117,12 +117,12 @@ class CardClient extends Component {
 
               <div className="col-lg-12 font-14 black bold">{fullName}</div>
               <div className="col-lg-12 margin-bottom-30 blue font-12">{subTitle}</div>
-              <div className="col-lg-5 font-12 gray-300">Financeurs:</div>
-              <div className="col-lg-7 text-align-right font-12 black">{client.financeurs}</div>
-              <div className="col-lg-5 font-12 gray-300">Date:</div>
-              <div className="col-lg-7 text-align-right font-12 black">{dateInscription}</div>
-              <div className="col-lg-5 font-12 gray-300">Étape:</div>
-              <div className="col-lg-7 text-align-right font-12 black">{`${numEtape}/7`}</div>
+              <div className="col-xs-6 col-lg-5 font-12 gray-300">Financeurs:</div>
+              <div className="col-xs-6 col-lg-7 text-align-right font-12 black">{client.financeurs}</div>
+              <div className="col-xs-6 col-lg-5 font-12 gray-300">Date:</div>
+              <div className="col-xs-6 col-lg-7 text-align-right font-12 black">{dateInscription}</div>
+              <div className="col-xs-6 col-lg-5 font-12 gray-300">Étape:</div>
+              <div className="col-xs-6 col-lg-7 text-align-right font-12 black">{`${numEtape}/7`}</div>
               <div className="col-lg-12 margin-top-30 flex space-between">
                 <a href={`tel:${client.phone}`} className="font-12 gray flex align-items-center">
                   <i className="fas fa-phone margin-right-5"></i>
