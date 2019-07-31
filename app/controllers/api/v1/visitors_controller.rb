@@ -21,14 +21,14 @@ class Api::V1::VisitorsController < Api::V1::BaseController
     if @visitor.formulary.nil?
       formulary = Formulary.new(form_params)
       formulary.visitor = @visitor
-      formulary.project = Project.create(step: "validation_data")
+      # formulary.project = Project.create(step: "validation_data")
       formulary.save
     else
       formulary = @visitor.formulary
       formulary.update(form_params)
-      if !formulary.project.validation_data?
-        formulary.project.validation_data!
-      end
+      # if !formulary.project.validation_data?
+      #   formulary.project.validation_data!
+      # end
     end
     render json: FormularyToHash.new(formulary).form_json
     authorize @visitor

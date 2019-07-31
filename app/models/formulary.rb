@@ -1,11 +1,12 @@
 class Formulary < ApplicationRecord
   belongs_to :visitor, optional: true
-  belongs_to :project
+  belongs_to :project, optional: true
 
   default_scope {order(created_at: :asc)}
 
   before_create :set_primary
-  before_save :add_answer_from_primary_form, :check_zip_change
+  before_save :add_answer_from_primary_form
+  before_save :check_zip_change
 
   geocoded_by :zip_code
   after_validation :geocode,
@@ -17,10 +18,8 @@ class Formulary < ApplicationRecord
 
   def add_city
     gecode_results = []
-    Geocoder.search(self.zip_code).each do |result|
-      if result.country_code == "fr"
-        gecode_results << result
-      end
+    Geocoder.search("#{self.zip_code}, France").each do |result|
+      gecode_results << result
     end
       # binding.pry
     gecode_result = gecode_results.uniq.first
@@ -33,6 +32,7 @@ class Formulary < ApplicationRecord
     self.address = city
   end
 
+
   def check_zip_change
     if self.zip_code_changed?
       self.add_city
@@ -41,6 +41,14 @@ class Formulary < ApplicationRecord
 
   def solutions
     return SetSolutions.new.call(self)
+  end
+
+  def generate_project_and_advisor(resource)
+    project = Project.create(step: "validation_data")
+    self.project = project
+    self.save
+    advisor = User.where(advisor: true).first
+    project.link_to_advisor_and_bene(resource, advisor)
   end
   # Q-2
   def allow_first_name?
@@ -511,12 +519,10 @@ class Formulary < ApplicationRecord
 
   private
 
+
     def add_answer_from_primary_form
-      project = self.project
-      p "Project is  => #{project.id}"
-      first_formulary = Formulary.where(project: project, primary: true).first
-      p "first_formulary is  => #{first_formulary.present?}"
-      if first_formulary.present? && !self.primary
+      first_formulary = Formulary.where(project: self.project, primary: true).first
+      if first_formulary.present? && self != first_formulary
         Formulary.column_names.each do |column_name|
           if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && column_name != "old_zip_code" && column_name != "address" && column_name != "latitude" && column_name != "longitude"
             ask_again = "ask_again_" + column_name + "?"
@@ -525,7 +531,7 @@ class Formulary < ApplicationRecord
             end
           end
         end
-      p "Self Formulary is  => #{self.valid?}"
+        # binding.pry
         return self
       end
     end

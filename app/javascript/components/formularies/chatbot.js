@@ -93,6 +93,7 @@ const nextStep = (questions, updated = null, question = null) => {
 
 
 const updateFormulary = (event) => {
+
   if(event.srcElement[1].value != ""){
     document.getElementById('envoyer').disabled = true;
     const obj = {
@@ -121,6 +122,7 @@ function fetchFormulary(){
     fetch(`/api/v1/visitors/${visitor_id}`)
       .then(response => response.json())
       .then((data) => {
+        console.log("coucou toi")
         console.log('get data', data)
         nextStep(data)
       });
