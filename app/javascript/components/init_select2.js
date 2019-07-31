@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'select2';
 import 'selectize';
 // import 'select2/dist/css/select2.css';
-import 'selectize/dist/css/selectize.css';
+// import 'selectize/dist/css/selectize.css';
 
 const setOptions = (question) => {
   if (question) {
