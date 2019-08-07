@@ -1,0 +1,20 @@
+{
+  "application.js": "/packs/js/application-708c31f8d25c3ac70eb5.js",
+  "application.js.map": "/packs/js/application-708c31f8d25c3ac70eb5.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-708c31f8d25c3ac70eb5.js"
+      ],
+      "js.map": [
+        "/packs/js/application-708c31f8d25c3ac70eb5.js.map"
+      ]
+    }
+  },
+  "media/fonts/rw-widgets.eot": "/packs/media/fonts/rw-widgets-bc7c4a59.eot",
+  "media/fonts/rw-widgets.svg?v=4.1.0": "/packs/media/fonts/rw-widgets-792dcd18.svg",
+  "media/fonts/rw-widgets.ttf?v=4.1.0": "/packs/media/fonts/rw-widgets-eceddf47.ttf",
+  "media/fonts/rw-widgets.woff?v=4.1.0": "/packs/media/fonts/rw-widgets-12f0820c.woff",
+  "media/img/loader-big.gif": "/packs/media/img/loader-big-a770b679.gif",
+  "media/img/loading.gif": "/packs/media/img/loading-33a75221.gif"
+}
