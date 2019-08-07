@@ -10,10 +10,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     formulary_id = session[:formulary_id]
-    project = Formulary.find(formulary_id.to_i).project
+    # project = Formulary.find(formulary_id.to_i).project
     super do |resource|
-      advisor = User.where(advisor: true).first
-      project.link_to_advisor_and_bene(resource, advisor)
+      Formulary.find(formulary_id.to_i).generate_project_and_advisor(resource)
       # project.link_to_beneficaire(resource) unless project.in_relationship?(resource)
       # project.link_to_advisor(advisor) unless project.in_relationship?(advisor)
     end

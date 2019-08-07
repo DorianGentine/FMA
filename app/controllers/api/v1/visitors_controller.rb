@@ -21,14 +21,14 @@ class Api::V1::VisitorsController < Api::V1::BaseController
     if @visitor.formulary.nil?
       formulary = Formulary.new(form_params)
       formulary.visitor = @visitor
-      formulary.project = Project.create(step: "validation_data")
+      # formulary.project = Project.create(step: "validation_data")
       formulary.save
     else
       formulary = @visitor.formulary
       formulary.update(form_params)
-      if !formulary.project.validation_data?
-        formulary.project.validation_data!
-      end
+      # if !formulary.project.validation_data?
+      #   formulary.project.validation_data!
+      # end
     end
     render json: FormularyToHash.new(formulary).form_json
     authorize @visitor
@@ -48,6 +48,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
     form = Formulary.column_names.reverse.drop(2).reverse
     index = form.index(pf.keys.first)
     form.drop(index).each_with_index do |column_name, form_index|
+      # binding.pry if column_name == "zip_code"
       allow = "allow_" + column_name + "?"
       if pf[column_name].present?
         pf[column_name] = f.send(allow) ? pf[column_name] : nil

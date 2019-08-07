@@ -93,6 +93,7 @@ const nextStep = (questions, updated = null, question = null) => {
 
 
 const updateFormulary = (event) => {
+
   if(event.srcElement[1].value != ""){
     document.getElementById('envoyer').disabled = true;
     const obj = {
@@ -112,6 +113,7 @@ const updateFormulary = (event) => {
 
 
 if (input) {
+  console.log("lets send it")
   input.addEventListener("submit", updateFormulary);
 }
 

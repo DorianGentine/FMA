@@ -8,6 +8,7 @@ json.project do
   json.nombre_de_financer @project.solutions.count
   json.formulary_ids @project.formulary_ids
 end
+json.benef @project.his_client.id
 json.demandes @project.requests do |request|
   json.author  do
     json.id @project.is_his_advisor.id
@@ -29,6 +30,7 @@ end
 json.documents @project.documents do |document|
   json.extract! document, :id, :title, :description, :file, :notice, :solution_ids, :formulary_ids
 end
+
 if @project.kits.count > 0
   json.kits @project.kits do |kit|
     json.id kit.id
