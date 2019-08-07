@@ -68,7 +68,7 @@ elsif @user.admin
       json.client client.id
       # json.email client.email
       # json.phone client.phone
-      json.project client.project.id
+      json.project client.project.id if client.project.present?
     end
     json.activities do
       json.projects Project.all.count
