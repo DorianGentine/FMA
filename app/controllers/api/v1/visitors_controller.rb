@@ -48,6 +48,7 @@ class Api::V1::VisitorsController < Api::V1::BaseController
     form = Formulary.column_names.reverse.drop(2).reverse
     index = form.index(pf.keys.first)
     form.drop(index).each_with_index do |column_name, form_index|
+      # binding.pry if column_name == "zip_code"
       allow = "allow_" + column_name + "?"
       if pf[column_name].present?
         pf[column_name] = f.send(allow) ? pf[column_name] : nil

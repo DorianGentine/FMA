@@ -113,6 +113,7 @@ const updateFormulary = (event) => {
 
 
 if (input) {
+  console.log("lets send it")
   input.addEventListener("submit", updateFormulary);
 }
 
@@ -122,7 +123,6 @@ function fetchFormulary(){
     fetch(`/api/v1/visitors/${visitor_id}`)
       .then(response => response.json())
       .then((data) => {
-        console.log("coucou toi")
         console.log('get data', data)
         nextStep(data)
       });

@@ -8,6 +8,7 @@ class Formulary < ApplicationRecord
   before_save :add_answer_from_primary_form
   before_save :check_zip_change
 
+
   geocoded_by :zip_code
   after_validation :geocode,
   :if => lambda{ |obj| obj.zip_code_changed? }
@@ -22,20 +23,31 @@ class Formulary < ApplicationRecord
       gecode_results << result
     end
       # binding.pry
-    gecode_result = gecode_results.uniq.first
+    if gecode_results.blank?
+      self.address = "NaN"
+    else
+      gecode_result = gecode_results.uniq.first
       if gecode_result
-        city = gecode_result.first.city
-        city = gecode_result.first.town if city.nil?
+        city = gecode_result.city
+        city = gecode_result.town if city.nil?
+        if zip_code == "94000"
+          city = "Créteil"
+        end
       else
         city = "NaN"
       end
-    self.address = city
+      self.address = city
+    end
   end
 
 
   def check_zip_change
-    if self.zip_code_changed?
-      self.add_city
+    if self.zip_code.present?
+      clean_zip_code = self.zip_code.delete('.').delete(' ')
+      self.zip_code = clean_zip_code if clean_zip_code != self.zip_code
+      if self.zip_code_changed?
+        self.add_city
+      end
     end
   end
 
@@ -521,18 +533,20 @@ class Formulary < ApplicationRecord
 
 
     def add_answer_from_primary_form
-      first_formulary = Formulary.where(project: self.project, primary: true).first
-      if first_formulary.present? && self != first_formulary
-        Formulary.column_names.each do |column_name|
-          if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && column_name != "old_zip_code" && column_name != "address" && column_name != "latitude" && column_name != "longitude"
-            ask_again = "ask_again_" + column_name + "?"
-            if !self.send(ask_again)
-              self[column_name] = first_formulary[column_name]
+      if self.project.present?
+        first_formulary = Formulary.where(project: self.project, primary: true).first
+        # binding.pry
+        if first_formulary.present? && self != first_formulary
+          Formulary.column_names.each do |column_name|
+            if  column_name != "id" && column_name != "primary" && column_name != "created_at" && column_name != "updated_at" && column_name != "visitor_id" && column_name != "project_id" && column_name != "old_zip_code" && column_name != "address" && column_name != "latitude" && column_name != "longitude"
+              ask_again = "ask_again_" + column_name + "?"
+              if !self.send(ask_again)
+                self[column_name] = first_formulary[column_name]
+              end
             end
           end
+          return self
         end
-        # binding.pry
-        return self
       end
     end
 
